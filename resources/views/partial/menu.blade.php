@@ -25,19 +25,18 @@
             <div class="menu_section">
                 <div class="clear"></div>
                 <ul class="nav side-menu">
-                    <li><a href="{{url('/')}}"><i class="fa fa-laptop"></i> Thống Kê</a></li>
+                    <li><a href="{{url('/admin')}}"><i class="fa fa-laptop"></i> Thống Kê</a></li>
                     <li><a><i class="fa fa-newspaper-o"></i> Tin tức <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Tin tức</a></li>
-                            <li><a href="#">Tạo mới</a></li>
-                            <li><a href="#">Nhóm tin tức</a></li>
-
+                            <li><a href="{{route('news.index')}}">Tin tức</a></li>
+                            <li><a href="{{route('news.create')}}">Tạo mới</a></li>
+                            <li><a href="{{route('category.index')}}">Nhóm tin tức</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i> Trang <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Trang</a></li>
-                            <li><a href="#">Tạo mới</a></li>
+                            <li><a href="{{route('pages.index')}}">Trang</a></li>
+                            <li><a href="{{route('pages.create')}}">Tạo mới</a></li>
 
                         </ul>
                     </li>
@@ -56,7 +55,7 @@
                         </ul>
                     </li>
                     <li><a href="#"><i class="fa fa-database"></i> Quản lý kho</a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> Khách hàng</a></li>
+                    <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
 
 
                 </ul>

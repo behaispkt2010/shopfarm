@@ -13,14 +13,52 @@
 
 
 Auth::routes();
-//ADMIN
 
-Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
+
+/*
+ *
+ *ADMIN
+ *
+ */
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'DashboardController@index');
 
+    //Tin tức
+    Route::resource('news', 'NewController');
+    //Nhóm tin tức
+    Route::resource('category', 'CategoryController');
+    //Trang
+    Route::resource('pages', 'PageController');
+    //Đơn hàng
+    Route::resource('orders', 'OrderController');
+    //Sản phẩm
+    Route::resource('products', 'ProductController');
+    //Quản lý kho
+    Route::resource('warehouse', 'WarehouseController');
+    //Khách hàng
+    Route::resource('customers', 'customerController');
+    //Users
+    Route::resource('users', 'UserController');
+    //Nhân sự
+    Route::resource('staffs', 'StaffController');
+    //Cài đặt
+    Route::resource('setting', 'SettingController');
+    //Menu
+    Route::resource('menu', 'MenuController');
+    //Giao diện
+    Route::resource('display', 'DisplayController');
+    //Ngôn ngữ
+    Route::resource('languages', 'LanguageController');
+    //Thống kê truy cập
+    Route::resource('statistics', 'StatisticController');
 });
 
-//APP
+/*
+ *
+ *APP
+ *
+ */
 Route::get('/', 'HomeController@index');
 
 

@@ -1,6 +1,5 @@
 
-    <!-- jQuery -->
-    <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
+
     <!-- Bootstrap -->
     <script src="{{asset('plugin/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- FastClick -->
@@ -46,7 +45,6 @@
 <script src="{{asset('plugin/pnotify/dist/pnotify.js')}}"></script>
 <script src="{{asset('plugin/pnotify/dist/pnotify.buttons.js')}}"></script>
 <script src="{{asset('plugin/pnotify/dist/pnotify.nonblock.js')}}"></script>
-
 
 <!-- Custom Notification -->
 <script>

@@ -1089,16 +1089,16 @@ table.jambo_table tbody tr.selected td {
   background-color: white; }
 
 .dataTables_length {
-  width: 40%;
+  width: 100%;
   float: left; }
 
 .dataTables_filter {
-  width: 50%;
+  width: 100%;
   float: right;
   text-align: right; }
 
 .dataTables_info {
-  width: 60%;
+  width: 100%;
   float: left; }
 
 .dataTables_paginate {
@@ -1503,7 +1503,7 @@ a.user-profile {
   margin-right: 10px; }
 
 ul.top_profiles {
-  height: 330px;
+  height: 272px;
   width: 100%; }
 
 ul.top_profiles li {
@@ -4139,4 +4139,12 @@ ul.notifications {
 }
 .table > tbody > tr > td {
   vertical-align: middle;
+}
+.page-description-seo {
+  display: block;
+  word-wrap: break-word;
+  color: #006621;
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 2px;
 }

@@ -15,11 +15,22 @@ description: template admin
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- jQuery -->
+    <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
+    <script type="text/javascript">
+        var baseURL="{!!url('/')!!}";
+    </script>
+    {{--ckeditor--}}
+    <script src="{{asset('plugin/ckeditor/ckeditor.js')}}" ></script>
+    <script src="{{asset('plugin/ckfinder/ckfinder.js')}}" ></script>
+
+    <script src="{{asset('plugin/func_ckfinder.js')}}" ></script>
+
     <!-- Theme style -->
     @include('partial.styles')
-    <script>
+    <style>
         @yield('add_styles')
-    </script>
+    </style>
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
