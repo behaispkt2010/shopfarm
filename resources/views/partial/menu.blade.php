@@ -68,7 +68,7 @@
                         <ul class="nav child_menu">
                             <li><a href="{{route('users.index')}}">Users</a></li>
                             <!--<li><a href="page_404.html">Roles</a></li>-->
-                            <li><a href="{{route('permissions.index')}}">Permissions</a></li>
+                            <li><a href="#">Permissions</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-sitemap"></i> Nhân Sự<span class="fa fa-chevron-down"></span></a>
