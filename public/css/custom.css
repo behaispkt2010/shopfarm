@@ -4511,3 +4511,72 @@ div.left-menu div.menu>ul>li:hover a, div.left-menu div.menu>ul>li:active a, div
 .profile_info a:focus{
   color: #fff;
 }
+ul.tab-fill{
+  list-style: none;
+}
+ul.tab-fill li{
+ display: inline-block;
+  margin-right: 10px;
+}
+.ng-binding{
+  background: #EF920D;
+  border-radius: 20px;
+  font-size: 10px;
+  padding: 0 5px;
+  color: #fff;
+  margin-left: 3px;
+}
+ul.tab-fill li.active{
+
+  border-bottom: 5px #f0991e solid;
+  line-height: 26px;
+}
+ul.tab-fill li:hover{
+  border-bottom: 5px #f0991e solid;
+  line-height: 26px;
+}
+.box-status {
+  width: 130px;
+  height: 80px;
+}
+.box-status {
+  width: 150px;
+  height: 92px;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: -45px;
+  right: -55px;
+}
+.btn-delete{
+  position: absolute;
+  color: red;
+  left: -3px;
+  top: -10px;
+  font-size: 25px;}
+.box-status .status-title {
+  padding-top: 60px;
+  font-size: 8px;
+}
+.box-status .status-title {
+  color: #fff;
+  padding-top: 66px;
+  font-size: 11px;
+  text-align: center;
+  padding-left: 28px;
+}
+
+.well.profile_view{
+  /*background-color: #EEB390;*/
+  overflow: hidden;
+  position: relative;
+}
+.list-unstyled li{
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.list-unstyled .box-money {
+  color: #e58b34;
+  font-family: 'Roboto-Regular';
+}

@@ -29,7 +29,7 @@
                     <li><a href="{{url('/admin')}}"><i class="fa fa-laptop"></i> Thống Kê</a></li>
                     <li><a><i class="fa fa-newspaper-o"></i> Tin tức <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{route('news.index')}}">Tin tức</a></li>
+                            <li class="active"><a href="{{route('news.index')}}">Tin tức</a></li>
                             <li><a href="{{route('news.create')}}">Tạo mới</a></li>
                             <li><a href="{{route('category.index')}}">Nhóm tin tức</a></li>
                         </ul>
