@@ -15,7 +15,23 @@
     <div class="row">
         <div class="col-md-12 col-xs-12">
             <!-- Name and Description -->
+
             <div class="x_panel">
+                <div class="circle">
+                    <div class="front front-popular">
+                        <div class="title color-2-font glyphicon glyphicon-plus"></div>
+                    </div><!-- end div .front -->
+                    <div class="popular color-2-font glyphicon glyphicon-plus"></div>
+                    <div class="back color-2-bg info">
+                        <a href="{{route('pages.create')}}">
+                            <div class="title color-2-font glyphicon glyphicon-pencil"></div>
+                        </a>
+                        <div class="description">
+                            <p>Thêm trang mới</p>
+                        </div><!-- end div .description -->
+                    </div><!-- end div .back color-1-bg info -->
+                </div><!-- end div .circle -->
+
                 <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
                     <thead>
                     <tr>
@@ -31,7 +47,7 @@
                     @for($i = 0; $i<50; $i++)
                     <tr>
                         <td><input type="checkbox" class="flat" name="table_records"></td>
-                        <td>Tên tiêu đề trang </td>
+                        <td><a href="{{route('pages.create')}}">Tên tiêu đề trang </a></td>
                         <td>15/11/2016</td>
                     </tr>
                         @endfor
@@ -128,6 +144,9 @@
             var $datatable = $('#datatable-checkbox');
 
             $datatable.dataTable({
+             "language": {
+                "url": "/plugin/datatable-lang/Vietnamese.json"
+            },
                 'order': [[ 1, 'asc' ]],
                 'columnDefs': [
                     { orderable: false, targets: [0] }

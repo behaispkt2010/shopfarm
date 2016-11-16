@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title', 'Bài viết ')
-@section('pageHeader','Bài viết ')
+@section('title', 'Danh sách sản phẩm ')
+@section('pageHeader','Danh sách sản phẩm ')
 @section('detailHeader','danh sách')
 @section('add_styles')
         <!-- Datatables -->
@@ -22,11 +22,11 @@
                             </div><!-- end div .front -->
                             <div class="popular color-2-font glyphicon glyphicon-plus"></div>
                             <div class="back color-2-bg info">
-                                <a href="{{route('news.create')}}">
+                                <a href="{{route('products.create')}}">
                                 <div class="title color-2-font glyphicon glyphicon-pencil"></div>
                                 </a>
                                 <div class="description">
-                                    <p>Thêm bài viết mới</p>
+                                    <p>Thêm sản phẩm mới</p>
                                 </div><!-- end div .description -->
                             </div><!-- end div .back color-1-bg info -->
                         </div><!-- end div .circle -->
@@ -37,10 +37,12 @@
                     <thead>
                     <tr>
                         {{--<th><input type="checkbox" id="check-all" class="flat"></th>--}}
-                        <th>Tiêu đề</th>
+                        <th>Hình ảnh </th>
+                        <th>Tên sản phẩm</th>
+                        <th>Tồn kho</th>
                         <th>Danh mục</th>
-                        <th>Tags</th>
-                        <th>Người viết</th>
+                        <th>Nhà sản xuất</th>
+                        <th>Người tạo</th>
                         <th>ngày tạo</th>
                         <th></th>
                     </tr>
@@ -52,9 +54,12 @@
                     @for($i = 0; $i<50; $i++)
                     <tr>
                         {{--<td><input type="checkbox" class="flat" name="table_records"></td>--}}
-                        <td><a href="{{route('news.create')}}">Tên tiêu đề bài viết </a></td>
-                        <td>tin tức</td>
-                        <td>New York,japan,văn hóa</td>
+                        <td>  <img class="media-object img-product" src="data:image/gif;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABaAAD/4QMqaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTQ5MTEsIDIwMTMvMTAvMjktMTE6NDc6MTYgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODZBMEEwQkUxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODZBMEEwQkYxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4NkEwQTBCQzFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4NkEwQTBCRDFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAEBAQEBAQEBAQECAQEBAgICAQECAgICAgICAgIDAgMDAwMCAwMEBAQEBAMFBQUFBQUHBwcHBwgICAgICAgICAgBAQEBAgICBQMDBQcFBAUHCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICP/AABEIABIAGAMBEQACEQEDEQH/xAB1AAEAAwEAAAAAAAAAAAAAAAAFAwYICgEBAQEBAAAAAAAAAAAAAAAAAgMFARAAAQQBAQUGBgMAAAAAAAAAAgEDBAUGEQBBURIzITFhIjI0cYFiIzUHFCQWEQACAgICAwAAAAAAAAAAAAABAgADETESIkETBP/aAAwDAQACEQMRAD8A7SMcxzHbPHaGwsKEbq+uhsH5cuRYSYgEESSQkqkJEnNoSaJy9vaqqiIq7a9ljBiAcAYmTXWpUEjJMuR4T+rY9RDu59YFbCmNtONk/MmNr90EcQdFe15tNydu0ffaTgS3pqAyYFl+IYXV4bNybF4otyoyxjrrRmXJdQVKW22qjzOkOuiqnh8dqU3OX4tBdSgTkshxi6hphGK4/Fp2clv5ayXItW8AG0wKTXvvOqSLyCm7eu3bUPMnOBOVOOAGMmNUC/6DLpwZuAt31QmlJjpD/UFlR8z7XMqo4S6d693y8s7OqddHzHX2ftsQn9kY3Mx+ivJFEYhjlsTK3NOXpjvfyGyF5hNyESIJCnHh3P5rQzDOxD9NZVTjRmf7X8nP6HWc9t7f1L0/p4eG2gmpntuH7KGI1H5Su6PWb9x0PWnU+njsX1Em5//Z" alt="...">
+                        </td>
+                        <td><a href="{{route('products.create')}}">Tên sản phẩm</a></td>
+                        <td>2 tồn kho</td>
+                        <td>Chuối tiêu</td>
+                        <td><a href="#">Chủ kho A</a></td>
                         <td>admin</td>
                         <td>15/11/2016</td>
                         <td width="100px" class="text-center">

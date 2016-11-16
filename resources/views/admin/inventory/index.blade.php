@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('title', 'Users')
-@section('pageHeader','Users')
-@section('detailHeader','Tạo mới/chỉnh sửa')
+@section('title', 'Tồn kho')
+@section('pageHeader','Tồn kho sản phẩm ')
+@section('detailHeader','danh sách')
 @section('add_styles')
         <!-- Datatables -->
 <link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
@@ -15,67 +15,55 @@
     <div class="row">
         <div class="col-md-12 col-xs-12">
             <!-- Name and Description -->
-           <div class="x_panel">
+            <div class="x_panel">
 
-                  <div class="x_content">
-                    <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                    <thead>
+                    <tr>
+                        {{--<th><input type="checkbox" id="check-all" class="flat"></th>--}}
+                        <th>Hình ảnh </th>
+                        <th>Tên sản phẩm</th>
+                        <th>SKU</th>
+                        <th>Chính sách tồn kho</th>
+                        <th>Giá trị</th>
+                        <th>Cập nhật tồn kho</th>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ và tên <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ Email <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Mật khẩu</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="password" id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                        </div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
-                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phân quyền <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control">
-                            <option>Author</option>
-                            <option>Subscriber</option>
-                            <option>Contributor</option>                           
-                            <option>Editor</option>
-                            <option>Administrator</option>
-                          </select>                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Thoát</button>
-                          <button type="submit" class="btn btn-success">Lưu</button>
-                        </div>
-                      </div>
+                    </tr>
+                    </thead>
 
-                    </form>
-                  </div>
-                </div>     
-          </div>
+
+                    <tbody>
+
+                    @for($i = 0; $i<50; $i++)
+                    <tr>
+                        {{--<td><input type="checkbox" class="flat" name="table_records"></td>--}}
+                        <td>  <img class="media-object img-product" src="data:image/gif;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABaAAD/4QMqaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTQ5MTEsIDIwMTMvMTAvMjktMTE6NDc6MTYgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODZBMEEwQkUxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODZBMEEwQkYxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4NkEwQTBCQzFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4NkEwQTBCRDFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAEBAQEBAQEBAQECAQEBAgICAQECAgICAgICAgIDAgMDAwMCAwMEBAQEBAMFBQUFBQUHBwcHBwgICAgICAgICAgBAQEBAgICBQMDBQcFBAUHCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICP/AABEIABIAGAMBEQACEQEDEQH/xAB1AAEAAwEAAAAAAAAAAAAAAAAFAwYICgEBAQEBAAAAAAAAAAAAAAAAAgMFARAAAQQBAQUGBgMAAAAAAAAAAgEDBAUGEQBBURIzITFhIjI0cYFiIzUHFCQWEQACAgICAwAAAAAAAAAAAAABAgADETESIkETBP/aAAwDAQACEQMRAD8A7SMcxzHbPHaGwsKEbq+uhsH5cuRYSYgEESSQkqkJEnNoSaJy9vaqqiIq7a9ljBiAcAYmTXWpUEjJMuR4T+rY9RDu59YFbCmNtONk/MmNr90EcQdFe15tNydu0ffaTgS3pqAyYFl+IYXV4bNybF4otyoyxjrrRmXJdQVKW22qjzOkOuiqnh8dqU3OX4tBdSgTkshxi6hphGK4/Fp2clv5ayXItW8AG0wKTXvvOqSLyCm7eu3bUPMnOBOVOOAGMmNUC/6DLpwZuAt31QmlJjpD/UFlR8z7XMqo4S6d693y8s7OqddHzHX2ftsQn9kY3Mx+ivJFEYhjlsTK3NOXpjvfyGyF5hNyESIJCnHh3P5rQzDOxD9NZVTjRmf7X8nP6HWc9t7f1L0/p4eG2gmpntuH7KGI1H5Su6PWb9x0PWnU+njsX1Em5//Z" alt="...">
+                        </td>
+                        <td><a href="{{route('products.create')}}">Tên sản phẩm</a></td>
+                        <td><a href="">#1111</a></td>
+                        <td>Haravan quản lý tồn kho,
+                            ngừng bán khi hết hàng</td>
+                        <td>40</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="nhập giá trị vào">
+                            <span class="input-group-btn">
+                                              <button type="button" class="btn btn-raised btn-primary">Set</button>
+                                          </span>
+                            </div>
+
+                        </td>
+
+                    </tr>
+                        @endfor
+
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    
+    </div>
 
 @endsection
 
@@ -161,12 +149,16 @@
             var $datatable = $('#datatable-checkbox');
 
             $datatable.dataTable({
+             "language": {
+                "url": "/plugin/datatable-lang/Vietnamese.json"
+            },
                 'order': [[ 1, 'asc' ]],
                 'columnDefs': [
                     { orderable: false, targets: [0] }
                 ]
             });
             $datatable.on('draw.dt', function() {
+
                 $('input').iCheck({
                     checkboxClass: 'icheckbox_flat-green'
                 });

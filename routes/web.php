@@ -21,11 +21,13 @@ Auth::routes();
  *
  */
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'DashboardController@index');
 
     //Tin tức
     Route::resource('news', 'NewController');
+    //permisson
+    Route::resource('permission', 'PermissionController');
     //Nhóm tin tức
     Route::resource('category', 'CategoryController');
     //Trang
@@ -34,6 +36,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('orders', 'OrderController');
     //Sản phẩm
     Route::resource('products', 'ProductController');
+    //ql kho
+    Route::resource('inventory', 'InventoryController');
+    //Nhóm tin tức
+    Route::resource('categoryProducts', 'CategoryProductController');
     //Quản lý kho
     Route::resource('warehouse', 'WarehouseController');
     //Khách hàng

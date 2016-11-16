@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-envira"></i> <span>Care Me App</span></a>
+            <a href="index.html" class="site_title"><img src="{{url('/')}}/images/logo-w.png" alt=""></a>
         </div>
 
         <div class="clearfix"></div>
@@ -9,11 +9,12 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="{{url('/')}}/images/icon.png" alt="..." class="img-circle profile_img">
+                <img data-toggle="modal" data-target=".bs-example-modal-avata" src="{{url('/')}}/images/icon.png" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Admin Tin</h2>
+                <div style="    font-size: 14px; color: #FFF; margin-bottom: 5px;    font-weight: 500;">Mai xuân triều</div>
+                <a href="" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i> Thông tin</a>
+                <a style="font-size: 13px;"><i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất</a>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -42,19 +43,19 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i> Đơn hàng <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Đơn hàng</a></li>
+                            <li><a href="{{route('orders.index')}}">Đơn hàng</a></li>
                             <li><a href="#">Vận chuyển</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-tag"></i>Sản Phẩm <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Sản phẩm</a></li>
-                            <li><a href="#">Nhóm sản phẩm</a></li>
-                            <li><a href="#">Tồn kho</a></li>
+                            <li><a href="{{route('products.index')}}">Sản phẩm</a></li>
+                            <li><a href="{{route('categoryProducts.index')}}">Nhóm sản phẩm</a></li>
+                            <li><a href="{{route('inventory.index')}}">Tồn kho</a></li>
 
                         </ul>
                     </li>
-                    <li><a href="#"><i class="fa fa-database"></i> Quản lý kho</a></li>
+                    <li><a href="{{route('warehouse.index')}}"><i class="fa fa-database"></i> Quản lý kho</a></li>
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
 
 
@@ -68,7 +69,7 @@
                         <ul class="nav child_menu">
                             <li><a href="{{route('users.index')}}">Users</a></li>
                             <!--<li><a href="page_404.html">Roles</a></li>-->
-                            <li><a href="#">Permissions</a></li>
+                            <li><a href="{{route('permission.index')}}">Permissions</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-sitemap"></i> Nhân Sự<span class="fa fa-chevron-down"></span></a>
@@ -209,3 +210,50 @@
     </div>
 </div>
 <!-- /top navigation -->
+<!--modal-->
+<div class="modal fade bs-example-modal-avata" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog bs-example-modal-avata">
+        <div class="img-circle logo"></div>
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title text-center" id="myModalLabel">Thay đổi hình đại diện</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)" src="{{asset('/images/1.png')}}" data-pin-nopin="true"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)" src="{{asset('/images/2.png')}}" data-pin-nopin="true"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)" src="{{asset('/images/3.png')}}" data-pin-nopin="true"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)" src="{{asset('/images/4.png')}}" data-pin-nopin="true"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)" src="{{asset('/images/5.png')}}"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)" src="{{asset('/images/6.png')}}" data-pin-nopin="true"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item active"><img onclick="ChooseAvatar(this)" src="{{asset('/images/7.png')}}" data-pin-nopin="true"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)" src="{{asset('/images/8.png')}}" data-pin-nopin="true"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Chọn</button>
+            </div>
+
+        </div>
+    </div>
+</div>

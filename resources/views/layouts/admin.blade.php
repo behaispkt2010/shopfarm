@@ -14,7 +14,8 @@ description: template admin
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    {{--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- jQuery -->
     <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
     <script type="text/javascript">
@@ -28,9 +29,7 @@ description: template admin
 
     <!-- Theme style -->
     @include('partial.styles')
-    <style>
-        @yield('add_styles')
-    </style>
+    @yield('add_styles')
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">

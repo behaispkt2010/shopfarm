@@ -1,86 +1,56 @@
 @extends('layouts.admin')
-@section('title', 'Users')
-@section('pageHeader','Users')
-@section('detailHeader','Tạo mới/chỉnh sửa')
+@section('title', 'Phân quyền')
+@section('pageHeader','Phân quyền')
+@section('detailHeader','danh sách')
 @section('add_styles')
-        <!-- Datatables -->
+        <!-- Datatables x-->
 <link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
-    @endsection
+@endsection
 @section('content')
 
     <div class="row">
-        <div class="col-md-12 col-xs-12">
-            <!-- Name and Description -->
-           <div class="x_panel">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_content">
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Tên phân quyền</th>
+                        <th>bao gồm các quyền</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>admin</td>
+                        <td>all</td>
 
-                  <div class="x_content">
-                    <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <td>t.nixon@datatables.net</td>
+                    </tr>
+                    <tr>
+                        <td>Quản lý</td>
+                        <td>thêm,xóa, sửa </td>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ và tên <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ Email <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Mật khẩu</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="password" id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                        </div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
-                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phân quyền <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control">
-                            <option>Author</option>
-                            <option>Subscriber</option>
-                            <option>Contributor</option>                           
-                            <option>Editor</option>
-                            <option>Administrator</option>
-                          </select>                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Thoát</button>
-                          <button type="submit" class="btn btn-success">Lưu</button>
-                        </div>
-                      </div>
+                        <td>t.nixon@datatables.net</td>
+                    </tr>
 
-                    </form>
-                  </div>
-                </div>     
-          </div>
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
+
     </div>
-    
 
-@endsection
 
-@section('add_scripts')
-        <!-- Datatables -->
+    @endsection
+
+    @section('add_scripts')
+            <!-- Datatables -->
     <script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
@@ -144,7 +114,11 @@
                 keys: true
             });
 
-            $('#datatable-responsive').DataTable();
+            $('#datatable-responsive').DataTable({
+                "language": {
+                    "url": "/plugin/datatable-lang/Vietnamese.json"
+                }
+            });
 
             $('#datatable-scroller').DataTable({
                 ajax: "js/datatables/json/scroller-demo.json",

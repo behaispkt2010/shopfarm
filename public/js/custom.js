@@ -277,3 +277,6 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
+$(".box").click(function(){
+    $(this).box().toggleClass("circle");
+});

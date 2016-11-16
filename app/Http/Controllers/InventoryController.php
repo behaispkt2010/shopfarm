@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class WarehouseController extends Controller
+class InventoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        return view('admin.warehouse.edit');
+        //
     }
 
     /**

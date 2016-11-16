@@ -36,7 +36,7 @@
                     <textarea class="form-control" rows="5" name="txtDescription">{!!old('txtDescription')!!}</textarea>
                 </div>
 
-                <button type="submit" name="addCategory" class="btn btn-primary">Thêm danh mục</button>
+                <button type="submit" name="addCategory" class="btn btn-raised btn-primary">Thêm danh mục</button>
             </form>
                 </div>
         </div>
@@ -46,7 +46,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="option-table-top">
-                        <button class="btn btn-danger" name="delete" type="submit" Onclick="return ConfirmDelete();"><i
+                        <button class="btn btn-raised btn-danger" name="delete" type="submit" Onclick="return ConfirmDelete();"><i
                                     class="glyphicon glyphicon-remove"></i>Delete
                         </button>
                     </div>
@@ -77,11 +77,6 @@
                         </tbody>
                     </table>
 
-                    <div class="option-table-bottom">
-                        <button class="btn btn-danger" name="delete" type="submit" Onclick="return ConfirmDelete();"><i
-                                    class="glyphicon glyphicon-remove"></i>Delete
-                        </button>
-                    </div>
                 </form>
             </div>
         </div>
@@ -149,13 +144,19 @@
                 };
             }();
 
-            $('#datatable').dataTable();
+            $('#datatable').dataTable({
+             "language": {
+                "url": "/plugin/datatable-lang/Vietnamese.json"
+            }
+            });
 
             $('#datatable-keytable').DataTable({
                 keys: true
             });
 
-            $('#datatable-responsive').DataTable();
+            $('#datatable-responsive').DataTable({ "language": {
+                "url": "/plugin/datatable-lang/Vietnamese.json"
+            }});
 
             $('#datatable-scroller').DataTable({
                 ajax: "js/datatables/json/scroller-demo.json",
@@ -172,6 +173,9 @@
             var $datatable = $('#datatable-checkbox');
 
             $datatable.dataTable({
+            { "language": {
+                "url": "/plugin/datatable-lang/Vietnamese.json"
+            },
                 'order': [[1, 'asc']],
                 'columnDefs': [
                     {orderable: false, targets: [0]}

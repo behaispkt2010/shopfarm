@@ -1,7 +1,11 @@
 @extends('layouts.admin')
-@section('title', 'Bài viết ')
-@section('pageHeader','Bài viết ')
-@section('detailHeader','Thêm bài viết')
+@section('title', 'Sản phẩm ')
+@section('pageHeader','Sản phẩm')
+@section('detailHeader','Thêm sản phẩm')
+@section('add_styles')
+        <!-- Dropzone.js -->
+<link href="{{asset('plugin/dropzone/dist/min/dropzone.min.css')}}" rel="stylesheet">
+    @endsection
 @section('content')
 
     <div class="row">
@@ -21,6 +25,76 @@
                 </div>
 
             </div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Đăng nhiều ảnh sản phẩm</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <p>Kéo thả nhiều hình cùng lúc vào</p>
+                    <form action="form_upload.html" class="dropzone"></form>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="x_panel">
+                <div class="form-group">
+                    <h3 class="title-product-main text-no-bold mb20">Thông tin chi tiết sản phẩm </h3>
+                    <div class="form-group">
+                        <label for="ex4">Mã sản phẩm</label>
+                        <input type="text" id="ex4" class="form-control" placeholder=" ">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                        <label for="ex4">Giá</label>
+                        <input type="number"  class="form-control" placeholder=" ">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ex4">Giá so sánh</label>
+                                <input type="number"  class="form-control" placeholder=" ">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ex4">Màu sắc</label>
+                        <input type="text" id="ex4" class="form-control" placeholder=" ">
+                    </div>
+                    <div class="form-group">
+                        <label for="ex4">Khối lượng (grams)</label>
+                        <input type="text" id="ex4" class="form-control" placeholder=" ">
+                    </div>
+                    <div class="form-group">
+                        <label for="ex4">Chính sách tồn kho</label>
+                        <div class="row">
+                            <div class="col-md-5">
+                        <select class="form-control">
+                            <option>Luôn có</option>
+                            <option>Có tồn kho</option>
+                        </select>
+                            </div>
+                            <div class="col-md-7">
+                        <input type="number" id="ex4" class="form-control" placeholder=" ">
+                                </div>
+                        </div>
+                    </div>
+
+
+
+                    </div>
+
+                </div>
+
             <div class="x_panel">
                 <!-- SEO -->
                 <div class="wrapper-content mt20 mb20">
@@ -92,8 +166,8 @@
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-raised btn-primary">Hủy</button>
-                        <button type="submit" class="btn btn-raised btn-success">Lưu</button>
+                        <button type="submit" class="btn btn-primary">Hủy</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -101,9 +175,42 @@
                 <div class="wrapper-content mt20">
                     <div class="pd-all-20 border-top-title-main">
                         <div class="form-group">
-                            <label>Nhóm bài viết</label>
+                            <label>Chủ kho</label>
                             <select class="select2_single form-control" tabindex="-1">
-                                <option>chọn nhóm bài viết</option>
+                                <option>Khác</option>
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="CO">Colorado</option>
+                                <option value="ID">Idaho</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="UT">Utah</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TX">Texas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Loại sản phẩm</label>
+                            <select class="select2_single form-control" tabindex="-1">
+                                <option>Khác</option>
                                 <option value="AK">Alaska</option>
                                 <option value="HI">Hawaii</option>
                                 <option value="CA">California</option>
@@ -180,6 +287,7 @@
 
 
     @section('add_scripts')
+        <script src="{{asset('plugin/dropzone/dist/min/dropzone.min.js')}}"></script>
             <!-- jQuery Tags Input -->
     <script src="{{asset('plugin/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
     <!-- jQuery Tags Input -->

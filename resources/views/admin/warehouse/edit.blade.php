@@ -92,8 +92,8 @@
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-raised btn-primary">Hủy</button>
-                        <button type="submit" class="btn btn-raised btn-success">Lưu</button>
+                        <button type="submit" class="btn btn-primary">Hủy</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
                     </div>
                 </div>
             </div>
