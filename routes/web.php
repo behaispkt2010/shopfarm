@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'DashboardController@index');
-
+    Route::get('/dashboard', 'DashboardAdminController@index');
     //Tin tức
     Route::resource('news', 'NewController');
     //permisson

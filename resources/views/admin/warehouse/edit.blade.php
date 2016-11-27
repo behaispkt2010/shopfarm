@@ -1,181 +1,563 @@
 @extends('layouts.admin')
-@section('title', 'Bài viết ')
-@section('pageHeader','Bài viết ')
-@section('detailHeader','Thêm bài viết')
+@section('title', 'Chủ kho')
+@section('pageHeader','Chủ kho')
+@section('detailHeader','thông tin')
+@section('rightHeader')
+    <a href="{{route('warehouse.create')}}" class="btn btn-raised btn-warning btn-md">
+        <i class="fa fa-plus" aria-hidden="true"></i> Tạo mới
+    </a>
+@endsection
 @section('content')
 
     <div class="row">
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-12 col-xs-12">
             <!-- Name and Description -->
-            <div class="x_panel">
-                <div class="form-group">
-                    <label for="name">Tiêu đề</label>
-                    <input type="text" class="form-control" name="name" placeholder="tên tiêu đề" id="txtName" required>
+            <div class="">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
+
+                        <div class="well box1 info-warehouse">
+                            <h4 class="text-center">Thông tin người đại diện <i style="float: right"
+                                                                                class="fa fa-wrench"
+                                                                                aria-hidden="true"></i></h4>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="code" class="col-md-3 col-xs-12 control-label">Mã</label>
+
+                                            <div class="col-md-9 col-xs-12">
+                                                <input type="email" disabled class="form-control" id="code" placeholder="#000"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="name" class="col-md-3 col-xs-12control-label">Tên</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <input type="text" disabled class="form-control" name="name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="pass" class="col-md-3 col-xs-12 "> Mật khẩu</label>
+
+                                            <div class="col-md-9 col-xs-12">
+                                                <a href="" data-toggle="modal"
+                                                   data-target=".modal-change-pass"> Thay đổi mật khẩu</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="name-bank" class="col-md-3 col-xs-12 ">Ngân
+                                                hàng</label>
+
+                                            <div class="col-md-9 col-xs-12">
+                                                <p>Tên ngân hàng: Đông Á</p>
+
+                                                <p>Tỉnh/thành phố: Hà Nội</p>
+
+                                                <p>Số tài khoản: 10000000000</p>
+
+                                                <p>Chủ tài khoản: Nguyễn Văn A</p>
+                                                <a href="" data-toggle="modal"
+                                                   data-target=".modal-bank"> Cập nhật tài khoản</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="name" class="col-md-3 col-xs-12control-label">Cập nhật</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <div>22/11/2016 23:25</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="text-right">
+                                    <button class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
+
+                        <div class="well box1 info-kho">
+                            <h4 class="text-center">Thông tin Kho / doanh nghiệp <i style="float: right"
+                                                                                    class="fa fa-wrench edit"
+                                                                                    aria-hidden="true"></i></h4>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="code" class="col-md-3 col-xs-12 control-label">Tên DN</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <input type="text" disabled class="form-control" id="code"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="code" class="col-md-3 col-xs-12 control-label">Địa chỉ</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <input type="text" disabled class="form-control" id="code"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="code" class="col-md-3 col-xs-12 control-label">MS
+                                                thuế</label>
+
+                                            <div class="col-md-9 col-xs-12">
+                                                <input type="text" disabled class="form-control" id="code"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="code" class="col-md-3 col-xs-12 control-label">Người ĐD</label>
+
+                                            <div class="col-md-9 col-xs-12">
+                                                <input type="text" disabled class="form-control" id="code"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="text-right">
+                                    <button class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <input type="hidden" class="form-control" name="slug" placeholder="slug" id="txtSlug" required>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                <div class="form-group">
-                    <label>Nội dung</label>
-                    <textarea class="form-control" rows="5" name="description"></textarea>
-                    <script type="text/javascript">ckeditor('description')</script>
-                </div>
+                        <div class="well box1">
+                            <h4 class="text-center">Gói dịch vụ </h4>
+                            <ul class="list-unstyled">
+                                <li>
 
-            </div>
-            <div class="x_panel">
-                <!-- SEO -->
-                <div class="wrapper-content mt20 mb20">
-                    <div class="pd-all-20 ps-relative">
-                        <label class="title-product-main text-no-bold mb20">Tối ưu SEO</label>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4 col-xs-12 control-label"> Xác thực
+                                                kho</label>
 
-                        <p class="mb0">Thiết lập các thẻ mô tả giúp khách hàng dễ dàng tìm thấy trang trên công cụ tìm
-                            kiếm
-                            như Google.</p>
+                                            <div class="col-md-8 col-xs-12">
+                                                <button class="btn btn-success btn-raised btn-sm"> Đăng ký</button>
 
-                        <div>
-                            <span class="page-title-seo"></span>
-
-                            <div class="page-description-seo ws-nm"><span>http://nongsantunhien-com.myharavan.com/blogs/tin-tuc/</span>
-                            </div>
-                        </div>
-                        <a class="btn-change-link btn-style-seo pull-right">Chỉnh sửa
-                            SEO</a>
-                    </div>
-                    <div class="pd-all-20 border-top-title-main">
-                        <div class="form-group">
-                            <label class="inline">Tiêu đề trang</label>
-                            <label class="inline note pull-right"> <span>0</span> trên 70 kí tự</label>
-                            <input type="text" class="form-control" name="names" placeholder="tiêu đề seo" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="inline" for="inputmetadescription">Mô tả trang</label>
-                            <label class="inline note pull-right"> <span data-bind="text: MetaDescLength">0</span> trên
-                                160
-                                kí tự</label>
-                            <input type="text" class="form-control" name="description" placeholder="mô tả ngắn">
-
-                        </div>
-                        <div class="form-group mb0">
-                            <label for="inputurlhandle">
-                                Đường dẫn
-                                <a href="https://docs.haravan.com/blogs/co-ban/1000019770-handle" target="_blank">
-                                    <i class="hover-tooltip glyphicon glyphicon-question-sign note"></i>
-                                </a>
-                            </label>
-
-                            <div class="input-group">
-                                <span class="input-group-addon drop-price-addon border-color-input-group">http://nongsantunhien-com.myharavan.com/blogs/tin-tuc/</span>
-                                <input type="text" class="form-control" name="slugs" placeholder="slug">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End SEO -->
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-12">
-            <!-- Show/Hide -->
-            <div class="x_panel">
-                <div class="wrapper-content">
-                    <div class="pd-all-20">
-                        <label class="title-product-main text-no-bold">Hiển thị</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                            Hiển thị ngay
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> Ẩn đi
-                        </label>
-                    </div>
-                    <div class="ln_solid"></div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Hủy</button>
-                        <button type="submit" class="btn btn-success">Lưu</button>
-                    </div>
-                </div>
-            </div>
-            <div class="x_panel">
-                <div class="wrapper-content mt20">
-                    <div class="pd-all-20 border-top-title-main">
-                        <div class="form-group">
-                            <label>Nhóm bài viết</label>
-                            <select class="select2_single form-control" tabindex="-1">
-                                <option>chọn nhóm bài viết</option>
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="CA">California</option>
-                                <option value="NV">Nevada</option>
-                                <option value="OR">Oregon</option>
-                                <option value="WA">Washington</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="CO">Colorado</option>
-                                <option value="ID">Idaho</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="UT">Utah</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TX">Texas</option>
-                            </select>
-                        </div>
-                        <div class="">
-                            <label class="mb5">Hình đại diện</label>
-                        </div>
-                        <div class="center-block ps-relative pt10 overflow-hidden">
-                            <!-- ko if: ArticleDetail().File() --><!-- /ko -->
-                            <div class="styled-file-input">
-                                <div class="btn--plain ps-relative">
-                                    <!-- ko ifnot: ArticleDetail().File() -->
-                                    <div class="aspect-ratio aspect-ratio--square aspect-ratio--interactive">
-                                        <div class="next-media__blank-slate">
-                                            <div class="next-media__blank-slate__content next-media__blank-slate__content--align-middle">
-                                                <svg class="next-icon--40" style="fill:#479ccf"
-                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-                                                    <path d="M38 6v28h-36v-28h36m0-2h-36c-1.1 0-2 .9-2 2v28c0 1.1.9 2 2 2h36c1.1 0 2-.9 2-2v-28c0-1.1-.9-2-2-2zm-4 4h-28c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h28c1.1 0 2-.9 2-2v-20c0-1.1-.9-2-2-2zm0 2v14.2l-6.8-6.8c-1.9-1.9-4.9-1.9-6.8 0l-5.2 5.2c-1.3-.6-2.9-.3-3.9.7l-5.3 5.3v-18.6h28zm-19.1 14.7l.6.6 4.8 4.8h-12.9l5.3-5.3c.2-.2.5-.3.8-.4.5-.2 1-.1 1.4.3zm8.1 5.3l-6.2-6.2 5-5c1.1-1.1 2.9-1.1 4 0l8.2 8.2v3h-11zm-11.5-15.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0-1.5c-1.9 0-3.5 1.6-3.5 3.5s1.6 3.5 3.5 3.5 3.5-1.6 3.5-3.5-1.6-3.5-3.5-3.5z"></path>
-                                                </svg>
+                                                <button class="btn btn-info btn-raised btn-sm" data-toggle="modal"
+                                                        data-target=".modal-service"> Chi tiết
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Featured image-->
-                <div class="wrapper-content mt20">
-                    <div class="control-group">
-                        <label>Tags</label>
-                        <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <input id="tags_1" type="text" class="tags form-control" value="social, adverts, sales"/>
 
-                            <div id="suggestions-container"
-                                 style="position: relative; float: left; width: 250px; margin: 10px;"></div>
-                        </div>
+                                </li>
+                                <li>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4 col-xs-12 control-label"> Quảng cáo
+                                            </label>
+
+                                            <div class="col-md-8 col-xs-12">
+                                                <button class="btn btn-success btn-raised btn-sm"> Đăng ký</button>
+
+                                                <button class="btn btn-info btn-raised btn-sm" data-toggle="modal"
+                                                        data-target=".modal-marketing"> Chi tiết
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4  col-xs-12 control-label"> Cấp kho : 1</label>
+
+                                            <div class="col-md-8 col-xs-12">
+                                                <button class="btn btn-success btn-raised btn-sm"> Nâng cấp</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+
                         </div>
                     </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade modal-service" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-service">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Xác thực kho</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <h3>Có giấy phép kinh doanh</h3>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <div class="form-group">
+                                            <label class="col-md-8 col-xs-12 control-label"> Mô hình kinh doanh:</label>
+
+                                            <div class="col-md-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> xác thực
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li> <div class="form-group">
+                                            <label class="col-md-8 col-xs-12 control-label"> Mô hình kinh doanh</label>
+
+                                            <div class="col-md-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" checked="true"> xác thực
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div></li>
+                                    <li> <div class="form-group">
+                                            <label class="col-md-8 col-xs-12 control-label"> Tên doanh nghiệp</label>
+
+                                            <div class="col-md-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> xác thực
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div></li>
+                                    <li> <div class="form-group">
+                                            <label class="col-md-8 col-xs-12 control-label"> Thời gian hợp đồng của doanh nghiệp</label>
+
+                                            <div class="col-md-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> xác thực
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div></li>
+
+                                    <li> <div class="form-group">
+                                            <label class="col-md-8 col-xs-12 control-label"> Mã số thuế</label>
+
+                                            <div class="col-md-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> Địa chỉ
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div></li>
+                                    <li> <div class="form-group">
+                                            <label class="col-md-8 col-xs-12 control-label"> Đại diện</label>
+
+                                            <div class="col-md-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> xác thực
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div></li>
+                                </ul>
+                            <div class="clear"></div>
+                            <br>
+                            <h3>Có Kho hàng / Nhà xưởng</h3>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="form-group">
+                                        <label class="col-md-8 col-xs-12 control-label"> Quy mô: 30m2</label>
+
+                                        <div class="col-md-4 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> xác thực
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li> <div class="form-group">
+                                        <label class="col-md-8 col-xs-12 control-label"> Năng lực cấp:.....</label>
+
+                                        <div class="col-md-4 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked="true"> xác thực
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div></li>
+                                <li> <div class="form-group">
+                                        <label class="col-md-12 col-xs-12 control-label"> hình ảnh kho:.....</label>
+
+                                        <div class="col-md-12 col-xs-12">
+
+                                        </div>
+                                    </div></li>
+
+                            </ul>
+
+                            </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+
                 </div>
 
             </div>
         </div>
     </div>
 
+
+    <div class="modal fade modal-change-pass" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-change-pass">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Thay đổi mật khẩu</h4>
+                </div>
+                <div class="modal-body sroll">
+
+
+                                <div class="row">
+                                    <div class="form-group">
+                                    <label for="code" class="col-md-5 control-label">Mật khẩu mới:</label>
+
+                                    <div class="col-md-7">
+                                        <input type="password" class="form-control"/>
+                                    </div>
+                                        </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="code" class="col-md-5 control-label">Nhập lại mật khẩu</label>
+
+                                        <div class="col-md-7">
+                                            <input type="password" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-primary">Lưu</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade modal-bank" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-bank">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Tài khoản ngân hàng</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="frm-add">
+                        <div class="row">
+                            <div class="form-group">
+                            <label for="name" class="col-md-4 col-sm-4 control-label">Tên ngân hàng</label>
+                            <div class="col-md-8 col-sm-8">
+                                <select  data-placeholder="Ngân hàng" class="form-control">
+                                    <option label="NH Đông Á" value="object:12">NH Đông Á</option>
+                                    <option label="NH Vietcombank" value="object:13">NH Vietcombank</option>
+                                    <option label="NH Techcombank" value="object:14">NH Techcombank</option>
+                                    <option label="NH MBank" value="object:15">NH MBank</option>
+                                    <option label="NH Á Châu" value="object:16">NH Á Châu</option>
+                                    <option label="NH Maritime Bank" value="object:17">NH Maritime Bank</option>
+                                    <option label="NH Sacombank" value="object:18">NH Sacombank</option>
+                                    <option label="NH Agribank" value="object:19">NH Agribank</option>
+                                    <option label="NH Vietin" value="object:20">NH Vietin</option>
+                                    <option label="NH ANZ" value="object:21">NH ANZ</option>
+                                    <option label="NH Tiên Phong" value="object:22">NH Tiên Phong</option>
+                                    <option label="NH Exim" value="object:23">NH Exim</option>
+                                    <option label="NH Đại Á" value="object:24">NH Đại Á</option>
+                                    <option label="NH Đông Nam Á" value="object:25">NH Đông Nam Á</option>
+                                    <option label="NH Đại Dương" value="object:26">NH Đại Dương</option>
+                                    <option label="NH An Bình" value="object:27">NH An Bình</option>
+                                    <option label="NH Bắc Á" value="object:28">NH Bắc Á</option>
+                                    <option label="NH Dầu khí Toàn Cầu" value="object:29">NH Dầu khí Toàn Cầu</option>
+                                    <option label="NH Bản Việt" value="object:30">NH Bản Việt</option>
+                                    <option label="NH Kiên Long" value="object:31">NH Kiên Long</option>
+                                    <option label="NH Nam Á" value="object:32">NH Nam Á</option>
+                                    <option label="NH Nam Việt" value="object:33">NH Nam Việt</option>
+                                    <option label="NH Việt Nam Thịnh Vượng" value="object:34">NH Việt Nam Thịnh Vượng
+                                    </option>
+                                    <option label="NH Phát Triển Nhà Thành phố Hồ Chí Minh" value="object:35">NH Phát
+                                        Triển Nhà Thành phố Hồ Chí Minh
+                                    </option>
+                                    <option label="NH Phương Nam" value="object:36">NH Phương Nam</option>
+                                    <option label="NH Phương Đông" value="object:37">NH Phương Đông</option>
+                                    <option label="NH Quân Đội" value="object:38">NH Quân Đội</option>
+                                    <option label="NH Phương Tây" value="object:39">NH Phương Tây</option>
+                                    <option label="NH Quốc tế" value="object:40">NH Quốc tế</option>
+                                    <option label="NH Sài Gòn" value="object:41">NH Sài Gòn</option>
+                                    <option label="NH Sài Gòn Công Thương" value="object:42">NH Sài Gòn Công Thương
+                                    </option>
+                                    <option label="NH Sài Gòn-Hà Nội" value="object:43">NH Sài Gòn-Hà Nội</option>
+                                    <option label="NH Việt Á" value="object:44">NH Việt Á</option>
+                                    <option label="NH Bảo Việt" value="object:45">NH Bảo Việt</option>
+                                    <option label="NH Việt Nam Thương Tín" value="object:46">NH Việt Nam Thương Tín
+                                    </option>
+                                    <option label="NH Xăng dầu Petrolimex" value="object:47">NH Xăng dầu Petrolimex
+                                    </option>
+                                    <option label="NH Bưu Điện Liên Việt" value="object:48">NH Bưu Điện Liên Việt
+                                    </option>
+                                    <option label="NH Phát Triển Mê Kông" value="object:49">NH Phát Triển Mê Kông
+                                    </option>
+                                    <option label="NH Đại Tín" value="object:50">NH Đại Tín</option>
+                                    <option label="NH Đầu tư" value="object:51">NH Đầu tư</option>
+                                    <option label="NH Phát triển Nhà Đồng bằng sông Cửu Long" value="object:52">NH Phát
+                                        triển Nhà Đồng bằng sông Cửu Long
+                                    </option>
+                                    <option label="NH ANZ Việt Nam" value="object:53">NH ANZ Việt Nam</option>
+                                    <option label="NH Deutsche Bank Việt Nam" value="object:54">NH Deutsche Bank Việt
+                                        Nam
+                                    </option>
+                                    <option label="NH Citibank Việt Nam" value="object:55">NH Citibank Việt Nam</option>
+                                    <option label="NH TNHH một thành viên HSBC (Việt Nam)" value="object:56">NH TNHH một
+                                        thành viên HSBC (Việt Nam)
+                                    </option>
+                                    <option label="NH Standard Chartered" value="object:57">NH Standard Chartered
+                                    </option>
+                                    <option label="NH TNHH MTV Shinhan Việt Nam" value="object:58">NH TNHH MTV Shinhan
+                                        Việt Nam
+                                    </option>
+                                    <option label="NH Hong Leong Việt Nam" value="object:59">NH Hong Leong Việt Nam
+                                    </option>
+                                    <option label="NH Ngân hàng Đầu tư và Phát triển Campuchia" value="object:60">NH
+                                        Ngân hàng Đầu tư và Phát triển Campuchia
+                                    </option>
+                                    <option label="NH Crédit Agricole" value="object:61">NH Crédit Agricole</option>
+                                    <option label="NH United Overseas Bank tại Việt Nam" value="object:62">NH United
+                                        Overseas Bank tại Việt Nam
+                                    </option>
+                                    <option label="NH TNHH Indovina" value="object:63">NH TNHH Indovina</option>
+                                    <option label="NH Việt - Nga" value="object:64">NH Việt - Nga</option>
+                                    <option label="NH ShinhanVina" value="object:65">NH ShinhanVina</option>
+                                    <option label="NH VID Public Bank" value="object:66">NH VID Public Bank</option>
+                                    <option label="NH Việt - Thái" value="object:67">NH Việt - Thái</option>
+                                    <option label="NH Việt - Lào" value="object:68">NH Việt - Lào</option>
+                                </select>
+
+                            </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                            <label for="name" class="col-md-4 col-sm-4 control-label">Tỉnh/thành phố</label>
+                            <div class="col-md-8 col-sm-8">
+                                <select class="form-control">
+                                    <option label="An Giang" value="object:69">An Giang</option>
+                                    <option label="Bà Rịa – Vũng Tàu" value="object:70">Bà Rịa – Vũng Tàu</option>
+                                    <option label="Bạc Liêu" value="object:71">Bạc Liêu</option>
+                                    <option label="Bắc Giang" value="object:72">Bắc Giang</option>
+                                    <option label="Bắc Kạn" value="object:73">Bắc Kạn</option>
+                                    <option label="Bắc Ninh" value="object:74">Bắc Ninh</option>
+                                    <option label="Bến Tre" value="object:75">Bến Tre</option>
+                                    <option label="Bình Dương" value="object:76">Bình Dương</option>
+                                    <option label="Bình Định" value="object:77">Bình Định</option>
+                                    <option label="Bình Phước" value="object:78">Bình Phước</option>
+                                </select>
+                            </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                            <label  class="col-md-4 col-sm-4 control-label">Số tài khoản</label>
+
+                            <div class="col-md-8 col-sm-8">
+                                <input type="text" class="ng-valid ng-dirty ng-touched form-control">
+                            </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                            <label  class="col-md-4 col-sm-4 control-label">Chủ tài khoản</label>
+
+                            <div class="col-md-8 col-sm-8">
+                                <input type="text" class="ng-valid ng-dirty ng-touched form-control">
+                            </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @endsection
 
 
@@ -203,4 +585,26 @@
         });
     </script>
     <!-- /jQuery Tags Input -->
+
+    <script src="{{asset('js/selectize.js')}}"></script>
+    <!-- Select2 -->
+    <script>
+        $('select').selectize({
+            create: true,
+            sortField: 'text'
+        });
+    </script>
+    <script>
+        $('.info-kho,.info-warehouse').click(function(){
+            $(this).find('input').removeAttr('disabled');
+            $(this).find('.btn-update').css('display','block');
+
+        })
+        $('button.btn-update').click(function(){
+//            alert("dsds");
+//            $(this).closest().find('input').attr('disabled');
+//            $('button.btn-update').css('display','none');
+        })
+    </script>
+
 @endsection

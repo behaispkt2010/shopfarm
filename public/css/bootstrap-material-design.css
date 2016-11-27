@@ -1855,19 +1855,19 @@ fieldset[disabled] .form-group .form-control {
   margin-bottom: 7px;
 }
 .form-control::-moz-placeholder {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #BDBDBD;
   font-weight: 400;
 }
 .form-control:-ms-input-placeholder {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #BDBDBD;
   font-weight: 400;
 }
 .form-control::-webkit-input-placeholder {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #BDBDBD;
   font-weight: 400;
@@ -1892,25 +1892,25 @@ label.control-label {
 }
 .form-group {
   padding-bottom: 7px;
-  margin: 28px 0 0 0;
+  margin: 20px 0 0 0;
 }
 .form-group .form-control {
   margin-bottom: 7px;
 }
 .form-group .form-control::-moz-placeholder {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #BDBDBD;
   font-weight: 400;
 }
 .form-group .form-control:-ms-input-placeholder {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #BDBDBD;
   font-weight: 400;
 }
 .form-group .form-control::-webkit-input-placeholder {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #BDBDBD;
   font-weight: 400;
@@ -1924,7 +1924,7 @@ label.control-label {
   font-weight: 400;
 }
 .form-group label.control-label {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.07142857;
   font-weight: 400;
   margin: 16px 0 0 0;

@@ -1,173 +1,153 @@
 @extends('layouts.admin')
 @section('title', 'Tồn kho')
 @section('pageHeader','Tồn kho sản phẩm ')
-@section('detailHeader','danh sách')
+@section('detailHeader','kiểm tra tồn kho')
 @section('add_styles')
-        <!-- Datatables -->
-<link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
     @endsection
 @section('content')
-
     <div class="row">
-        <div class="col-md-12 col-xs-12">
-            <!-- Name and Description -->
+        <div class="col-md-12">
             <div class="x_panel">
-
-                <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-                    <thead>
-                    <tr>
-                        {{--<th><input type="checkbox" id="check-all" class="flat"></th>--}}
-                        <th>Hình ảnh </th>
-                        <th>Tên sản phẩm</th>
-                        <th>SKU</th>
-                        <th>Chính sách tồn kho</th>
-                        <th>Giá trị</th>
-                        <th>Cập nhật tồn kho</th>
-
-                    </tr>
-                    </thead>
-
-
-                    <tbody>
-
-                    @for($i = 0; $i<50; $i++)
-                    <tr>
-                        {{--<td><input type="checkbox" class="flat" name="table_records"></td>--}}
-                        <td>  <img class="media-object img-product" src="data:image/gif;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABaAAD/4QMqaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTQ5MTEsIDIwMTMvMTAvMjktMTE6NDc6MTYgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODZBMEEwQkUxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODZBMEEwQkYxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4NkEwQTBCQzFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4NkEwQTBCRDFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAEBAQEBAQEBAQECAQEBAgICAQECAgICAgICAgIDAgMDAwMCAwMEBAQEBAMFBQUFBQUHBwcHBwgICAgICAgICAgBAQEBAgICBQMDBQcFBAUHCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICP/AABEIABIAGAMBEQACEQEDEQH/xAB1AAEAAwEAAAAAAAAAAAAAAAAFAwYICgEBAQEBAAAAAAAAAAAAAAAAAgMFARAAAQQBAQUGBgMAAAAAAAAAAgEDBAUGEQBBURIzITFhIjI0cYFiIzUHFCQWEQACAgICAwAAAAAAAAAAAAABAgADETESIkETBP/aAAwDAQACEQMRAD8A7SMcxzHbPHaGwsKEbq+uhsH5cuRYSYgEESSQkqkJEnNoSaJy9vaqqiIq7a9ljBiAcAYmTXWpUEjJMuR4T+rY9RDu59YFbCmNtONk/MmNr90EcQdFe15tNydu0ffaTgS3pqAyYFl+IYXV4bNybF4otyoyxjrrRmXJdQVKW22qjzOkOuiqnh8dqU3OX4tBdSgTkshxi6hphGK4/Fp2clv5ayXItW8AG0wKTXvvOqSLyCm7eu3bUPMnOBOVOOAGMmNUC/6DLpwZuAt31QmlJjpD/UFlR8z7XMqo4S6d693y8s7OqddHzHX2ftsQn9kY3Mx+ivJFEYhjlsTK3NOXpjvfyGyF5hNyESIJCnHh3P5rQzDOxD9NZVTjRmf7X8nP6HWc9t7f1L0/p4eG2gmpntuH7KGI1H5Su6PWb9x0PWnU+njsX1Em5//Z" alt="...">
-                        </td>
-                        <td><a href="{{route('products.create')}}">Tên sản phẩm</a></td>
-                        <td><a href="">#1111</a></td>
-                        <td>Haravan quản lý tồn kho,
-                            ngừng bán khi hết hàng</td>
-                        <td>40</td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" class="form-control" placeholder="nhập giá trị vào">
-                            <span class="input-group-btn">
-                                              <button type="button" class="btn btn-raised btn-primary">Set</button>
-                                          </span>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <select id="select-ck" class="form-control" data-placeholder="chọn kho">
+                                    <option></option>
+                                    <option value="2"> kho 1</option>
+                                    <option value="2"> kho 2</option>
+                                    <option value="3"> kho 3</option>
+                                    <option value="4"> kho 4</option>
+                                    <option value="2"> kho 2</option>
+                                    <option value="3"> kho 3</option>
+                                    <option value="4"> kho 4</option>
+                                </select>
                             </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="col-md-9 col-sm-12 col-xs-12">
+                            <div class="form-group label-floating">
 
-                        </td>
+                                <label class="control-label" for="addon2">Tên sản phẩm / Mã sản phẩm</label>
 
-                    </tr>
-                        @endfor
-
-
-                    </tbody>
-                </table>
+                                <div class="input-group text-center">
+                                    <input type="text" id="addon2" class="form-control">
+                                      <span class="input-group-btn">
+                                        <button type="button" class="btn btn-fab btn-fab-mini">
+                                            <i class="material-icons">search</i>
+                                        </button>
+                                      </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        @for($i=0;$i<9;$i++)
+                            <div class="col-md-4 col-sm-4 col-xs-12 profile_details product-detail">
+
+                                <div class="well box_1">
+
+
+                                    <div class="img-product-view">
+                                        <img src="{{url('/')}}/images/sp.jpg" alt="" class="img-circle img-responsive"
+                                             data-pin-nopin="true">
+                                    </div>
+                                    <div class="col-sm-12 " data-toggle="modal" data-target=".modal-product-inventory">
+                                            <h4 class="cod"><i>Gạo lức (MD001)</i></h4>
+                                            <div class="col-xs-12">
+                                                <ul class="list-unstyled">
+                                                    <li><i class="fa fa-bar-chart" aria-hidden="true"></i>100 tồn kho</li>
+                                                    <li><i class="fa fa-database"></i> Chủ Kho 1
+                                                    </li>
+                                                    <li><i class="fa fa-archive" aria-hidden="true"></i> Bơ</li>
+                                                    <li><i class="fa fa-calendar"></i> 20/11/2016</li>
+                                                </ul>
+                                            </div>
+                                    </div>
+
+                                    <div class="col-xs-12 text-center">
+                                        {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
+                                        {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
+                                        {{--</a>--}}
+                                        <button  class="btn btn-raised btn-primary btn-xs" data-toggle="modal" data-target=".modal-product-inventory">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Kiểm kho
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="modal fade modal-product-inventory" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-product-inventory">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Gạo lức (MD001)</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <span>Tồn kho hiện tại: </span><span class="number-inventory">2000</span>
+                        </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label" for="focusedInput2"> Kiểm thực tế</label>
+                            <input class="form-control" id="focusedInput2" type="number">
+                        </div>
+                        <div class="form-group">
+                            <span>Hiệu chỉnh: </span><span class="number-inventory">+2</span>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInputnote">Nguyên nhân hiệu chỉnh</label>
+                                <textarea class="form-control" id="focusedInputnote"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-primary">Lưu hiệu chỉnh</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('add_scripts')
-        <!-- Datatables -->
-    <script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-scroller/js/datatables.scroller.min.js')}}"></script>
-    <script src="{{asset('plugin/jszip/dist/jszip.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
+    <script src="{{asset('js/selectize.js')}}"></script>
+    <!-- Select2 -->
     <script>
-        $(document).ready(function() {
-            var handleDataTableButtons = function() {
-                if ($("#datatable-buttons").length) {
-                    $("#datatable-buttons").DataTable({
-                        dom: "Bfrtip",
-                        buttons: [
-                            {
-                                extend: "copy",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "csv",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "excel",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "pdfHtml5",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "print",
-                                className: "btn-sm"
-                            },
-                        ],
-                        responsive: true
-                    });
-                }
-            };
-
-            TableManageButtons = function() {
-                "use strict";
-                return {
-                    init: function() {
-                        handleDataTableButtons();
-                    }
-                };
-            }();
-
-            $('#datatable').dataTable();
-
-            $('#datatable-keytable').DataTable({
-                keys: true
-            });
-
-            $('#datatable-responsive').DataTable();
-
-            $('#datatable-scroller').DataTable({
-                ajax: "js/datatables/json/scroller-demo.json",
-                deferRender: true,
-                scrollY: 380,
-                scrollCollapse: true,
-                scroller: true
-            });
-
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
-
-            var $datatable = $('#datatable-checkbox');
-
-            $datatable.dataTable({
-             "language": {
-                "url": "/plugin/datatable-lang/Vietnamese.json"
-            },
-                'order': [[ 1, 'asc' ]],
-                'columnDefs': [
-                    { orderable: false, targets: [0] }
-                ]
-            });
-            $datatable.on('draw.dt', function() {
-
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_flat-green'
-                });
-            });
-
-            TableManageButtons.init();
+        $('#select-ck,#select-cate,#parent-cate').selectize({
+            create: true,
+            sortField: 'text'
         });
     </script>
-    <!-- /Datatables -->
 
 @endsection
 

@@ -40,10 +40,13 @@ description: template admin
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>@yield('pageHeader')
-                            <small> @yield('detailHeader')</small>
-                        </h3>
+                        {{--<h3>@yield('pageHeader')--}}
+                            {{--<small> @yield('detailHeader')</small>--}}
+                        {{--</h3>--}}
                     </div>
+                    <div class="title_right">
+                        @yield('rightHeader')
+                        </div>
                 </div>
             </div>
             <div class="clear"></div>

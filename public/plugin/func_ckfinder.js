@@ -1,6 +1,6 @@
 function ckeditor (name) {
     var editor = CKEDITOR.replace(name ,{
-         skin : 'office2013',
+         skin : 'moono-lisa',
          extraPlugins : 'image2,youtube,codesnippet',
         //codeSnippet_languages : {
         //javascript: 'JavaScript',
@@ -12,8 +12,8 @@ function ckeditor (name) {
         youtube_related : true,
         youtube_older : false,
         youtube_privacy : false,
-        uiColor : '#9AB8F3',
-        language:'en',
+        uiColor : '#f7f7f7',
+        language:'vi',
         filebrowserImageBrowseUrl : baseURL+'/plugins/ckfinder/ckfinder.html?Type=Images',
         filebrowserFlashBrowseUrl : baseURL+'/plugins/ckfinder/ckfinder.html?Type=Flash',
         filebrowserImageUploadUrl : baseURL+'/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',

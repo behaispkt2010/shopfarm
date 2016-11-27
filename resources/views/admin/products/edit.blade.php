@@ -5,6 +5,9 @@
 @section('add_styles')
         <!-- Dropzone.js -->
 <link href="{{asset('plugin/dropzone/dist/min/dropzone.min.css')}}" rel="stylesheet">
+        <!-- Datatables -->
+{{--<link rel="stylesheet" type="text/css" href="{{asset('css/selectize.default.css')}}">--}}
+
     @endsection
 @section('content')
 
@@ -14,9 +17,9 @@
             <div class="x_panel">
                 <div class="form-group">
                     <label for="name">Tiêu đề</label>
-                    <input type="text" class="form-control" name="name" placeholder="tên tiêu đề" id="txtName" required>
+                    <input type="text" class="form-control" name="name"  id="txtName" required>
                 </div>
-                <input type="hidden" class="form-control" name="slug" placeholder="slug" id="txtSlug" required>
+                <input type="hidden" class="form-control" name="slug"  id="txtSlug" required>
 
                 <div class="form-group">
                     <label>Nội dung</label>
@@ -51,28 +54,24 @@
                     <h3 class="title-product-main text-no-bold mb20">Thông tin chi tiết sản phẩm </h3>
                     <div class="form-group">
                         <label for="ex4">Mã sản phẩm</label>
-                        <input type="text" id="ex4" class="form-control" placeholder=" ">
+                        <input type="text" id="ex4" class="form-control" >
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                        <label for="ex4">Giá</label>
-                        <input type="number"  class="form-control" placeholder=" ">
+                        <label for="ex4">Giá thu vào</label>
+                        <input type="number"  class="form-control" >
                             </div>
                             <div class="col-md-6">
-                                <label for="ex4">Giá so sánh</label>
-                                <input type="number"  class="form-control" placeholder=" ">
+                                <label for="ex4">Giá bán ra</label>
+                                <input type="number"  class="form-control">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="ex4">Màu sắc</label>
-                        <input type="text" id="ex4" class="form-control" placeholder=" ">
-                    </div>
-                    <div class="form-group">
                         <label for="ex4">Khối lượng (grams)</label>
-                        <input type="text" id="ex4" class="form-control" placeholder=" ">
+                        <input type="text" id="ex4" class="form-control" >
                     </div>
                     <div class="form-group">
                         <label for="ex4">Chính sách tồn kho</label>
@@ -108,7 +107,7 @@
                         <div>
                             <span class="page-title-seo"></span>
 
-                            <div class="page-description-seo ws-nm"><span>http://nongsantunhien-com.myharavan.com/blogs/tin-tuc/</span>
+                            <div class="page-description-seo ws-nm"><span>http://nongan.com/san-pham/</span>
                             </div>
                         </div>
                         <a class="btn-change-link btn-style-seo pull-right">Chỉnh sửa
@@ -118,14 +117,14 @@
                         <div class="form-group">
                             <label class="inline">Tiêu đề trang</label>
                             <label class="inline note pull-right"> <span>0</span> trên 70 kí tự</label>
-                            <input type="text" class="form-control" name="names" placeholder="tiêu đề seo" required>
+                            <input type="text" class="form-control" name="names" required>
                         </div>
                         <div class="form-group">
                             <label class="inline" for="inputmetadescription">Mô tả trang</label>
                             <label class="inline note pull-right"> <span data-bind="text: MetaDescLength">0</span> trên
                                 160
                                 kí tự</label>
-                            <input type="text" class="form-control" name="description" placeholder="mô tả ngắn">
+                            <input type="text" class="form-control" name="description" >
 
                         </div>
                         <div class="form-group mb0">
@@ -137,7 +136,7 @@
                             </label>
 
                             <div class="input-group">
-                                <span class="input-group-addon drop-price-addon border-color-input-group">http://nongsantunhien-com.myharavan.com/blogs/tin-tuc/</span>
+                                <span class="input-group-addon drop-price-addon border-color-input-group">http://non.com/san-pham/</span>
                                 <input type="text" class="form-control" name="slugs" placeholder="slug">
                             </div>
                         </div>
@@ -165,9 +164,9 @@
                         </label>
                     </div>
                     <div class="ln_solid"></div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Hủy</button>
-                        <button type="submit" class="btn btn-success">Lưu</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-raised btn-primary">Hủy</button>
+                        <button type="submit" class="btn btn-raised btn-success">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -176,7 +175,7 @@
                     <div class="pd-all-20 border-top-title-main">
                         <div class="form-group">
                             <label>Chủ kho</label>
-                            <select class="select2_single form-control" tabindex="-1">
+                            <select id="select-ck" class="form-control" data-placeholder="chọn kho">
                                 <option>Khác</option>
                                 <option value="AK">Alaska</option>
                                 <option value="HI">Hawaii</option>
@@ -209,7 +208,7 @@
                         </div>
                         <div class="form-group">
                             <label>Loại sản phẩm</label>
-                            <select class="select2_single form-control" tabindex="-1">
+                            <select id="select-type" class="form-control" data-placeholder="chọn kho">
                                 <option>Khác</option>
                                 <option value="AK">Alaska</option>
                                 <option value="HI">Hawaii</option>
@@ -310,5 +309,12 @@
             });
         });
     </script>
+        <script src="{{asset('js/selectize.js')}}"></script>
+        <!-- Select2 -->
+        <script>
+            $('#select-ck,#select-type').selectize({
+
+            });
+        </script>
     <!-- /jQuery Tags Input -->
 @endsection

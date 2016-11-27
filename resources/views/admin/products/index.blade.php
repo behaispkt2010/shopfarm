@@ -2,184 +2,223 @@
 @section('title', 'Danh sách sản phẩm ')
 @section('pageHeader','Danh sách sản phẩm ')
 @section('detailHeader','danh sách')
-@section('add_styles')
-        <!-- Datatables -->
-<link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+@section('rightHeader')
+    <a href="{{route('products.create')}}" class="btn btn-raised btn-warning btn-md">
+        <i class="fa fa-plus" aria-hidden="true"></i> Tạo mới
+    </a>
     @endsection
+    @section('add_styles')
+            <!-- Datatables -->
+    <link rel="stylesheet" type="text/css" href="{{asset('selectize.default.css')}}">
+@endsection
 @section('content')
-
     <div class="row">
-        <div class="col-md-12 col-xs-12">
-            <!-- Name and Description -->
+        <div class="col-md-12">
             <div class="x_panel">
-                        <div class="circle">
-                            <div class="front front-popular">
-                                <div class="title color-2-font glyphicon glyphicon-plus"></div>
-                            </div><!-- end div .front -->
-                            <div class="popular color-2-font glyphicon glyphicon-plus"></div>
-                            <div class="back color-2-bg info">
-                                <a href="{{route('products.create')}}">
-                                <div class="title color-2-font glyphicon glyphicon-pencil"></div>
-                                </a>
-                                <div class="description">
-                                    <p>Thêm sản phẩm mới</p>
-                                </div><!-- end div .description -->
-                            </div><!-- end div .back color-1-bg info -->
-                        </div><!-- end div .circle -->
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <ul class="tab-fill">
+                                <li class="active"><a href="#">Mới tạo</a><span style="background-color: #3FB079"
+                                                                                class="ng-binding">0</span></li>
+                                <li><a href="#">Category 1</a><span style="background-color: #EEB390"
+                                                                    class="ng-binding">0</span></li>
+                                <li><a href="#">Category 2</a><span style="background-color: #2B8388"
+                                                                    class="ng-binding">0</span></li>
+                                <li><a href="#">Category 3</a><span style="background-color: #35468A"
+                                                                    class="ng-binding">0</span></li>
 
+                            </ul>
+                        </div>
+                    </div>
+                    {{--<div class="clearfix"></div>--}}
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <select id="select-ck" class="form-control" data-placeholder="chọn kho">
+                                    <option></option>
+                                    <option value="2"> kho 1</option>
+                                    <option value="2"> kho 2</option>
+                                    <option value="3"> kho 3</option>
+                                    <option value="4"> kho 4</option>
+                                    <option value="2"> kho 2</option>
+                                    <option value="3"> kho 3</option>
+                                    <option value="4"> kho 4</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <select id="select-cate" class="form-control" data-placeholder="chọn danh mục">
+                                    <option></option>
+                                    <option value="1"> bơ</option>
+                                    <option value="2"> khoai</option>
+                                    <option value="3"> cải</option>
+                                    <option value="4"> mì</option>
+                                    <option value="1"> bơ</option>
+                                    <option value="2"> khoai</option>
+                                    <option value="3"> cải</option>
+                                    <option value="4"> mì</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group label-floating">
 
+                                <label class="control-label" for="addon2">Tên sản phẩm / Mã sản phẩm</label>
 
-                <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-                    <thead>
-                    <tr>
-                        {{--<th><input type="checkbox" id="check-all" class="flat"></th>--}}
-                        <th>Hình ảnh </th>
-                        <th>Tên sản phẩm</th>
-                        <th>Tồn kho</th>
-                        <th>Danh mục</th>
-                        <th>Nhà sản xuất</th>
-                        <th>Người tạo</th>
-                        <th>ngày tạo</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-
-
-                    <tbody>
-
-                    @for($i = 0; $i<50; $i++)
-                    <tr>
-                        {{--<td><input type="checkbox" class="flat" name="table_records"></td>--}}
-                        <td>  <img class="media-object img-product" src="data:image/gif;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABaAAD/4QMqaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTQ5MTEsIDIwMTMvMTAvMjktMTE6NDc6MTYgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODZBMEEwQkUxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODZBMEEwQkYxRTA5MTFFNThENzU5MDdDMzBFRDI3MDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4NkEwQTBCQzFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4NkEwQTBCRDFFMDkxMUU1OEQ3NTkwN0MzMEVEMjcwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAEBAQEBAQEBAQECAQEBAgICAQECAgICAgICAgIDAgMDAwMCAwMEBAQEBAMFBQUFBQUHBwcHBwgICAgICAgICAgBAQEBAgICBQMDBQcFBAUHCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICP/AABEIABIAGAMBEQACEQEDEQH/xAB1AAEAAwEAAAAAAAAAAAAAAAAFAwYICgEBAQEBAAAAAAAAAAAAAAAAAgMFARAAAQQBAQUGBgMAAAAAAAAAAgEDBAUGEQBBURIzITFhIjI0cYFiIzUHFCQWEQACAgICAwAAAAAAAAAAAAABAgADETESIkETBP/aAAwDAQACEQMRAD8A7SMcxzHbPHaGwsKEbq+uhsH5cuRYSYgEESSQkqkJEnNoSaJy9vaqqiIq7a9ljBiAcAYmTXWpUEjJMuR4T+rY9RDu59YFbCmNtONk/MmNr90EcQdFe15tNydu0ffaTgS3pqAyYFl+IYXV4bNybF4otyoyxjrrRmXJdQVKW22qjzOkOuiqnh8dqU3OX4tBdSgTkshxi6hphGK4/Fp2clv5ayXItW8AG0wKTXvvOqSLyCm7eu3bUPMnOBOVOOAGMmNUC/6DLpwZuAt31QmlJjpD/UFlR8z7XMqo4S6d693y8s7OqddHzHX2ftsQn9kY3Mx+ivJFEYhjlsTK3NOXpjvfyGyF5hNyESIJCnHh3P5rQzDOxD9NZVTjRmf7X8nP6HWc9t7f1L0/p4eG2gmpntuH7KGI1H5Su6PWb9x0PWnU+njsX1Em5//Z" alt="...">
-                        </td>
-                        <td><a href="{{route('products.create')}}">Tên sản phẩm</a></td>
-                        <td>2 tồn kho</td>
-                        <td>Chuối tiêu</td>
-                        <td><a href="#">Chủ kho A</a></td>
-                        <td>admin</td>
-                        <td>15/11/2016</td>
-                        <td width="100px" class="text-center">
-                            <a href="" style="margin-right: 10px;display: inline-block"><i class="fa fa-pencil"  aria-hidden="true"></i></a>
-                            <a href="" style="display: inline-block"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                        @endfor
-
-
-                    </tbody>
-                </table>
+                                <div class="input-group text-center">
+                                    <input type="text" id="addon2" class="form-control">
+                                      <span class="input-group-btn">
+                                        <button type="button" class="btn btn-fab btn-fab-mini">
+                                            <i class="material-icons">search</i>
+                                        </button>
+                                      </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        @for($i=0;$i<10;$i++)
+                            <div class="col-md-4 col-sm-4 col-xs-12 profile_details product-detail">
+
+                                <div class="well box_1">
+                                    <div class="img-product-view">
+                                        <img src="{{url('/')}}/images/sp.jpg" alt="" class="img-circle img-responsive"
+                                             data-pin-nopin="true">
+                                    </div>
+                                    <div class="col-sm-12" data-toggle="modal"
+                                         data-target=".modal-product">
+
+                                        <h4 class="cod"><i>Gạo lức (MD001)</i></h4>
+
+
+                                        <div class="col-xs-12">
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-bar-chart" aria-hidden="true"></i>100 tồn kho</li>
+                                                <li><i class="fa fa-database"></i> Chủ Kho 1
+                                                </li>
+                                                <li><i class="fa fa-usd"></i> <span
+                                                            class="box-money"> mua vào: 150.000 VNĐ </span></li>
+                                                <li><i class="fa fa-usd"></i> <span
+                                                            class="box-money"> bán ra: 200.000 VNĐ</span></li>
+                                                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Ít nhất: 20kg
+                                                </li>
+                                                <li><i class="fa fa-archive" aria-hidden="true"></i> Bơ</li>
+                                                <li><i class="fa fa-calendar"></i> 20/11/2016</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-xs-12 text-center">
+                                        {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
+                                        {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
+                                        {{--</a>--}}
+                                        <a href="{{route('products.create')}}"
+                                           class="btn btn-raised btn-primary btn-xs">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Chỉnh sửa
+                                        </a>
+                                        <a href="" class="btn  btn-raised btn-danger btn-xs">
+                                            <i class="fa fa-times" aria-hidden="true"></i> xóa
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade modal-product" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-tracking">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Cập nhật: Gạo lức (MD001)</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInput2"> Giá mua</label>
+                                <input class="form-control" id="focusedInput2" type="number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInput2"> Giá đăng bán</label>
+                                <input class="form-control" id="focusedInput2" type="number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInput2"> số lượng</label>
+                                <input class="form-control" id="focusedInput2" type="number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+
+                                <select id="select-ncc" class="form-control" data-placeholder="Nhà cung cấp">
+                                    <option></option>
+                                    <option>kho 1</option>
+                                    <option>kho 2</option>
+                                    <option>kho 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-primary">Nhập</button>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 @endsection
 
 @section('add_scripts')
-        <!-- Datatables -->
-    <script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-scroller/js/datatables.scroller.min.js')}}"></script>
-    <script src="{{asset('plugin/jszip/dist/jszip.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
+    <script src="{{asset('js/selectize.js')}}"></script>
+    <!-- Select2 -->
     <script>
-        $(document).ready(function() {
-            var handleDataTableButtons = function() {
-                if ($("#datatable-buttons").length) {
-                    $("#datatable-buttons").DataTable({
-                        dom: "Bfrtip",
-                        buttons: [
-                            {
-                                extend: "copy",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "csv",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "excel",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "pdfHtml5",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "print",
-                                className: "btn-sm"
-                            },
-                        ],
-                        responsive: true
-                    });
-                }
-            };
-
-            TableManageButtons = function() {
-                "use strict";
-                return {
-                    init: function() {
-                        handleDataTableButtons();
-                    }
-                };
-            }();
-
-            $('#datatable').dataTable();
-
-            $('#datatable-keytable').DataTable({
-                keys: true
-            });
-
-            $('#datatable-responsive').DataTable();
-
-            $('#datatable-scroller').DataTable({
-                ajax: "js/datatables/json/scroller-demo.json",
-                deferRender: true,
-                scrollY: 380,
-                scrollCollapse: true,
-                scroller: true
-            });
-
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
-
-            var $datatable = $('#datatable-checkbox');
-
-            $datatable.dataTable({
-             "language": {
-                "url": "/plugin/datatable-lang/Vietnamese.json"
-            },
-                'order': [[ 1, 'asc' ]],
-                'columnDefs': [
-                    { orderable: false, targets: [0] }
-                ]
-            });
-            $datatable.on('draw.dt', function() {
-
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_flat-green'
-                });
-            });
-
-            TableManageButtons.init();
+        $('#select-ck,#select-cate,#select-ncc').selectize({
+            create: true,
+            sortField: 'text'
         });
     </script>
-    <!-- /Datatables -->
+
+
 
 @endsection
 

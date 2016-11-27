@@ -25,7 +25,7 @@ class customerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.customers.edit');
     }
 
     /**
