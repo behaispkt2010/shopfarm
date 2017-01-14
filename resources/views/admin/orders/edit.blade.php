@@ -6,44 +6,47 @@
 @section('add_styles')
         <!-- Datatables -->
 <link href="{{asset('css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
-@endsection
+
+
+    @endsection
 <div class="row">
+    <br>
+    @if(Request::is('admin/orders/create'))
+        <form action="{{route('orders.store')}}" method="POST" enctype="multipart/form-data">
+            @else
+                <form action="{{route('orders.update',['id' => $id])}}" method="POST" enctype="multipart/form-data">
+                    {{ method_field('PUT') }}
+                    <input type="hidden" name="id" value="{{$id}}">
+                    @endif
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="col-md-8 col-xs-12">
         <!-- Name and Description -->
         <div class="x_panel">
             <h2>Chi tiết đơn hàng 1KS93UQX</h2>
             <table class="table">
-                <tbody>
-                <tr>
-                    <th><img src="{{url('/')}}/images/sp.jpg" class="img-responsive img-thumbnail"
-                             style="max-width: 50px;" alt=""></th>
-                    <td><span class="name-product"><a href="">tên sản phẩm (#111)</a></span></td>
-                    <td><span class="price-product">100 đ </span></td>
-                    <td><span>x </span><input type="number" class="number-product" style="width:50px;" name="number" value="1">
-
-                    </td>
-                    <td><span class="total"> 100 đ</span></td>
-                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
-                </tr>
-                <tr>
-                    <th><img src="{{url('/')}}/images/sp.jpg" class="img-responsive img-thumbnail"
-                             style="max-width: 50px;"
-                             alt=""></th>
-                    <td><span class="name-product"><a href="">tên sản phẩm (#111)</a></span></td>
-                    <td><span class="price-product">100 đ </span></td>
-                    <td><span>x </span><input type="number" class="number-product" style="width:50px;" name="number" value="1">
-
-                    </td>
-                    <td><span class="total"> 100 đ</span></td>
-                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
-                </tr>
-
+                <tbody class="list_product">
                 </tbody>
             </table>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Tìm mới sản phẩm" id="txtName"
-                       required>
+                <div class="row">
+                    <div class="col-md-9" style="margin-top: 13px">
+                <select id="select-product" name="select-product"  class="form-control " placeholder="Thêm sản phấm" >
+                    <option value="0">Tìm kiếm sản phẩm</option>
+                    @if(!empty($products))
+                    @foreach($products as $product)
+                    <option value="{{$product->id}}" data-image="dsa" data-name="dsa">
+                      {{$product->title}} (#{{$product->id}})
+                    </option>
+                        @endforeach
+                        @endif
+
+                </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" id="btn_add_product" class="btn btn-raised btn-success">Thêm</button>
+                    </div>
+            </div>
             </div>
             <input type="hidden" class="form-control" name="slug" placeholder="slug" id="txtSlug" required>
 
@@ -51,42 +54,14 @@
                 <div class="col-md-6 col-xs-12">
                     <label>Ghi chú</label>
                     <textarea class="form-control note-order-edit"  rows="5" name="note"></textarea>
-                    {{--<label><a href="" class="add_attr"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thuộc--}}
-                    {{--tính</a></label>--}}
 
-                    {{--<div class="clear"></div>--}}
-                    {{--<div class="form_attr">--}}
-                    {{--<div class="row ">--}}
-                    {{--<div class="col-md-5">--}}
-                    {{--<input type="text" name="name_attr[]" class="form-inline form-control"--}}
-                    {{--placeholder="tên"/></div>--}}
-                    {{--<div class="col-md-5">--}}
-                    {{--<input type="text" name="value_attr[]" class="form-inline form-control"--}}
-                    {{--placeholder="giá trị"/>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-2">--}}
-                    {{--<button type="button" class="btn btn-raised btn-primary" data-method="clear"--}}
-                    {{--title="Clear">--}}
-                    {{--<span class="docs-tooltip" data-toggle="tooltip" title="xóa">--}}
-                    {{--<span class="fa fa-remove"></span>--}}
-                    {{--</span>--}}
-                    {{--</button>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
                 </div>
                 <div class="col-md-6 col-xs-12 text-right">
                     <p>Tổng giá trị sản phẩm <span>200 đ</span></p>
 
-                    <p><a href="" class="add_attr" data-toggle="modal" data-target=".bs-example-modal-km"><i
-                                    class="fa fa-plus-circle" aria-hidden="true"></i> Thêm khuyến mãi</a>
-                        <span>0 đ</span></p>
-
                     <p><a href="" class="add_attr" class="add_attr" data-toggle="modal"
                           data-target=".bs-example-modal-pvc"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            Thêm phí vận chuyển</a> <span>0 đ</span></p>
-
-                    <p> Số tiền phải thanh toán 0 ₫</p>
+                            Thêm Thông tin vận chuyển</a> <span>0 đ</span></p>
 
                 </div>
             </div>
@@ -121,16 +96,10 @@
                     <label> Tình trạng đơn hàng</label>
                     <select id="select-tracking" class="form-control" data-placeholder="Chọn tình trạng đơn hàng">
                         <option value="0"> Mới tạo</option>
-                        <option value="1"> Chưa tiếp nhận</option>
-                        <option value="2"> Đã tiếp nhận</option>
-                        <option value="3"> Chuyển DH cho Chủ kho</option>
-                        <option value="4"> Đang thu gom</option>
-                        <option value="5"> Đang sơ chế</option>
-                        <option value="6"> Đang đóng gói</option>
-                        <option value="7"> Đã xuất kho</option>
-                        <option value="8"> Đang vận chuyển</option>
-                        <option value="9"> Đã giao xong</option>
-                        <option value="10"> Trả hàng nhập kho</option>
+                        @foreach($order_status as $itemOrder_status)
+                            <option value="{{$itemOrder_status->id}}">{{$itemOrder_status->name}}</option>
+                            @endforeach
+
                     </select>
 
                     <div class="clear"></div>
@@ -147,35 +116,11 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label>Thông tin khách hàng</label>
-                            <select id="select-kh" class="form-control" data-placeholder="Tên / số điện thoại">
+                            <select id="select-kh" name="select_kh" class="form-control" data-placeholder="Tên / số điện thoại">
                                 <option></option>
-                                <option value="AK">Alaska (01566623)</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="CA">California</option>
-                                <option value="NV">Nevada</option>
-                                <option value="OR">Oregon</option>
-                                <option value="WA">Washington</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="CO">Colorado</option>
-                                <option value="ID">Idaho</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="UT">Utah</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TX">Texas</option>
+                                @foreach($customer as $itemCustomer)
+                                    <option value="{{$itemCustomer->id}}">{{$itemCustomer->name}}</option>
+                                @endforeach
                             </select>
 
                             <div class="text-center">
@@ -184,13 +129,12 @@
                                 </button>
                             </div>
                         </div>
-                        <div>Họ tên: Nguyễn Văn A</div>
-                        <div>Phone: 01662456743</div>
-                        <div>Email: a@gmail.com</div>
-                        <div>Ghi chú: note ở đây</div>
-                        <div>Địa chỉ: 123 hoàng anh, Thái bình, Thái nguyên, Hà Nội</div>
-                        <div><a href="">xem bản đồ</a></div>
-
+                        <div class="cus_name">Họ tên: <span></span></div>
+                        <div class="cus_phone_number">Phone: <span></span></div>
+                        <div class="cus_email">Email: <span></span></div>
+                        <div class="cus_address">Địa chỉ: <span></span></div>
+                        <div><a href="" class="view_map" target="_blank">xem bản đồ</a></div>
+                        <input type="hidden" name="customer_id" class="customer_id">
 
                     </div>
                 </div>
@@ -199,7 +143,9 @@
             </div>
         </div>
     </div>
-    <!-- modals -->
+
+                    </form>
+                    <!-- modals -->
     <!-- Large modal -->
 </div>
     <div class="modal fade bs-example-modal-km" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
@@ -210,7 +156,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Thêm khuyến mãi</h4>
+                    <h4 class="modal-title" id="myModalLabel">Thêm Thông tin vận chuyển</h4>
                 </div>
                 <div class="modal-body">
 
@@ -258,43 +204,35 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Thêm phí vận chuyển</h4>
+                    <h4 class="modal-title" id="myModalLabel">Thêm thông tin vận chuyển</h4>
                 </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <div class="alert alert-warning" role="alert">
-                            <h3>Làm sao để chọn phí vận chuyển đã cấu hình ?</h3>
-                            Hãy thêm thông tin khách hàng với địa chỉ giao hàng đầy đủ để thấy các mức phí vận chuyển đã
-                            cấu hình.
+
+                        <div class="form-group label-floating">
+                            <label class="control-label" for="focusedInput2"> Phương thức vận chuyển</label>
+                            <input class="form-control" id="focusedInput2" type="text" name="type_driver">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                                Miễn phí
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                                Tùy chọn
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                <input type="text" placeholder="Tên phí vận chuyển" class="form-control">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInput2"> Tên tài xế</label>
+                                <input class="form-control" id="focusedInput2" type="text" name="name_driver">
                             </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                <input type="text" placeholder="Đ" class="form-control">
-                            </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label" for="focusedInput2"> Số điện thoại</label>
+                            <input class="form-control" id="focusedInput2" type="text" name="phone_driver">
                         </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label" for="focusedInput2"> Biển số xe</label>
+                            <input class="form-control" id="focusedInput2" type="text" name="number_license_driver">
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-raised btn-primary">Thêm phí vận chuyển</button>
+                    <button type="button" class="btn btn-raised btn-success">Thêm thông tin vận chuyển</button>
                 </div>
 
             </div>
@@ -318,52 +256,53 @@
                     <div class="form-group">
                         <div class="form-group label-floating">
                             <label class="control-label" for="focusedInput2"> Họ và tên</label>
-                            <input class="form-control" id="focusedInput2" type="text">
+                            <input class="form-control" id="focusedInput2" type="text" name="name">
+                        </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label" for="focusedInput1"> Email</label>
+                            <input class="form-control" id="focusedInput1" type="email" name="email">
                         </div>
                         <div class="form-group label-floating">
                             <label class="control-label" for="focusedInput1"> Số điện thoại</label>
-                            <input class="form-control" id="focusedInput1" type="text">
+                            <input class="form-control" id="focusedInput1" type="number" name="phone_number">
                         </div>
 
                         <div class="form-group label-floating">
                             <label class="control-label" for="focusedInput3">Địa chỉ</label>
-                            <input class="form-control" id="focusedInput3" type="text">
+                            <input class="form-control" id="focusedInput3" type="text" name="address">
                         </div>
 
-                        <div class="form-group">
+
                             <div class="row">
+
                                 <div class="col-md-6">
-                                    <select id="t" class="form-control">
-                                        <option>Chọn khu vực</option>
-                                        <option>Hồ Chí Minh</option>
-                                        <option>Vũng Tàu</option>
-                                        <option>Hà Nội</option>
-                                        <option>Bình Định</option>
+                                    <div class="form-group">
+                                    <select id="t" class="form-control" name="t">
+                                        <option value="0">Chọn khu vực</option>
+                                        @foreach($province as $item)
+                                            <option value="{{$item->name}}">{{$item->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+                                    </div>
+
                                 <div class="col-md-6">
-                                    <select id="q" class="form-control">
-                                        <option>Chọn phường xã</option>
-                                        <option>Thủ đức</option>
-                                        <option>Quận 1</option>
-                                        <option>Quận 2</option>
-                                        <option>Quận 3</option>
+                                    <div class="form-group">
+                                    <select id="q" class="form-control" name="q">
+                                        <option value="0">Chọn phường xã</option>
+                                        @foreach($district as $item)
+                                            <option value="{{$item->name}}">{{$item->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="form-group label-floating">
-                                <label class="control-label" for="focusedInputnote">Ghi chú</label>
-                                <textarea class="form-control" id="focusedInputnote"></textarea>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-raised btn-primary">Thêm khách hàng</button>
+                    <button id="create_cusommer"  type="button" class="btn btn-raised btn-primary">Thêm khách hàng</button>
                 </div>
 
             </div>
@@ -395,12 +334,8 @@
                         <div class="form-group">
                             <select class="form-control select-payment">
                                 <option value="1">Chuyển khoản ngân hàng</option>
-                                <option value="2">Thanh toán khi nhận hàng(COD)</option>
+                                <option value="2">Thanh toán trực tiếp</option>
                             </select>
-                        </div>
-                        <div class="form-group label-floating">
-                            <label class="control-label" for="focusedInput1"> Số tiền đã trả xong</label>
-                            <input class="form-control" id="focusedInput1" type="text">
                         </div>
                     </div>
                 </div>
@@ -460,11 +395,10 @@
     </div>
     @endsection
 
-
     @section('add_scripts')
             <!-- jQuery autocomplete -->
     <script src="{{asset('plugin/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
-    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="{{asset('plugin/moment/min/moment-with-locales.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
     <!-- jQuery Tags Input -->
     <script src="{{asset('plugin/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
@@ -497,39 +431,169 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#date').bootstrapMaterialDatePicker
-            ({
-                time: false,
-                clearButton: true
-            });
-
-            $('#time').bootstrapMaterialDatePicker
-            ({
-                date: false,
-                shortTime: false,
-                format: 'HH:mm'
-            });
 
             $('#date-format').bootstrapMaterialDatePicker
             ({
-                format: 'DD MMMM YYYY - HH:mm',
+                format: 'DD/MM/YYYY',
                 lang: 'vi',
-            });
-            $('#date-fr').bootstrapMaterialDatePicker
-            ({
-                format: 'DD/MM/YYYY HH:mm',
-                lang: 'fr',
-                weekStart: 1,
-                cancelText: 'ANNULER',
-                nowButton: true,
-                switchOnClick: true
+                time: false,
             });
 
         });
     </script>
     <!-- Select2 -->
     <script>
-        $('#select-kh,#t,#q,.select-payment').selectize({});
+        $('#select-kh,#t,#q,.select-payment,#select-product').selectize({});
     </script>
+<script>
+    $('#select-kh').on('change', function (e) {
+        e.preventDefault();
+        var id_select_kh = $('select[name="select_kh"] :selected').val();
+        var _token = $('input[name="_token"]').val();
 
+        $('.loading').css('display', 'block');
+        $.ajax({
+            type: "POST",
+            url: '/admin/users/AjaxGetDataCustomer',
+            data: {id_select_kh: id_select_kh, _token: _token},
+            success: function (msg) {
+                $('.loading').css('display', 'none');
+            $('.cus_name span').text(msg['name']);
+            $('.cus_phone_number span').text(msg['phone_number']);
+            $('.cus_email span' ).text(msg['email']);
+            $('.cus_address span').text(msg['address']);
+            $('.customer_id').val(msg['customer_id']);
+                $('.view_map').attr('href','https://www.google.com/maps/search/'+msg['address']);
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //show notify
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+                new PNotify({
+                    title: 'Lỗi',
+                    text: 'không tải được thông tin',
+                    type: 'danger',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+                $('.loading').css('display', 'none');
+
+            }
+        });
+    });
+</script>
+<script>
+    $('#create_cusommer').on('click', function (e) {
+        e.preventDefault();
+//        var ware_id = $('input[name="id"]').val();
+        var name = $('.modal-kh input[name="name"]').val();
+        var phone_number = $('.modal-kh input[name="phone_number"]').val();
+        var t = $('.modal-kh select[name="t"] :selected').val();
+        var q = $('.modal-kh select[name="q"] :selected').val();
+        var email = $('.modal-kh input[name="email"]').val();
+        var address = $('.modal-kh input[name="address"]').val() +', '+ q+', '+t;
+        var _token = $('input[name="_token"]').val();
+        $('.loading').css('display','block');
+//            alert(check);
+        $.ajax({
+            type: "POST",
+            url: '/admin/users/AjaxCreateCustomer',
+            data: {name: name, phone_number: phone_number, email: email,address: address,_token: _token},
+            success: function( msg ) {
+                $('.loading').css('display','none');
+                //show notify
+                new PNotify({
+                    title: 'Cập nhật thành công',
+                    text: '',
+                    type: 'success',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+//                location.reload();
+                 $('.cus_name span').text(name);
+                $('.cus_phone_number span').text(phone_number);
+                 $('.cus_email span' ).text(email);
+                $('.cus_address span').text(address);
+                $('.customer_id').val(msg['customer_id']);
+                $('.view_map').attr('href','https://www.google.com/maps/search/'+msg['address']);
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //show notify
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+                new PNotify({
+                    title: 'Lỗi',
+                    text: 'Vui lòng điền đầy đủ thông tin',
+                    type: 'danger',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+                $('.loading').css('display','none');
+
+            }
+        });
+    });
+</script>
+<script>
+    $(document).on('click','td #delete_product', function (e) {
+    $(this).closest('.item-product').remove();
+    });
+    $(document).on('change','td .number-product', function (e) {
+        var num = $(this).val();
+       var price = $(this).closest('.item-product').find('.price-product span').text();
+        var total = num*price;
+        $(this).closest('.item-product').find('.total span').text(total);
+//        alert(num);
+    });
+    $('#btn_add_product').on('click', function (e) {
+        var id = $('select[name="select-product"] :selected').val();
+        $('select[name="select-product"]')[0].selectize.setValue(0);
+
+//        alert(id+"-"+image);
+        var _token = $('input[name="_token"]').val();
+        $('.loading').css('display','block');
+//            alert(check);
+
+
+        var values = $("input[name='product_id']")
+                .map(function(){return $(this).val();}).get();
+
+alert(values);
+        var tmp_product = new Array();
+        $('input[name="product_id"]').each(function(){
+            alert($(this).val());
+            tmp_product.push($(this).val()) ;
+        });
+        $.inArray(id,tmp_product);
+        alert($.inArray(id,tmp_product));
+        alert(tmp_product);
+        $.ajax({
+            type: "POST",
+            url: '/admin/products/AjaxGetProduct',
+            data: {id:id,_token: _token},
+            success: function( msg ) {
+
+                $('.loading').css('display','none');
+                $('.list_product').append('<tr class="item-product">'
+                + '<th><img src="{{url('/')}}/'+msg['image']+ '" class="img-responsive img-thumbnail"'
+                + 'style="max-width: 50px;" alt=""></th>'
+                 +'<td><span class="name-product"><span>'+msg['name']+ '(#'+id+')</span></span><input type="hidden" value="'+id+ '" name="product_id[]"></td>'
+                +'<td><span class="price-product"><span>'+msg['price']+ '</span> đ </span></td>'
+                +'<td><span>x </span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="1"></td>'
+                        +'<td><span class="total"> <span>'+msg['price']+ '</span> đ</span></td>'
+                +'<td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>'
+                +'</tr>'
+                );
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //show notify
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+                $('.loading').css('display','none');
+
+            }
+        });
+
+    });
+</script>
 @endsection

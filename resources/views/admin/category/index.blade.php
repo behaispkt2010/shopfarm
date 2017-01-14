@@ -11,78 +11,70 @@
 <link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 @endsection
 @section('content')
+    <br>
     <div class="row">
         <div class="col-md-4">
             <div class="x_panel">
-            <form action="#" method="POST" class="form-group">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                @if(Request::is('admin/category'))
+                    <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
+                        @else
+                            <form action="{{route('category.update',['id' => $id])}}" method="POST"
+                                  enctype="multipart/form-data">
+                                {{ method_field('PUT') }}
+                                <input type="hidden" name="id" value="{{$id}}">
+                                @endif
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                <div class="form-group">
-                    <label>Tên danh mục</label>
-                    <input type="text" class="form-control" name="txtName" id="name">
-                </div>
-                <div class="form-group">
-                    <label for="name">Danh mục cha</label>
-                    <select name="categoriesParent" id="categories" class="form-control">
-                        <option value="">chọn danh mục cha</option>
-                        <option value="">category 1</option>
-                        <option value="">category 2</option>
-                        <option value="">category 3</option>
+                                <div class="form-group">
+                                    <label>Tên danh mục</label>
+                                    <input type="text" class="form-control" name="name" equired
+                                           value="@if(!empty($category->name)){{$category->name}}@else{{old('name')}}@endif">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Danh mục cha</label>
+                                    <select name="parent" class="form-control">
+                                        <option value="0">Mặc định
+                                        </option>
+                                        @foreach($data  as $itemData)
+                                        <option value="{{$itemData->id}}"
+                                                @if(!empty($category->parent) && $category->parent == $itemData->id) selected @endif >
+                                            {{$itemData->name}}
+                                        </option>
+                                            @endforeach
 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="name">Mô tả</label>
-                    <textarea class="form-control" rows="5" name="txtDescription">{!!old('txtDescription')!!}</textarea>
-                </div>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Mô tả</label>
+                                    <textarea class="form-control" rows="5"
+                                              name="description">@if(!empty($category->description)){{$category->description}}@else{{old('description')}}@endif</textarea>
+                                </div>
 
-                <button type="submit" name="addCategory" class="btn btn-raised btn-primary">Thêm danh mục</button>
-            </form>
-                </div>
+                                <button type="submit" name="addCategory" class="btn btn-raised btn-primary">Thêm danh
+                                    mục
+                                </button>
+                    </form>
+            </div>
         </div>
         <div class="col-md-8">
             <div class="x_panel">
-                <form action="#" method="POST">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    <div class="option-table-top">
-                        <button class="btn btn-raised btn-danger" name="delete" type="submit" Onclick="return ConfirmDelete();"><i
-                                    class="glyphicon glyphicon-remove"></i>Delete
-                        </button>
-                    </div>
-
-                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                    <table id="table" class="table table-striped table-bordered bulk_action" data-form="deleteForm">
                         <thead>
                         <tr>
-                            <th><input type="checkbox" id="check-all" class="flat"></th>
-                            <th>Tên danh mục</th>
-                            <th>Danh mục cha</th>
+                            <th>Tiêu đề</th>
+                            <th>Danh mục</th>
                             <th>ngày tạo</th>
+                            <th></th>
                         </tr>
                         </thead>
-
-
-                        <tbody>
-
-                        @for($i = 0; $i<5; $i++)
-                            <tr>
-                                <td><input type="checkbox" class="flat" name="table_records"></td>
-                                <td>New York</td>
-                                <td>Tin tức</td>
-                                <td>15/11/2016</td>
-                            </tr>
-                        @endfor
-
-
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-
-                </form>
             </div>
         </div>
     </div>
 
-
+    @include('admin.partial.modal_delete')
     @endsection
 
     @section('add_scripts')
@@ -103,94 +95,30 @@
     <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
     <script>
-        $(document).ready(function () {
-            var handleDataTableButtons = function () {
-                if ($("#datatable-buttons").length) {
-                    $("#datatable-buttons").DataTable({
-                        dom: "Bfrtip",
-                        buttons: [
-                            {
-                                extend: "copy",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "csv",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "excel",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "pdfHtml5",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "print",
-                                className: "btn-sm"
-                            },
-                        ],
-                        responsive: true
+        $('table[data-form="deleteForm"]').on('click', '.form-delete', function(e){
+            e.preventDefault();
+            var $form=$(this);
+            $('#confirm').modal({ backdrop: 'static', keyboard: false })
+                    .on('click', '#delete-btn', function(){
+                        $form.submit();
                     });
-                }
-            };
-
-            TableManageButtons = function () {
-                "use strict";
-                return {
-                    init: function () {
-                        handleDataTableButtons();
-                    }
-                };
-            }();
-
-            $('#datatable').dataTable({
-             "language": {
-                "url": "/plugin/datatable-lang/Vietnamese.json"
-            }
-            });
-
-            $('#datatable-keytable').DataTable({
-                keys: true
-            });
-
-            $('#datatable-responsive').DataTable({ "language": {
-                "url": "/plugin/datatable-lang/Vietnamese.json"
-            }});
-
-            $('#datatable-scroller').DataTable({
-                ajax: "js/datatables/json/scroller-demo.json",
-                deferRender: true,
-                scrollY: 380,
-                scrollCollapse: true,
-                scroller: true
-            });
-
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
-
-            var $datatable = $('#datatable-checkbox');
-
-            $datatable.dataTable({
-            { "language": {
-                "url": "/plugin/datatable-lang/Vietnamese.json"
-            },
-                'order': [[1, 'asc']],
-                'columnDefs': [
-                    {orderable: false, targets: [0]}
-                ]
-            });
-            $datatable.on('draw.dt', function () {
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_flat-green'
-                });
-            });
-
-            TableManageButtons.init();
         });
     </script>
-    <!-- /Datatables -->
-
+    <script type="text/javascript">
+                @if(isset($type))
+                var oTable;
+        $(document).ready(function () {
+            oTable = $('#table').DataTable({
+                "language": {
+                    "url": "/plugin/datatable-lang/Vietnamese.json"
+                },
+                "processing": true,
+                "serverSide": true,
+                "order": [],
+                "ajax": "{{ url('admin/'.$type.'/data/json') }}",
+            });
+        });
+        @endif
+    </script>
 @endsection
 

@@ -2,20 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryProduct;
+use App\DetailImageProduct;
+use App\Http\Requests\ProductRequest;
+use App\Product;
+use App\ProductUpdatePrice;
+use App\Util;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+public function AjaxGetProduct(Request $request){
+    $id= $request->get('id');
+    $product = Product::find($id);
+    $response = array(
+        'image' => $product->image,
+        'name' => $product->title,
+        'price' => $product->price_out,
+    );
+    return \Response::json($response);
+}
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.products.index');
+
+        if($request->get('name') || $request->get('kho')|| $request->get('category')){
+            $name = $request->get('name');
+            $kho = $request->get('kho');
+            $cate = $request->get('category');
+            $product1 = Product::query();
+            if(!empty($name)){
+                $product1 =  $product1->where('title','LiKE','%'.$name.'%');
+            }
+            if(!empty($cate)){
+                $product1 =  $product1->where('category',$cate);
+            }
+            if(!empty($kho)){
+                $product1 =  $product1->where('kho',$kho);
+            }
+
+            $product = $product1->get();
+
+
+        }
+        else {
+            $product = Product::orderBy('id','DESC')
+                ->get();
+        }
+        $category = CategoryProduct::get();
+        $data=[
+            'product'=>$product,
+            'category'=>$category,
+            'type' => 'products',
+        ];
+        return view('admin.products.index',$data);
     }
 
     /**
@@ -25,7 +72,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.edit');
+        $category = CategoryProduct::get();
+        $data=[
+            'category'=>$category,
+        ];
+        return view('admin.products.edit',$data);
     }
 
     /**
@@ -34,9 +85,53 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $today = date("Y-m-d_H-i-s");
+        $product = new Product;
+        $data = $request->all();
+        if(!empty(Auth::user()->id)) {
+            $data['author_id'] = Auth::user()->id;
+        }
+        else{
+            $data['author_id'] = 1;
+        }
+
+        if ($request->hasFile('image')) {
+            $data['image']  = Util::saveFile($request->file('image'), '');
+        }
+
+        if (!empty($request->get('slug_seo'))) {
+            $data['slug']  = Util::builtSlug($request->get('slug_seo'));
+        }
+        else{
+            $data['slug']  = Util::builtSlug($request->get('title'));
+        }
+        $checkSlug = Product::where('slug', $data['slug'])->count();
+        if($checkSlug != 0){
+            $data['slug'] =  $data['slug'].'-'.$today;
+        }
+        $product1 = Product::create($data);
+//        dd($product);
+        $Price = new ProductUpdatePrice();
+        $dataPrice['product_id']=$product1->id;
+        $dataPrice['price_in']=$request->get('price_in');
+        $dataPrice['price_out']=$request->get('price_out');
+        $dataPrice['supplier']= "create";
+        $dataPrice['number']= 0;
+        ProductUpdatePrice::create($dataPrice);
+
+
+        $dataImage['product_id']=$product1->id;
+        if(!empty($request->file('image_detail'))) {
+            foreach ($request->file('image_detail') as $image_detail) {
+//            DetailImageProduct::where('id_product',$dataImage['id_product'])->delete();
+                $imageDetail = new DetailImageProduct();
+                $dataImage['image'] = Util::saveFile($image_detail, '');
+                DetailImageProduct::create($dataImage);
+            }
+        }
+        return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 
     /**
@@ -47,7 +142,13 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $product = Product::find($id);
+        $data=[
+            'id' => $id,
+            'product'=>$product,
+        ];
+        return view('admin.products.edit',$data);
     }
 
     /**
@@ -57,8 +158,17 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   $category = CategoryProduct::get();
+        $product = Product::find($id);
+        $detailImage = DetailImageProduct::where('product_id',$id)->get();
+        $data=[
+            'id' => $id,
+            'product'=>$product,
+            'category'=>$category,
+            'detailImage' =>$detailImage,
+        ];
+//        dd($detailImage);
+        return view('admin.products.edit',$data);
     }
 
     /**
@@ -68,9 +178,53 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $today = date("Y-m-d_H-i-s");
+        $data = $request->all();
+        $product =  Product::find($id);
+        if(!empty(Auth::user()->id)) {
+            $data['author_id'] = Auth::user()->id;
+        }
+        else{
+            $data['author_id'] = 1;
+        }
+
+        if ($request->hasFile('image')) {
+            $data['image']  = Util::saveFile($request->file('image'), '');
+        }
+        if ($request->get('slug_seo')!="") {
+            $data['slug']  = Util::builtSlug($request->get('slug_seo'));
+        }
+        else{
+            $data['slug']  = Util::builtSlug($request->get('title'));
+        }
+        $checkSlug = Product::where('slug', $data['slug'])->count();
+        if($checkSlug != 0){
+            $data['slug'] =  $data['slug'].'-'.$today;
+        }
+        $product->update($data);
+        $Price = new ProductUpdatePrice();
+        $dataPrice['product_id']=$id;
+        $dataPrice['price_in']=$request->get('price_in');
+        $dataPrice['price_out']=$request->get('price_out');
+        $dataPrice['supplier']= "create";
+        $dataPrice['number']= 0;
+        ProductUpdatePrice::create($dataPrice);
+
+
+        $dataImage['product_id']=$id;
+        if(!empty($request->file('image_detail'))) {
+            DetailImageProduct::where('product_id',$dataImage['product_id'])->delete();
+            foreach ($request->file('image_detail') as $image_detail) {
+
+                $imageDetail = new DetailImageProduct();
+                $dataImage['image'] = Util::saveFile($image_detail, '');
+                DetailImageProduct::create($dataImage);
+            }
+        }
+        return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
+
     }
 
     /**
@@ -81,6 +235,13 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product =  Product::destroy($id);
+        if(!empty($product)) {
+            return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+        }
+        else{
+            return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+
+        }
     }
 }

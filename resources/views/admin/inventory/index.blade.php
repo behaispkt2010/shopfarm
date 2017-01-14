@@ -5,8 +5,8 @@
 @section('add_styles')
     @endsection
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row top-right">
+
             <div class="x_panel">
                 <div class="x_content">
                     <div class="row">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
     <div class="row">
 

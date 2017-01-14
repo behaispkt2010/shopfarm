@@ -1,69 +1,48 @@
 @extends('layouts.admin')
-@section('title', 'Trang')
-@section('pageHeader','Trang')
+@section('title', 'Bài viết ')
+@section('pageHeader','Bài viết ')
 @section('detailHeader','danh sách')
-@section('add_styles')
-        <!-- Datatables -->
-<link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+@section('new-btn')
+    <a href="{{route('pages.create')}}" class="btn btn-warning btn-fab">
+        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+    </a>
     @endsection
-@section('content')
+    @section('add_styles')
+            <!-- Datatables -->
+    <link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
+@endsection
+@section('content')
+    <br>
     <div class="row">
         <div class="col-md-12 col-xs-12">
             <!-- Name and Description -->
-
-            <div class="x_panel">
-                <div class="circle">
-                    <div class="front front-popular">
-                        <div class="title color-2-font glyphicon glyphicon-plus"></div>
-                    </div><!-- end div .front -->
-                    <div class="popular color-2-font glyphicon glyphicon-plus"></div>
-                    <div class="back color-2-bg info">
-                        <a href="{{route('pages.create')}}">
-                            <div class="title color-2-font glyphicon glyphicon-pencil"></div>
-                        </a>
-                        <div class="description">
-                            <p>Thêm trang mới</p>
-                        </div><!-- end div .description -->
-                    </div><!-- end div .back color-1-bg info -->
-                </div><!-- end div .circle -->
-
-                <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-                    <thead>
-                    <tr>
-                        <th><input type="checkbox" id="check-all" class="flat"></th>
-                        <th>Tiêu đề</th>
-                        <th>ngày tạo</th>
-                    </tr>
-                    </thead>
-
-
-                    <tbody>
-
-                    @for($i = 0; $i<50; $i++)
-                    <tr>
-                        <td><input type="checkbox" class="flat" name="table_records"></td>
-                        <td><a href="{{route('pages.create')}}">Tên tiêu đề trang </a></td>
-                        <td>15/11/2016</td>
-                    </tr>
-                        @endfor
-
-
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
+    <div class="x_panel">
+        <table id="table" class="table table-striped table-bordered bulk_action" data-form="deleteForm">
+            <thead>
+            <tr>
+                <th>Tên trang</th>
+
+                <th>Người tạo</th>
+                <th>ngày tạo</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
+    @include('admin.partial.modal_delete')
 
-@endsection
+    @endsection
 
-@section('add_scripts')
-        <!-- Datatables -->
+    @section('add_scripts')
+            <!-- Datatables -->
     <script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
@@ -79,89 +58,36 @@
     <script src="{{asset('plugin/jszip/dist/jszip.min.js')}}"></script>
     <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
+
+    <!-- /Datatables -->
     <script>
-        $(document).ready(function() {
-            var handleDataTableButtons = function() {
-                if ($("#datatable-buttons").length) {
-                    $("#datatable-buttons").DataTable({
-                        dom: "Bfrtip",
-                        buttons: [
-                            {
-                                extend: "copy",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "csv",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "excel",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "pdfHtml5",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "print",
-                                className: "btn-sm"
-                            },
-                        ],
-                        responsive: true
+        $('table[data-form="deleteForm"]').on('click', '.form-delete', function(e){
+            e.preventDefault();
+            var $form=$(this);
+            $('#confirm').modal({ backdrop: 'static', keyboard: false })
+                    .on('click', '#delete-btn', function(){
+                        $form.submit();
                     });
-                }
-            };
-
-            TableManageButtons = function() {
-                "use strict";
-                return {
-                    init: function() {
-                        handleDataTableButtons();
-                    }
-                };
-            }();
-
-            $('#datatable').dataTable();
-
-            $('#datatable-keytable').DataTable({
-                keys: true
-            });
-
-            $('#datatable-responsive').DataTable();
-
-            $('#datatable-scroller').DataTable({
-                ajax: "js/datatables/json/scroller-demo.json",
-                deferRender: true,
-                scrollY: 380,
-                scrollCollapse: true,
-                scroller: true
-            });
-
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
-
-            var $datatable = $('#datatable-checkbox');
-
-            $datatable.dataTable({
-             "language": {
-                "url": "/plugin/datatable-lang/Vietnamese.json"
-            },
-                'order': [[ 1, 'asc' ]],
-                'columnDefs': [
-                    { orderable: false, targets: [0] }
-                ]
-            });
-            $datatable.on('draw.dt', function() {
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_flat-green'
-                });
-            });
-
-            TableManageButtons.init();
         });
     </script>
-    <!-- /Datatables -->
+
+    <script type="text/javascript">
+                @if(isset($type))
+                var oTable;
+        $(document).ready(function () {
+            oTable = $('#table').DataTable({
+                "language": {
+                    "url": "/plugin/datatable-lang/Vietnamese.json"
+                },
+                "processing": true,
+                "serverSide": true,
+                "order": [],
+                "ajax": "{{ url('admin/'.$type.'/data/json') }}",
+            });
+        });
+        @endif
+    </script>
+
 
 @endsection
 

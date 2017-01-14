@@ -2,20 +2,80 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryProduct;
+use App\Http\Requests\CategoryProductRequest;
+use App\Util;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryProductController extends Controller
 {
+    /**
+     * ajax create
+     */
+     public function createAjax(CategoryProductRequest $request){
+
+         $category = new CategoryProduct();
+         $today = date("Y-m-d_H-i-s");
+         $data = $request->all();
+         $data['slug']  = Util::builtSlug($request->get('name'));
+         $checkSlug = CategoryProduct::where('slug', $data['slug'])->count();
+         if($checkSlug != 0){
+             $data['slug'] =  $data['slug'].'-'.$today;
+         }
+         CategoryProduct::create($data);
+         $response = array(
+             'status' => 'success',
+             'msg' => 'Setting created successfully',
+         );
+         return \Response::json($response);
+     }
+
+    /**
+     * ajax update
+     */
+    public function updateAjax(CategoryProductRequest $request)
+    {
+        $id = $request->get('id');
+        $category =  CategoryProduct::find($id);
+        $today = date("Y-m-d_H-i-s");
+        $data = $request->all();
+        $data['slug'] = Util::builtSlug($request->get('name'));
+        $checkSlug = CategoryProduct::where('slug', $data['slug'])->count();
+        if ($checkSlug != 0) {
+            $data['slug'] = $data['slug'] . '-' . $today;
+        }
+        $category->update($data);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.categoryProduct.index');
+        if($request->get('name') || $request->get('kho')){
+            $name = $request->get('name');
+            $kho = $request->get('kho');
+            $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->get();
+        }
+        else {
+            $categoryProduct = CategoryProduct::get();
+        }
+        $categoryProduct0 = CategoryProduct::where('parent',0)->get();
+
+        $data=[
+            'categoryProduct'=> $categoryProduct,
+            'categoryProduct0' => $categoryProduct0
+        ];
+        return view('admin.categoryProduct.index',$data);
     }
 
     /**
@@ -81,6 +141,13 @@ class CategoryProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res =  CategoryProduct::destroy($id);
+        if(!empty($res)) {
+            return redirect('admin/categoryProducts/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+        }
+        else{
+            return redirect('admin/categoryProducts/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+
+        }
     }
 }

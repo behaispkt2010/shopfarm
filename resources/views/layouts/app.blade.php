@@ -10,31 +10,34 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    @include('partial.styles')
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <style>
-        html,body{
-            height: 100%;
-        }
-    </style>
-    <!-- Scripts -->
+    <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
+    <script type="text/javascript">
+        var baseURL="{!!url('/')!!}";
+    </script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
     <div id="app" style="height: 100%; width: 100%; display: table">
 
         <div class="middle" style="display: table-cell;vertical-align: middle;">
-            <div class="text-center">  <img src="{{url('/')}}/images/logo.png" alt="..." class=" profile_img"></div>
+            <div class="text-center">  <img src="{{url('/')}}/images/logo.png" alt="..." class="img-responsive text-center profile_img" style="margin: 0 auto"></div>
             <br>
         @yield('content')
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    @include('partial.scripts')
+
 </body>
 </html>

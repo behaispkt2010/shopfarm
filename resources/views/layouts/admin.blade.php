@@ -37,17 +37,35 @@ description: template admin
                 <!-- page content -->
         <div class="right_col" role="main">
             <!-- top tiles -->
-            <div class="">
-                <div class="page-title">
-                    <div class="title_left">
-                        {{--<h3>@yield('pageHeader')--}}
-                            {{--<small> @yield('detailHeader')</small>--}}
-                        {{--</h3>--}}
+            <div class="message">
+                @if (count($errors))
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Lỗi!</strong>
+                        @foreach ($errors->all() as $error)
+                            <div>{{ $error }}</div>
+                        @endforeach
+
                     </div>
-                    <div class="title_right">
-                        @yield('rightHeader')
+
+                @endif
+                @if (Session::has('flash_message'))
+
+                        <div class="alert alert-dismissible alert-{!! Session::get('flash_level') !!}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {!! Session::get('flash_message') !!}
                         </div>
-                </div>
+                        <div class="alert alert-dismissible alert-{!! Session::get('flash_level') !!}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {!! Session::get('flash_message') !!}
+                        </div>
+                @endif
+
+
+            </div>
+
+            <div class="btn-new">
+                @yield('new-btn')
             </div>
             <div class="clear"></div>
             @yield('content')

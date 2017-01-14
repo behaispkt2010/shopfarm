@@ -1,161 +1,111 @@
 @extends('layouts.admin')
-@section('title', 'Users')
-@section('pageHeader','Users')
+@section('title', 'Danh sách users ')
+@section('pageHeader','Danh sách user')
 @section('detailHeader','danh sách')
-@section('add_styles')
-        <!-- Datatables x-->
-<link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+
+@section('new-btn')
+    <a href="{{route('users.create')}}" class="btn btn-warning btn-fab">
+        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+    </a>
 @endsection
 @section('content')
-        <!-- Name and Description -->
-<div class="row">
-
-    <div class="col-md-12 col-xs-12">
-        <!-- Name and Description -->
-        <a type="submit" class="btn btn-primary" href="{{route('users.create')}}">Thêm mới user</a>
+    <div class="row top-right">
+        <form action="" method="GET">
         <div class="x_panel">
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group label-floating">
 
-            <table id="datatable-checkbox"
-                   class="table table-striped table-bordered bulk_action">
-                <thead>
-                <tr>
-                    {{--<th><input type="checkbox" id="check-all" class="flat"></th>--}}
-                    <th>Tên nhân viên</th>
-                    <th>Chức vụ</th>
-                    <th>Email</th>
-                    <th>Số điện thoại</th>
-                    <th></th>
-                </tr>
-                </thead>
+                            <label class="control-label" for="addon2">Tên user / Mã user / Số điện thoại</label>
+
+                            <div class="input-group text-center">
+                                <input type="text" id="addon2" name="q" class="form-control" value="{{Request::get('q')}}">
+                                      <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-fab btn-fab-mini">
+                                            <i class="material-icons">search</i>
+                                        </button>
+                                      </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        @foreach($users as $user)
+                            <div class="col-md-4 col-sm-4 col-xs-12 profile_details box-detail">
+
+                                <div class="well box_1">
 
 
-                <tbody>
+                                    <div class="img-product-view">
+                                        <img src="{{url('/')}}{{$user->image}}" alt="" class="img-circle img-responsive"
+                                             data-pin-nopin="true">
+                                    </div>
+                                    <div class="col-sm-12 ">
+                                        <a href="{{route('users.edit',['id' => $user->id])}}">
+                                            <h4 class="cod"><i>#{{$user->id}}</i></h4>
 
-                @for($i = 0; $i<50; $i++)
-                    <tr>
-                        {{--<td><input type="checkbox" class="flat" name="table_records"></td>--}}
-                        <td><a href="{{route('users.create')}}">Tên nhân viên </a></td>
-                        <td>Quản lý kho</td>
-                        <td>quanly@gmail.com</td>
-                        <td>01662456843</td>
-                        <td width="100px" class="text-center">
-                            <a href="" style="margin-right: 10px;display: inline-block"><i class="fa fa-pencil"  aria-hidden="true"></i></a>
-                            <a href="" style="display: inline-block"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                @endfor
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <ul class="list-unstyled">
+                                                        <li>Tên: {{$user->name}}</li>
+                                                        <li>Email: {{$user->email}}</li>
+                                                        <li>SDT: {{$user->phone_number}}</li>
+                                                        <li>Địa chỉ: {{$user->address}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
 
+                                    <div class="col-xs-12 text-center">
+                                        {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
+                                        {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
+                                        {{--</a>--}}
 
-                </tbody>
-            </table>
+                                        <a href="{{route('users.edit',['id' => $user->id])}}"
+                                           class="btn btn-raised btn-primary btn-xs">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Chỉnh sửa
+                                        </a>
+                                        <form action="{{route('users.destroy',['id' => $user->id])}}" method="post" class="form-delete" style="display: inline">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                            <input type="text" class="hidden" value="{{$user->id}}">
+                                            {{method_field("DELETE")}}
+                                            <a type="submit" class = "btn btn-raised  btn-xs btn-danger" name ="delete_modal" style="display: inline-block"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    @include('admin.partial.modal_delete')
 
 
 @endsection
-
 @section('add_scripts')
-        <!-- Datatables -->
-<script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-<script src="{{asset('plugin/datatables.net-scroller/js/datatables.scroller.min.js')}}"></script>
-<script src="{{asset('plugin/jszip/dist/jszip.min.js')}}"></script>
-<script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
-<script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
-<script>
-    $(document).ready(function () {
-        var handleDataTableButtons = function () {
-            if ($("#datatable-buttons").length) {
-                $("#datatable-buttons").DataTable({
-                    dom: "Bfrtip",
-                    buttons: [
-                        {
-                            extend: "copy",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "csv",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "excel",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "pdfHtml5",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "print",
-                            className: "btn-sm"
-                        },
-                    ],
-                    responsive: true
-                });
-            }
-        };
-
-        TableManageButtons = function () {
-            "use strict";
-            return {
-                init: function () {
-                    handleDataTableButtons();
-                }
-            };
-        }();
-
-        $('#datatable').dataTable();
-
-        $('#datatable-keytable').DataTable({
-            keys: true
-        });
-
-        $('#datatable-responsive').DataTable();
-
-        $('#datatable-scroller').DataTable({
-            ajax: "js/datatables/json/scroller-demo.json",
-            deferRender: true,
-            scrollY: 380,
-            scrollCollapse: true,
-            scroller: true
-        });
-
-        $('#datatable-fixed-header').DataTable({
-            fixedHeader: true
-        });
-
-        var $datatable = $('#datatable-checkbox');
-
-        $datatable.dataTable({
-            'order': [[1, 'asc']],
-            'columnDefs': [
-                {orderable: false, targets: [0]}
-            ]
-        });
-        $datatable.on('draw.dt', function () {
-            $('input').iCheck({
-                checkboxClass: 'icheckbox_flat-green'
-            });
-        });
-
-        TableManageButtons.init();
-    });
-</script>
-<!-- /Datatables -->
-
+    <script src="{{asset('js/selectize.js')}}"></script>
+    <!-- Select2 -->
+    <script>
+        $('#select-ck,#select-type').selectize({});
+    </script>
 @endsection
-

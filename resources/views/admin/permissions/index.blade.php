@@ -1,51 +1,43 @@
 @extends('layouts.admin')
-@section('title', 'Phân quyền')
-@section('pageHeader','Phân quyền')
+@section('title', 'permissions ')
+@section('pageHeader','permissions ')
 @section('detailHeader','danh sách')
 @section('add_styles')
-        <!-- Datatables x-->
+        <!-- Datatables -->
 <link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 @endsection
+@section('new-btn')
+    <a href="{{route('permission.create')}}" class="btn btn-warning btn-fab">
+        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+    </a>
+@endsection
 @section('content')
-
+    <br>
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_content">
-                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th>Tên phân quyền</th>
-                        <th>bao gồm các quyền</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>admin</td>
-                        <td>all</td>
-
-                        <td>t.nixon@datatables.net</td>
-                    </tr>
-                    <tr>
-                        <td>Quản lý</td>
-                        <td>thêm,xóa, sửa </td>
-
-                        <td>t.nixon@datatables.net</td>
-                    </tr>
-
-
-                    </tbody>
-                </table>
-            </div>
-
+        <div class="col-md-12 col-xs-12">
+            <!-- Name and Description -->
         </div>
-
     </div>
+    <div class="x_panel">
+        <table id="table" class="table table-striped table-bordered bulk_action" data-form="deleteForm">
+            <thead>
+            <tr>
+                <th>Tên</th>
+                {{--<th>Route</th>--}}
+                <th>Route</th>
+                <th>Mô tả</th>
 
+                <th></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    @include('admin.partial.modal_delete')
 
     @endsection
 
@@ -66,90 +58,23 @@
     <script src="{{asset('plugin/jszip/dist/jszip.min.js')}}"></script>
     <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
-    <script>
-        $(document).ready(function() {
-            var handleDataTableButtons = function() {
-                if ($("#datatable-buttons").length) {
-                    $("#datatable-buttons").DataTable({
-                        dom: "Bfrtip",
-                        buttons: [
-                            {
-                                extend: "copy",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "csv",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "excel",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "pdfHtml5",
-                                className: "btn-sm"
-                            },
-                            {
-                                extend: "print",
-                                className: "btn-sm"
-                            },
-                        ],
-                        responsive: true
-                    });
-                }
-            };
 
-            TableManageButtons = function() {
-                "use strict";
-                return {
-                    init: function() {
-                        handleDataTableButtons();
-                    }
-                };
-            }();
 
-            $('#datatable').dataTable();
-
-            $('#datatable-keytable').DataTable({
-                keys: true
-            });
-
-            $('#datatable-responsive').DataTable({
+    <script type="text/javascript">
+                @if(isset($type))
+                var oTable;
+        $(document).ready(function () {
+            oTable = $('#table').DataTable({
                 "language": {
                     "url": "/plugin/datatable-lang/Vietnamese.json"
-                }
+                },
+                "processing": true,
+                "serverSide": true,
+                "order": [],
+                "ajax": "{{ url('admin/'.$type.'/data/json') }}",
             });
-
-            $('#datatable-scroller').DataTable({
-                ajax: "js/datatables/json/scroller-demo.json",
-                deferRender: true,
-                scrollY: 380,
-                scrollCollapse: true,
-                scroller: true
-            });
-
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
-
-            var $datatable = $('#datatable-checkbox');
-
-            $datatable.dataTable({
-                'order': [[ 1, 'asc' ]],
-                'columnDefs': [
-                    { orderable: false, targets: [0] }
-                ]
-            });
-            $datatable.on('draw.dt', function() {
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_flat-green'
-                });
-            });
-
-            TableManageButtons.init();
         });
+        @endif
     </script>
-    <!-- /Datatables -->
-
 @endsection
 

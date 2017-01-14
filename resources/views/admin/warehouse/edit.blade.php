@@ -8,17 +8,21 @@
     </a>
 @endsection
 @section('content')
-
+    <br>
     <div class="row">
         <div class="col-md-12 col-xs-12">
             <!-- Name and Description -->
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="id" value="{{$id}}">
+            <input type="hidden" name="user_id" value="{{$userInfo->id}}">
+
             <div class="">
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse">
+                        <div class="well box1 info-warehouse info-user" style="min-height: 440px;">
                             <h4 class="text-center">Thông tin người đại diện <i style="float: right"
-                                                                                class="fa fa-wrench"
+                                                                                class="fa fa-edit"
                                                                                 aria-hidden="true"></i></h4>
                             <ul class="list-unstyled">
                                 <li>
@@ -27,7 +31,7 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Mã</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <input type="email" disabled class="form-control" id="code" placeholder="#000"/>
+                                                <div  disabled class="form-control" id="code" placeholder="#000">#{{$userInfo->id}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -35,10 +39,32 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12control-label">Tên</label>
+                                            <label for="name" class="col-md-3 col-xs-12 control-label">Tên</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="text" disabled class="form-control" name="name"/>
+                                                <input type="text" disabled class="form-control" name="name" value="{{$userInfo->name}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="name" class="col-md-3 col-xs-12 control-label">Email</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <input type="email" disabled class="form-control" name="email" value="{{$userInfo->email}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="name" class="col-md-3 col-xs-12 control-label">SDT</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <input type="number" disabled class="form-control" name="phone_number" value="{{$userInfo->phone_number}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -56,40 +82,21 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="name-bank" class="col-md-3 col-xs-12 ">Ngân
-                                                hàng</label>
-
-                                            <div class="col-md-9 col-xs-12">
-                                                <p>Tên ngân hàng: Đông Á</p>
-
-                                                <p>Tỉnh/thành phố: Hà Nội</p>
-
-                                                <p>Số tài khoản: 10000000000</p>
-
-                                                <p>Chủ tài khoản: Nguyễn Văn A</p>
-                                                <a href="" data-toggle="modal"
-                                                   data-target=".modal-bank"> Cập nhật tài khoản</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                             
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="name" class="col-md-3 col-xs-12control-label">Cập nhật</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <div>22/11/2016 23:25</div>
+                                                <div>{{$userInfo->created_at->format('d/m/Y')}}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
 
                                 <li class="text-right">
-                                    <button class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
+                                    <button id="update_info" class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
                                 </li>
 
                             </ul>
@@ -97,9 +104,9 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-kho">
+                        <div class="well box1 info-kho" style="min-height: 440px;">
                             <h4 class="text-center">Thông tin Kho / doanh nghiệp <i style="float: right"
-                                                                                    class="fa fa-wrench edit"
+                                                                                    class="fa fa-edit"
                                                                                     aria-hidden="true"></i></h4>
                             <ul class="list-unstyled">
                                 <li>
@@ -108,7 +115,7 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Tên DN</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="text" disabled class="form-control" id="code"/>
+                                                <input type="text"  class="form-control" disabled name="name_company" value="{{$wareHouse->name_company}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +126,7 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Địa chỉ</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="text" disabled class="form-control" id="code"/>
+                                                <input type="text"  class="form-control" disabled name="address" value="{{$wareHouse->address}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +138,7 @@
                                                 thuế</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <input type="text" disabled class="form-control" id="code"/>
+                                                <input type="text"  class="form-control" disabled name="mst" value="{{$wareHouse->mst}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -142,14 +149,15 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Người ĐD</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <input type="text" disabled class="form-control" id="code"/>
+                                                <input type="text"  class="form-control" disabled name="ndd" value="{{$wareHouse->ndd}}"/>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="text-right">
-                                    <button class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
+                                    <button id="update_detail" class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
@@ -157,7 +165,45 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1">
+                        <div class="well box1 " style="min-height: 440px; position: relative">
+                            <h4 class="text-center">Tài khoản ngân hàng </h4>
+                            <ul class="list-unstyled list_bank">
+                                <?php $i=0 ;?>
+                                @foreach($bankWareHouse as $itemBankWareHouse)
+                                    <?php $i++; ?>
+                                <li>
+                                    <div class="form-group">
+
+                                        <div class="row">
+
+                                            <label for="code" class="col-md-9 col-xs-12 control-label">   <span class="stt-num">{{$i}}</span> {{$itemBankWareHouse->card_name}}: {{$itemBankWareHouse->card_number}}</label>
+
+                                            <div class="col-md-3 col-xs-12 ">
+                                                <div class="togglebutton">
+                                                    <i data-toggle="modal"
+                                                       data-target=".modal-bank-edit"
+                                                       class="fa fa-edit edit_bank" data-id="{{$itemBankWareHouse->id}}"
+                                                       data-bank="{{$itemBankWareHouse->bank}}" data-province="{{$itemBankWareHouse->province}}"
+                                                       data-card_number="{{$itemBankWareHouse->card_number}}"data-check="{{$itemBankWareHouse->check}}"  data-card_name="{{$itemBankWareHouse->card_name}}" class="fa fa-pencil" style="margin-right: 5px"></i> &nbsp;&nbsp;
+                                                    <label>
+                                                        <input style="display: none" type="checkbox" @if($itemBankWareHouse->check==1) checked @endif disabled>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </li>
+                                    @endforeach
+                            </ul>
+                            <button class="btn-update btn btn-primary btn-raised text-right btn-small btn-new-bank" data-toggle="modal"
+                                    data-target=".modal-bank"> Thêm mới</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
+
+                        <div class="well box1" style="min-height: 440px;">
                             <h4 class="text-center">Gói dịch vụ </h4>
                             <ul class="list-unstyled">
                                 <li>
@@ -170,8 +216,7 @@
                                             <div class="col-md-8 col-xs-12">
                                                 <button class="btn btn-success btn-raised btn-sm"> Đăng ký</button>
 
-                                                <button class="btn btn-info btn-raised btn-sm" data-toggle="modal"
-                                                        data-target=".modal-service"> Chi tiết
+                                                <button class="btn btn-info btn-raised btn-sm" > Chi tiết
                                                 </button>
                                             </div>
                                         </div>
@@ -189,8 +234,7 @@
                                             <div class="col-md-8 col-xs-12">
                                                 <button class="btn btn-success btn-raised btn-sm"> Đăng ký</button>
 
-                                                <button class="btn btn-info btn-raised btn-sm" data-toggle="modal"
-                                                        data-target=".modal-marketing"> Chi tiết
+                                                <button class="btn btn-info btn-raised btn-sm" > Chi tiết
                                                 </button>
                                             </div>
                                         </div>
@@ -376,34 +420,31 @@
                     <h4 class="modal-title text-center" id="myModalLabel">Thay đổi mật khẩu</h4>
                 </div>
                 <div class="modal-body sroll">
-
-
                                 <div class="row">
+                                    <div class="form-group">
+                                        <label for="code" class="col-md-5 control-label">Mật khẩu hiện tại:</label>
+                                        <div class="col-md-7">
+                                            <input type="password" class="form-control" name="old_password"/>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                     <label for="code" class="col-md-5 control-label">Mật khẩu mới:</label>
 
                                     <div class="col-md-7">
-                                        <input type="password" class="form-control"/>
+                                        <input type="password" class="form-control" name="new_pass"/>
                                     </div>
                                         </div>
-
-                                </div>
-                                <div class="row">
                                     <div class="form-group">
                                         <label for="code" class="col-md-5 control-label">Nhập lại mật khẩu</label>
 
                                         <div class="col-md-7">
-                                            <input type="password" class="form-control"/>
+                                            <input type="password" class="form-control" name="renew_pass"/>
                                         </div>
                                     </div>
-
                                 </div>
-
-
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-raised btn-primary">Lưu</button>
+                    <button  id="changePassbtn" type="button" class="btn btn-raised btn-primary">Lưu</button>
                 </div>
 
             </div>
@@ -428,86 +469,10 @@
                             <div class="form-group">
                             <label for="name" class="col-md-4 col-sm-4 control-label">Tên ngân hàng</label>
                             <div class="col-md-8 col-sm-8">
-                                <select  data-placeholder="Ngân hàng" class="form-control">
-                                    <option label="NH Đông Á" value="object:12">NH Đông Á</option>
-                                    <option label="NH Vietcombank" value="object:13">NH Vietcombank</option>
-                                    <option label="NH Techcombank" value="object:14">NH Techcombank</option>
-                                    <option label="NH MBank" value="object:15">NH MBank</option>
-                                    <option label="NH Á Châu" value="object:16">NH Á Châu</option>
-                                    <option label="NH Maritime Bank" value="object:17">NH Maritime Bank</option>
-                                    <option label="NH Sacombank" value="object:18">NH Sacombank</option>
-                                    <option label="NH Agribank" value="object:19">NH Agribank</option>
-                                    <option label="NH Vietin" value="object:20">NH Vietin</option>
-                                    <option label="NH ANZ" value="object:21">NH ANZ</option>
-                                    <option label="NH Tiên Phong" value="object:22">NH Tiên Phong</option>
-                                    <option label="NH Exim" value="object:23">NH Exim</option>
-                                    <option label="NH Đại Á" value="object:24">NH Đại Á</option>
-                                    <option label="NH Đông Nam Á" value="object:25">NH Đông Nam Á</option>
-                                    <option label="NH Đại Dương" value="object:26">NH Đại Dương</option>
-                                    <option label="NH An Bình" value="object:27">NH An Bình</option>
-                                    <option label="NH Bắc Á" value="object:28">NH Bắc Á</option>
-                                    <option label="NH Dầu khí Toàn Cầu" value="object:29">NH Dầu khí Toàn Cầu</option>
-                                    <option label="NH Bản Việt" value="object:30">NH Bản Việt</option>
-                                    <option label="NH Kiên Long" value="object:31">NH Kiên Long</option>
-                                    <option label="NH Nam Á" value="object:32">NH Nam Á</option>
-                                    <option label="NH Nam Việt" value="object:33">NH Nam Việt</option>
-                                    <option label="NH Việt Nam Thịnh Vượng" value="object:34">NH Việt Nam Thịnh Vượng
-                                    </option>
-                                    <option label="NH Phát Triển Nhà Thành phố Hồ Chí Minh" value="object:35">NH Phát
-                                        Triển Nhà Thành phố Hồ Chí Minh
-                                    </option>
-                                    <option label="NH Phương Nam" value="object:36">NH Phương Nam</option>
-                                    <option label="NH Phương Đông" value="object:37">NH Phương Đông</option>
-                                    <option label="NH Quân Đội" value="object:38">NH Quân Đội</option>
-                                    <option label="NH Phương Tây" value="object:39">NH Phương Tây</option>
-                                    <option label="NH Quốc tế" value="object:40">NH Quốc tế</option>
-                                    <option label="NH Sài Gòn" value="object:41">NH Sài Gòn</option>
-                                    <option label="NH Sài Gòn Công Thương" value="object:42">NH Sài Gòn Công Thương
-                                    </option>
-                                    <option label="NH Sài Gòn-Hà Nội" value="object:43">NH Sài Gòn-Hà Nội</option>
-                                    <option label="NH Việt Á" value="object:44">NH Việt Á</option>
-                                    <option label="NH Bảo Việt" value="object:45">NH Bảo Việt</option>
-                                    <option label="NH Việt Nam Thương Tín" value="object:46">NH Việt Nam Thương Tín
-                                    </option>
-                                    <option label="NH Xăng dầu Petrolimex" value="object:47">NH Xăng dầu Petrolimex
-                                    </option>
-                                    <option label="NH Bưu Điện Liên Việt" value="object:48">NH Bưu Điện Liên Việt
-                                    </option>
-                                    <option label="NH Phát Triển Mê Kông" value="object:49">NH Phát Triển Mê Kông
-                                    </option>
-                                    <option label="NH Đại Tín" value="object:50">NH Đại Tín</option>
-                                    <option label="NH Đầu tư" value="object:51">NH Đầu tư</option>
-                                    <option label="NH Phát triển Nhà Đồng bằng sông Cửu Long" value="object:52">NH Phát
-                                        triển Nhà Đồng bằng sông Cửu Long
-                                    </option>
-                                    <option label="NH ANZ Việt Nam" value="object:53">NH ANZ Việt Nam</option>
-                                    <option label="NH Deutsche Bank Việt Nam" value="object:54">NH Deutsche Bank Việt
-                                        Nam
-                                    </option>
-                                    <option label="NH Citibank Việt Nam" value="object:55">NH Citibank Việt Nam</option>
-                                    <option label="NH TNHH một thành viên HSBC (Việt Nam)" value="object:56">NH TNHH một
-                                        thành viên HSBC (Việt Nam)
-                                    </option>
-                                    <option label="NH Standard Chartered" value="object:57">NH Standard Chartered
-                                    </option>
-                                    <option label="NH TNHH MTV Shinhan Việt Nam" value="object:58">NH TNHH MTV Shinhan
-                                        Việt Nam
-                                    </option>
-                                    <option label="NH Hong Leong Việt Nam" value="object:59">NH Hong Leong Việt Nam
-                                    </option>
-                                    <option label="NH Ngân hàng Đầu tư và Phát triển Campuchia" value="object:60">NH
-                                        Ngân hàng Đầu tư và Phát triển Campuchia
-                                    </option>
-                                    <option label="NH Crédit Agricole" value="object:61">NH Crédit Agricole</option>
-                                    <option label="NH United Overseas Bank tại Việt Nam" value="object:62">NH United
-                                        Overseas Bank tại Việt Nam
-                                    </option>
-                                    <option label="NH TNHH Indovina" value="object:63">NH TNHH Indovina</option>
-                                    <option label="NH Việt - Nga" value="object:64">NH Việt - Nga</option>
-                                    <option label="NH ShinhanVina" value="object:65">NH ShinhanVina</option>
-                                    <option label="NH VID Public Bank" value="object:66">NH VID Public Bank</option>
-                                    <option label="NH Việt - Thái" value="object:67">NH Việt - Thái</option>
-                                    <option label="NH Việt - Lào" value="object:68">NH Việt - Lào</option>
+                                <select  data-placeholder="Ngân hàng" class="form-control" name="bank">
+                                    @foreach($bank as $itemBank)
+                                    <option value="{{$itemBank->id}}">{{$itemBank->name}}</option>
+                                        @endforeach
                                 </select>
 
                             </div>
@@ -517,17 +482,10 @@
                             <div class="form-group">
                             <label for="name" class="col-md-4 col-sm-4 control-label">Tỉnh/thành phố</label>
                             <div class="col-md-8 col-sm-8">
-                                <select class="form-control">
-                                    <option label="An Giang" value="object:69">An Giang</option>
-                                    <option label="Bà Rịa – Vũng Tàu" value="object:70">Bà Rịa – Vũng Tàu</option>
-                                    <option label="Bạc Liêu" value="object:71">Bạc Liêu</option>
-                                    <option label="Bắc Giang" value="object:72">Bắc Giang</option>
-                                    <option label="Bắc Kạn" value="object:73">Bắc Kạn</option>
-                                    <option label="Bắc Ninh" value="object:74">Bắc Ninh</option>
-                                    <option label="Bến Tre" value="object:75">Bến Tre</option>
-                                    <option label="Bình Dương" value="object:76">Bình Dương</option>
-                                    <option label="Bình Định" value="object:77">Bình Định</option>
-                                    <option label="Bình Phước" value="object:78">Bình Phước</option>
+                                <select class="form-control" name="province">
+                                    @foreach($province as $itemProvince)
+                                        <option value="{{$itemProvince->provinceid}}">{{$itemProvince->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                                 </div>
@@ -535,9 +493,8 @@
                         <div class="row">
                             <div class="form-group">
                             <label  class="col-md-4 col-sm-4 control-label">Số tài khoản</label>
-
                             <div class="col-md-8 col-sm-8">
-                                <input type="text" class="ng-valid ng-dirty ng-touched form-control">
+                                <input type="number" class="ng-valid ng-dirty ng-touched form-control"required  name="card_number">
                             </div>
                                 </div>
                         </div>
@@ -546,18 +503,109 @@
                             <label  class="col-md-4 col-sm-4 control-label">Chủ tài khoản</label>
 
                             <div class="col-md-8 col-sm-8">
-                                <input type="text" class="ng-valid ng-dirty ng-touched form-control">
+                                <input type="text" class="ng-valid ng-dirty ng-touched form-control" required name="card_name">
                             </div>
                                 </div>
                         </div>
+                        <div class="row">
+
+                            <div class="form-group">
+                                <label  class="col-md-4 col-sm-4 control-label">Kích hoạt</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="togglebutton">
+                                    <label>
+                                        <input type="checkbox" name="check" >
+                                    </label>
+                                    </div>
+                            </div>
+                        </div>
+                            </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-raised btn-primary">Lưu</button>
+                    <button id="create_bank" type="button" class="btn btn-raised btn-primary">Lưu</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade modal-bank-edit" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-bank-edit">
+            <input type="hidden" name="id_bank">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Tài khoản ngân hàng</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="frm-add">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 col-sm-4 control-label">Tên ngân hàng</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <select id="bank_select"  data-placeholder="Ngân hàng" class="form-control" name="bank">
+                                        @foreach($bank as $itemBank)
+                                            <option value="{{$itemBank->id}}">{{$itemBank->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 col-sm-4 control-label">Tỉnh/thành phố</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <select class="form-control" name="province">
+                                        @foreach($province as $itemProvince)
+                                            <option value="{{$itemProvince->provinceid}}">{{$itemProvince->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label  class="col-md-4 col-sm-4 control-label">Số tài khoản</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="number" class="ng-valid ng-dirty ng-touched form-control" required  name="card_number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label  class="col-md-4 col-sm-4 control-label">Chủ tài khoản</label>
+
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="ng-valid ng-dirty ng-touched form-control" required name="card_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="form-group">
+                                <label  class="col-md-4 col-sm-4 control-label">Kích hoạt</label>
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="togglebutton">
+                                        <label>
+                                            <input type="checkbox" name="check" >
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="edit_bank" type="button" class="btn btn-raised btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @endsection
 
 
@@ -595,9 +643,9 @@
         });
     </script>
     <script>
-        $('.info-kho,.info-warehouse').click(function(){
-            $(this).find('input').removeAttr('disabled');
-            $(this).find('.btn-update').css('display','block');
+        $('.info-kho .fa-edit,.info-warehouse .fa-edit').click(function(){
+            $(this).parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display','inline-block');
 
         })
         $('button.btn-update').click(function(){
@@ -605,6 +653,259 @@
 //            $(this).closest().find('input').attr('disabled');
 //            $('button.btn-update').css('display','none');
         })
+    </script>
+    <script>
+        $('#update_info').on('click', function (e) {
+            e.preventDefault();
+
+            var id = $('input[name="user_id"]').val();
+            var name = $('.info-warehouse input[name="name"]').val();
+            var email = $('.info-warehouse input[name="email"]').val();
+            var phone_number = $('.info-warehouse input[name="phone_number"]').val();
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '/admin/warehouse/AjaxInfo',
+                data: {name: name, email: email, phone_number: phone_number,_token: _token,id:id},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Cập nhật thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: Data['name'],
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#changePassbtn').on('click', function (e) {
+            e.preventDefault();
+
+            var id = $('input[name="user_id"]').val();
+            var old_password = $('.modal-change-pass input[name="old_password"]').val();
+            var new_pass = $('.modal-change-pass input[name="new_pass"]').val();
+            var renew_pass = $('.modal-change-pass input[name="renew_pass"]').val();
+
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '/admin/warehouse/AjaxChangePass',
+                data: {old_password: old_password,new_pass: new_pass,renew_pass: renew_pass,_token: _token,id:id},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    if(msg['status'] != "danger") {
+                        new PNotify({
+                            title: 'Cập nhật thành công',
+                            text: '',
+                            type: 'success',
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+                        location.reload();
+                    }
+                    else{
+                        new PNotify({
+                            title: msg['msg'],
+                            text: '',
+                            type: msg['status'],
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+
+
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: Data['name'],
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#create_bank').on('click', function (e) {
+            e.preventDefault();
+            var ware_id = $('input[name="id"]').val();
+            var bank = $('.modal-bank select[name="bank"] :selected').val();
+            var province = $('.modal-bank select[name="province"] :selected').val();
+            var card_number = $('.modal-bank input[name="card_number"]').val();
+            var card_name = $('.modal-bank input[name="card_name"]').val();
+            var check = 0;
+            if($('.modal-bank input[name="check"]').is(':checked'))
+              var check = 1;
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+//            alert(check);
+            $.ajax({
+                type: "POST",
+                url: '/admin/warehouse/AjaxBank',
+                data: {bank: bank, province: province, card_number: card_number,card_name: card_name,check:check,_token: _token,ware_id:ware_id},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Cập nhật thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: 'Vui lòng điền đầy đủ thông tin',
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#edit_bank').on('click', function (e) {
+            e.preventDefault();
+            var ware_id = $('input[name="id"]').val();
+            var id_bank = $('input[name="id_bank"]').val();
+            var bank = $('.modal-bank-edit select[name="bank"] :selected').val();
+            var province = $('.modal-bank-edit select[name="province"] :selected').val();
+            var card_number = $('.modal-bank-edit input[name="card_number"]').val();
+            var card_name = $('.modal-bank-edit input[name="card_name"]').val();
+            var check = 0;
+            if($('.modal-bank-edit input[name="check"]').is(':checked'))
+                var check = 1;
+
+            if(check=='on'){check=1};
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+//            alert(check);
+            $.ajax({
+                type: "POST",
+                url: '/admin/warehouse/AjaxEditBank',
+                data: {bank: bank, province: province, card_number: card_number,card_name: card_name,check:check,_token: _token,ware_id:ware_id,id_bank:id_bank},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Cập nhật thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: 'Vui lòng điền đầy đủ thông tin',
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#update_detail').on('click', function (e) {
+            e.preventDefault();
+            var id = $('input[name="id"]').val();
+            var name_company = $('.info-kho input[name="name_company"]').val();
+            var address = $('.info-kho input[name="address"]').val();
+            var mst = $('.info-kho input[name="mst"]').val();
+            var ndd = $('.info-kho input[name="ndd"]').val();
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '/admin/warehouse/AjaxDetail',
+                data: {name_company: name_company, address: address, mst: mst,ndd: ndd,_token: _token,id:id},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Cập nhật thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: Data['name'],
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).on('click', '.edit_bank', function () {
+            _self = $(this);
+            $('.modal-bank-edit input[name="id_bank"]').val(_self.data('id'));
+            $('.modal-bank-edit select[name="bank"]')[0].selectize.setValue(_self.data('bank'));
+            $('.modal-bank-edit select[name="province"]')[0].selectize.setValue(_self.data('province'));
+            $('.modal-bank-edit input[name="card_number"]').val(_self.data('card_number'));
+            $('.modal-bank-edit input[name="card_name"]').val(_self.data('card_name'));
+            if(_self.data('check') == 1) {
+                $('.modal-bank-edit input[name="check"]').prop('checked', true);
+            }
+            else{
+                $('.modal-bank-edit input[name="check"]').prop('checked', false);
+            }
+        });
     </script>
 
 @endsection

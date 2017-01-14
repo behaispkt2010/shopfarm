@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><img src="{{url('/')}}/images/logo-w.png" alt=""></a>
+            <a href="{{url('/')}}" class="site_title"><img src="{{url('/')}}/images/logo-w.png" alt=""></a>
         </div>
 
         <div class="clearfix"></div>
@@ -17,7 +17,18 @@
                 </div>
                 <a href="" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
                     Thông tin</a>
-                <a style="font-size: 13px;"><i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất</a>
+                {{--<a style="font-size: 13px;"><i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất</a>--}}
+               <a href="{{ url('/logout') }}"
+                   onclick="event.preventDefault();
+         document.getElementById('logout-form').submit();">
+                    <i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất
+                </a>
+                <form id="logout-form"
+                      action="{{ url('/logout') }}"
+                      method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -54,11 +65,19 @@
                         <ul class="nav child_menu">
                             <li><a href="{{route('products.index')}}">Sản phẩm</a></li>
                             <li><a href="{{route('categoryProducts.index')}}">Nhóm sản phẩm</a></li>
-                            <li><a href="{{route('inventory.index')}}">Kiểm kho</a></li>
 
                         </ul>
                     </li>
-                    <li><a href="{{route('warehouse.index')}}"><i class="fa fa-database"></i> Quản lý chủ kho</a></li>
+                    <li><a><i class="fa fa-tag"></i>Quản lý kho <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('warehouse.index')}}"></i> Thông tin chủ kho</a></li>
+                            <li><a href="{{route('money.index')}}">Sổ quỹ</a></li>
+                            <li><a href="{{route('inventory.index')}}">Kiểm kho</a></li>
+                            <li><a href="{{route('historyInput.index')}}">Lịch sử nhập hàng</a></li>
+
+                        </ul>
+                    </li>
+
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
 
 
@@ -72,7 +91,8 @@
                         <ul class="nav child_menu">
                             <li><a href="{{route('users.index')}}">Users</a></li>
                             <!--<li><a href="page_404.html">Roles</a></li>-->
-                            <li><a href="{{route('permission.index')}}">Permissions</a></li>
+                            <li><a href="{{route('role.index')}}">Role</a></li>
+                            <li><a href="{{route('permission.index')}}">Permission</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-sitemap"></i> Nhân Sự<span class="fa fa-chevron-down"></span></a>
@@ -132,7 +152,7 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                        aria-expanded="false">
-                        <img src="{{url('/')}}/images/icon.png" alt="">Admin Tin
+                        <img src="{{url('/')}}/images/icon.png" alt="">
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">

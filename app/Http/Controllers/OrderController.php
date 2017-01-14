@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
+use App\Order;
+use App\OrderStatus;
+use App\Product;
+use App\Province;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,7 +31,25 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('admin.orders.edit');
+        $customer = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('role_user.role_id',3)
+            ->orderBy('id','DESC')
+            ->get();
+        $province = Province::get();
+        $district = District::get();
+        $products = Product::get();
+        $order_status = OrderStatus::get();
+        $data=[
+            'customer' =>$customer,
+            'province' =>$province,
+            'district' =>$district,
+            'products' =>$products,
+            'order_status' => $order_status,
+
+        ];
+
+//        dd($order_status);
+        return view('admin.orders.edit',$data);
     }
 
     /**

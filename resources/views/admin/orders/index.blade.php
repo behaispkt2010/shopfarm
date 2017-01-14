@@ -2,23 +2,16 @@
 @section('title', 'Quản lý đơn hàng')
 @section('pageHeader','Quản lý đơn hàng')
 @section('detailHeader','danh sách')
-@section('rightHeader')
-    <a href="{{route('orders.create')}}" class="btn btn-raised btn-warning btn-md">
-        <i class="fa fa-plus" aria-hidden="true"></i> Tạo mới
-    </a>
-    @endsection
-    @section('add_styles')
-            <!-- Datatables -->
-    <link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
-@endsection
 
+
+@section('new-btn')
+    <a href="{{route('orders.create')}}" class="btn btn-warning btn-fab">
+        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+    </a>
+@endsection
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row top-right">
+
             <div class="x_panel">
                 <div class="x_content">
                     <div class="row">
@@ -100,7 +93,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
     <div class="row">
 

@@ -2,9 +2,9 @@
 @section('title', 'Danh sách sản phẩm ')
 @section('pageHeader','Danh sách sản phẩm ')
 @section('detailHeader','danh sách')
-@section('rightHeader')
-    <a href="{{route('products.create')}}" class="btn btn-raised btn-warning btn-md">
-        <i class="fa fa-plus" aria-hidden="true"></i> Tạo mới
+@section('new-btn')
+    <a href="{{route('products.create')}}" class="btn btn-warning btn-fab">
+        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
     </a>
     @endsection
     @section('add_styles')
@@ -12,54 +12,35 @@
     <link rel="stylesheet" type="text/css" href="{{asset('selectize.default.css')}}">
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="x_panel">
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                            <ul class="tab-fill">
-                                <li class="active"><a href="#">Mới tạo</a><span style="background-color: #3FB079"
-                                                                                class="ng-binding">0</span></li>
-                                <li><a href="#">Category 1</a><span style="background-color: #EEB390"
-                                                                    class="ng-binding">0</span></li>
-                                <li><a href="#">Category 2</a><span style="background-color: #2B8388"
-                                                                    class="ng-binding">0</span></li>
-                                <li><a href="#">Category 3</a><span style="background-color: #35468A"
-                                                                    class="ng-binding">0</span></li>
+    <div class="row top-right">
 
-                            </ul>
-                        </div>
-                    </div>
+            <div class="x_panel">
+                <form action="" method="GET">
+                <div class="x_content">
                     {{--<div class="clearfix"></div>--}}
+
                     <div class="row">
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <select id="select-ck" class="form-control" data-placeholder="chọn kho">
-                                    <option></option>
-                                    <option value="2"> kho 1</option>
-                                    <option value="2"> kho 2</option>
-                                    <option value="3"> kho 3</option>
-                                    <option value="4"> kho 4</option>
-                                    <option value="2"> kho 2</option>
-                                    <option value="3"> kho 3</option>
-                                    <option value="4"> kho 4</option>
+                                <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
+                                    <option value="0" >Tất cả</option>
+                                    @foreach($category  as $itemCategory)
+                                        <option value="{{$itemCategory->id}}" @if(Request::get('kho')==$itemCategory->id) selected @endif>{{$itemCategory->name}}
+                                        </option>
+                                    @endforeach
+
                                 </select>
                             </div>
                             <div class="clear"></div>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <select id="select-cate" class="form-control" data-placeholder="chọn danh mục">
-                                    <option></option>
-                                    <option value="1"> bơ</option>
-                                    <option value="2"> khoai</option>
-                                    <option value="3"> cải</option>
-                                    <option value="4"> mì</option>
-                                    <option value="1"> bơ</option>
-                                    <option value="2"> khoai</option>
-                                    <option value="3"> cải</option>
-                                    <option value="4"> mì</option>
+                                <select id="select-cate" class="form-control" name="category" data-placeholder="chọn danh mục">
+                                    <option value="0" >Tất cả</option>
+                                    @foreach($category  as $itemCategory)
+                                        <option value="{{$itemCategory->id}}" @if(Request::get('category')==$itemCategory->id) selected @endif>{{$itemCategory->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="clear"></div>
@@ -70,9 +51,9 @@
                                 <label class="control-label" for="addon2">Tên sản phẩm / Mã sản phẩm</label>
 
                                 <div class="input-group text-center">
-                                    <input type="text" id="addon2" class="form-control">
+                                    <input type="text" id="addon2" class="form-control" name="name" value="{{Request::get('name')}}">
                                       <span class="input-group-btn">
-                                        <button type="button" class="btn btn-fab btn-fab-mini">
+                                        <button type="submit" class="btn btn-fab btn-fab-mini">
                                             <i class="material-icons">search</i>
                                         </button>
                                       </span>
@@ -81,8 +62,9 @@
                         </div>
                     </div>
                 </div>
+                    </form>
             </div>
-        </div>
+
     </div>
     <div class="row">
 
@@ -95,19 +77,19 @@
                         </div>
 
                         <div class="clearfix"></div>
-
-                        @for($i=0;$i<10;$i++)
+                    @if(count($product) != 0)
+                    @foreach($product as $itemProduct)
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details product-detail">
 
                                 <div class="well box_1">
                                     <div class="img-product-view">
-                                        <img src="{{url('/')}}/images/sp.jpg" alt="" class="img-circle img-responsive"
+                                        <img src="{{url('/')}}/{{$itemProduct->image}}" alt="" class="img-circle img-responsive"
                                              data-pin-nopin="true">
                                     </div>
                                     <div class="col-sm-12" data-toggle="modal"
                                          data-target=".modal-product">
 
-                                        <h4 class="cod"><i>Gạo lức (MD001)</i></h4>
+                                        <h4 class="cod"><i>{{$itemProduct->title}} ({{$itemProduct->code}})</i></h4>
 
 
                                         <div class="col-xs-12">
@@ -116,13 +98,13 @@
                                                 <li><i class="fa fa-database"></i> Chủ Kho 1
                                                 </li>
                                                 <li><i class="fa fa-usd"></i> <span
-                                                            class="box-money"> mua vào: 150.000 VNĐ </span></li>
+                                                            class="box-money"> Mua vào: {{$itemProduct->price_in}} VNĐ </span></li>
                                                 <li><i class="fa fa-usd"></i> <span
-                                                            class="box-money"> bán ra: 200.000 VNĐ</span></li>
-                                                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Ít nhất: 20kg
+                                                            class="box-money"> Bán ra: {{$itemProduct->price_out}} VNĐ</span></li>
+                                                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Ít nhất: {{$itemProduct->min_gram}} gram
                                                 </li>
-                                                <li><i class="fa fa-archive" aria-hidden="true"></i> Bơ</li>
-                                                <li><i class="fa fa-calendar"></i> 20/11/2016</li>
+                                                <li><i class="fa fa-archive" aria-hidden="true"></i> {{\App\CategoryProduct::getNameCateById($itemProduct->category)}}</li>
+                                                <li><i class="fa fa-calendar"></i> {{$itemProduct->updated_at->format('d/m/Y')}}</li>
                                             </ul>
                                         </div>
 
@@ -132,17 +114,23 @@
                                         {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
                                         {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
                                         {{--</a>--}}
-                                        <a href="{{route('products.create')}}"
+                                        <a href="{{route('products.edit',['id' => $itemProduct->id])}}"
                                            class="btn btn-raised btn-primary btn-xs">
                                             <i class="fa fa-pencil" aria-hidden="true"></i> Chỉnh sửa
                                         </a>
-                                        <a href="" class="btn  btn-raised btn-danger btn-xs">
-                                            <i class="fa fa-times" aria-hidden="true"></i> xóa
-                                        </a>
+                                        <form action="{{route('products.destroy',['id' => $itemProduct->id])}}" method="post" class="form-delete" style="display: inline">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                            <input type="text" class="hidden" value="{{$itemProduct->id}}">
+                                            {{method_field("DELETE")}}
+                                            <a type="submit" class = "btn btn-raised  btn-xs btn-danger" name ="delete_modal" style="display: inline-block"><i class="fa fa-times" aria-hidden="true"></i> Xóa</a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        @endfor
+                        @endforeach
+                        @else
+                        <div>không tìm thấy dữ liệu</div>
+                        @endif
 
                     </div>
                 </div>
@@ -150,7 +138,7 @@
         </div>
     </div>
 
-
+    @include('admin.partial.modal_delete')
     <div class="modal fade modal-product" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
          data-backdrop="static">
         <div class="modal-dialog modal-tracking">
@@ -186,13 +174,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group label-floating">
-
-                                <select id="select-ncc" class="form-control" data-placeholder="Nhà cung cấp">
-                                    <option></option>
-                                    <option>kho 1</option>
-                                    <option>kho 2</option>
-                                    <option>kho 3</option>
-                                </select>
+                                <label class="control-label" for="focusedInput2"> Nhà cung cấp</label>
+                                <input class="form-control" id="focusedInput2" type="text">
                             </div>
                         </div>
                     </div>

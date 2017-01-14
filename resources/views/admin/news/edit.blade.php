@@ -3,177 +3,176 @@
 @section('pageHeader','Bài viết ')
 @section('detailHeader','Thêm bài viết')
 @section('content')
-
+    <br>
     <div class="row">
-        <div class="col-md-8 col-xs-12">
-            <!-- Name and Description -->
-            <div class="x_panel">
-                <div class="form-group">
-                    <label for="name">Tiêu đề</label>
-                    <input type="text" class="form-control" name="name" placeholder="tên tiêu đề" id="txtName" required>
-                </div>
-                <input type="hidden" class="form-control" name="slug" placeholder="slug" id="txtSlug" required>
+        @if(Request::is('admin/news/create'))
+            <form action="{{route('news.store')}}" method="POST" enctype="multipart/form-data">
+                @else
+                    <form action="{{route('news.update',['id' => $id])}}" method="POST" enctype="multipart/form-data">
+                        {{ method_field('PUT') }}
+                        <input type="hidden" name="id" value="{{$id}}">
+                        @endif
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                <div class="form-group">
-                    <label>Nội dung</label>
-                    <textarea class="form-control" rows="5" name="description"></textarea>
-                    <script type="text/javascript">ckeditor('description')</script>
-                </div>
+                        <div class="col-md-8 col-xs-12">
+                            <!-- Name and Description -->
+                            <div class="x_panel">
+                                <div class="form-group">
+                                    <label for="name">{{trans('article.title')}}</label>
+                                    <input type="text" class="form-control" name="title" id="title" required
+                                           value="@if(!empty($article->title)){{$article->title}}@else{{old('title')}}@endif">
+                                </div>
 
-            </div>
-            <div class="x_panel">
-                <!-- SEO -->
-                <div class="wrapper-content mt20 mb20">
-                    <div class="pd-all-20 ps-relative">
-                        <label class="title-product-main text-no-bold mb20">Tối ưu SEO</label>
+                                <div class="form-group">
+                                    <label>{{trans('article.content')}}</label>
+                                    <textarea class="form-control" rows="5"
+                                              name="content">@if(!empty($article->content)){{$article->content}}@else{{old('content')}}@endif</textarea>
+                                    <script type="text/javascript">ckeditor('content')</script>
+                                </div>
 
-                        <p class="mb0">Thiết lập các thẻ mô tả giúp khách hàng dễ dàng tìm thấy trang trên công cụ tìm
-                            kiếm
-                            như Google.</p>
-
-                        <div>
-                            <span class="page-title-seo"></span>
-
-                            <div class="page-description-seo ws-nm"><span>http://nongsantunhien-com.myharavan.com/blogs/tin-tuc/</span>
                             </div>
-                        </div>
-                        <a class="btn-change-link btn-style-seo pull-right">Chỉnh sửa
-                            SEO</a>
-                    </div>
-                    <div class="pd-all-20 border-top-title-main">
-                        <div class="form-group">
-                            <label class="inline">Tiêu đề trang</label>
-                            <label class="inline note pull-right"> <span>0</span> trên 70 kí tự</label>
-                            <input type="text" class="form-control" name="names" placeholder="tiêu đề seo" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="inline" for="inputmetadescription">Mô tả trang</label>
-                            <label class="inline note pull-right"> <span data-bind="text: MetaDescLength">0</span> trên
-                                160
-                                kí tự</label>
-                            <input type="text" class="form-control" name="description" placeholder="mô tả ngắn">
+                            <div class="x_panel">
+                                <!-- SEO -->
+                                <div class="wrapper-content mt20 mb20">
+                                    <div class="pd-all-20 ps-relative">
+                                        <label class="title-product-main text-no-bold mb20">Tối ưu SEO</label>
 
-                        </div>
-                        <div class="form-group mb0">
-                            <label for="inputurlhandle">
-                                Đường dẫn
-                                <a href="https://docs.haravan.com/blogs/co-ban/1000019770-handle" target="_blank">
-                                    <i class="hover-tooltip glyphicon glyphicon-question-sign note"></i>
-                                </a>
-                            </label>
+                                        <p class="mb0">Thiết lập các thẻ mô tả giúp khách hàng dễ dàng tìm thấy trang
+                                            trên công cụ
+                                            tìm
+                                            kiếm
+                                            như Google.</p>
 
-                            <div class="input-group">
-                                <span class="input-group-addon drop-price-addon border-color-input-group">http://nongsantunhien-com.myharavan.com/blogs/tin-tuc/</span>
-                                <input type="text" class="form-control" name="slugs" placeholder="slug">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End SEO -->
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-12">
-            <!-- Show/Hide -->
-            <div class="x_panel">
-                <div class="wrapper-content">
-                    <div class="pd-all-20">
-                        <label class="title-product-main text-no-bold">Hiển thị</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                            Hiển thị ngay
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> Ẩn đi
-                        </label>
-                    </div>
-                    <div class="ln_solid"></div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-raised btn-primary">Hủy</button>
-                        <button type="submit" class="btn btn-raised btn-success">Lưu</button>
-                    </div>
-                </div>
-            </div>
-            <div class="x_panel">
-                <div class="wrapper-content mt20">
-                    <div class="pd-all-20 border-top-title-main">
-                        <div class="form-group">
-                            <label>Nhóm bài viết</label>
-                            <select class="select2_single form-control" tabindex="-1">
-                                <option>chọn nhóm bài viết</option>
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="CA">California</option>
-                                <option value="NV">Nevada</option>
-                                <option value="OR">Oregon</option>
-                                <option value="WA">Washington</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="CO">Colorado</option>
-                                <option value="ID">Idaho</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="UT">Utah</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TX">Texas</option>
-                            </select>
-                        </div>
-                        <div class="">
-                            <label class="mb5">Hình đại diện</label>
-                        </div>
-                        <div class="center-block ps-relative pt10 overflow-hidden">
-                            <!-- ko if: ArticleDetail().File() --><!-- /ko -->
-                            <div class="styled-file-input">
-                                <div class="btn--plain ps-relative">
-                                    <!-- ko ifnot: ArticleDetail().File() -->
-                                    <div class="aspect-ratio aspect-ratio--square aspect-ratio--interactive">
-                                        <div class="next-media__blank-slate">
-                                            <div class="next-media__blank-slate__content next-media__blank-slate__content--align-middle">
-                                                <svg class="next-icon--40" style="fill:#479ccf"
-                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-                                                    <path d="M38 6v28h-36v-28h36m0-2h-36c-1.1 0-2 .9-2 2v28c0 1.1.9 2 2 2h36c1.1 0 2-.9 2-2v-28c0-1.1-.9-2-2-2zm-4 4h-28c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h28c1.1 0 2-.9 2-2v-20c0-1.1-.9-2-2-2zm0 2v14.2l-6.8-6.8c-1.9-1.9-4.9-1.9-6.8 0l-5.2 5.2c-1.3-.6-2.9-.3-3.9.7l-5.3 5.3v-18.6h28zm-19.1 14.7l.6.6 4.8 4.8h-12.9l5.3-5.3c.2-.2.5-.3.8-.4.5-.2 1-.1 1.4.3zm8.1 5.3l-6.2-6.2 5-5c1.1-1.1 2.9-1.1 4 0l8.2 8.2v3h-11zm-11.5-15.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0-1.5c-1.9 0-3.5 1.6-3.5 3.5s1.6 3.5 3.5 3.5 3.5-1.6 3.5-3.5-1.6-3.5-3.5-3.5z"></path>
-                                                </svg>
+                                        <div>
+                                            <span class="page-title-seo"></span>
+
+                                            <div class="page-description-seo ws-nm"><span>{{url('blogs')}}/@if(!empty($article->slug)){{$article->slug}}@endif</span>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="pd-all-20 border-top-title-main">
+                                        <div class="form-group">
+                                            <label class="inline">Tiêu đề trang</label>
+                                            <label class="inline note pull-right"> <span>0</span> trên 70 kí tự</label>
+                                            <input type="text" class="form-control" name="title_seo"
+                                                   value="@if(!empty($article->title_seo)){{$article->title_seo}}@else{{old('title_seo')}}@endif">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="inline" for="inputmetadescription">Mô tả trang</label>
+                                            <label class="inline note pull-right"> <span
+                                                        data-bind="text: MetaDescLength">0</span>
+                                                trên 160 kí tự</label>
+                                            <input type="text" class="form-control" name="description"
+                                                   value="@if(!empty($article->description)){{$article->description}}@else{{old('description')}}@endif">
 
+                                        </div>
+                                        <div class="form-group mb0">
+                                            <label for="inputurlhandle">
+                                                Đường dẫn
+                                            </label>
+
+                                            <div class="input-group">
+                                                <span class="input-group-addon drop-price-addon border-color-input-group">
+                                                   {{url('blogs')}}/</span>
+                                                <input type="hidden" class="form-control" name="slug" value="@if(!empty($article->slug)){{$article->slug}}@endif"/>
+                                                <input type="text" class="form-control" name="slug_seo"
+                                                       placeholder="ten-bai-viet-1"
+                                                       value="{{old('slug_seo')}}">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <!-- End SEO -->
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- End Featured image-->
-                <div class="wrapper-content mt20">
-                    <div class="control-group">
-                        <label>Tags</label>
-                        <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <input id="tags_1" type="text" class="tags form-control" value="social, adverts, sales"/>
+                        <div class="col-md-4 col-xs-12">
+                            <!-- Show/Hide -->
+                            <div class="x_panel">
+                                <div class="wrapper-content">
+                                    <div class="pd-all-20">
+                                        <label class="title-product-main text-no-bold">Hiển thị</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" @if(!empty($article) && $article->status == 1) checked @else checked @endif   value="1"
+                                                   name="status">
+                                            Hiển thị ngay
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" @if(!empty($article) && $article->status == 0) checked @endif value="0"
+                                                   name="status"> Ẩn đi
+                                        </label>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group text-center">
+                                        <a href="{{route('news.index')}}" type="submit"
+                                           class="btn btn-raised btn-primary">Hủy</a>
+                                        <button type="submit" class="btn btn-raised btn-success">Lưu</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="x_panel">
+                                <div class="wrapper-content mt20">
+                                    <div class="pd-all-20 border-top-title-main">
+                                        <div class="form-group">
+                                            <label>Nhóm bài viết</label>
+                                            <select name="category" class="select2_single form-control" tabindex="-1"
+                                                    required>
+                                                <option value="0"
+                                                        @if(!empty($article->category) && $article->category == 0) selected @endif >
+                                                    Mặc định
+                                                </option>
+                                                @foreach($category  as $itemData)
+                                                    <option value="{{$itemData->id}}"
+                                                            @if(!empty($article->category) && $article->category == $itemData->id) selected @endif >
+                                                        {{$itemData->name}}
+                                                    </option>
+                                                @endforeach
 
-                            <div id="suggestions-container"
-                                 style="position: relative; float: left; width: 250px; margin: 10px;"></div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
+                                            </select>
+                                        </div>
 
-            </div>
-        </div>
+                                    </div>
+                                    <div class="image-area">
+                                        <label class="mb5">Hình đại diện</label>
+
+                                        <div class="image-view">
+                                            @if(!empty($article->image))
+                                                <img src="{{$article->image}}" alt="" class="img-responsive">
+                                                <div class="form-group">
+                                                    <label for="inputFile" class="col-md-4 control-label">Thay đổi</label>
+
+                                                    <div class="col-md-8">
+                                                        <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                                                        <input type="file" name="image"  id="inputFile">
+                                                    </div>
+                                                </div>
+
+                                            @else
+                                                <input type="file" style="display:none;" name="image" id="file-6"
+                                                       class="inputfile inputfile-5"
+                                                       data-multiple-caption="{count} files selected"/>
+                                                <label class="file-view" for="file-6">
+                                                    <figure>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17"
+                                                             viewBox="0 0 20 17">
+                                                            <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                                                        </svg>
+                                                    </figure>
+                                                    <span></span></label>
+                                            @endif
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
     </div>
 
     @endsection
@@ -203,4 +202,10 @@
         });
     </script>
     <!-- /jQuery Tags Input -->
+    <script src="{{asset('js/selectize.js')}}"></script>
+    <script>
+        $('.select2_single').selectize({});
+
+    </script>
+
 @endsection

@@ -45,8 +45,18 @@
 <script src="{{asset('plugin/pnotify/dist/pnotify.js')}}"></script>
 <script src="{{asset('plugin/pnotify/dist/pnotify.buttons.js')}}"></script>
 <script src="{{asset('plugin/pnotify/dist/pnotify.nonblock.js')}}"></script>
-
-
+	<script src="{{asset('js/custom-file-input.js')}}"></script>
+    <!-- /Datatables -->
+    <script>
+        $(document).on('click', '.form-delete', function(e){
+            e.preventDefault();
+            var $form=$(this);
+            $('#confirm').modal({ backdrop: 'static', keyboard: false })
+                    .on('click', '#delete-btn', function(){
+                        $form.submit();
+                    });
+        });
+    </script>
 <script>
     (function () {
 
@@ -189,4 +199,15 @@
     $('.pageface').click(function() {
     $(this).toggleClass('show');
     })
+</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<script >
+$(".alert").fadeTo(5000, 500).slideUp(500, function(){
+    $(".alert").slideUp(50);
+});
+
 </script>

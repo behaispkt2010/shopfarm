@@ -4,7 +4,8 @@
 @section('detailHeader','số đơn hàng, hàng tồn kho,...')
 @section('content')
     <div class="row tile_count">
-        <div class="x_panel" style="border: none; background: transparent;padding: 0;">
+        <br>
+        <div class="" style="border: none; background: transparent;padding: 0;">
                 <div class="row top_tiles">
                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
@@ -57,7 +58,7 @@
 
     </div>
     <div class="row tile_count">
-        <div class="x_panel">
+        <div class="">
             <div class="col-md-6 col-sm-6 col-xs-12">
 
                 <div class="x_panel fixed_height_320">

@@ -3,8 +3,9 @@
 @section('pageHeader','Thống kê')
 @section('detailHeader','số đơn hàng, hàng tồn kho,...')
 @section('content')
+
     <div class="row tile_count">
-        <div class="x_panel">
+        <div class="">
             <div class="x_content">
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -526,7 +527,7 @@
 
     </div>
     <div class="row tile_count">
-        <div class="x_panel">
+        <div class="">
             <div class="col-md-6 col-sm-6 col-xs-12">
 
                 <div class="x_panel fixed_height_320">
