@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-md-9" style="margin-top: 13px">
                 <select id="select-product" name="select-product"  class="form-control " placeholder="Thêm sản phấm" >
-                    <option value="0">Tìm kiếm sản phẩm</option>
+                    <option value="0"></option>
                     @if(!empty($products))
                     @foreach($products as $product)
                     <option value="{{$product->id}}" data-image="dsa" data-name="dsa">
