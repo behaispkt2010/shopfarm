@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('categoryProducts/createAjax', 'CategoryProductController@createAjax');
     Route::post('categoryProducts/updateAjax', 'CategoryProductController@updateAjax');
 
-  
+
 
     //Đơn hàng
     Route::resource('orders', 'OrderController');
@@ -92,6 +92,8 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::resource('setting', 'SettingController');
     //Menu
     Route::resource('menu', 'MenuController');
+    Route::post('menu/AjaxSave', 'MenuController@AjaxSave');
+
     //Giao diện
     Route::resource('display', 'DisplayController');
     //Ngôn ngữ

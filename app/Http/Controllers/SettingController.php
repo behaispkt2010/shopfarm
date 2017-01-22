@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Setting;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +16,12 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+       $setting = Setting::get();
+//        dd($setting);
+        $data=[
+            'setting'=> $setting,
+        ];
+        return view('admin.setting.index',$data);
     }
 
     /**
@@ -36,7 +42,17 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Setting::truncate();
+        foreach($request->all() as $key=>$value){
+            $setting= new Setting();
+            $data['key']=$key;
+            $data['value']=$value;
+            Setting::create($data);
+        }
+        return redirect('admin/setting/')->with(['flash_level' => 'success', 'flash_message' => 'Cập nhật thành công']);
+
+
     }
 
     /**

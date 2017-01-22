@@ -105,9 +105,8 @@
                     <li><a><i class="fa fa-cogs"></i>Cài đặt<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="#">Cài đặt chung</a></li>
-                            <li><a href="#">Giao diện</a></li>
-                            <li><a href="#">Ngôn ngữ</a></li>
-                            <li><a href="#">Menu</a></li>
+
+                            <li><a href="{{route('menu.index')}}">Menu</a></li>
 
                         </ul>
                     </li>
