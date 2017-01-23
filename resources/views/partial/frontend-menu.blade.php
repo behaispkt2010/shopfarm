@@ -149,11 +149,11 @@
 
                                     <ul>
 
-                                        <li class="current"><a href="../html-fronend/index.html">Trang chủ</a></li>
-                                        <li><a href="shop_my_account.html">Sản phẩm</a></li>
-                                        <li><a href="../html-fronend/shop_shopping_cart.html">Tin tức</a></li>
-                                        <li><a href="../html-fronend/shop_checkout.html">Kiểm tra đơn hàng</a></li>
-                                        <li><a href="../html-fronend/blog_v1.html">Liên hệ</a></li>
+                                        <li class="current"><a href="/">Trang chủ</a></li>
+                                        <li><a href="/products">Sản phẩm</a></li>
+                                        <li><a href="/blogs">Tin tức</a></li>
+                                        <li><a href="#">Kiểm tra đơn hàng</a></li>
+                                        <li><a href="/contact">Liên hệ</a></li>
                                         <!-- <li><a href="additional_page_contact.html">Contact Us</a></li> -->
 
                                         <li class="has_submenu">
@@ -166,143 +166,14 @@
 
                                                 <li class="has_submenu current">
 
-                                                    <a href="../html-fronend/index.html">Homepage Layouts</a>
+                                                    <a href="/product/lua/lua-mi">chi tiết sản phẩm</a>
+                                                    <a href="/blog/lam-dep/abc">chi tiết bài viết</a>
 
-                                                    <!-- - - - - - - - - - - - - - Submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                    <ul class="theme_menu submenu">
-
-                                                        <li class="current"><a href="../html-fronend/index.html">Home 1</a></li>
-                                                        <li><a href="home_v2.html">Home 2</a></li>
-                                                        <li><a href="home_v3.html">Home 3</a></li>
-                                                        <li><a href="home_v4.html">Home 4</a></li>
-                                                        <li><a href="home_v5.html">Home 5</a></li>
-                                                        <li><a href="home_v6.html">Home 6</a></li>
-
-                                                    </ul>
-
-                                                    <!-- - - - - - - - - - - - - - End submenu (level 3) - - - - - - - - - - - - - - - - -->
 
                                                 </li>
 
-                                                <li class="has_submenu">
 
-                                                    <a href="category_page_v1.html">Category Page Layouts</a>
 
-                                                    <!-- - - - - - - - - - - - - - Submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                    <ul class="theme_menu submenu">
-
-                                                        <li><a href="category_page_v1.html">Category page 1</a></li>
-                                                        <li><a href="category_page_v2.html">Category page 2</a></li>
-                                                        <li><a href="../html-fronend/category_page_v3.html">Category page 3</a></li>
-                                                        <li><a href="category_page_v4.html">Category page 4</a></li>
-
-                                                    </ul>
-
-                                                    <!-- - - - - - - - - - - - - - End submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                </li>
-
-                                                <li class="has_submenu">
-
-                                                    <a href="product_page_v1.html">Product Page Layouts</a>
-
-                                                    <!-- - - - - - - - - - - - - - Submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                    <ul class="theme_menu submenu">
-
-                                                        <li><a href="product_page_v1.html">Product page 1</a></li>
-                                                        <li><a href="product_page_v2.html">Product page 2</a></li>
-                                                        <li><a href="../html-fronend/product_page_v3.html">Product page 3</a></li>
-
-                                                    </ul>
-
-                                                    <!-- - - - - - - - - - - - - - End submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                </li>
-
-                                                <li class="has_submenu">
-
-                                                    <a href="../html-fronend/shop_shopping_cart.html">Other Shop Pages</a>
-
-                                                    <!-- - - - - - - - - - - - - - Submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                    <ul class="theme_menu submenu">
-
-                                                        <li><a href="../html-fronend/shop_shopping_cart.html">Shopping cart</a></li>
-                                                        <li><a href="../html-fronend/shop_checkout.html">Checkout</a></li>
-                                                        <li><a href="shop_wishlist.html">Wishlist</a></li>
-                                                        <li><a href="shop_product_comparison.html">Product Comparison</a></li>
-                                                        <li><a href="shop_my_account.html">My Account</a></li>
-                                                        <li><a href="shop_manufacturers.html">Manufacturers</a></li>
-                                                        <li><a href="shop_manufacturer_page.html">Manufacturer Page</a></li>
-                                                        <li><a href="../html-fronend/shop_orders_list.html">Order List</a></li>
-                                                        <li><a href="shop_order_page.html">Order Page</a></li>
-
-                                                    </ul>
-
-                                                    <!-- - - - - - - - - - - - - - End submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                </li>
-
-                                                <li class="has_submenu">
-
-                                                    <a href="additional_page_about.html">Additional Pages</a>
-
-                                                    <!-- - - - - - - - - - - - - - Submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                    <ul class="theme_menu submenu">
-
-                                                        <li><a href="additional_page_about.html">About Us</a></li>
-                                                        <li><a href="additional_page_contact.html">Contact Us</a></li>
-                                                        <li><a href="additional_page_faq.html">FAQ</a></li>
-                                                        <li><a href="additional_page_404.html">404 Page</a></li>
-                                                        <li><a href="additional_page_sitemap.html">Sitemap</a></li>
-
-                                                    </ul>
-
-                                                    <!-- - - - - - - - - - - - - - End submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                </li>
-
-                                                <li class="has_submenu">
-
-                                                    <a href="extra_stuff_elements.html">Extra Stuff</a>
-
-                                                    <!-- - - - - - - - - - - - - - Submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                    <ul class="theme_menu submenu">
-
-                                                        <li><a href="extra_stuff_elements.html">Elements</a></li>
-                                                        <li><a href="extra_stuff_typography.html">Typography</a></li>
-                                                        <li><a href="extra_stuff_columns.html">Columns</a></li>
-
-                                                    </ul>
-
-                                                    <!-- - - - - - - - - - - - - - End submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                </li>
-
-                                                <li class="has_submenu">
-
-                                                    <a href="../html-fronend/blog_v1.html">Blog Pages</a>
-
-                                                    <!-- - - - - - - - - - - - - - Submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                    <ul class="theme_menu submenu">
-
-                                                        <li><a href="../html-fronend/blog_v1.html">Blog v1</a></li>
-                                                        <li><a href="blog_v2.html">Blog v2</a></li>
-                                                        <li><a href="blog_v3.html">Blog v3</a></li>
-                                                        <li><a href="../html-fronend/blog_post_v1.html">Blog Post v1</a></li>
-                                                        <li><a href="blog_post_v2.html">Blog Post v2</a></li>
-
-                                                    </ul>
-
-                                                    <!-- - - - - - - - - - - - - - End submenu (level 3) - - - - - - - - - - - - - - - - -->
-
-                                                </li>
 
                                             </ul>
 
