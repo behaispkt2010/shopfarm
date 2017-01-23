@@ -24,3 +24,4 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-material-design.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/ripples.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/component.css')}} ">
+@yield('add_styles')

@@ -20,7 +20,7 @@
                 {{--<a style="font-size: 13px;"><i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất</a>--}}
                <a href="{{ url('/logout') }}"
                    onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();">
+                         document.getElementById('logout-form').submit();">
                     <i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất
                 </a>
                 <form id="logout-form"
