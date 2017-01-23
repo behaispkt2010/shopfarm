@@ -211,3 +211,45 @@ $(".alert").fadeTo(5000, 500).slideUp(500, function(){
 });
 
 </script>
+<script>
+$(document).on('click','.bs-example-modal-avata .avarta-item img',function(){
+        var img=$(this).attr('data-value');
+        //save by ajax
+            var _token = $('input[name="_token"]').val();
+
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "Post",
+                url: '/users/changeAvata',
+
+                data: {img: img,_token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+
+                    //show notify
+                    new PNotify({
+                        title: 'Thay đổi thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: Data['name'],
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+
+</script>

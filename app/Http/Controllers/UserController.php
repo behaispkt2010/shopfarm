@@ -8,11 +8,23 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 Use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
 
+    public function AjaxChangeImage(Request $request){
+        $res= $request->all();
+        $user = User::find(Auth::user()->id);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        $data['image']="/images/".$request->get('img').".png";
+        $user->update($data);
+        return \Response::json($response);
+    }
 public function AjaxCreateCustomer(UserRequest $request)
 {
     $user = new User();

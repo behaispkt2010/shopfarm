@@ -86,6 +86,8 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('users/AjaxGetDataCustomer', 'UserController@AjaxGetDataCustomer');
 
 
+
+
     //Nhân sự
     Route::resource('staffs', 'StaffController');
     //Cài đặt
@@ -101,6 +103,12 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     //Thống kê truy cập
     Route::resource('statistics', 'StatisticController');
 });
+
+/**
+ * ajax
+ */
+
+Route::post('users/changeAvata', 'UserController@AjaxChangeImage');
 
 /*
  *
