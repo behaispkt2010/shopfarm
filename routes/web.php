@@ -109,6 +109,9 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
  */
 
 Route::post('users/changeAvata', 'UserController@AjaxChangeImage');
+Route::post('product/checkProductAjax', 'ProductController@checkProductAjax');
+
+
 
 /*
  *

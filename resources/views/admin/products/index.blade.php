@@ -23,10 +23,10 @@
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
-                                    <option value="0" >Tất cả</option>
-                                    @foreach($category  as $itemCategory)
-                                        <option value="{{$itemCategory->id}}" @if(Request::get('kho')==$itemCategory->id) selected @endif>{{$itemCategory->name}}
-                                        </option>
+                                    <option value="0" >Tất cả kho</option>
+                                    @foreach($wareHouses  as $wareHouse)
+                                        <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>#{{$wareHouse->id}}({{$wareHouse->name}})</option>
+
                                     @endforeach
 
                                 </select>
@@ -95,7 +95,7 @@
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
                                                 <li><i class="fa fa-bar-chart" aria-hidden="true"></i>100 tồn kho</li>
-                                                <li><i class="fa fa-database"></i> Chủ Kho 1
+                                                <li><i class="fa fa-database"></i> Chủ Kho #{{$itemProduct->kho}}
                                                 </li>
                                                 <li><i class="fa fa-usd"></i> <span
                                                             class="box-money"> Mua vào: {{$itemProduct->price_in}} VNĐ </span></li>

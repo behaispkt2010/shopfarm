@@ -123,7 +123,33 @@
 										<!-- - - - - - - - - - - - - - Page navigation - - - - - - - - - - - - - - - - -->
 
 
+										<div class="description_section v_centered">
 
+											<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
+
+											<ul class="rating">
+
+												<li class="active"></li>
+												<li class="active"></li>
+												<li class="active"></li>
+												<li></li>
+												<li></li>
+
+											</ul>
+
+											<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
+
+											<!-- - - - - - - - - - - - - - Reviews menu - - - - - - - - - - - - - - - - -->
+
+											<ul class="topbar">
+
+												<li><a href="#">3 Đã đánh giá</a></li>
+
+											</ul>
+
+											<!-- - - - - - - - - - - - - - End of reviews menu - - - - - - - - - - - - - - - - -->
+
+										</div>
 										<!-- - - - - - - - - - - - - - End of page navigation - - - - - - - - - - - - - - - - -->
 
 

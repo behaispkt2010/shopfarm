@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     }
     public function checkOrder(){
-        return view('frontend.category');
+        return view('frontend.check-order');
 
     }
 }

@@ -7,6 +7,7 @@ use App\DetailImageProduct;
 use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\ProductUpdatePrice;
+use App\User;
 use App\Util;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,54 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+
+    /**
+     * ajax update
+     */
+    public function UpdateProductAjax(Request $request)
+    {
+        $id = $request->get('id');
+        $product =  Product::find($id);
+        $productUpdatePrice = new ProductUpdatePrice();
+        $data['product_id']=$id;
+        $data['price_in']=$request->get('price_in');
+        $data['price_out']=$request->get('price_out');
+        $data['number']=$request->get('number');
+        $data['supplier']="check";
+
+        $productUpdatePrice->create($data);
+
+        $data1['price_in']=$request->get('price_in');
+        $data1['price_out']=$request->get('price_out');
+        $data1['inventory_num']=$data['number'];
+
+        $product->update($data1);
+
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
+    }
+    /**
+     * ajax update
+     */
+    public function checkProductAjax(Request $request)
+    {
+        $id = $request->get('id');
+        $product =  Product::find($id);
+//        dd($id);
+        $data1['inventory_num']=$request->get('num');
+        $data1['id']=$request->get('id');
+
+        $product->update($data1);
+
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
+    }
 public function AjaxGetProduct(Request $request){
     $id= $request->get('id');
     $product = Product::find($id);
@@ -57,8 +106,15 @@ public function AjaxGetProduct(Request $request){
                 ->get();
         }
         $category = CategoryProduct::get();
+        $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
+            ->leftjoin('role_user','role_user.user_id','=','users.id')
+            ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
+            ->where('role_user.role_id',4)
+            ->orderBy('id','DESC')
+            ->get();
         $data=[
             'product'=>$product,
+            'wareHouses'=>$wareHouses,
             'category'=>$category,
             'type' => 'products',
         ];
@@ -73,8 +129,15 @@ public function AjaxGetProduct(Request $request){
     public function create()
     {
         $category = CategoryProduct::get();
+        $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
+            ->leftjoin('role_user','role_user.user_id','=','users.id')
+            ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
+            ->where('role_user.role_id',4)
+            ->orderBy('id','DESC')
+            ->get();
         $data=[
             'category'=>$category,
+            'wareHouses'=>$wareHouses
         ];
         return view('admin.products.edit',$data);
     }
@@ -118,7 +181,7 @@ public function AjaxGetProduct(Request $request){
         $dataPrice['price_in']=$request->get('price_in');
         $dataPrice['price_out']=$request->get('price_out');
         $dataPrice['supplier']= "create";
-        $dataPrice['number']= 0;
+        $dataPrice['number']= $request->get('inventory_num');
         ProductUpdatePrice::create($dataPrice);
 
 
@@ -161,11 +224,18 @@ public function AjaxGetProduct(Request $request){
     {   $category = CategoryProduct::get();
         $product = Product::find($id);
         $detailImage = DetailImageProduct::where('product_id',$id)->get();
+        $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
+            ->leftjoin('role_user','role_user.user_id','=','users.id')
+            ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
+            ->where('role_user.role_id',4)
+            ->orderBy('id','DESC')
+            ->get();
         $data=[
             'id' => $id,
             'product'=>$product,
             'category'=>$category,
             'detailImage' =>$detailImage,
+            'wareHouses'=>$wareHouses
         ];
 //        dd($detailImage);
         return view('admin.products.edit',$data);

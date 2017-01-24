@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryProduct;
+use App\Product;
+use App\User;
+use App\WareHouse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,9 +17,47 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.inventory.index');
+        if($request->get('name') || $request->get('kho')|| $request->get('category')){
+            $name = $request->get('name');
+            $kho = $request->get('kho');
+            $cate = $request->get('category');
+            $product1 = Product::query();
+            if(!empty($name)){
+                $product1 =  $product1->where('title','LiKE','%'.$name.'%');
+            }
+            if(!empty($cate)){
+                $product1 =  $product1->where('category',$cate);
+            }
+            if(!empty($kho)){
+                $product1 =  $product1->where('kho',$kho);
+            }
+
+            $product = $product1->get();
+
+
+        }
+        else {
+            $product = Product::orderBy('id','DESC')
+                ->get();
+        }
+        $category = CategoryProduct::get();
+        $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
+            ->leftjoin('role_user','role_user.user_id','=','users.id')
+            ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
+            ->where('role_user.role_id',4)
+            ->orderBy('id','DESC')
+            ->get();
+
+
+        $data = [
+            'products'=>$product,
+            'wareHouses'=>$wareHouses,
+            'category'=>$category,
+            'type' => 'products',
+        ];
+        return view('admin.inventory.index',$data);
     }
 
     /**

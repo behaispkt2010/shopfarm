@@ -198,10 +198,10 @@
                                                 @if(!empty($article->category) && $article->category == 0) selected @endif >
                                             Mặc định
                                         </option>
-                                        @foreach($category  as $itemData)
+                                        @foreach($wareHouses  as $itemData)
                                             <option value="{{$itemData->id}}"
-                                                    @if(!empty($product->category) && $product->category == $itemData->id) selected @endif >
-                                                {{$itemData->name}}
+                                                    @if(!empty($product->category) && $product->kho == $itemData->id) selected @endif >
+                                                {{$itemData->name}}(#{{$itemData->id}})
                                             </option>
                                         @endforeach
 
