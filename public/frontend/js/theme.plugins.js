@@ -65,7 +65,7 @@
 					responsive: false,
 					responsiveUnder: 1140,
 					layersContainer: 1140,
-					skinsPath: 'js/layerslider/skins/',
+					skinsPath: '/frontend/js/layerslider/skins/',
 					hoverPrevNext: false,
 					navButtons: false,
 					navStartStop: false,

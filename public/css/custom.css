@@ -827,7 +827,7 @@ h2 {
   transition: all .2s ease; }
 
 .x_title {
-  border-bottom: 2px solid #E6E9ED;
+  /*border-bottom: 2px solid #E6E9ED;*/
   padding: 1px 5px 6px;
   margin-bottom: 10px; }
 
@@ -4483,6 +4483,7 @@ tr.shown td.details-control {
 .img-circle.avarta-item>img {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .img-circle.avarta-item:hover {
   border: solid 3px #38af36;
@@ -5424,4 +5425,8 @@ table.dtp-picker-days thead{
 }
 .dtp-picker-calendar .dtp-picker-month{
   display: none !important;
+}
+.value-das{
+  font-size: 30px;
+  font-weight: 400;
 }

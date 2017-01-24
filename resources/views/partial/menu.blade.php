@@ -9,18 +9,18 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img data-toggle="modal" data-target=".bs-example-modal-avata" src="{{url('/')}}/images/icon.png"
+                <img data-toggle="modal" data-target=".bs-example-modal-avata" src="{{url('/')}}{{\Illuminate\Support\Facades\Auth::user()->image}}"
                      alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <div style="    font-size: 14px; color: #FFF; margin-bottom: 5px;    font-weight: 500;">Mai xuân triều
+                <div style="    font-size: 14px; color: #FFF; margin-bottom: 5px;    font-weight: 500;">{{\Illuminate\Support\Facades\Auth::user()->name}}
                 </div>
-                <a href="" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
+                <a href="{{route('users.edit',['id' => \Illuminate\Support\Facades\Auth::user()->id])}}" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
                     Thông tin</a>
                 {{--<a style="font-size: 13px;"><i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất</a>--}}
                <a href="{{ url('/logout') }}"
                    onclick="event.preventDefault();
-         document.getElementById('logout-form').submit();">
+                         document.getElementById('logout-form').submit();">
                     <i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất
                 </a>
                 <form id="logout-form"
@@ -104,14 +104,9 @@
                     </li>
                     <li><a><i class="fa fa-cogs"></i>Cài đặt<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Cài đặt chung</a></li>
-                            <li><a href="#">Giao diện</a></li>
-                            <li><a href="#">Ngôn ngữ</a></li>
-                            <li><a href="#">Menu</a></li>
-
+                            <li><a href="{{route('setting.index')}}">Cài đặt chung</a></li>
+                            <li><a href="{{route('menu.index')}}">Menu</a></li>
                         </ul>
-                    </li>
-                    <li><a href="#"><i class="fa fa-laptop"></i> Website <span class="label label-success pull-right">shop</span></a>
                     </li>
                 </ul>
             </div>
@@ -152,18 +147,10 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                        aria-expanded="false">
-                        <img src="{{url('/')}}/images/icon.png" alt="">
+                        <img src="{{url('/')}}{{\Illuminate\Support\Facades\Auth::user()->image}}" alt="">
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="javascript:;"> Profile</a></li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="badge bg-red pull-right">50%</span>
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                        <li><a href="javascript:;">Help</a></li>
                         <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>
@@ -244,6 +231,7 @@
     <div class="modal-dialog bs-example-modal-avata">
         <div class="img-circle logo"></div>
         <div class="modal-content">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
@@ -253,50 +241,50 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-2">
-                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)"
-                                                                 src="{{asset('/images/1.png')}}" data-pin-nopin="true">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/1.png')}}" data-value="1">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)"
-                                                                 src="{{asset('/images/2.png')}}" data-pin-nopin="true">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/2.png')}}" data-value="2">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)"
-                                                                 src="{{asset('/images/3.png')}}" data-pin-nopin="true">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/3.png')}}" data-value="3">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)"
-                                                                 src="{{asset('/images/4.png')}}" data-pin-nopin="true">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/4.png')}}" data-value="4">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)"
-                                                                 src="{{asset('/images/5.png')}}"></div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)"
-                                                                 src="{{asset('/images/6.png')}}" data-pin-nopin="true">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/5.png')}}" data-value="5">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="img-circle avarta-item active"><img onclick="ChooseAvatar(this)"
-                                                                        src="{{asset('/images/7.png')}}"
-                                                                        data-pin-nopin="true"></div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="img-circle avarta-item"><img onclick="ChooseAvatar(this)"
-                                                                 src="{{asset('/images/8.png')}}" data-pin-nopin="true">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/6.png')}}" data-value="6">
                         </div>
                     </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/7.png')}}" data-value="7">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="img-circle avarta-item">
+                            <img src="{{asset('/images/8.png')}}" data-value="8">
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Chọn</button>
-            </div>
+
 
         </div>
     </div>

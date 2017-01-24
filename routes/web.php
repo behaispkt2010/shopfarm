@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('categoryProducts/createAjax', 'CategoryProductController@createAjax');
     Route::post('categoryProducts/updateAjax', 'CategoryProductController@updateAjax');
 
-  
+
 
     //Đơn hàng
     Route::resource('orders', 'OrderController');
@@ -86,12 +86,16 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('users/AjaxGetDataCustomer', 'UserController@AjaxGetDataCustomer');
 
 
+
+
     //Nhân sự
     Route::resource('staffs', 'StaffController');
     //Cài đặt
     Route::resource('setting', 'SettingController');
     //Menu
     Route::resource('menu', 'MenuController');
+    Route::post('menu/AjaxSave', 'MenuController@AjaxSave');
+
     //Giao diện
     Route::resource('display', 'DisplayController');
     //Ngôn ngữ
@@ -100,12 +104,48 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::resource('statistics', 'StatisticController');
 });
 
+/**
+ * ajax
+ */
+
+Route::post('users/changeAvata', 'UserController@AjaxChangeImage');
+
 /*
  *
  *APP
  *
  */
+
+
 Route::get('/', 'HomeController@index');
+
+//product
+Route::get('/category-product/{cateSlug}','Frontend\ProductController@CateProduct');
+Route::get('/products', 'Frontend\ProductController@index');
+Route::get('/product/{cateSlug}/{productSlug}', 'Frontend\ProductController@SingleProduct');
+Route::get('/check-order', 'Frontend\ProductController@CheckOrder');
+
+
+//blog
+Route::get('/category-blog/{cateSlug}','Frontend\BlogController@CateBlog');
+Route::get('/blogs', 'Frontend\BlogController@index');
+Route::get('/blog/{cateSlug}/{productSlug}', 'Frontend\BlogController@SingleBlog');
+
+Route::get('/contact','Frontend\PageController@Contact');
+Route::get('/about','Frontend\PageController@About');
+Route::get('/{slug}','Frontend\PageController@CustomPage');
+
+
+////cart
+//Route::get('/cart', 'CartController@index');
+//Route::get('/cart/empty', 'CartController@emptyCart');
+//Route::get('/cart/{id}', 'CartController@store');
+//Route::get('/cart/remove/{id}', 'CartController@destroy');
+
+
+
+
+
 
 
 

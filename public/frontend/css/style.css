@@ -6372,3 +6372,12 @@ only screen and (min-resolution: 144 dpi){
 		background-size:41px 33px;
 	}
 }
+
+/*//custom css*/
+.section_offset>h4 {
+	background: #4e8d1a;
+	color: #fff;
+	margin: 0;
+	padding: 10px 0;
+	text-align: center;
+}
