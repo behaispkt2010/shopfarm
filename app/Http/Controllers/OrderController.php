@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\District;
+use App\HistoryUpdateStatusOrder;
 use App\Order;
 use App\OrderStatus;
 use App\Product;
@@ -96,10 +97,20 @@ class OrderController extends Controller
         $order->name_driver = $request->name_driver;
         $order->phone_driver = $request->phone_driver;
         $order->number_license_driver = $request->number_license_driver;
+        $order->type_pay = $request->type_pay;
+        $order->received_pay = $request->received_pay;
+        $order->remain_pay = $request->remain_pay;
         $order->author_id = Auth::user()->id;
 
         $order->save();
         $strOrderID = $order->id;
+        // insert history
+        $historyUpdateStatusOrder = new HistoryUpdateStatusOrder();
+        $historyUpdateStatusOrder->order_id = $strOrderID;
+        $historyUpdateStatusOrder->status = $request->status;
+        $historyUpdateStatusOrder->author_id = Auth::user()->id;
+        $historyUpdateStatusOrder->save();
+
         $arrProductID = $request->product_id;
         $arrNumberProduct = $request->product_number;
         $arrPriceTotal = $request->pricetotal;
@@ -131,7 +142,39 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $arrAllProductOrder = array();
+        $customer = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('role_user.role_id',3)
+            ->orderBy('id','DESC')
+            ->get();
+        $arrOrder = Order::find($id);
+        $province = Province::get();
+        $district = District::get();
+        $arrTmpProductsOrder = Product::get();
+        foreach($arrTmpProductsOrder as $arrProduct){
+            $arrAllProductOrder[$arrProduct['id']] = $arrProduct;
+        }
+        $order_status = OrderStatus::get();
+        $arrCustomerOrder = User::find($arrOrder->customer_id);
+        $arrProductOrders = ProductOrder::where('order_id','=',$id)->get();
+        $arrHistoryStatusOrders = HistoryUpdateStatusOrder::where('order_id','=',$id)->get();
+        /*echo "<pre>";
+        print_r($arrHistoryStatusOrders);
+        echo "</pre>";
+        die;*/
+        $data=[
+            'customer' =>$customer,
+            'province' =>$province,
+            'district' =>$district,
+            'products' =>$arrAllProductOrder,
+            'order_status' => $order_status,
+            'arrOrder' => $arrOrder,
+            'arrCustomerOrder' => $arrCustomerOrder,
+            'arrProductOrders' => $arrProductOrders,
+            'arrHistoryStatusOrders' => $arrHistoryStatusOrders,
+            'id' => $id
+        ];
+        return view('admin.orders.showorder',$data);
     }
 
     /**
@@ -157,10 +200,10 @@ class OrderController extends Controller
         $order_status = OrderStatus::get();
         $arrCustomerOrder = User::find($arrOrder->customer_id);
         $arrProductOrders = ProductOrder::where('order_id','=',$id)->get();
-        echo "<pre>";
+        /*echo "<pre>";
         print_r($arrOrder);
         echo "</pre>";
-        die;
+        die;*/
         $data=[
             'customer' =>$customer,
             'province' =>$province,
@@ -185,7 +228,6 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
-
         $data['time_order'] = $request->time_order;
         $data['status'] = $request->status;
         $data['customer_id'] = $request->customer_id;
@@ -194,13 +236,27 @@ class OrderController extends Controller
         $data['name_driver'] = $request->name_driver;
         $data['phone_driver'] = $request->phone_driver;
         $data['number_license_driver'] = $request->number_license_driver;
+        $data['type_pay'] = $request->type_pay;
+        $data['received_pay'] = $request->received_pay;
+        $data['remain_pay'] = $request->remain_pay;
         $data['author_id'] = Auth::user()->id;
-
         $order->update($data);
+        if(!empty($id)) {
+            DB::table('product_orders')->where('order_id','=',$id)->delete();
+        }
         $strOrderID = $id;
+        // insert history
+        $historyUpdateStatusOrder = new HistoryUpdateStatusOrder();
+        $historyUpdateStatusOrder->order_id = $strOrderID;
+        $historyUpdateStatusOrder->status = $request->status;
+        $historyUpdateStatusOrder->author_id = Auth::user()->id;
+        $historyUpdateStatusOrder->save();
+
+
         $arrProductID = $request->product_id;
         $arrNumberProduct = $request->product_number;
         $arrPriceTotal = $request->pricetotal;
+
         $ProductOrder = [];
 
         foreach($arrProductID as $index => $ProductID){
