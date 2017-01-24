@@ -93,10 +93,10 @@
                                     <div class="tmp_name_driver">@if(!empty($arrOrder->name_driver))Tên tài xế: {{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif</div>
                                     <div class="tmp_phone_driver">@if(!empty($arrOrder->phone_driver))Số điện thoại: {{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif</div>
                                     <div class="tmp_number_license_driver">@if(!empty($arrOrder->number_license_driver))Biển số xe: {{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif</div>
-                                    <input type="hidden" name="type_driver" class="type_driver">
-                                    <input type="hidden" name="name_driver" class="name_driver">
-                                    <input type="hidden" name="phone_driver" class="phone_driver">
-                                    <input type="hidden" name="number_license_driver" class="number_license_driver">
+                                    <input type="hidden" name="type_driver" class="type_driver" value="@if(!empty($arrOrder->type_driver)){{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif">
+                                    <input type="hidden" name="name_driver" class="name_driver" value="@if(!empty($arrOrder->name_driver)){{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif">
+                                    <input type="hidden" name="phone_driver" class="phone_driver" value="@if(!empty($arrOrder->phone_driver)){{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif">
+                                    <input type="hidden" name="number_license_driver" class="number_license_driver" value="@if(!empty($arrOrder->number_license_driver)){{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif">
                                 </div>
                             </div>
 
@@ -107,10 +107,14 @@
                                 <button type="button" class="btn btn-raised btn-success" data-toggle="modal"
                                         data-target=".modal-order" style="font-size: 12px">Đã thanh toán
                                 </button>
-                                <input type="hidden" value="" name="paid">
+
+                                <input type="hidden" value="@if(!empty($arrOrder->type_pay)){!! $arrOrder->type_pay !!} @else{!! "" !!} @endif" name="type_pay">
                                 <button type="button" class="btn btn-raised btn-primary" data-toggle="modal"
                                         data-target=".modal-order-1" style="font-size: 12px">Đặt cọc | Thanh toán sau
                                 </button>
+                                <input type="hidden" value="@if(!empty($arrOrder->type_pay)){!! $arrOrder->type_pay !!} @else{!! "" !!} @endif" name="type_pay">
+                                <input type="hidden" value="@if(!empty($arrOrder->received_pay)){!! $arrOrder->received_pay !!} @else{!! "" !!} @endif" name="received_pay">
+                                <input type="hidden" value="@if(!empty($arrOrder->remain_pay)){!! $arrOrder->remain_pay !!} @else{!! "" !!} @endif" name="remain_pay">
                             </div>
 
 
@@ -176,7 +180,11 @@
                                         <div class="cus_email">Email: <span>@if(!empty($arrCustomerOrder->email)){{$arrCustomerOrder->email}}@else{{ "" }}@endif</span></div>
                                         <div class="cus_address">Địa chỉ: <span>@if(!empty($arrCustomerOrder->address)){{$arrCustomerOrder->address}}@else{{ "" }}@endif</span></div>
                                         <div><a href="" class="view_map" target="_blank">xem bản đồ</a></div>
-                                        <input type="hidden" name="customer_id" class="customer_id">
+                                        <input type="hidden" name="customer_id" class="customer_id" value="@if(!empty($arrOrder->customer_id)){{$arrOrder->customer_id}}@else{{ "" }}@endif">
+                                        <input type="hidden" class="cus_name" value="@if(!empty($arrCustomerOrder->name)){{$arrCustomerOrder->name}}@else{{ "" }}@endif">
+                                        <input type="hidden" class="cus_phone_number" value="@if(!empty($arrCustomerOrder->phone_number)){{$arrCustomerOrder->phone_number}}@else{{ "" }}@endif">
+                                        <input type="hidden" class="cus_email" value="@if(!empty($arrCustomerOrder->email)){{$arrCustomerOrder->email}}@else{{ "" }}@endif">
+                                        <input type="hidden" class="cus_address" value="@if(!empty($arrCustomerOrder->address)){{$arrCustomerOrder->address}}@else{{ "" }}@endif">
 
                                     </div>
                                 </div>
@@ -366,19 +374,19 @@
                         thay đổi phương thức hoặc trạng thái thanh toán.
                     </p>
 
-                    <p> Chọn phương thức thanh toán cho đơn hàng này</p>
+                    {{--<p> Chọn phương thức thanh toán cho đơn hàng này</p>
 
                     <div class="form-group">
                         <select class="form-control select-payment">
                             <option value="1">Chuyển khoản ngân hàng</option>
                             <option value="2">Thanh toán trực tiếp</option>
                         </select>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-raised btn-primary">Xác nhận</button>
+                <button type="button" class="btn btn-raised btn-primary btnPayAll">Xác nhận</button>
             </div>
 
         </div>
@@ -406,25 +414,25 @@
 
                     <p> Chọn phương thức thanh toán cho đơn hàng này</p>
 
-                    <div class="form-group">
+                    {{--<div class="form-group">
                         <select class="form-control select-payment">
                             <option value="1">Chuyển khoản ngân hàng</option>
                             <option value="2">Thanh toán khi nhận hàng(COD)</option>
                         </select>
-                    </div>
+                    </div>--}}
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput1"> Đã nhận</label>
-                        <input class="form-control" id="focusedInput1" type="text" name="">
+                        <input class="form-control received_pay" id="focusedInput1" type="text" name="received_pay" required>
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput2"> Còn lại</label>
-                        <input class="form-control" id="focusedInput2" type="text" name="">
+                        <input class="form-control remain_pay" id="focusedInput2" type="text" name="remain_pay" required>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-raised btn-primary">Xác nhận</button>
+                <button type="button" class="btn btn-raised btn-primary btnPay">Xác nhận</button>
             </div>
 
         </div>
@@ -590,6 +598,23 @@
     });
 </script>
 <script>
+    $('.btnPayAll').on('click', function () {
+        $('input[type="hidden"][name="type_pay"]').val('0');
+        $('.modal-order').modal('hide');
+    });
+    $('.btnPay').on('click', function () {
+        $('input[type="hidden"][name="type_pay"]').val('1');
+        var received_pay = $('.received_pay').val();
+        var remain_pay = $('.remain_pay').val();
+        $('input[type="hidden"][name="received_pay"]').val(received_pay);
+        $('input[type="hidden"][name="remain_pay"]').val(remain_pay);
+        if(received_pay== "" | remain_pay==""){
+            alert("Vui lòng nhập số tiền Đã thanh toán và số tiền Còn lại !");
+        }
+        else {
+            $('.modal-order-1').modal('hide');
+        }
+    });
     $(document).on('click','td #delete_product', function (e) {
         $(this).closest('.item-product').remove();
     });
