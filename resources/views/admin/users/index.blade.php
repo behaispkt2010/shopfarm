@@ -4,9 +4,15 @@
 @section('detailHeader','danh sách')
 
 @section('new-btn')
+    @if(Request::is('admin/staffs'))
+    <a href="{{route('staffs.create')}}" class="btn btn-warning btn-fab">
+        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+    </a>
+    @else
     <a href="{{route('users.create')}}" class="btn btn-warning btn-fab">
         <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
     </a>
+    @endif
 @endsection
 @section('content')
     <div class="row top-right">
@@ -84,6 +90,7 @@
                                         <form action="{{route('users.destroy',['id' => $user->id])}}" method="post" class="form-delete" style="display: inline">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             <input type="text" class="hidden" value="{{$user->id}}">
+                                            <input type="hidden" name="type_staff" value="staffs">
                                             {{method_field("DELETE")}}
                                             <a type="submit" class = "btn btn-raised  btn-xs btn-danger" name ="delete_modal" style="display: inline-block"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                                         </form>

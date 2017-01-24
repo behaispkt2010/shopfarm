@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
+use App\RoleUser;
+use App\User;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+Use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class StaffController extends Controller
 {
@@ -13,9 +17,29 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->get('q')){
+            $q = $request->get('q');
+            $users = User::leftjoin('role_user','role_user.user_id','=','users.id')
+                ->where('role_user.role_id',5)
+                ->where('name','LIKE','%'.$q.'%')
+                ->orwhere('id','LIKE','%'.$q.'%')
+                ->orwhere('phone_number','LIKE','%'.$q.'%')
+                ->get();
+        }
+        else {
+            $users = User::leftjoin('role_user','role_user.user_id','=','users.id')
+                ->where('role_user.role_id',5)
+                ->orderBy('id','DESC')
+                ->get();
+        }
+
+        $data=[
+            'users'=>$users,
+            'type' => 'users',
+        ];
+        return view('admin.users.index',$data);
     }
 
     /**
@@ -25,7 +49,11 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::get();
+        $data=[
+            'roles' => $roles
+        ];
+        return view('admin.users.edit',$data);
     }
 
     /**
@@ -81,6 +109,6 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        //
+       //
     }
 }

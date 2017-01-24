@@ -97,8 +97,8 @@
                     </li>
                     <li><a><i class="fa fa-sitemap"></i> Nhân Sự<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#level1_1">Danh sách nhân viên</a>
-                            <li><a href="#level1_2">Thêm nhân viên</a>
+                            <li><a href="{{route('staffs.index')}}">Danh sách nhân viên</a>
+                            <li><a href="{{route('staffs.create')}}">Thêm nhân viên</a>
                             </li>
                         </ul>
                     </li>

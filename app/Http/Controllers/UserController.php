@@ -22,19 +22,19 @@ public function AjaxCreateCustomer(UserRequest $request)
     }
     $data['image']="/images/user_default.png";
     $user = User::create($data);
-//        $user->attachRole($request->get('role'));
-    if($request->get('role'))
+    $user->attachRole(3);
+    /*if($request->get('role'))
     {
-        $user->attachRole(3);
+        $user->attachRole('3');
     }
     else
     {
         $user->roles()->sync([]);
-    }
+    }*/
     $response = array(
         'status' => 'success',
         'msg' => 'Setting created successfully',
-        'customer_id' => $user->id,
+        'customer_id' => $user->id
     );
     return \Response::json($response);
     }
@@ -46,7 +46,7 @@ public function AjaxCreateCustomer(UserRequest $request)
             'phone_number' => $user->phone_number,
             'email' => $user->email,
             'address' => $user->address,
-            'customer_id' => $user->id,
+            'customer_id' => $user->id
         );
         return \Response::json($response);
     }
@@ -116,7 +116,12 @@ public function AjaxCreateCustomer(UserRequest $request)
         {
             $user->roles()->sync([]);
         }
-        return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+        if($request->type_staff == "staffs"){
+            return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+        }
+        else {
+            return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+        }
     }
 
     /**
@@ -187,7 +192,13 @@ public function AjaxCreateCustomer(UserRequest $request)
         DB::table('role_user')
             ->where('user_id',$id)
             ->update(['role_id' => $request->get('role')]);
-        return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
+
+        if($request->type_staff == "staffs"){
+            return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
+        }
+        else {
+            return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
+        }
 
     }
 
@@ -197,14 +208,24 @@ public function AjaxCreateCustomer(UserRequest $request)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         $user =  User::destroy($id);
         if(!empty($user)) {
-            return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+            if($request->type_staff == "staffs"){
+                return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+            }
+            else {
+                return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+            }
         }
         else{
-            return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+            if($request->type_staff == "staffs"){
+                return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+            }
+            else {
+                return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+            }
 
         }
     }

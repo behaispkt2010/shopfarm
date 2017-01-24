@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'user')
+@section('title', 'User')
 @section('pageHeader','user')
 @section('detailHeader','user')
 @section('new-btn')
@@ -10,7 +10,7 @@
 @section('content')
     <br>
     <div class="row">
-        @if(Request::is('admin/users/create'))
+        @if((Request::is('admin/users/create')) | (Request::is('admin/staffs/create')))
             <form action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
                 @else
                     <form action="{{route('users.update',['id' => $id])}}" method="POST" enctype="multipart/form-data">
@@ -18,6 +18,7 @@
                         <input type="hidden" name="id" value="{{$id}}">
                         @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="type_staff" value="staffs">
         <div class="col-md-12 col-xs-12">
             <!-- Name and Description -->
             <div class="text-right">
@@ -83,10 +84,13 @@
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
                                                     <select id="select-role" class="form-control" name="role" data-placeholder="phân quyền">
-                                                        @foreach($roles as $itemRoles)
-                                                        <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
-                                                        @endforeach
-
+                                                        @if(Request::is('admin/staffs/create'))
+                                                            <option value="5">Nhân viên</option>
+                                                        @else
+                                                            @foreach($roles as $itemRoles)
+                                                            <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
+                                                            @endforeach
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
