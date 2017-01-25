@@ -10,7 +10,7 @@ use App\Product;
 use App\ProductOrder;
 use App\Province;
 use App\User;
-use DB;
+use DB,DateTime;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -119,14 +119,21 @@ class OrderController extends Controller
         foreach($arrProductID as $index => $ProductID){
             $ProductOrder[$index]['id_product'] = $ProductID;
             $ProductOrder[$index]['order_id'] = $strOrderID;
+            $ProductOrder[$index]['created_at'] = new DateTime();
+            $ProductOrder[$index]['updated_at'] = new DateTime();
         }
         foreach($arrPriceTotal as $index => $PriceTotal){
             $ProductOrder[$index]['price'] = $PriceTotal;
             $ProductOrder[$index]['order_id'] = $strOrderID;
+            $ProductOrder[$index]['created_at'] = new DateTime();
+            $ProductOrder[$index]['updated_at'] = new DateTime();
         }
         foreach($arrNumberProduct as $index => $NumberProduct){
             $ProductOrder[$index]['num'] = $NumberProduct;
             $ProductOrder[$index]['order_id'] = $strOrderID;
+            $ProductOrder[$index]['created_at'] = new DateTime();
+            $ProductOrder[$index]['updated_at'] = new DateTime();
+
         }
         DB::table('product_orders')->insert($ProductOrder);
 
