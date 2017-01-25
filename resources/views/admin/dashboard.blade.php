@@ -6,95 +6,107 @@
 
     <div class="row">
         <br>
-        <div class="col-md-3 text-center">Đơn Hàng<br><span class="value-das">200</span></div>
-        <div class="col-md-3 text-center">Doanh Thu<br><span class="value-das">64.27M</span></div>
+        <div class="col-md-3 text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
+        <div class="col-md-3 text-center">Doanh Thu<br><span class="value-das">{!! number_format($totalPrice)  !!} VNĐ</span></div>
         <div class="col-md-3 text-center">Khách Hàng/Ngày<br><span class="value-das">1</span></div>
-        <div class="col-md-3 text-center">Giá Trị Trung Bình Đơn Hàng<br><span class="value-das">259,153</span></div>
+        <div class="col-md-3 text-center">Giá Trị Trung Bình Đơn Hàng<br><span class="value-das">{!! number_format($totalPrice/$countOrder) !!}</span></div>
 
     </div>
     <div class="row">
         <br>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Doanh thu <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <canvas id="lineChart"></canvas>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Số đơn hàng <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
-
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <canvas id="mybarChart"></canvas>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                <div class="x_panel fixed_height_320">
-                    <div class="x_title">
-                        <h2>Gói dịch vụ
-                        </h2>
-
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <table class="" style="width:100%">
-
-                            <tbody><tr>
-                                <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-                                    <canvas id="canvas2" height="140" width="140" style="margin: 15px 10px 10px 0px; width: 140px; height: 140px;"></canvas>
-                                </td>
-                                <td>
-                                    <table class="tile_info">
-                                        <tbody><tr>
-                                            <td>
-                                                <p><i class="fa fa-square blue"></i>Cấp 1 </p>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square green"></i>Cấp 2 </p>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square purple"></i>Cấp 3 </p>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square aero"></i>Cấp 4 </p>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square red"></i>Cấp 5 </p>
-                                            </td>
-
-                                        </tr>
-                                        </tbody></table>
-                                </td>
-                            </tr>
-                            </tbody></table>
-                    </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Doanh thu <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
+                    <div class="clearfix"></div>
+                    <input type="hidden" value="@if(!empty($totalPriceMonth1)){!! $totalPriceMonth1 !!}@endif" name="PriceByMonth1">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth2)){!! $totalPriceMonth2 !!}@endif" name="PriceByMonth2">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth3)){!! $totalPriceMonth3 !!}@endif" name="PriceByMonth3">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth4)){!! $totalPriceMonth4 !!}@endif" name="PriceByMonth4">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth5)){!! $totalPriceMonth5 !!}@endif" name="PriceByMonth5">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth6)){!! $totalPriceMonth6 !!}@endif" name="PriceByMonth6">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth7)){!! $totalPriceMonth7 !!}@endif" name="PriceByMonth7">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth8)){!! $totalPriceMonth8 !!}@endif" name="PriceByMonth8">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth9)){!! $totalPriceMonth9 !!}@endif" name="PriceByMonth9">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth10)){!! $totalPriceMonth10 !!}@endif" name="PriceByMonth10">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth11)){!! $totalPriceMonth11 !!}@endif" name="PriceByMonth11">
+                    <input type="hidden" value="@if(!empty($totalPriceMonth12)){!! $totalPriceMonth12 !!}@endif" name="PriceByMonth12">
+                </div>
+                <div class="x_content">
+                    <canvas id="lineChart"></canvas>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Số đơn hàng <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <canvas id="mybarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+
+            <div class="x_panel fixed_height_320">
+                <div class="x_title">
+                    <h2>Gói dịch vụ
+                    </h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="" style="width:100%">
+
+                        <tbody><tr>
+                            <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                                <canvas id="canvas2" height="140" width="140" style="margin: 15px 10px 10px 0px; width: 140px; height: 140px;"></canvas>
+                            </td>
+                            <td>
+                                <table class="tile_info">
+                                    <tbody><tr>
+                                        <td>
+                                            <p><i class="fa fa-square blue"></i>Cấp 1 </p>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square green"></i>Cấp 2 </p>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square purple"></i>Cấp 3 </p>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square aero"></i>Cấp 4 </p>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square red"></i>Cấp 5 </p>
+                                        </td>
+
+                                    </tr>
+                                    </tbody></table>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                </div>
+            </div>
+        </div>
 
         <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -149,14 +161,14 @@
                     </ul>
                 </div>
 
-</div>
+            </div>
         </div>
 
     </div>
 
-@endsection
-@section('add_scripts')
-        <!-- Chart.js -->
+    @endsection
+    @section('add_scripts')
+            <!-- Chart.js -->
     <script src="{{asset('/plugin/Chart.js/dist/Chart.min.js')}}"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="{{asset('/js/moment/moment.min.js')}}"></script>
@@ -207,10 +219,25 @@
 
         // Line chart
         var ctx = document.getElementById("lineChart");
+        var PriceByMonth1 = $('input[type="hidden"][name="PriceByMonth1"]').val();
+        var PriceByMonth2 = $('input[type="hidden"][name="PriceByMonth2"]').val();
+        var PriceByMonth3 = $('input[type="hidden"][name="PriceByMonth3"]').val();
+        var PriceByMonth4 = $('input[type="hidden"][name="PriceByMonth4"]').val();
+        var PriceByMonth5 = $('input[type="hidden"][name="PriceByMonth5"]').val();
+        var PriceByMonth6 = $('input[type="hidden"][name="PriceByMonth6"]').val();
+        var PriceByMonth7 = $('input[type="hidden"][name="PriceByMonth7"]').val();
+        var PriceByMonth8 = $('input[type="hidden"][name="PriceByMonth8"]').val();
+        var PriceByMonth9 = $('input[type="hidden"][name="PriceByMonth9"]').val();
+        var PriceByMonth10 = $('input[type="hidden"][name="PriceByMonth10"]').val();
+        var PriceByMonth11 = $('input[type="hidden"][name="PriceByMonth11"]').val();
+        var PriceByMonth12 = $('input[type="hidden"][name="PriceByMonth12"]').val();
+        var Price = [];
+
+        //alert(PriceByMonth);
         var lineChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
                 datasets: [{
                     label: "Doanh Thu",
                     backgroundColor: "rgba(76, 175, 80, 0.68)",
@@ -220,7 +247,7 @@
                     pointHoverBackgroundColor: "#fff",
                     pointHoverBorderColor: "rgba(220,220,220,1)",
                     pointBorderWidth: 1,
-                    data: [31, 74, 6, 39, 20, 85, 7]
+                    data: [PriceByMonth1,PriceByMonth2,PriceByMonth3,PriceByMonth4,PriceByMonth5,PriceByMonth6,PriceByMonth7,PriceByMonth8,PriceByMonth9,PriceByMonth10,PriceByMonth11,PriceByMonth12]
                 }]
             },
         });
@@ -255,75 +282,75 @@
     </script>
     <!-- bootstrap-daterangepicker -->
     {{--<script>--}}
-        {{--$(document).ready(function() {--}}
+    {{--$(document).ready(function() {--}}
 
-            {{--var cb = function(start, end, label) {--}}
-                {{--console.log(start.toISOString(), end.toISOString(), label);--}}
-                {{--$('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));--}}
-            {{--};--}}
+    {{--var cb = function(start, end, label) {--}}
+    {{--console.log(start.toISOString(), end.toISOString(), label);--}}
+    {{--$('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));--}}
+    {{--};--}}
 
-            {{--var optionSet1 = {--}}
-                {{--startDate: moment().subtract(29, 'days'),--}}
-                {{--endDate: moment(),--}}
-                {{--minDate: '01/01/2012',--}}
-                {{--maxDate: '12/31/2015',--}}
-                {{--dateLimit: {--}}
-                    {{--days: 60--}}
-                {{--},--}}
-                {{--showDropdowns: true,--}}
-                {{--showWeekNumbers: true,--}}
-                {{--timePicker: false,--}}
-                {{--timePickerIncrement: 1,--}}
-                {{--timePicker12Hour: true,--}}
-                {{--ranges: {--}}
-                    {{--'Today': [moment(), moment()],--}}
-                    {{--'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],--}}
-                    {{--'Last 7 Days': [moment().subtract(6, 'days'), moment()],--}}
-                    {{--'Last 30 Days': [moment().subtract(29, 'days'), moment()],--}}
-                    {{--'This Month': [moment().startOf('month'), moment().endOf('month')],--}}
-                    {{--'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]--}}
-                {{--},--}}
-                {{--opens: 'left',--}}
-                {{--buttonClasses: ['btn btn-default'],--}}
-                {{--applyClass: 'btn-small btn-primary',--}}
-                {{--cancelClass: 'btn-small',--}}
-                {{--format: 'DD/MM/YYYY',--}}
-                {{--separator: ' to ',--}}
-                {{--locale: {--}}
-                    {{--applyLabel: 'Submit',--}}
-                    {{--cancelLabel: 'Clear',--}}
-                    {{--fromLabel: 'From',--}}
-                    {{--toLabel: 'To',--}}
-                    {{--customRangeLabel: 'Custom',--}}
-                    {{--daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],--}}
-                    {{--monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],--}}
-                    {{--firstDay: 1--}}
-                {{--}--}}
-            {{--};--}}
-            {{--$('#reportrange span').html(moment().subtract(29, 'days').format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY'));--}}
-            {{--$('#reportrange').daterangepicker(optionSet1, cb);--}}
-            {{--$('#reportrange').on('show.daterangepicker', function() {--}}
-                {{--console.log("show event fired");--}}
-            {{--});--}}
-            {{--$('#reportrange').on('hide.daterangepicker', function() {--}}
-                {{--console.log("hide event fired");--}}
-            {{--});--}}
-            {{--$('#reportrange').on('apply.daterangepicker', function(ev, picker) {--}}
-                {{--console.log("apply event fired, start/end dates are " + picker.startDate.format('DD/MM/YYYY') + " to " + picker.endDate.format('DD/MM/YYYY'));--}}
-            {{--});--}}
-            {{--$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {--}}
-                {{--console.log("cancel event fired");--}}
-            {{--});--}}
-            {{--$('#options1').click(function() {--}}
-                {{--$('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);--}}
-            {{--});--}}
-            {{--$('#options2').click(function() {--}}
-                {{--$('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);--}}
-            {{--});--}}
-            {{--$('#destroy').click(function() {--}}
-                {{--$('#reportrange').data('daterangepicker').remove();--}}
-            {{--});--}}
-        {{--});--}}
+    {{--var optionSet1 = {--}}
+    {{--startDate: moment().subtract(29, 'days'),--}}
+    {{--endDate: moment(),--}}
+    {{--minDate: '01/01/2012',--}}
+    {{--maxDate: '12/31/2015',--}}
+    {{--dateLimit: {--}}
+    {{--days: 60--}}
+    {{--},--}}
+    {{--showDropdowns: true,--}}
+    {{--showWeekNumbers: true,--}}
+    {{--timePicker: false,--}}
+    {{--timePickerIncrement: 1,--}}
+    {{--timePicker12Hour: true,--}}
+    {{--ranges: {--}}
+    {{--'Today': [moment(), moment()],--}}
+    {{--'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],--}}
+    {{--'Last 7 Days': [moment().subtract(6, 'days'), moment()],--}}
+    {{--'Last 30 Days': [moment().subtract(29, 'days'), moment()],--}}
+    {{--'This Month': [moment().startOf('month'), moment().endOf('month')],--}}
+    {{--'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]--}}
+    {{--},--}}
+    {{--opens: 'left',--}}
+    {{--buttonClasses: ['btn btn-default'],--}}
+    {{--applyClass: 'btn-small btn-primary',--}}
+    {{--cancelClass: 'btn-small',--}}
+    {{--format: 'DD/MM/YYYY',--}}
+    {{--separator: ' to ',--}}
+    {{--locale: {--}}
+    {{--applyLabel: 'Submit',--}}
+    {{--cancelLabel: 'Clear',--}}
+    {{--fromLabel: 'From',--}}
+    {{--toLabel: 'To',--}}
+    {{--customRangeLabel: 'Custom',--}}
+    {{--daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],--}}
+    {{--monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],--}}
+    {{--firstDay: 1--}}
+    {{--}--}}
+    {{--};--}}
+    {{--$('#reportrange span').html(moment().subtract(29, 'days').format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY'));--}}
+    {{--$('#reportrange').daterangepicker(optionSet1, cb);--}}
+    {{--$('#reportrange').on('show.daterangepicker', function() {--}}
+    {{--console.log("show event fired");--}}
+    {{--});--}}
+    {{--$('#reportrange').on('hide.daterangepicker', function() {--}}
+    {{--console.log("hide event fired");--}}
+    {{--});--}}
+    {{--$('#reportrange').on('apply.daterangepicker', function(ev, picker) {--}}
+    {{--console.log("apply event fired, start/end dates are " + picker.startDate.format('DD/MM/YYYY') + " to " + picker.endDate.format('DD/MM/YYYY'));--}}
+    {{--});--}}
+    {{--$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {--}}
+    {{--console.log("cancel event fired");--}}
+    {{--});--}}
+    {{--$('#options1').click(function() {--}}
+    {{--$('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);--}}
+    {{--});--}}
+    {{--$('#options2').click(function() {--}}
+    {{--$('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);--}}
+    {{--});--}}
+    {{--$('#destroy').click(function() {--}}
+    {{--$('#reportrange').data('daterangepicker').remove();--}}
+    {{--});--}}
+    {{--});--}}
     {{--</script>--}}
     <!-- /bootstrap-daterangepicker -->
 @endsection
