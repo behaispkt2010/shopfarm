@@ -229,7 +229,7 @@
                 </div>
                 <div class="col-md-12 con-tracking ">
                     <div class="col-sm-6 col-xs-12 fix-padlr">
-                        <p class="text-center"><i class="ic-tracking ic-xe"></i></p>
+                        {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
                         <h2>Thông tin đặt hàng</h2>
                         <table class="table list-order table-curved">
                             <tbody>
@@ -295,7 +295,7 @@
 
                     </div>
                     <div class="col-sm-4 col-xs-12 fix-padlr">
-                        <p class="text-center"><i class="ic-tracking ic-co"></i></p>
+                        {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
                         <h2>Thông tin nhận hàng</h2>
                         <table class="tracking-table">
                             <tbody>
