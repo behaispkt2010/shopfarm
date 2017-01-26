@@ -200,7 +200,7 @@
                                         </option>
                                         @foreach($wareHouses  as $itemData)
                                             <option value="{{$itemData->id}}"
-                                                    @if(!empty($product->category) && $product->kho == $itemData->id) selected @endif >
+                                                    @if(!empty($product->kho) && $product->kho == $itemData->id) selected @endif >
                                                 {{$itemData->name}}(#{{$itemData->id}})
                                             </option>
                                         @endforeach
