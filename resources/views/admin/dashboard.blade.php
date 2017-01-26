@@ -17,7 +17,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Doanh thu <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
+                    <h2>Doanh thu {{--<button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button>--}}</h2>
                     <div class="clearfix"></div>
                     <input type="hidden" value="@if(!empty($totalPriceMonth1)){!! $totalPriceMonth1 !!}@endif" name="PriceByMonth1">
                     <input type="hidden" value="@if(!empty($totalPriceMonth2)){!! $totalPriceMonth2 !!}@endif" name="PriceByMonth2">
@@ -41,9 +41,34 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Số đơn hàng <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
+                    <h2>Số đơn hàng {{--<button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button>--}}</h2>
 
                     <div class="clearfix"></div>
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess1)){!! $totalOrderSuccess1 !!}@endif" name="OrderSuccess1">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess2)){!! $totalOrderSuccess2 !!}@endif" name="OrderSuccess2">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess3)){!! $totalOrderSuccess3 !!}@endif" name="OrderSuccess3">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess4)){!! $totalOrderSuccess4 !!}@endif" name="OrderSuccess4">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess5)){!! $totalOrderSuccess5 !!}@endif" name="OrderSuccess5">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess6)){!! $totalOrderSuccess6 !!}@endif" name="OrderSuccess6">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess7)){!! $totalOrderSuccess7 !!}@endif" name="OrderSuccess7">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess8)){!! $totalOrderSuccess8 !!}@endif" name="OrderSuccess8">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess9)){!! $totalOrderSuccess9 !!}@endif" name="OrderSuccess9">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess10)){!! $totalOrderSuccess10 !!}@endif" name="OrderSuccess10">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess11)){!! $totalOrderSuccess11 !!}@endif" name="OrderSuccess11">
+                    <input type="hidden" value="@if(!empty($totalOrderSuccess12)){!! $totalOrderSuccess12 !!}@endif" name="OrderSuccess12">
+
+                    <input type="hidden" value="@if(!empty($totalOrderFail1)){!! $totalOrderFail1 !!}@endif" name="OrderFail1">
+                    <input type="hidden" value="@if(!empty($totalOrderFail2)){!! $totalOrderFail2 !!}@endif" name="OrderFail2">
+                    <input type="hidden" value="@if(!empty($totalOrderFail3)){!! $totalOrderFail3 !!}@endif" name="OrderFail3">
+                    <input type="hidden" value="@if(!empty($totalOrderFail4)){!! $totalOrderFail4 !!}@endif" name="OrderFail4">
+                    <input type="hidden" value="@if(!empty($totalOrderFail5)){!! $totalOrderFail5 !!}@endif" name="OrderFail5">
+                    <input type="hidden" value="@if(!empty($totalOrderFail6)){!! $totalOrderFail6 !!}@endif" name="OrderFail6">
+                    <input type="hidden" value="@if(!empty($totalOrderFail7)){!! $totalOrderFail7 !!}@endif" name="OrderFail7">
+                    <input type="hidden" value="@if(!empty($totalOrderFail8)){!! $totalOrderFail8 !!}@endif" name="OrderFail8">
+                    <input type="hidden" value="@if(!empty($totalOrderFail9)){!! $totalOrderFail9 !!}@endif" name="OrderFail9">
+                    <input type="hidden" value="@if(!empty($totalOrderFail10)){!! $totalOrderFail10 !!}@endif" name="OrderFail10">
+                    <input type="hidden" value="@if(!empty($totalOrderFail11)){!! $totalOrderFail11 !!}@endif" name="OrderFail11">
+                    <input type="hidden" value="@if(!empty($totalOrderFail12)){!! $totalOrderFail12 !!}@endif" name="OrderFail12">
                 </div>
                 <div class="x_content">
                     <canvas id="mybarChart"></canvas>
@@ -124,9 +149,9 @@
                                 <i class="fa fa-user aero"></i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">Lúa mì</a>
-                                <p><strong>2,500,000 </strong>Kho A</p>
-                                <p> <small>20 đơn hàng</small>
+                                <a class="title" href="#">{!! $ProductDetailMax->title !!}</a>
+                                <p><strong>{!! $moneyOrderMax !!} VNĐ</strong>{{--Kho A--}}</p>
+                                <p> <small>{!! $OrderMax !!} đơn hàng</small>
                                 </p>
                                 </p>
                             </div>
@@ -136,9 +161,9 @@
                                 <i class="fa fa-user aero"></i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">Lúa mì</a>
-                                <p><strong>2,500,000 </strong>Kho A</p>
-                                <p> <small>15 đơn hàng</small>
+                                <a class="title" href="#">{!! $ProductDetailMax1->title !!}</a>
+                                <p><strong>{!! $moneyOrderMax1 !!} VNĐ</strong>{{--Kho A--}}</p>
+                                <p> <small>{!! $OrderMax1 !!} đơn hàng</small>
                                 </p>
                                 </p>
                             </div>
@@ -148,9 +173,9 @@
                                 <i class="fa fa-user aero"></i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">Lúa mì</a>
-                                <p><strong>2,500,000 </strong>Kho A</p>
-                                <p> <small>1 đơn hàng</small>
+                                <a class="title" href="#">{!! $ProductDetailMax2->title !!}</a>
+                                <p><strong>{!! $moneyOrderMax2 !!} VNĐ</strong>{{--Kho A--}}</p>
+                                <p> <small>{!! $OrderMax2 !!} đơn hàng</small>
                                 </p>
                                 </p>
                             </div>
@@ -237,7 +262,7 @@
         var lineChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+                labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12"],
                 datasets: [{
                     label: "Doanh Thu",
                     backgroundColor: "rgba(76, 175, 80, 0.68)",
@@ -254,18 +279,43 @@
 
         // Bar chart
         var ctx = document.getElementById("mybarChart");
+        var OrderSuccess1 = $('input[type="hidden"][name="OrderSuccess1"]').val();
+        var OrderSuccess2 = $('input[type="hidden"][name="OrderSuccess2"]').val();
+        var OrderSuccess3 = $('input[type="hidden"][name="OrderSuccess3"]').val();
+        var OrderSuccess4 = $('input[type="hidden"][name="OrderSuccess4"]').val();
+        var OrderSuccess5 = $('input[type="hidden"][name="OrderSuccess5"]').val();
+        var OrderSuccess6 = $('input[type="hidden"][name="OrderSuccess6"]').val();
+        var OrderSuccess7 = $('input[type="hidden"][name="OrderSuccess7"]').val();
+        var OrderSuccess8 = $('input[type="hidden"][name="OrderSuccess8"]').val();
+        var OrderSuccess9 = $('input[type="hidden"][name="OrderSuccess9"]').val();
+        var OrderSuccess10 = $('input[type="hidden"][name="OrderSuccess10"]').val();
+        var OrderSuccess11 = $('input[type="hidden"][name="OrderSuccess11"]').val();
+        var OrderSuccess12 = $('input[type="hidden"][name="OrderSuccess12"]').val();
+
+        var OrderFail1 = $('input[type="hidden"][name="OrderFail1"]').val();
+        var OrderFail2 = $('input[type="hidden"][name="OrderFail2"]').val();
+        var OrderFail3 = $('input[type="hidden"][name="OrderFail3"]').val();
+        var OrderFail4 = $('input[type="hidden"][name="OrderFail4"]').val();
+        var OrderFail5 = $('input[type="hidden"][name="OrderFail5"]').val();
+        var OrderFail6 = $('input[type="hidden"][name="OrderFail6"]').val();
+        var OrderFail7 = $('input[type="hidden"][name="OrderFail7"]').val();
+        var OrderFail8 = $('input[type="hidden"][name="OrderFail8"]').val();
+        var OrderFail9 = $('input[type="hidden"][name="OrderFail9"]').val();
+        var OrderFail10 = $('input[type="hidden"][name="OrderFail10"]').val();
+        var OrderFail11 = $('input[type="hidden"][name="OrderFail11"]').val();
+        var OrderFail12 = $('input[type="hidden"][name="OrderFail12"]').val();
         var mybarChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["January", "February", "March", "April", "May"],
+                labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12"],
                 datasets: [{
                     label: 'Thành công',
                     backgroundColor: "#4caf50",
-                    data: [51, 30, 40, 28, 92]
+                    data: [OrderSuccess1, OrderSuccess2, OrderSuccess3, OrderSuccess4, OrderSuccess5,OrderSuccess6,OrderSuccess7,OrderSuccess8,OrderSuccess9,OrderSuccess10,OrderSuccess11,OrderSuccess12]
                 }, {
                     label: 'Thất bại',
                     backgroundColor: "#FF9800",
-                    data: [41, 56, 25, 48, 72]
+                    data: [OrderFail1, OrderFail2, OrderFail3, OrderFail4, OrderFail5,OrderFail6,OrderFail7,OrderFail8,OrderFail9,OrderFail10,OrderFail11,OrderFail12]
                 }]
             },
 
