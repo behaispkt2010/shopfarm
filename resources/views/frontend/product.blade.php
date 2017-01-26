@@ -7,7 +7,7 @@
 @section('content')
 <div class="secondary_page_wrapper">
 
-	{{dd(\App\Product::getBestSellerProduct())}}
+	{{dd(\App\Product::getBestStarsProduct())}}
 	<div class="container">
 		<div class="row">
 

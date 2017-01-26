@@ -33,16 +33,26 @@ class Product extends Model
         return $bestSellerProduct;
     }
     public static function getRelatedProduct($id){
-        Product::take(4)->get();
+      $getCategory=Product::find($id);
+        $getRelatedProduct = Product::where('category',$getCategory->category)->whereNotIn('id',[$id])->inRandomOrder()->take(4)->get();
+        return $getRelatedProduct;
     }
-    public static function getTopOrderProduct(){
 
-    }
-    public static function getBestCommentProduct(){
-
+    public static function getBestStarsProduct(){
+        $bestSellerProduct = Rate::leftJoin('products','rates.product_id','=','products.id')
+            ->groupBy('rates.product_id')
+            ->selectRaw('products.*, sum(rates.rate) as numRate')
+            ->orderBy('numRate','DESC')
+            ->take(4)
+            ->get();
+        return $bestSellerProduct;
     }
     public static function getLevelKhoProduct($level){
-
+        $getLevelKhoProduct=Product::leftJoin('products','rates.product_id','=','products.id')
+            ->where('level','>=',$level)
+            ->take(4)
+            ->get();
+        return $getLevelKhoProduct;
     }
 
 }
