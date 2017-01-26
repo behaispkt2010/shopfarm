@@ -5335,7 +5335,7 @@
 	.about_us{ margin-bottom: 25px; }
 
 	#footer .list_of_entries li{
-		padding:19px 0;
+		padding:5px 0;
 		border-bottom: 1px solid #eaeaea;
 	}
 
@@ -5353,6 +5353,9 @@
 	#footer .list_of_entries .entry_title{
 		margin-top: 2px;
 		font-weight: 600;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 /* ------------------------------------------------

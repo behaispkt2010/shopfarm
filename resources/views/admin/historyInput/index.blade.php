@@ -55,20 +55,20 @@
 
                         <div class="clearfix"></div>
 
-                        @for($i=0;$i<9;$i++)
+                        @foreach($productUpdatePrice as $item)
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details box-detail">
 
                                 <div class="well box_1">
                                     <div class="col-sm-12 ">
-                                        <a href="{{route('historyInput.create')}}">
-                                            <h4 class="cod"><i>Phiếu: #201611{{$i}}</i></h4>
+                                        <a href="?date={{$item->created_at->format('d-m-Y')}}">
+                                            <h4 class="cod"><i>Phiếu: #{{$item->created_at->format('dmY')}}</i></h4>
 
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="list-unstyled">
-                                                        <li>Số sản phẩm nhập: 200</li>
-                                                        <li>Tổng số lượng nhập vào: 2000</li>
-                                                        <li>Ngày nhập: 20/10/2016</li>
+                                                        <li>Số sản phẩm nhập:<span>{{$item->count}}</span></li>
+                                                        <li>Tổng số lượng nhập vào: <span>{{$item->sum_number}}</span></li>
+                                                        <li>Ngày nhập: <span>{{$item->created_at->format('d-m-Y')}}</span></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -77,7 +77,7 @@
 
                                 </div>
                             </div>
-                        @endfor
+                        @endforeach
 
                     </div>
                 </div>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\ProductUpdatePrice;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 class HistoryInputController extends Controller
 {
@@ -13,10 +16,35 @@ class HistoryInputController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.historyInput.index');
+        if(!empty($request->get('date'))){
+            $date = $request->get('date');
+//            dd($date);
+            $productUpdatePrice=ProductUpdatePrice::where(DB::raw("(DATE_FORMAT(created_at,'%d-%m-%Y'))"),$date)
+                ->get();
+            $data=[
+                'productUpdatePrice'=>$productUpdatePrice,
+                'date'=>$date,
+            ];
+            return view('admin.historyInput.edit',$data);
+        }
+        else {
+            $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
+                ->selectRaw('sum(price_in) as sum_price_in')
+                ->selectRaw('sum(price_out) as sum_price_out')
+                ->selectRaw('count(*) as count')
+                ->selectRaw('sum(number) as sum_number')
+                ->selectRaw('created_at')
+                ->get();
+//        dd($productUpdatePrice);
+            $data = [
+                'productUpdatePrice' => $productUpdatePrice,
+            ];
+            return view('admin.historyInput.index', $data);
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +53,8 @@ class HistoryInputController extends Controller
      */
     public function create()
     {
-        return view('admin.historyInput.edit');
+
+//        return view('admin.historyInput.edit');
     }
 
     /**

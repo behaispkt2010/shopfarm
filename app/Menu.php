@@ -41,6 +41,29 @@ class Menu extends Model
         }
     }
 
+    static public function get_menu_frontend($parent=0)
+    {
+        $data = Menu::get();
+        foreach($data as $key=>$itemMenu1) {
+            if ($parent == $itemMenu1->parent) {
+                $numchil = Menu::get_numberChil($itemMenu1->id);
+                if ($numchil == 0) {
+                    echo ' <li class=""><a href="'.$itemMenu1->link.'">'.$itemMenu1->label.'</a></li>';
+                } else {
+                    echo '   <li class="has_submenu">
+                                            <a href="'.$itemMenu1->link.'">'.$itemMenu1->label.'</a>
+                                           ';
+                    echo ' <ul class="theme_menu submenu">';
+                    $parent1 = $itemMenu1->id;
+                    Menu::get_menu_frontend($parent1);
+                    echo '</ul></li>';
+
+                }
+
+            }
+        }
+    }
+
 
 
 }

@@ -11,7 +11,7 @@ class Setting extends Model
     static public function getValue($key){
         $s = Setting::where('key',$key)->first();
         if(empty($s))
-            $s='';
+            $res='';
         else
             $res=$s->value;
         return $res;

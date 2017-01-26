@@ -32,4 +32,7 @@ class Category extends Model
         }
         return $name;
     }
+    public static function getAllCategory(){
+        return Category::get();
+    }
 }

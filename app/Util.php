@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * App\Util
@@ -274,4 +275,5 @@ class Util extends Model
         $price = number_format($priceFloat, $decimal_place, '', $symbol_thousand);
         return $price . $symbol;
     }
+
 }

@@ -14,7 +14,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 profile_details product-detail">
 
                         <div class="well box1 info-kho">
-                            <h4 class="text-center">Chi tiết nhập hàng ngày 16/11/2016</h4>
+                            <h4 class="text-center">Chi tiết nhập hàng ngày {{$date}}</h4>
                             <table class="table table-striped table-hover ">
                                 <thead>
                                 <tr>
@@ -27,16 +27,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @for($i=0;$i<10; $i++)
+                              @foreach($productUpdatePrice as $item)
                                 <tr>
-                                    <td>20:3{{$i}}</td>
-                                    <td>#000{{$i}}</td>
-                                    <td>chuối</td>
-                                    <td>200</td>
-                                    <td>50.000 VNĐ</td>
-                                    <td>100.000 VNĐ</td>
+                                    <td>{{$item->created_at->format('h:i')}}</td>
+                                    <td>#{{$item->product_id}}</td>
+                                    <td>{{\App\Product::getNameById($item->product_id)}}</td>
+                                    <td>{{$item->number}}</td>
+                                    <td>{{$item->price_in}} VNĐ</td>
+                                    <td>{{$item->price_out}} VNĐ</td>
                                 </tr>
-                                    @endfor
+                                    @endforeach
 
                                 </tbody>
                             </table>

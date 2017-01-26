@@ -21,3 +21,12 @@
 		============================================ -->
 		<script src="{{asset('frontend/js/theme.plugins.js')}}"></script>
 		<script src="{{asset('frontend/js/theme.core.js')}}"></script>
+<script>
+	$(document).on('ready',function(){
+		var url      = window.location.pathname;
+//		alert(url);
+
+		$('.main_navigation ul li a[href ="'+url+'"]').closest('li').addClass('current');
+	})
+
+</script>

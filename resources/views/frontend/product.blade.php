@@ -7,6 +7,7 @@
 @section('content')
 <div class="secondary_page_wrapper">
 
+	{{dd(\App\Product::getBestSellerProduct())}}
 	<div class="container">
 		<div class="row">
 
@@ -15,7 +16,7 @@
 
 				<section class="section_offset">
 
-					<h4>Nhóm sản phẩm</h4>
+					<h3>Nhóm sản phẩm</h3>
 
 					<ul class="theme_menu">
 

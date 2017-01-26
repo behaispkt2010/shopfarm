@@ -99,7 +99,7 @@
                                         {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
                                         {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
                                         {{--</a>--}}
-                                        <button  class="btn btn-raised btn-primary btn-xs" id="check-product" data-toggle="modal" data-target=".modal-product-inventory" data-id="{{$product->id}}" data-title="{{$product->title}}(#{{$product->id}})" data-inventory="{{$product->inventory_num}}">
+                                        <button  class="btn btn-raised btn-primary btn-xs check-product" data-toggle="modal" data-target=".modal-product-inventory" data-id="{{$product->id}}" data-title="{{$product->title}}(#{{$product->id}})" data-inventory="{{$product->inventory_num}}">
                                             <i class="fa fa-pencil" aria-hidden="true" ></i> Kiểm kho
                                         </button>
 
@@ -167,7 +167,7 @@
         });
     </script>
     <script>
-        $(document).on("click", "#check-product", function () {
+        $(document).on("click", ".check-product", function () {
             var _self = $(this);
 //            alert("ds");
             $('.modal-product-inventory input[name="id"]').val(_self.data('id'));

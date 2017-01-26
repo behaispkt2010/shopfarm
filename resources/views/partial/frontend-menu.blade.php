@@ -83,23 +83,19 @@
 
                             <form class="clearfix search">
 
-                                <input type="text" name="" tabindex="1" placeholder="Search..." class="alignleft">
+                                <input type="text"  tabindex="1" placeholder="Search..." name="search" class="alignleft">
 
                                 <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
 
                                 <div class="search_category alignleft">
 
-                                    <div class="open_categories">All Categories</div>
+                                    <div class="open_categories">Danh mục</div>
 
                                     <ul class="categories_list dropdown">
 
-                                        <li class="animated_item"><a href="#">Medicine &amp; Health</a></li>
-                                        <li class="animated_item"><a href="#">Beauty</a></li>
-                                        <li class="animated_item"><a href="#">Personal Care</a></li>
-                                        <li class="animated_item"><a href="#">Vitamins &amp; Supplements</a></li>
-                                        <li class="animated_item"><a href="#">Baby Needs</a></li>
-                                        <li class="animated_item"><a href="#">Diet &amp; Fitness</a></li>
-                                        <li class="animated_item"><a href="#">Sexual Well-being</a></li>
+                                        @foreach(\App\CategoryProduct::getCate() as $itemCate)
+                                        <li class="animated_item"><a href="#">{{$itemCate->name}}</a></li>
+                                        @endforeach
 
                                     </ul>
 
@@ -149,37 +145,8 @@
 
                                     <ul>
 
-                                        <li class="current"><a href="/">Trang chủ</a></li>
-                                        <li><a href="/products">Sản phẩm</a></li>
-                                        <li><a href="/blogs">Tin tức</a></li>
-                                        <li><a href="#">Kiểm tra đơn hàng</a></li>
-                                        <li><a href="/contact">Liên hệ</a></li>
-                                        <!-- <li><a href="additional_page_contact.html">Contact Us</a></li> -->
+                                    {{\App\Menu::get_menu_frontend()}}
 
-                                        <li class="has_submenu">
-
-                                            <a href="../html-fronend/index.html">Pages</a>
-
-                                            <!-- - - - - - - - - - - - - - Submenu (level 2) - - - - - - - - - - - - - - - - -->
-
-                                            <ul class="theme_menu submenu">
-
-                                                <li class="has_submenu current">
-
-                                                    <a href="/product/lua/lua-mi">chi tiết sản phẩm</a>
-                                                    <a href="/blog/lam-dep/abc">chi tiết bài viết</a>
-
-
-                                                </li>
-
-
-
-
-                                            </ul>
-
-                                            <!-- - - - - - - - - - - - - - End submenu (level 2) - - - - - - - - - - - - - - - - -->
-
-                                        </li>
 
                                     </ul>
 

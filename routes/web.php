@@ -88,6 +88,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
 
 
 
+
     //Nhân sự
     Route::resource('staffs', 'StaffController');
     //Cài đặt
@@ -110,6 +111,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
 
 Route::post('users/changeAvata', 'UserController@AjaxChangeImage');
 Route::post('product/checkProductAjax', 'ProductController@checkProductAjax');
+Route::post('product/updateProductAjax', 'ProductController@UpdateProductAjax');
 
 
 

@@ -15,4 +15,14 @@ class CategoryProduct extends Model
         }
         return $name;
     }
+    public static function getCate(){
+        return CategoryProduct::get();
+
+    }
+    public static function getAllCategoryProduct(){
+        return CategoryProduct::get();
+    }
+
+
+
 }

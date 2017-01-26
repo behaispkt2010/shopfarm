@@ -29,13 +29,20 @@ class ProductController extends Controller
         $data['price_in']=$request->get('price_in');
         $data['price_out']=$request->get('price_out');
         $data['number']=$request->get('number');
-        $data['supplier']="check";
+        if(empty($request->get('supplier'))) {
+            $supplier= "none";
+        }
+        else{
+            $supplier=$request->get('supplier');
+        }
+        $data['supplier'] = $supplier;
+
 
         $productUpdatePrice->create($data);
 
         $data1['price_in']=$request->get('price_in');
         $data1['price_out']=$request->get('price_out');
-        $data1['inventory_num']=$data['number'];
+        $data1['inventory_num']=$data['number']+$product->inventory_num;
 
         $product->update($data1);
 
