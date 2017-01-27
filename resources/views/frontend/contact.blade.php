@@ -15,8 +15,8 @@
 
 					<ul class="breadcrumbs">
 
-						<li><a href="index.html">Home</a></li>
-						<li>Contact Us</li>
+						<li><a href="/">Trang chủ</a></li>
+						<li>Liên hệ</li>
 
 					</ul>
 
@@ -32,11 +32,12 @@
 
 								<ul class="theme_menu">
 
-									<li><a href="additional_page_about.html">About Us</a></li>
-									<li><a href="#">Delivery Information</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Terms &amp; Conditions</a></li>
-									<li class="active"><a href="additional_page_contact.html">Contact Us</a></li>
+									<li><a href="#">Giới thiệu</a></li>
+									<li><a href="#">Dịch vụ</a></li>
+									<li><a href="#">Điều khoản</a></li>
+									<li ><a href="#">Chính sách bảo mật</a></li>
+									<li class="active"><a href="#">Liên hệ</a></li>
+
 
 
 								</ul>
@@ -72,7 +73,7 @@
 
 								<div class="theme_box">
 
-									<p class="form_caption">Ut tellus dolor, dapibus eget, elementum vel, eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consecvtetuer adipiscing elit.</p>
+									<p class="form_caption">Liên hệ với chúng tôi để được tư vấn tốt hơn thông qua form bên dưới</p>
 
 									<!-- - - - - - - - - - - - - - Contact form - - - - - - - - - - - - - - - - -->
 
@@ -166,20 +167,22 @@
 
 										<div class="col-sm-7">
 
-											<p class="form_caption">Ut tellus dolor dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis.</p>
+											<p class="form_caption">Thông tin liên hệ của chúng tôi</p>
 
 											<ul class="c_info_list">
 
-												<li class="c_info_location">8901 Marmora Road, Glasgow, D04 89GR.</li>
-												<li class="c_info_phone">800-599-65-80</li>
-												<li class="c_info_mail"><a href="mailto:#">info@companyname.com</a></li>
+												<li class="c_info_location">Km35 Quốc lộ 26, huyện Krông Păk, tỉnh Dăk Lăk</li>
+												<li class="c_info_phone">0944 619 493</li>
+												<li class="c_info_mail"><a href="mailto:#">sale@nongsantunhien.com</a></li>
 												<li class="c_info_schedule">
 
 													<ul>
 
-														<li>Monday-Friday: 8.00-20.00</li>
-														<li>Saturday: 9.00-15.00</li>
-														<li>Sunday: closed</li>
+														<li>Sáng: 8h30-11h30
+
+															</li>
+														<li>Chiều: 13h00-21h00</li>
+														<li>Thứ 7 - Chủ nhật: nghỉ</li>
 
 													</ul>
 

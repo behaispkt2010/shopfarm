@@ -109,7 +109,7 @@
                 <div class="col-sm-6 col-xs-12 fix-padlr">
                     {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
                     <h2>Thông tin đặt hàng</h2>
-                    <table class="table list-order table-curved">
+                    <table class="table list-order table-curved product-list">
                         <tbody>
                         <tr>
                             <th><img src="{{url('/')}}/images/sp.jpg"
@@ -165,9 +165,9 @@
                             Thông tin tài xế:
                         </div>
                         <div class="col-md-8">
-                            <p>Tên: Nguyễn văn A</p>
-                            <p>SĐT: 01666666666</p>
-                            <p>Biển số xe: A1553563</p>
+                            <div>Tên: Nguyễn văn A</div>
+                            <div>SĐT: 01666666666</div>
+                            <div>Biển số xe: A1553563</div>
                         </div>
                     </div>
 
@@ -186,7 +186,7 @@
                 <div class="col-sm-4 col-xs-12 fix-padlr">
                     {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
                     <h2>Thông tin nhận hàng</h2>
-                    <table class="tracking-table">
+                    <table class="tracking-table info-customer">
                         <tbody>
                         <tr>
                             <td><i class="ic-tracking ic-nguoidung"></i></td>

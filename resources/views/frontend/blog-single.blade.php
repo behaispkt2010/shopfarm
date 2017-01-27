@@ -15,9 +15,9 @@
 
 					<ul class="breadcrumbs">
 
-						<li><a href="index.html">Home</a></li>
-						<li><a href="blog_v1.html">Blog</a></li>
-						<li>Ut pharetra augue nec augue integer rutrum ante eu lacus</li>
+						<li><a href="/">Trang chủ</a></li>
+						<li><a href="/blogs">Blogs</a></li>
+						<li>{{$singleBlog->title}}</li>
 
 					</ul>
 
@@ -26,191 +26,9 @@
 						<aside class="col-md-3 col-sm-4">
 
 
-							<!-- - - - - - - - - - - - - - Popular posts - - - - - - - - - - - - - - - - -->
-
-							<section class="section_offset">
-
-								<h3>Bài viết hot</h3>
-
-								<ul class="list_of_entries">
-
-									<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-									<li>
-
-										<article class="entry">
-
-											<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-											<a href="#" class="entry_thumb">
-
-												<img src="../../../frontend/images/blog_thumb_4.jpg" alt="">
-
-											</a>
-
-											<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-											<div class="wrapper">
-
-												<h6 class="entry_title"><a href="#">Lorem ipsum dolor sit amet, consecte- tuer adipis</a></h6>
-
-												<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-												<div class="entry_meta">
-
-													<span><i class="icon-calendar"></i> 2014-08-05</span>
-
-													<span><a href="#" class="comments"><i class="icon-comment"></i> 3</a></span>
-
-												</div><!--/ .byline-->
-
-												<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-											</div><!--/ .wrapper-->
-
-										</article><!--/ .clearfix-->
-
-									</li>
-
-									<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-									<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-									<li>
-
-										<article class="entry">
-
-											<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-											<a href="#" class="entry_thumb">
-
-												<img src="../../../frontend/images/blog_thumb_5.jpg" alt="">
-
-											</a>
-
-											<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-											<div class="wrapper">
-
-												<h6 class="entry_title"><a href="#">Neque porro quis- quam est, qui</a></h6>
-
-												<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-												<div class="entry_meta">
-
-													<span><i class="icon-calendar"></i> 2014-11-06</span>
-
-													<span><a href="#" class="comments"><i class="icon-comment"></i> 7</a></span>
-
-												</div><!--/ .byline-->
-
-												<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-											</div><!--/ .wrapper-->
-
-										</article><!--/ .clearfix-->
-
-									</li>
-
-									<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-									<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-									<li>
-
-										<article class="entry">
-
-											<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-											<a href="#" class="entry_thumb">
-
-												<img src="../../../frontend/images/blog_thumb_6.jpg" alt="">
-
-											</a>
-
-											<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-											<div class="wrapper">
-
-												<h6 class="entry_title"><a href="#">Mauris fermentum dictum magna</a></h6>
-
-												<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-												<div class="entry_meta">
-
-													<span><i class="icon-calendar"></i> 2014-03-12</span>
-
-													<span><a href="#" class="comments"><i class="icon-comment"></i> 4</a></span>
-
-												</div><!--/ .byline-->
-
-												<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-											</div><!--/ .wrapper-->
-
-										</article><!--/ .clearfix-->
-
-									</li>
-
-									<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-								</ul>
-
-							</section><!--/ .section_offset -->
-
-							<!-- - - - - - - - - - - - - - End of popular posts - - - - - - - - - - - - - - - - -->
-
-							<!-- - - - - - - - - - - - - - Banner - - - - - - - - - - - - - - - - -->
-
-							<div class="section_offset">
-
-								<a href="#" class="banner">
-
-									<img src="../../../frontend/images/banner_img_10.png" alt="">
-
-								</a>
-
-							</div>
-
-							<!-- - - - - - - - - - - - - - End of banner - - - - - - - - - - - - - - - - -->
-
-							<!-- - - - - - - - - - - - - - Recent comments - - - - - - - - - - - - - - - - -->
-
-
-							<!-- - - - - - - - - - - - - - Blog Tags - - - - - - - - - - - - - - - - -->
-
-
-
-							<!-- - - - - - - - - - - - - - Banner - - - - - - - - - - - - - - - - -->
-
-							<div class="section_offset">
-
-								<a href="#" class="banner">
-
-									<img src="../../../frontend/images/banner_img_11.png" alt="">
-
-								</a>
-
-							</div>
-
-							<!-- - - - - - - - - - - - - - End of banner - - - - - - - - - - - - - - - - -->
-
-							<!-- - - - - - - - - - - - - - Community poll - - - - - - - - - - - - - - - - -->
-
-
-							<!-- - - - - - - - - - - - - - Banner - - - - - - - - - - - - - - - - -->
-
-							<div class="section_offset">
-
-								<a href="#" class="banner">
-
-									<img src="../../../frontend/images/banner_img_12.png" alt="">
-
-								</a>
-
-							</div>
-
-							<!-- - - - - - - - - - - - - - End of banner - - - - - - - - - - - - - - - - -->
+							@include('frontend.witgets.category-post')
+							@include('frontend.witgets.hot-post')
+							@include('frontend.panner.blog-banner')
 
 						</aside><!--/ [col]-->
 
@@ -219,7 +37,8 @@
 
 							<section class="section_offset">
 
-								<h1>Ut pharetra augue nec augue integer rutrum ante eu lacus</h1>
+
+								<h1>{{$singleBlog->title}}</h1>
 
 								<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
 								
@@ -231,13 +50,12 @@
 
 										<div class="alignleft">
 
-											<span><i class="icon-calendar"></i> 2014-08-05 07:01:49</span>
+											<span><i class="icon-calendar"></i> {{$singleBlog->created_at->format('d-m-Y')}}</span>
 
-											<span><a href="#" class="comments"><i class="icon-comment"></i> 3</a></span>
+											<span><i class="icon-comment"></i>@if(empty($singleBlog->view)) 0 @else {{$singleBlog->view}}@endif</span>
 
-											<span><i class="icon-user-8"></i> by <a href="#">admin</a></span>
 
-											<span><i class="icon-folder-open-empty-1"></i> <a href="#">News</a>, <a href="#">About Beauty</a></span>
+											<span><i class="icon-folder-open-empty-1"></i> <a href="{{url('/blog')}}/{{$cate}}">{{\App\Category::getNameCateById($singleBlog->category)}}</a></span>
 
 										</div>
 
@@ -251,131 +69,20 @@
 
 									<div class="entry_image">
 										
-										<img src="../../../frontend/images/blog_img_1.jpg" alt="">
+										{{--<img src="{{url('/')}}{{$singleBlog->image}}" alt="">--}}
 
 									</div>
 
-									<h4 class="entry_title"><a href="#">Cách duong trắng da bằng nghệ và mật ong</a></h4>
-
-									<!-- - - - - - - - - - - - - - End of entry image - - - - - - - - - - - - - - - - -->
-
-									<p>﻿Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-
-									<ul class="list_type_5">
-										
-										<li>Vivamus eget nibh. Etiam cursus leo vel metus.</li>
-										<li>Nulla facilisi. Aenean nec eros.</li>
-										<li>Vestibulum ante ipsum primis in faucibus orci luctus et.</li>
-
-									</ul>
-
-									<ul class="lightbox_list">
-
-										<li>
-
-											<a class="fancybox_item" data-rel="group_1" href="../../../frontend/images/lightbox_thumb_1.jpg" title="Title 1">
-
-												<img src="../../../frontend/images/lightbox_thumb_1.jpg" alt="">
-
-												<span class="helper_icon">
-
-													<span class="helper_left"></span>
-													<span class="helper_right"></span>
-
-												</span>
-
-											</a>
-
-										</li>
-
-										<li>
-
-											<a class="fancybox_item" data-rel="group_1" href="../../../frontend/images/lightbox_thumb_2.jpg" title="Title 2">
-
-												<img src="../../../frontend/images/lightbox_thumb_2.jpg" alt="">
-
-												<span class="helper_icon">
-
-													<span class="helper_left"></span>
-													<span class="helper_right"></span>
-
-												</span>
-
-											</a>
-
-										</li>
-
-										<li>
-
-											<a class="fancybox_item_media" data-rel="group_1" href="http://www.youtube.com/watch?v=-BrDlrytgm8">
-
-												<img src="../../../frontend/images/lightbox_thumb_3.jpg" alt="">
-
-												<span class="helper_icon">
-
-													<span class="helper_left"></span>
-													<span class="helper_right"></span>
-
-												</span>
-
-											</a>
-
-										</li>
-
-										<li>
-
-											<a class="fancybox_item" data-rel="group_1" href="../../../frontend/images/lightbox_thumb_4.jpg" title="Title 3">
-
-												<img src="../../../frontend/images/lightbox_thumb_4.jpg" alt="">
-
-												<span class="helper_icon">
-
-													<span class="helper_left"></span>
-													<span class="helper_right"></span>
-
-												</span>
-
-											</a>
-
-										</li>
-
-										<li>
-
-											<a class="fancybox_item" data-rel="group_1" href="../../../frontend/images/lightbox_thumb_5.jpg" title="Title 4">
-
-												<img src="../../../frontend/images/lightbox_thumb_5.jpg" alt="">
-
-												<span class="helper_icon">
-
-													<span class="helper_left"></span>
-													<span class="helper_right"></span>
-
-												</span>
-
-											</a>
-
-										</li>
-
-									</ul>
-
-									<p>Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sed dolor. Aliquam congue fermentum nisl. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis.</p>
-
+									<div class="content">
+										{!! $singleBlog->content !!}
+									</div>
 									<div class="v_centered share">
 
-										<span class="title">Share this:</span>
+										<span class="title">Chia sẻ:</span>
 
 										<div class="addthis_widget_container">
 
-											<!-- AddThis Button BEGIN -->
-											<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-											<a class="addthis_button_preferred_1"></a>
-											<a class="addthis_button_preferred_2"></a>
-											<a class="addthis_button_preferred_3"></a>
-											<a class="addthis_button_preferred_4"></a>
-											<a class="addthis_button_compact"></a>
-											<a class="addthis_counter addthis_bubble_style"></a>
-											</div>
-											<!-- AddThis Button END -->
+											<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
 
 										</div>
 
@@ -385,11 +92,11 @@
 
 								<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
 
-								<footer class="bottom_box">
+								{{--<footer class="bottom_box">--}}
 
-									Tags: <a href="#">beauty</a>, <a href="#">medicine</a>, <a href="#">health</a>
+									{{--Tags: <a href="#">beauty</a>, <a href="#">medicine</a>, <a href="#">health</a>--}}
 
-								</footer>
+								{{--</footer>--}}
 
 							</section>
 
@@ -403,6 +110,8 @@
 
 									<div class="table_row">
 
+										@foreach(\App\Article::getRelatedArticle($singleBlog->id,3) as $itemRelated)
+
 										<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
 
 										<div class="table_cell">
@@ -411,9 +120,9 @@
 												
 												<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
 
-												<a href="#" class="entry_thumb">
+												<a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($itemRelated->id)}}/{{$itemRelated->slug}}" class="entry_thumb">
 
-													<img src="../../../frontend/images/blog_thumb_4.jpg" alt="">
+													<img src="{{url('/')}}/{{$itemRelated->image}}" alt="">
 
 												</a>
 
@@ -421,15 +130,15 @@
 
 												<div class="wrapper">
 
-													<h6 class="entry_title"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipis</a></h6>
+													<h6 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($itemRelated->id)}}/{{$itemRelated->slug}}">{{$itemRelated->title}}</a></h6>
 
 													<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
 
 													<div class="entry_meta">
 
-														<span><i class="icon-calendar"></i> 2014-08-05</span>
+														<span><i class="icon-calendar"></i> {{$itemRelated->created_at->format('d-m-Y')}}</span>
 
-														<span><a href="#" class="comments"><i class="icon-comment"></i> 3</a></span>
+														<span><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($itemRelated->id)}}/{{$itemRelated->slug}}" class="comments"><i class="icon-comment"></i> @if(empty($itemRelated->view)) 0 @else {{$itemRelated->view}}@endif</a></span>
 
 													</div><!--/ .byline-->
 
@@ -442,87 +151,7 @@
 										</div>
 
 										<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-										<div class="table_cell">
-
-											<article class="entry">
-												
-												<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-												<a href="#" class="entry_thumb">
-
-													<img src="../../../frontend/images/blog_thumb_5.jpg" alt="">
-
-												</a>
-
-												<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-												<div class="wrapper">
-
-													<h6 class="entry_title"><a href="#">Neque porro quis- quam est, qui</a></h6>
-
-													<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-													<div class="entry_meta">
-
-														<span><i class="icon-calendar"></i> 2014-11-06</span>
-
-														<span><a href="#" class="comments"><i class="icon-comment"></i> 7</a></span>
-
-													</div><!--/ .byline-->
-
-													<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-												</div><!--/ .wrapper-->
-
-											</article><!--/ .clearfix-->
-
-										</div>
-
-										<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-										<div class="table_cell">
-
-											<article class="entry">
-												
-												<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-												<a href="#" class="entry_thumb">
-
-													<img src="../../../frontend/images/blog_thumb_6.jpg" alt="">
-
-												</a>
-
-												<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-												<div class="wrapper">
-
-													<h6 class="entry_title"><a href="#">Mauris fermentum dictum magna</a></h6>
-
-													<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-													<div class="entry_meta">
-
-														<span><i class="icon-calendar"></i> 2014-03-12</span>
-
-														<span><a href="#" class="comments"><i class="icon-comment"></i> 4</a></span>
-
-													</div><!--/ .byline-->
-
-													<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-												</div><!--/ .wrapper-->
-
-											</article><!--/ .clearfix-->
-
-										</div>
-
-										<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
+										@endforeach
 									</div>
 
 								</div>						
@@ -535,135 +164,18 @@
 
 							<section class="section_offset">
 								
-								<h3>Comments</h3>
 
-								<ol class="comments-list">
 
-									<!-- - - - - - - - - - - - - - Comment (level 1) - - - - - - - - - - - - - - - - -->
+										<div class="clear"></div>
+										<div class="comment">
+											<div class="fb-comments" data-href="{{url('blog/')}}" data-width="100%" data-numposts="5"></div>
+										</div>
 
-									<li class="comment">
 
-										<article>
-
-											<!-- - - - - - - - - - - - - - Avatar - - - - - - - - - - - - - - - - -->
-										
-											<div class="avatar">
-
-												<img src="../../../frontend/images/comment_author_photo.jpg" alt="">
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of avatar - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Comment body - - - - - - - - - - - - - - - - -->
-
-											<div class="comment-body">
-
-												<header class="comment-meta">
-
-													<h6 class="comment-author"><a href="#">John Smith</a></h6>, 2014-08-05
-
-												</header>
-
-												<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo.</p>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of comment body - - - - - - - - - - - - - - - - -->
-
-											<a href="#" class="button_grey icon_btn comment-reply-link"><i class="icon-reply-4"></i></a>
-
-										</article>
-
-										<ol class="children">
-
-											<!-- - - - - - - - - - - - - - Comment (level 2) - - - - - - - - - - - - - - - - -->
-
-											<li class="comment">
-
-												<article>
-
-													<!-- - - - - - - - - - - - - - Avatar - - - - - - - - - - - - - - - - -->
-												
-													<div class="avatar">
-
-														<img src="../../../frontend/images/comment_author_photo.jpg" alt="">
-
-													</div>
-
-													<!-- - - - - - - - - - - - - - End of avatar - - - - - - - - - - - - - - - - -->
-
-													<!-- - - - - - - - - - - - - - Comment body - - - - - - - - - - - - - - - - -->
-
-													<div class="comment-body">
-
-														<header class="comment-meta">
-
-															<h6 class="comment-author"><a href="#">admin</a></h6>, 2014-08-05
-
-														</header>
-
-														<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.</p>
-
-													</div>
-
-													<!-- - - - - - - - - - - - - - End of comment body - - - - - - - - - - - - - - - - -->
-
-													<a href="#" class="button_grey icon_btn comment-reply-link"><i class="icon-reply-4"></i></a>
-
-												</article>
-
-											</li>
-
-											<!-- - - - - - - - - - - - - - End of comment (level 2) - - - - - - - - - - - - - - - - -->
-
-										</ol>
-
-									</li>
 
 									<!-- - - - - - - - - - - - - - End of comment (level 1) - - - - - - - - - - - - - - - - -->
 
-									<!-- - - - - - - - - - - - - - Comment (level 1) - - - - - - - - - - - - - - - - -->
 
-									<li class="comment">
-
-										<article>
-
-											<!-- - - - - - - - - - - - - - Avatar - - - - - - - - - - - - - - - - -->
-										
-											<div class="avatar">
-
-												<img src="../../../frontend/images/comment_author_photo.jpg" alt="">
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of avatar - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Comment body - - - - - - - - - - - - - - - - -->
-
-											<div class="comment-body">
-
-												<header class="comment-meta">
-
-													<h6 class="comment-author"><a href="#">John Smith</a></h6>, 2014-08-05
-
-												</header>
-
-												<p>Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh.</p>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of comment body - - - - - - - - - - - - - - - - -->
-
-											<a href="#" class="button_grey icon_btn comment-reply-link"><i class="icon-reply-4"></i></a>
-
-										</article>
-
-									</li>
-
-									<!-- - - - - - - - - - - - - - End of comment (level 1) - - - - - - - - - - - - - - - - -->
-
-								</ol>
 
 							</section>
 
@@ -682,3 +194,13 @@
 			
 			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
 @endsection
+@section('add-script')
+	<script>(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=916823978398914";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	@endsection

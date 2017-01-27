@@ -63,7 +63,7 @@
 
 										<div class="table_layout">
 											<?php $i=0 ;$j=0?>
-											@foreach($products as $key=> $product)
+											@foreach($getNewProduct as $key => $product)
 												@if($i==0)<div class="table_row">@endif
 																<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 														<div class="table_cell">
@@ -74,7 +74,7 @@
 
 																<div class="image_wrap">
 
-																	<img src="../../../frontend/images/tabs_img_1.jpg" alt="">
+																	<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
 																	<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
@@ -118,7 +118,7 @@
 
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=3|| $j>=$count)
+														@if($i>=3|| $j>=count($getNewProduct))
 															<?php $i=0 ?>
 															</div>
 														@endif
@@ -133,7 +133,7 @@
 
 										<footer class="bottom_box">
 
-											<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+											<a href="/product/?q=new" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 										</footer>
 
@@ -149,7 +149,7 @@
 
 										<div class="table_layout">
 											<?php $i=0 ;$j=0?>
-											@foreach($products as $key=> $product)
+											@foreach($getBestStarsProduct as $key=> $product)
 												@if($i==0)<div class="table_row">@endif
 															<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 													<div class="table_cell">
@@ -160,7 +160,8 @@
 
 															<div class="image_wrap">
 
-																<img src="../../../frontend/images/tabs_img_1.jpg" alt="">
+																<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+
 
 																<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
@@ -205,7 +206,7 @@
 
 													</div>
 													<?php $i = $i+1;$j=$j+1; ?>
-													@if($i>=3|| $j>=$count)
+													@if($i>=3|| $j>=count($getBestStarsProduct))
 														<?php $i=0 ?>
 												</div>
 												@endif
@@ -220,7 +221,7 @@
 
 										<footer class="bottom_box">
 
-											<a href="#" class="button_grey middle_btn">View All New Products</a>
+											<a href="/product/?q=best-stars" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 										</footer>
 
@@ -247,7 +248,7 @@
 								<h3>Sản phẩm bán chạy</h3>
 								<div class="table_layout">
 									<?php $i=0 ;$j=0?>
-									@foreach($products as $key=> $product)
+									@foreach($bestSellerProduct as $key=> $product)
 										@if($i==0)<div class="table_row">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="table_cell">
@@ -258,7 +259,8 @@
 
 													<div class="image_wrap">
 
-														<img src="../../../frontend/images/tabs_img_1.jpg" alt="">
+														<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+
 
 														<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
@@ -304,7 +306,7 @@
 
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
-											@if($i>=3|| $j>=$count)
+											@if($i>=3|| $j>=count($bestSellerProduct))
 												<?php $i=0 ?>
 										</div>
 										@endif
@@ -320,7 +322,7 @@
 
 								<footer class="bottom_box">
 
-									<a href="#" class="button_grey middle_btn">View All Bestsellers</a>
+									<a href="/product/?q=best-seller" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 								</footer>
 

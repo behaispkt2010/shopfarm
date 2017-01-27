@@ -22,6 +22,14 @@ class CategoryProduct extends Model
     public static function getAllCategoryProduct(){
         return CategoryProduct::get();
     }
+    public static function getSlugCategoryProduct($id){
+        $slug = "mac-dinh";
+        $query=  CategoryProduct::find($id);
+        if(!empty($query)){
+            $slug = $query->slug;
+        }
+        return $slug;
+    }
 
 
 

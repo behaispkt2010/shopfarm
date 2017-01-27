@@ -132,16 +132,16 @@
 									<ul class="list_of_entries">
 
 										<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
+										@foreach(\App\Article::getNewArticle() as $item)
 										<li>
 
 											<article class="entry">
 
 												<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
 
-												<a href="#" class="entry_thumb">
+												<a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}" class="entry_thumb">
 
-													<img src="../../../frontend/images/latest_news_thumb_1.jpg" alt="">
+													<img src="{{url('/')}}{{$item->image}}" alt="">
 
 												</a>
 
@@ -149,13 +149,13 @@
 
 												<div class="wrapper">
 
-													<h6 class="entry_title"><a href="#">Vestibulum sed ante</a></h6>
+													<h6 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}">{{$item->title}}</a></h6>
 
 													<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
 
 													<div class="entry_meta">
 
-														<span><i class="icon-calendar"></i> 2014-08-05 07:01:49</span>
+														<span><i class="icon-calendar"></i> {{$item->created_at->format('d-m-Y')}}</span>
 
 													</div><!--/ .entry_meta-->
 
@@ -166,84 +166,7 @@
 											</article><!--/ .clearfix-->
 
 										</li>
-
-										<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-										<li>
-
-											<article class="entry">
-
-												<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-												<a href="#" class="entry_thumb">
-
-													<img src="../../../frontend/images/latest_news_thumb_2.jpg" alt="">
-
-												</a>
-
-												<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-												<div class="wrapper">
-
-													<h6 class="entry_title"><a href="#">Nulla venenatis</a></h6>
-
-													<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-													<div class="entry_meta">
-
-														<span><i class="icon-calendar"></i> 2014-08-05 07:01:49</span>
-
-													</div><!--/ .entry_meta-->
-
-													<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-												</div><!--/ .wrapper-->
-
-											</article><!--/ .clearfix-->
-
-										</li>
-
-										<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-										<li>
-
-											<article class="entry">
-
-												<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-												<a href="#" class="entry_thumb">
-
-													<img src="../../../frontend/images/latest_news_thumb_3.jpg" alt="">
-
-												</a>
-
-												<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-												<div class="wrapper">
-
-													<h6 class="entry_title"><a href="#">Pellentesque sed dolor</a></h6>
-
-													<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-													<div class="entry_meta">
-
-														<span><i class="icon-calendar"></i> 2014-08-05 07:01:49</span>
-
-													</div><!--/ .entry_meta-->
-
-													<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-												</div><!--/ .wrapper-->
-
-											</article><!--/ .clearfix-->
-
-										</li>
-
-										<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
+											@endforeach
 
 									</ul>
 

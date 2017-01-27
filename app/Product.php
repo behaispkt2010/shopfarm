@@ -36,7 +36,7 @@ class Product extends Model
                 ->groupBy('product_orders.id_product')
                 ->selectRaw('products.*, sum(product_orders.num) as numOrder')
                 ->orderBy('numOrder', 'DESC')
-                ->take(4)
+                ->take($limit)
                 ->get();
         }
         return $bestSellerProduct;
@@ -54,7 +54,7 @@ class Product extends Model
             $getRelatedProduct = Product::where('category', $getCategory->category)
                 ->whereNotIn('id', [$id])
                 ->inRandomOrder()
-                ->take(4)
+                ->take($limit)
                 ->get();
         }
         return $getRelatedProduct;
@@ -73,7 +73,7 @@ class Product extends Model
                 ->groupBy('rates.product_id')
                 ->selectRaw('products.*, sum(rates.rate) as numRate')
                 ->orderBy('numRate', 'DESC')
-                ->take(4)
+                ->take($limit)
                 ->get();
         }
         return $bestSellerProduct;

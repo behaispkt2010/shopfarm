@@ -5,12 +5,10 @@
     <h3>Danh mục</h3>
 
     <ul class="theme_menu">
-
-        <li><a href="#">News</a></li>
-        <li><a href="#">About Beauty</a></li>
-        <li><a href="#">Baby &amp; Mom</a></li>
-        <li><a href="#">Diet &amp; Fitness</a></li>
-        <li><a href="#">Promotions</a></li>
+        @foreach(\App\CategoryProduct::getAllCategoryProduct() as $item)
+            <li><a href="{{url('/category-product')}}/{{$item->slug}}">{{$item->name}}</a></li>
+            @endforeach
+            <li><a href="{{url('/category-product')}}/khac">Khác</a></li>
 
     </ul>
 

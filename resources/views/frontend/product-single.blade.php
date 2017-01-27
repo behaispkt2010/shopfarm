@@ -16,12 +16,9 @@
 
 					<ul class="breadcrumbs">
 
-						<li><a href="index.html">Home</a></li>
-						<li><a href="#">Beauty</a></li>
-						<li><a href="#">Skin Care</a></li>
-						<li><a href="#">Cleansers</a></li>
-						<li><a href="#">Liquid</a></li>
-						<li>Metus nulla facilisi, Original 24 fl oz (709 ml)</li>
+						<li><a href="/">Trang chủ</a></li>
+						<li><a href="/products">Sản phẩm</a></li>
+						<li>aaa</li>
 
 					</ul>
 
@@ -118,7 +115,7 @@
 
 									<div class="single_product_description">
 
-										<h3 class="offset_title"><a href="#">Lúa mạch tự nhiên</a></h3>
+										<h3 class="offset_title">{{$product->title}}</h3>
 
 										<!-- - - - - - - - - - - - - - Page navigation - - - - - - - - - - - - - - - - -->
 
@@ -163,21 +160,21 @@
 													<tr>
 
 														<td>Chủ kho: </td>
-														<td><a href="#">#f111se</a></td>
+														<td><a href="#">#{{$product->kho}}</a></td>
 
 													</tr>
 
 													<tr>
 
 														<td>Mua tối thiểu: </td>
-														<td><span class="in_stock">20</span> (kg)</td>
+														<td><span class="in_stock">{{$product->min_gram}}</span> (kg)</td>
 
 													</tr>
 
 													<tr>
 
 														<td>Mã sản phẩm: </td>
-														<td>PS06</td>
+														<td>#{{$product->id}}</td>
 
 													</tr>
 
@@ -186,6 +183,7 @@
 											</table>
 
 										</div>
+										<p class="product_price"><b class="theme_color">{{$product->price_out}} VNĐ</b></p>
 
 										<hr>
 
@@ -370,10 +368,7 @@
 
 								<div id="tab-1" class="tab_container">
 
-									<p>Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla.</p>
-
-									<p>Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Donec eget tellus non erat lacinia fermentum. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in,auctor ut, ligula. </p>
-
+									{!! $product->content!!}
 								</div><!--/ #tab-1-->
 
 								<!-- - - - - - - - - - - - - - End tab - - - - - - - - - - - - - - - - -->
@@ -382,15 +377,7 @@
 
 								<div id="tab-2" class="tab_container">
 
-									<ul class="specifications">
-
-										<li><span>Weight:</span>0.3 Kg</li>
-										<li><span>Dimensions:</span>20x10x30 Cm</li>
-										<li><span>Material:</span>Plastic</li>
-										<li><span>Manufacture:</span>G&amp;D</li>
-										<li><span>Guarantee:</span>2 Years</li>
-
-									</ul>
+									{!! $product->content!!}
 
 								</div><!--/ #tab-2-->
 
@@ -684,7 +671,7 @@
 									<!-- - - - - - - - - - - - - - Carousel of featured products - - - - - - - - - - - - - - - - -->
 
 									<div class="owl_carousel carousel_in_tabs type_2">
-										
+										@foreach(\App\Product::getRelatedProduct(1,8) as $product)
 										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
 										<div class="product_item">
@@ -693,147 +680,17 @@
 
 											<div class="image_wrap">
 
-												<img src="../../../frontend/images/product_img_7.jpg" alt="">
+												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
 												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
 												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
 
-											</div><!--/. image_wrap-->
+												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
 
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
+												<div class="label_new">New</div>
 
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_bestseller">Bestseller</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Adipiscing aliquet sed in lacus, Liqui-gels 24 capsules</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$5.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_8.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Quisque diam lorem, interdum vitae,dapibus ac 4.25 fl oz(126 ml)</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$8.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_9.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
+												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
 
 											</div><!--/. image_wrap-->
 
@@ -843,80 +700,20 @@
 
 											<div class="description">
 
-												<a href="#">Interdum vitae dapibus ac quisque diam lorem 160 ea</a>
+												<a href="#">{{$product->title}}</a>
 
 												<div class="clearfix product_info">
 
-													<p class="product_price alignleft"><b>$76.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_29.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Mauris fermentum dictum magna sed laoreet 60 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$17.99</b></p>
-
-													<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
-
+													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
 													<ul class="rating alignright">
 
 														<li class="active"></li>
 														<li class="active"></li>
 														<li class="active"></li>
-														<li></li>
+														<li class="active"></li>
 														<li></li>
 
 													</ul>
-													
-													<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
-
 												</div>
 
 											</div>
@@ -924,311 +721,10 @@
 											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
 
 										</div><!--/ .product_item-->
-										
+
+
 										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_10.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_bestseller">Bestseller</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Dictum magna sed laoreet aliquam, Capsules 60 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$35.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_7.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_bestseller">Bestseller</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Adipiscing aliquet sed in lacus, Liqui-gels 24 capsules</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$5.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_8.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Quisque diam lorem, interdum vitae, dapibus ac 4.25 fl oz(126 ml)</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$8.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_9.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Interdum vitae dapibus ac quisque diam lorem 160 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$76.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_29.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Mauris fermentum dictum magna sed laoreet  60 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$17.99</b></p>
-
-													<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
-
-													<ul class="rating alignright">
-
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li></li>
-														<li></li>
-
-													</ul>
-													
-													<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
+											@endforeach
 									</div><!--/ .sh_container-->
 									
 									<!-- - - - - - - - - - - - - - End of carousel of featured products - - - - - - - - - - - - - - - - -->
@@ -1240,8 +736,9 @@
 									<!-- - - - - - - - - - - - - - Carousel of bestsellers - - - - - - - - - - - - - - - - -->
 
 									<div class="owl_carousel type_2 carousel_in_tabs">
-										
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
+
+										@foreach(\App\Product::getBestStarsProduct(8) as $product)
+												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
 										<div class="product_item">
 
@@ -1249,87 +746,17 @@
 
 											<div class="image_wrap">
 
-												<img src="../../../frontend/images/deals_img_1.jpg" alt="">
+												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
 												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
 												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
 
-											</div><!--/. image_wrap-->
+												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
 
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
+												<div class="label_new">New</div>
 
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Leo vel metus nulla facilisi etiam cursus 750mg, Softgels 120 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/tabs_img_2.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
+												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
 
 											</div><!--/. image_wrap-->
 
@@ -1339,14 +766,11 @@
 
 											<div class="description">
 
-												<a href="#">Vestibulum libero nisl, porta vel 30</a>
+												<a href="#">{{$product->title}}</a>
 
 												<div class="clearfix product_info">
 
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-													<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
-
+													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
 													<ul class="rating alignright">
 
 														<li class="active"></li>
@@ -1356,9 +780,6 @@
 														<li></li>
 
 													</ul>
-													
-													<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
-
 												</div>
 
 											</div>
@@ -1366,370 +787,10 @@
 											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
 
 										</div><!--/ .product_item-->
-										
+
+
 										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/tabs_img_3.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_hot">Hot</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Nam elit agna, endrerit sit amet, tincidunt ac, viverra, 2.5 fl oz (75ml)</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/tabs_img_1.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Leo vel metus nulla facilisi etiam cursus 750mg, Softgels 120 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_7.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_bestseller">Bestseller</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Adipiscing aliquet sed in lacus, Liqui-gels 24 capsules</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$5.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_8.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Quisque diam lorem, interdum vitae,dapibus ac 4.25 fl oz(126 ml)</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$8.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_9.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Interdum vitae dapibus ac quisque diam lorem 160 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$76.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_29.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Mauris fermentum dictum magna sed laoreet  60 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$17.99</b></p>
-
-													<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
-
-													<ul class="rating alignright">
-
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li></li>
-														<li></li>
-
-													</ul>
-													
-													<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
+										@endforeach
 
 									</div><!--/ .sh_container-->
 
@@ -1743,7 +804,8 @@
 
 									<div class="owl_carousel type_2 carousel_in_tabs">
 
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
+										@foreach(\App\Product::getBestSellerProduct(8) as $product)
+												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
 										<div class="product_item">
 
@@ -1751,27 +813,17 @@
 
 											<div class="image_wrap">
 
-												<img src="../../../frontend/images/product_img_9.jpg" alt="">
+												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
 												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
 												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
+
+												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
+
+												<div class="label_new">New</div>
+
+												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
 
 											</div><!--/. image_wrap-->
 
@@ -1781,196 +833,11 @@
 
 											<div class="description">
 
-												<a href="#">Interdum vitae dapibus ac quisque diam lorem 160 ea</a>
+												<a href="#">{{$product->title}}</a>
 
 												<div class="clearfix product_info">
 
-													<p class="product_price alignleft"><b>$76.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_29.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Mauris fermentum dictum magna sed laoreet  60 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$17.99</b></p>
-
-													<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
-
-													<ul class="rating alignright">
-
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li></li>
-														<li></li>
-
-													</ul>
-													
-													<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-										
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/deals_img_4.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Leo vel metus nulla facilisi etiam cursus 750mg, Softgels 120 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/deals_img_3.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Vestibulum libero nisl, porta vel 30</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-													<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
-
+													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
 													<ul class="rating alignright">
 
 														<li class="active"></li>
@@ -1980,9 +847,6 @@
 														<li></li>
 
 													</ul>
-													
-													<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
-
 												</div>
 
 											</div>
@@ -1990,249 +854,10 @@
 											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
 
 										</div><!--/ .product_item-->
-										
+
+
 										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/deals_img_5.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_hot">Hot</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Nam elit agna, endrerit sit amet, tincidunt ac, viverra, 2.5 fl oz (75ml)</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/tabs_img_1.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view pb" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart pb">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey def_icon_btn middle_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .centered_btns-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Leo vel metus nulla facilisi etiam cursus 750mg, Softgels 120 ea</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$44.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_7.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_bestseller">Bestseller</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Adipiscing aliquet sed in lacus, Liqui-gels 24 capsules</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$5.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<div class="image_wrap">
-
-												<img src="../../../frontend/images/product_img_8.jpg" alt="">
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<div class="actions_wrap">
-
-													<div class="centered_buttons">
-
-														<a href="#" class="button_dark_grey middle_btn quick_view" data-modal-url="modals/quick_view.html">Quick View</a>
-
-														<a href="#" class="button_blue middle_btn add_to_cart">Add to Cart</a>
-
-													</div><!--/ .centered_buttons -->
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_wishlist tooltip_container"><span class="tooltip right">Add to Wishlist</span></a>
-
-													<a href="#" class="button_dark_grey middle_btn def_icon_btn add_to_compare tooltip_container"><span class="tooltip left">Add to Compare</span></a>
-
-												</div><!--/ .actions_wrap-->
-												
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-											<div class="label_new">New</div>
-
-											<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
-											<div class="description">
-
-												<a href="#">Quisque diam lorem, interdum vitae,dapibus ac 4.25 fl oz(126 ml)</a>
-
-												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>$8.99</b></p>
-
-												</div>
-
-											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-										
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
-
+										@endforeach
 									</div><!--/ .sh_container-->
 									
 									<!-- - - - - - - - - - - - - - End of carousel of hot products - - - - - - - - - - - - - - - - -->

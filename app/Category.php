@@ -35,4 +35,12 @@ class Category extends Model
     public static function getAllCategory(){
         return Category::get();
     }
+    public static function getSlugCategory($id){
+        $slug = "mac-dinh";
+        $query=  Category::find($id);
+        if(!empty($query)){
+            $slug = $query->slug;
+        }
+        return $slug;
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductOrder;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,11 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::take(9)->orderBy('updated_at','DESC')->get();
-         $count = count($products);
+        $getBestStarsProduct = Product::getBestStarsProduct(9);
+        $getBestSellerProduct = Product::getBestSellerProduct(9);
+        $getNewProduct = Product::getNewProduct(9);
+
+
         $data = [
-            'products' =>$products,
-            'count'=>$count,
+            'getNewProduct' =>$getNewProduct,
+            'bestSellerProduct'=>$getBestSellerProduct,
+            'getBestStarsProduct'=>$getBestStarsProduct
         ];
         return view('frontend.home',$data);
     }

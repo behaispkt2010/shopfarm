@@ -66,5 +66,42 @@ class Article extends Model
     {
         return nl2br($this->description);
     }
+    public static function getNewArticle(){
+        $article = Article::orderBy('id',"DESC")->take(3)->get();
+        return $article;
+
+    }
+    public static function getBestViewProduct($limit=0){
+        if($limit==0) {
+            $getBestViewProduct = View::leftJoin('articles', 'articles.id', '=', 'views.blog_id')
+                ->groupBy('views.blog_id')
+                ->get();
+        }
+        else{
+            $getBestViewProduct = View::leftJoin('articles', 'articles.id', '=', 'views.blog_id')
+                ->groupBy('views.blog_id')
+                ->take($limit)
+                ->get();
+        }
+        return $getBestViewProduct;
+    }
+    public static function getRelatedArticle($id,$limit){
+
+        $getCategory=Article::find($id);
+        if($limit==0) {
+            $getRelated = Article::where('category', $getCategory->category)
+                ->whereNotIn('id', [$id])
+                ->inRandomOrder()
+                ->get();
+        }
+        else{
+            $getRelated = Article::where('category', $getCategory->category)
+                ->whereNotIn('id', [$id])
+                ->inRandomOrder()
+                ->take($limit)
+                ->get();
+        }
+        return $getRelated;
+    }
 
 }

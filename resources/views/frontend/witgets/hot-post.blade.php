@@ -5,7 +5,7 @@
 								<h3>Bài viết hot</h3>
 
 								<ul class="list_of_entries">
-
+						@foreach(\App\Article::getBestViewProduct(5) as $item)
 									<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
 
 									<li>
@@ -14,9 +14,9 @@
 
 											<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
 
-											<a href="#" class="entry_thumb">
+											<a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}" class="entry_thumb">
 
-												<img src="../../../frontend/images/blog_thumb_4.jpg" alt="">
+												<img src="{{url('/')}}{{$item->image}}" alt="">
 
 											</a>
 
@@ -24,15 +24,15 @@
 
 											<div class="wrapper">
 
-												<h6 class="entry_title"><a href="#">Lorem ipsum dolor sit amet, consecte- tuer adipis</a></h6>
+												<h6 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}">{{$item->title}}</a></h6>
 
 												<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
 
 												<div class="entry_meta">
 
-													<span><i class="icon-calendar"></i> 2014-08-05</span>
+													<span><i class="icon-calendar"></i> {{$item->created_at->format('d-m-Y')}}</span>
 
-													<span><a href="#" class="comments"><i class="icon-comment"></i> 3</a></span>
+													<span><i class="icon-comment"></i> {{$item->view}}</span>
 
 												</div><!--/ .byline-->
 
@@ -45,86 +45,7 @@
 									</li>
 
 									<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-									<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-									<li>
-
-										<article class="entry">
-
-											<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-											<a href="#" class="entry_thumb">
-
-												<img src="../../../frontend/images/blog_thumb_5.jpg" alt="">
-
-											</a>
-
-											<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-											<div class="wrapper">
-
-												<h6 class="entry_title"><a href="#">Neque porro quis- quam est, qui</a></h6>
-
-												<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-												<div class="entry_meta">
-
-													<span><i class="icon-calendar"></i> 2014-11-06</span>
-
-													<span><a href="#" class="comments"><i class="icon-comment"></i> 7</a></span>
-
-												</div><!--/ .byline-->
-
-												<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-											</div><!--/ .wrapper-->
-
-										</article><!--/ .clearfix-->
-
-									</li>
-
-									<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
-									<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-
-									<li>
-
-										<article class="entry">
-
-											<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
-											<a href="#" class="entry_thumb">
-
-												<img src="../../../frontend/images/blog_thumb_6.jpg" alt="">
-
-											</a>
-
-											<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
-											<div class="wrapper">
-
-												<h6 class="entry_title"><a href="#">Mauris fermentum dictum magna</a></h6>
-
-												<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
-												<div class="entry_meta">
-
-													<span><i class="icon-calendar"></i> 2014-03-12</span>
-
-													<span><a href="#" class="comments"><i class="icon-comment"></i> 4</a></span>
-
-												</div><!--/ .byline-->
-
-												<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-											</div><!--/ .wrapper-->
-
-										</article><!--/ .clearfix-->
-
-									</li>
-
-									<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
+						@endforeach
 
 								</ul>
 
