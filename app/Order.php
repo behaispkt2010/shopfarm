@@ -42,4 +42,42 @@ class Order extends Model
         return count($orders);
 
         }
+    public static function getInfoOrder($status,$type=0){
+        $idUser = Auth::user()->id;
+        if($type==1){
+            $orderProducts = ProductOrder::select('product_orders.price','product_orders.num')
+                ->leftJoin('orders','product_orders.order_id','=','orders.id')
+                ->where('orders.kho_id',$idUser)
+                ->where('orders.status','<>',$status)
+                ->where('orders.status','<>',11)
+
+                ->get();
+        }
+        else {
+            $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
+                ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
+                ->where('orders.kho_id', $idUser)
+                ->where('orders.status', $status)
+                ->get();
+        }
+
+        $price=0;
+        $count=0;
+        if(!empty($orderProducts)){
+        foreach($orderProducts as $orderProduct){
+            $price=$price+($orderProduct->price * $orderProduct->num);
+            }
+          $count =  count($orderProducts);
+        }
+
+        $data=[
+            "price"=>$price,
+            "count" => $count
+
+        ];
+//        dd($data);
+        return $data;
+    }
+
+
 }

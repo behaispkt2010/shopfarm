@@ -22,13 +22,13 @@
                                 <div class="col-sm-12 ">
 
 
-                                    <span class="title-money pst-tootip" style="border-bottom: 1px solid #52b256;">Sắp chuyển
+                                    <span class="title-money pst-tootip" style="border-bottom: 1px solid #52b256;">Mới tạo
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
 
                                         <div class="content-money">
-                                            <p style="color: #52b256;">0 VNĐ</p>
-                                            <span class="">0 đơn hàng</span>
+                                            <p style="color: #52b256;">{{\App\Order::getInfoOrder(1)['price']}} VNĐ</p>
+                                            <span class="">{{\App\Order::getInfoOrder(1)['count']}} đơn hàng</span>
                                         </div>
 
 
@@ -48,8 +48,8 @@
                                     </span>
 
                                     <div class="content-money">
-                                        <p style="color: #ea933f;">0 VNĐ</p>
-                                        <span class="">0 đơn hàng</span>
+                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(9,1)['price']}} VNĐ</p>
+                                        <span class="">{{\App\Order::getInfoOrder(9,1)['count']}} đơn hàng</span>
                                     </div>
 
 
@@ -69,8 +69,8 @@
                                     </span>
 
                                     <div class="content-money">
-                                        <p style="color: #835f90;">0 VNĐ</p>
-                                        <span class="">0 đơn hàng</span>
+                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(9)['price']}} VNĐ</p>
+                                        <span class="">{{\App\Order::getInfoOrder(9)['count']}} đơn hàng</span>
                                     </div>
 
 
@@ -85,13 +85,13 @@
                                 <div class="col-sm-12 ">
 
 
-                                    <span class="title-money pst-tootip" style="border-bottom: 1px solid #52b256;">Đã chuyển
+                                    <span class="title-money pst-tootip" style="border-bottom: 1px solid #52b256;">Đang vận chuyển
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
 
                                     <div class="content-money">
-                                        <p style="color: #41a7c0;">0 VNĐ</p>
-                                        <span class="">0 đơn hàng</span>
+                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(8)['price']}} VNĐ</p>
+                                        <span class="">{{\App\Order::getInfoOrder(8)['count']}} đơn hàng</span>
                                     </div>
 
 
