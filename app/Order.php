@@ -2,7 +2,10 @@
 
 namespace App;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -29,4 +32,14 @@ class Order extends Model
         }
         return $tmpKho;
     }
+    public static function getNumOrder($status,$date){
+        $idUser = Auth::user()->id;
+
+        $orders = Order::where('kho_id',$idUser)
+            ->where('status',$status)
+            ->where(DB::raw("(DATE_FORMAT(updated_at,'%d-%m-%Y'))"),$date)
+            ->get();
+        return count($orders);
+
+        }
 }

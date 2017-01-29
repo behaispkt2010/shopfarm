@@ -9,41 +9,37 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardAdminController extends Controller
 {
     public function getdashboard(Request $request){
+        $data=$request->get('data');
+        $dateRes = explode('->', $data);
+        //dd($data);
+        $lineLabels = [];
+        $lineDatas = [];
+        $barLabels = [];
+        $barDatas1= [];
+        $barDatas2 =[];
+
         $idUser = Auth::user()->id;
-        $orders = Order::whereBetween('updated_at', array(new DateTime('29-01-2017'), new DateTime('30-01-2017')))
-            ->where('kho_id',0)
+        $orders = Order::whereBetween('updated_at', array(new DateTime($dateRes[0]), new DateTime($dateRes[1])))
+            ->where('kho_id',$idUser)
+            ->whereIn('status',[9,11])
+            ->groupBy(DB::raw("DATE(updated_at)"))
             ->get();
-
-        $orderProduct = ProductOrder::select('product_orders.id','orders.kho_id','product_orders.price_in','product_orders.price','product_orders.num')
-            ->leftJoin('orders','product_orders.order_id','=','orders.id')
-            ->where('orders.kho_id',0)
-            ->get();
-
-
-
-        $lineLabels = ["January", "February"];
-        $lineDatas = [31, 74];
-        $barLabels = ["January", "February"];
-        $barDatas1= [41, 56, 25, 48, 72];
-        $barDatas2 = [41, 56, 25, 48, 72];
         $i=0;
-        $j=0;
-//        foreach($orders as $order ){
-//            if($order->status==9) {
-//                $barDatas1[$i] = $order->numOrder;
-//                $i++;
-//            }
-//            elseif($order->status==11){
-//                $barDatas2[$j]=$order->numOrder;
-//                $j++;
-//            }
-//
-//        }
+        foreach($orders as $key=>$order ){
+            $barLabels[$i]=$order->updated_at->format('d-m-Y');
+                $barDatas1[$i] = Order::getNumOrder(9,$order->updated_at->format('d-m-Y'));
+                $barDatas2[$i] = Order::getNumOrder(11,$order->updated_at->format('d-m-Y'));
 
+            $lineLabels[$i]=$order->updated_at->format('d-m-Y');
+            $lineDatas[$i] = ProductOrder::getSumPrice($order->updated_at->format('d-m-Y'));
+            $i++;
+
+        }
 
         $response = array(
             'status' => 'success',
