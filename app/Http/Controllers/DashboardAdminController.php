@@ -13,37 +13,49 @@ use Illuminate\Support\Facades\Auth;
 class DashboardAdminController extends Controller
 {
     public function getdashboard(Request $request){
-        $param1 = 7;
-        $param2 = 7;
         $idUser = Auth::user()->id;
-        $order = Order::whereBetween('updated_at', array(new DateTime('29-01-2017'), new DateTime('29-01-2017')))
+        $orders = Order::whereBetween('updated_at', array(new DateTime('29-01-2017'), new DateTime('30-01-2017')))
             ->where('kho_id',0)
             ->get();
 
-        dd($order);
-
-
         $orderProduct = ProductOrder::select('product_orders.id','orders.kho_id','product_orders.price_in','product_orders.price','product_orders.num')
             ->leftJoin('orders','product_orders.order_id','=','orders.id')
-            ->where('orders.kho_id',$idUser)
+            ->where('orders.kho_id',0)
             ->get();
-        $totalPriceIn=0;
-        $totalPrice=0;
-        foreach($orderProduct as $itemOrder){
-            $totalPrice = $itemOrder->num * $itemOrder->price;
-            $totalPriceIn = $itemOrder->num * $itemOrder->price_in;
-
-        }
-        $faiseOrder =[];
-        $successOrder = [];
 
 
-//        $numOrder = count($order);
-//        $profit =$totalPrice - $totalPriceIn;
-//        $data=[
-//            "numOrder"=>$numOrderArray,
-//            "profit"=>$numProfitArray,
-//        ];
+
+        $lineLabels = ["January", "February"];
+        $lineDatas = [31, 74];
+        $barLabels = ["January", "February"];
+        $barDatas1= [41, 56, 25, 48, 72];
+        $barDatas2 = [41, 56, 25, 48, 72];
+        $i=0;
+        $j=0;
+//        foreach($orders as $order ){
+//            if($order->status==9) {
+//                $barDatas1[$i] = $order->numOrder;
+//                $i++;
+//            }
+//            elseif($order->status==11){
+//                $barDatas2[$j]=$order->numOrder;
+//                $j++;
+//            }
+//
+//        }
+
+
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+            'lineLabels' => $lineLabels,
+            'lineDatas' => $lineDatas,
+            'barLabels'=>$barLabels,
+            'barDatas1'=>$barDatas1,
+            'barDatas2'=>$barDatas2,
+
+        );
+        return \Response::json($response);
 
     }
 
