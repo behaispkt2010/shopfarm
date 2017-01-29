@@ -6,9 +6,7 @@
     <script src="{{asset('plugin/fastclick/lib/fastclick.js')}}"></script>
     <!-- NProgress -->
     <script src="{{asset('plugin/nprogress/nprogress.js')}}"></script>
-    <!-- Chart.js -->
-    <script src="{{asset('plugin/Chart.js/dist/Chart.min.js')}}"></script>
-    <!-- gauge.js -->
+
     <script src="{{asset('plugin/gauge.js/dist/gauge.min.js')}}"></script>
     <!-- bootstrap-progressbar -->
     <script src="{{asset('plugin/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>

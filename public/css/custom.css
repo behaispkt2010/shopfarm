@@ -5426,7 +5426,27 @@ table.dtp-picker-days thead{
 .dtp-picker-calendar .dtp-picker-month{
   display: none !important;
 }
-.value-das{
+.value-das {
   font-size: 30px;
   font-weight: 400;
+}
+.delete-img{
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  padding: 5px;
+  background: #f7f7f7;
+  border-radius: 50%;
+
+}
+.abcd{
+  position: relative;
+}
+.delete-img-ajax{
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  padding: 5px;
+  background: #f7f7f7;
+  border-radius: 50%;
 }

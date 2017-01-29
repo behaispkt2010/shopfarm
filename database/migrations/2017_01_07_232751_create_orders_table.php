@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('type_driver');
             $table->string('name_driver');
             $table->string('phone_driver');
+            $table->integer('kho_id');
             $table->string('number_license_driver');
             $table->integer('author_id');
             $table->timestamps();

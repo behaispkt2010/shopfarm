@@ -127,7 +127,7 @@
                                                 </li>
                                                 <li><i class="fa fa-phone"></i> @if(!empty($arrAllUser[$arrOrders['customer_id']]->phone_number)){!! $arrAllUser[$arrOrders['customer_id']]->phone_number !!}@endif</li>
                                                 <li><i class="fa fa-usd"></i> <span class="box-money">@if(!empty($arrAllProductOrder[$arrOrders['id']]->price))@foreach($arrTmpProductOrders as $ProOrder)@if($arrOrders->id == $ProOrder['order_id'])<?php $priceTotal = $priceTotal + $ProOrder['price']; ?> @endif @endforeach{!! $priceTotal !!}@endif VNĐ</span></li>
-                                                <li><i class="fa fa-database"></i> Thuộc Chủ Kho 1
+                                                <li><i class="fa fa-database"></i> Thuộc Chủ Kho #{{$arrOrders->kho_id}}
                                             </ul>
                                         </div>
                                     </div>

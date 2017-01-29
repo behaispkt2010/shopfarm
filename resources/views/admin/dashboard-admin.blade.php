@@ -6,10 +6,10 @@
 
     <div class="row">
         <br>
-        <div class="col-md-3 text-center">Đơn Hàng<br><span class="value-das">200</span></div>
-        <div class="col-md-3 text-center">Doanh Thu<br><span class="value-das">64.27M</span></div>
-        <div class="col-md-3 text-center">Lợi nhuận hiện tại<br><span class="value-das">200,200</span></div>
-        <div class="col-md-3 text-center">Giá Trị Trung Bình Đơn Hàng<br><span class="value-das">259,153</span></div>
+        <div class="col-md-3 text-center">Đơn Hàng<br><span class="value-das">{{$numOrder}}</span></div>
+        <div class="col-md-3 text-center">Doanh Thu<br><span class="value-das">{{$totalPrice}}</span></div>
+        <div class="col-md-3 text-center">Lợi nhuận hiện tại<br><span class="value-das">{{$profit}}</span></div>
+        <div class="col-md-3 text-center">Số sản phẩm<br><span class="value-das">{{$numProduct}}</span></div>
 
     </div>
     <div class="row">
@@ -17,7 +17,17 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Doanh thu <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                    <h2>Doanh thu </h2>
+                        </div>
+                    <div class="col-md-8">
+                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <span id="date-filter"></span> <b class="caret"></b>
+                        </div>
+                    </div>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -29,7 +39,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Số đơn hàng <button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button></h2>
+                    <h2>Số đơn hàng </h2>
 
                     <div class="clearfix"></div>
                 </div>
@@ -43,11 +53,80 @@
 
     @endsection
     @section('add_scripts')
+        <script>
+            $(document).ready(function() {
+
+                var cb = function(start, end, label) {
+                    console.log(start.toISOString(), end.toISOString(), label);
+                    $('#reportrange span').html(start.format('DD-MM-YYYY') + ' -> ' + end.format('DD-MM-YYYY'));
+                };
+
+                var optionSet1 = {
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment(),
+                    minDate: '01/01/2012',
+                    maxDate: '12/31/2020',
+                    dateLimit: {
+                        days: 90
+                    },
+                    showDropdowns: true,
+                    showWeekNumbers: true,
+                    timePicker: false,
+                    timePickerIncrement: 1,
+                    timePicker12Hour: true,
+                    ranges: {
+                        'Hôm nay': [moment(), moment()],
+                        '7 ngày': [moment().subtract(6, 'days'), moment()],
+                        '30 ngày': [moment().subtract(29, 'days'), moment()],
+                        '90 ngày': [moment().startOf('month'), moment().endOf('month')],
+                    },
+                    opens: 'left',
+                    buttonClasses: ['btn btn-default btn-xs btn-raised'],
+                    applyClass: 'btn-small btn-primary ',
+                    cancelClass: 'btn-small',
+                    format: 'DD/MM/YYYY',
+                    separator: ' to ',
+                    locale: {
+                        applyLabel: 'Lọc dữ liệu',
+                        cancelLabel: 'Xóa',
+                        fromLabel: 'Từ ngày',
+                        toLabel: 'Đến ngày',
+                        customRangeLabel: 'chọn bất kỳ',
+                        daysOfWeek: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                        monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 12', 'Tháng 12'],
+                        firstDay: 1
+                    }
+                };
+                $('#reportrange span').html(moment().subtract(7, 'days').format('DD-MM-YYYY') + ' -> ' + moment().format('DD-MM-YYYY'));
+                $('#reportrange').daterangepicker(optionSet1, cb);
+                $('#reportrange').on('show.daterangepicker', function() {
+                    console.log("show event fired");
+                });
+                $('#reportrange').on('hide.daterangepicker', function() {
+                    console.log("hide event fired");
+                });
+                $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+                    console.log("apply event fired, start/end dates are " + picker.startDate.format('DD-MM-YYYY') + " to " + picker.endDate.format('DD-MM-YYYY'));
+                });
+                $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+                    console.log("cancel event fired");
+                });
+                $('#options1').click(function() {
+                    $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+                });
+                $('#options2').click(function() {
+                    $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+                });
+                $('#destroy').click(function() {
+                    $('#reportrange').data('daterangepicker').remove();
+                });
+            });
+        </script>
+        <!-- /bootstrap-daterangepicker -->
             <!-- Chart.js -->
-    <script src="{{asset('/plugin/Chart.js/dist/Chart.min.js')}}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{asset('/js/moment/moment.min.js')}}"></script>
-    <script src="{{asset('/js/datepicker/daterangepicker.js')}}"></script>
+    <!-- Chart.js -->
+    <script src="{{asset('plugin/Chart.js/dist/Chart.min.js')}}"></script>
+    <!-- gauge.js -->
     <!-- Doughnut Chart -->
     <script>
         $(document).ready(function () {
@@ -140,4 +219,6 @@
             }
         });
     </script>
+    <!-- bootstrap-daterangepicker -->
+
 @endsection

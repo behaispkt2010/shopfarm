@@ -124,15 +124,8 @@
 
 											<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
 
-											<ul class="rating">
+											{!! \App\Rate::getRateProduct($product->id)!!}
 
-												<li class="active"></li>
-												<li class="active"></li>
-												<li class="active"></li>
-												<li></li>
-												<li></li>
-
-											</ul>
 
 											<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
 
@@ -140,7 +133,7 @@
 
 											<ul class="topbar">
 
-												<li><a href="#">3 Đã đánh giá</a></li>
+												<li><a href="#">{{\App\Rate::countRate($product->id)}} Đã đánh giá</a></li>
 
 											</ul>
 
@@ -280,9 +273,9 @@
 
 											<div class="wrapper">
 
-												<a href="#"><b>Nguyễn Thái Bình</b></a>
+												<a href="#"><b>{{$product->nameKho}}</b></a>
 
-												<p class="seller_category">Chủ kho cấp 1</p>
+												<p class="seller_category">Chủ kho cấp {{$product->levelKho}}</p>
 
 											</div>
 
@@ -294,9 +287,9 @@
 												
 												<ul class="topbar">
 													
-													<li>Tây nguyên</li>
+													<li>{{$product->addressKho}}</li>
 
-													<li>Mã: #fff234</li>
+													<li>Mã: #{{$product->idKho}}</li>
 
 												</ul>
 
@@ -314,7 +307,7 @@
 
 									<footer class="bottom_box">
 										
-										<a href="#" class="button_grey middle_btn">Xem các sản phẩm khác</a>
+										<a href="{{url('/kho')/$product->idKho}}" class="button_grey middle_btn">Xem các sản phẩm khác</a>
 
 									</footer>
 

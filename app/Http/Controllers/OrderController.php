@@ -10,11 +10,12 @@ use App\Product;
 use App\ProductOrder;
 use App\Province;
 use App\User;
-use DB,DateTime;
+use DateTime;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -87,57 +88,91 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = new Order();
+        DB::beginTransaction();
+        try {
+            $arrProductID = $request->product_id;
+            $arrNumberProduct = $request->product_number;
+            $arrPriceTotal = $request->pricetotal;
 
-        $order->time_order = $request->time_order;
-        $order->status = $request->status;
-        $order->customer_id = $request->customer_id;
-        $order->note = $request->note;
-        $order->type_driver = $request->type_driver;
-        $order->name_driver = $request->name_driver;
-        $order->phone_driver = $request->phone_driver;
-        $order->number_license_driver = $request->number_license_driver;
-        $order->type_pay = $request->type_pay;
-        $order->received_pay = $request->received_pay;
-        $order->remain_pay = $request->remain_pay;
-        $order->author_id = Auth::user()->id;
+            $order = new Order();
 
-        $order->save();
-        $strOrderID = $order->id;
-        // insert history
-        $historyUpdateStatusOrder = new HistoryUpdateStatusOrder();
-        $historyUpdateStatusOrder->order_id = $strOrderID;
-        $historyUpdateStatusOrder->status = $request->status;
-        $historyUpdateStatusOrder->author_id = Auth::user()->id;
-        $historyUpdateStatusOrder->save();
+            $kho_id = Order::checkKhoByIdProduct($arrProductID);
+            if($kho_id == -1){
+                return redirect('admin/orders/create/')->with(['flash_level' => 'danger', 'flash_message' => 'Các sản phẩm trong đơn hàng không cùng kho']);
+            }
+            else {
+                $order->kho_id = $kho_id;
+            }
 
-        $arrProductID = $request->product_id;
-        $arrNumberProduct = $request->product_number;
-        $arrPriceTotal = $request->pricetotal;
-        $ProductOrder = [];
+            $order->time_order = $request->time_order;
+            $order->status = $request->status;
+            $order->customer_id = $request->customer_id;
+            $order->note = $request->note;
+            $order->type_driver = $request->type_driver;
+            $order->name_driver = $request->name_driver;
+            $order->phone_driver = $request->phone_driver;
+            $order->number_license_driver = $request->number_license_driver;
+            $order->type_pay = $request->type_pay;
+            $order->received_pay = $request->received_pay;
+            $order->remain_pay = $request->remain_pay;
+            $order->author_id = Auth::user()->id;
+            $order->save();
+            $strOrderID = $order->id;
+            // insert history
+            $historyUpdateStatusOrder = new HistoryUpdateStatusOrder();
+            $historyUpdateStatusOrder->order_id = $strOrderID;
+            $historyUpdateStatusOrder->status = $request->status;
+            $historyUpdateStatusOrder->author_id = Auth::user()->id;
+            $historyUpdateStatusOrder->save();
 
-        foreach($arrProductID as $index => $ProductID){
-            $ProductOrder[$index]['id_product'] = $ProductID;
-            $ProductOrder[$index]['order_id'] = $strOrderID;
-            $ProductOrder[$index]['created_at'] = new DateTime();
-            $ProductOrder[$index]['updated_at'] = new DateTime();
+
+//            $ProductOrder = [];
+//
+//            foreach ($arrProductID as $index => $ProductID) {
+//                $ProductOrder[$index]['id_product'] = $ProductID;
+//                $ProductOrder[$index]['order_id'] = $strOrderID;
+//                $ProductOrder[$index]['created_at'] = new DateTime();
+//                $ProductOrder[$index]['updated_at'] = new DateTime();
+//            }
+//            foreach ($arrPriceTotal as $index => $PriceTotal) {
+//                $ProductOrder[$index]['price'] = $PriceTotal;
+//                $ProductOrder[$index]['order_id'] = $strOrderID;
+//                $ProductOrder[$index]['created_at'] = new DateTime();
+//                $ProductOrder[$index]['updated_at'] = new DateTime();
+//            }
+//            foreach ($arrNumberProduct as $index => $NumberProduct) {
+//                $ProductOrder[$index]['num'] = $NumberProduct;
+//                $ProductOrder[$index]['order_id'] = $strOrderID;
+//                $ProductOrder[$index]['created_at'] = new DateTime();
+//                $ProductOrder[$index]['updated_at'] = new DateTime();
+//
+//            }
+
+
+            foreach ($arrProductID as $key=>$ProductID) {
+                $ProductOrder1 = new ProductOrder();
+                $productInfo = Product::find($ProductID);
+                $ProductOrder1['id_product'] = $ProductID;
+                $ProductOrder1['order_id'] = $strOrderID;
+                $ProductOrder1['price_in'] = $productInfo->price_in;
+                $ProductOrder1['price'] = $productInfo->price_out;
+                $ProductOrder1['num'] = $arrNumberProduct[$key];
+                $ProductOrder1['name'] = $productInfo->title;
+                $ProductOrder1->save();
+            }
+
+//            DB::table('product_orders')->insert($ProductOrder);
         }
-        foreach($arrPriceTotal as $index => $PriceTotal){
-            $ProductOrder[$index]['price'] = $PriceTotal;
-            $ProductOrder[$index]['order_id'] = $strOrderID;
-            $ProductOrder[$index]['created_at'] = new DateTime();
-            $ProductOrder[$index]['updated_at'] = new DateTime();
-        }
-        foreach($arrNumberProduct as $index => $NumberProduct){
-            $ProductOrder[$index]['num'] = $NumberProduct;
-            $ProductOrder[$index]['order_id'] = $strOrderID;
-            $ProductOrder[$index]['created_at'] = new DateTime();
-            $ProductOrder[$index]['updated_at'] = new DateTime();
+        catch(\Exception $e){
+
+            DB::rollback();
+            return redirect('admin/orders/')->with(['flash_level' => 'danger', 'flash_message' => 'Lưu không thành công']);
 
         }
-        DB::table('product_orders')->insert($ProductOrder);
 
-        return redirect('admin/orders/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
+            DB::commit();
+            return redirect('admin/orders/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
+
     }
 
 
@@ -234,52 +269,83 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::find($id);
-        $data['time_order'] = $request->time_order;
-        $data['status'] = $request->status;
-        $data['customer_id'] = $request->customer_id;
-        $data['note'] = $request->note;
-        $data['type_driver'] = $request->type_driver;
-        $data['name_driver'] = $request->name_driver;
-        $data['phone_driver'] = $request->phone_driver;
-        $data['number_license_driver'] = $request->number_license_driver;
-        $data['type_pay'] = $request->type_pay;
-        $data['received_pay'] = $request->received_pay;
-        $data['remain_pay'] = $request->remain_pay;
-        $data['author_id'] = Auth::user()->id;
-        $order->update($data);
-        if(!empty($id)) {
-            DB::table('product_orders')->where('order_id','=',$id)->delete();
+        DB::beginTransaction();
+        try {
+            $arrProductID = $request->product_id;
+            $arrNumberProduct = $request->product_number;
+            $arrPriceTotal = $request->pricetotal;
+            $order = Order::find($id);
+            $kho_id = Order::checkKhoByIdProduct($arrProductID);
+//            dd($kho_id);
+
+            if($kho_id == -1){
+                return redirect("admin/orders/$id/edit/")->with(['flash_level' => 'danger', 'flash_message' => 'Các sản phẩm trong đơn hàng không cùng kho']);
+            }
+            else {
+                $order->kho_id = $kho_id;
+            }
+            $data['time_order'] = $request->time_order;
+            $data['status'] = $request->status;
+            $data['customer_id'] = $request->customer_id;
+            $data['note'] = $request->note;
+            $data['type_driver'] = $request->type_driver;
+            $data['name_driver'] = $request->name_driver;
+            $data['phone_driver'] = $request->phone_driver;
+            $data['number_license_driver'] = $request->number_license_driver;
+            $data['type_pay'] = $request->type_pay;
+            $data['received_pay'] = $request->received_pay;
+            $data['remain_pay'] = $request->remain_pay;
+            $data['author_id'] = Auth::user()->id;
+            $order->update($data);
+            if (!empty($id)) {
+                DB::table('product_orders')->where('order_id', '=', $id)->delete();
+            }
+            $strOrderID = $id;
+            // insert history
+            $historyUpdateStatusOrder = new HistoryUpdateStatusOrder();
+            $historyUpdateStatusOrder->order_id = $strOrderID;
+            $historyUpdateStatusOrder->status = $request->status;
+            $historyUpdateStatusOrder->author_id = Auth::user()->id;
+            $historyUpdateStatusOrder->save();
+
+
+
+
+//            $ProductOrder = [];
+//
+//            foreach ($arrProductID as $index => $ProductID) {
+//                $ProductOrder[$index]['id_product'] = $ProductID;
+//                $ProductOrder[$index]['order_id'] = $strOrderID;
+//            }
+//            foreach ($arrPriceTotal as $index => $PriceTotal) {
+//                $ProductOrder[$index]['price'] = $PriceTotal;
+//                $ProductOrder[$index]['order_id'] = $strOrderID;
+//            }
+//            foreach ($arrNumberProduct as $index => $NumberProduct) {
+//                $ProductOrder[$index]['num'] = $NumberProduct;
+//                $ProductOrder[$index]['order_id'] = $strOrderID;
+//            }
+            foreach ($arrProductID as $key=>$ProductID) {
+                $ProductOrder1 = new ProductOrder();
+                $productInfo = Product::find($ProductID);
+                $ProductOrder1['id_product'] = $ProductID;
+                $ProductOrder1['order_id'] = $strOrderID;
+                $ProductOrder1['price_in'] = $productInfo->price_in;
+                $ProductOrder1['price'] = $productInfo->price_out;
+                $ProductOrder1['num'] = $arrNumberProduct[$key];
+                $ProductOrder1['name'] = $productInfo->title;
+                $ProductOrder1->save();
+            }
+//            DB::table('product_orders')->insert($ProductOrder);
         }
-        $strOrderID = $id;
-        // insert history
-        $historyUpdateStatusOrder = new HistoryUpdateStatusOrder();
-        $historyUpdateStatusOrder->order_id = $strOrderID;
-        $historyUpdateStatusOrder->status = $request->status;
-        $historyUpdateStatusOrder->author_id = Auth::user()->id;
-        $historyUpdateStatusOrder->save();
+        catch(\Exception $e){
 
+                DB::rollback();
+                return redirect('admin/orders/')->with(['flash_level' => 'danger', 'flash_message' => 'Lưu không thành công']);
 
-        $arrProductID = $request->product_id;
-        $arrNumberProduct = $request->product_number;
-        $arrPriceTotal = $request->pricetotal;
+            }
 
-        $ProductOrder = [];
-
-        foreach($arrProductID as $index => $ProductID){
-            $ProductOrder[$index]['id_product'] = $ProductID;
-            $ProductOrder[$index]['order_id'] = $strOrderID;
-        }
-        foreach($arrPriceTotal as $index => $PriceTotal){
-            $ProductOrder[$index]['price'] = $PriceTotal;
-            $ProductOrder[$index]['order_id'] = $strOrderID;
-        }
-        foreach($arrNumberProduct as $index => $NumberProduct){
-            $ProductOrder[$index]['num'] = $NumberProduct;
-            $ProductOrder[$index]['order_id'] = $strOrderID;
-        }
-        DB::table('product_orders')->insert($ProductOrder);
-
+            DB::commit();
         return redirect('admin/orders/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
     }
 

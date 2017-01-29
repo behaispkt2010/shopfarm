@@ -259,6 +259,7 @@ public function AjaxGetProduct(Request $request){
     {
         $today = date("Y-m-d_H-i-s");
         $data = $request->all();
+//        $files = $request->file('image_detail');
         $product =  Product::find($id);
         if(!empty(Auth::user()->id)) {
             $data['author_id'] = Auth::user()->id;
@@ -292,9 +293,8 @@ public function AjaxGetProduct(Request $request){
 
         $dataImage['product_id']=$id;
         if(!empty($request->file('image_detail'))) {
-            DetailImageProduct::where('product_id',$dataImage['product_id'])->delete();
-            foreach ($request->file('image_detail') as $image_detail) {
-
+//            DetailImageProduct::where('product_id',$dataImage['product_id'])->delete();
+            foreach ($request->file('image_detail') as $key=>$image_detail) {
                 $imageDetail = new DetailImageProduct();
                 $dataImage['image'] = Util::saveFile($image_detail, '');
                 DetailImageProduct::create($dataImage);
@@ -320,5 +320,14 @@ public function AjaxGetProduct(Request $request){
             return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
 
         }
+    }
+    public function deleteDetailImage(Request $request)
+    {
+        DetailImageProduct::where('id',$request->get('id'))->delete();
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
     }
 }
