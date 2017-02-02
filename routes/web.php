@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
 
     //Đơn hàng
     Route::resource('orders', 'OrderController');
+    Route::get('orders/getOrderByStatus/{id}', 'OrderController@getOrderByStatus');
     //ql kho
     Route::resource('inventory', 'InventoryController');
     //ql sỗ quỹ

@@ -51,8 +51,8 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-9" style="margin-top: 13px">
-                                        <select id="select-product" name="select-product"  class="form-control " placeholder="Thêm sản phấm" >
-                                            <option value="0"></option>
+                                        <select id="select-product" name="select-product"  class="form-control " placeholder="Thêm sản phấm">
+                                            <option value=""></option>
                                             @if(!empty($products))
                                                 @foreach($products as $product)
                                                     <option value="{{$product->id}}" data-image="dsa" data-name="dsa">
@@ -127,18 +127,25 @@
                             <div class="wrapper-content">
 
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-raised btn-primary">Hủy</button>
                                     @if(Request::is('admin/orders/create'))
-                                        <button type="submit" class="btn btn-raised btn-success">Thêm đơn hàng</button>
+                                        <button type="submit" class="btn btn-raised btn-success">Tạo mới</button>
                                     @else
                                         <button type="submit" class="btn btn-raised btn-success">Cập nhật</button>
+                                        <form action=""></form>
+                                        <form action="{{route('orders.destroy',['id' => $id])}}" method="post" class="form-delete" style="display: inline">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                            <input type="hidden" value="{{$id}}">
+                                            {{method_field("DELETE")}}
+                                            <a type="submit" class = "btn btn-raised btn-primary" name ="delete_modal" style="display: inline-block">Xóa đơn hàng</a>
+                                        </form>
+
                                     @endif
 
 
                                 </div>
                                 <div class="form-group">
                                     <label> Thời gian đặt hàng</label>
-                                    <input type="text" id="date-format" name="time_order" class="form-control" value="@if(!empty($arrOrder->time_order)){{$arrOrder->time_order}}@else{{old('time_order')}}@endif">
+                                    <input type="text" id="date-format" name="time_order" class="form-control" value="@if(!empty($arrOrder->time_order)){{$arrOrder->time_order}}@else{{old('time_order')}}@endif" required>
 
                                 </div>
 
@@ -196,6 +203,7 @@
                 <!-- modals -->
                 <!-- Large modal -->
 </div>
+@include('admin.partial.modal_delete')
 <div class="modal fade bs-example-modal-km" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
      data-backdrop="static">
     <div class="modal-dialog bs-example-modal-km">
@@ -422,11 +430,11 @@
                     </div>--}}
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput1"> Đã nhận</label>
-                        <input class="form-control received_pay" id="focusedInput1" type="text" name="received_pay" required>
+                        <input class="form-control received_pay" id="focusedInput1" type="number" name="received_pay" required>
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput2"> Còn lại</label>
-                        <input class="form-control remain_pay" id="focusedInput2" type="text" name="remain_pay" required>
+                        <input class="form-control remain_pay" id="focusedInput2" type="number" name="remain_pay" required>
                     </div>
                 </div>
             </div>
@@ -599,11 +607,11 @@
 </script>
 <script>
     $('.btnPayAll').on('click', function () {
-        $('input[type="hidden"][name="type_pay"]').val('0');
+        $('input[type="hidden"][name="type_pay"]').val('1');
         $('.modal-order').modal('hide');
     });
     $('.btnPay').on('click', function () {
-        $('input[type="hidden"][name="type_pay"]').val('1');
+        $('input[type="hidden"][name="type_pay"]').val('2');
         var received_pay = $('.received_pay').val();
         var remain_pay = $('.remain_pay').val();
         $('input[type="hidden"][name="received_pay"]').val(received_pay);

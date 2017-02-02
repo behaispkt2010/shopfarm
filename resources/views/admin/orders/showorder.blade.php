@@ -259,7 +259,9 @@
                                 Thanh toán:
                             </div>
                             <div class="col-md-8">
-                                <p>@if((!empty($arrOrder->type_pay)) && $arrOrder->type_pay == 0) Đã thanh toán đầy đủ @else Đã đặt cọc @if(!empty($arrOrder->received_pay)){{$arrOrder->received_pay}} VNĐ @endif @endif </p>
+                                <p>
+                                    @if(($arrOrder->type_pay == 1)) Đã thanh toán đầy đủ @elseif($arrOrder->type_pay == 2) Đã đặt cọc @if(!empty($arrOrder->received_pay)){{$arrOrder->received_pay}} VNĐ @endif @else Chưa thanh toán @endif
+                                </p>
                             </div>
                         </div>
                         <div class="row">

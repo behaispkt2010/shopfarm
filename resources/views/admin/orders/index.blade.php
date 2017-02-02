@@ -16,54 +16,40 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                         <ul class="tab-fill">
-                            <li class="show-menu active"><a href="#">Mới tạo</a><span
+                            <li class="show-menu active"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/0">Mới tạo</a><span
                                         style="background-color: #8bc34a"
                                         class="ng-binding">0</span></li>
-                            <li class="show-menu"><a href="#">Chưa tiếp nhận</a><span
+                            <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/1">Chưa tiếp nhận</a><span
                                         style="background-color: #EEB390"
                                         class="ng-binding">0</span></li>
-                            <li class="show-menu"><a href="#">Đã tiếp nhận</a><span
+                            <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/2">Đã tiếp nhận</a><span
                                         style="background-color: #2B8388"
                                         class="ng-binding">0</span></li>
-                            <li class="show-menu"><a href="#">Chờ trả hàng</a><span
+                            <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/3">Chờ trả hàng</a><span
                                         style="background-color: #35468A"
                                         class="ng-binding">0</span></li>
-                            <li class="show-menu"><a href="#">Chuyển DH cho Chủ kho</a><span
+                            <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/4">Chuyển DH cho Chủ kho</a><span
                                         style="background-color: #EEB390"
                                         class="ng-binding">0</span></li>
-                            <li><a href="#">Đang thu gom</a><span style="background-color: #2B8388"
-                                                                  class="ng-binding">0</span></li>
-                            <li><a href="#">Đang sơ chế</a><span style="background-color: #35468A"
-                                                                 class="ng-binding">0</span></li>
-                            <li><a href="#">Đang đóng gói</a><span style="background-color: #EEB390"
-                                                                   class="ng-binding">0</span></li>
-                            <li><a href="#">Đã xuất kho</a><span style="background-color: #2B8388"
-                                                                 class="ng-binding">0</span></li>
-                            <li><a href="#">Đang vận chuyển</a><span style="background-color: #35468A"
-                                                                     class="ng-binding">0</span></li>
-                            <li><a href="#">Đã giao xong</a><span style="background-color: #2B8388"
-                                                                  class="ng-binding">0</span></li>
-                            <li><a href="#">Trả hàng nhập kho</a><span style="background-color: #35468A"
-                                                                       class="ng-binding">0</span></li>
                             <li class="show-menu other-item-button pst-tootip" style="">
                                 Trạng thái khác
                                 <span class="glyphicon glyphicon-menu-down"></span>
                                 <!-- ngIf: (orderByStatus.currentTutorialID == 4) -->
                                 <div class="other-item-list">
                                     <ul>
-                                        <li><a href="#">Đang thu gom</a><span style="background-color: #2B8388"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/5">Đang thu gom</a><span style="background-color: #2B8388"
                                                                               class="ng-binding">0</span></li>
-                                        <li><a href="#">Đang sơ chế</a><span style="background-color: #35468A"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/6">Đang sơ chế</a><span style="background-color: #35468A"
                                                                              class="ng-binding">0</span></li>
-                                        <li><a href="#">Đang đóng gói</a><span style="background-color: #EEB390"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/7">Đang đóng gói</a><span style="background-color: #EEB390"
                                                                                class="ng-binding">0</span></li>
-                                        <li><a href="#">Đã xuất kho</a><span style="background-color: #2B8388"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/8">Đã xuất kho</a><span style="background-color: #2B8388"
                                                                              class="ng-binding">0</span></li>
-                                        <li><a href="#">Đang vận chuyển</a><span style="background-color: #35468A"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/9">Đang vận chuyển</a><span style="background-color: #35468A"
                                                                                  class="ng-binding">0</span></li>
-                                        <li><a href="#">Đã giao xong</a><span style="background-color: #2B8388"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/10">Đã giao xong</a><span style="background-color: #2B8388"
                                                                               class="ng-binding">0</span></li>
-                                        <li><a href="#">Trả hàng nhập kho</a><span style="background-color: #35468A"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/11">Trả hàng nhập kho</a><span style="background-color: #35468A"
                                                                                    class="ng-binding">0</span></li>
                                     </ul>
                                 </div>
@@ -73,23 +59,25 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="form-group label-floating">
+                <form action="" method="GET">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="form-group label-floating">
 
-                            <label class="control-label" for="addon2">Số điện thoại / Tên khách hàng</label>
+                                <label class="control-label" for="addon2">Số điện thoại / Tên khách hàng</label>
 
-                            <div class="input-group text-center">
-                                <input type="text" id="addon2" class="form-control">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-fab btn-fab-mini">
-                    <i class="material-icons">search</i>
-                </button>
-              </span>
+                                <div class="input-group text-center">
+                                    <input type="text" id="addon2" class="form-control" name="q" value="{{Request::get('q')}}">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-fab btn-fab-mini">
+                                            <i class="material-icons">search</i>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 

@@ -14,6 +14,7 @@ use DateTime;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\CreateOrderRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,26 +25,84 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function getOrderByStatus($id){
         $arrTmpAllUser = User::get();
-        $arrTmpOrders = Order::orderBy('id','DESC')->get();
+        $arrAllUser = array();
+        foreach ($arrTmpAllUser as $arrUser) {
+            $arrAllUser[$arrUser['id']] = $arrUser;
+        }
+        $arrTmpOrders = Order::where('status','=',$id)->get();
         $arrTmpProductOrders = ProductOrder::get();
         $arrAllOrders = array();
         /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
 
-        foreach($arrTmpOrders as $arrOrder){
+        foreach ($arrTmpOrders as $arrOrder) {
             $arrAllOrders[$arrOrder['id']] = $arrOrder;
         }
-        $arrAllUser = array();
-        foreach($arrTmpAllUser as $arrUser){
-            $arrAllUser[$arrUser['id']] = $arrUser;
-        }
+
         $arrAllProductOrder = array();
-        foreach($arrTmpProductOrders as $arrOrders){
+        foreach ($arrTmpProductOrders as $arrOrders) {
             $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
         }
+        $data = [
+            'arrAllOrders' => $arrAllOrders,
+            'arrAllProductOrder' => $arrAllProductOrder,
+            'arrTmpProductOrders' => $arrTmpProductOrders,
+            'arrAllUser' => $arrAllUser
+        ];
 
+        return view('admin.orders.index',$data);
+    }
+    public function index(Request $request)
+    {
+        if($request->get('q')){
+            $q = $request->get('q');
+            $arrTmpAllUser = User::leftjoin('orders','users.id','=','orders.customer_id')
+                ->where('name','LIKE','%'.$q.'%')
+                ->orwhere('phone_number','LIKE','%'.$q.'%')
+                ->get();
+            $arrAllUser = array();
+            $arrAllOrders = array();
+            foreach ($arrTmpAllUser as $arrUser) {
+                $arrAllUser[$arrUser['id']] = $arrUser;
+                $arrTmpOrders = Order::where('customer_id', '=', $arrUser->id)->get();
+                foreach ($arrTmpOrders as $arrOrder) {
+                    $arrAllOrders[$arrOrder['id']] = $arrOrder;
+                }
+            }
+
+            $arrTmpProductOrders = ProductOrder::get();
+
+            /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
+
+
+            $arrAllProductOrder = array();
+            foreach ($arrTmpProductOrders as $arrOrders) {
+                $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
+            }
+
+        }
+        else {
+            $arrTmpAllUser = User::get();
+            $arrAllUser = array();
+            foreach ($arrTmpAllUser as $arrUser) {
+                $arrAllUser[$arrUser['id']] = $arrUser;
+            }
+            $arrTmpOrders = Order::orderBy('id', 'DESC')->get();
+            $arrTmpProductOrders = ProductOrder::get();
+            $arrAllOrders = array();
+            /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
+
+            foreach ($arrTmpOrders as $arrOrder) {
+                $arrAllOrders[$arrOrder['id']] = $arrOrder;
+            }
+
+            $arrAllProductOrder = array();
+            foreach ($arrTmpProductOrders as $arrOrders) {
+                $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
+            }
+
+        }
         $data = [
             'arrAllOrders' => $arrAllOrders,
             'arrAllProductOrder' => $arrAllProductOrder,
@@ -86,7 +145,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateOrderRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -357,6 +416,15 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order =  Order::destroy($id);
+        $product_order = ProductOrder::where('order_id','=',$id);
+        $product_order->delete();
+        if((!empty($order)) && (!empty($product_order))) {
+            return redirect('admin/orders/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+        }
+        else{
+            return redirect('admin/orders/')->with(['flash_level' => 'success', 'flash_message' => 'Không thể xóa thể xóa']);
+
+        }
     }
 }
