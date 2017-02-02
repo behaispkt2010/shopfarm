@@ -42,6 +42,14 @@ class Order extends Model
         return count($orders);
 
         }
+    public static function getNumOrderByStatus($status){
+        $idUser = Auth::user()->id;
+
+        $orders = Order::where('status',$status)
+            ->get();
+        return count($orders);
+
+        }
     public static function getInfoOrder($status,$type=0){
         $idUser = Auth::user()->id;
         if($type==1){

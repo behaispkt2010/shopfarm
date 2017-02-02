@@ -26,12 +26,20 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getOrderByStatus($id){
+        $arrTmpAllOrders = Order::orderBy('id', 'DESC')->get();
+        $arrAllOrders = array();
+        foreach ($arrTmpAllOrders as $arrOrder) {
+            $arrAllOrders[$arrOrder['id']] = $arrOrder;
+        }
+
+
         $arrTmpAllUser = User::get();
         $arrAllUser = array();
         foreach ($arrTmpAllUser as $arrUser) {
             $arrAllUser[$arrUser['id']] = $arrUser;
         }
         $arrTmpOrders = Order::where('status','=',$id)->get();
+
         $arrTmpProductOrders = ProductOrder::get();
         $arrAllOrders = array();
         /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
@@ -44,10 +52,19 @@ class OrderController extends Controller
         foreach ($arrTmpProductOrders as $arrOrders) {
             $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
         }
+        $arrOrderByStatus = OrderStatus::get();
+        $arrCountOrderByStatus = [];
+        foreach($arrOrderByStatus as $OrderStatus){
+            $countOrderByStatus = Order::getNumOrderByStatus($OrderStatus->id);
+            array_push($arrCountOrderByStatus,$countOrderByStatus);
+        }
+        $arrCountOrderByStatus['all'] = count(Order::orderBy('id', 'DESC')->get());
+        $arrCountOrderByStatus['new'] = count(Order::where('status',0)->get());
         $data = [
             'arrAllOrders' => $arrAllOrders,
             'arrAllProductOrder' => $arrAllProductOrder,
             'arrTmpProductOrders' => $arrTmpProductOrders,
+            'arrCountOrderByStatus' => $arrCountOrderByStatus,
             'arrAllUser' => $arrAllUser
         ];
 
@@ -64,8 +81,9 @@ class OrderController extends Controller
             $arrAllUser = array();
             $arrAllOrders = array();
             foreach ($arrTmpAllUser as $arrUser) {
-                $arrAllUser[$arrUser['id']] = $arrUser;
-                $arrTmpOrders = Order::where('customer_id', '=', $arrUser->id)->get();
+                //echo $arrUser->customer_id;
+                $arrAllUser[$arrUser['customer_id']] = $arrUser;
+                $arrTmpOrders = Order::where('customer_id', '=', $arrUser->customer_id)->get();
                 foreach ($arrTmpOrders as $arrOrder) {
                     $arrAllOrders[$arrOrder['id']] = $arrOrder;
                 }
@@ -75,7 +93,10 @@ class OrderController extends Controller
 
             /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
 
-
+            /*echo "<pre>";
+            print_r($arrTmpAllUser);
+            echo "</pre>";
+            die;*/
             $arrAllProductOrder = array();
             foreach ($arrTmpProductOrders as $arrOrders) {
                 $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
@@ -91,8 +112,6 @@ class OrderController extends Controller
             $arrTmpOrders = Order::orderBy('id', 'DESC')->get();
             $arrTmpProductOrders = ProductOrder::get();
             $arrAllOrders = array();
-            /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
-
             foreach ($arrTmpOrders as $arrOrder) {
                 $arrAllOrders[$arrOrder['id']] = $arrOrder;
             }
@@ -103,13 +122,28 @@ class OrderController extends Controller
             }
 
         }
+        $countAllOrder = count($arrAllOrders);
+        $countOrderNew = count(Order::where('status',0)->get());
+        $arrOrderByStatus = OrderStatus::get();
+        $arrCountOrderByStatus = [];
+        foreach($arrOrderByStatus as $OrderStatus){
+            $countOrderByStatus = Order::getNumOrderByStatus($OrderStatus->id);
+            array_push($arrCountOrderByStatus,$countOrderByStatus);
+        }
+        //array_push($arrCountOrderByStatus,$countAllOrder,$countOrderNew);
+        $arrCountOrderByStatus['all'] = $countAllOrder;
+        $arrCountOrderByStatus['new'] = $countOrderNew;
         $data = [
             'arrAllOrders' => $arrAllOrders,
             'arrAllProductOrder' => $arrAllProductOrder,
             'arrTmpProductOrders' => $arrTmpProductOrders,
+            'arrCountOrderByStatus' => $arrCountOrderByStatus,
             'arrAllUser' => $arrAllUser
         ];
-
+        /*echo "<pre>";
+        print_r($arrCountOrderByStatus);
+        echo "</pre>";
+        die;*/
         return view('admin.orders.index',$data);
     }
 
