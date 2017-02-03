@@ -28,6 +28,7 @@ class Product extends Model
             $bestSellerProduct = ProductOrder::leftJoin('products', 'product_orders.id_product', '=', 'products.id')
                 ->groupBy('product_orders.id_product')
                 ->selectRaw('products.*, sum(product_orders.num) as numOrder')
+                ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
                 ->orderBy('numOrder', 'DESC')
                 ->get();
         }
@@ -35,6 +36,7 @@ class Product extends Model
             $bestSellerProduct = ProductOrder::leftJoin('products', 'product_orders.id_product', '=', 'products.id')
                 ->groupBy('product_orders.id_product')
                 ->selectRaw('products.*, sum(product_orders.num) as numOrder')
+                ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
                 ->orderBy('numOrder', 'DESC')
                 ->take($limit)
                 ->get();

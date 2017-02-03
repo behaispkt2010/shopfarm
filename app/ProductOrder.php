@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use App\Auth;
 class ProductOrder extends Model
 {
     protected $table = 'product_orders';
@@ -16,6 +16,18 @@ class ProductOrder extends Model
         $orderProducts = ProductOrder::select('product_orders.price','product_orders.num','product_orders.updated_at')
             ->leftJoin('orders','product_orders.order_id','=','orders.id')
             ->where('orders.kho_id',$idUser)
+            ->where(DB::raw("(DATE_FORMAT(product_orders.updated_at,'%d-%m-%Y'))"),$date)
+            ->get();
+        $res = 0;
+        foreach($orderProducts as $orderProduct){
+            $res = $res+ $orderProduct->price * $orderProduct->num;
+        }
+        return $res;
+
+    }
+    public static function getSumPriceAdmin($date){
+        $orderProducts = ProductOrder::select('product_orders.price','product_orders.num','product_orders.updated_at')
+            ->leftJoin('orders','product_orders.order_id','=','orders.id')
             ->where(DB::raw("(DATE_FORMAT(product_orders.updated_at,'%d-%m-%Y'))"),$date)
             ->get();
         $res = 0;
