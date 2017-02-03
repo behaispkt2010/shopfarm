@@ -383,7 +383,7 @@
                 var menu_class =  $('input[name="menu_class"]').val();
                 if(menu_label != "" && menu_url != "") {
 
-                    $('ol.dd-list-top').append('<li class="dd-item" data-label="' + menu_label + '" data-url="' + menu_url + '" data-class="' + menu_class + '">' +
+                    $('ol.dd-list-top').append('<li class="dd-item" data-label="'+menu_label+'" data-url="'+menu_url+'" data-class="'+menu_class+'">' +
                             '<div class="dd-handle">' + menu_label + '</div>' +
                             ' <i class="fa fa-times delete-menu"></i> </li>');
                     updateOutput($('#nestable').data('output', $('#nestable-output')));

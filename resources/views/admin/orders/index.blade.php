@@ -64,7 +64,7 @@
                 <div class="clearfix"></div>
                 <form action="" method="GET">
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
                             <div class="form-group label-floating">
 
                                 <label class="control-label" for="addon2">Số điện thoại / Tên khách hàng</label>

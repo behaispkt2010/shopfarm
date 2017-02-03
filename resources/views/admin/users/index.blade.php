@@ -20,7 +20,7 @@
         <div class="x_panel">
             <div class="x_content">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
                         <div class="form-group label-floating">
 
                             <label class="control-label" for="addon2">Tên user / Mã user / Số điện thoại</label>

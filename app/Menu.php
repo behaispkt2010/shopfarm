@@ -20,13 +20,13 @@ class Menu extends Model
             if ($parent == $itemMenu1->parent) {
                 $numchil = Menu::get_numberChil($itemMenu1->id);
                 if ($numchil == 0) {
-                    echo '<li class="dd-item" data-label="' . $itemMenu1->label . '" data-url="' . $itemMenu1->link . ' " data-class="' . $itemMenu1->class . ' ">
+                    echo '<li class="dd-item" data-label="' . $itemMenu1->label . '" data-url="'.$itemMenu1->link .'" data-class="'.$itemMenu1->class. '">
                                         <div class="dd-handle"> ' . $itemMenu1->label . '  </div>
                                         <i class="fa fa-times delete-menu"></i>
                                     </li>';
                 } else {
 //                    $arraySub = Menu::get_arrayChil($itemMenu1->id);
-                    echo ' <li class="dd-item" data-label="' . $itemMenu1->label . ' " data-url="' . $itemMenu1->link . ' " data-class="' . $itemMenu1->class . ' ">
+                    echo ' <li class="dd-item" data-label="' . $itemMenu1->label . ' " data-url="'.$itemMenu1->link.'" data-class="'.$itemMenu1->class. '">
                                         <div class="dd-handle"> ' . $itemMenu1->label . ' </div>
                                         <i class="fa fa-times delete-menu"></i>
                                     ';
