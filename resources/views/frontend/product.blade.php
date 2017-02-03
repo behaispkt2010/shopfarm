@@ -126,7 +126,7 @@
 
 										<div class="clearfix product_info">
 
-											<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
+											<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
 											<span class="alignright">
 											{!! \App\Rate::getRateProduct($product->id)!!}
 											</span>

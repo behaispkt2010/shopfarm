@@ -140,7 +140,7 @@
 
                                         <div class="image-view">
                                             @if(!empty($article->image))
-                                                <img src="{{$article->image}}" alt="" class="img-responsive">
+                                                <img src="{{url('/').$article->image}}" alt="" class="img-responsive">
                                                 <div class="form-group">
                                                     <label for="inputFile" class="col-md-4 control-label">Thay đổi</label>
 

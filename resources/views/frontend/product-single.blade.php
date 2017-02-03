@@ -156,7 +156,7 @@
 											</table>
 
 										</div>
-										<p class="product_price"><b class="theme_color">{{$product->price_out}} VNĐ</b></p>
+										<p class="product_price"><b class="theme_color">{{ number_format($product->price_out)  }} VNĐ</b></p>
 
 										<hr>
 

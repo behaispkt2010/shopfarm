@@ -53,9 +53,9 @@
                                      style="max-width: 50px;" alt=""></th>
                             <td><span class="name-product"><a href="">{{$item->name}} (#{{$item->id_product}})</a></span>
                             </td>
-                            <td><span class="price-product">{{$item->price}} đ </span></td>
+                            <td><span class="price-product">{{ number_format($item->price)  }} VNĐ</span></td>
                             <td><span class="sl">x {{$item->num}} </span></td>
-                            <td><span class="total"> {{$item->price * $item->num}} đ</span></td>
+                            <td><span class="total"> {{ number_format($item->price * $item->num)  }} VNĐ</span></td>
                         </tr>
                             <?php $total =  $total + ($item->price * $item->num); ?>
                         @endforeach

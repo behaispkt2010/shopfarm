@@ -114,7 +114,7 @@
                         @foreach($arrBestSellProduct as $BestSell)
                             <li class="media event">
                                 <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
+                                    <img src="{{url('/').$BestSell->image}}" alt="" class="img-responsive">
                                 </a>
                                 <div class="media-body">
                                     <a class="title" href="#">{!! $BestSell->title !!}</a>

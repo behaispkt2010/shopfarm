@@ -27,8 +27,8 @@
                                     </span>
 
                                         <div class="content-money">
-                                            <p style="color: #52b256;">{{\App\Order::getInfoOrder(1)['price']}} VNĐ</p>
-                                            <span class="">{{\App\Order::getInfoOrder(1)['count']}} đơn hàng</span>
+                                            <p style="color: #52b256;">{{\App\Order::getInfoOrder(0)['price']}} VNĐ</p>
+                                            <span class="">{{\App\Order::getInfoOrder(0)['count']}} đơn hàng</span>
                                         </div>
 
 
