@@ -10,175 +10,108 @@
 
     <div class="container">
     <div class="row">
-<h3 class="text-center">Đơn hàng #111</h3>
+
+<h3 class="text-center">Đơn hàng #{{$order->id}}</h3>
         <br>
         <div class="tracking">
             <div class="col-sm-12 col-xs-12 fix-padlr cl-center">
-                <div class="img-car">
-                </div>
+
                 <ul class="ul-date-car">
 
-                    <li class="date-past ">
-                        <span>16/11</span>
+                    @foreach($orderStatus as $itemOrderStatus)
+                    <li class="date-past @if($itemOrderStatus->id ==$order->status) active @endif">
 
-                        <div class=" fix-status" style="display: none">Chưa tiếp nhận</div>
-                        <img src="{{url('/images/find.png')}}" class="icon-tracking b1" alt="">
-                    </li>
 
-                    <li class="date-past active">
-                        <span>17/11</span>
-
-                        <div class=" fix-status" style="display: block">Đã tiếp nhận</div>
-                        <img src="{{url('/images/clipboard (1).png')}}" class="icon-tracking b2" alt="">
+                        <img src="{{url('/')}}{{$itemOrderStatus->image}}" class="icon-tracking" alt="">
+                        <div class="clear"></div>
+                            @if($itemOrderStatus->id ==$order->status)
+                            <span>{{$order->updated_at->format('d-m-Y')}}</span>
+                            <div class=" fix-status">{{$itemOrderStatus->name}}</div>
+                            @endif
 
                     </li>
+                        @endforeach
 
-                    <li class=" ">
-                        <span>18/11</span>
-
-                        <div class=" fix-status" style="display: none">Chuyển DH cho Chủ kho</div>
-                        <img src="{{url('/images/warehouse (1).png')}}" class="icon-tracking b3" alt="">
-
-                    </li>
-
-                    <li class=" ">
-                        <span>19/11</span>
-
-                        <div class=" fix-status" style="display: none">Đang thu gom</div>
-                        <img src="{{url('/images/warehouse (2).png')}}" class="icon-tracking b4" alt="">
-
-                    </li>
-
-                    <li class=" ">
-                        <span>20/11</span>
-
-                        <div class=" fix-status" style="display: none">Đang sơ chế</div>
-                        <img src="{{url('/images/package (1).png')}}" class="icon-tracking b5" alt="">
-
-                    </li>
-
-                    <li class=" ">
-                        <span>21/11</span>
-
-                        <div class=" fix-status" style="display: none">Đang đóng gói</div>
-                        <img src="{{url('/images/package (2).png')}}" class="icon-tracking b6" alt="">
-
-                    </li>
-                    <li class=" ">
-                        <span>19/11</span>
-
-                        <div class=" fix-status" style="display: none">Đã xuất kho</div>
-                        <img src="{{url('/images/stroller.png')}}" class="icon-tracking b7" alt="">
-
-                    </li>
-
-                    <li class=" ">
-                        <span>20/11</span>
-
-                        <div class=" fix-status" style="display: none">Đang vận chuyển</div>
-                        <img src="{{url('/images/delivery.png')}}" class="icon-tracking b8" alt="">
-
-                    </li>
-
-                    <li class=" ">
-                        <span>21/11</span>
-
-                        <div class=" fix-status" style="display: none">Đã giao xong</div>
-                        <img src="{{url('/images/package (3).png')}}" class="icon-tracking b9" alt="">
-
-                    </li>
-                    <li class=" ">
-                        <span>21/11</span>
-
-                        <div class=" fix-status" style="display: none">Hàng bị lỗi</div>
-                        <img src="{{url('/images/package (4).png')}}" class="icon-tracking b9" alt="">
-
-                    </li>
-                    <li class=" ">
-                        <span>21/11</span>
-
-                        <div class=" fix-status" style="display: none">Trả hàng nhập kho</div>
-                        <img src="{{url('/images/route.png')}}" class="icon-tracking b10" alt="">
-
-                    </li>
 
 
                 </ul>
             </div>
+            <div class="clear"></div>
+            <br>
+            <br>
             <div class="col-md-12 con-tracking ">
                 <div class="col-sm-6 col-xs-12 fix-padlr">
                     {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
                     <h2>Thông tin đặt hàng</h2>
                     <table class="table list-order table-curved product-list">
                         <tbody>
+                        <?php $total = 0; ?>
+                        @foreach($productOrder as $item)
                         <tr>
-                            <th><img src="{{url('/')}}/images/sp.jpg"
+                            <th><img src="{{url('/')}}{{$item->image}}"
                                      class="img-responsive img-thumbnail"
                                      style="max-width: 50px;" alt=""></th>
-                            <td><span class="name-product"><a href="">tên sản phẩm (#111)</a></span>
+                            <td><span class="name-product"><a href="">{{$item->name}} (#{{$item->id_product}})</a></span>
                             </td>
-                            <td><span class="price-product">100 đ </span></td>
-                            <td><span class="sl">x 1 </span></td>
-                            <td><span class="total"> 100 đ</span></td>
+                            <td><span class="price-product">{{$item->price}} đ </span></td>
+                            <td><span class="sl">x {{$item->num}} </span></td>
+                            <td><span class="total"> {{$item->price * $item->num}} đ</span></td>
                         </tr>
-                        <tr>
-                            <th><img src="{{url('/')}}/images/sp.jpg"
-                                     class="img-responsive img-thumbnail" style="max-width: 50px;"
-                                     alt=""></th>
-                            <td><span class="name-product"><a href="">tên sản phẩm (#111)</a></span>
-                            </td>
-                            <td><span class="price-product">100 đ </span></td>
-                            <td><span class="sl">x 1 </span></td>
-                            <td><span class="total"> 100 đ</span></td>
-                        </tr>
+                            <?php $total =  $total + ($item->price * $item->num); ?>
+                        @endforeach
+
                         <tr>
                             <th></th>
                             <td>
                             </td>
                             <td></td>
                             <td>Tổng: </td>
-                            <td><span class="total">  200 đ</span></td>
+                            <td><span class="total">  {{$total}} đ</span></td>
                         </tr>
 
                         </tbody>
                     </table>
                     <div class="clear"></div>
                     <br>
-                    <div class="row">
-                        <div class="col-md-4">
+                    <p class="row">
+                        <div class="col-md-3">
                             Thanh toán:
                         </div>
                         <div class="col-md-8">
-                            <p>đã thanh toán</p>
+                            <p>@if($order->status_pay==0) Chưa thanh toán
+                                @elseif($order->status_pay==1) Đã thanh toán
+                                @elseif($order->status_pay==2) Đã đặt cọc
+                                   @endif
+                            </p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
+                    </p>
+                    <p class="row">
+                        <div class="col-md-3">
                             Vận chuyển:
                         </div>
                         <div class="col-md-8">
-                            <p>Xe tải</p>
+                            <p>{{$order->type_driver}}</p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
+                    </p>
+                    <p class="row">
+                        <div class="col-md-3">
                             Thông tin tài xế:
                         </div>
                         <div class="col-md-8">
-                            <div>Tên: Nguyễn văn A</div>
-                            <div>SĐT: 01666666666</div>
-                            <div>Biển số xe: A1553563</div>
+                            <div>Tên: {{$order->name_driver}}</div>
+                            <div>SĐT: {{$order->phone_driver}}</div>
+                            <div>Biển số xe: {{$order->number_license_driver}}</div>
                         </div>
-                    </div>
+                    </p>
 
-                    <div class="row">
-                        <div class="col-md-4">
+                    <p class="row">
+                        <div class="col-md-3">
                             Ghi chú:
                         </div>
                         <div class="col-md-8">
-                            <p class="note-order">không có ghi chú</p>
+                            <p class="note-order">{{$order->note}}</p>
                         </div>
-                    </div>
+                    </p>
                 </div>
                 <div class="col-sm-2 col-xs-12 fix-padlr cl-center">
 
@@ -186,22 +119,12 @@
                 <div class="col-sm-4 col-xs-12 fix-padlr">
                     {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
                     <h2>Thông tin nhận hàng</h2>
-                    <table class="tracking-table info-customer">
-                        <tbody>
-                        <tr>
-                            <td><i class="ic-tracking ic-nguoidung"></i></td>
-                            <td>Nguyễn Văn A</td>
-                        </tr>
-                        <tr>
-                            <td><i class="ic-tracking ic-diadiem"></i></td>
-                            <td>3423 Fulton Street, Brooklyn, Tiểu bang New York, Hoa Kỳ</td>
-                        </tr>
-                        <tr>
-                            <td><i class="ic-tracking ic-dienthoai"></i></td>
-                            <td>01661111111</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <p><i class="ic-tracking ic-nguoidung"></i> {{$customer->name}} </p>
+                    <p><i class="ic-tracking ic-diadiem"></i> {{$customer->address}} </p>
+
+                    <p><i class="ic-tracking ic-dienthoai"></i> {{$customer->phone_number}} </p>
+
+
                 </div>
 
             </div>

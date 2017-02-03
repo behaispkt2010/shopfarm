@@ -137,6 +137,7 @@ Route::get('/category-product/{cateSlug}','Frontend\ProductController@CateProduc
 Route::get('/products', 'Frontend\ProductController@index');
 Route::get('/product/{cateSlug}/{productSlug}', 'Frontend\ProductController@SingleProduct');
 Route::get('/check-order', 'Frontend\ProductController@CheckOrder');
+//Route::post('/check-order', 'Frontend\ProductController@PostCheckOrder');
 Route::post('/single-order', 'Frontend\ProductController@singleOrder');
 
 

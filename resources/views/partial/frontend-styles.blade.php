@@ -2,7 +2,8 @@
     ============================================ -->
     <link rel="stylesheet" href="{{asset('frontend/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/fontello.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
+
 
     <!-- Theme CSS
     ============================================ -->

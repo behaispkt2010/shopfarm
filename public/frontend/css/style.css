@@ -6462,10 +6462,10 @@ ol, ul {
 	list-style: none;
 }
 .ul-date-car {
-	position: relative;
-	padding: 0;
-	width: 100%;
-	display: inline-block;
+	/*position: relative;*/
+	/*padding: 0;*/
+	/*width: 100%;*/
+	/*display: inline-block;*/
 }
 .ul-date-car li {
 	background: 0;
@@ -6481,75 +6481,27 @@ ol, ul {
 	float: left;
 	width: 9%;
 	text-align: center;
-	/*background: url(../images/dot-tracking.png) no-repeat center 10px;*/
-	height: 50px;
-	/*padding-top: 30px;*/
 	text-transform: uppercase;
 	font-weight: bold;
 	opacity: 0.4;
 	z-index: 1;
-}
-.ul-date-car li.active {
-	opacity: 1;
-}
-.ul-date-car li:before, .ul-date-car li.date-past:before, .ul-date-car li.date-max:before {
-	z-index: 2;
-}
-.ul-date-car li:before, .ul-date-car li.date-past:before, .ul-date-car li.date-max:before {
-	font-size: 0;
-}
-.ul-date-car li.date-past:before {
-	border-color: #53f6a7;
-}
-.ul-date-car li:before, .ul-date-car li.date-past:before, .ul-date-car li.date-max:before {
-	color: #fff;
-	/*border: solid 3px #e8f1f6;*/
-	height: 16px;
-	width: 16px;
-	border-radius: 50%;
-	line-height: 10px;
-	font-size: 12px;
-	background: #fff;
-	margin: 0 auto;
-	z-index: 1;
-	position: relative;
-}
-.ul-date-car li.date-past:before {
-	/*color: #53d68b;*/
-}
-.ul-date-car li:before {
-	content: "\f111";
-	font-family: FontAwesome;
-	display: block;
-	font-size: 11px;
 }
 .fix-status {
 	border-radius: 4px;
 }
 .fix-status {
 	position: absolute;
-	bottom: 100px;
+	bottom: 85px;
 	border: solid 1px #53d68b;
 	margin: 0 auto;
-	width: 150%;
-	left: -30%;
+	width: 100%;
+	/*left: -30%;*/
 	padding: 5px;
 	color: #53d68b;
 	font-weight: 400;
 }
-.ul-date-car li.date-past:after {
-	background: #a9fad3;
-}
-.ul-date-car li:after {
-	/*content: '';*/
-	/*width: 100%;*/
-	/*height: 3px;*/
-	/*display: inline-block;*/
-	/*background: #f0f6f9;*/
-	/*position: absolute;*/
-	/*right: 50%;*/
-	/*top: 6px;*/
-	/*z-index: 0;*/
+.ul-date-car .active{
+	opacity: 1 !important; ;
 }
 .ul-date-car li:after {
 	top: 7px;
@@ -6592,7 +6544,7 @@ ol, ul {
 }
 .ic-tracking {
 	display: inline-block;
-	background-image: url(../images/ic-tracking.png);
+	background-image: url(/images/ic-tracking.png);
 	background-repeat: no-repeat;
 	text-indent: -9999px;
 	vertical-align: middle;
@@ -6720,16 +6672,16 @@ ol, ul {
 	padding: 3px 0;
 }
 .ul-date-car:after {
-	content: '';
-	width: calc(100% - 60px);
-	height: 3px;
-	display: inline-block;
-	background: #f0f6f9;
-	position: absolute;
-	top: -1px;
-	z-index: 0;
-	left: 0;
-	margin: 0 30px;
+	/*content: '';*/
+	/*width: calc(100% - 60px);*/
+	/*height: 3px;*/
+	/*display: inline-block;*/
+	/*background: #f0f6f9;*/
+	/*position: absolute;*/
+	/*top: -1px;*/
+	/*z-index: 0;*/
+	/*left: 0;*/
+	/*margin: 0 30px;*/
 }
 .ul-date-car li {
 	position: relative;
@@ -6804,7 +6756,7 @@ ol, ul {
 }
 .ul-date-car li img{
 	width: 50px;
-	position: absolute;
+	/*position: absolute;*/
 	top: -38px;
 	right: 17px;
 	z-index: 999;
@@ -6885,4 +6837,10 @@ ul.pagination li:hover:not(.active) {
 }
 .entry_image img {
 	width: 200px;
+}
+.modal-header{
+	border-bottom:none;
+}
+.modal-footer{
+	border-top:none;
 }

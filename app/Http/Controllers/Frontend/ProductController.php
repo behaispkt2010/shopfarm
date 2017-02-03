@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\CategoryProduct;
 use App\DetailImageProduct;
 use App\Mail\OrderInfo;
+use App\Order;
+use App\OrderStatus;
 use App\Product;
+use App\ProductOrder;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -76,8 +80,30 @@ class ProductController extends Controller
         return view('frontend.product-single',$data);
 
     }
-    public function checkOrder(){
-        return view('frontend.check-order');
+    public function checkOrder(Request $request){
+
+        $code = $request->get('code-order');
+        $order =Order::where('id',$code)->first();
+//        dd($order);
+        if(count($order)!=0) {
+
+            $customer = User::where('id', $order->customer_id)->first();
+            $productOrder = ProductOrder::select('product_orders.*','products.image')
+            ->leftJoin('products','product_orders.id_product','products.id')
+            ->where('product_orders.order_id', $order->id)->get();
+            $orderStatus = OrderStatus::get();
+            $data = [
+                "order" => $order,
+                "customer" => $customer,
+                "productOrder" => $productOrder,
+                "orderStatus"=>$orderStatus,
+            ];
+            return view('frontend.check-order', $data);
+            }
+            else{
+                return view('frontend.check-order');
+
+            }
 
     }
     public function singleOrder(Request $request){

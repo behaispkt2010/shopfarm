@@ -48,7 +48,7 @@ class Menu extends Model
             if ($parent == $itemMenu1->parent) {
                 $numchil = Menu::get_numberChil($itemMenu1->id);
                 if ($numchil == 0) {
-                    echo ' <li class=""><a href="'.$itemMenu1->link.'">'.$itemMenu1->label.'</a></li>';
+                    echo ' <li class="'.$itemMenu1->class.'"><a href="'.$itemMenu1->link.'">'.$itemMenu1->label.'</a></li>';
                 } else {
                     echo '   <li class="has_submenu">
                                             <a href="'.$itemMenu1->link.'">'.$itemMenu1->label.'</a>

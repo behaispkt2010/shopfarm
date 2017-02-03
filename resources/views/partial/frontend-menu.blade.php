@@ -148,8 +148,7 @@
                                     <ul>
 
                                     {{\App\Menu::get_menu_frontend()}}
-
-
+                                        {{--<li data-toggle="modal" data-target="#myModal"><a href="">Kiểm tra đơn hàng</a></li>--}}
                                     </ul>
 
                                 </nav><!--/ .main_navigation-->
@@ -178,3 +177,31 @@
     </header>
 
     <!-- - - - - - - - - - - - - - End Header - - - - - - - - - - - - - - - - -->
+
+    <!-- Modal check order-->
+    <div class="modal fade " id="myModal" role="dialog">
+        <div class="modal-dialog ">
+
+            <!-- Modal content-->
+            <div class="modal-content col-md-offset-3 col-md-6">
+                <form action="{{url('/check-order')}}" method="get">
+                <div class="modal-header">
+                    <h4 class="modal-title">Nhập mã đơn hàng</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                            <input type="text" name="code-order" placeholder="vui lòng nhập mã đơn hàng">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                    <button type="submit" class="btn btn-default btn-success" id="check-order-pupup">Kiểm tra</button>
+                </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
