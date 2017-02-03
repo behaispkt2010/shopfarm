@@ -187,19 +187,28 @@
                                     <div class="pd-all-20">
                                         <label class="title-product-main text-no-bold">Hiển thị</label>
                                     </div>
+                                    @if(Auth::user()->hasRole('admin'))
+
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" checked="" value="option1" id="optionsRadios1"
-                                                   name="optionsRadios">
+                                            <input type="radio" @if(!empty($product))@if($product->status==1)checked @endif @else checked @endif value="1" id="optionsRadios1"
+                                                   name="status">
                                             Hiển thị ngay
                                         </label>
                                     </div>
+
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" value="option2" id="optionsRadios2"
-                                                   name="optionsRadios"> Ẩn đi
+                                            <input type="radio" value="0" @if(!empty($product)) @if($product->status==0)checked @endif @endif id="optionsRadios2"
+                                                   name="status"> chờ duyệt
                                         </label>
                                     </div>
+                                    @else
+                                        <input type="hidden" name="status" value="0" >
+                                    @endif
+
+
+
                                     <div class="ln_solid"></div>
                                     <div class="text-center">
                                         <a href="{{route('products.index')}}" type="submit"
@@ -215,6 +224,8 @@
                                             <label>Chủ kho</label>
                                             <select id="select-ck" name="kho" class="form-control"
                                                     data-placeholder="chọn kho">
+                                                @if(Auth::user()->hasRole('admin'))
+
                                                 <option value="0"
                                                         @if(!empty($article->category) && $article->category == 0) selected @endif >
                                                     Mặc định
@@ -225,6 +236,11 @@
                                                         {{$itemData->name}}(#{{$itemData->id}})
                                                     </option>
                                                 @endforeach
+                                                    @else
+                                                    <option value="{{Auth::user()->id}}">
+                                                        {{Auth::user()->name}}(#{{Auth::user()->id}})
+                                                    </option>
+                                                @endif
 
                                             </select>
                                         </div>

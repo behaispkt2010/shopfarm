@@ -286,39 +286,26 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $arrAllProductOrder = array();
-        $customer = User::leftjoin('role_user','role_user.user_id','=','users.id')
-            ->where('role_user.role_id',3)
-            ->orderBy('id','DESC')
-            ->get();
-        $arrOrder = Order::find($id);
-        $province = Province::get();
-        $district = District::get();
-        $arrTmpProductsOrder = Product::get();
-        foreach($arrTmpProductsOrder as $arrProduct){
-            $arrAllProductOrder[$arrProduct['id']] = $arrProduct;
-        }
-        $order_status = OrderStatus::get();
-        $arrCustomerOrder = User::find($arrOrder->customer_id);
-        $arrProductOrders = ProductOrder::where('order_id','=',$id)->get();
-        $arrHistoryStatusOrders = HistoryUpdateStatusOrder::where('order_id','=',$id)->get();
-        /*echo "<pre>";
-        print_r($arrHistoryStatusOrders);
-        echo "</pre>";
-        die;*/
-        $data=[
-            'customer' =>$customer,
-            'province' =>$province,
-            'district' =>$district,
-            'products' =>$arrAllProductOrder,
-            'order_status' => $order_status,
-            'arrOrder' => $arrOrder,
-            'arrCustomerOrder' => $arrCustomerOrder,
-            'arrProductOrders' => $arrProductOrders,
-            'arrHistoryStatusOrders' => $arrHistoryStatusOrders,
-            'id' => $id
+        $order =Order::where('id',$id)->first();
+
+        $customer = User::where('id', $order->customer_id)->first();
+        $productOrder = ProductOrder::select('product_orders.*', 'products.image')
+            ->leftJoin('products', 'product_orders.id_product', 'products.id')
+            ->where('product_orders.order_id', $order->id)->get();
+        $orderStatus = OrderStatus::get();
+        $historyOrder = HistoryUpdateStatusOrder::select('history_update_status_order.*','order_status.*')
+            ->leftJoin('order_status','history_update_status_order.status','=','order_status.id')
+            ->where('history_update_status_order.order_id',$id)->get();
+//        dd($historyOrder);
+        $data = [
+            "order" => $order,
+            "customer" => $customer,
+            "productOrder" => $productOrder,
+            "orderStatus" => $orderStatus,
+            "historyOrder"=> $historyOrder,
         ];
-        return view('admin.orders.showorder',$data);
+        return view('admin.orders.showorder', $data);
+
     }
 
     /**
