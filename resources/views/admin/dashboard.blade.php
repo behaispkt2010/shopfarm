@@ -6,10 +6,10 @@
 
     <div class="row">
         <br>
-        <div class="col-md-3 text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
-        <div class="col-md-3 text-center">Doanh Thu<br><span class="value-das">{!! number_format($totalPrice)  !!} VNĐ</span></div>
-        <div class="col-md-3 text-center">Khách Hàng Hiện Tại<br><span class="value-das">{!! $customer !!}</span></div>
-        <div class="col-md-3 text-center">Giá Trị Trung Bình Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! number_format($totalPrice/$countOrder) !!} VNĐ @else 0 VNĐ @endif</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6  text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{!! number_format($totalPrice)  !!} VNĐ</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Khách Hàng Hiện Tại<br><span class="value-das">{!! $customer !!}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Trung Bình Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! number_format($totalPrice/$countOrder) !!} VNĐ @else 0 VNĐ @endif</span></div>
 
     </div>
     <div class="row">

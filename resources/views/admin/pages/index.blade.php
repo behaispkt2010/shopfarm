@@ -24,14 +24,14 @@
         </div>
     </div>
     <div class="x_panel">
-        <table id="table" class="table table-striped table-bordered bulk_action" data-form="deleteForm">
+        <table id="table" class="table stripe table-bordered bulk_action" data-form="deleteForm">
             <thead>
             <tr>
                 <th>Tên trang</th>
 
                 <th>Người tạo</th>
                 <th>ngày tạo</th>
-                <th></th>
+                <th width="50px"></th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -81,7 +81,13 @@
                 },
                 "processing": true,
                 "serverSide": true,
+                "responsive": true,
                 "order": [],
+                // Disable sorting on the first column
+                "aoColumnDefs" : [ {
+                    'bSortable' : false,
+                    'aTargets' : [ 3 ]
+                } ],
                 "ajax": "{{ url('admin/'.$type.'/data/json') }}",
             });
         });

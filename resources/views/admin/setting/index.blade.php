@@ -10,7 +10,7 @@
     <div class="row">
 
 
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <form action="{{route('setting.store')}}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

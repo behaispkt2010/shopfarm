@@ -13,7 +13,7 @@
 @section('content')
     <br>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="x_panel">
                 @if(Request::is('admin/category'))
                     <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
@@ -56,7 +56,7 @@
                     </form>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="x_panel">
 
                     <table id="table" class="table table-striped table-bordered bulk_action" data-form="deleteForm">
@@ -65,7 +65,7 @@
                             <th>Tiêu đề</th>
                             <th>Danh mục</th>
                             <th>ngày tạo</th>
-                            <th></th>
+                            <th width="50px"></th>
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -114,7 +114,13 @@
                 },
                 "processing": true,
                 "serverSide": true,
-                "order": [],
+                "responsive": true,
+
+                "order": [], "aoColumnDefs" : [ {
+                    'bSortable' : false,
+                    'aTargets' : [ 3 ]
+                } ],
+
                 "ajax": "{{ url('admin/'.$type.'/data/json') }}",
             });
         });

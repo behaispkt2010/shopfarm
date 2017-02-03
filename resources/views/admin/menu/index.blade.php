@@ -302,7 +302,7 @@
         <div class="text-right">
             <button type="submit" id="save_menu" class="btn-update btn btn-success btn-raised " > Lưu Menu</button>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-xs-12 col-sm-12 ">
             <div class="x_panel">
                 <form action="" onsubmit="return false;">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -326,7 +326,7 @@
             </div>
 
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 col-xs-12 col-sm-12">
         <div class="cf nestable-lists">
             Danh sách Menu
             <div class="dd" id="nestable">

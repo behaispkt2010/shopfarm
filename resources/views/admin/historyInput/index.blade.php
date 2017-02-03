@@ -66,9 +66,9 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="list-unstyled">
-                                                        <li>Số sản phẩm nhập:<span>{{$item->count}}</span></li>
-                                                        <li>Tổng số lượng nhập vào: <span>{{$item->sum_number}}</span></li>
-                                                        <li>Ngày nhập: <span>{{$item->created_at->format('d-m-Y')}}</span></li>
+                                                        <li><span class="label-box">Số sản phẩm:</span><span>{{$item->count}}</span></li>
+                                                        <li><span class="label-box">Số lượng:</span> <span>{{$item->sum_number}}</span></li>
+                                                        <li><span class="label-box">Ngày nhập:</span> <span>{{$item->created_at->format('d-m-Y')}}</span></li>
                                                     </ul>
                                                 </div>
                                             </div>

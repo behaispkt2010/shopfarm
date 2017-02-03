@@ -6,10 +6,10 @@
 
     <div class="row">
         <br>
-        <div class="col-md-3 text-center">Đơn Hàng<br><span class="value-das">{{$numOrder}}</span></div>
-        <div class="col-md-3 text-center">Doanh Thu<br><span class="value-das">{{$totalPrice}}</span></div>
-        <div class="col-md-3 text-center">Lợi nhuận hiện tại<br><span class="value-das">{{$profit}}</span></div>
-        <div class="col-md-3 text-center">Số sản phẩm<br><span class="value-das">{{$numProduct}}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Đơn Hàng<br><span class="value-das">{{$numOrder}}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{{$totalPrice}}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Lợi nhuận<br><span class="value-das">{{$profit}}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Số sản phẩm<br><span class="value-das">{{$numProduct}}</span></div>
 
     </div>
     <input type="hidden" name="_token" value="{{ csrf_token() }}">

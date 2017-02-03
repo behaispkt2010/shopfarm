@@ -224,6 +224,10 @@ body .container.body .right_col {
     width: 100%;
     /*margin: 0; */
   }
+  .value-das {
+    font-size: 20px;
+    font-weight: 400;
+  }
   .btn-close-mn{
     top: 5px;
     right: 12px;
@@ -5484,7 +5488,11 @@ table.dtp-picker-days thead{
 }
 .list-unstyled span.label-box{
   display: inline-block;
-  width: 100px;
+  width: 75px;
+}
+.list-unstyled span.label-box55{
+  display: inline-block;
+  width: 55px;
 }
 .nav-fix .container.body .col-md-3.left_col{
   width: 0px;
@@ -5516,4 +5524,11 @@ table.dtp-picker-days thead{
 .nav-fix .left_col {
   background: #f7f7f7;
   padding: 0;
+}
+@media (max-width: 991px) {
+
+  .value-das {
+    font-size: 20px;
+    font-weight: 400;
+  }
 }

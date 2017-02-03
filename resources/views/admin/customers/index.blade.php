@@ -62,10 +62,10 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="list-unstyled">
-                                                        <li>Tên: {{$user->name}}</li>
-                                                        <li>Email: {{$user->email}}</li>
-                                                        <li>SDT: {{$user->phone_number}}</li>
-                                                        <li>Địa chỉ: {{$user->address}}</li>
+                                                        <li><span class="label-box55">Tên:</span> {{$user->name}}</li>
+                                                        <li><span class="label-box55">Email:</span> {{$user->email}}</li>
+                                                        <li><span class="label-box55">SDT:</span> {{$user->phone_number}}</li>
+                                                        <li><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>
                                                     </ul>
                                                 </div>
                                             </div>

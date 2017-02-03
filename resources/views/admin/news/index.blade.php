@@ -19,7 +19,7 @@
 @section('content')
     <br>
     <div class="row">
-        <div class="col-md-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <!-- Name and Description -->
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <th>Danh mục</th>
                 <th>Người viết</th>
                 <th>ngày tạo</th>
-                <th></th>
+                <th width="50px"></th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -71,7 +71,12 @@
                 },
                 "processing": true,
                 "serverSide": true,
+                "responsive": true,
                 "order": [],
+                "aoColumnDefs" : [ {
+                    'bSortable' : false,
+                    'aTargets' : [ 4 ]
+                } ],
                 "ajax": "{{ url('admin/'.$type.'/data/json') }}",
             });
         });
