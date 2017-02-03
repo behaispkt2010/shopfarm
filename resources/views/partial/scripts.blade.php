@@ -36,7 +36,7 @@
 <!-- jQuery custom content scroller -->
     <script src="{{asset('plugin/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js')}}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{asset('/js/custom.min.js')}}"></script>
+    <script src="{{asset('/js/custom.js')}}"></script>
 <!-- iCheck -->
 <script src="{{asset('plugin/iCheck/icheck.min.js')}}"></script>
 <!-- PNotify -->

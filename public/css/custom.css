@@ -222,17 +222,23 @@ body .container.body .right_col {
 @media (max-width: 991px) {
   .nav-md .container.body .right_col, .nav-md .container.body .top_nav {
     width: 100%;
-    margin: 0; }
-
+    /*margin: 0; */
+  }
+.navbar-right{
+  display: none;
+}
   .nav-md .container.body .col-md-3.left_col {
-    display: none; }
+    /*display: none; */
+  }
 
   .nav-md .container.body .right_col {
-    width: 100%;
-    padding-right: 0; }
+    /*width: 100%;*/
+    /*padding-right: 0; */
+  }
 
   .right_col {
-    padding: 10px !important; } }
+    /*padding: 10px !important; */
+  } }
 @media (max-width: 1200px) {
   .x_title h2 {
     width: 62%;
@@ -5453,4 +5459,35 @@ table.dtp-picker-days thead{
 .list-unstyled span.label-box{
   display: inline-block;
   width: 100px;
+}
+.nav-fix .container.body .col-md-3.left_col{
+  width: 0px;
+  position: fixed;
+  height: 100%;
+}
+.nav-fix .navbar.nav_title{
+  width: 0px;
+}
+.nav-fix .container.body .right_col{
+  margin-left: 0px;
+}
+.nav-fix .container.body .right_col {
+  padding: 10px 20px;
+  /*margin-left: 70px;*/
+  z-index: 2;
+}
+.nav-fix .main_container .top_nav {
+  display: block;
+  margin-left: 0px;
+  z-index: 2;
+}
+.nav-fix footer {
+  margin-left: 0px;
+}
+.nav-fix .hidden-small {
+  visibility: hidden;
+}
+.nav-fix .left_col {
+  background: #f7f7f7;
+  padding: 0;
 }
