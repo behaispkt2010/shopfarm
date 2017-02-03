@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 ">
             <div class="panel panel-default">
 
                 @if (count($errors) > 0)
@@ -28,7 +28,7 @@
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="email">Email</label>
                                     <input class="form-control"  type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="email">Mật khẩu</label>
                                     <input class="form-control"  type="password" name="password" required>

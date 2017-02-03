@@ -41,7 +41,7 @@
 
 var CURRENT_URL = window.location.href.split('?')[0],
     $BODY = $('body'),
-    $MENU_TOGGLE = $('#menu_toggle'),
+    $MENU_TOGGLE = $('#menu_toggle,.btn-close-mn i'),
     $SIDEBAR_MENU = $('#sidebar-menu'),
     $SIDEBAR_FOOTER = $('.sidebar-footer'),
     $LEFT_COL = $('.left_col'),
@@ -103,6 +103,39 @@ $(document).ready(function() {
         $BODY.toggleClass('nav-md nav-fix');
 
         setContentHeight();
+    });
+    var eventFired = 0;
+
+    if ($(window).width() < 960) {
+        $BODY.removeClass('nav-md');
+        $BODY.addClass('nav-fix');
+        setContentHeight();
+    }
+    else {
+        $BODY.removeClass('nav-fix');
+
+        $BODY.addClass('nav-md');
+        setContentHeight();
+    }
+
+    $(window).on('resize', function() {
+        if (!eventFired) {
+            if ($(window).width() < 960) {
+                $BODY.removeClass('nav-md');
+
+                $BODY.addClass('nav-fix');
+
+                //setContentHeight();
+            } else {
+                $BODY.removeClass('nav-fix');
+
+                $BODY.addClass('nav-md');
+
+                //setContentHeight();
+            }
+            setContentHeight();
+
+        }
     });
 
     // check active menu

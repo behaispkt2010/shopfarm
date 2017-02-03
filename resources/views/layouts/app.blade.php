@@ -31,10 +31,14 @@
     <div id="app" style="height: 100%; width: 100%; display: table">
 
         <div class="middle" style="display: table-cell;vertical-align: middle;">
-            <div class="text-center">  <img src="{{url('/')}}/images/logo.png" alt="..." class="img-responsive text-center profile_img" style="margin: 0 auto"></div>
-            <br>
+            {{--<div class="text-center">  <img src="{{url('/')}}/images/logo.png" alt="..." class="img-responsive text-center profile_img" style="margin: 0 auto"></div>--}}
+            {{--<br>--}}
         @yield('content')
+            <div class="h-end text-center">
+                <label><span style="color: white">Sản phẩm của </span><span style="color: green">Nông sản tự nhiên</span></label>
+            </div>
         </div>
+
     </div>
 
     @include('partial.scripts')

@@ -2,6 +2,7 @@
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
             <a href="{{url('/')}}" class="site_title"><img src="{{url('/')}}/images/logo-w.png" alt=""></a>
+            <div class="btn-close-mn visible-xs"><i class="fa fa-close"></i></div>
         </div>
 
         <div class="clearfix"></div>
