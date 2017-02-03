@@ -8,8 +8,8 @@
         <br>
         <div class="col-md-3 text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
         <div class="col-md-3 text-center">Doanh Thu<br><span class="value-das">{!! number_format($totalPrice)  !!} VNĐ</span></div>
-        <div class="col-md-3 text-center">Khách Hàng/Ngày<br><span class="value-das">1</span></div>
-        <div class="col-md-3 text-center">Giá Trị Trung Bình Đơn Hàng<br><span class="value-das">{!! number_format($totalPrice/$countOrder) !!}</span></div>
+        <div class="col-md-3 text-center">Khách Hàng Hiện Tại<br><span class="value-das">{!! $customer !!}</span></div>
+        <div class="col-md-3 text-center">Giá Trị Trung Bình Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! number_format($totalPrice/$countOrder) !!} VNĐ @else 0 VNĐ @endif</span></div>
 
     </div>
     <div class="row">
@@ -89,21 +89,12 @@
                                         </td>
 
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <p><i class="fa fa-square aero"></i>Cấp 4 </p>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p><i class="fa fa-square red"></i>Cấp 5 </p>
-                                        </td>
-
-                                    </tr>
                                     </tbody></table>
                             </td>
                         </tr>
+                        <input type="hidden" value="{!! $level1 !!}" name="level1">
+                        <input type="hidden" value="{!! $level2 !!}" name="level2">
+                        <input type="hidden" value="{!! $level3 !!}" name="level3">
                         </tbody></table>
                 </div>
             </div>
@@ -120,19 +111,20 @@
                     </div>
                     <ul class="list-unstyled top_profiles scroll-view">
 
-                        <li class="media event">
-                            <a class="pull-left border-aero profile_thumb">
-                                <i class="fa fa-user aero"></i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{--{!! $ProductDetailMax->title !!}--}}</a>
-                                <p><strong>{{--{!! $moneyOrderMax !!}--}} VNĐ</strong>{{--Kho A--}}</p>
-                                <p> <small>{{--{!! $OrderMax !!}--}} đơn hàng</small>
-                                </p>
-                                </p>
-                            </div>
-                        </li>
-
+                        @foreach($arrBestSellProduct as $BestSell)
+                            <li class="media event">
+                                <a class="pull-left border-aero profile_thumb">
+                                    <i class="fa fa-user aero"></i>
+                                </a>
+                                <div class="media-body">
+                                    <a class="title" href="#">{!! $BestSell->title !!}</a>
+                                    <p><strong>{!! $BestSell->priceProduct !!} VNĐ</strong>{{--Kho A--}}</p>
+                                    <p> <small>{!! $BestSell->numOrder !!} đơn hàng</small>
+                                    </p>
+                                    </p>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -356,6 +348,7 @@
             });
         });
     </script>
+
     <script>
         $(document).on('DOMSubtreeModified','#date-filter2',function(){
             var data = $(this).text();
@@ -423,7 +416,9 @@
                 legend: false,
                 responsive: false
             };
-
+            var level1 = $('input[type="hidden"][name="level1"]').val();
+            var level2 = $('input[type="hidden"][name="level2"]').val();
+            var level3 = $('input[type="hidden"][name="level3"]').val();
             new Chart(document.getElementById("canvas2"), {
                 type: 'doughnut',
                 tooltipFillColor: "rgba(51, 51, 51, 0.55)",
@@ -431,25 +426,19 @@
                     labels: [
                         "Cấp 1",
                         "Cấp 2",
-                        "Cấp 3",
-                        "Cấp 4",
-                        "Cấp 5"
+                        "Cấp 3"
                     ],
                     datasets: [{
-                        data: [15, 20, 30, 10, 30],
+                        data: [level1,level2,level3],
                         backgroundColor: [
-                            "#BDC3C7",
-                            "#9B59B6",
-                            "#E74C3C",
-                            "#26B99A",
-                            "#3498DB"
+                            "#3498DB",
+                            "#1ABB9C",
+                            "#9B59B6"
                         ],
                         hoverBackgroundColor: [
                             "#CFD4D8",
                             "#B370CF",
-                            "#E95E4F",
-                            "#36CAAB",
-                            "#49A9EA"
+                            "#E95E4F"
                         ]
                     }]
                 },

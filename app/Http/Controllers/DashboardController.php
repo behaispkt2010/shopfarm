@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Product;
 use App\ProductOrder;
+use App\User;
+use App\WareHouse;
 use DateTime;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -27,14 +32,15 @@ class DashboardController extends Controller
         $i=0;
         foreach($orders as $key=>$order ){
             $barLabels[$i]=$order->updated_at->format('d-m-Y');
-            $barDatas1[$i] = Order::getNumOrder(9,$order->updated_at->format('d-m-Y'));
-            $barDatas2[$i] = Order::getNumOrder(11,$order->updated_at->format('d-m-Y'));
+            $barDatas1[$i] = Order::getNumOrderAdmin(9,$order->updated_at->format('d-m-Y'));
+            $barDatas2[$i] = Order::getNumOrderAdmin(11,$order->updated_at->format('d-m-Y'));
 
             $lineLabels[$i]=$order->updated_at->format('d-m-Y');
-            $lineDatas[$i] = ProductOrder::getSumPrice($order->updated_at->format('d-m-Y'));
+            $lineDatas[$i] = ProductOrder::getSumPriceAdmin($order->updated_at->format('d-m-Y'));
             $i++;
 
         }
+
 
         $response = array(
             'status' => 'success',
@@ -46,10 +52,19 @@ class DashboardController extends Controller
             'barDatas2'=>$barDatas2,
 
         );
+        //dd($response);
         return \Response::json($response);
 
     }
     public function index(){
+        $level1 = WareHouse::countLevelKho(1);
+        $level2 = WareHouse::countLevelKho(2);
+        $level3 = WareHouse::countLevelKho(3);
+        $users = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('role_user.role_id',3)
+            ->orderBy('id','DESC')
+            ->get();
+        $customer = count($users);
         $arrAllOrder = Order::get();
         $countOrder = count($arrAllOrder);
         $arrAllProductOrder = ProductOrder::get();
@@ -63,11 +78,16 @@ class DashboardController extends Controller
             $totalPrice = $totalPrice + ($itemOrder->num * $itemOrder->price);
             $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
         }
-        $profit = $totalPrice - $totalPriceIn;
+        $arrBestSellProduct = Product::getBestSellerProduct(3);
+
         $data =[
             'countOrder' =>$countOrder,
-            'totalPrice' =>$totalPrice,
-            'profit' =>$profit
+            'arrBestSellProduct' =>$arrBestSellProduct,
+            'customer' =>$customer,
+            'level1' =>$level1,
+            'level2' =>$level2,
+            'level3' =>$level3,
+            'totalPrice' =>$totalPrice
         ];
 
         return view('admin.dashboard',$data);

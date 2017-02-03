@@ -42,6 +42,14 @@ class Order extends Model
         return count($orders);
 
         }
+    public static function getNumOrderAdmin($status,$date){
+
+        $orders = Order::where('status',$status)
+            ->where(DB::raw("(DATE_FORMAT(updated_at,'%d-%m-%Y'))"),$date)
+            ->get();
+        return count($orders);
+
+        }
     public static function getNumOrderByStatus($status){
         $idUser = Auth::user()->id;
 
@@ -50,6 +58,17 @@ class Order extends Model
         return count($orders);
 
         }
+    public static function getSumPrice(){
+        $orderProducts = ProductOrder::select('product_orders.price','product_orders.num','product_orders.updated_at')
+            ->leftJoin('orders','product_orders.order_id','=','orders.id')
+            ->get();
+        $res = 0;
+        foreach($orderProducts as $orderProduct){
+            $res = $res + $orderProduct->price * $orderProduct->num;
+        }
+        return $res;
+
+    }
     public static function getInfoOrder($status,$type=0){
         $idUser = Auth::user()->id;
         if($type==1){
