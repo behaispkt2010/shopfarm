@@ -73,8 +73,8 @@ class DashboardAdminController extends Controller
         $totalPriceIn=0;
         $totalPrice=0;
         foreach($orderProduct as $itemOrder){
-            $totalPrice = $itemOrder->num * $itemOrder->price;
-            $totalPriceIn = $itemOrder->num * $itemOrder->price_in;
+            $totalPrice = $totalPrice + ($itemOrder->num * $itemOrder->price);
+            $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
 
         }
         $profit =$totalPrice - $totalPriceIn;

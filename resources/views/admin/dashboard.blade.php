@@ -17,21 +17,16 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Doanh thu {{--<button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button>--}}</h2>
+                    <h2>Doanh thu </h2>
+
+                    <div class="col-md-8">
+                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <span id="date-filter1"></span> <b class="caret"></b>
+                        </div>
+                    </div>
                     <div class="clearfix"></div>
-                    <input type="hidden" value="@if(!empty($totalPriceMonth1)){!! $totalPriceMonth1 !!}@endif" name="PriceByMonth1">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth2)){!! $totalPriceMonth2 !!}@endif" name="PriceByMonth2">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth3)){!! $totalPriceMonth3 !!}@endif" name="PriceByMonth3">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth4)){!! $totalPriceMonth4 !!}@endif" name="PriceByMonth4">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth5)){!! $totalPriceMonth5 !!}@endif" name="PriceByMonth5">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth6)){!! $totalPriceMonth6 !!}@endif" name="PriceByMonth6">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth7)){!! $totalPriceMonth7 !!}@endif" name="PriceByMonth7">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth8)){!! $totalPriceMonth8 !!}@endif" name="PriceByMonth8">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth9)){!! $totalPriceMonth9 !!}@endif" name="PriceByMonth9">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth10)){!! $totalPriceMonth10 !!}@endif" name="PriceByMonth10">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth11)){!! $totalPriceMonth11 !!}@endif" name="PriceByMonth11">
-                    <input type="hidden" value="@if(!empty($totalPriceMonth12)){!! $totalPriceMonth12 !!}@endif" name="PriceByMonth12">
-                </div>
+                    </div>
                 <div class="x_content">
                     <canvas id="lineChart"></canvas>
                 </div>
@@ -41,35 +36,16 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Số đơn hàng {{--<button class="btn btn-xs">Ngày</button><button class="btn btn-xs">Tuần</button><button class="btn btn-xs">Tháng</button><button class="btn btn-xs">90 ngày</button>--}}</h2>
+                    <h2>Số đơn hàng </h2>
+                    <div class="col-md-8">
+                        <div id="reportrange2" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <span id="date-filter2"></span> <b class="caret"></b>
+                        </div>
+                    </div>
 
                     <div class="clearfix"></div>
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess1)){!! $totalOrderSuccess1 !!}@endif" name="OrderSuccess1">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess2)){!! $totalOrderSuccess2 !!}@endif" name="OrderSuccess2">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess3)){!! $totalOrderSuccess3 !!}@endif" name="OrderSuccess3">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess4)){!! $totalOrderSuccess4 !!}@endif" name="OrderSuccess4">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess5)){!! $totalOrderSuccess5 !!}@endif" name="OrderSuccess5">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess6)){!! $totalOrderSuccess6 !!}@endif" name="OrderSuccess6">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess7)){!! $totalOrderSuccess7 !!}@endif" name="OrderSuccess7">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess8)){!! $totalOrderSuccess8 !!}@endif" name="OrderSuccess8">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess9)){!! $totalOrderSuccess9 !!}@endif" name="OrderSuccess9">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess10)){!! $totalOrderSuccess10 !!}@endif" name="OrderSuccess10">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess11)){!! $totalOrderSuccess11 !!}@endif" name="OrderSuccess11">
-                    <input type="hidden" value="@if(!empty($totalOrderSuccess12)){!! $totalOrderSuccess12 !!}@endif" name="OrderSuccess12">
-
-                    <input type="hidden" value="@if(!empty($totalOrderFail1)){!! $totalOrderFail1 !!}@endif" name="OrderFail1">
-                    <input type="hidden" value="@if(!empty($totalOrderFail2)){!! $totalOrderFail2 !!}@endif" name="OrderFail2">
-                    <input type="hidden" value="@if(!empty($totalOrderFail3)){!! $totalOrderFail3 !!}@endif" name="OrderFail3">
-                    <input type="hidden" value="@if(!empty($totalOrderFail4)){!! $totalOrderFail4 !!}@endif" name="OrderFail4">
-                    <input type="hidden" value="@if(!empty($totalOrderFail5)){!! $totalOrderFail5 !!}@endif" name="OrderFail5">
-                    <input type="hidden" value="@if(!empty($totalOrderFail6)){!! $totalOrderFail6 !!}@endif" name="OrderFail6">
-                    <input type="hidden" value="@if(!empty($totalOrderFail7)){!! $totalOrderFail7 !!}@endif" name="OrderFail7">
-                    <input type="hidden" value="@if(!empty($totalOrderFail8)){!! $totalOrderFail8 !!}@endif" name="OrderFail8">
-                    <input type="hidden" value="@if(!empty($totalOrderFail9)){!! $totalOrderFail9 !!}@endif" name="OrderFail9">
-                    <input type="hidden" value="@if(!empty($totalOrderFail10)){!! $totalOrderFail10 !!}@endif" name="OrderFail10">
-                    <input type="hidden" value="@if(!empty($totalOrderFail11)){!! $totalOrderFail11 !!}@endif" name="OrderFail11">
-                    <input type="hidden" value="@if(!empty($totalOrderFail12)){!! $totalOrderFail12 !!}@endif" name="OrderFail12">
-                </div>
+                    </div>
                 <div class="x_content">
                     <canvas id="mybarChart"></canvas>
                 </div>
@@ -149,39 +125,13 @@
                                 <i class="fa fa-user aero"></i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">{!! $ProductDetailMax->title !!}</a>
-                                <p><strong>{!! $moneyOrderMax !!} VNĐ</strong>{{--Kho A--}}</p>
-                                <p> <small>{!! $OrderMax !!} đơn hàng</small>
+                                <a class="title" href="#">{{--{!! $ProductDetailMax->title !!}--}}</a>
+                                <p><strong>{{--{!! $moneyOrderMax !!}--}} VNĐ</strong>{{--Kho A--}}</p>
+                                <p> <small>{{--{!! $OrderMax !!}--}} đơn hàng</small>
                                 </p>
                                 </p>
                             </div>
                         </li>
-                        <li class="media event">
-                            <a class="pull-left border-aero profile_thumb">
-                                <i class="fa fa-user aero"></i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{!! $ProductDetailMax1->title !!}</a>
-                                <p><strong>{!! $moneyOrderMax1 !!} VNĐ</strong>{{--Kho A--}}</p>
-                                <p> <small>{!! $OrderMax1 !!} đơn hàng</small>
-                                </p>
-                                </p>
-                            </div>
-                        </li>
-                        <li class="media event">
-                            <a class="pull-left border-aero profile_thumb">
-                                <i class="fa fa-user aero"></i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{!! $ProductDetailMax2->title !!}</a>
-                                <p><strong>{!! $moneyOrderMax2 !!} VNĐ</strong>{{--Kho A--}}</p>
-                                <p> <small>{!! $OrderMax2 !!} đơn hàng</small>
-                                </p>
-                                </p>
-                            </div>
-                        </li>
-
-
 
                     </ul>
                 </div>
@@ -194,11 +144,279 @@
     @endsection
     @section('add_scripts')
             <!-- Chart.js -->
-    <script src="{{asset('/plugin/Chart.js/dist/Chart.min.js')}}"></script>
+    <script src="{{asset('plugin/Chart.js/dist/Chart.js')}}"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="{{asset('/js/moment/moment.min.js')}}"></script>
     <script src="{{asset('/js/datepicker/daterangepicker.js')}}"></script>
     <!-- Doughnut Chart -->
+    <script>
+        var lineLabels="";
+        var lineDatas="";
+        var barLabels="";
+        var barDatas1="";
+        var barDatas2="";
+
+
+    </script>
+    <script>
+        $(document).ready(function() {
+
+            var cb = function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+                $('#reportrange2 span').html(start.format('DD-MM-YYYY') + ' -> ' + end.format('DD-MM-YYYY'));
+            };
+
+            var optionSet1 = {
+                startDate: moment().subtract(6, 'days'),
+                endDate: moment(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2020',
+                dateLimit: {
+                    days: 90
+                },
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    'Hôm nay': [moment(), moment()],
+                    '7 ngày': [moment().subtract(6, 'days'), moment()],
+                    '30 ngày': [moment().subtract(29, 'days'), moment()],
+                    '90 ngày': [moment().subtract(89, 'days'), moment()],
+                },
+                opens: 'left',
+                buttonClasses: ['btn btn-default btn-xs btn-raised'],
+                applyClass: 'btn-small btn-primary ',
+                cancelClass: 'btn-small',
+                format: 'DD/MM/YYYY',
+                separator: ' to ',
+                locale: {
+                    applyLabel: 'Lọc dữ liệu',
+                    cancelLabel: 'Xóa',
+                    fromLabel: 'Từ ngày',
+                    toLabel: 'Đến ngày',
+                    customRangeLabel: 'chọn bất kỳ',
+                    daysOfWeek: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                    monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 12', 'Tháng 12'],
+                    firstDay: 1
+                }
+            };
+            $('#reportrange2 span').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' -> ' + moment().format('DD-MM-YYYY'));
+            $('#reportrange2').daterangepicker(optionSet1, cb);
+            $('#reportrange2').on('show.daterangepicker', function() {
+                console.log("show event fired");
+            });
+            $('#reportrange2').on('hide.daterangepicker', function() {
+                console.log("hide event fired");
+            });
+            $('#reportrange2').on('apply.daterangepicker', function(ev, picker) {
+                console.log("apply event fired, start/end dates are " + picker.startDate.format('DD-MM-YYYY') + " to " + picker.endDate.format('DD-MM-YYYY'));
+            });
+            $('#reportrange2').on('cancel.daterangepicker', function(ev, picker) {
+                console.log("cancel event fired");
+            });
+            $('#options1').click(function() {
+                $('#reportrange2').data('daterangepicker').setOptions(optionSet1, cb);
+
+            });
+            $('#options2').click(function() {
+                $('#reportrange2').data('daterangepicker').setOptions(optionSet2, cb);
+
+            });
+            $('#destroy').click(function() {
+                $('#reportrange2').data('daterangepicker').remove();
+            });
+
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+
+            var cb = function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+                $('#reportrange span#date-filter1').html(start.format('DD-MM-YYYY') + ' -> ' + end.format('DD-MM-YYYY'));
+            };
+
+            var optionSet1 = {
+                startDate: moment().subtract(6, 'days'),
+                endDate: moment(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2020',
+                dateLimit: {
+                    days: 90
+                },
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    'Hôm nay': [moment(), moment()],
+                    '7 ngày': [moment().subtract(6, 'days'), moment()],
+                    '30 ngày': [moment().subtract(29, 'days'), moment()],
+                    '90 ngày': [moment().subtract(89, 'days'), moment()],
+                },
+                opens: 'left',
+                buttonClasses: ['btn btn-default btn-xs btn-raised'],
+                applyClass: 'btn-small btn-primary ',
+                cancelClass: 'btn-small',
+                format: 'DD/MM/YYYY',
+                separator: ' to ',
+                locale: {
+                    applyLabel: 'Lọc dữ liệu',
+                    cancelLabel: 'Xóa',
+                    fromLabel: 'Từ ngày',
+                    toLabel: 'Đến ngày',
+                    customRangeLabel: 'chọn bất kỳ',
+                    daysOfWeek: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                    monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                    firstDay: 1
+                }
+            };
+            $('#reportrange span#date-filter1').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' -> ' + moment().format('DD-MM-YYYY'));
+            $('#reportrange').daterangepicker(optionSet1, cb);
+            $('#reportrange').on('show.daterangepicker', function() {
+                console.log("show event fired");
+            });
+            $('#reportrange').on('hide.daterangepicker', function() {
+                console.log("hide event fired");
+            });
+            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+                console.log("apply event fired, start/end dates are " + picker.startDate.format('DD-MM-YYYY') + " to " + picker.endDate.format('DD-MM-YYYY'));
+            });
+            $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+                console.log("cancel event fired");
+            });
+            $('#options1').click(function() {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+
+            });
+            $('#options2').click(function() {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+
+            });
+            $('#destroy').click(function() {
+                $('#reportrange').data('daterangepicker').remove();
+            });
+
+        });
+    </script>
+    <script>
+        $(document).on('DOMSubtreeModified','#date-filter1',function(){
+            var data = $(this).text();
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "GET",
+                url: '{!! url("/") !!}/admin/dashboard',
+                data: {data: data,_token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    lineLabels = msg['lineLabels'];
+                    lineDatas = msg['lineDatas'];
+                    barLabels = msg['barLabels'];
+                    barDatas1 = msg['barDatas1'];
+                    barDatas2 = msg['barDatas2'];
+                    // Line chart
+                    var ctx = document.getElementById("lineChart");
+                    var lineChart = new Chart(ctx, {
+                        responsive: true,
+                        skipXLabels: 5,
+                        type: 'line',
+                        data: {
+                            labels: lineLabels,
+                            datasets: [{
+                                label: "Doanh Thu",
+                                backgroundColor: "rgba(76, 175, 80, 0.68)",
+//                                  borderColor: "rgba(38, 185, 154, 0.7)",
+                                pointBorderColor: "rgba(38, 185, 154, 0.7)",
+                                pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+                                pointHoverBackgroundColor: "#fff",
+                                pointHoverBorderColor: "rgba(220,220,220,1)",
+                                pointBorderWidth: 1,
+                                data: lineDatas,
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    display: false
+                                }]
+                            }
+
+                        }
+                    })// Bar chart
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).on('DOMSubtreeModified','#date-filter2',function(){
+            var data = $(this).text();
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "GET",
+                url: '{!! url("/") !!}/admin/dashboard',
+                data: {data: data,_token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    lineLabels = msg['lineLabels'];
+                    lineDatas = msg['lineDatas'];
+                    barLabels = msg['barLabels'];
+                    barDatas1 = msg['barDatas1'];
+                    barDatas2 = msg['barDatas2'];
+
+                    //graph options
+                    var ctx = document.getElementById("mybarChart");
+                    var mybarChart = new Chart(ctx, {
+
+                        type: 'bar',
+                        data: {
+                            labels: barLabels,
+                            datasets: [{
+                                label: 'Thành công',
+                                backgroundColor: "#4caf50",
+                                data: barDatas1
+                            }, {
+                                label: 'Thất bại',
+                                backgroundColor: "#FF9800",
+                                data: barDatas2
+                            }]
+                        },
+
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }],
+                                xAxes: [{
+                                    display: false
+                                }]
+                            }
+
+                        }
+
+                    });
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $('.loading').css('display','none');
+
+                }
+            });
+
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             var options = {
@@ -244,19 +462,6 @@
 
         // Line chart
         var ctx = document.getElementById("lineChart");
-        var PriceByMonth1 = $('input[type="hidden"][name="PriceByMonth1"]').val();
-        var PriceByMonth2 = $('input[type="hidden"][name="PriceByMonth2"]').val();
-        var PriceByMonth3 = $('input[type="hidden"][name="PriceByMonth3"]').val();
-        var PriceByMonth4 = $('input[type="hidden"][name="PriceByMonth4"]').val();
-        var PriceByMonth5 = $('input[type="hidden"][name="PriceByMonth5"]').val();
-        var PriceByMonth6 = $('input[type="hidden"][name="PriceByMonth6"]').val();
-        var PriceByMonth7 = $('input[type="hidden"][name="PriceByMonth7"]').val();
-        var PriceByMonth8 = $('input[type="hidden"][name="PriceByMonth8"]').val();
-        var PriceByMonth9 = $('input[type="hidden"][name="PriceByMonth9"]').val();
-        var PriceByMonth10 = $('input[type="hidden"][name="PriceByMonth10"]').val();
-        var PriceByMonth11 = $('input[type="hidden"][name="PriceByMonth11"]').val();
-        var PriceByMonth12 = $('input[type="hidden"][name="PriceByMonth12"]').val();
-        var Price = [];
 
         //alert(PriceByMonth);
         var lineChart = new Chart(ctx, {
@@ -272,38 +477,14 @@
                     pointHoverBackgroundColor: "#fff",
                     pointHoverBorderColor: "rgba(220,220,220,1)",
                     pointBorderWidth: 1,
-                    data: [PriceByMonth1,PriceByMonth2,PriceByMonth3,PriceByMonth4,PriceByMonth5,PriceByMonth6,PriceByMonth7,PriceByMonth8,PriceByMonth9,PriceByMonth10,PriceByMonth11,PriceByMonth12]
+                    data: []
                 }]
             },
         });
 
         // Bar chart
         var ctx = document.getElementById("mybarChart");
-        var OrderSuccess1 = $('input[type="hidden"][name="OrderSuccess1"]').val();
-        var OrderSuccess2 = $('input[type="hidden"][name="OrderSuccess2"]').val();
-        var OrderSuccess3 = $('input[type="hidden"][name="OrderSuccess3"]').val();
-        var OrderSuccess4 = $('input[type="hidden"][name="OrderSuccess4"]').val();
-        var OrderSuccess5 = $('input[type="hidden"][name="OrderSuccess5"]').val();
-        var OrderSuccess6 = $('input[type="hidden"][name="OrderSuccess6"]').val();
-        var OrderSuccess7 = $('input[type="hidden"][name="OrderSuccess7"]').val();
-        var OrderSuccess8 = $('input[type="hidden"][name="OrderSuccess8"]').val();
-        var OrderSuccess9 = $('input[type="hidden"][name="OrderSuccess9"]').val();
-        var OrderSuccess10 = $('input[type="hidden"][name="OrderSuccess10"]').val();
-        var OrderSuccess11 = $('input[type="hidden"][name="OrderSuccess11"]').val();
-        var OrderSuccess12 = $('input[type="hidden"][name="OrderSuccess12"]').val();
 
-        var OrderFail1 = $('input[type="hidden"][name="OrderFail1"]').val();
-        var OrderFail2 = $('input[type="hidden"][name="OrderFail2"]').val();
-        var OrderFail3 = $('input[type="hidden"][name="OrderFail3"]').val();
-        var OrderFail4 = $('input[type="hidden"][name="OrderFail4"]').val();
-        var OrderFail5 = $('input[type="hidden"][name="OrderFail5"]').val();
-        var OrderFail6 = $('input[type="hidden"][name="OrderFail6"]').val();
-        var OrderFail7 = $('input[type="hidden"][name="OrderFail7"]').val();
-        var OrderFail8 = $('input[type="hidden"][name="OrderFail8"]').val();
-        var OrderFail9 = $('input[type="hidden"][name="OrderFail9"]').val();
-        var OrderFail10 = $('input[type="hidden"][name="OrderFail10"]').val();
-        var OrderFail11 = $('input[type="hidden"][name="OrderFail11"]').val();
-        var OrderFail12 = $('input[type="hidden"][name="OrderFail12"]').val();
         var mybarChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -311,11 +492,11 @@
                 datasets: [{
                     label: 'Thành công',
                     backgroundColor: "#4caf50",
-                    data: [OrderSuccess1, OrderSuccess2, OrderSuccess3, OrderSuccess4, OrderSuccess5,OrderSuccess6,OrderSuccess7,OrderSuccess8,OrderSuccess9,OrderSuccess10,OrderSuccess11,OrderSuccess12]
+                    data: []
                 }, {
                     label: 'Thất bại',
                     backgroundColor: "#FF9800",
-                    data: [OrderFail1, OrderFail2, OrderFail3, OrderFail4, OrderFail5,OrderFail6,OrderFail7,OrderFail8,OrderFail9,OrderFail10,OrderFail11,OrderFail12]
+                    data: []
                 }]
             },
 

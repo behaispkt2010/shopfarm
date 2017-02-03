@@ -69,7 +69,10 @@ class ProductController extends Controller
             "product"=>$product,
             "detailImage"=>$detailImage
         ];
-
+        /*echo "<pre>";
+        print_r($product);
+        echo "</pre>";
+        die;*/
         return view('frontend.product-single',$data);
 
     }

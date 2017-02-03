@@ -90,7 +90,9 @@
                                         <form action="{{route('users.destroy',['id' => $user->id])}}" method="post" class="form-delete" style="display: inline">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             <input type="text" class="hidden" value="{{$user->id}}">
-                                            <input type="hidden" name="type_staff" value="staffs">
+
+                                            <input type="hidden" name="type_staff" value="@if(Request::is('admin/staffs'))staffs @else users @endif">
+
                                             {{method_field("DELETE")}}
                                             <a type="submit" class = "btn btn-raised  btn-xs btn-danger" name ="delete_modal" style="display: inline-block"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                                         </form>

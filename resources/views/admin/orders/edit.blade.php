@@ -343,9 +343,9 @@
                             <div class="form-group">
                                 <select id="q" class="form-control" name="q">
                                     <option value="0">Chọn phường xã</option>
-                                    @foreach($district as $item)
+                                    {{--@foreach($district as $item)
                                         <option value="{{$item->name}}">{{$item->name}}</option>
-                                    @endforeach
+                                    @endforeach--}}
                                 </select>
                             </div>
                         </div>
@@ -492,6 +492,34 @@
 <!-- Select2 -->
 <script>
     $('#select-kh,#t,#q,.select-payment,#select-product').selectize({});
+</script>
+<script type="text/javascript">
+    $('#t').on('change', function (e) {
+        e.preventDefault();
+        var provincename = $(this).val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+            type: "GET",
+            url: '{!! url("/") !!}/admin/orders/AjaxGetDistrictByProvince',
+            data: {name: provincename},
+            success: function (msg) {
+                $("#q").html(msg);
+                //console.log(msg);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //show notify
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+                new PNotify({
+                    title: 'Lỗi',
+                    text: 'Không tải được thông tin',
+                    type: 'danger',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+                $('.loading').css('display', 'none');
+            }
+        });
+    });
 </script>
 <script>
     $('#select-kh').on('change', function (e) {

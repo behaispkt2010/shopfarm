@@ -62,6 +62,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     //Đơn hàng
     Route::resource('orders', 'OrderController');
     Route::get('orders/getOrderByStatus/{id}', 'OrderController@getOrderByStatus');
+    Route::get('orders/AjaxGetDistrictByProvince', 'OrderController@AjaxGetDistrictByProvince');
     //ql kho
     Route::resource('inventory', 'InventoryController');
     //ql sỗ quỹ
@@ -115,6 +116,7 @@ Route::post('product/checkProductAjax', 'ProductController@checkProductAjax');
 Route::post('product/updateProductAjax', 'ProductController@UpdateProductAjax');
 Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
 Route::get('admin/getdashboard', 'DashboardAdminController@getdashboard');
+Route::get('admin/dashboard', 'DashboardController@dashboard');
 
 
 

@@ -5,11 +5,74 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Product;
 use App\ProductOrder;
+use DateTime;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function dashboard(Request $request){
+        $data=$request->get('data');
+        $dateRes = explode('->', $data);
+        //dd($data);
+        $lineLabels = [];
+        $lineDatas = [];
+        $barLabels = [];
+        $barDatas1= [];
+        $barDatas2 =[];
+
+        $orders = Order::whereBetween('updated_at', array(new DateTime($dateRes[0]), new DateTime($dateRes[1])))
+            ->whereIn('status',[9,11])
+            ->groupBy(DB::raw("DATE(updated_at)"))
+            ->get();
+        $i=0;
+        foreach($orders as $key=>$order ){
+            $barLabels[$i]=$order->updated_at->format('d-m-Y');
+            $barDatas1[$i] = Order::getNumOrder(9,$order->updated_at->format('d-m-Y'));
+            $barDatas2[$i] = Order::getNumOrder(11,$order->updated_at->format('d-m-Y'));
+
+            $lineLabels[$i]=$order->updated_at->format('d-m-Y');
+            $lineDatas[$i] = ProductOrder::getSumPrice($order->updated_at->format('d-m-Y'));
+            $i++;
+
+        }
+
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+            'lineLabels' => $lineLabels,
+            'lineDatas' => $lineDatas,
+            'barLabels'=>$barLabels,
+            'barDatas1'=>$barDatas1,
+            'barDatas2'=>$barDatas2,
+
+        );
+        return \Response::json($response);
+
+    }
+    public function index(){
+        $arrAllOrder = Order::get();
+        $countOrder = count($arrAllOrder);
+        $arrAllProductOrder = ProductOrder::get();
+        $totalPriceIn=0;
+        $totalPrice=0;
+        /*echo "<pre>";
+        print_r($arrAllProductOrder);
+        echo "</pre>";
+        die;*/
+        foreach($arrAllProductOrder as $itemOrder){
+            $totalPrice = $totalPrice + ($itemOrder->num * $itemOrder->price);
+            $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
+        }
+        $profit = $totalPrice - $totalPriceIn;
+        $data =[
+            'countOrder' =>$countOrder,
+            'totalPrice' =>$totalPrice,
+            'profit' =>$profit
+        ];
+
+        return view('admin.dashboard',$data);
+    }
+    /*public function index()
     {
         $arrAllOrder = Order::get();
         $countOrder = count($arrAllOrder);
@@ -42,6 +105,7 @@ class DashboardController extends Controller
         $totalOrderSuccess12 = 0;
         $totalOrderFail1 = 0;
         $totalOrderFail2 = 0;
+
         $totalOrderFail3 = 0;
         $totalOrderFail4 = 0;
         $totalOrderFail5 = 0;
@@ -224,12 +288,6 @@ class DashboardController extends Controller
         foreach ($arrProductOrderMax2 as $ProductOrderMax2){
             $moneyOrderMax2 = $moneyOrderMax2 + $ProductOrderMax2->price;
         }
-
-
-        /*echo "<pre>";
-        print_r($arrProductOrderMax);
-        echo "</pre>";
-        die;*/
         $data = [
             'totalPrice' => $totalPrice,
             'countOrder' => $countOrder,
@@ -285,6 +343,6 @@ class DashboardController extends Controller
             'moneyOrderMax2' => $moneyOrderMax2
         ];
         return view('admin.dashboard',$data);
-    }
+    }*/
 
 }

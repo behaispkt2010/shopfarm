@@ -18,7 +18,7 @@
                         <input type="hidden" name="id" value="{{$id}}">
                         @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="type_staff" value="staffs">
+                        <input type="hidden" name="type_staff" value="@if(Request::is('admin/staffs'))staffs @else users @endif">
         <div class="col-md-12 col-xs-12">
             <!-- Name and Description -->
             <div class="text-right">

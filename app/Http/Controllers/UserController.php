@@ -25,6 +25,7 @@ class UserController extends Controller
         $user->update($data);
         return \Response::json($response);
     }
+
 public function AjaxCreateCustomer(UserRequest $request)
 {
     $user = new User();
@@ -215,14 +216,15 @@ public function AjaxCreateCustomer(UserRequest $request)
      */
     public function destroy(Request $request,$id)
     {
-        $user =  User::destroy($id);
+        $uid = $request->$id;
+        $user =  User::destroy($uid);
+        $type = $request->type_staff;
         if(!empty($user)) {
                 return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
         else{
 
                 return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
-
         }
     }
 }

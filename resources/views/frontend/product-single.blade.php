@@ -290,9 +290,7 @@
 
 									</div><!--/ .theme_box -->
 
-									{{--<footer class="bottom_box">--}}
-										{{----}}
-										{{--<a href="{{url('/kho')/$product->idKho}}" class="button_grey middle_btn">Xem các sản phẩm khác</a>--}}
+
 
 									{{--</footer>--}}
 

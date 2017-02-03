@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\CreateOrderRequest;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,14 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function AjaxGetDistrictByProvince(Request $request){
+        $name = $request->get('name');
+        $provinceID = Province::where('name',$name);
+        $arrDistrictByProvince = District::where('provinceid',$provinceID->provinceid)->get();
+        foreach($arrDistrictByProvince as $DistrictByProvince){
+            echo "<option value='$DistrictByProvince->name'>$DistrictByProvince->name</option>";
+        }
+    }
     public function getOrderByStatus($id){
         $arrTmpAllOrders = Order::orderBy('id', 'DESC')->get();
         $arrAllOrders = array();
