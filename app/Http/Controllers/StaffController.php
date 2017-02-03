@@ -49,9 +49,9 @@ class StaffController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();
+//        $roles = Role::get();
         $data=[
-            'roles' => $roles
+            'role' => 'staff'
         ];
         return view('admin.users.edit',$data);
     }

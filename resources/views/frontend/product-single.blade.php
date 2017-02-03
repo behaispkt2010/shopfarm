@@ -1,8 +1,9 @@
 @extends('layouts.frontend')
 @section('title', '')
 @section('description','')
-@section('add_styles')
-{{-- --}}
+@section('add-styles')
+	<link rel="stylesheet" href="{{asset('frontend/js/fancybox/source/jquery.fancybox.css')}}">
+	<link rel="stylesheet" href="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.css')}}">
 @endsection
 @section('content')
 
@@ -40,7 +41,7 @@
 
 										<div class="image_preview_container">
 
-											<img id="img_zoom" data-zoom-image="images/qv_large_1.JPG" src="../../../frontend/images/qv_img_1.jpg" alt="">
+											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="">
 
 											<button class="button_grey_2 icon_btn middle_btn open_qv"><i class="icon-resize-full-6"></i></button>
 
@@ -53,30 +54,15 @@
 										<div class="product_preview">
 
 											<div class="owl_carousel" id="thumbnails">
-												
-												<a href="#" data-image="images/qv_img_1.jpg" data-zoom-image="images/qv_large_1.JPG">
 
-													<img src="../../../frontend/images/qv_thumb_1.jpg" data-large-image="images/qv_img_1.jpg" alt="">
+												@foreach($detailImage as $item)
+												<a href="#" data-image="{{url('/')}}{{$item->image}}" data-zoom-image="{{url('/')}}{{$item->image}}">
 
-												</a>
-
-												<a href="#" data-image="images/qv_img_2.jpg" data-zoom-image="images/qv_large_2.jpg">
-
-													<img src="../../../frontend/images/qv_thumb_2.jpg" data-large-image="images/qv_img_2.jpg" alt="">
+													<img src="{{url('/')}}{{$item->image}}" data-large-image="{{url('/')}}{{$item->image}}" alt="">
 
 												</a>
+												@endforeach
 
-												<a href="#" data-image="images/qv_img_3.jpg" data-zoom-image="images/qv_large_3.jpg">
-
-													<img src="../../../frontend/images/qv_thumb_3.jpg" data-large-image="images/qv_img_3.jpg" alt="">
-
-												</a>
-
-												<a href="#" data-image="images/qv_img_4.jpg" data-zoom-image="images/qv_large_4.JPG">
-
-													<img src="../../../frontend/images/qv_thumb_4.jpg" data-large-image="images/qv_img_4.jpg" alt="">
-
-												</a>
 
 											</div><!--/ .owl-carousel-->
 
@@ -88,18 +74,12 @@
 										
 										<div class="v_centered">
 
-											<span class="title">Share this:</span>
+											<span class="title">Chia sẻ:</span>
 
 											<div class="addthis_widget_container">
 												<!-- AddThis Button BEGIN -->
-												<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-												<a class="addthis_button_preferred_1"></a>
-												<a class="addthis_button_preferred_2"></a>
-												<a class="addthis_button_preferred_3"></a>
-												<a class="addthis_button_preferred_4"></a>
-												<a class="addthis_button_compact"></a>
-												<a class="addthis_counter addthis_bubble_style"></a>
-												</div>
+												<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
+
 												<!-- AddThis Button END -->
 											</div>
 											
@@ -183,26 +163,30 @@
 										<div class="description_section">
 
 											<p class="text-info">Vui lòng để lại thông tin liên lạc để chúng tôi liên hệ lại trong thời gian sớm nhất</p>
-
+											@if (\Session::has('success'))
+												<p class="message red" style="color: red;">Cảm ơn quý khách hàng đã để lại thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
+												<br>
+											@endif
 										</div>
 										<div class="description_section">
-										<form novalidate="" enctype="multipart/form-data" class="contactform type_2" id="contact_form">
+										<form action="{{url('/single-order')}}" method="post"  class="contactform type_2" id="contact_form">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 											<ul>
 
 												<li class="row">
-
+													<input type="hidden"  name="cf_url" value="{{url('/')}}{{$_SERVER['REQUEST_URI']}}">
 													<div class="col-sm-6">
 
 														<label for="cf_name" class="required">Tên</label>
-														<input type="text" required="" name="cf_name" id="cf_name" title="Name">
+														<input type="text" required name="cf_name" id="cf_name" title="Name">
 
 													</div><!--/ [col]-->
 
 													<div class="col-sm-6">
 
 														<label for="cf_email" class="required">Địa chỉ Email</label>
-														<input type="email" required="" name="cf_email" id="cf_email" title="Email">
+														<input type="email" required name="cf_email" id="cf_email" title="Email">
 
 													</div><!--/ [col]-->
 
@@ -213,7 +197,7 @@
 													<div class="col-xs-12">
 
 														<label for="cf_order_number" class="required">Số điện thoại</label>
-														<input type="text" name="cf_order_number" id="cf_order_number" title="Order number">
+														<input type="text" required name="cf_order_number" id="cf_order_number" title="Order number">
 
 													</div><!--/ [col]-->
 
@@ -224,24 +208,25 @@
 													<div class="col-xs-12">
 
 														<label for="cf_message" class="">Tin nhắn</label>
-														<textarea id="cf_message" required="" name="cf_message" title="Message" rows="4"></textarea>
+														<textarea id="cf_message"  name="cf_message" title="Message" rows="4"></textarea>
 
 													</div><!--/ [col]-->
 
 												</li><!--/ .row -->
 
 											</ul>
+											<div class="buttons_row">
+
+												<button class="button_blue middle_btn" type="submit" id="send-order-info">Gửi thông tin</button>
+
+											</div>
 
 										</form>
 
 									</div>
 										<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
-										<div class="buttons_row">
 
-											<button class="button_blue middle_btn">Gửi thông tin</button>
-
-										</div>
 
 										<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
 
@@ -305,11 +290,11 @@
 
 									</div><!--/ .theme_box -->
 
-									<footer class="bottom_box">
-										
-										<a href="{{url('/kho')/$product->idKho}}" class="button_grey middle_btn">Xem các sản phẩm khác</a>
+									{{--<footer class="bottom_box">--}}
+										{{----}}
+										{{--<a href="{{url('/kho')/$product->idKho}}" class="button_grey middle_btn">Xem các sản phẩm khác</a>--}}
 
-									</footer>
+									{{--</footer>--}}
 
 								</section>
 
@@ -382,9 +367,10 @@
 
 									<section class="section_offset">
 
-										<h3>Customer Reviews</h3>
 
-
+										<div class="comment">
+											<div class="fb-comments" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-width="100%" data-numposts="5"></div>
+										</div>
 
 
 
@@ -392,7 +378,7 @@
 
 									<section class="section_offset">
 
-										<h3>Write Your Own Review</h3>
+
 
 										<div class="row">
 
@@ -873,3 +859,16 @@
 			
 			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
 @endsection
+@section('add-script')
+	<script src="{{asset('frontend/js/jquery.elevateZoom-3.0.8.min.js')}}"></script>
+	<script src="{{asset('frontend/js/fancybox/source/jquery.fancybox.pack.js')}}"></script>
+	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-media.js')}}"></script>
+	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.js')}}"></script>
+
+	{{--<script>--}}
+		{{--$(document).on('click','send-order-info',function(){--}}
+
+		{{--})--}}
+	{{--</script>--}}
+
+	@endsection

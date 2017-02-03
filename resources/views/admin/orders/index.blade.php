@@ -114,7 +114,7 @@
                                             <ul class="list-unstyled">
                                                 <li><i class="fa fa-user"></i> @if(!empty($arrAllUser[$arrOrders['customer_id']]->name)){!! $arrAllUser[$arrOrders['customer_id']]->name !!}@endif </li>
                                                 <li><i class="fa fa-building"></i>
-                                                    <span style="width: 85%;float: left;">@if(!empty($arrAllUser[$arrOrders['customer_id']]->address)){!! $arrAllUser[$arrOrders['customer_id']]->address !!}@endif</span>
+                                                    <span style="">@if(!empty($arrAllUser[$arrOrders['customer_id']]->address)){!! $arrAllUser[$arrOrders['customer_id']]->address !!}@endif</span>
                                                 </li>
                                                 <li><i class="fa fa-phone"></i> @if(!empty($arrAllUser[$arrOrders['customer_id']]->phone_number)){!! $arrAllUser[$arrOrders['customer_id']]->phone_number !!}@endif</li>
                                                 <li><i class="fa fa-usd"></i> <span class="box-money">@if(!empty($arrAllProductOrder[$arrOrders['id']]->price))@foreach($arrTmpProductOrders as $ProOrder)@if($arrOrders->id == $ProOrder['order_id'])<?php $priceTotal = $priceTotal + $ProOrder['price']; ?> @endif @endforeach{!! $priceTotal !!}@endif VNĐ</span></li>
@@ -155,21 +155,7 @@
 
     @section('add_scripts')
             <!-- Datatables -->
-    <script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-scroller/js/datatables.scroller.min.js')}}"></script>
-    <script src="{{asset('plugin/jszip/dist/jszip.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
+
 
 
 @endsection

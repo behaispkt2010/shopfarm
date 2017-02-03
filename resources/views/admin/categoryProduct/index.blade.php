@@ -21,9 +21,11 @@
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
-                                    <option value="0">Tất cả</option>
-                                    <option value="2" @if(Request::get('kho')==2) selected @endif> kho 1</option>
+                                    <option value="0" >Tất cả kho</option>
+                                    @foreach($wareHouses  as $wareHouse)
+                                        <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>#{{$wareHouse->id}}({{$wareHouse->name}})</option>
 
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="clear"></div>
@@ -71,9 +73,9 @@
                                             <h3 class="cod text-center title-cate">{{$itemCategoryProduct->name}}</h3>
                                             <div class="col-xs-12 ol-xs-12">
                                                 <ul class="list-unstyled">
-                                                    <li>Số sản phẩm: <span class="bold"> {{$itemCategoryProduct->name}}</span></li>
-                                                    <li>Số tồn kho: <span class="bold"> {{$itemCategoryProduct->name}}</span></li>
-                                                    <li>Danh mục cha: <span class="bold"> {{$itemCategoryProduct->parent}}</span></li>
+                                                    <li><span class="label-box">Số sản phẩm:</span> <span class="bold"> {{\App\CategoryProduct::getTonKho($itemCategoryProduct->id,Request::get('kho'))['numproduct']}}</span></li>
+                                                    <li><span class="label-box">Số tồn kho:</span> <span class="bold"> {{\App\CategoryProduct::getTonKho($itemCategoryProduct->id,Request::get('kho'))['inventory_num']}}</span></li>
+                                                    <li><span class="label-box">Danh mục cha:</span> <span class="bold"> {{$itemCategoryProduct->parent}}</span></li>
                                                 </ul>
                                             </div>
                                     </div>
@@ -82,7 +84,7 @@
                                         {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
                                         {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
                                         {{--</a>--}}
-                                        <a href="{{url('/').'/'.$itemCategoryProduct->slug}}"
+                                        <a href="{{url('/category-product').'/'.$itemCategoryProduct->slug}}"
                                            class="btn btn-raised btn-info btn-xs">
                                             <i class="fa fa-eye" aria-hidden="true"></i> Xem
                                         </a>

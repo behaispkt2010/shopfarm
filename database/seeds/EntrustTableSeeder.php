@@ -34,7 +34,7 @@ class EntrustTableSeeder extends Seeder
 
         $userRole = new Role(); // 3
         $userRole->name = 'user';
-        $userRole->display_name = "Người dùng";
+        $userRole->display_name = "Khách hàng";
         $userRole->save();
 
         $userRole = new Role(); // 4
@@ -47,16 +47,25 @@ class EntrustTableSeeder extends Seeder
         $userRole->display_name = "Nhân viên";
         $userRole->save();
 
-        $user = User::where('email', '=', 'admin@admin.com')->first();
+        $user = User::where('email', '=', 'admin@gmail.com')->first();
         $user->attachRole($admin);
         //$user->roles()->attach($admin->id); Eloquent basic
 
-        $user1 = User::where('email', '=', 'editor@editor.com')->first();
+        $user1 = User::where('email', '=', 'editor@gmail.com')->first();
         $user1->attachRole($editor);
 
-        $user2 = User::where('email', '=', 'user@user.com')->first();
+        $user2 = User::where('email', '=', 'user@gmail.com')->first();
         $user2->attachRole($userRole);
 
+        $user3 = User::where('email', '=', 'kho@gmail.com')->first();
+        $user3->attachRole($userRole);
+
+        $perm0 = new Permission();
+        $perm0->name = 'dashboard-admin';
+        $perm0->display_name = "Thống kê admin";
+        $perm0->description = "";
+        $perm0->route = "admin/dashboard/";
+        $perm0->save();
 
         $perm0 = new Permission();
         $perm0->name = 'dashboard';
@@ -199,7 +208,7 @@ class EntrustTableSeeder extends Seeder
         $perm7->name = 'categoryProducts';
         $perm7->display_name = "Nhóm sản phẩm";
         $perm7->description = "";
-        $perm7->route = "admin/categoryProducts/*";
+        $perm7->route = "admin/categoryProducts*";
         $perm7->save();
 
 
@@ -283,8 +292,29 @@ class EntrustTableSeeder extends Seeder
         $perm14->route = "admin/setting";
         $perm14->save();
 
+        $perm15 = new Permission();
+        $perm15->name = 'warehouse';
+        $perm15->display_name = "Thông tin chủ kho";
+        $perm15->description = "";
+        $perm15->route = "admin/warehouse";
+        $perm15->save();
 
-        $admin->attachPermissions([$perm2c,$perm2e,$perm1c,$perm1e,$perm3c,$perm3e,$perm4c,$perm4e,$perm5e,$perm5c,$perm6c,$perm6e,$perm8e,$perm8c,$perm13e,$perm13c,$perm0, $perm1, $perm2, $perm3, $perm4, $perm5, $perm6, $perm7, $perm8, $perm9, $perm10, $perm11,$perm12,$perm13,$perm14]);
+        $perm16 = new Permission();
+        $perm16->name = 'staffs';
+        $perm16->display_name = "Thông tin nhân sự";
+        $perm16->description = "";
+        $perm16->route = "admin/staffs";
+        $perm16->save();
+
+        $perm17 = new Permission();
+        $perm17->name = 'menu';
+        $perm17->display_name = "menu";
+        $perm17->description = "";
+        $perm17->route = "admin/menu";
+        $perm17->save();
+
+
+        $admin->attachPermissions([$perm16,$perm17,$perm15,$perm2c,$perm2e,$perm1c,$perm1e,$perm3c,$perm3e,$perm4c,$perm4e,$perm5e,$perm5c,$perm6c,$perm6e,$perm8e,$perm8c,$perm13e,$perm13c,$perm0, $perm1, $perm2, $perm3, $perm4, $perm5, $perm6, $perm7, $perm8, $perm9, $perm10, $perm11,$perm12,$perm13,$perm14]);
         //$admin->perms()->sync([$manageRoles->id, $manageUsers->id, $managePerms->id]); Eloquent basic
 
 //        $editor->attachPermissions([$managePerms, $createPerms, $updatePerms, $destroyPerms]);

@@ -71,13 +71,19 @@
 								
 								<h3>Liên hệ</h3>
 
-								<div class="theme_box">
+								<form action="" method="Post"  enctype="multipart/form-data" class="contactform type_2" id="contact_form" >
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+									<div class="theme_box">
 
 									<p class="form_caption">Liên hệ với chúng tôi để được tư vấn tốt hơn thông qua form bên dưới</p>
+										@if (\Session::has('success'))
+											<p class="message red" style="color: red;">Cảm ơn quý khách hàng đã để lại thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
+											<br>
+										@endif
 
 									<!-- - - - - - - - - - - - - - Contact form - - - - - - - - - - - - - - - - -->
 
-									<form novalidate enctype="multipart/form-data" class="contactform type_2" id="contact_form">
 
 										<ul>
 										
@@ -85,14 +91,14 @@
 
 												<div class="col-sm-6">
 												
-													<label for="cf_name" class="required">Name</label>
+													<label for="cf_name" class="required">Tên</label>
 													<input type="text" required name="cf_name" id="cf_name" title="Name">
 
 												</div><!--/ [col]-->
 
 												<div class="col-sm-6">
 
-													<label for="cf_email" class="required">Email Address</label>
+													<label for="cf_email" class="required">Email</label>
 													<input type="email" required name="cf_email" id="cf_email" title="Email">
 
 												</div><!--/ [col]-->
@@ -103,7 +109,7 @@
 
 												<div class="col-xs-12">
 
-													<label for="cf_order_number">Order number</label>
+													<label for="cf_order_number" required class="required">Số điện thoại</label>
 													<input type="text" name="cf_order_number" id="cf_order_number" title="Order number">
 
 												</div><!--/ [col]-->
@@ -114,7 +120,7 @@
 
 												<div class="col-xs-12">
 
-													<label for="cf_message" class="required">Message</label>
+													<label for="cf_message" class="required">Tin nhắn</label>
 													<textarea id="cf_message" required name="cf_message" title="Message" rows="6"></textarea>
 
 												</div><!--/ [col]-->
@@ -123,7 +129,6 @@
 
 										</ul>
 
-									</form><!--/ .contactform -->
 
 									<!-- - - - - - - - - - - - - - End of contact form - - - - - - - - - - - - - - - - -->
 
@@ -133,17 +138,19 @@
 
 									<div class="left_side">
 									
-										<button class="button_dark_grey middle_btn" type="submit" form="contact_form">Submit</button>
+										<button class="button_dark_grey middle_btn" type="submit" name="submit-contact">Gởi thông tin</button>
 
 									</div>
 
 									<div class="right_side">
 
-										<p class="prompt">Required Fields</p>
+										<p class="prompt">Yêu cầu nhập</p>
 
 									</div>
 
 								</footer>
+								</form><!--/ .contactform -->
+
 
 							</section>
 

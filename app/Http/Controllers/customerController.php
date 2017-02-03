@@ -39,5 +39,17 @@ class customerController extends Controller
         ];
         return view('admin.customers.index',$data);
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $data=[
+            'role' => "customer"
+        ];
+        return view('admin.users.edit',$data);
+    }
 
 }

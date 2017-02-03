@@ -99,15 +99,10 @@
 																	<div class="clearfix product_info">
 
 																		<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-																		<ul class="rating alignright">
+																		<span class="alignright">
+											{!! \App\Rate::getRateProduct($product->id)!!}
+											</span>
 
-																			<li class="active"></li>
-																			<li class="active"></li>
-																			<li class="active"></li>
-																			<li class="active"></li>
-																			<li></li>
-
-																		</ul>
 																	</div>
 
 																</div>
@@ -187,15 +182,10 @@
 																<div class="clearfix product_info">
 
 																	<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-																	<ul class="rating alignright">
+																	<span class="alignright">
+											{!! \App\Rate::getRateProduct($product->id)!!}
+											</span>
 
-																		<li class="active"></li>
-																		<li class="active"></li>
-																		<li class="active"></li>
-																		<li class="active"></li>
-																		<li></li>
-
-																	</ul>
 																</div>
 
 															</div>
@@ -287,15 +277,10 @@
 														<div class="clearfix product_info">
 
 															<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-															<ul class="rating alignright">
+															<span class="alignright">
+											{!! \App\Rate::getRateProduct($product->id)!!}
+											</span>
 
-																<li class="active"></li>
-																<li class="active"></li>
-																<li class="active"></li>
-																<li class="active"></li>
-																<li></li>
-
-															</ul>
 														</div>
 
 													</div>

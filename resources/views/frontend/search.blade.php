@@ -39,14 +39,8 @@
 
 			<header class="top_box on_the_sides">
 				<div class="right_side clearfix v_centered">
-					@if(!empty(Request::get('search')))
-					<h4>Tìm kiếm: {{Request::get('search')}}</h4>
-						@elseif(!empty($nameCate))
-						<h4>{{$nameCate}}</h4>
-						@else
-						<h4>Tất cả sản phẩm</h4>
-@endif
-				</div>
+					<h4>Tất cả sản phẩm</h4>
+					</div>
 				<div class="right_side clearfix v_centered">
 
 					<!-- - - - - - - - - - - - - - Sort by - - - - - - - - - - - - - - - - -->
@@ -59,10 +53,11 @@
 
 							<select name="fillter">
 
-								<option value="cap-kho" @if(Request::get('q')=='cap-kho') selected @endif>Cấp kho</option>
-								<option value="ten-san-pham" @if(Request::get('q')=='ten-san-pham') selected @endif>Tên sản phẩm</option>
-								<option value="moi-nhat" @if(Request::get('q')=='moi-nhat') selected @endif>Mới nhất</option>
-								<option value="gia" @if(Request::get('q')=='gia') selected @endif>Giá</option>
+								<option value="Cấp kho">Cấp kho</option>
+								<option value="Đánh giá">Đánh giá</option>
+								<option value="Tên sản phẩm">Tên sản phẩm</option>
+								<option value="Mới nhất">Mới nhất</option>
+								<option value="Giá">Giá</option>
 
 
 							</select>
@@ -85,8 +80,6 @@
 			<div class="table_layout" id="products_container">
 
 				<div class="table_layout">
-
-					@if(count($products)!=0)
 					<?php $i=0 ;$j=0?>
 					@foreach($products as $key=> $product)
 						@if($i==0)<div class="table_row">@endif
@@ -127,10 +120,15 @@
 										<div class="clearfix product_info">
 
 											<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-											<span class="alignright">
-											{!! \App\Rate::getRateProduct($product->id)!!}
-											</span>
+											<ul class="rating alignright">
 
+												<li class="active"></li>
+												<li class="active"></li>
+												<li class="active"></li>
+												<li class="active"></li>
+												<li></li>
+
+											</ul>
 										</div>
 
 									</div>
@@ -148,10 +146,8 @@
 
 					@endforeach
 
-					@else
-						<br>
-					<h2 class="text-center" style="text-align: center">Không tìm thấy dữ liệu</h2>
-				@endif
+
+
 				</div>
 
 			</div><!--/ .table_layout -->
@@ -182,7 +178,7 @@
 	<script>
 		$(document).on('change','select[name="fillter"]',function(){
 			var q= $(this).val();
-			window.location.href ="/products?q="+q;
+			window.location.href ="/product?q="+q;
 		})
 	</script>
 @endsection

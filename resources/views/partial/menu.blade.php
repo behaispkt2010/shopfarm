@@ -42,43 +42,79 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-laptop"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            @permission('dashboard')
                             <li class="active"><a href="{{url('/admin')}}">Quản trị</a></li>
+                            @endpermission
+                            @permission('dashboard-admin')
                             <li><a href="{{url('/admin/dashboard')}}">Chủ kho</a></li>
+                            @endpermission
                         </ul>
                     </li>
                     <li><a><i class="fa fa-newspaper-o"></i> Tin tức <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            @permission('news')
                             <li class="active"><a href="{{route('news.index')}}">Tin tức</a></li>
+                            @endpermission
+                            @permission('news-create')
                             <li><a href="{{route('news.create')}}">Tạo mới</a></li>
+                            @endpermission
+                            @permission('category')
                             <li><a href="{{route('category.index')}}">Nhóm tin tức</a></li>
+                            @endpermission
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i> Trang <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            @permission('pages')
                             <li><a href="{{route('pages.index')}}">Trang</a></li>
+                            @endpermission
+                            @permission('page-create')
                             <li><a href="{{route('pages.create')}}">Tạo mới</a></li>
+                            @endpermission
 
                         </ul>
                     </li>
+                    @permission('orders')
                     <li><a href="{{route('orders.index')}}"><i class="fa fa-edit"></i> Đơn hàng</a></li>
+                    @endpermission
+
                     <li><a><i class="fa fa-tag"></i>Sản Phẩm <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            @permission('products')
                             <li><a href="{{route('products.index')}}">Sản phẩm</a></li>
+                            @endpermission
+                            @permission('categoryProducts')
                             <li><a href="{{route('categoryProducts.index')}}">Nhóm sản phẩm</a></li>
+                            @endpermission
 
                         </ul>
                     </li>
                     <li><a><i class="fa fa-tag"></i>Quản lý kho <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            @permission('warehouse')
+
                             <li><a href="{{route('warehouse.index')}}"></i> Thông tin chủ kho</a></li>
+                            @endpermission
+                            @permission('money')
+
                             <li><a href="{{route('money.index')}}">Sổ quỹ</a></li>
+                            @endpermission
+                            @permission('inventory')
+
                             <li><a href="{{route('inventory.index')}}">Kiểm kho</a></li>
+                            @endpermission
+                            @permission('historyInput')
+
                             <li><a href="{{route('historyInput.index')}}">Lịch sử nhập hàng</a></li>
+                            @endpermission
 
                         </ul>
                     </li>
+                    @permission('customers')
+
 
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
+                    @endpermission
 
 
                 </ul>
@@ -86,26 +122,43 @@
             <div class="menu_section">
                 <h3>Quản Trị</h3>
                 <ul class="nav side-menu">
-
+                    @permission('users')
                     <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('users.index')}}">Users</a></li>
                             <!--<li><a href="page_404.html">Roles</a></li>-->
+
                             <li><a href="{{route('role.index')}}">Role</a></li>
+
                             <li><a href="{{route('permission.index')}}">Permission</a></li>
                         </ul>
                     </li>
+                    @endpermission
+                    @permission('staffs')
+
                     <li><a><i class="fa fa-sitemap"></i> Nhân Sự<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+
                             <li><a href="{{route('staffs.index')}}">Danh sách nhân viên</a>
                             <li><a href="{{route('staffs.create')}}">Thêm nhân viên</a>
                             </li>
+
                         </ul>
                     </li>
+                    @endpermission
+
                     <li><a><i class="fa fa-cogs"></i>Cài đặt<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            @permission('setting')
+
                             <li><a href="{{route('setting.index')}}">Cài đặt chung</a></li>
+                            @endpermission
+
+                            @permission('menu')
+
                             <li><a href="{{route('menu.index')}}">Menu</a></li>
+                            @endpermission
+
                         </ul>
                     </li>
                 </ul>
@@ -174,42 +227,7 @@
                         </span>
                             </a>
                         </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
+
                         <li>
                             <div class="text-center">
                                 <a>

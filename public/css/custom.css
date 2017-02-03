@@ -5127,8 +5127,8 @@ ol, ul {
 }
 .list-unstyled i{
   padding-right: 10px;
-  float: left;
-  width: 15%;
+  /*float: left;*/
+  width: 20px;
 }
 .toggle.nav{
    padding-top: 16px;
@@ -5449,4 +5449,8 @@ table.dtp-picker-days thead{
   padding: 5px;
   background: #f7f7f7;
   border-radius: 50%;
+}
+.list-unstyled span.label-box{
+  display: inline-block;
+  width: 100px;
 }

@@ -17,22 +17,29 @@ class UsersTableSeeder extends Seeder
 
         $admin = new \App\User();
         $admin->name = "admin";
-        $admin->email = "admin@admin.com";
+        $admin->email = "admin@gmail.com";
         $admin->password = "admin";
         $admin->image = '/images/user_default.png';
         $admin->save();
 
         $editor = new \App\User();
         $editor->name = "editor";
-        $editor->email = "editor@editor.com";
+        $editor->email = "editor@gmail.com";
         $editor->password = "editor";
         $editor->image = '/images/user_default.png';
         $editor->save();
 
         $user = new \App\User();
         $user->name = "user";
-        $user->email = "user@user.com";
+        $user->email = "user@gmail.com";
         $user->password = "user";
+        $user->image = '/images/user_default.png';
+        $user->save();
+
+        $user = new \App\User();
+        $user->name = "kho";
+        $user->email = "kho@gmail.com";
+        $user->password = "kho";
         $user->image = '/images/user_default.png';
         $user->save();
     }

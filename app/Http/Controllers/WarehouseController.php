@@ -11,7 +11,7 @@ use App\Province;
 use App\User;
 use App\WareHouse;
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -161,21 +161,32 @@ class WarehouseController extends Controller
      */
     public function store(WareHouseRequest $request)
     {
-        $today = date("Y-m-d_H-i-s");
-        $dataUser['name']= $request->get('name');
-        $dataUser['email']= $request->get('email');
-        $dataUser['phone_number']= $request->get('phone_number');
-        $dataUser['password']= $request->get('password');
-        if(empty($request->get('password'))){
-            $dataUser['password'] = "123456";
+        DB::beginTransaction();
+        try {
+            $today = date("Y-m-d_H-i-s");
+            $dataUser['name'] = $request->get('name');
+            $dataUser['email'] = $request->get('email');
+            $dataUser['phone_number'] = $request->get('phone_number');
+            $dataUser['password'] = $request->get('password');
+            if (empty($request->get('password'))) {
+                $dataUser['password'] = "123456";
+            }
+            $dataUser['image'] = "/images/user_default.png";
+            $user = User::create($dataUser);
+            $user->attachRole(4);
+            $wareHouse = new WareHouse();
+            $data = $request->all();
+            $data['user_id'] = $user->id;
+            $res = WareHouse::create($data);
         }
-        $dataUser['image']="/images/user_default.png";
-        $user = User::create($dataUser);
-        $user->attachRole(4);
-        $wareHouse = new WareHouse();
-        $data = $request->all();
-        $data['user_id']=$user->id;
-        $res = WareHouse::create($data);
+        catch(\Exception $e){
+
+            DB::rollback();
+            return redirect('admin/warehouse/create')->with(['flash_level' => 'danger', 'flash_message' => 'Tạo không thành công']);
+
+        }
+
+        DB::commit();
 
         return redirect('admin/warehouse/'.$res->id.'/edit')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
@@ -244,14 +255,23 @@ class WarehouseController extends Controller
      */
     public function destroy($id)
     {
-        $res =  WareHouse::destroy($id);
-        BankWareHouse::where('ware_id',$id)->delete();
-        if(!empty($res)) {
-            return redirect('admin/warehouse/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+        DB::beginTransaction();
+        try {
+            $warehouse = WareHouse::find($id);
+            $res = WareHouse::destroy($id);
+            BankWareHouse::where('ware_id', $id)->delete();
+            User::where('id', $warehouse->user_id)->delete();
         }
-        else{
-            return redirect('admin/warehouse/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+        catch(\Exception $e){
+
+            DB::rollback();
+            return redirect('admin/warehouse/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
+
 
         }
+
+        DB::commit();
+        return redirect('admin/warehouse/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+
     }
 }

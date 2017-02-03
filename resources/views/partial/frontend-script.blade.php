@@ -11,7 +11,7 @@
 		<script src="{{asset('frontend/js/owlcarousel/owl.carousel.min.js')}}"></script>
 		<script src="{{asset('frontend/js/jquery.countdown.plugin.min.js')}}"></script>
 		<script src="{{asset('frontend/js/jquery.countdown.min.js')}}"></script>
-		<script src="{{asset('frontend/js/arcticmodal/jquery.arcticmodal.j')}}s"></script>
+		<script src="{{asset('frontend/js/arcticmodal/jquery.arcticmodal.js')}}"></script>
 		<script src="{{asset('frontend/twitter/jquery.tweet.min.js')}}"></script>
 		<!-- <script src="js/colorpicker/colorpicker.js"></script> -->
 		<!-- <script src="js/retina.min.js"></script> -->
@@ -31,3 +31,26 @@
 	})
 
 </script>
+	<script>
+		$(document).on('click','.categories_list li a',function(){
+
+				$(this).closest('.dropdown').removeClass("active visible");
+				$(this).closest('.open_categories').removeClass("active");
+				var slabel = $(this).text();
+								var sval = $(this).parent().attr('data-id');
+
+				$('input[name="cateSearch"]').val(sval);
+				$('.open_categories').text(slabel);
+
+
+
+		});
+		</script>
+		<script>(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=916823978398914";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>

@@ -1723,7 +1723,7 @@
 	/*webkit only*/
 	@media only screen and (-webkit-min-device-pixel-ratio:0){
 
-		.table_layout:not(.list_view){ width: calc(100% + 1px); }
+		/*.table_layout:not(.list_view){ width: calc(100% + 1px); }*/
 
 		.rsContainer .rsSlide img{
 			-webkit-border-radius:3px 3px 3px 3px;
@@ -6883,6 +6883,6 @@ ul.pagination li:hover:not(.active) {
 	width: 88px;
 	height: 88px;
 }
-.list_view img {
+.entry_image img {
 	width: 200px;
 }

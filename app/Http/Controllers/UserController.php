@@ -128,12 +128,8 @@ public function AjaxCreateCustomer(UserRequest $request)
         {
             $user->roles()->sync([]);
         }
-        if($request->type_staff == "staffs"){
-            return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
-        }
-        else {
-            return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
-        }
+            return redirect('admin/users')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+
     }
 
     /**
@@ -205,12 +201,9 @@ public function AjaxCreateCustomer(UserRequest $request)
             ->where('user_id',$id)
             ->update(['role_id' => $request->get('role')]);
 
-        if($request->type_staff == "staffs"){
-            return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
-        }
-        else {
-            return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
-        }
+
+            return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
+
 
     }
 
@@ -224,20 +217,11 @@ public function AjaxCreateCustomer(UserRequest $request)
     {
         $user =  User::destroy($id);
         if(!empty($user)) {
-            if($request->type_staff == "staffs"){
-                return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
-            }
-            else {
-                return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
-            }
+                return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
         else{
-            if($request->type_staff == "staffs"){
-                return redirect('admin/staffs/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
-            }
-            else {
-                return redirect('admin/users/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
-            }
+
+                return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
 
         }
     }

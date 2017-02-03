@@ -27,7 +27,7 @@
                                     <div> <span>Email: </span>{{$email}}</div>
                                     <div><span>Số điện thoại: </span> {{$phone}}</div>
                                     <div><span>Yêu cầu: </span> {{$comment}}</div>
-                                    <div> <span>Link sản phẩm: </span><a href="{{$link}}">link</a></div>
+                                    {{--<div> <span>Link sản phẩm:</span><a href="{{$link}}">link</a></div>--}}
                                     </td>
                                 </tr>
                             </table>

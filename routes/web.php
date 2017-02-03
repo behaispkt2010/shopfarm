@@ -135,6 +135,8 @@ Route::get('/category-product/{cateSlug}','Frontend\ProductController@CateProduc
 Route::get('/products', 'Frontend\ProductController@index');
 Route::get('/product/{cateSlug}/{productSlug}', 'Frontend\ProductController@SingleProduct');
 Route::get('/check-order', 'Frontend\ProductController@CheckOrder');
+Route::post('/single-order', 'Frontend\ProductController@singleOrder');
+
 
 
 //blog
@@ -143,6 +145,8 @@ Route::get('/blogs', 'Frontend\BlogController@index');
 Route::get('/blog/{cateSlug}/{productSlug}', 'Frontend\BlogController@SingleBlog');
 
 Route::get('/contact','Frontend\PageController@Contact');
+Route::Post('/contact','Frontend\PageController@PostContact');
+
 Route::get('/about','Frontend\PageController@About');
 Route::get('/{slug}','Frontend\PageController@CustomPage');
 

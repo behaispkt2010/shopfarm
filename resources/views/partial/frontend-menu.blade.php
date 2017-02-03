@@ -29,7 +29,7 @@
 
                     <div class="col-lg-6 col-md-5 col-sm-4 text-right" style="text-align: right;">
 
-                        <p> <a href="#" data-modal-url="modals/login.html">Đăng nhập</a> or <a href="#">Đăng ký</a></p>
+                        <p> <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}">Đăng nhập</a> or <a href="{{url('/register')}}">Đăng ký</a></p>
 
                     </div><!--/ [col]-->
 
@@ -81,20 +81,22 @@
 
                             <!-- - - - - - - - - - - - - - Search form - - - - - - - - - - - - - - - - -->
 
-                            <form class="clearfix search">
+                            <form action="/" class="clearfix search" method="get">
 
-                                <input type="text"  tabindex="1" placeholder="Search..." name="search" class="alignleft">
+
+                                <input type="text"  tabindex="1" placeholder="Tên,mã sản phẩm..." name="search" class="alignleft">
 
                                 <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
 
                                 <div class="search_category alignleft">
+                                    <input type="hidden" id="" name="cateSearch" class="hidden">
 
                                     <div class="open_categories">Danh mục</div>
 
                                     <ul class="categories_list dropdown">
 
                                         @foreach(\App\CategoryProduct::getCate() as $itemCate)
-                                        <li class="animated_item"><a href="#">{{$itemCate->name}}</a></li>
+                                        <li class="animated_item" data-id="{{$itemCate->id}}"><a>{{$itemCate->name}}</a></li>
                                         @endforeach
 
                                     </ul>

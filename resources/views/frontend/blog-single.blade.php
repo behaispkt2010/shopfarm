@@ -82,7 +82,7 @@
 
 										<div class="addthis_widget_container">
 
-											<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
+											<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
 
 										</div>
 
@@ -168,7 +168,7 @@
 
 										<div class="clear"></div>
 										<div class="comment">
-											<div class="fb-comments" data-href="{{url('blog/')}}" data-width="100%" data-numposts="5"></div>
+											<div class="fb-comments" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-width="100%" data-numposts="5"></div>
 										</div>
 
 
@@ -195,12 +195,5 @@
 			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
 @endsection
 @section('add-script')
-	<script>(function (d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s);
-			js.id = id;
-			js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=916823978398914";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
+
 	@endsection

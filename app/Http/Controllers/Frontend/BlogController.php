@@ -28,9 +28,7 @@ class BlogController extends Controller
         if(count($category) == 0){
             $idCate = 0;
         }
-        else {
-            $idCate = $category->id;
-        }
+        $idCate = $category->id;
         $blogs = Article::select('articles.*','views.view')
             ->leftJoin('views', 'articles.id', '=', 'views.blog_id')
             ->orderBy('articles.id','DESC')

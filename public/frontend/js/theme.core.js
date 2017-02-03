@@ -45,8 +45,8 @@ var Core = (function(Core){
 			this.events.qty();
 			this.events.resetFilter();
 			// this.events.openModalWindow();
-			this.events.contactForm.init();
-			this.events.subscribe.init();
+			//this.events.contactForm.init();
+			//this.events.subscribe.init();
 			this.events.tableLayoutType();
 			this.responsiveSideMegaMenu.init();
 			this.responsiveTopBar.init();
@@ -690,153 +690,153 @@ var Core = (function(Core){
 			/**
 			** Object that handles and sends user data
 			**/
-			contactForm : {
-
-				init : function(){
-
-					$('body').on('submit.contactform', '.contactform', { cf : this }, this.checkValidation);
-
-				},
-
-				checkValidation : function( event ){
-
-					var $this = $(this),
-						cf = event.data.cf,
-						errorMessage = "";
-
-					event.preventDefault();
-
-					errorMessage += cf.emptyFields($this.find('input, textarea'));
-					errorMessage += cf.minLength($this.find('textarea'),20);
-
-					if(errorMessage){
-
-						cf.showMessage(errorMessage, $this, 'error');
-
-						return false;
-
-					}
-
-					if(Core.XHRLEVEL2){
-
-						var fd = new FormData();
-
-					    $.each($this.find("input[type='file']"), function(i, tag) {
-					        $.each($(tag)[0].files, function(i, file) {
-					            fd.append(tag.name, file);
-					        });
-					    });
-
-					    var params = $this.serializeArray();
-
-					    $.each(params, function (i, val) {
-
-					        fd.append(val.name, val.value);
-
-					    });
-
-					    cf.ajaxSend(fd, $this);
-					}
-					else cf.ajaxSend($this.serialize(), $this);
-
-				},
-
-				emptyFields : function(collection){
-
-					var message = "";
-
-					var sortedCollection = $.map(collection, function(el){
-
-						if(el.hasAttribute('required')) return el;
-
-					});
-
-					sortedCollection.forEach(function(el){
-
-						if(!$(el).val()){
-
-							message = "All required fields must be filled!\n";
-
-						}
-
-					});
-
-					return message;
-
-				},
-
-				minLength : function(el, len){
-
-					if(!el[0].hasAttribute('required')) return '';
-
-					var message = "";
-
-					if(el.val().length < len) message = el[0].title + " must contain at least "+len+" characters!\n";
-
-					return message;
-
-				},
-
-				ajaxSend : function(data, container){
-
-					var cf = this;
-
-					$.ajax({
-
-						url: 'php/contact-send.php',
-						type: 'POST',
-						data: data,
-						cache: false,
-						contentType: false,
-						processData: false,
-						success : function(data){
-							
-							cf.showMessage(data, container, data.indexOf('success') != -1 ? 'success' : 'error');
-
-							if(data.indexOf('success') != -1){
-								container.find('input, textarea').val('');
-							}
-
-						},
-						error : function(data){
-							
-							cf.showMessage(data, container, 'error');
-							
-						}
-
-					});
-
-				},
-
-				createFeedBackTemplate : function(message, type){
-
-					return $('<div></div>', {
-						text : message,
-						class : 'alert_box_' + type
-					}).hide();
-
-				},
-
-				showMessage : function(message, container, type){
-
-					var form = container;
-					if(form.hasClass('showed_message')) return false;
-
-					var alert = this.createFeedBackTemplate(message, type);
-
-					form.append(alert).addClass('showed_message');
-
-					alert.slideDown(300).delay(3000).slideUp(300, function(){
-
-						$(this).remove();
-
-						form.removeClass('showed_message');
-
-					});
-
-				}
-
-			},
+			//contactForm : {
+            //
+			//	init : function(){
+            //
+			//		$('body').on('submit.contactform', '.contactform', { cf : this }, this.checkValidation);
+            //
+			//	},
+            //
+			//	checkValidation : function( event ){
+            //
+			//		var $this = $(this),
+			//			cf = event.data.cf,
+			//			errorMessage = "";
+            //
+			//		event.preventDefault();
+            //
+			//		errorMessage += cf.emptyFields($this.find('input, textarea'));
+			//		errorMessage += cf.minLength($this.find('textarea'),20);
+            //
+			//		if(errorMessage){
+            //
+			//			cf.showMessage(errorMessage, $this, 'error');
+            //
+			//			return false;
+            //
+			//		}
+            //
+			//		if(Core.XHRLEVEL2){
+            //
+			//			var fd = new FormData();
+            //
+			//		    $.each($this.find("input[type='file']"), function(i, tag) {
+			//		        $.each($(tag)[0].files, function(i, file) {
+			//		            fd.append(tag.name, file);
+			//		        });
+			//		    });
+            //
+			//		    var params = $this.serializeArray();
+            //
+			//		    $.each(params, function (i, val) {
+            //
+			//		        fd.append(val.name, val.value);
+            //
+			//		    });
+            //
+			//		    cf.ajaxSend(fd, $this);
+			//		}
+			//		else cf.ajaxSend($this.serialize(), $this);
+            //
+			//	},
+            //
+			//	emptyFields : function(collection){
+            //
+			//		var message = "";
+            //
+			//		var sortedCollection = $.map(collection, function(el){
+            //
+			//			if(el.hasAttribute('required')) return el;
+            //
+			//		});
+            //
+			//		sortedCollection.forEach(function(el){
+            //
+			//			if(!$(el).val()){
+            //
+			//				message = "All required fields must be filled!\n";
+            //
+			//			}
+            //
+			//		});
+            //
+			//		return message;
+            //
+			//	},
+            //
+			//	minLength : function(el, len){
+            //
+			//		if(!el[0].hasAttribute('required')) return '';
+            //
+			//		var message = "";
+            //
+			//		if(el.val().length < len) message = el[0].title + " must contain at least "+len+" characters!\n";
+            //
+			//		return message;
+            //
+			//	},
+            //
+			//	ajaxSend : function(data, container){
+            //
+			//		var cf = this;
+            //
+			//		$.ajax({
+            //
+			//			url: '/contact-send.php',
+			//			type: 'POST',
+			//			data: data,
+			//			cache: false,
+			//			contentType: false,
+			//			processData: false,
+			//			success : function(data){
+			//
+			//				cf.showMessage(data, container, data.indexOf('success') != -1 ? 'success' : 'error');
+            //
+			//				if(data.indexOf('success') != -1){
+			//					container.find('input, textarea').val('');
+			//				}
+            //
+			//			},
+			//			error : function(data){
+			//
+			//				cf.showMessage(data, container, 'error');
+			//
+			//			}
+            //
+			//		});
+            //
+			//	},
+            //
+			//	createFeedBackTemplate : function(message, type){
+            //
+			//		return $('<div></div>', {
+			//			text : message,
+			//			class : 'alert_box_' + type
+			//		}).hide();
+            //
+			//	},
+            //
+			//	showMessage : function(message, container, type){
+            //
+			//		var form = container;
+			//		if(form.hasClass('showed_message')) return false;
+            //
+			//		var alert = this.createFeedBackTemplate(message, type);
+            //
+			//		form.append(alert).addClass('showed_message');
+            //
+			//		alert.slideDown(300).delay(3000).slideUp(300, function(){
+            //
+			//			$(this).remove();
+            //
+			//			form.removeClass('showed_message');
+            //
+			//		});
+            //
+			//	}
+            //
+			//},
 
 			/**
 			** Object that handles and sends user data

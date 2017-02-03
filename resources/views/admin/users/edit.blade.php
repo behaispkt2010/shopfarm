@@ -10,7 +10,7 @@
 @section('content')
     <br>
     <div class="row">
-        @if((Request::is('admin/users/create')) | (Request::is('admin/staffs/create')))
+        @if((Request::is('admin/users/create')) | (Request::is('admin/staffs/create')) | (Request::is('admin/customers/create')))
             <form action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
                 @else
                     <form action="{{route('users.update',['id' => $id])}}" method="POST" enctype="multipart/form-data">
@@ -84,8 +84,12 @@
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
                                                     <select id="select-role" class="form-control" name="role" data-placeholder="phân quyền">
-                                                        @if(Request::is('admin/staffs/create'))
+                                                        @if(!empty($role))
+                                                            @if($role=="staff")
                                                             <option value="5">Nhân viên</option>
+                                                                @elseif($role=="customer")
+                                                                <option value="3">Khách hàng</option>
+                                                            @endif
                                                         @else
                                                             @foreach($roles as $itemRoles)
                                                             <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
@@ -113,7 +117,7 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Email</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="text"  class="form-control" id="email" name="email" value="@if(!empty($user->email)){{$user->email}}@else{{old('email')}}@endif"/>
+                                                <input type="email"  class="form-control" id="email" name="email" value="@if(!empty($user->email)){{$user->email}}@else{{old('email')}}@endif"/>
                                             </div>
                                         </div>
                                     </div>

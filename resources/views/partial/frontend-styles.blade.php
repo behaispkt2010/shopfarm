@@ -10,3 +10,4 @@
     <link rel="stylesheet" href="{{asset('frontend/js/owlcarousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/js/arcticmodal/jquery.arcticmodal.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+@yield('add-styles')

@@ -8,7 +8,7 @@
         @foreach(\App\CategoryProduct::getAllCategoryProduct() as $item)
             <li><a href="{{url('/category-product')}}/{{$item->slug}}">{{$item->name}}</a></li>
             @endforeach
-            <li><a href="{{url('/category-product')}}/khac">Khác</a></li>
+            {{--<li><a href="{{url('/category-product')}}/khac">Khác</a></li>--}}
 
     </ul>
 
