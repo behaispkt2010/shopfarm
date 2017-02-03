@@ -63,6 +63,7 @@
                         </div>
 
                         <div class="clearfix"></div>
+                        @if(count($categoryProduct) != 0)
 
                         @foreach($categoryProduct as $itemCategoryProduct)
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details product-detail">
@@ -105,7 +106,9 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        @else
+                            <div>Không tìm thấy dữ liệu</div>
+                        @endif
                     </div>
                 </div>
             </div>

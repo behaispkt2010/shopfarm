@@ -96,7 +96,7 @@
                         </div>
 
                         <div class="clearfix"></div>
-
+                    @if(count($arrAllOrders) != 0)
                         @foreach($arrAllOrders as $arrOrders)
                             <?php
                             $priceTotal = 0;
@@ -134,7 +134,9 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        @else
+                            <div>Không tìm thấy dữ liệu</div>
+                        @endif
                     </div>
                 </div>
             </div>

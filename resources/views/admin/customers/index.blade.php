@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="clearfix"></div>
-
+                        @if(count($users) !=0)
                         @foreach($users as $user)
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details box-detail">
 
@@ -92,6 +92,9 @@
                                 </div>
                             </div>
                         @endforeach
+                        @else
+                            <div>Không tìm thấy dữ liệu</div>
+                        @endif
 
                     </div>
                 </div>
