@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
-@section('title', '')
-@section('description','')
+@section('title', 'chi tiết')
+@section('description','chi tiết bài viết')
 @section('add_styles')
 {{-- --}}
 @endsection

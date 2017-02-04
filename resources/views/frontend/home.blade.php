@@ -1,9 +1,7 @@
 @extends('layouts.frontend')
 @section('title', 'Trang chủ')
-@section('description','')
-@section('add_styles')
-{{-- --}}
-@endsection
+@section('description','trang chủ')
+
 @section('content')
 			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
 			<div class="page_wrapper">
@@ -128,7 +126,7 @@
 
 										<footer class="bottom_box">
 
-											<a href="/product/?q=new" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+											<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 										</footer>
 
@@ -211,7 +209,7 @@
 
 										<footer class="bottom_box">
 
-											<a href="/product/?q=best-stars" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+											<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 										</footer>
 
@@ -307,7 +305,7 @@
 
 								<footer class="bottom_box">
 
-									<a href="/product/?q=best-seller" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+									<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 								</footer>
 

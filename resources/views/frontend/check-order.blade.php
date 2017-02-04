@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
-@section('title', 'Trang chủ')
-@section('description','')
+@section('title', 'check order')
+@section('description','check order')
 @section('add_styles')
     {{-- --}}
 @endsection
@@ -9,6 +9,7 @@
 <div class="page_wrapper">
 
     <div class="container">
+        @if(!empty($order))
     <div class="row">
 
 <h3 class="text-center">Đơn hàng #{{$order->id}}</h3>
@@ -134,6 +135,9 @@
 
         </div>
     </div>
+            @else
+            <h4>không tìm thấy đơn hàng</h4>
+        @endif
 
 </div>
     </div>

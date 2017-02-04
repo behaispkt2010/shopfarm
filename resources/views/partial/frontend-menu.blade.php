@@ -71,7 +71,7 @@
 
                             <!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
 
-                            <a href="../html-fronend/index.html" class="logo">
+                            <a href="/" class="logo">
 
                                 <img src="../../../frontend/images/logo.png" alt="">
 

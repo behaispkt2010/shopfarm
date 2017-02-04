@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
-@section('title', '')
-@section('description','')
+@section('title', 'chi tiết')
+@section('description',' chi tiết sản phẩm')
 @section('add-styles')
 	<link rel="stylesheet" href="{{asset('frontend/js/fancybox/source/jquery.fancybox.css')}}">
 	<link rel="stylesheet" href="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.css')}}">
