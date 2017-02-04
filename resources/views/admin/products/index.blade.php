@@ -23,11 +23,16 @@
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
+                                    @if(!Auth::user()->hasRole('kho'))
+
                                     <option value="0" >Tất cả kho</option>
                                     @foreach($wareHouses  as $wareHouse)
                                         <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>#{{$wareHouse->id}}({{$wareHouse->name}})</option>
 
                                     @endforeach
+                                        @else
+                                        <option value="{{Auth::user()->id}}" selected >#{{Auth::user()->id}}</option>
+                                    @endif
 
                                 </select>
                             </div>

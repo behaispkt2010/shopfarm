@@ -16,12 +16,12 @@
 
         <div class="x_panel">
             <div class="x_content">
-
+                <form action="" method="get">
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="form-group label-floating">
                             <label class="control-label" for="date-start">Từ ngày</label>
-                            <input class="form-control" id="date-start" type="text">
+                            <input class="form-control" name="from" id="date-start" type="text">
                         </div>
 
                     </div>
@@ -29,17 +29,18 @@
                         <div class="form-group label-floating">
 
                             <label class="control-label" for="date-end">Đến ngày</label>
-                            <input class="form-control" id="date-end" type="text">
+                            <input class="form-control" name="to" id="date-end" type="text">
                         </div>
                     </div>
                     <div class="col-md-1 col-sm-12 col-xs-12">
 
-                                        <button type="button" class="btn btn-fab btn-fab-mini">
+                                        <button type="submit"  class="btn btn-fab btn-fab-mini">
                                             <i class="material-icons">search</i>
                                         </button>
 
                         </div>
                 </div>
+                </form>
             </div>
         </div>
 

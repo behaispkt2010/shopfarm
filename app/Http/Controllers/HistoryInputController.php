@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\ProductUpdatePrice;
+use DateTime;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,6 +29,25 @@ class HistoryInputController extends Controller
                 'date'=>$date,
             ];
             return view('admin.historyInput.edit',$data);
+        }
+        elseif(!empty($request->get('from'))){
+
+            $from = $request->get('from');
+            $to = $request->get('to');
+
+            $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
+                ->selectRaw('sum(price_in) as sum_price_in')
+                ->selectRaw('sum(price_out) as sum_price_out')
+                ->selectRaw('count(*) as count')
+                ->selectRaw('sum(number) as sum_number')
+                ->selectRaw('created_at')
+                ->whereBetween('created_at', array(new DateTime($from), new DateTime($to)))
+                ->get();
+//        dd($productUpdatePrice);
+            $data = [
+                'productUpdatePrice' => $productUpdatePrice,
+            ];
+            return view('admin.historyInput.index', $data);
         }
         else {
             $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
@@ -111,5 +131,8 @@ class HistoryInputController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function search(Request $request){
+
     }
 }

@@ -109,8 +109,14 @@ public function AjaxGetProduct(Request $request){
 
         }
         else {
-            $product = Product::orderBy('id','DESC')
+            if(!Auth::user()->hasRole('kho'))
+                $product = Product::orderBy('id','DESC')
                 ->get();
+            else {
+                $product = Product::orderBy('id','DESC')
+                    ->where('kho',Auth::user()->id)
+                    ->get();
+            }
         }
         $category = CategoryProduct::get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
