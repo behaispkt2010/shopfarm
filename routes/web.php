@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
     Route::post('warehouse/AjaxBank', 'WarehouseController@AjaxBank');
     Route::post('warehouse/AjaxEditBank', 'WarehouseController@AjaxEditBank');
+    Route::post('warehouse/AjaxEditLevel', 'WarehouseController@AjaxEditLevel');
     Route::post('warehouse/AjaxInfo', 'WarehouseController@AjaxInfo');
     Route::post('warehouse/AjaxChangePass', 'WarehouseController@AjaxChangePass');
 

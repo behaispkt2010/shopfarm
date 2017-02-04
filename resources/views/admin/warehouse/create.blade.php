@@ -58,7 +58,7 @@
                                             <label for="name" class="col-md-3 col-xs-12 control-label">Mật khẩu</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="password"  class="form-control" name="password" value="{{old('password')}}"/>
+                                                <input type="password"  class="form-control" name="password" value="{{old('password')}}" required minlength="6"/>
                                             </div>
                                         </div>
                                     </div>

@@ -7,6 +7,7 @@ use App\BankWareHouse;
 use App\Http\Requests\BankWareHouseRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\WareHouseRequest;
+use App\Http\Requests\LevelKhoRequest;
 use App\Province;
 use App\User;
 use App\WareHouse;
@@ -84,7 +85,7 @@ class WarehouseController extends Controller
     public function AjaxBank(BankWareHouseRequest $request){
         $data = $request->all();
         BankWareHouse::create($data);
-        dd("dsds");
+        //dd("dsds");
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -98,6 +99,21 @@ class WarehouseController extends Controller
         $warehouse =  BankWareHouse::find($id);
         $data = $request->all();
         $warehouse->update($data);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
+
+    }
+    public function AjaxEditLevel(LevelKhoRequest $request){
+        $id = $request->get('id');
+        $levelkho = $request->get('levelkho');
+        $data = [
+            'level' => $levelkho
+        ];
+        $warehouse =  WareHouse::where('id',$id)->update($data);
+
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',

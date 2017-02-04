@@ -245,10 +245,10 @@
 
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-4  col-xs-12 control-label"> Cấp kho : 1</label>
+                                            <label class="col-md-4  col-xs-12 control-label"> Cấp kho : <input type="number" class="form-control" name="levelkho" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif></label>
 
                                             <div class="col-md-8 col-xs-12">
-                                                <button class="btn btn-success btn-raised btn-sm"> Nâng cấp</button>
+                                                <button class="btn btn-success btn-raised btn-sm btnUpgrade"> Nâng cấp</button>
                                             </div>
                                         </div>
                                     </div>
@@ -666,7 +666,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
-                url: '/admin/warehouse/AjaxInfo',
+                url: '{{ url('/') }}/admin/warehouse/AjaxInfo',
                 data: {name: name, email: email, phone_number: phone_number,_token: _token,id:id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -709,7 +709,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
-                url: '/admin/warehouse/AjaxChangePass',
+                url: '{{ url('/') }}/admin/warehouse/AjaxChangePass',
                 data: {old_password: old_password,new_pass: new_pass,renew_pass: renew_pass,_token: _token,id:id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -768,7 +768,7 @@
 //            alert(check);
             $.ajax({
                 type: "POST",
-                url: '/admin/warehouse/AjaxBank',
+                url: '{{ url('/') }}/admin/warehouse/AjaxBank',
                 data: {bank: bank, province: province, card_number: card_number,card_name: card_name,check:check,_token: _token,ware_id:ware_id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -817,7 +817,7 @@
 //            alert(check);
             $.ajax({
                 type: "POST",
-                url: '/admin/warehouse/AjaxEditBank',
+                url: '{{ url('/') }}/admin/warehouse/AjaxEditBank',
                 data: {bank: bank, province: province, card_number: card_number,card_name: card_name,check:check,_token: _token,ware_id:ware_id,id_bank:id_bank},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -859,7 +859,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
-                url: '/admin/warehouse/AjaxDetail',
+                url: '{{ url('/') }}/admin/warehouse/AjaxDetail',
                 data: {name_company: name_company, address: address, mst: mst,ndd: ndd,_token: _token,id:id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -889,7 +889,45 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(".btnUpgrade").on('click',function(e){
+            e.preventDefault();
+            var id = $('input[name="id"]').val();
+            var levelkho = $('input[name="levelkho"]').val();
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '{{ url('/') }}/admin/warehouse/AjaxEditLevel',
+                data: {id: id, levelkho: levelkho, _token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Cập nhật thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    //location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: 'Cấp kho không được nhỏ hơn 1 hoặc lớn hơn 3',
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
 
+                }
+            });
+        });
+    </script>
 
     <script>
         $(document).on('click', '.edit_bank', function () {
