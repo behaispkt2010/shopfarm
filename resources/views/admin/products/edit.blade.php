@@ -184,10 +184,11 @@
                             <!-- Show/Hide -->
                             <div class="x_panel">
                                 <div class="wrapper-content">
+                                    @if(Auth::user()->hasRole('admin'))
+
                                     <div class="pd-all-20">
                                         <label class="title-product-main text-no-bold">Hiển thị</label>
                                     </div>
-                                    @if(Auth::user()->hasRole('admin'))
 
                                     <div class="radio">
                                         <label>
@@ -203,13 +204,13 @@
                                                    name="status"> chờ duyệt
                                         </label>
                                     </div>
+                                        <div class="ln_solid"></div>
+
                                     @else
                                         <input type="hidden" name="status" value="0" >
+
                                     @endif
 
-
-
-                                    <div class="ln_solid"></div>
                                     <div class="text-center">
                                         <a href="{{route('products.index')}}" type="submit"
                                            class="btn btn-raised btn-primary">Hủy</a>

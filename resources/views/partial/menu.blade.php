@@ -16,8 +16,14 @@
             <div class="profile_info">
                 <div style="    font-size: 14px; color: #FFF; margin-bottom: 5px;    font-weight: 500;">{{\Illuminate\Support\Facades\Auth::user()->name}}
                 </div>
-                <a href="{{route('users.edit',['id' => \Illuminate\Support\Facades\Auth::user()->id])}}" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
+                @if(Auth::user()->hasRole('kho'))
+                <a href="{{route('warehouse.edit',['id' => \App\WareHouse::getIdWareHouse(Auth::user()->id) ])}}" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
                     Thông tin</a>
+                @else
+                    <a href="{{route('users.edit',['id' => Auth::user()->id])}}" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
+                        Thông tin</a>
+                    @endif
+
                 {{--<a style="font-size: 13px;"><i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất</a>--}}
                <a href="{{ url('/logout') }}"
                    onclick="event.preventDefault();
@@ -203,7 +209,7 @@
                     </ul>
                 </li>
 
-                <li role="presentation" class="dropdown">
+                <li role="presentation" class="dropdown" style="display: none">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                        aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>

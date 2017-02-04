@@ -55,7 +55,9 @@ class Order extends Model
 
         $orders = Order::where('status',$status)
             ->get();
-        return count($orders);
+        if(empty($orders)) $num = 0;
+        else $num =count($orders);
+        return $num;
 
         }
     public static function getSumPrice(){
