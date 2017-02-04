@@ -92,8 +92,10 @@
                                                             @endif
                                                         @else
                                                             @foreach($roles as $itemRoles)
+                                                                @if($itemRoles->id!=4)
                                                             <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
-                                                            @endforeach
+                                                            @endif
+                                                                    @endforeach
                                                         @endif
                                                     </select>
                                                 </div>

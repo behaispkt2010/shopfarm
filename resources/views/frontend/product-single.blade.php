@@ -22,7 +22,13 @@
 						<li>aaa</li>
 
 					</ul>
-
+					@if (\Session::has('success'))
+						<p class="message green" >Cảm ơn quý khách hàng đã để lại thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
+						<br>
+					@elseif(\Session::has('RateSuccess'))
+						<p class="message green" >Cảm ơn quý khách hàng đã đóng góp đánh giá</p>
+						<br>
+						@endif
 					<!-- - - - - - - - - - - - - - End of breadcrumbs - - - - - - - - - - - - - - - - -->
 
 					<div class="section_offset">
@@ -50,19 +56,18 @@
 										<!-- - - - - - - - - - - - - - End of image preview container - - - - - - - - - - - - - - - - -->
 
 										<!-- - - - - - - - - - - - - - Prodcut thumbs carousel - - - - - - - - - - - - - - - - -->
-										
+
 										<div class="product_preview">
-
 											<div class="owl_carousel" id="thumbnails">
+												@if(count($detailImage) != 0)
+													@foreach($detailImage as $item)
+													<a href="#" data-image="{{url('/')}}{{$item->image}}" data-zoom-image="{{url('/')}}{{$item->image}}">
 
-												@foreach($detailImage as $item)
-												<a href="#" data-image="{{url('/')}}{{$item->image}}" data-zoom-image="{{url('/')}}{{$item->image}}">
+														<img src="{{url('/')}}{{$item->image}}" data-large-image="{{url('/')}}{{$item->image}}" alt="">
 
-													<img src="{{url('/')}}{{$item->image}}" data-large-image="{{url('/')}}{{$item->image}}" alt="">
-
-												</a>
-												@endforeach
-
+													</a>
+													@endforeach
+												@endif
 
 											</div><!--/ .owl-carousel-->
 
@@ -163,10 +168,7 @@
 										<div class="description_section">
 
 											<p class="text-info">Vui lòng để lại thông tin liên lạc để chúng tôi liên hệ lại trong thời gian sớm nhất</p>
-											@if (\Session::has('success'))
-												<p class="message red" style="color: red;">Cảm ơn quý khách hàng đã để lại thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
-												<br>
-											@endif
+
 										</div>
 										<div class="description_section">
 										<form action="{{url('/single-order')}}" method="post"  class="contactform type_2" id="contact_form">
@@ -243,7 +245,7 @@
 								<!-- - - - - - - - - - - - - - Seller Information - - - - - - - - - - - - - - - - -->
 
 								<section class="section_offset">
-
+						@if(!empty($product->levelKho))
 									<h3>Thông tin chủ kho</h3>
 
 									<div class="theme_box">
@@ -251,8 +253,15 @@
 										<div class="seller_info clearfix">
 
 											<a href="#" class="alignleft photo">
+												@if($product->levelKho == 1)
+												<img src="{{url('/images')}}/level1.png" alt="">
+													@elseif($product->levelKho == 2)
+													<img src="{{url('/images')}}/level2.png" alt="">
+												@elseif($product->levelKho == 3)
+													<img src="{{url('/images')}}/level3.png" alt="">
+												@endif
 
-												<img src="../../../frontend/images/seller_photo_1.jpg" alt="">
+
 
 											</a>
 
@@ -291,7 +300,7 @@
 									</div><!--/ .theme_box -->
 
 
-
+@endif
 									{{--</footer>--}}
 
 								</section>
@@ -379,10 +388,16 @@
 
 
 										<div class="row">
+											<div class="col-lg-4 col-md-6">
+												<p>Đóng góp đánh giá: <a href="#">{{$product->title}}</a><br>
+													@if( !Auth::check())<span style="color: red">Vui lòng đăng nhập để được đánh giá*</span>@endif
+												</p>
+											</div>
 
-											<div class="col-lg-5 col-md-6">
+											<div class="col-lg-8 col-md-6 text-right">
 
-												<p>You're reviewing: <a href="#">Metus nulla facilisi, Original 24 fl oz</a><br>How do you rate this product? *</p>
+												<form action="/customer-rate" method="post" class="type_2">
+												<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 												<!-- - - - - - - - - - - - - - Rate the - - - - - - - - - - - - - - - - -->
 
@@ -413,77 +428,36 @@
 
 																<td>
 																		
-																	<input checked type="radio" name="price_rate" id="rate_1">
+																	<input checked type="radio" value="1" name="price_rate" id="rate_1">
 																	<label for="rate_1"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="price_rate" id="rate_2">
+																	<input type="radio" value="2" name="price_rate" id="rate_2">
 																	<label for="rate_2"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="price_rate" id="rate_3">
+																	<input type="radio" value="3" name="price_rate" id="rate_3">
 																	<label for="rate_3"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="price_rate" id="rate_4">
+																	<input type="radio" value="4" name="price_rate" id="rate_4">
 																	<label for="rate_4"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="price_rate" id="rate_5">
+																	<input type="radio" value="5" name="price_rate" id="rate_5">
 																	<label for="rate_5"></label>
-
-																</td>
-
-															</tr>
-
-															<tr>
-																
-																<td>Chất lượng</td>
-
-																<td>
-																		
-																	<input checked type="radio" name="value_rate" id="rate_6">
-																	<label for="rate_6"></label>
-
-																</td>
-
-																<td>
-																		
-																	<input type="radio" name="value_rate" id="rate_7">
-																	<label for="rate_7"></label>
-
-																</td>
-
-																<td>
-																		
-																	<input type="radio" name="value_rate" id="rate_8">
-																	<label for="rate_8"></label>
-
-																</td>
-
-																<td>
-																		
-																	<input type="radio" name="value_rate" id="rate_9">
-																	<label for="rate_9"></label>
-
-																</td>
-
-																<td>
-																		
-																	<input type="radio" name="value_rate" id="rate_10">
-																	<label for="rate_10"></label>
 
 																</td>
 
@@ -495,35 +469,76 @@
 
 																<td>
 																		
-																	<input checked type="radio" name="quality_rate" id="rate_11">
+																	<input checked type="radio" value="1" name="value_rate" id="rate_6">
+																	<label for="rate_6"></label>
+
+																</td>
+
+																<td>
+																		
+																	<input type="radio" value="2" name="value_rate" id="rate_7">
+																	<label for="rate_7"></label>
+
+																</td>
+
+																<td>
+																		
+																	<input type="radio" value="3" name="value_rate" id="rate_8">
+																	<label for="rate_8"></label>
+
+																</td>
+
+																<td>
+																		
+																	<input type="radio" value="4" name="value_rate" id="rate_9">
+																	<label for="rate_9"></label>
+
+																</td>
+
+																<td>
+																		
+																	<input type="radio" value="5" name="value_rate" id="rate_10">
+																	<label for="rate_10"></label>
+
+																</td>
+
+															</tr>
+
+															<tr>
+																
+																<td>Chất lượng</td>
+
+																<td>
+																		
+																	<input checked type="radio" value="1" name="quality_rate" id="rate_11">
 																	<label for="rate_11"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="quality_rate" id="rate_12">
+																	<input type="radio" value="2" name="quality_rate" id="rate_12">
 																	<label for="rate_12"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="quality_rate" id="rate_13">
+																	<input type="radio" value="3" name="quality_rate" id="rate_13">
 																	<label for="rate_13"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="quality_rate" id="rate_14">
+																	<input type="radio" value="4" name="quality_rate" id="rate_14">
 																	<label for="rate_14"></label>
 
 																</td>
 
 																<td>
 																		
-																	<input type="radio" name="quality_rate" id="rate_15">
+																	<input type="radio" value="5" name="quality_rate" id="rate_15">
 																	<label for="rate_15"></label>
 
 																</td>
@@ -535,68 +550,77 @@
 													</table>
 
 												</div>
+												<br>
+													<input type="hidden" value="{{$product->id}}" name="id_product">
+
+													@if( Auth::check())
+													<input type="hidden" value="{{Auth::user()->id}}" name="id_user">
+
+													<button type="submit" class=" btn btn-success btn-large text-right">Gửi đánh giá</button>
+													@endif
 
 												<!-- - - - - - - - - - - - - - End of rate the - - - - - - - - - - - - - - - - -->
-
+												</form>
 											</div><!--/ [col]-->
 
-											<div class="col-lg-7 col-md-6">
+											{{--<div class="col-lg-7 col-md-6">--}}
 
-												<p class="subcaption">All fields are required.</p>
+												{{--<p class="subcaption">Yêu cầu nhập đủ thông tin</p>--}}
 
-												<!-- - - - - - - - - - - - - - Review form - - - - - - - - - - - - - - - - -->
+												{{--<!-- - - - - - - - - - - - - - Review form - - - - - - - - - - - - - - - - -->--}}
 
-												<form class="type_2">
+												{{--<form action="/customer-rate" method="post" class="type_2">--}}
+													{{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
-													<ul>
+													{{--<ul>--}}
 
-														<li class="row">
+														{{--<li class="row">--}}
 
-															<div class="col-sm-6">
-																
-																<label for="nickname">Nickname</label>
-																<input type="text" name="" id="nickname">
+															{{--<div class="col-sm-6">--}}
+																{{----}}
+																{{--<label for="nickname">Tên</label>--}}
+																{{--<input type="text" name="cm_name" id="nickname">--}}
 
-															</div>
+															{{--</div>--}}
 
-															<div class="col-sm-6">
-																
-																<label for="summary">Summary of Your Review</label>
-																<input type="text" name="" id="summary">
+															{{--<div class="col-sm-6">--}}
+																{{----}}
+																{{--<label for="summary">Email</label>--}}
+																{{--<input type="text" name="cm_comment" id="summary">--}}
 
-															</div>
+															{{--</div>--}}
 
-														</li>
+														{{--</li>--}}
 
-														<li class="row">
+														{{--<li class="row">--}}
 
-															<div class="col-xs-12">
+															{{--<div class="col-xs-12">--}}
 
-																<label for="review_message">Review</label>
+																{{--<label for="review_message">Email</label>--}}
 
-																<textarea rows="5" id="review_message"></textarea>
+																{{--<textarea rows="5" name="cm_comment" id="cm_comment"></textarea>--}}
 
-															</div>
+															{{--</div>--}}
 
-														</li>
+														{{--</li>--}}
 
-														<li class="row">
+														{{--<li class="row">--}}
 
-															<div class="col-xs-12">
-															
-																<button class="button_dark_grey middle_btn">Submit Review</button>
+															{{--<div class="col-xs-12">--}}
+															{{----}}
+																{{--<button  type="submit"  class="button_dark_grey middle_btn">Đánh giá</button>--}}
 
-															</div>
+															{{--</div>--}}
 
-														</li>
+														{{--</li>--}}
 
-													</ul>
+													{{--</ul>--}}
 
-												</form>
+												{{--</form>--}}
 
-												<!-- - - - - - - - - - - - - - End of review form - - - - - - - - - - - - - - - - -->
+												{{--<!-- - - - - - - - - - - - - - End of review form - - - - - - - - - - - - - - - - -->--}}
 
-											</div>
+											{{--</div>--}}
 
 										</div><!--/ .row -->
 
@@ -648,7 +672,7 @@
 									<!-- - - - - - - - - - - - - - Carousel of featured products - - - - - - - - - - - - - - - - -->
 
 									<div class="owl_carousel carousel_in_tabs type_2">
-										@foreach(\App\Product::getRelatedProduct(1,8) as $product)
+										@foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
 										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
 										<div class="product_item">
@@ -665,7 +689,7 @@
 
 												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
 
-												<div class="label_new">New</div>
+												{{--<div class="label_new">New</div>--}}
 
 												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
 
@@ -682,15 +706,8 @@
 												<div class="clearfix product_info">
 
 													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-													<ul class="rating alignright">
+													{!! \App\Rate::getRateProduct($product->id)!!}
 
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li></li>
-
-													</ul>
 												</div>
 
 											</div>
@@ -731,7 +748,7 @@
 
 												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
 
-												<div class="label_new">New</div>
+												{{--<div class="label_new">New</div>--}}
 
 												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
 
@@ -748,15 +765,8 @@
 												<div class="clearfix product_info">
 
 													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-													<ul class="rating alignright">
+													{!! \App\Rate::getRateProduct($product->id)!!}
 
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li></li>
-
-													</ul>
 												</div>
 
 											</div>
@@ -798,7 +808,7 @@
 
 												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
 
-												<div class="label_new">New</div>
+												<div class="label_bestseller">BESTSELLER</div>
 
 												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
 
@@ -815,15 +825,8 @@
 												<div class="clearfix product_info">
 
 													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-													<ul class="rating alignright">
+													{!! \App\Rate::getRateProduct($product->id)!!}
 
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li class="active"></li>
-														<li></li>
-
-													</ul>
 												</div>
 
 											</div>

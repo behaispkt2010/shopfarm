@@ -98,5 +98,10 @@
 
 
 @endsection
+    @section('add_scripts')
+            <!-- Datatables -->
 
+
+
+@endsection
 

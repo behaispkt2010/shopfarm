@@ -12,7 +12,7 @@
 
                 <div class="row">
 
-                    <div class="col-lg-6 col-md-7 col-sm-8">
+                    <div class="col-lg-6 col-md-7 col-sm-8 col-xs-6 text-left">
 
 
                         <span>Liên hệ với chúng tôi:</span> <b>+1888 234 5678</b>
@@ -27,10 +27,24 @@
 
                     </div> <!--/ [col]-->
 
-                    <div class="col-lg-6 col-md-5 col-sm-4 text-right" style="text-align: right;">
-
+                    <div class="col-lg-6 col-md-5 col-sm-4  col-xs-6 text-right" style="text-align: right;">
+                @if(( !Auth::check()))
                         <p> <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}">Đăng nhập</a> or <a href="{{url('/register')}}">Đăng ký</a></p>
 
+                     @else
+                    <p> chào bạn <a href="">{{Auth::user()->name}}</a> |  <a href="{{ url('/logout') }}"
+                                                                             onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                            <i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất
+                        </a></p>
+                    @endif
+
+                    <form id="logout-form"
+                          action="{{ url('/logout') }}"
+                          method="POST"
+                          style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                     </div><!--/ [col]-->
 
                 </div><!--/ .row-->
@@ -183,7 +197,7 @@
         <div class="modal-dialog ">
 
             <!-- Modal content-->
-            <div class="modal-content col-md-offset-3 col-md-6">
+            <div class="modal-content col-md-offset-3 col-md-6  col-sm-8 col-sm-offset-2 col-xs-12">
                 <form action="{{url('/check-order')}}" method="get">
                 <div class="modal-header">
                     <h4 class="modal-title">Nhập mã đơn hàng</h4>

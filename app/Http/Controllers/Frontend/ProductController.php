@@ -9,6 +9,7 @@ use App\Order;
 use App\OrderStatus;
 use App\Product;
 use App\ProductOrder;
+use App\Rate;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -69,14 +70,12 @@ class ProductController extends Controller
             ->first();
 //        dd($product);
         $detailImage = DetailImageProduct::where('product_id',$product->id)->get();
+//                dd($detailImage);
+
         $data=[
             "product"=>$product,
             "detailImage"=>$detailImage
         ];
-        /*echo "<pre>";
-        print_r($product);
-        echo "</pre>";
-        die;*/
         return view('frontend.product-single',$data);
 
     }
@@ -117,7 +116,26 @@ class ProductController extends Controller
         ];
         $to = "xtrieu30@gmail.com";
         Mail::to($to)->send(new OrderInfo($data));
-//        }
         return redirect()->back()->with('success','success');
+    }
+    public function customerRate(Request $request){
+       $price_rate = $request->get('price_rate');
+       $value_rate = $request->get('value_rate');
+        $quality_rate =  $request->get('quality_rate');
+        $rateValue = ($price_rate + $value_rate + $quality_rate)/3;
+        $id_product = $request->get('id_product');
+        $id_user = $request->get('id_user');
+        $check = Rate::where('product_id',$id_product)->where('users_id',$id_user)->first();
+        if(count($check)==0) {
+            $rate = new Rate();
+            $rate->product_id = $id_product;
+            $rate->users_id = $id_user;
+            $rate->rate = $rateValue;
+            $rate->save();
+        }
+        else{
+            return redirect()->back()->with('RateSuccess','error');
+        }
+        return redirect()->back()->with('RateSuccess','success');
     }
 }

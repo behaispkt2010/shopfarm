@@ -46,6 +46,8 @@ class Product extends Model
     public static function getRelatedProduct($id,$limit){
 
       $getCategory=Product::find($id);
+//        dd($getCategory);
+
         if($limit==0) {
             $getRelatedProduct = Product::where('category', $getCategory->category)
                 ->whereNotIn('id', [$id])

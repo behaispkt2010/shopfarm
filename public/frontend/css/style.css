@@ -4093,7 +4093,7 @@
 		margin-bottom:10px;
 	}
 
-	.seller_info .photo{ margin-right:15px; }
+	.seller_info .photo{ margin-right:15px;    width: 50px; }
 
 	.seller_info .wrapper{ padding:5px 0 0; }
 
@@ -4371,7 +4371,7 @@
 
 	.table_layout{
 		display: table;
-		width: 100%;
+		/*width: 100%;*/
 		table-layout: fixed;
 	}
 
@@ -5630,7 +5630,9 @@
 
 	.tabs:not([class*="type"]) .tabs_nav > li > a{ font-size:18px; }
 
-	.tabs_nav{ margin-right: 70px; }
+	.tabs_nav{
+		margin-right: 0px;
+	}
 
 	.ts_nav{ width: 145px; }
 
@@ -6668,7 +6670,7 @@ ol, ul {
 	left: 0;
 }
   .modal-dialog {
-	width: 80%;
+	/*width: 80%;*/
 	padding: 3px 0;
 }
 .ul-date-car:after {
@@ -6815,4 +6817,17 @@ ol, ul {
 }
 .modal-footer{
 	border-top:none;
+}
+.infoblock.type_2 img{
+	margin: 0 auto;
+}
+a:focus, a:hover{
+	 text-decoration: none;
+}
+.message.green{
+	color: #fff;
+	display: block;
+	background: #4e8d1a;
+	width: auto;
+	padding: 10px;
 }

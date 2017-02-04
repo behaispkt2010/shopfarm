@@ -214,11 +214,9 @@ public function AjaxCreateCustomer(UserRequest $request)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy($id)
     {
-        $uid = $request->$id;
-        $user =  User::destroy($uid);
-        $type = $request->type_staff;
+        $user =  User::destroy($id);
         if(!empty($user)) {
                 return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }

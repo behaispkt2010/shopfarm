@@ -153,6 +153,7 @@ Route::Post('/contact','Frontend\PageController@PostContact');
 Route::get('/about','Frontend\PageController@About');
 Route::get('/{slug}','Frontend\PageController@CustomPage');
 
+Route::post('/customer-rate','Frontend\ProductController@customerRate');
 
 ////cart
 //Route::get('/cart', 'CartController@index');

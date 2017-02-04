@@ -17,7 +17,7 @@
 @section('content')
     <div class="row top-right">
         <form action="" method="GET">
-        <div class="x_panel">
+            <div class="x_panel">
             <div class="x_content">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
@@ -38,10 +38,9 @@
                 </div>
             </div>
         </div>
-</form>
+        </form>
     </div>
     <div class="row">
-
         <div class="col-md-12">
             <div class="">
                 <div class="x_content">
@@ -111,8 +110,6 @@
         </div>
     </div>
     @include('admin.partial.modal_delete')
-
-
 @endsection
 @section('add_scripts')
     <script src="{{asset('js/selectize.js')}}"></script>
