@@ -134,17 +134,17 @@
                         <div id="demo0" class="collapse in" style="padding-left: 20px;">
                             <div class="con-details-tracking">
 
-                    @foreach($historyOrder as $itemHistoryOrder)
-                        @if($itemHistoryOrder->status==0)
-                                        <div class="item">
-                                            <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y')}}</span> Khởi tạo đơn hàng</label>
-                                        </div>
-                                    @else
-                                <div class="item">
-                                    <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y')}}</span> {{$itemHistoryOrder->name}} </label>
-                                </div>
-                                    @endif
-                    @endforeach
+                            @foreach($historyOrder as $itemHistoryOrder)
+                                @if($itemHistoryOrder->status==0)
+                                    <div class="item">
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y')}}</span> Khởi tạo đơn hàng</label>
+                                    </div>
+                                @else
+                                    <div class="item">
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y')}}</span> {{$itemHistoryOrder->name}} </label>
+                                    </div>
+                                @endif
+                            @endforeach
                             </div>
                         </div>
 

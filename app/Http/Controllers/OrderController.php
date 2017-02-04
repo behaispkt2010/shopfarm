@@ -295,7 +295,9 @@ class OrderController extends Controller
         $orderStatus = OrderStatus::get();
         $historyOrder = HistoryUpdateStatusOrder::select('history_update_status_order.*','order_status.*')
             ->leftJoin('order_status','history_update_status_order.status','=','order_status.id')
-            ->where('history_update_status_order.order_id',$id)->get();
+            ->where('history_update_status_order.order_id',$id)
+            ->orderBy('history_update_status_order.id','DESC')
+            ->get();
 //        dd($historyOrder);
         $data = [
             "order" => $order,
