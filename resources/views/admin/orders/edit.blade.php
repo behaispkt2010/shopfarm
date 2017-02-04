@@ -136,7 +136,7 @@
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             <input type="hidden" value="{{$id}}">
                                             {{method_field("DELETE")}}
-                                            <a type="submit" class = "btn btn-raised btn-primary" name ="delete_modal" style="display: inline-block">Xóa đơn hàng</a>
+                                            <a type="submit" class = "btn btn-raised btn-primary" name ="delete_modal" style="display: inline-block">Xóa</a>
                                         </form>
 
                                     @endif
@@ -343,9 +343,9 @@
                             <div class="form-group">
                                 <select id="q" class="form-control" name="q">
                                     <option value="0">Chọn phường xã</option>
-                                    {{--@foreach($district as $item)
+                                    @foreach($district as $item)
                                         <option value="{{$item->name}}">{{$item->name}}</option>
-                                    @endforeach--}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -493,34 +493,6 @@
 <script>
     $('#select-kh,#t,#q,.select-payment,#select-product').selectize({});
 </script>
-<script type="text/javascript">
-    $('#t').on('change', function (e) {
-        e.preventDefault();
-        var provincename = $(this).val();
-        var _token = $('input[name="_token"]').val();
-        $.ajax({
-            type: "GET",
-            url: '{!! url("/") !!}/admin/orders/AjaxGetDistrictByProvince',
-            data: {name: provincename},
-            success: function (msg) {
-                $("#q").html(msg);
-                //console.log(msg);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                //show notify
-                var Data = JSON.parse(XMLHttpRequest.responseText);
-                new PNotify({
-                    title: 'Lỗi',
-                    text: 'Không tải được thông tin',
-                    type: 'danger',
-                    hide: true,
-                    styling: 'bootstrap3'
-                });
-                $('.loading').css('display', 'none');
-            }
-        });
-    });
-</script>
 <script>
     $('#select-kh').on('change', function (e) {
         e.preventDefault();
@@ -625,10 +597,10 @@
         $('.phone_driver').val(phone_driver);
         $('.number_license_driver').val(number_license_driver);
 
-        $('.tmp_type_driver').append('<p>' + tmp_type_driver + '</p>');
-        $('.tmp_name_driver').append('<p>' + tmp_name_driver + '</p>');
-        $('.tmp_phone_driver').append('<p>' + tmp_phone_driver + '</p>');
-        $('.tmp_number_license_driver').append('<p>' + tmp_number_license_driver + '</p>');
+        $('.tmp_type_driver').html('<p>' + tmp_type_driver + '</p>');
+        $('.tmp_name_driver').html('<p>' + tmp_name_driver + '</p>');
+        $('.tmp_phone_driver').html('<p>' + tmp_phone_driver + '</p>');
+        $('.tmp_number_license_driver').html('<p>' + tmp_number_license_driver + '</p>');
 
         $('.modal-transport').modal('hide');
     });

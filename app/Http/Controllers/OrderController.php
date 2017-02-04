@@ -257,7 +257,7 @@ class OrderController extends Controller
                 $ProductOrder1['id_product'] = $ProductID;
                 $ProductOrder1['order_id'] = $strOrderID;
                 $ProductOrder1['price_in'] = $productInfo->price_in;
-                $ProductOrder1['price'] = $productInfo->price_out;
+                $ProductOrder1['price'] = $productInfo->price_out * $arrNumberProduct[$key];
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
@@ -420,7 +420,7 @@ class OrderController extends Controller
                 $ProductOrder1['id_product'] = $ProductID;
                 $ProductOrder1['order_id'] = $strOrderID;
                 $ProductOrder1['price_in'] = $productInfo->price_in;
-                $ProductOrder1['price'] = $productInfo->price_out;
+                $ProductOrder1['price'] = $productInfo->price_out * $arrNumberProduct[$key];
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
