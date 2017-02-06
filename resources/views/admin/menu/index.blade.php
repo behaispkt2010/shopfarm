@@ -410,7 +410,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
-                url: '/admin/menu/AjaxSave',
+                url: '{{ url('/') }}/admin/menu/AjaxSave',
                 data: {jsonMenu: jsonMenu,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');

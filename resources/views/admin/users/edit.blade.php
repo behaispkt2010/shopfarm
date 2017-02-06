@@ -130,7 +130,7 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Mật khẩu</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="password"  class="form-control" id="code" name="password"  value="{{old('password')}}"/>
+                                                <input type="password"  class="form-control" id="code" name="password"  value="{{old('password')}}" required/>
                                             </div>
                                         </div>
                                     </div>

@@ -8,6 +8,7 @@ use App\Http\Requests\BankWareHouseRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\WareHouseRequest;
 use App\Http\Requests\LevelKhoRequest;
+use App\Http\Requests\AjaxDetailRequest;
 use App\Province;
 use App\User;
 use App\WareHouse;
@@ -19,12 +20,12 @@ use Illuminate\Support\Facades\Hash;
 
 class WarehouseController extends Controller
 {
+    public function AjaxChangePass(Request $request)
+    {
 
-    public  function AjaxChangePass(Request $request){
-
-        $user= User::find($request->get('id'));
-
-        if(Hash::check($request->get('old_password'),$user->password)==false){
+        $user = User::find($request->get('id'));
+        $pwdhash = ($request->get('old_password'));
+        if (Hash::check($pwdhash, $user->password) == false) {
             $response = array(
                 'status' => 'danger',
                 'msg' => 'Mật khẩu cũ thông đúng',
@@ -33,7 +34,7 @@ class WarehouseController extends Controller
 
         }
 
-        if(empty($request->get('old_password')) || empty($request->get('new_pass')) || empty($request->get('renew_pass'))){
+        if (empty($request->get('old_password')) || empty($request->get('new_pass')) || empty($request->get('renew_pass'))) {
             $response = array(
                 'status' => 'danger',
                 'msg' => 'Vui lòng điền đầy đủ',
@@ -41,7 +42,7 @@ class WarehouseController extends Controller
             return \Response::json($response);
 
         }
-        if($request->get('new_pass')!=$request->get('renew_pass')){
+        if ($request->get('new_pass') != $request->get('renew_pass')) {
             $response = array(
                 'status' => 'danger',
                 'msg' => 'Mật khẩu mới không trùng',
@@ -49,7 +50,7 @@ class WarehouseController extends Controller
             return \Response::json($response);
 
         }
-        $data['password']=$request->get('new_pass');
+        $data['password'] = $request->get('new_pass');
         $user->update($data);
         $response = array(
             'status' => 'success',
@@ -58,9 +59,11 @@ class WarehouseController extends Controller
 
         return \Response::json($response);
     }
-    public function AjaxDetail(Request $request){
+
+    public function AjaxDetail(Request $request)
+    {
         $id = $request->get('id');
-        $warehouse =  WareHouse::find($id);
+        $warehouse = WareHouse::find($id);
         $data = $request->all();
         $warehouse->update($data);
         $response = array(
@@ -70,9 +73,11 @@ class WarehouseController extends Controller
         return \Response::json($response);
 
     }
-    public function AjaxInfo(UserRequest $request){
+
+    public function AjaxInfo(UserRequest $request)
+    {
         $id = $request->get('id');
-        $user =  User::find($id);
+        $user = User::find($id);
         $data = $request->all();
         $user->update($data);
         $response = array(
@@ -82,7 +87,8 @@ class WarehouseController extends Controller
         return \Response::json($response);
 
     }
-    public function AjaxBank(BankWareHouseRequest $request){
+    public function AjaxBank(BankWareHouseRequest $request)
+    {
         $data = $request->all();
         BankWareHouse::create($data);
         //dd("dsds");
@@ -94,9 +100,10 @@ class WarehouseController extends Controller
 
     }
 
-    public function AjaxEditBank(BankWareHouseRequest $request){
+    public function AjaxEditBank(BankWareHouseRequest $request)
+    {
         $id = $request->get('id_bank');
-        $warehouse =  BankWareHouse::find($id);
+        $warehouse = BankWareHouse::find($id);
         $data = $request->all();
         $warehouse->update($data);
         $response = array(
@@ -106,13 +113,15 @@ class WarehouseController extends Controller
         return \Response::json($response);
 
     }
-    public function AjaxEditLevel(LevelKhoRequest $request){
+
+    public function AjaxEditLevel(LevelKhoRequest $request)
+    {
         $id = $request->get('id');
         $levelkho = $request->get('levelkho');
         $data = [
             'level' => $levelkho
         ];
-        $warehouse =  WareHouse::where('id',$id)->update($data);
+        $warehouse = WareHouse::where('id', $id)->update($data);
 
         $response = array(
             'status' => 'success',
@@ -121,6 +130,7 @@ class WarehouseController extends Controller
         return \Response::json($response);
 
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -128,30 +138,29 @@ class WarehouseController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->get('q')){
+        if ($request->get('q')) {
             $q = $request->get('q');
-            $wareHouse = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
-                ->leftjoin('role_user','role_user.user_id','=','users.id')
-                ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
-                ->where('role_user.role_id',4)
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level')
+                ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
+                ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
+                ->where('role_user.role_id', 4)
 //                ->orderBy('id','DESC')
-                ->orwhere('users.name','LIKE','%'.$q.'%')
-                ->orwhere('users.id','LIKE','%'.$q.'%')
-                ->orwhere('users.phone_number','LIKE','%'.$q.'%')->get();
-        }
-        else {
-            $wareHouse = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
-                ->leftjoin('role_user','role_user.user_id','=','users.id')
-                ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
-                ->where('role_user.role_id',4)
-                ->orderBy('id','DESC')
+                ->orwhere('users.name', 'LIKE', '%' . $q . '%')
+                ->orwhere('users.id', 'LIKE', '%' . $q . '%')
+                ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')->get();
+        } else {
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level')
+                ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
+                ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
+                ->where('role_user.role_id', 4)
+                ->orderBy('id', 'DESC')
                 ->get();
 //            dd($users);
         }
-        $data=[
+        $data = [
             'wareHouse' => $wareHouse,
         ];
-        return view('admin.warehouse.index',$data);
+        return view('admin.warehouse.index', $data);
     }
 
     /**
@@ -172,7 +181,7 @@ class WarehouseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(WareHouseRequest $request)
@@ -194,8 +203,7 @@ class WarehouseController extends Controller
             $data = $request->all();
             $data['user_id'] = $user->id;
             $res = WareHouse::create($data);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
 
             DB::rollback();
             return redirect('admin/warehouse/create')->with(['flash_level' => 'danger', 'flash_message' => 'Tạo không thành công']);
@@ -204,30 +212,30 @@ class WarehouseController extends Controller
 
         DB::commit();
 
-        return redirect('admin/warehouse/'.$res->id.'/edit')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+        return redirect('admin/warehouse/' . $res->id . '/edit')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $wareHouse = WareHouse::find($id);
-        $data=[
-            'wareHouse'=>$wareHouse,
+        $data = [
+            'wareHouse' => $wareHouse,
             'id' => $id,
         ];
-        return view('admin.warehouse.edit',$data);
+        return view('admin.warehouse.edit', $data);
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -235,27 +243,27 @@ class WarehouseController extends Controller
         $bank = Bank::get();
         $province = Province::get();
         $wareHouse = WareHouse::find($id);
-        $bankWareHouse = BankWareHouse::where('ware_id',$id)->get();
+        $bankWareHouse = BankWareHouse::where('ware_id', $id)->get();
 //        dd($province);
-        $userInfo = User::where('id',$wareHouse->user_id)->first();
-        $data=[
-            'wareHouse'=>$wareHouse,
-            'bank' =>$bank,
-            'province' =>$province,
+        $userInfo = User::where('id', $wareHouse->user_id)->first();
+        $data = [
+            'wareHouse' => $wareHouse,
+            'bank' => $bank,
+            'province' => $province,
             'userInfo' => $userInfo,
-            'bankWareHouse'=>$bankWareHouse,
+            'bankWareHouse' => $bankWareHouse,
             'id' => $id,
         ];
 
-        return view('admin.warehouse.edit',$data);
+        return view('admin.warehouse.edit', $data);
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -266,7 +274,7 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -277,8 +285,7 @@ class WarehouseController extends Controller
             $res = WareHouse::destroy($id);
             BankWareHouse::where('ware_id', $id)->delete();
             User::where('id', $warehouse->user_id)->delete();
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
 
             DB::rollback();
             return redirect('admin/warehouse/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);

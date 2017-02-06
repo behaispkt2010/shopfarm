@@ -89,7 +89,7 @@
                                             <label for="name" class="col-md-3 col-xs-12control-label">Cập nhật</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <div>{{$userInfo->created_at->format('d/m/Y')}}</div>
+                                                <div>{{$userInfo->created_at->format('H:m:s - d/m/Y')}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@
                                                 thuế</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <input type="text"  class="form-control" disabled name="mst" value="{{$wareHouse->mst}}"/>
+                                                <input type="number"  class="form-control" disabled name="mst" value="{{$wareHouse->mst}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -186,7 +186,8 @@
                                                        data-bank="{{$itemBankWareHouse->bank}}" data-province="{{$itemBankWareHouse->province}}"
                                                        data-card_number="{{$itemBankWareHouse->card_number}}"data-check="{{$itemBankWareHouse->check}}"  data-card_name="{{$itemBankWareHouse->card_name}}" class="fa fa-pencil" style="margin-right: 5px"></i> &nbsp;&nbsp;
                                                     <label>
-                                                        <input style="display: none" type="checkbox" @if($itemBankWareHouse->check==1) checked @endif disabled>
+                                                        <input style="display: none" name="bankHas"  type="checkbox" @if($itemBankWareHouse->check==1) checked @endif disabled>
+                                                        <input type="hidden" name="bankcheck" value="{{ $itemBankWareHouse->check }}">
                                                     </label>
                                                 </div>
                                             </div>
@@ -514,7 +515,7 @@
                                 <div class="col-md-8 col-sm-8">
                                     <div class="togglebutton">
                                     <label>
-                                        <input type="checkbox" name="check" >
+                                        <input type="checkbox" name="check" class="checkBank">
                                     </label>
                                     </div>
                             </div>
@@ -591,7 +592,7 @@
                                 <div class="col-md-8 col-sm-8">
                                     <div class="togglebutton">
                                         <label>
-                                            <input type="checkbox" name="check" >
+                                            <input type="checkbox" name="check" class="checkBank">
                                         </label>
                                     </div>
                                 </div>
@@ -653,6 +654,28 @@
 //            $(this).closest().find('input').attr('disabled');
 //            $('button.btn-update').css('display','none');
         })
+    </script>
+    <script>
+        function CheckBankExist(){
+            //console.log($('tr[id*=output_newrow]').length)
+            //var testme = false;
+            var count = 0;
+            $('input[type="hidden"][name="bankcheck"]').each(function() {
+                if ($(this).val() == 1) {
+                    count++;
+                }
+            });
+            return count;
+        }
+        $(".checkBank").on('click', function () {
+            var ware_id = $('input[name="id"]').val();
+            var checkbankEx = CheckBankExist();
+            if(checkbankEx >= 1){
+                alert('Đã có tài khoản đang được sử dụng');
+                $('.modal-bank input[name="check"]').prop('checked', false);
+                $('.modal-bank-edit input[name="check"]').prop('checked', false);
+            }
+        });
     </script>
     <script>
         $('#update_info').on('click', function (e) {

@@ -16,7 +16,7 @@ class MenuController extends Controller
         $arrayjson = json_decode($data_menu);
         $id=0;
         foreach ($arrayjson as $key => $menuItem) {
-            var_dump($menuItem->label);
+            //var_dump($menuItem->label);
             $menu1 = new Menu();
             $data1=[
                 'label'=>$menuItem->label,

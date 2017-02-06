@@ -74,6 +74,8 @@ class OrderController extends Controller
             'arrAllProductOrder' => $arrAllProductOrder,
             'arrTmpProductOrders' => $arrTmpProductOrders,
             'arrCountOrderByStatus' => $arrCountOrderByStatus,
+            'arrOrderByStatus' => $arrOrderByStatus,
+            'id' => $id,
             'arrAllUser' => $arrAllUser
         ];
 
@@ -97,20 +99,12 @@ class OrderController extends Controller
                     $arrAllOrders[$arrOrder['id']] = $arrOrder;
                 }
             }
-
             $arrTmpProductOrders = ProductOrder::get();
 
-            /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
-
-            /*echo "<pre>";
-            print_r($arrTmpAllUser);
-            echo "</pre>";
-            die;*/
             $arrAllProductOrder = array();
             foreach ($arrTmpProductOrders as $arrOrders) {
                 $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
             }
-
         }
         else {
             $arrTmpAllUser = User::get();
@@ -129,26 +123,27 @@ class OrderController extends Controller
             foreach ($arrTmpProductOrders as $arrOrders) {
                 $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
             }
-
         }
-        $countAllOrder = count($arrAllOrders);
-        $countOrderNew = count(Order::where('status',0)->get());
+
         $arrOrderByStatus = OrderStatus::get();
+
+
         $arrCountOrderByStatus = [];
         foreach($arrOrderByStatus as $OrderStatus){
             $countOrderByStatus = Order::getNumOrderByStatus($OrderStatus->id);
             array_push($arrCountOrderByStatus,$countOrderByStatus);
         }
-        //array_push($arrCountOrderByStatus,$countAllOrder,$countOrderNew);
-        $arrCountOrderByStatus['all'] = $countAllOrder;
-        $arrCountOrderByStatus['new'] = $countOrderNew;
+        $arrCountOrderByStatus['all'] = count($arrAllOrders);
+        $arrCountOrderByStatus['new'] = count(Order::where('status',0)->get());
         $data = [
             'arrAllOrders' => $arrAllOrders,
             'arrAllProductOrder' => $arrAllProductOrder,
             'arrTmpProductOrders' => $arrTmpProductOrders,
             'arrCountOrderByStatus' => $arrCountOrderByStatus,
+            'arrOrderByStatus' => $arrOrderByStatus,
             'arrAllUser' => $arrAllUser
         ];
+        //dd($arrCountOrderByStatus);
         /*echo "<pre>";
         print_r($arrCountOrderByStatus);
         echo "</pre>";

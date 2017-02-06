@@ -29,6 +29,8 @@ return [
     ],
     'boolean'              => 'Trường :attribute phải là true hoặc false.',
     'confirmed'            => 'Giá trị xác nhận trong trường :attribute không khớp.',
+    'symbols'              => 'Trường :attribute phải chứa chữ, số và ký tự đặt biệt.',
+    'numbers'              => 'Trường :attribute phải chứa chữ, số và ký tự đặt biệt.',
     'date'                 => 'Trường :attribute không phải là định dạng của ngày-tháng.',
     'date_format'          => 'Trường :attribute không giống với định dạng :format.',
     'different'            => 'Trường :attribute và :other phải khác nhau.',

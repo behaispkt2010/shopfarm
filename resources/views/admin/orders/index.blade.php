@@ -41,24 +41,60 @@
                                 <div class="other-item-list">
                                     <ul>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/5">Đang thu gom</a><span style="background-color: #2B8388"
-                                                                              class="ng-binding">{!! $arrCountOrderByStatus[4] !!}</span></li>
+                                                                                                                             class="ng-binding">{!! $arrCountOrderByStatus[4] !!}</span></li>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/6">Đang sơ chế</a><span style="background-color: #35468A"
-                                                                             class="ng-binding">{!! $arrCountOrderByStatus[5] !!}</span></li>
+                                                                                                                            class="ng-binding">{!! $arrCountOrderByStatus[5] !!}</span></li>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/7">Đang đóng gói</a><span style="background-color: #EEB390"
-                                                                               class="ng-binding">{!! $arrCountOrderByStatus[6] !!}</span></li>
+                                                                                                                              class="ng-binding">{!! $arrCountOrderByStatus[6] !!}</span></li>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/8">Đã xuất kho</a><span style="background-color: #2B8388"
-                                                                             class="ng-binding">{!! $arrCountOrderByStatus[7] !!}</span></li>
+                                                                                                                            class="ng-binding">{!! $arrCountOrderByStatus[7] !!}</span></li>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/9">Đang vận chuyển</a><span style="background-color: #35468A"
-                                                                                 class="ng-binding">{!! $arrCountOrderByStatus[8] !!}</span></li>
+                                                                                                                                class="ng-binding">{!! $arrCountOrderByStatus[8] !!}</span></li>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/10">Đã giao xong</a><span style="background-color: #2B8388"
-                                                                              class="ng-binding">{!! $arrCountOrderByStatus[9] !!}</span></li>
+                                                                                                                              class="ng-binding">{!! $arrCountOrderByStatus[9] !!}</span></li>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/11">Trả hàng nhập kho</a><span style="background-color: #35468A"
-                                                                                   class="ng-binding">{!! $arrCountOrderByStatus[10] !!}</span></li>
+                                                                                                                                   class="ng-binding">{!! $arrCountOrderByStatus[10] !!}</span></li>
                                     </ul>
                                 </div>
                             </li>
                         </ul>
-
+                        {{--<ul class="tab-fill">
+                            <li class="show-menu" id="sttall"><a href="{!! url('/') !!}/admin/orders">Tất cả</a><span
+                                        style="background-color: #6C3B75"
+                                        class="ng-binding">{{ $arrCountOrderByStatus["all"] }}</span></li>
+                            <li class="show-menu" id="sttnew"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/0">Mới tạo</a><span
+                                        style="background-color: #626762"
+                                        class="ng-binding">{{ $arrCountOrderByStatus["new"] }}</span></li>
+                            @foreach($arrOrderByStatus as $key=>$itemOrderByStatus)
+                                <li class="show-menu" id="stt{{ $itemOrderByStatus->id }}">
+                                    <a href="{{ url('/') }}/admin/orders/getOrderByStatus/{{$itemOrderByStatus->id}}">{{$itemOrderByStatus->name}}</a>
+                                    <span style="background-color: #EEB390" class="ng-binding">{{ $arrCountOrderByStatus[$key] }}</span>
+                                </li>
+                            @endforeach
+                            <li class="show-menu other-item-button pst-tootip" style="">
+                                Trạng thái khác
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                                <div class="other-item-list">
+                                    <ul>
+                                        @foreach($arrOrderByStatus as $key=>$itemOrderByStatus)
+                                            <li class="" id="other_stt{{ $itemOrderByStatus->id }}">
+                                                <a href="{{ url('/') }}/admin/orders/getOrderByStatus/{{$itemOrderByStatus->id}}">{{$itemOrderByStatus->name}}</a>
+                                                <span style="background-color: #EEB390" class="ng-binding">{{ $arrCountOrderByStatus[$key] }}</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>--}}
+                    </div>
+                    <div class="tab-fill visible-xs">
+                        <select name="" id="">
+                            <option value="" href="{!! url('/') !!}/admin/orders">Tất cả ({{ $arrCountOrderByStatus["all"] }})</option>
+                            <option value="" href="{!! url('/') !!}/admin/orders/getOrderByStatus/0">Mới tạo ({{ $arrCountOrderByStatus["new"] }})</option>
+                            @foreach($arrOrderByStatus as $key=>$itemOrderByStatus)
+                                <option value="" href="{{ url('/') }}/admin/orders/getOrderByStatus/{{$itemOrderByStatus->id}}">{{$itemOrderByStatus->name}} ( {{ $arrCountOrderByStatus[$key] }} )</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -105,7 +141,7 @@
                                 <div class="well box_1">
                                     <div ng-switch-when="WaitingToPick" class="box-status ng-scope"
                                          style="background-color: #8bc34a;">
-                                        <p class="text-center status-title">Mới tạo</p>
+                                        <p class="text-center status-title">@if($arrOrders->status==0) Mới tạo @else @foreach($arrOrderByStatus as $itemOrderStatus) @if(@$arrOrders->status==$itemOrderStatus->id) {{ $itemOrderStatus->name }} @endif @endforeach @endif</p>
                                     </div>
                                     <div class="col-sm-12" data-toggle="modal" data-target=".modal-tracking" href="{{route('orders.show',['id' => $arrOrders->id])}}">
                                         <h4 class="cod"><i>#{!! $arrOrders->id !!}</i></h4>
@@ -157,7 +193,15 @@
 
     @section('add_scripts')
             <!-- Datatables -->
+<script type="text/javascript">
+    function MenuResize(){
 
+    }
+    $(window).resize(function() {
+        var width = $(window).width();
+
+    });
+</script>
 
 
 @endsection

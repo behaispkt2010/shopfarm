@@ -1730,7 +1730,7 @@ fieldset[disabled] .form-group .form-control {
 fieldset[disabled] .form-control,
 fieldset[disabled] .form-group .form-control {
   background-image: none;
-  border-bottom: 1px dotted #D2D2D2;
+  /*border-bottom: 1px dotted #D2D2D2;*/
 }
 .form-group {
   position: relative;

@@ -45,11 +45,11 @@
                                 <tr class="item-product">
                                     <th><img src="{{url('/')}}/{{$itemProductOrder->image}}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
                                     <td><span class="name-product"><span>{{$itemProductOrder->title}}(#{{ $itemProductOrder->id_product }})</span></span></td>
-                                    <td><span class="price-product"><span>{{$itemProductOrder->price}}</span> đ </span></td>
+                                    <td><span class="price-product"><span>{{number_format($itemProductOrder->price) }}</span> VNĐ </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>
-                                    <td><span class="total"> <span>{!! $itemProductOrder->price !!}</span> đ</span></td>
+                                    <td><span class="total"> <span>{{ number_format($itemProductOrder->price) }}</span> VNĐ</span></td>
                                 </tr>
-                                <?php $total=$total +($itemProductOrder->num * $itemProductOrder->price); ?>
+                                <?php $total=$total + $itemProductOrder->price; ?>
                             @endforeach
                             <tr>
                                 <th></th>
@@ -57,7 +57,7 @@
                                 </td>
                                 <td></td>
                                 <td>Tổng: </td>
-                                <td><span class="total">  {{$total}} đ</span></td>
+                                <td><span class="total">  {{number_format($total)}} VNĐ</span></td>
                             </tr>
                             </tbody>
                         </table>
