@@ -14,6 +14,7 @@
                      alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
+
                 <div style="    font-size: 14px; color: #FFF; margin-bottom: 5px;    font-weight: 500;">{{\Illuminate\Support\Facades\Auth::user()->name}}
                 </div>
                 @if(Auth::user()->hasRole('kho'))
@@ -198,7 +199,7 @@
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="">
+                {{--<li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                        aria-expanded="false">
                         <img src="{{url('/')}}{{\Illuminate\Support\Facades\Auth::user()->image}}" alt="">
@@ -207,36 +208,47 @@
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
-                </li>
+                </li>--}}
 
-                <li role="presentation" class="dropdown" style="display: none">
+                <li role="presentation" class="dropdown" style="display: block">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                        aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="badge bg-green">6</span>
+                        <span class="badge bg-green">1</span>
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        <?php
+                        $notification = \App\Notification::JoinTable();
+                        ?>
+                        @if(count($notification) != 0)
+                        @foreach($notification as $itemNotification)
                         <li>
                             <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
+                                <span class="image"><img src="{{ url('/').$itemNotification->image }}" alt="Profile Image"/></span>
+                                    <span>
+                                      <span>{{ $itemNotification->name }}</span>
+                                      <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                                    </span>
+                                    <span class="message">
+                                        @if($itemNotification->content == "upgradeLevelKho")
+                                            Chủ kho <span class="different">{{ $itemNotification->name }}</span> muốn nâng cấp kho lên cấp <span class="different">{{ $itemNotification->levelkho }}</span>.
+                                        @endif
+                                    </span>
                             </a>
                         </li>
+                        @endforeach
 
                         <li>
                             <div class="text-center">
-                                <a>
+                                <a href="{{ route('notification.index') }}">
                                     <strong>See All Alerts</strong>
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </div>
                         </li>
+                        @else
+                            <span class="different">Bạn không có thông báo mới.</span>
+                        @endif
                     </ul>
                 </li>
             </ul>

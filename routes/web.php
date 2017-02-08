@@ -80,6 +80,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('warehouse/AjaxEditLevel', 'WarehouseController@AjaxEditLevel');
     Route::post('warehouse/AjaxInfo', 'WarehouseController@AjaxInfo');
     Route::post('warehouse/AjaxChangePass', 'WarehouseController@AjaxChangePass');
+    Route::post('warehouse/AjaxSendRequestUpdateLevelKho', 'WarehouseController@AjaxSendRequestUpdateLevelKho');
 
     //Khách hàng
     Route::resource('customers', 'customerController');
@@ -106,6 +107,8 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::resource('languages', 'LanguageController');
     //Thống kê truy cập
     Route::resource('statistics', 'StatisticController');
+    //Thông báo
+    Route::resource('notification', 'NotificationController');
 });
 
 /**

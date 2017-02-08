@@ -1286,6 +1286,42 @@ ul.msg_list li a .time {
 ul.msg_list li a .message {
   display: block !important;
   font-size: 11px; }
+ul.msg_list li a .message .different{
+  font-size: 16px;
+  font-weight: bold; }
+ul.msg_list .different{
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+ul.list_notify li {
+
+  padding: 5px;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 6px 6px 0;
+  width: 96% !important; }
+
+ul.list_notify li a .image img {
+  border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 2px 2px 2px;
+  margin-right: 10px;
+  width: 5%; }
+ul.list_notify li a {
+  padding: 3px 5px !important;
+  color: #000000;
+}
+ul.list_notify li a .message .different {
+  font-size: 16px;
+  font-weight: bold;
+}
+ul.list_notify li a:hover {
+  background: #f7f7f7;}
+
+ul.list_notify li a .time {
+  font-size: 11px;
+  right: 35px; }
 
 .dropdown-menu.msg_list span {
   white-space: normal; }
@@ -5100,7 +5136,7 @@ ol, ul {
   position: relative;
 }
 .other-item-button .other-item-list li{
-  display: block;
+  /*display: block;*/
 
 }
 .other-item-button .other-item-list{

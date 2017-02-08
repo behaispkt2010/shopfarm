@@ -247,10 +247,16 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <label class="col-md-4  col-xs-12 control-label"> Cấp kho : <input type="number" class="form-control" name="levelkho" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif></label>
-
+                                            @if(Auth::user()->hasRole(['kho','editor']))
                                             <div class="col-md-8 col-xs-12">
-                                                <button class="btn btn-success btn-raised btn-sm btnUpgrade"> Nâng cấp</button>
+                                                <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
+                                                        data-target=".modal-upgrade"> Nâng cấp</button>
                                             </div>
+                                            @else
+                                            <div class="col-md-8 col-xs-12">
+                                                <button class="btn btn-success btn-raised btn-sm btnUpgrade" > Nâng cấp</button>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -451,6 +457,37 @@
             </div>
         </div>
     </div>
+    <div class="modal fade modal-upgrade" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-upgrade">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Nâng cấp kho</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="code" class="col-md-5 control-label">Cấp kho:</label>
+                            <div class="col-md-7">
+                                <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="code" class="col-md-5 control-label"><a href="#" target="_blank">Quyền lợi khi nâng cấp kho</a></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button  id="btnSendRequestUpgrade" type="button" class="btn btn-raised btn-primary">Gửi Yêu Cầu</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <div class="modal fade modal-bank" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
@@ -504,7 +541,7 @@
                             <label  class="col-md-4 col-sm-4 control-label">Chủ tài khoản</label>
 
                             <div class="col-md-8 col-sm-8">
-                                <input type="text" class="ng-valid ng-dirty ng-touched form-control" required name="card_name">
+                                <input type="text" class="ng-valid ng-dirty ng-touched form-control card_name" required name="card_name">
                             </div>
                                 </div>
                         </div>
@@ -581,7 +618,7 @@
                                 <label  class="col-md-4 col-sm-4 control-label">Chủ tài khoản</label>
 
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="ng-valid ng-dirty ng-touched form-control" required name="card_name">
+                                    <input type="text" class="ng-valid ng-dirty ng-touched form-control card_name" required name="card_name">
                                 </div>
                             </div>
                         </div>
@@ -654,6 +691,15 @@
 //            $(this).closest().find('input').attr('disabled');
 //            $('button.btn-update').css('display','none');
         })
+    </script>
+    <script>
+        $(".card_name").keyup(function () {
+            var text = $(this).val();
+            var text_change;
+            text_change = text.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a").replace(/đ/g, "d").replace(/đ/g, "d").replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y").replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u").replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ.+/g,"o").replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ.+/g, "e").replace(/ì|í|ị|ỉ|ĩ/g,"i");
+            var car_name = text_change.toUpperCase();
+            $(".card_name").val(car_name);
+        });
     </script>
     <script>
         function CheckBankExist(){
@@ -933,7 +979,44 @@
                         hide: true,
                         styling: 'bootstrap3'
                     });
-                    //location.reload();
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: 'Cấp kho không được nhỏ hơn 1 hoặc lớn hơn 3',
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
+    </script>
+    <script>
+        $("#btnSendRequestUpgrade").on('click', function (e) {
+            var levelkho = $('input[name="levelkhoUpgrade"]').val();
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '{{ url('/') }}/admin/warehouse/AjaxSendRequestUpdateLevelKho',
+                data: {levelkho: levelkho, _token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Gửi yêu cầu thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     //show notify

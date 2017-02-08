@@ -19,131 +19,136 @@
                         @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="type_staff" value="@if(Request::is('admin/staffs'))staffs @else users @endif">
-        <div class="col-md-12 col-xs-12">
-            <!-- Name and Description -->
-            <div class="text-right">
-                <button type="submit" class="btn-update btn btn-success btn-raised text-right btn-small" > Lưu</button>
-            </div>
-            <div class="">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
+                        <div class="col-md-12 col-xs-12">
+                            <!-- Name and Description -->
+                            <div class="text-right">
+                                <button type="submit" class="btn-update btn btn-success btn-raised text-right btn-small" > Lưu</button>
+                            </div>
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse" style="min-height: 440px;">
-                            <h4 class="text-center">Thông tin người user </h4>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="code" class="col-md-3 col-xs-12 control-label">Mã</label>
+                                        <div class="well box1 info-warehouse" style="min-height: 440px;">
+                                            <h4 class="text-center">Thông tin user <i style="float: right"
+                                                                                            class="fa fa-edit"
+                                                                                            aria-hidden="true"></i></h4>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <label for="code" class="col-md-3 col-xs-12 control-label">Mã</label>
 
-                                            <div class="col-md-9 col-xs-12">
-                                                <div  disabled class="form-control" id="code" >@if(!empty($user->id)){{$user->id}}@endif</div>
-                                            </div>
+                                                            <div class="col-md-9 col-xs-12">
+                                                                <div  disabled class="form-control" id="code" >@if(!empty($user->id)){{$user->id}}@endif</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <label for="name" class="col-md-3 col-xs-12 control-label">Tên</label>
+
+                                                            <div class="col-md-9 col-xs-12 ">
+                                                                <input type="text"  class="form-control" name="name" disabled required value="@if(!empty($user->name)){{$user->name}}@else{{old('name')}}@endif"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <label for="name" class="col-md-3 col-xs-12 control-label">SDT</label>
+
+                                                            <div class="col-md-9 col-xs-12 ">
+                                                                <input type="number"  class="form-control" disabled  name="phone_number" value="@if(!empty($user->phone_number)){{$user->phone_number}}@else{{old('phone_number')}}@endif"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <label for="name" class="col-md-3 col-xs-12 control-label">Địa chỉ</label>
+
+                                                            <div class="col-md-9 col-xs-12 ">
+                                                                <input type="text"  class="form-control" disabled name="address" value="@if(!empty($user->address)){{$user->address}}@else{{old('address')}}@endif"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <label for="name" class="col-md-3 col-xs-12 control-label">Phân quyền</label>
+
+                                                            <div class="col-md-9 col-xs-12 ">
+                                                                <div class="form-group">
+                                                                    <select id="select-role" class="form-control"  name="role" data-placeholder="phân quyền">
+                                                                        @if(!empty($role))
+                                                                            @if($role=="staff")
+                                                                            <option value="5">Nhân viên</option>
+                                                                                @elseif($role=="customer")
+                                                                                <option value="3">Khách hàng</option>
+                                                                            @endif
+                                                                        @else
+                                                                            @foreach($roles as $itemRoles)
+                                                                                @if($itemRoles->id!=4)
+                                                                            <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
+                                                                            @endif
+                                                                                    @endforeach
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
                                         </div>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label">Tên</label>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                                            <div class="col-md-9 col-xs-12 ">
-                                                <input type="text"  class="form-control" name="name"  required value="@if(!empty($user->name)){{$user->name}}@else{{old('name')}}@endif"/>
-                                            </div>
+                                        <div class="well box1 info-kho" style="min-height: 440px;">
+                                            <h4 class="text-center">Thông tin đăng nhập <i style="float: right"
+                                                                                           class="fa fa-edit"
+                                                                                           aria-hidden="true"></i></h4>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <label for="code" class="col-md-3 col-xs-12 control-label">Email</label>
+
+                                                            <div class="col-md-9 col-xs-12 ">
+                                                                <input type="email"  class="form-control" id="email" disabled name="email" value="@if(!empty($user->email)){{$user->email}}@else{{old('email')}}@endif"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <label for="code" class="col-md-3 col-xs-12 control-label">Mật khẩu</label>
+
+                                                            <div class="col-md-9 col-xs-12 ">
+                                                                <input type="password"  class="form-control" id="code" disabled name="password"  value="{{old('password')}}" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            </ul>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
 
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label">SDT</label>
-
-                                            <div class="col-md-9 col-xs-12 ">
-                                                <input type="number"  class="form-control"  name="phone_number" value="@if(!empty($user->phone_number)){{$user->phone_number}}@else{{old('phone_number')}}@endif"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label">Địa chỉ</label>
-
-                                            <div class="col-md-9 col-xs-12 ">
-                                                <input type="text"  class="form-control" name="address" value="@if(!empty($user->address)){{$user->address}}@else{{old('address')}}@endif"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label">Phân quyền</label>
-
-                                            <div class="col-md-9 col-xs-12 ">
-                                                <div class="form-group">
-                                                    <select id="select-role" class="form-control" name="role" data-placeholder="phân quyền">
-                                                        @if(!empty($role))
-                                                            @if($role=="staff")
-                                                            <option value="5">Nhân viên</option>
-                                                                @elseif($role=="customer")
-                                                                <option value="3">Khách hàng</option>
-                                                            @endif
-                                                        @else
-                                                            @foreach($roles as $itemRoles)
-                                                                @if($itemRoles->id!=4)
-                                                            <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
-                                                            @endif
-                                                                    @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-
-                            </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
-
-                        <div class="well box1 info-kho" style="min-height: 440px;">
-                            <h4 class="text-center">Thông tin đăng nhập</h4>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="code" class="col-md-3 col-xs-12 control-label">Email</label>
-
-                                            <div class="col-md-9 col-xs-12 ">
-                                                <input type="email"  class="form-control" id="email" name="email" value="@if(!empty($user->email)){{$user->email}}@else{{old('email')}}@endif"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label for="code" class="col-md-3 col-xs-12 control-label">Mật khẩu</label>
-
-                                            <div class="col-md-9 col-xs-12 ">
-                                                <input type="password"  class="form-control" id="code" name="password"  value="{{old('password')}}" required/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-</form>
+                    </form>
+            </form>
     </div>
 
 
@@ -162,6 +167,10 @@
             sortField: 'text'
         });
     </script>
-
-
+    <script>
+        $('.info-kho .fa-edit,.info-warehouse .fa-edit').click(function(){
+            $(this).parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display','inline-block');
+        });
+    </script>
 @endsection

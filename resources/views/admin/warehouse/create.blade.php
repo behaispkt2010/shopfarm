@@ -113,7 +113,7 @@
                                                 thuế</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <input type="text"  class="form-control" name="mst" value="{{old('mst')}}"/>
+                                                <input type="number"  class="form-control" name="mst" value="{{old('mst')}}" />
                                             </div>
                                         </div>
                                     </div>

@@ -9,6 +9,8 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\WareHouseRequest;
 use App\Http\Requests\LevelKhoRequest;
 use App\Http\Requests\AjaxDetailRequest;
+use App\Mail\UpgradeKho;
+use App\Notification;
 use App\Province;
 use App\User;
 use App\WareHouse;
@@ -17,6 +19,7 @@ use DB;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class WarehouseController extends Controller
 {
@@ -130,7 +133,41 @@ class WarehouseController extends Controller
         return \Response::json($response);
 
     }
+    public function AjaxSendRequestUpdateLevelKho(LevelKhoRequest $request){
+        //$data = $request->all();
+        $userID = Auth::user()->id;
+        $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
+        $name = "";
+        $wareHouseID = "";
+        $email = "";
+        $phone_number = "";
+        foreach($user as $itemUser){
+            $name = $itemUser['name'];
+            $wareHouseID = $itemUser['id'];
+            $email = $itemUser['email'];
+            $phone_number = $itemUser['phone_number'];
+        }
+        $data['content'] = "upgradeLevelKho";
+        $data['author_id'] = $userID;
+        $data['levelkho'] = $request->get('levelkho');
+        Notification::create($data);
+        dd($data);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        /*$mailData = [
+            "name" => $name,
+            "email" => $email,
+            "phone" => $phone_number,
+            "comment" => "Chủ kho $name muốn nâng cấp kho lên $request->levelkho. Click vào <a href='$url'>đây</a> để tiến hành nâng cấp kho",
+            "subject" => "Chủ kho cần nâng cấp kho"
+        ];
+        $to = "behaispkt2010@gmail.com";
+        Mail::to($to)->send(new UpgradeKho($mailData));*/
 
+        return \Response::json($response);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -240,6 +277,21 @@ class WarehouseController extends Controller
      */
     public function edit($id)
     {
+        /*$userID = Auth::user()->id;
+        $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
+        //dd($wareHouse);
+        $name = "";
+        $wareHouseID = "";
+        foreach($user as $itemUser){
+            $name = $itemUser['name'];
+            $wareHouseID = $itemUser['id'];
+        }
+        echo $name;
+        echo $wareHouseID;
+        echo "<pre>";
+        print_r($user);
+        echo "</pre>";
+        die;*/
         $bank = Bank::get();
         $province = Province::get();
         $wareHouse = WareHouse::find($id);
