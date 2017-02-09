@@ -136,7 +136,7 @@
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             <input type="hidden" value="{{$id}}">
                                             {{method_field("DELETE")}}
-                                            <a type="submit" class = "btn btn-raised btn-primary" name ="delete_modal" style="display: inline-block">Xóa</a>
+                                            <a type="submit" class = "btn btn-raised btn-danger" name ="delete_modal" style="display: inline-block">Xóa</a>
                                         </form>
 
                                     @endif

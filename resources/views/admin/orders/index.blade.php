@@ -52,7 +52,7 @@
                                                                                                                                 class="ng-binding">{!! $arrCountOrderByStatus[8] !!}</span></li>
                                         <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/10">Đã giao xong</a><span style="background-color: #2B8388"
                                                                                                                               class="ng-binding">{!! $arrCountOrderByStatus[9] !!}</span></li>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/11">Trả hàng nhập kho</a><span style="background-color: #35468A"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/11">Trả hàng nhập kho</a><span style="background-color: #ff0000"
                                                                                                                                    class="ng-binding">{!! $arrCountOrderByStatus[10] !!}</span></li>
                                     </ul>
                                 </div>
@@ -140,7 +140,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                                 <div class="well box_1">
                                     <div ng-switch-when="WaitingToPick" class="box-status ng-scope"
-                                         style="background-color: #8bc34a;">
+                                         style="background-color: @if($arrOrders->status==0) #8bc34a @else @foreach($arrOrderByStatus as $itemOrderStatus) @if(@$arrOrders->status==$itemOrderStatus->id) {{ $itemOrderStatus->color }} @endif @endforeach @endif ;">
                                         <p class="text-center status-title">@if($arrOrders->status==0) Mới tạo @else @foreach($arrOrderByStatus as $itemOrderStatus) @if(@$arrOrders->status==$itemOrderStatus->id) {{ $itemOrderStatus->name }} @endif @endforeach @endif</p>
                                     </div>
                                     <div class="col-sm-12" data-toggle="modal" data-target=".modal-tracking" href="{{route('orders.show',['id' => $arrOrders->id])}}">

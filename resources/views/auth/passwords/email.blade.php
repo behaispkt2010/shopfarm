@@ -36,6 +36,9 @@
                                    Gửi email Reset
                                 </button>
                             </div>
+                            <div class="col-md-6 col-md-offset-4">
+                                <i class="fa fa-arrow-left" aria-hidden="true"><a href="{{ route('login') }}"> Quay về trang đăng nhập</a></i>
+                            </div>
                         </div>
                     </form>
                 </div>

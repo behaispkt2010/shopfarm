@@ -19,19 +19,15 @@
                             <li class="date-past @if($itemOrderStatus->id ==$order->status) active @endif">
 
 
-                                <img src="{{url('/')}}{{$itemOrderStatus->image}}" class="icon-tracking" alt="">
+                                <img src="{{url('/')}}{{$itemOrderStatus->image}}" class="icon-tracking" alt="" title="{{ $itemOrderStatus->name }}">
                                 <div class="clear"></div>
                                 @if($itemOrderStatus->id ==$order->status)
                                     <span>{{$order->updated_at->format('d-m-Y')}}</span>
-                                    <div class=" fix-status">{{$itemOrderStatus->name}}</div>
+                                    <div class="fix-status">{{$itemOrderStatus->name}}</div>
                                 @endif
 
                             </li>
                         @endforeach
-
-
-
-
                     </ul>
                 </div>
                 <div class="col-md-12 con-tracking ">
@@ -43,7 +39,7 @@
                             <?php $total = 0; ?>
                             @foreach($productOrder as $itemProductOrder)
                                 <tr class="item-product">
-                                    <th><img src="{{url('/')}}/{{$itemProductOrder->image}}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
+                                    <th><span class="code-product">{{ $itemProductOrder->code }}</span></th>
                                     <td><span class="name-product"><span>{{$itemProductOrder->title}}(#{{ $itemProductOrder->id_product }})</span></span></td>
                                     <td><span class="price-product"><span>{{number_format($itemProductOrder->price) }}</span> VNĐ </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>

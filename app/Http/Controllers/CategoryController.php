@@ -20,12 +20,17 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::get();
-        $category0 = Category::where('parent',0)->get();
+        $category0 = Category::where('parent',0)
+            ->orwhere('parent',1)
+            ->orwhere('parent',2)
+            ->orwhere('parent',3)
+            ->get();
         $data=[
             'data'=>$category0,
             'category' =>  $category,
             'type' => 'category',
         ];
+        //dd($category);
         return view('admin.category.index',$data);
     }
 
@@ -102,7 +107,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        $category0 = Category::where('parent',0)->get();
+        $category0 = Category::where('parent',0)
+            ->orwhere('parent',1)
+            ->orwhere('parent',2)
+            ->orwhere('parent',3)
+            ->get();
         $data=[
             'data'=>$category0,
             'category' =>  $category,

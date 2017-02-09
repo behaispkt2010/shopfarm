@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-sm-12 " >
                                         <a href="{{route('warehouse.edit',['id' => $itemWareHouse->ware_houses_id])}}">
-                                        <h4 class="cod"><i> #{{$itemWareHouse->id}}</i></h4>
+                                        <h4 class="cod">#{{$itemWareHouse->id}}</h4>
                                             <div class="row">
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">

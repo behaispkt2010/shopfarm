@@ -83,19 +83,19 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="ex4">Khối lượng (grams)</label>
+                                        <label for="ex4">Khối lượng (Kg)</label>
                                         <input type="number" id="ex4" class="form-control" name="gram" required
                                                value="@if(!empty($product->gram)){{$product->gram}}@else{{old('gram')}}@endif">
                                     </div>
                                     <div class="form-group">
-                                        <label for="ex4">Bán tối thiểu (grams)</label>
+                                        <label for="ex4">Bán tối thiểu (Kg)</label>
                                         <input type="number" id="ex4" class="form-control" name="min_gram" required
                                                value="@if(!empty($product->min_gram)){{$product->min_gram}}@else{{old('min_gram')}}@endif">
                                     </div>
                                     <div class="form-group">
 
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            {{--<div class="col-md-5">
                                                 <label for="ex4">Chính sách tồn kho</label>
                                                 <select class="form-control" name="inventory">
                                                     <option value="0"
@@ -107,9 +107,9 @@
                                                         Có tồn kho
                                                     </option>
                                                 </select>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <label for="ex4">Số lượng(gram)</label>
+                                            </div>--}}
+                                            <div class="col-md-12">
+                                                <label for="ex4">Số lượng(Kg)</label>
                                                 <input type="number" id="ex4" class="form-control" name="inventory_num"
                                                        required
                                                        value="@if(!empty($product->inventory_num)){{$product->inventory_num}}@else{{old('inventory_num')}}@endif">
@@ -252,12 +252,17 @@
                                                         @if(!empty($product->category) && $product->category == 0) selected @endif >
                                                     Mặc định
                                                 </option>
-                                                @foreach($category  as $itemData)
+                                                @if(Request::is('admin/products/create'))
+                                                    {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",old('parent')) }}
+                                                @else
+                                                    {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",$product->category) }}
+                                                @endif
+                                                {{--@foreach($category  as $itemData)
                                                     <option value="{{$itemData->id}}"
                                                             @if(!empty($product->category) && $product->category == $itemData->id) selected @endif >
                                                         {{$itemData->name}}
                                                     </option>
-                                                @endforeach
+                                                @endforeach--}}
                                             </select>
                                         </div>
 
@@ -321,7 +326,7 @@
                                                         <div id="abcd2" class="abcd">
                                                             <img class="img-responsive"
                                                                  id="previewimg{{$itemImage->id}}"
-                                                                 src="{{$itemImage->image}}">
+                                                                 src="{{ url('/').$itemImage->image}}">
                                                             <i id="img" data-id="{{$itemImage->id}}" class="fa fa-times red delete-img-ajax"></i>
                                                         </div>
                                                         <br>

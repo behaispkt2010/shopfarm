@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="col-sm-12 ">
                                         <a href="{{route('users.create')}}">
-                                            <h4 class="cod"><i>#{{$user->id}}</i></h4>
+                                            <h4 class="cod">#{{$user->id}}</h4>
 
                                             <div class="row">
                                                 <div class="col-xs-12">

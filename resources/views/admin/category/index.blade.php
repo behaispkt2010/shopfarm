@@ -33,15 +33,12 @@
                                 <div class="form-group">
                                     <label for="name">Danh mục cha</label>
                                     <select name="parent" class="form-control">
-                                        <option value="0">Mặc định
-                                        </option>
-                                        @foreach($data  as $itemData)
-                                        <option value="{{$itemData->id}}"
-                                                @if(!empty($category->parent) && $category->parent == $itemData->id) selected @endif >
-                                            {{$itemData->name}}
-                                        </option>
-                                            @endforeach
-
+                                        <option value="0">Mặc định</option>
+                                        @if(Request::is('admin/category'))
+                                            {{ \App\Category::CateMulti($data,0,$str="&nbsp&nbsp&nbsp&nbsp",old('parent')) }}
+                                        @else
+                                            {{ \App\Category::CateMulti($data,0,$str="&nbsp&nbsp&nbsp&nbsp",$category->parent) }}
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -49,10 +46,14 @@
                                     <textarea class="form-control" rows="5"
                                               name="description">@if(!empty($category->description)){{$category->description}}@else{{old('description')}}@endif</textarea>
                                 </div>
-
+                                @if(Request::is('admin/category'))
                                 <button type="submit" name="addCategory" class="btn btn-raised btn-primary">Thêm danh
                                     mục
                                 </button>
+                                @else
+                                <button type="submit" name="addCategory" class="btn btn-raised btn-primary">Lưu
+                                </button>
+                                @endif
                     </form>
             </div>
         </div>

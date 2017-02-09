@@ -25,7 +25,7 @@
                                 <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
                                     @if(!Auth::user()->hasRole('kho'))
 
-                                    <option value="0" >Tất cả kho</option>
+                                    <option value="0" >Chọn kho</option>
                                     @foreach($wareHouses  as $wareHouse)
                                         <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>#{{$wareHouse->id}}({{$wareHouse->name}})</option>
 
@@ -41,7 +41,7 @@
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <select id="select-cate" class="form-control" name="category" data-placeholder="chọn danh mục">
-                                    <option value="0" >Tất cả</option>
+                                    <option value="0" >Chọn danh mục sản phẩm</option>
                                     @foreach($category  as $itemCategory)
                                         <option value="{{$itemCategory->id}}" @if(Request::get('category')==$itemCategory->id) selected @endif>{{$itemCategory->name}}
                                         </option>
@@ -88,13 +88,14 @@
 
                                 <div class="well box_1">
                                     <div class="img-product-view">
-                                        <img src="{{url('/')}}/{{$itemProduct->image}}" alt="" class="img-circle img-responsive"
+                                        <img src="{{url('/')}}{{$itemProduct->image}}" alt="" class="img-circle img-responsive"
                                              data-pin-nopin="true">
                                     </div>
                                     <div id="update-product"  class="col-sm-12 input-product" data-toggle="modal"
                                          data-target=".modal-product" data-title="{{$itemProduct->title}} (#{{$itemProduct->code}})" data-id="{{$itemProduct->id}}">
 
-                                        <h4 class="cod"><i>{{$itemProduct->title}} (#{{$itemProduct->code}})</i></h4>
+                                        <h4 class="cod">{{$itemProduct->title}}</h4>
+                                        <h4 class="cod">#{{$itemProduct->code}}</h4>
 
 
                                         <div class="col-xs-12">

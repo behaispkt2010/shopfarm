@@ -43,4 +43,20 @@ class Category extends Model
         }
         return $slug;
     }
+    static public function CateMulti($data, $parent_id = 0, $str="&nbsp&nbsp&nbsp&nbsp",$select = 0){
+
+        foreach ($data as $val) {
+            $id = $val->id;
+            $name = $val->name;
+            if ($val['parent'] == $parent_id) {
+                if ($select != 0 && $id == $select) {
+                    echo '<option value="' . $id . '" selected>' . $str . " " . $name . '</option>';
+                } else {
+                    echo '<option value="' . $id . '">' . $str . " " . $name . '</option>';
+                }
+                Category::CateMulti($data, $id, $str . "&nbsp&nbsp&nbsp&nbsp", $select);
+            }
+        }
+
+    }
 }

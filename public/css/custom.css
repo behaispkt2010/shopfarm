@@ -882,8 +882,8 @@ h2 {
   margin-top: 5px; }
 
 .x_content h4 {
-  font-size: 16px;
-  font-weight: 500; }
+  /*font-size: 16px;*/
+  font-weight: bold; }
 
 legend {
   padding-bottom: 7px; }
@@ -5136,7 +5136,7 @@ ol, ul {
   position: relative;
 }
 .other-item-button .other-item-list li{
-  /*display: block;*/
+  display: block;
 
 }
 .other-item-button .other-item-list{
