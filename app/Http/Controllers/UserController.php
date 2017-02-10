@@ -73,6 +73,7 @@ public function AjaxCreateCustomer(UserRequest $request)
     {
 
         if($request->get('q')){
+
             $q = $request->get('q');
             $users = User::where('name','LIKE','%'.$q.'%')
                 ->orwhere('id','LIKE','%'.$q.'%')
@@ -82,8 +83,12 @@ public function AjaxCreateCustomer(UserRequest $request)
             $users = User::orderBy('id','DESC')
                 ->get();
         }
-
+        $roles = RoleUser::leftjoin('users','role_user.user_id','=','users.id')
+            ->leftjoin('roles','roles.id','=','role_user.role_id')
+            ->get();
+        //dd($roles);
         $data=[
+            'roles' => $roles,
             'users'=>$users,
             'type' => 'users',
         ];
@@ -189,7 +194,9 @@ public function AjaxCreateCustomer(UserRequest $request)
         $data['name']=$request->get('name');
         $data['address']=$request->get('address');
         $data['phone_number']=$request->get('phone_number');
-        $data['email']=$request->get('email');
+        if(!empty($request->get('email'))){
+            $data['email']=$request->get('email');
+        }
         if(!empty($request->get('password'))){
             $data['password']=$request->get('password');
         }

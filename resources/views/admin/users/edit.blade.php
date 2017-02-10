@@ -123,7 +123,7 @@
                                                             <label for="code" class="col-md-3 col-xs-12 control-label">Email</label>
 
                                                             <div class="col-md-9 col-xs-12 ">
-                                                                <input type="email"  class="form-control" id="email" disabled name="email" value="@if(!empty($user->email)){{$user->email}}@else{{old('email')}}@endif"/>
+                                                                <input type="email" required class="form-control" id="email" @if((Request::is('admin/users/create')) | (Request::is('admin/staffs/create')) | (Request::is('admin/customers/create'))) @else disabled @endif  name="email" value="@if(!empty($user->email)){{$user->email}}@else{{old('email')}}@endif"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,7 +134,7 @@
                                                             <label for="code" class="col-md-3 col-xs-12 control-label">Mật khẩu</label>
 
                                                             <div class="col-md-9 col-xs-12 ">
-                                                                <input type="password"  class="form-control" id="code" disabled name="password"  value="{{old('password')}}" required/>
+                                                                <input type="password"  class="form-control" id="code" @if((Request::is('admin/users/create')) | (Request::is('admin/staffs/create')) | (Request::is('admin/customers/create'))) @else disabled @endif name="password"  value="{{old('password')}}" required/>
                                                             </div>
                                                         </div>
                                                     </div>

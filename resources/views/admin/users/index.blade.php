@@ -54,13 +54,18 @@
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details box-detail">
 
                                 <div class="well box_1">
-
+                                    <div class="box-status_user"
+                                         style="background-color: @foreach($roles as $itemRole) @if ($user->id == $itemRole->user_id) {{ $itemRole->color }} @endif @endforeach;">
+                                        <p class="text-center status-title">@foreach($roles as $itemRole) @if ($user->id == $itemRole->user_id) {{ $itemRole->display_name }} @endif @endforeach</p>
+                                    </div>
 
                                     <div class="img-product-view">
                                         <img src="{{url('/')}}{{$user->image}}" alt="" class="img-circle img-responsive"
                                              data-pin-nopin="true">
                                     </div>
-                                    <div class="col-sm-12 ">
+                                    <br>
+                                    <div class="col-sm-10 col-sm-offset-1">
+
                                         <a href="{{route('users.edit',['id' => $user->id])}}">
                                             <h4 class="cod">#{{$user->id}}</h4>
 

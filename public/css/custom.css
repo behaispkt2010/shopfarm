@@ -4616,6 +4616,29 @@ ul.tab-fill li:hover{
   top: -45px;
   right: -55px;
 }
+
+.box-status_user {
+  width: 150px;
+  height: 92px;
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: -24px;
+  right: 425px;
+}
+
+.box-status_user .status-title {
+  padding-top: 60px;
+  font-size: 8px;
+}
+.box-status_user .status-title {
+  color: #fff;
+  padding-top: 66px;
+  font-size: 11px;
+  text-align: center;
+  padding-left: 32px;
+}
 .btn-delete{
   position: absolute;
   color: red;
