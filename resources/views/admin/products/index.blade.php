@@ -161,18 +161,18 @@
                 </div>
                 <div class="modal-body sroll">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group label-floating">
                                 <label class="control-label" for="focusedInput2"> Giá mua</label>
                                 <input class="form-control" id="focusedInput2" type="number" name="price_in">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group label-floating">
-                                <label class="control-label" for="focusedInput2"> Giá đăng bán</label>
-                                <input class="form-control" id="focusedInput2" type="number" name="price_out">
-                            </div>
-                        </div>
+                        {{--<div class="col-md-6">--}}
+                            {{--<div class="form-group label-floating">--}}
+                                {{--<label class="control-label" for="focusedInput2"> Giá đăng bán</label>--}}
+                                {{--<input class="form-control" id="focusedInput2" type="number" name="price_out">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="row">
                         <div class="col-md-6">

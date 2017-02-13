@@ -23,10 +23,14 @@
                                     <th>Tên sản phẩm</th>
                                     <th>Số luợng nhập</th>
                                     <th>Số tiền nhập</th>
-                                    <th>Số tiền bán</th>
+                                    {{--<th>Số tiền bán</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                    $total_price_in=0;
+                                    $total_num=0;
+                                ?>
                               @foreach($productUpdatePrice as $item)
                                 <tr>
                                     <td>{{$item->created_at->format('h:i')}}</td>
@@ -34,9 +38,21 @@
                                     <td>{{\App\Product::getNameById($item->product_id)}}</td>
                                     <td>{{$item->number}}</td>
                                     <td>{{$item->price_in}} VNĐ</td>
-                                    <td>{{$item->price_out}} VNĐ</td>
+                                    {{--<td>{{$item->price_out}} VNĐ</td>--}}
+                                    <?php
+                                    $total_price_in +=$item->number;
+                                    $total_num +=$item->price_in;
+                                    ?>
                                 </tr>
                                     @endforeach
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{$total_num}}</td>
+                                    <td>{{$total_price_in}} VNĐ</td>
+                                    {{--<td>{{$item->price_out}} VNĐ</td>--}}
+                                </tr>
 
                                 </tbody>
                             </table>

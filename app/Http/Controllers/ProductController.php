@@ -27,7 +27,7 @@ class ProductController extends Controller
         $productUpdatePrice = new ProductUpdatePrice();
         $data['product_id']=$id;
         $data['price_in']=$request->get('price_in');
-        $data['price_out']=$request->get('price_out');
+        $data['price_out']=0;
         $data['number']=$request->get('number');
         if(empty($request->get('supplier'))) {
             $supplier= "none";
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $productUpdatePrice->create($data);
 
         $data1['price_in']=$request->get('price_in');
-        $data1['price_out']=$request->get('price_out');
+//        $data1['price_out']=0;
         $data1['inventory_num']=$data['number']+$product->inventory_num;
 
         $product->update($data1);
