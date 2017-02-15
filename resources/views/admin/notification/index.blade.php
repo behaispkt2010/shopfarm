@@ -20,8 +20,9 @@
                                     <span class="image"><img src="{{ url('/').$itemNotification->image }}" alt="Profile Image"/></span>
 
                                     <span class="message">
-                                        @if($itemNotification->content == "upgradeLevelKho")
-                                        Chủ kho <span class="different">{{ $itemNotification->name }}</span> muốn nâng cấp kho lên cấp <span class="different">{{ $itemNotification->levelkho }}</span>.
+                                        @if($itemNotification->content == "upgradeLevelKho")Chủ kho <span class="different">{{ $itemNotification->name }}</span> muốn nâng cấp kho lên cấp <span class="different">{{ $itemNotification->levelkho }}</span>.
+                                        @elseif ($itemNotification->content == "confirmkho")Chủ kho <span class="different">{{$itemNotification->name}}</span> muốn Xác thực kho. Hãy kiểm tra và Xác thực cho chủ kho nhé.
+                                        @elseif ($itemNotification->content == "quangcao")Chủ kho <span class="different">{{$itemNotification->name}}</span> muốn Đăng ký Quảng cáo.
                                         @endif
                                     </span> <br>
                                     <span class="time">

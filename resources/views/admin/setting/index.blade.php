@@ -39,9 +39,39 @@
                                value="{{\App\Setting::getValue('phone')}}">
                     </div>
                     <div class="form-group">
-                        <label>Thời gian lam việc</label>
+                        <label>Thời gian làm việc</label>
                         <textarea  class="form-control" name="time" rows="5"
                                >{{\App\Setting::getValue('time')}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tài khoản ngân hàng 1:</label>
+                        <input type="text" class="form-control" name="stk1"
+                               value="{{\App\Setting::getValue('stk1')}}" >
+                    </div>
+                    <div class="form-group">
+                        <label>Chủ Tài khoản 1:</label>
+                        <input type="text" class="form-control" name="chutk1"
+                               value="{{\App\Setting::getValue('chutk1')}}" >
+                    </div>
+                    <div class="form-group">
+                        <label>Chi nhánh ngân hàng 1:</label>
+                        <input type="text" class="form-control" name="chinhanh1"
+                               value="{{\App\Setting::getValue('chinhanh1')}}" >
+                    </div>
+                    <div class="form-group">
+                        <label>Tài khoản ngân hàng 2:</label>
+                        <input type="text" class="form-control" name="stk2"
+                               value="{{\App\Setting::getValue('stk2')}}" >
+                    </div>
+                    <div class="form-group">
+                        <label>Chủ Tài khoản 2:</label>
+                        <input type="text" class="form-control" name="chutk2"
+                               value="{{\App\Setting::getValue('chutk2')}}" >
+                    </div>
+                    <div class="form-group">
+                        <label>Chi nhánh ngân hàng 2:</label>
+                        <input type="text" class="form-control" name="chinhanh2"
+                               value="{{\App\Setting::getValue('chinhanh2')}}" >
                     </div>
                     <div class="form-group">
                         <label>Slider Trang chủ</label>

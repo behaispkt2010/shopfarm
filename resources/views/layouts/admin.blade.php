@@ -39,23 +39,24 @@ description: template admin
             <!-- top tiles -->
             <div class="message">
                 @if (count($errors))
-                    <div class="alert alert-dismissible alert-danger">
+                    <div class="row alert alert-dismissible alert-danger">
+                        <div class="col-md-1"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+                        <div class="col-md-11">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>Lỗi!</strong>
                         @foreach ($errors->all() as $error)
                             <div>{{ $error }}</div>
                         @endforeach
-
+                        </div>
                     </div>
 
                 @endif
                 @if (Session::has('flash_message'))
 
                         <div class="alert alert-dismissible alert-{!! Session::get('flash_level') !!}">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            {!! Session::get('flash_message') !!}
-                        </div>
-                        <div class="alert alert-dismissible alert-{!! Session::get('flash_level') !!}">
+                            @if (Session::get('flash_level') == "success") <i class="fa fa-check" aria-hidden="true"></i>
+                            @else <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            @endif
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             {!! Session::get('flash_message') !!}
                         </div>

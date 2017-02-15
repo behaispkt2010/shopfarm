@@ -81,6 +81,10 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('warehouse/AjaxInfo', 'WarehouseController@AjaxInfo');
     Route::post('warehouse/AjaxChangePass', 'WarehouseController@AjaxChangePass');
     Route::post('warehouse/AjaxSendRequestUpdateLevelKho', 'WarehouseController@AjaxSendRequestUpdateLevelKho');
+    Route::post('warehouse/AjaxReQuestConfirmKho', 'WarehouseController@AjaxReQuestConfirmKho');
+    Route::post('warehouse/AjaxReQuestQuangCao', 'WarehouseController@AjaxReQuestQuangCao');
+    Route::post('warehouse/AjaxConfirmKho', 'WarehouseController@AjaxConfirmKho');
+    Route::post('warehouse/AjaxQuangCao', 'WarehouseController@AjaxQuangCao');
 
     //Khách hàng
     Route::resource('customers', 'customerController');
@@ -108,6 +112,8 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     //Thống kê truy cập
     Route::resource('statistics', 'StatisticController');
     //Thông báo
+    Route::resource('notification', 'NotificationController');
+    //Mã giới thiệu
     Route::resource('notification', 'NotificationController');
 });
 

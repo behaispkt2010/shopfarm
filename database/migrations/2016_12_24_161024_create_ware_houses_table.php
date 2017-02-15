@@ -15,13 +15,19 @@ class CreateWareHousesTable extends Migration
     {
         Schema::create('ware_houses', function (Blueprint $table) {
             $table->increments('id');
-             $table->integer('user_id');
+            $table->integer('user_id');
             $table->string('name_company')->nullable();
             $table->string('address')->nullable();
             $table->string('mst')->nullable();
             $table->string('ndd')->nullable();
             $table->integer('stk')->nullable();
             $table->integer('level')->default(1);
+            $table->string('image')->nullable();
+            $table->string('time_active')->nullable();
+            $table->integer('confirm_kho')->default(0);
+            $table->integer('quangcao')->default(0);
+            $table->integer('user_test')->nullable();
+            $table->string('date_end_test')->nullable();
             $table->timestamps();
         });
     }

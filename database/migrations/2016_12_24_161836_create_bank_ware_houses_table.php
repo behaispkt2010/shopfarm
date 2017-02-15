@@ -19,7 +19,7 @@ class CreateBankWareHousesTable extends Migration
             $table->integer('user_id');
             $table->integer('bank');
             $table->integer('province');
-            $table->integer('card_number');
+            $table->string('card_number');
             $table->string('card_name');
             $table->integer('check');
             $table->timestamps();

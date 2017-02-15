@@ -25,6 +25,7 @@ class WareHouseRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2',
+            'password' => 'numbers|symbols|min:6',
         ];
     }
 }

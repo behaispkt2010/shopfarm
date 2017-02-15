@@ -1287,12 +1287,12 @@ ul.msg_list li a .message {
   display: block !important;
   font-size: 11px; }
 ul.msg_list li a .message .different{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold; }
 ul.msg_list .different{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  padding: 15px;
+  padding: 5px;
 }
 
 ul.list_notify li {
@@ -4624,8 +4624,8 @@ ul.tab-fill li:hover{
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   position: absolute;
-  top: -24px;
-  right: 425px;
+  top: -25px;
+  left: -70px;
 }
 
 .box-status_user .status-title {

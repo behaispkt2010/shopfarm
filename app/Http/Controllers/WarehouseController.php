@@ -8,6 +8,7 @@ use App\Http\Requests\BankWareHouseRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\WareHouseRequest;
 use App\Http\Requests\LevelKhoRequest;
+use App\Http\Requests\ConfirmKhoRequest;
 use App\Http\Requests\AjaxDetailRequest;
 use App\Mail\UpgradeKho;
 use App\Notification;
@@ -16,9 +17,11 @@ use App\User;
 use App\WareHouse;
 use Illuminate\Http\Request;
 use DB;
+use App\Util;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class WarehouseController extends Controller
@@ -68,6 +71,10 @@ class WarehouseController extends Controller
         $id = $request->get('id');
         $warehouse = WareHouse::find($id);
         $data = $request->all();
+        $image = $request->image;
+        if ($request->hasFile('image')) {
+            $data['image']  = Util::saveFile($request->file('image'), '');
+        }
         $warehouse->update($data);
         $response = array(
             'status' => 'success',
@@ -92,27 +99,64 @@ class WarehouseController extends Controller
     }
     public function AjaxBank(BankWareHouseRequest $request)
     {
-        $data = $request->all();
-        BankWareHouse::create($data);
-        //dd("dsds");
-        $response = array(
-            'status' => 'success',
-            'msg' => 'Setting created successfully',
-        );
+        $ware_id = $request->ware_id;
+        $check = $request->check;
+        $active = 0;
+        $checkBankActive = BankWareHouse::where('ware_id',$ware_id)->get();
+        foreach($checkBankActive as $itemCheckBankActive){
+            if (($itemCheckBankActive->check == 1)){
+                $active++;
+            }
+        }
+        if ($active >= 1  && $check == 1){
+            $response = array(
+                'status' => 'danger',
+                'msg' => 'Đã có ngân hàng được sử dụng',
+            );
+        } else {
+            $data = $request->all();
+            BankWareHouse::create($data);
+            //dd("dsds");
+            $response = array(
+                'status' => 'success',
+                'msg' => 'Setting created successfully',
+            );
+        }
         return \Response::json($response);
 
     }
 
     public function AjaxEditBank(BankWareHouseRequest $request)
     {
+        $ware_id = $request->ware_id;
+        $active = 0;
+        $idBank = 0;
         $id = $request->get('id_bank');
-        $warehouse = BankWareHouse::find($id);
-        $data = $request->all();
-        $warehouse->update($data);
-        $response = array(
-            'status' => 'success',
-            'msg' => 'Setting created successfully',
-        );
+        $check = $request->check;
+        $checkBankActive = BankWareHouse::where('ware_id',$ware_id)->get();
+        foreach($checkBankActive as $itemCheckBankActive){
+
+            if (($itemCheckBankActive->check == 1)){
+                $active++;
+                $idBank = $itemCheckBankActive->id;
+            }
+        }
+        if ($active >= 1  && $check == 1 && $idBank != $id){
+            $response = array(
+                'status' => 'danger',
+                'msg' => 'Đã có ngân hàng được sử dụng',
+            );
+        } else {
+
+            $warehouse = BankWareHouse::find($id);
+            $data = $request->all();
+            $warehouse->update($data);
+            $response = array(
+
+                'status' => 'success',
+                'msg' => 'Setting created successfully',
+            );
+        }
         return \Response::json($response);
 
     }
@@ -123,6 +167,46 @@ class WarehouseController extends Controller
         $levelkho = $request->get('levelkho');
         $data = [
             'level' => $levelkho
+        ];
+        $warehouse = WareHouse::where('id', $id)->update($data);
+
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
+
+    }
+    public function AjaxConfirmKho(Request $request)
+    {
+        $id = $request->get('id');
+        $checkWareHouse = WareHouse::find($id);
+        if (($checkWareHouse->name_company == $request->name_company) && ($checkWareHouse->address == $request->address) && ($checkWareHouse->mst == $request->mst) && ($checkWareHouse->ndd == $request->ndd) && ($checkWareHouse->time_active == $request->time_active)) {
+            $confirm_kho = 1;
+            $data = [
+                'confirm_kho' => $confirm_kho
+            ];
+            $warehouse = WareHouse::where('id', $id)->update($data);
+
+            $response = array(
+                'status' => 'success',
+                'msg' => 'Setting created successfully',
+            );
+        } else {
+            $response = array(
+                'status' => 'danger',
+                'msg' => 'Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin hoặc cập nhật thông tin kho trước khi Xác nhận kho',
+            );
+        }
+        return \Response::json($response);
+
+    }
+    public function AjaxQuangCao(Request $request)
+    {
+        $id = $request->get('id');
+        $quangcao = 1;
+        $data = [
+            'quangcao' => $quangcao
         ];
         $warehouse = WareHouse::where('id', $id)->update($data);
 
@@ -151,7 +235,75 @@ class WarehouseController extends Controller
         $data['author_id'] = $userID;
         $data['levelkho'] = $request->get('levelkho');
         Notification::create($data);
-        dd($data);
+        //dd($data);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        /*$mailData = [
+            "name" => $name,
+            "email" => $email,
+            "phone" => $phone_number,
+            "comment" => "Chủ kho $name muốn nâng cấp kho lên $request->levelkho. Click vào <a href='$url'>đây</a> để tiến hành nâng cấp kho",
+            "subject" => "Chủ kho cần nâng cấp kho"
+        ];
+        $to = "behaispkt2010@gmail.com";
+        Mail::to($to)->send(new UpgradeKho($mailData));*/
+
+        return \Response::json($response);
+    }
+    public function AjaxReQuestConfirmKho(Request $request){
+        //$data = $request->all();
+        $userID = Auth::user()->id;
+        $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
+        $name = "";
+        $wareHouseID = "";
+        $email = "";
+        $phone_number = "";
+        foreach($user as $itemUser){
+            $name = $itemUser['name'];
+            $wareHouseID = $itemUser['id'];
+            $email = $itemUser['email'];
+            $phone_number = $itemUser['phone_number'];
+        }
+        $data['content'] = "confirmkho";
+        $data['author_id'] = $userID;
+        Notification::create($data);
+        //dd($data);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        /*$mailData = [
+            "name" => $name,
+            "email" => $email,
+            "phone" => $phone_number,
+            "comment" => "Chủ kho $name muốn nâng cấp kho lên $request->levelkho. Click vào <a href='$url'>đây</a> để tiến hành nâng cấp kho",
+            "subject" => "Chủ kho cần nâng cấp kho"
+        ];
+        $to = "behaispkt2010@gmail.com";
+        Mail::to($to)->send(new UpgradeKho($mailData));*/
+
+        return \Response::json($response);
+    }
+    public function AjaxReQuestQuangCao(Request $request){
+        //$data = $request->all();
+        $userID = Auth::user()->id;
+        $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
+        $name = "";
+        $wareHouseID = "";
+        $email = "";
+        $phone_number = "";
+        foreach($user as $itemUser){
+            $name = $itemUser['name'];
+            $wareHouseID = $itemUser['id'];
+            $email = $itemUser['email'];
+            $phone_number = $itemUser['phone_number'];
+        }
+        $data['content'] = "quangcao";
+        $data['author_id'] = $userID;
+        Notification::create($data);
+        //dd($data);
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -238,17 +390,16 @@ class WarehouseController extends Controller
             $user->attachRole(4);
             $wareHouse = new WareHouse();
             $data = $request->all();
+            if ($request->hasFile('image')) {
+                $data['image']  = Util::saveFile($request->file('image'), '');
+            }
             $data['user_id'] = $user->id;
             $res = WareHouse::create($data);
         } catch (\Exception $e) {
-
             DB::rollback();
             return redirect('admin/warehouse/create')->with(['flash_level' => 'danger', 'flash_message' => 'Tạo không thành công']);
-
         }
-
         DB::commit();
-
         return redirect('admin/warehouse/' . $res->id . '/edit')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 

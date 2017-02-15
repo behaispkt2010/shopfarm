@@ -2765,8 +2765,10 @@ fieldset[disabled] .navbar .btn-link:focus {
   color: rgba(255,255,255, 0.84);
 }
 .alert.alert-success {
-  background-color: #4caf50;
+  background-color: palegreen;
   color: rgba(255,255,255, 0.84);
+  border-radius: 5px !important;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07),1px 2px 5px 0 rgba(0,0,0,.06) !important;
 }
 .alert.alert-success a,
 .alert.alert-success .alert-link {
@@ -2783,14 +2785,18 @@ fieldset[disabled] .navbar .btn-link:focus {
 .alert.alert-warning {
   background-color: #ff5722;
   color: rgba(255,255,255, 0.84);
+  border-radius: 5px !important;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07),1px 2px 5px 0 rgba(0,0,0,.06) !important;
 }
 .alert.alert-warning a,
 .alert.alert-warning .alert-link {
   color: rgba(255,255,255, 0.84);
 }
 .alert.alert-danger {
-  background-color: #f44336;
+  background-color: tomato;
   color: rgba(255,255,255, 0.84);
+  border-radius: 5px !important;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07),1px 2px 5px 0 rgba(0,0,0,.06) !important;
 }
 .alert.alert-danger a,
 .alert.alert-danger .alert-link {
@@ -3003,7 +3009,7 @@ fieldset[disabled] .navbar .btn-link:focus {
   background: rgba(0, 0, 0, 0.3);
 }
 .panel {
-  border-radius: 2px;
+  border-radius: 5px;
   border: 0;
   -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
           box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
