@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
  */
 class Util extends Model
 {
-    public static $datetest = 10;
+//    public static $a = 20;
     public static function saveFile($file, $type)
     {
         $today = date("Y-m-d_H-i-s");
