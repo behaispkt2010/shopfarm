@@ -17,12 +17,14 @@
                             <li>
                                 <a href="{{ route('warehouse.edit',['id' => $itemNotification->id]) }}" target="_blank">
 
-                                    <span class="image"><img src="{{ url('/').$itemNotification->image }}" alt="Profile Image"/></span>
+                                    <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
 
                                     <span class="message">
                                         @if($itemNotification->content == "upgradeLevelKho")Chủ kho <span class="different">{{ $itemNotification->name }}</span> muốn nâng cấp kho lên cấp <span class="different">{{ $itemNotification->levelkho }}</span>.
                                         @elseif ($itemNotification->content == "confirmkho")Chủ kho <span class="different">{{$itemNotification->name}}</span> muốn Xác thực kho. Hãy kiểm tra và Xác thực cho chủ kho nhé.
                                         @elseif ($itemNotification->content == "quangcao")Chủ kho <span class="different">{{$itemNotification->name}}</span> muốn Đăng ký Quảng cáo.
+                                        @elseif ($itemNotification->content == "contact")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần được hỗ trợ.
+                                        @elseif ($itemNotification->content == "dangkychukho")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần đăng ký làm Chủ kho.
                                         @endif
                                     </span> <br>
                                     <span class="time">

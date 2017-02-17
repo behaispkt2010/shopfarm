@@ -54,21 +54,19 @@
                                         <img src="{{url('/')}}{{$user->image}}" alt="" class="img-circle img-responsive"
                                              data-pin-nopin="true">
                                     </div>
-                                    <div class="col-sm-12 ">
-                                        <a href="{{route('users.create')}}">
-                                            <h4 class="cod">#{{$user->id}}</h4>
+                                    <div class="col-sm-12" data-toggle="modal" data-target=".modal-history" href="{{route('customers.show',['id' => $user->id])}}">
+                                        <h4 class="cod">#{{$user->id}}</h4>
 
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <ul class="list-unstyled">
-                                                        <li><span class="label-box55">Tên:</span> {{$user->name}}</li>
-                                                        <li><span class="label-box55">Email:</span> {{$user->email}}</li>
-                                                        <li><span class="label-box55">SDT:</span> {{$user->phone_number}}</li>
-                                                        <li><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>
-                                                    </ul>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <ul class="list-unstyled">
+                                                    <li><span class="label-box55">Tên:</span> {{$user->name}}</li>
+                                                    <li><span class="label-box55">Email:</span> {{$user->email}}</li>
+                                                    <li><span class="label-box55">SDT:</span> {{$user->phone_number}}</li>
+                                                    <li><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>
+                                                </ul>
                                             </div>
-                                        </a>
+                                        </div>
                                     </div>
 
                                     <div class="col-xs-12 text-center">
@@ -102,6 +100,14 @@
     </div>
     @include('admin.partial.modal_delete')
 
+    <div class="modal fade modal-history" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-history">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
 
 @endsection
 @section('add_scripts')

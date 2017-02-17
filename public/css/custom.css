@@ -5585,6 +5585,19 @@ table.dtp-picker-days thead{
   background: #f7f7f7;
   padding: 0;
 }
+#txtReferralCode{
+  background: #fff;
+  border: solid 2px #eee;
+  padding: 10px 30px;
+  border-radius: 4px;
+  font-size: 18px;
+  color: #3FB079;
+  display: inline-block;
+  margin-top: 30px;
+  font-weight: bold;
+  font-family: 'Roboto-Bold';
+}
+
 @media (max-width: 991px) {
 
   .value-das {

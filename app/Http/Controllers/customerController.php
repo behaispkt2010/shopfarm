@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -50,6 +51,29 @@ class customerController extends Controller
             'role' => "customer"
         ];
         return view('admin.users.edit',$data);
+    }
+    public function show($id)
+    {
+        $history = Order::leftjoin('product_orders','orders.id','=','product_orders.order_id')
+            ->leftjoin('users','orders.customer_id','=','users.id')
+            ->selectRaw('users.*, users.name as customer_name')
+            ->selectRaw('orders.*')
+            ->selectRaw('product_orders.*, product_orders.name as product_orders_name')
+            ->where('orders.customer_id',$id)
+            ->orderBy('orders.time_order','DESC')
+            ->limit(10)
+            ->get();
+        $customer_name = "";
+        foreach ($history as $itemHistory) {
+            $customer_name = $itemHistory->customer_name;
+        }
+        $data = [
+            'customer_name' => $customer_name,
+            'history' => $history,
+            'id' => $id,
+        ];
+        return view('admin.customers.history', $data);
+
     }
 
 }

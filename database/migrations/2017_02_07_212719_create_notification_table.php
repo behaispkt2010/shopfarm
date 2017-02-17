@@ -17,9 +17,9 @@ class CreateNotificationTable extends Migration
             $table->increments('id');
             $table->text('content');
             $table->integer('levelkho');
-            $table->integer('author_id');
+            $table->string('author_id');
             $table->timestamps();
-            
+
         });
     }
 

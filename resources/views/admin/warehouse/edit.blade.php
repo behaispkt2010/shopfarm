@@ -189,8 +189,8 @@
                                         <label class="mb5">Hình ảnh kho</label>
 
                                         <div class="image-view">
-                                            @if(!empty($wareHouse->image))
-                                                <img src="{{url('/').$wareHouse->image}}" alt="" class="img-responsive">
+                                            @if(!empty($wareHouse->image_kho))
+                                                <img src="{{url('/').$wareHouse->image_kho}}" alt="" class="img-responsive">
                                                 <div class="form-group">
                                                     <label for="inputFile" class="col-md-4 control-label">Thay
                                                         đổi</label>
@@ -198,12 +198,12 @@
                                                     <div class="col-md-8">
                                                         <input type="text" readonly="" class="form-control"
                                                                placeholder="đường dẫn...">
-                                                        <input type="file" name="image" id="inputFile">
+                                                        <input type="file" name="image_kho" id="inputFile">
                                                     </div>
                                                 </div>
 
                                             @else
-                                                <input type="file" style="display:none;" name="image" id="file-6"
+                                                <input type="file" style="display:none;" name="image_kho" id="file-6"
                                                        class="inputfile inputfile-5"
                                                        data-multiple-caption="{count} files selected"/>
                                                 <label class="file-view" for="file-6">
@@ -247,7 +247,7 @@
                                                 <div class="togglebutton">
                                                     <i data-toggle="modal"
                                                        data-target=".modal-bank-edit"
-                                                       class="fa fa-edit edit_bank" data-id="{{$itemBankWareHouse->id}}"
+                                                       class="fa fa-pencil edit_bank" data-id="{{$itemBankWareHouse->id}}"
                                                        data-bank="{{$itemBankWareHouse->bank}}" data-province="{{$itemBankWareHouse->province}}"
                                                        data-card_number="{{$itemBankWareHouse->card_number}}"data-check="{{$itemBankWareHouse->check}}"  data-card_name="{{$itemBankWareHouse->card_name}}" class="fa fa-pencil" style="margin-right: 5px"></i> &nbsp;&nbsp;
                                                     <label>
@@ -971,7 +971,7 @@
             var mst = $('.info-kho input[name="mst"]').val();
             var ndd = $('.info-kho input[name="ndd"]').val();
             var time_active = $('.info-kho input[name="time_active"]').val();
-            var image = $('.image').val();
+            var image_kho = $('.image_kho').val();
             //alert(image);
             var user_test = $('#user_test').val();
             var _token = $('input[name="_token"]').val();
@@ -979,7 +979,7 @@
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/warehouse/AjaxDetail',
-                data: {name_company: name_company, address: address, mst: mst,image: image,ndd: ndd,time_active: time_active,user_test: user_test,_token: _token,id:id},
+                data: {name_company: name_company, address: address, mst: mst,image_kho: image_kho,ndd: ndd,time_active: time_active,user_test: user_test,_token: _token,id:id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     new PNotify({

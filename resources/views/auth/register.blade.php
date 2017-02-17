@@ -89,7 +89,21 @@
 
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label" for="">Mã giới thiệu</label>
+                                    <input id="introCode" type="text" class="form-control" name="introCode">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group label-floating">
+                                    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE')  }} "></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-12 col-xs-12 col-sm-12 text-center">
                                 <button type="submit" class="btn btn-success btn-raised btn-large">

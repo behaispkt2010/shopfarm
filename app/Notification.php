@@ -13,7 +13,7 @@ class Notification extends Model
             ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
             ->selectRaw('users.* ')
             ->selectRaw('ware_houses.* ')
-            ->selectRaw('notification.created_at,notification.content,notification.levelkho')
+            ->selectRaw('notification.created_at,notification.content,notification.levelkho,notification.author_id')
             ->orderBy('notification.id','DESC')
             ->take(4)
             ->get();

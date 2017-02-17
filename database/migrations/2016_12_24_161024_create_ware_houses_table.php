@@ -22,7 +22,7 @@ class CreateWareHousesTable extends Migration
             $table->string('ndd')->nullable();
             $table->integer('stk')->nullable();
             $table->integer('level')->default(1);
-            $table->string('image')->nullable();
+            $table->string('image_kho')->nullable();
             $table->string('time_active')->nullable();
             $table->integer('confirm_kho')->default(0);
             $table->integer('quangcao')->default(0);

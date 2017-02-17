@@ -15,6 +15,7 @@ use App\Notification;
 use App\Province;
 use App\User;
 use App\WareHouse;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use DB;
 use App\Util;
@@ -71,9 +72,17 @@ class WarehouseController extends Controller
         $id = $request->get('id');
         $warehouse = WareHouse::find($id);
         $data = $request->all();
-        $image = $request->image;
-        if ($request->hasFile('image')) {
-            $data['image']  = Util::saveFile($request->file('image'), '');
+        $image_kho = $request->image_kho;
+        if ($request->hasFile('image_kho')) {
+            $data['image_kho']  = Util::saveFile($request->file('image_kho'), '');
+        }
+        if ($request->get('user_test') == 2) {
+            $dateTest = Util::$datetest;
+            $date = date('Y-m-d H:i:s');
+            $dateafter = date('Y-m-d', strtotime($date . ' +' . $dateTest . ' days'));
+            $data['date_end_test'] = $dateafter;
+        } else {
+            $data['date_end_test'] = NULL;
         }
         $warehouse->update($data);
         $response = array(
@@ -349,6 +358,8 @@ class WarehouseController extends Controller
         $data = [
             'wareHouse' => $wareHouse,
         ];
+
+
         return view('admin.warehouse.index', $data);
     }
 
@@ -375,6 +386,7 @@ class WarehouseController extends Controller
      */
     public function store(WareHouseRequest $request)
     {
+
         DB::beginTransaction();
         try {
             $today = date("Y-m-d_H-i-s");
@@ -390,10 +402,16 @@ class WarehouseController extends Controller
             $user->attachRole(4);
             $wareHouse = new WareHouse();
             $data = $request->all();
-            if ($request->hasFile('image')) {
-                $data['image']  = Util::saveFile($request->file('image'), '');
+            if ($request->hasFile('image_kho')) {
+                $data['image_kho']  = Util::saveFile($request->file('image_kho'), '');
             }
             $data['user_id'] = $user->id;
+            if ($request->get('user_test') == 2) {
+                $dateTest = Util::$datetest;
+                $date = date('Y-m-d H:i:s');
+                $dateafter = date('Y-m-d', strtotime($date . ' +' . $dateTest . ' days'));
+                $data['date_end_test'] = $dateafter;
+            }
             $res = WareHouse::create($data);
         } catch (\Exception $e) {
             DB::rollback();

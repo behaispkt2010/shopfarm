@@ -71,12 +71,12 @@
                                 <div class="well box_1">
 
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <h3 class="cod text-center title-cate">{{$itemCategoryProduct->name}}</h3>
+                                            <h2 class="cod text-center title-cate">{{$itemCategoryProduct->name}}</h2>
                                             <div class="col-xs-12 ol-xs-12">
                                                 <ul class="list-unstyled">
                                                     <li><span class="label-box">Số sản phẩm:</span> <span class="bold"> {{\App\CategoryProduct::getTonKho($itemCategoryProduct->id,Request::get('kho'))['numproduct']}}</span></li>
                                                     <li><span class="label-box">Số tồn kho:</span> <span class="bold"> {{\App\CategoryProduct::getTonKho($itemCategoryProduct->id,Request::get('kho'))['inventory_num']}}</span></li>
-                                                    <li><span class="label-box">Danh mục cha:</span> <span class="bold"> {{$itemCategoryProduct->parent}}</span></li>
+                                                    <li><span class="label-box">Danh mục cha:</span> <span class="bold"> {{\App\CategoryProduct::getNameCateById($itemCategoryProduct->parent)}}</span></li>
                                                 </ul>
                                             </div>
                                     </div>
@@ -86,7 +86,7 @@
                                         {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
                                         {{--</a>--}}
                                         <a href="{{url('/category-product').'/'.$itemCategoryProduct->slug}}"
-                                           class="btn btn-raised btn-info btn-xs">
+                                           class="btn btn-raised btn-success btn-xs">
                                             <i class="fa fa-eye" aria-hidden="true"></i> Xem
                                         </a>
                                         <a href="#" data-toggle="modal"
@@ -133,8 +133,8 @@
                             <input class="form-control" id="focusedInput2" type="text" name="name">
                         </div>
                         <div class="form-group">
-                            <select name="parent" class="form-control" data-placeholder="Chọn Nhóm cha">
-                                <option value="0">Chọn nhóm cha</option>
+                            <select name="parent" class="form-control" data-placeholder="Chọn Danh mục">
+                                <option value="0">Chọn danh mục</option>
                                @foreach($categoryProduct0 as $itemCategoryProduct0)
                                 <option value="{{$itemCategoryProduct0->id}}">{{$itemCategoryProduct0->name}}</option>
                                 @endforeach
@@ -166,7 +166,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title text-center" id="myModalLabel">Thêm nhóm sản phẩm</h4>
+                    <h4 class="modal-title text-center" id="myModalLabel">Sửa Nhóm sản phẩm</h4>
                 </div>
                 <div class="modal-body sroll">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -177,8 +177,8 @@
                             <input class="form-control" id="focusedInput2" type="text" name="name" value=" ">
                         </div>
                         <div class="form-group">
-                            <select name="parent" class="form-control" data-placeholder="Chọn Nhóm cha">
-                                <option value="0">Chọn nhóm cha</option>
+                            <select name="parent" class="form-control" data-placeholder="Chọn Danh mục">
+                                <option value="0">Chọn Danh mục</option>
                                 @foreach($categoryProduct0 as $itemCategoryProduct0)
                                     <option value="{{$itemCategoryProduct0->id}}">{{$itemCategoryProduct0->name}}</option>
                                 @endforeach
@@ -220,21 +220,19 @@
             e.preventDefault();
 
             var name = $('.modal-product-cate input[name="name"]').val();
-            var parent = $('.modal-product-cate select[name="parent"] :selected').val();
+            var parent = $('.modal-product-cate select[name="parent"] :selected').html();
             var note = $('.modal-product-cate textarea[name="note"]').val();
             var _token = $('.modal-product-cate input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
-                url: '/admin/categoryProducts/createAjax',
+                url: '{{ url('/') }}/admin/categoryProducts/createAjax',
                 data: {name: name, parent: parent, note: note,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                    $('.modal-product-cate input[name="name"]').val("");
                     $('.modal-product-cate select[name="parent"]').val(0);
                      $('.modal-product-cate textarea[name="note"]').val("");
-//                    alert("Tạo thành công");
-                    //show notify
                     new PNotify({
                         title: 'Tạo thành công',
                         text: '',
@@ -245,7 +243,6 @@
                     location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    //show notify
                     var Data = JSON.parse(XMLHttpRequest.responseText);
                     new PNotify({
                         title: 'Lỗi',
@@ -255,7 +252,6 @@
                         styling: 'bootstrap3'
                     });
                     $('.loading').css('display','none');
-
                 }
             });
         });
@@ -265,7 +261,7 @@
             e.preventDefault();
 
             var name = $('.modal-product-cate-edit input[name="name"]').val();
-            var parent = $('.modal-product-cate-edit select[name="parent"] :selected').val();
+            var parent = $('.modal-product-cate-edit select[name="parent"] :selected').html();
             var note = $('.modal-product-cate-edit textarea[name="note"]').val();
             var _token = $('.modal-product-cate-edit input[name="_token"]').val();
             var id = $('.modal-product-cate-edit input[name="id"]').val();
@@ -273,7 +269,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
-                url: '/admin/categoryProducts/updateAjax',
+                url: '{{ url('/') }}/admin/categoryProducts/updateAjax',
                 data: {name: name, parent: parent, note: note,_token: _token,id: id},
                 success: function( msg ) {
                     $('.loading').css('display','none');

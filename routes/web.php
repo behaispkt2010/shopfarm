@@ -114,7 +114,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     //Thông báo
     Route::resource('notification', 'NotificationController');
     //Mã giới thiệu
-    Route::resource('notification', 'NotificationController');
+    Route::resource('sharingreferralcode', 'ReferralCodeController');
 });
 
 /**
@@ -159,6 +159,9 @@ Route::get('/blog/{cateSlug}/{productSlug}', 'Frontend\BlogController@SingleBlog
 
 Route::get('/contact','Frontend\PageController@Contact');
 Route::Post('/contact','Frontend\PageController@PostContact');
+
+Route::get('/resisterWareHouse','Frontend\PageController@GetResisterWareHouse');
+Route::Post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');
 
 Route::get('/about','Frontend\PageController@About');
 Route::get('/{slug}','Frontend\PageController@CustomPage');

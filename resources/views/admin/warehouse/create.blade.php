@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse" style="min-height: 440px;">
+                        <div class="well box1 info-warehouse" style="min-height: 524px;">
                             <h4 class="text-center">Thông tin người đại diện </h4>
                             <ul class="list-unstyled">
                                 <li>
@@ -160,8 +160,9 @@
                                 </li>
                                 <li>
                                     <div class="form-group">
+                                        <label class="mb5">Hình ảnh kho</label>
                                         <div class="row">
-                                            <input type="file" style="display:none;" name="image" id="file-6"
+                                            <input type="file" style="display:none;" name="image_kho" id="file-6"
                                                    class="inputfile inputfile-5"
                                                    data-multiple-caption="{count} files selected"/>
                                             <label class="file-view" for="file-6">

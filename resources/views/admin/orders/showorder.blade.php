@@ -156,4 +156,15 @@
 
     </div>
 </div>
+<script>
+    $(function(){
+        $(document).on("hidden.bs.modal", ".modal:not(.local-modal)", function (e) {
+            //$(e.target).removeData("bs.modal").find(".modal-content").empty().html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i><span class="sr-only">Loading...</span>');
+            $(this).modal('hide');
+            $(e.target).removeData("bs.modal").find(".modal-content").empty();
+
+        });
+
+    });
+</script>
 

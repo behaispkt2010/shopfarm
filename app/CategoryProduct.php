@@ -8,7 +8,7 @@ class CategoryProduct extends Model
 {
     protected $fillable = ['name', 'slug','note','parent'];
     public static function getNameCateById($id){
-        $name = "mặc định";
+        $name = "Mặc định";
         $query=  CategoryProduct::find($id);
         if(!empty($query)){
             $name = $query->name;

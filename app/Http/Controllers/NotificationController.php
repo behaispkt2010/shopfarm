@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Notification;
+use App\User;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
     public function index()
     {
+        //$arrUser = User::get();
         $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
             ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
             ->selectRaw('users.* ')
             ->selectRaw('ware_houses.* ')
-            ->selectRaw('notification.created_at,notification.content,notification.levelkho')
+            ->selectRaw('notification.created_at,notification.content,notification.levelkho,notification.author_id')
             ->orderBy('notification.id','DESC')
             ->get();
         /*echo "<pre>";
@@ -22,6 +24,7 @@ class NotificationController extends Controller
         $data = [
             'arrNotification' => $arrNotification
         ];
+        //dd($arrNotification);
         return view('admin.notification.index',$data);
     }
 

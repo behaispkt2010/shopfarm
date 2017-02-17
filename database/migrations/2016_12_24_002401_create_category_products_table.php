@@ -18,7 +18,7 @@ class CreateCategoryProductsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('note');
-            $table->integer('parent')->default(0);
+            $table->int('parent')->default(0);
             $table->timestamps();
         });
     }

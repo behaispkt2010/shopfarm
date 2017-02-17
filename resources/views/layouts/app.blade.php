@@ -26,6 +26,7 @@
             height: 100%;
         }
     </style>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
     <div id="app" style="height: 100%; width: 100%; display: table">
