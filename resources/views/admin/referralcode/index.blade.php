@@ -26,12 +26,12 @@
 @endsection
 @section('add_scripts')
     <script>
-        $('#share_facebook').on('click', function () {
+        document.getElementById('share_facebook').onclick = function() {
             FB.ui({
                 method: 'share',
                 mobile_iframe: true,
-                href: 'https://facebook.com/',
+                href: 'http://hasuko.xyz/',
             }, function(response){});
-        });
+        }
     </script>
 @endsection
