@@ -1260,6 +1260,7 @@ ul.msg_list li {
   display: -ms-flexbox;
   display: flex;
   margin: 6px 6px 0;
+  height: 70px;
   width: 96% !important; }
 
 ul.msg_list li:last-child {
@@ -1285,12 +1286,12 @@ ul.msg_list li a .time {
 
 ul.msg_list li a .message {
   display: block !important;
-  font-size: 11px; }
+  font-size: 14px; }
 ul.msg_list li a .message .different{
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold; }
 ul.msg_list .different{
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   padding: 5px;
 }
@@ -1322,7 +1323,6 @@ ul.list_notify li a:hover {
 ul.list_notify li a .time {
   font-size: 11px;
   right: 35px; }
-
 .dropdown-menu.msg_list span {
   white-space: normal; }
 
@@ -1357,7 +1357,7 @@ ul.list_notify li a .time {
   width: 220px; }
 
 .navbar-nav .open .dropdown-menu.msg_list {
-  width: 300px; }
+  width: 400px; }
 
 .info-number .badge {
   font-size: 10px;
@@ -4555,7 +4555,7 @@ tr.shown td.details-control {
 }
 }
 .navbar.nav_title{
-  background: #0f9d58;
+  background: #006950;
   text-align: center;
 }
 .navbar.nav_title img{
@@ -5074,7 +5074,7 @@ ol, ul {
 }
 .tracking-table tr td:last-child, .con-details-tracking p {
   /*font-family: 'Roboto-Light';*/
-  font-size: 13px;
+  font-size: 15px;
   font-weight: normal;
 }
 .con-details-tracking .item label {
@@ -5097,7 +5097,7 @@ ol, ul {
 }
 .con-details-tracking .item label:last-child span:first-child {
   display: inline-block;
-  width: 265px;
+  width: 150px;
 }
 .modal-tracking .modal-title {
   font-size: 20px;
@@ -5597,7 +5597,18 @@ table.dtp-picker-days thead{
   font-weight: bold;
   font-family: 'Roboto-Bold';
 }
-
+.sologen{
+  text-align: center;
+  background-color: #0f9d58;
+  color: #ffffff;
+  font-size: 17px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07),1px 2px 5px 0 rgba(0,0,0,.06) !important;
+}
+.notification_title{
+  color: #000;
+}
 @media (max-width: 991px) {
 
   .value-das {

@@ -214,7 +214,7 @@
                 <li role="presentation" class="dropdown" style="display: block">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                        aria-expanded="false">
-                        <i class="fa fa-envelope-o"></i>
+                        <i class="fa fa-bell"></i>
                         <span class="badge bg-green">1</span>
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
@@ -223,28 +223,51 @@
                         ?>
                         @if(count($notification) != 0)
                         @foreach($notification as $itemNotification)
-                        <li>
+                        @if ($itemNotification->content == "contact" || $itemNotification->content == "dangkychukho" )
+                        <li class="notify">
+                            <a href="@if ($itemNotification->content == "dangkychukho"){{ route('warehouse.create') }} @else {{ route('notification.index') }} @endif" target="_blank">
+                                <span class="image"><img src="{{url('/').'/images/user_default.png'}}" alt="Profile Image"/></span>
+                            <span>
+                                <span class="notification_title">
+                                    @if ($itemNotification->content == "contact")Khách hàng cần hỗ trợ.
+                                    @elseif ($itemNotification->content == "dangkychukho")Đăng ký làm Chủ kho.
+                                    @endif
+                                </span>
+                                <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                            </span>
+                            <span class="message"> @if ($itemNotification->content == "contact")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần được hỗ trợ.
+                                @elseif ($itemNotification->content == "dangkychukho")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần đăng ký làm Chủ kho.
+                                @endif
+                            </span>
+                            </a>
+                        </li>
+                        @else
+                        <li class="notify">
                             <a href="{{ route('warehouse.edit',['id' => $itemNotification->id]) }}" target="_blank">
                                 <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                     <span>
-                                      <span>{{ $itemNotification->name }}</span>
-                                      <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                                        <span class="notification_title">
+                                            @if($itemNotification->content == "upgradeLevelKho")Nâng cấp kho.
+                                            @elseif ($itemNotification->content == "confirmkho")Xác thực kho.
+                                            @elseif ($itemNotification->content == "quangcao")Đăng ký Quảng cáo.
+                                            @endif
+                                        </span>
+                                        <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
                                     </span>
                                     <span class="message"> @if($itemNotification->content == "upgradeLevelKho")Chủ kho<span class="different">{{$itemNotification->name}}</span>muốn nâng cấp kho lên cấp<span class="different">{{$itemNotification->levelkho}}</span>.
                                         @elseif ($itemNotification->content == "confirmkho")Chủ kho <span class="different">{{$itemNotification->name}}</span> muốn Xác thực kho. Hãy kiểm tra và Xác thực cho chủ kho nhé.
                                         @elseif ($itemNotification->content == "quangcao")Chủ kho<span class="different">{{$itemNotification->name}}</span>muốn Đăng ký Quảng cáo.
-                                        @elseif ($itemNotification->content == "contact")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần được hỗ trợ.
-                                        @elseif ($itemNotification->content == "dangkychukho")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần đăng ký làm Chủ kho.
                                         @endif
                                     </span>
                             </a>
                         </li>
+                        @endif
                         @endforeach
 
                         <li>
                             <div class="text-center">
                                 <a href="{{ route('notification.index') }}">
-                                    <strong>See All Alerts</strong>
+                                    <strong>Xem tất cả</strong>
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </div>

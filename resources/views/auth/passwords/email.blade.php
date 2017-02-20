@@ -17,7 +17,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">Địa chỉ E-Mail: </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -36,8 +36,8 @@
                                    Gửi email Reset
                                 </button>
                             </div>
-                            <div class="col-md-6 col-md-offset-4">
-                                <i class="fa fa-arrow-left" aria-hidden="true"><a href="{{ route('login') }}"> Quay về trang đăng nhập</a></i>
+                            <div class="col-md-6 col-md-offset-3 text-center">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i><a href="{{ route('login') }}"> Quay về trang đăng nhập</a>
                             </div>
                         </div>
                     </form>

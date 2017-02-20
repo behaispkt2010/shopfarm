@@ -77,14 +77,14 @@
 
                                 </div>
                                 <div class="col-md-6 col-xs-12 text-right">
-                                    <p>Tổng giá trị sản phẩm <span>200 đ</span></p>
+                                    <p>Tổng giá trị sản phẩm <span id="allpaymoney">0</span> VNĐ</p>
                                     @if(Request::is('admin/orders/create'))
                                         <p><a href="" class="add_attr" class="add_attr" data-toggle="modal"
-                                              data-target=".modal-transport"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a> <span>0 đ</span></p>
+                                              data-target=".modal-transport"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a></p>
                                     @else
                                         <p><a href="" class="add_attr" class="add_attr" data-toggle="modal"
                                               data-target=".modal-transport"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                                Sửa Thông tin vận chuyển</a> <span>0 đ</span></p>
+                                                Sửa Thông tin vận chuyển</a></p>
                                     @endif
 
                                 </div>
@@ -480,6 +480,13 @@
     $('#select-tracking').selectize({});
 </script>
 <script type="text/javascript">
+    function pricetotal(){
+        var price = 0;
+        $('input[type="hidden"][name="pricetotal[]"]').each(function() {
+            price = parseInt(price) + parseInt($(this).val());
+        });
+        $('#allpaymoney').html(price);
+    }
     $(document).ready(function () {
         $('#date-format').bootstrapMaterialDatePicker
         ({
@@ -487,6 +494,7 @@
             lang: 'vi',
             time: false,
         });
+        pricetotal();
     });
 </script>
 <!-- Select2 -->
@@ -623,8 +631,10 @@
             $('.modal-order-1').modal('hide');
         }
     });
+
     $(document).on('click','td #delete_product', function (e) {
         $(this).closest('.item-product').remove();
+        pricetotal();
     });
     $(document).on('change','td .number-product', function (e) {
         var num = $(this).val();
@@ -632,7 +642,7 @@
         var total = num*price;
         $(this).closest('.item-product').find('.total span').text(total);
         $(this).closest('.item-product').find('input[type="hidden"][name="pricetotal[]"]').val(total);
-//        alert(num);
+        pricetotal();
     });
     function ProductIDExist(str){
         //console.log($('tr[id*=output_newrow]').length)
@@ -666,18 +676,21 @@
             //alert($(this).val());
             tmp_product.push($(this).val(),tmp_product);
         });
+        var price_total = parseInt($('#allpaymoney').html());
+
+        //alert(price_total);
         //alert(tmp_product);
         var checkExist = ProductIDExist(id);
         if(checkExist >= 1){
             alert("Sản phẩm đã tồn tại! Vui lòng chọn sản phẩm khác");
         }
         else {
+
             $.ajax({
                 type: "POST",
                 url: '{!! url("/") !!}/admin/products/AjaxGetProduct',
                 data: {id: id, _token: _token},
                 success: function (msg) {
-                    var price_total = msg['price'];
                     $('.loading').css('display', 'none');
                     $('.list_product').append('<tr class="item-product">'
                             + '<th><img src="{{url('/')}}/' + msg['image'] + '" class="img-responsive img-thumbnail"'
@@ -689,6 +702,9 @@
                             + '<td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>'
                             + '</tr>'
                     );
+                    price_total = price_total + parseInt(msg['price']);
+                    //alert(price_total);
+                    $('#allpaymoney').html(price_total);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     //show notify

@@ -14,9 +14,13 @@
                         </ul>
                     </div>
                 @endif
+                <div class="panel-body sologen">
+                    Mạng lưới kho nông sản Việt Nam
+                </div>
                 <div class="panel-body login-register-form">
                     <form class="" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
+
                         <div class="link-login">
                             <ul class="h-ul-li">
                                 <li class="active"><a href="{{url('/')}}/login">Đăng nhập</a></li>

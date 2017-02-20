@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse" style="min-height: 524px;">
+                        <div class="well box1 info-warehouse" style="min-height: 550px;">
                             <h4 class="text-center">Thông tin người đại diện </h4>
                             <ul class="list-unstyled">
                                 <li>
@@ -93,14 +93,12 @@
                                         </div>
                                     </div>
                                 </li>
-
-
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-kho" style="min-height: 440px;">
+                        <div class="well box1 info-kho" style="min-height: 550px;">
                             <h4 class="text-center">Thông tin Kho / doanh nghiệp </h4>
                             <ul class="list-unstyled">
                                 <li>
