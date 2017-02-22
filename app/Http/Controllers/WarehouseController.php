@@ -386,7 +386,7 @@ class WarehouseController extends Controller
      */
     public function store(WareHouseRequest $request)
     {
-
+        $myIntroCode = str_random(8);
         DB::beginTransaction();
         try {
             $today = date("Y-m-d_H-i-s");
@@ -394,6 +394,7 @@ class WarehouseController extends Controller
             $dataUser['email'] = $request->get('email');
             $dataUser['phone_number'] = $request->get('phone_number');
             $dataUser['password'] = $request->get('password');
+            $dataUser['myIntroCode'] = $myIntroCode;
             if (empty($request->get('password'))) {
                 $dataUser['password'] = "123456";
             }

@@ -3,10 +3,18 @@
 @section('pageHeader','Chia sẻ mã Referral Code')
 @section('detailHeader','Chia sẻ mã Referral Code')
 @section('content')
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=1891742487703866";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 <div class="row" style="text-align: center; padding-top: 100px;">
     <img src="{{asset('/images/sharecodereferral.png')}}" alt="">
     <div class="link-id">
-        <p id="txtReferralCode">sđfkjfkj</p>
+        <p id="txtReferralCode">@if (!empty($arrGetUser->myIntroCode)){{$arrGetUser->myIntroCode}} @endif</p>
     </div>
     <label for="" style="font-size: 18px; font-weight: bold; color: #000;">
         Hãy chia sẻ mã giới thiệu đến bạn bè để cả hai
@@ -14,9 +22,10 @@
     </label>
     <div class="social">
         <ul>
-            <li class="facebook">
+            <div class="fb-share-button" data-href="http://hasuko.xyz/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fhasuko.xyz%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
+            {{--<li class="facebook">
                 <a id="share_facebook" href="#"><img src="{{ asset('/images/facebookicon.png') }}" alt=""></a>
-            </li>
+            </li>--}}
             {{--<li class="google"></li>
             <li class="mail"></li>--}}
         </ul>
@@ -25,6 +34,20 @@
 </div>
 @endsection
 @section('add_scripts')
+    {{--<script>
+        $(document).ready(function() {
+            $.ajaxSetup({ cache: true });
+            $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+                FB.init({
+                    appId: '1891742487703866',
+                    version: 'v2.7'
+                });
+                $('#loginbutton,#feedbutton').removeAttr('disabled');
+                FB.getLoginStatus(updateStatusCallback);
+            });
+        });
+    </script>
+
     <script>
         document.getElementById('share_facebook').onclick = function() {
             FB.ui({
@@ -33,5 +56,5 @@
                 href: 'http://hasuko.xyz/',
             }, function(response){});
         }
-    </script>
+    </script>--}}
 @endsection

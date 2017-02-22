@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReferralCodeController extends Controller
 {
     public function index(){
-        return view('admin.referralcode.index');
+        $userID = Auth::user()->id;
+        $arrGetUser = User::find($userID);
+        $data = [
+            'arrGetUser' => $arrGetUser,
+        ];
+        //dd($data);
+        return view('admin.referralcode.index', $data);
     }
 }

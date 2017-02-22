@@ -63,11 +63,11 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <table class="" style="width:100%">
+                    <table class="" style="width:50%">
 
                         <tbody><tr>
                             <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-                                <canvas id="canvas2" height="140" width="140" style="margin: 15px 10px 10px 0px; width: 140px; height: 140px;"></canvas>
+                                <canvas id="canvas2" height="100" width="100" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
                             </td>
                             <td>
                                 <table class="tile_info">
@@ -95,6 +95,31 @@
                         <input type="hidden" value="{!! $level1 !!}" name="level1">
                         <input type="hidden" value="{!! $level2 !!}" name="level2">
                         <input type="hidden" value="{!! $level3 !!}" name="level3">
+                        </tbody></table>
+                    <table class="" style="width:50%">
+
+                        <tbody><tr>
+                            <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                                <canvas id="canvas3" height="100" width="100" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
+                            </td>
+                            <td>
+                                <table class="tile_info">
+                                    <tbody><tr>
+                                        <td>
+                                            <p><i class="fa fa-square red"></i>Dùng thử</p>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square chartreuse" style="color:chartreuse;"></i>Trả phí</p>
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
+                            </td>
+                        </tr>
+                        <input type="hidden" value="{!! $traphi !!}" name="traphi">
+                        <input type="hidden" value="{!! $dungthu !!}" name="dungthu">
                         </tbody></table>
                 </div>
             </div>
@@ -301,7 +326,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "GET",
-                url: '{!! url("/") !!}/admin/dashboard',
+                url: '{!! url("/") !!}/admin/dashboardctrl',
                 data: {data: data,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -356,7 +381,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "GET",
-                url: '{!! url("/") !!}/admin/dashboard',
+                url: '{!! url("/") !!}/admin/dashboardctrl',
                 data: {data: data,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -439,6 +464,36 @@
                             "#CFD4D8",
                             "#B370CF",
                             "#E95E4F"
+                        ]
+                    }]
+                },
+                options: options
+            });
+        });
+        $(document).ready(function () {
+            var options = {
+                legend: false,
+                responsive: false
+            };
+            var traphi = $('input[type="hidden"][name="traphi"]').val();
+            var dungthu = $('input[type="hidden"][name="dungthu"]').val();
+            new Chart(document.getElementById("canvas3"), {
+                type: 'doughnut',
+                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                data: {
+                    labels: [
+                        "Trả phí",
+                        "Dùng thử"
+                    ],
+                    datasets: [{
+                        data: [traphi,dungthu],
+                        backgroundColor: [
+                            "#49f436",
+                            "#f3493a"
+                        ],
+                        hoverBackgroundColor: [
+                            "#49f436",
+                            "#f3493a"
                         ]
                     }]
                 },

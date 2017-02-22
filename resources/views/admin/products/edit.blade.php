@@ -201,7 +201,7 @@
                                     <div class="radio">
                                         <label>
                                             <input type="radio" value="0" @if(!empty($product)) @if($product->status==0)checked @endif @endif id="optionsRadios2"
-                                                   name="status"> chờ duyệt
+                                                   name="status"> Chờ duyệt
                                         </label>
                                     </div>
                                         <div class="ln_solid"></div>

@@ -115,11 +115,11 @@
                         </ul>
                     </li>
                     @permission('customers')
-
-
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
                     @endpermission
-
+                    @permission('sharingreferralcode')
+                    <li><a href="{{ route('sharingreferralcode.index') }}"><i class="fa fa-qrcode"></i>Mã Giới thiệu</a></li>
+                    @endpermission
 
                 </ul>
             </div>
@@ -162,8 +162,6 @@
                         </ul>
                     </li>
                     @endpermission
-                    <li><a href="{{ route('sharingreferralcode.index') }}"><i class="fa fa-qrcode"></i>Mã Giới thiệu</a></li>
-
                 </ul>
             </div>
 @endrole

@@ -18,7 +18,7 @@ class DashboardController extends Controller
     public function dashboard(Request $request){
         $data=$request->get('data');
         $dateRes = explode('->', $data);
-        //dd($data);
+        dd($data);
         $lineLabels = [];
         $lineDatas = [];
         $barLabels = [];
@@ -57,9 +57,12 @@ class DashboardController extends Controller
 
     }
     public function index(){
+        //echo "admin";
         $level1 = WareHouse::countLevelKho(1);
         $level2 = WareHouse::countLevelKho(2);
         $level3 = WareHouse::countLevelKho(3);
+        $dungthu = WareHouse::countStatusKho(2);
+        $traphi = WareHouse::countStatusKho(1);
         $users = User::leftjoin('role_user','role_user.user_id','=','users.id')
             ->where('role_user.role_id',3)
             ->orderBy('id','DESC')
@@ -87,6 +90,8 @@ class DashboardController extends Controller
             'level1' =>$level1,
             'level2' =>$level2,
             'level3' =>$level3,
+            'dungthu' =>$dungthu,
+            'traphi' =>$traphi,
             'totalPrice' =>$totalPrice
         ];
 

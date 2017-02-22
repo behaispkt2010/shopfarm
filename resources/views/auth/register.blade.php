@@ -96,7 +96,8 @@
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="">Mã giới thiệu</label>
-                                    <input id="introCode" type="text" class="form-control" name="introCode">
+                                    <input id="introCode" type="text" class="form-control" name="introCode" value="">
+                                    <input id="myIntroCode" type="hidden" class="form-control" name="myIntroCode" value="<?php echo str_random(8) ?>">
                                 </div>
                             </div>
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CategoryProduct;
 use App\DetailImageProduct;
 use App\Http\Requests\ProductRequest;
+use App\Notification;
 use App\Product;
 use App\ProductUpdatePrice;
 use App\User;
@@ -111,7 +112,7 @@ public function AjaxGetProduct(Request $request){
         else {
             if(!Auth::user()->hasRole('kho'))
                 $product = Product::orderBy('id','DESC')
-                ->get();
+                    ->get();
             else {
                 $product = Product::orderBy('id','DESC')
                     ->where('kho',Auth::user()->id)
@@ -197,6 +198,12 @@ public function AjaxGetProduct(Request $request){
         $dataPrice['number']= $request->get('inventory_num');
         ProductUpdatePrice::create($dataPrice);
 
+        $userID = Auth::user()->id;
+        $dataNotify['content'] = "newproduct";
+        $dataNotify['author_id'] = $userID;
+        if (Auth::user()->hasRole('kho')) {
+            Notification::create($dataNotify);
+        }
 
         $dataImage['product_id']=$product1->id;
         if(!empty($request->file('image_detail'))) {
@@ -207,6 +214,7 @@ public function AjaxGetProduct(Request $request){
                 DetailImageProduct::create($dataImage);
             }
         }
+
         return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 
@@ -265,6 +273,7 @@ public function AjaxGetProduct(Request $request){
     {
         $today = date("Y-m-d_H-i-s");
         $data = $request->all();
+        //dd($request->image);
 //        $files = $request->file('image_detail');
         $product =  Product::find($id);
         if(!empty(Auth::user()->id)) {

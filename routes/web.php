@@ -126,7 +126,7 @@ Route::post('product/checkProductAjax', 'ProductController@checkProductAjax');
 Route::post('product/updateProductAjax', 'ProductController@UpdateProductAjax');
 Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
 Route::get('admin/getdashboard', 'DashboardAdminController@getdashboard');
-Route::get('admin/dashboard', 'DashboardController@dashboard');
+Route::get('admin/dashboardctrl', 'DashboardController@dashboard');
 
 
 

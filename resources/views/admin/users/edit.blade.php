@@ -136,6 +136,7 @@
                                                             <div class="col-md-9 col-xs-12 ">
                                                                 <input type="password"  class="form-control" id="code" @if((Request::is('admin/users/create')) | (Request::is('admin/staffs/create')) | (Request::is('admin/customers/create'))) @else disabled @endif name="password"  value="{{old('password')}}" required/>
                                                             </div>
+                                                            <input id="myIntroCode" type="hidden" class="form-control" name="myIntroCode" value="<?php echo str_random(8) ?>">
                                                         </div>
                                                     </div>
                                                 </li>
