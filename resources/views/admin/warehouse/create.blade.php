@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse" style="min-height: 550px;">
+                        <div class="well box1 info-warehouse" style="min-height: 636px;">
                             <h4 class="text-center">Thông tin người đại diện </h4>
                             <ul class="list-unstyled">
                                 <li>
@@ -80,7 +80,7 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label">Loại Chủ kho</label>
+                                            <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Loại Chủ kho</label>
 
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
@@ -98,9 +98,27 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-kho" style="min-height: 550px;">
+                        <div class="well box1 info-kho" style="min-height: 636px;">
                             <h4 class="text-center">Thông tin Kho / doanh nghiệp </h4>
+
                             <ul class="list-unstyled">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Mô hình kinh doanh</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <div class="form-group">
+                                                    <select name="category_warehouse_id" id="category_warehouse_id" class="form-control">
+                                                        @foreach($arrCategoryWarehouse as $itemCategoryWarehouse)
+                                                            <option value="{{$itemCategoryWarehouse->id}}">{{$itemCategoryWarehouse->category_warehouse_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
@@ -158,7 +176,7 @@
                                 </li>
                                 <li>
                                     <div class="form-group">
-                                        <label class="mb5">Hình ảnh kho</label>
+                                        <label class="mb5">Hình ảnh kho/doanh nghiệp</label>
                                         <div class="row">
                                             <input type="file" style="display:none;" name="image_kho" id="file-6"
                                                    class="inputfile inputfile-5"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bank;
 use App\BankWareHouse;
+use App\CategoryWarehouse;
 use App\Http\Requests\BankWareHouseRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\WareHouseRequest;
@@ -370,12 +371,12 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-//        $category = Category::get();
-//        $data=[
-//            'category'=>$category,
-//        ];
+        $arrCategoryWarehouse = CategoryWarehouse::get();
+        $data=[
+            'arrCategoryWarehouse'=>$arrCategoryWarehouse,
+        ];
 
-        return view('admin.warehouse.create');
+        return view('admin.warehouse.create',$data);
     }
 
     /**
@@ -414,6 +415,7 @@ class WarehouseController extends Controller
                 $data['date_end_test'] = $dateafter;
             }
             $res = WareHouse::create($data);
+
         } catch (\Exception $e) {
             DB::rollback();
             return redirect('admin/warehouse/create')->with(['flash_level' => 'danger', 'flash_message' => 'Tạo không thành công']);
@@ -466,7 +468,8 @@ class WarehouseController extends Controller
         $province = Province::get();
         $wareHouse = WareHouse::find($id);
         $bankWareHouse = BankWareHouse::where('ware_id', $id)->get();
-//        dd($province);
+        $arrCategoryWarehouse = CategoryWarehouse::get();
+        //dd($arrMappingWarehouseCategory);
         $userInfo = User::where('id', $wareHouse->user_id)->first();
         $data = [
             'wareHouse' => $wareHouse,
@@ -474,6 +477,7 @@ class WarehouseController extends Controller
             'province' => $province,
             'userInfo' => $userInfo,
             'bankWareHouse' => $bankWareHouse,
+            'arrCategoryWarehouse' => $arrCategoryWarehouse,
             'id' => $id,
         ];
 

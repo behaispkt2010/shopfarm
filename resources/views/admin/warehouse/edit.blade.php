@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse info-user" style="min-height: 755px;">
+                        <div class="well box1 info-warehouse info-user" style="min-height: 825px;">
                             <h4 class="text-center">Thông tin người đại diện <i style="float: right"
                                                                                 class="fa fa-edit"
                                                                                 aria-hidden="true"></i></h4>
@@ -91,8 +91,8 @@
                                         <div class="row">
                                             <label for="name" class="col-md-3 col-xs-12 control-label">Cập nhật</label>
 
-                                            <div class="col-md-9 col-xs-12 ">
-                                                <div>{{$userInfo->created_at->format('H:m:s - d/m/Y')}}</div>
+                                            <div class="col-md-9 col-xs-12"  style="margin-left: -10px;">
+                                                <div class="col-md-9 col-xs-12"><label for="" disabled class="form-control">{{$userInfo->created_at->format('H:m:s - d/m/Y')}}</label></div>
                                             </div>
                                         </div>
                                     </div>
@@ -107,11 +107,28 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-kho" style="min-height: 755px;">
+                        <div class="well box1 info-kho" style="min-height: 825px;">
                             <h4 class="text-center">Thông tin Kho / doanh nghiệp <i style="float: right"
                                                                                     class="fa fa-edit"
                                                                                     aria-hidden="true"></i></h4>
                             <ul class="list-unstyled">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Mô hình kinh doanh</label>
+
+                                            <div class="col-md-9 col-xs-12 ">
+                                                <div class="form-group">
+                                                    <select name="category_warehouse_id" id="category_warehouse_id" class="form-control">
+                                                        @foreach($arrCategoryWarehouse as $itemCategoryWarehouse)
+                                                            <option value="{{$itemCategoryWarehouse->id}}" @if ($itemCategoryWarehouse->id == $wareHouse->category_warehouse_id) selected="selected" @endif> {{$itemCategoryWarehouse->category_warehouse_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
@@ -160,7 +177,7 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label">Loại Chủ kho</label>
+                                            <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Loại Chủ kho</label>
 
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
@@ -186,7 +203,7 @@
                                 </li>
                                 <li>
                                     <div class="form-group">
-                                        <label class="mb5">Hình ảnh kho</label>
+                                        <label class="mb5">Hình ảnh kho/doanh nghiệp</label>
 
                                         <div class="image-view">
                                             @if(!empty($wareHouse->image_kho))
@@ -970,16 +987,18 @@
             var address = $('.info-kho input[name="address"]').val();
             var mst = $('.info-kho input[name="mst"]').val();
             var ndd = $('.info-kho input[name="ndd"]').val();
+            var category_warehouse_id = $('#category_warehouse_id').val();
             var time_active = $('.info-kho input[name="time_active"]').val();
-            var image_kho = $('.image_kho').val();
-            //alert(image);
+            var image_kho = document.getElementsByName("image_kho");
+            var file_image_kho = image_kho[0].files[0];
+            console.log(file_image_kho);
             var user_test = $('#user_test').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/warehouse/AjaxDetail',
-                data: {name_company: name_company, address: address, mst: mst,image_kho: image_kho,ndd: ndd,time_active: time_active,user_test: user_test,_token: _token,id:id},
+                data: {name_company: name_company,category_warehouse_id: category_warehouse_id, address: address, mst: mst,image_kho: file_image_kho,ndd: ndd,time_active: time_active,user_test: user_test,_token: _token,id:id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     new PNotify({
@@ -992,7 +1011,6 @@
                     location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    //show notify
                     var Data = JSON.parse(XMLHttpRequest.responseText);
                     new PNotify({
                         title: 'Lỗi',

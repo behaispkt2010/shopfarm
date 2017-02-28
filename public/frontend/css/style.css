@@ -6831,3 +6831,28 @@ a:focus, a:hover{
 	width: auto;
 	padding: 10px;
 }
+
+.info_veryfi_content li {
+	line-height: 26px;
+}
+.info_veryfi_content li label {
+	width: 150px;
+	float: left;
+}
+.left_list_verify {
+	width: 230px;
+	float: left;
+	color: #000;
+}
+.info-verified {
+	color: #ff771c;
+	font-size: 12px;
+}
+.header_table_verified {
+	padding: 7px;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	background: #f5f7fa;
+	color: #6a6a6a;
+	font-weight: 600;
+}

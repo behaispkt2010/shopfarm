@@ -5,9 +5,30 @@ namespace App\Http\Controllers;
 use App\Notification;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NotificationController extends Controller
 {
+    public function AjaxUpdateIsReadNotify(Request $request){
+        //Log::debug('behai',['vaooooo']);
+
+        $notify = Notification::where('is_read','=','0')->get();
+        if ( count($notify) !=0 ){
+            $data = [
+              'is_read' => 1
+            ];
+            foreach ($notify as $itemNotify) {
+                $noti = Notification::find($itemNotify->id);
+                $noti->update($data);
+            }
+        }
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        //dd($notify);
+        return \Response::json($response);
+    }
     public function index()
     {
         //$arrUser = User::get();

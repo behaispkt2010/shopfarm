@@ -208,17 +208,19 @@
                         <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>--}}
-
-                <li role="presentation" class="dropdown" style="display: block">
+                <?php
+                $notification = \App\Notification::JoinTable();
+                $num_notify = count(\App\Notification::where('is_read',0)->get());
+                ?>
+                <li role="presentation" class="dropdown menu_notify" style="display: block">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                        aria-expanded="false">
                         <i class="fa fa-bell"></i>
-                        <span class="badge bg-green">1</span>
+                        @if ($num_notify != 0)<span class="badge bg-green" id="notify_count">{{$num_notify}}</span>
+                        @endif
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                        <?php
-                        $notification = \App\Notification::JoinTable();
-                        ?>
+
                         @if(count($notification) != 0)
                         @foreach($notification as $itemNotification)
                         @if ($itemNotification->content == "contact" || $itemNotification->content == "dangkychukho" )
@@ -344,3 +346,20 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('.menu_notify').on('click', function (e) {
+        //alert('click');
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: '{{ url('/') }}/admin/AjaxUpdateIsReadNotify',
+            success: function( msg ) {
+                console.log[msg];
+                $("#notify_count").addClass('hidden');
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+            }
+        });
+    });
+</script>

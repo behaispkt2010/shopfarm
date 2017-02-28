@@ -28,6 +28,7 @@ class CreateWareHousesTable extends Migration
             $table->integer('quangcao')->default(0);
             $table->integer('user_test')->nullable();
             $table->string('date_end_test')->nullable();
+            $table->integer('category_warehouse_id')->nullable();
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     protected $table = 'notification';
-    protected $fillable = ['content', 'author_id','levelkho'];
+    protected $fillable = ['content', 'author_id','levelkho','is_read'];
     public static function JoinTable(){
         $join = Notification::leftjoin('users','notification.author_id','=','users.id')
             ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')

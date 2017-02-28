@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotificationTable extends Migration
+class CreateCategoryWarehouseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateNotificationTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification', function (Blueprint $table) {
+        Schema::create('category_warehouse', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('content');
-            $table->integer('levelkho');
-            $table->string('author_id');
-            $table->integer('is_read')->default(0);
+            $table->string('category_warehouse_name');
             $table->timestamps();
-
         });
     }
 
@@ -31,6 +27,6 @@ class CreateNotificationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification');
+        Schema::dropIfExists('category_warehouse');
     }
 }

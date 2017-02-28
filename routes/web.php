@@ -113,6 +113,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::resource('statistics', 'StatisticController');
     //Thông báo
     Route::resource('notification', 'NotificationController');
+
     //Mã giới thiệu
     Route::resource('sharingreferralcode', 'ReferralCodeController');
 });
@@ -127,6 +128,7 @@ Route::post('product/updateProductAjax', 'ProductController@UpdateProductAjax');
 Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
 Route::get('admin/getdashboard', 'DashboardAdminController@getdashboard');
 Route::get('admin/dashboardctrl', 'DashboardController@dashboard');
+Route::get('admin/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUpdateIsReadNotify');
 
 
 
@@ -159,6 +161,9 @@ Route::get('/blog/{cateSlug}/{productSlug}', 'Frontend\BlogController@SingleBlog
 
 Route::get('/contact','Frontend\PageController@Contact');
 Route::Post('/contact','Frontend\PageController@PostContact');
+
+//thông tin chủ kho
+Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');
 
 Route::get('/resisterWareHouse','Frontend\PageController@GetResisterWareHouse');
 Route::Post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');

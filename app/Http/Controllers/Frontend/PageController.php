@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\CategoryWarehouse;
 use App\Mail\Contact;
 use App\Mail\OrderInfo;
 use App\Notification;
 use App\Util;
+use App\WareHouse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -42,9 +44,9 @@ class PageController extends Controller
                 "subject" => "Khách hàng cần tư vấn"
             ];
             $to = "xtrieu30@gmail.com";
-            Mail::to($to)->send(new Contact($data));
+            //Mail::to($to)->send(new Contact($data));
             $data['content'] = "contact";
-            $data['author_id'] = $request->get('cf_name').' .SDT: '.$request->get('cf_order_number');
+            $data['author_id'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number');
             Notification::create($data);
 //        }
         return redirect('/contact')->with('success','success');
@@ -62,10 +64,22 @@ class PageController extends Controller
         ];
         $to = "xtrieu30@gmail.com";
         $data['content'] = "dangkychukho";
-        $data['author_id'] = $request->get('cf_name').' .SDT: '.$request->get('cf_order_number');
+        $data['author_id'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number');
         Notification::create($data);
         //Mail::to($to)->send(new Contact($data));
         return redirect('/resisterWareHouse')->with('success','success');
     }
-
+    public function DetailWarehouse($warehouse_id) {
+        $arrCategoryWarehouse = CategoryWarehouse::get();
+        $ware_house = WareHouse::select('ware_houses.*','users.*','ware_houses.address as ware_houses_address')
+            ->leftjoin('users','users.id','=','ware_houses.user_id')
+            ->where('ware_houses.id',$warehouse_id)
+            ->first();
+        $data = [
+            'ware_house' => $ware_house,
+            'arrCategoryWarehouse' => $arrCategoryWarehouse,
+        ];
+        //dd($ware_house);
+        return view('frontend.warehouse', $data);
+    }
 }
