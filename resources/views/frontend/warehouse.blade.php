@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-7 col-md-7 ">
+            <div class="col-xs-6 col-sm-4 col-md-4">
                 <ul class="info_veryfi_content">
                     <li>
                         <label>Mô hình kinh doanh:</label>
@@ -67,8 +67,14 @@
                 <table class="table">
                     <tbody>
                     <tr>
+                        <td>Mã số thuế:</td>
+                        <td>{{$ware_house->mst}}</td>
+                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                    </tr>
+                    <tr>
                         <td>Địa chỉ:</td>
                         <td>@if (!empty($ware_house->ware_houses_address)) {{$ware_house->ware_houses_address}} @endif</td>
+                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -80,20 +86,21 @@
                     <tr>
                         <td>Họ tên:</td>
                         <td>@if (!empty($ware_house->ndd)) {{$ware_house->ndd}} @endif</td>
-                        <td class="td_icon_verified"><span class="info-verified"><span class="fa fa-check"></span>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
                     </tr>
                     <tr>
                         <td>Điện thoại</td>
                         <td>@if (!empty($ware_house->phone_number)) {{$ware_house->phone_number}} @endif</td>
+                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
                     </tr>
                     <tr>
                         <td>Email</td>
                         <td>@if (!empty($ware_house->email)) {{$ware_house->email}} @endif</td>
+                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="clear"></div>
             <div class="clear"></div>
         </div>
         {{--<div class="col-xs-12 col-sm-12 col-md-12">

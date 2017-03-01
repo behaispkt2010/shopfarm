@@ -1754,7 +1754,7 @@
 
 		table th,
 		table td{
-			border: 1px solid #eaeaea;
+			/*border: 1px solid #eaeaea;*/
 			padding: 14px 19px;
 		}
 
@@ -6840,13 +6840,17 @@ a:focus, a:hover{
 	float: left;
 }
 .left_list_verify {
-	width: 230px;
+	width: 200px;
 	float: left;
 	color: #000;
 }
 .info-verified {
 	color: #ff771c;
 	font-size: 12px;
+}
+.td_icon_verified {
+	text-align: right;
+	border-top: 1px solid #ddd;
 }
 .header_table_verified {
 	padding: 7px;

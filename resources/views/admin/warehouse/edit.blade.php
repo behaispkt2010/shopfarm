@@ -305,7 +305,7 @@
                                                         <button class="btn btn-success btn-raised btn-sm btnConfirmKho"> Đăng ký</button>
                                                     @endif
                                                 @endif
-                                                <button class="btn btn-info btn-raised btn-sm" > Chi tiết
+                                                <button class="btn btn-info btn-raised btn-sm" href="{{url()}}"> Chi tiết
                                                 </button>
                                             </div>
                                         </div>
@@ -991,12 +991,12 @@
             var time_active = $('.info-kho input[name="time_active"]').val();
             var image_kho = document.getElementsByName("image_kho");
             var file_image_kho = image_kho[0].files[0];
-            console.log(file_image_kho);
+            //console.log(file_image_kho);
             var user_test = $('#user_test').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: '{{ url('/') }}/admin/warehouse/AjaxDetail',
                 data: {name_company: name_company,category_warehouse_id: category_warehouse_id, address: address, mst: mst,image_kho: file_image_kho,ndd: ndd,time_active: time_active,user_test: user_test,_token: _token,id:id},
                 success: function( msg ) {

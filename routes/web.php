@@ -74,7 +74,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::resource('warehouse', 'WarehouseController');
 
 //    Route::post('warehouse/AjaxInfo', 'WarehouseController@AjaxInfo');
-    Route::post('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
+    Route::get('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
     Route::post('warehouse/AjaxBank', 'WarehouseController@AjaxBank');
     Route::post('warehouse/AjaxEditBank', 'WarehouseController@AjaxEditBank');
     Route::post('warehouse/AjaxEditLevel', 'WarehouseController@AjaxEditLevel');
@@ -164,6 +164,9 @@ Route::Post('/contact','Frontend\PageController@PostContact');
 
 //thông tin chủ kho
 Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');
+
+Route::get('/infoconfirmkho', 'Frontend\PageController@InfoConfirmKho');
+Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');
 
 Route::get('/resisterWareHouse','Frontend\PageController@GetResisterWareHouse');
 Route::Post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');
