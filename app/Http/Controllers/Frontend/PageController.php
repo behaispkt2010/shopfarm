@@ -44,7 +44,7 @@ class PageController extends Controller
                 "subject" => "Khách hàng cần tư vấn"
             ];
             $to = "xtrieu30@gmail.com";
-            //Mail::to($to)->send(new Contact($data));
+            Mail::to($to)->send(new Contact($data));
             $data['content'] = "contact";
             $data['author_id'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number');
             Notification::create($data);
@@ -66,7 +66,7 @@ class PageController extends Controller
         $data['content'] = "dangkychukho";
         $data['author_id'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number');
         Notification::create($data);
-        //Mail::to($to)->send(new Contact($data));
+        Mail::to($to)->send(new Contact($data));
         return redirect('/resisterWareHouse')->with('success','success');
     }
     public function DetailWarehouse($warehouse_id) {

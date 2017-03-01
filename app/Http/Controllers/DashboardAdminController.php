@@ -62,6 +62,7 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
+        //echo "kho";
         $idUser = Auth::user()->id;
         $order = Order::where('kho_id',$idUser)->get();
         $numOrder = count($order);
@@ -72,6 +73,10 @@ class DashboardAdminController extends Controller
 //        dd($orderProduct);
         $totalPriceIn=0;
         $totalPrice=0;
+        /*$users = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('role_user.role_id',4)
+            ->orderBy('id','DESC')
+            ->get();*/
         foreach($orderProduct as $itemOrder){
             $totalPrice = $totalPrice + ($itemOrder->num * $itemOrder->price);
             $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);

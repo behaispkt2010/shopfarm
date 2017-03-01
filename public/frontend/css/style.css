@@ -6856,3 +6856,11 @@ a:focus, a:hover{
 	color: #6a6a6a;
 	font-weight: 600;
 }
+.gallery_img_ncc .item {
+	max-height: 300px;
+	min-height: 300px;
+	overflow: hidden;
+}
+.clear {
+	clear: both;
+}

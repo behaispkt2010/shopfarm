@@ -83,6 +83,7 @@ class OrderController extends Controller
     }
     public function index(Request $request)
     {
+        $author_id = Auth::user()->id;
         if($request->get('q')){
             $q = $request->get('q');
             $arrTmpAllUser = User::leftjoin('orders','users.id','=','orders.customer_id')
@@ -94,12 +95,32 @@ class OrderController extends Controller
             foreach ($arrTmpAllUser as $arrUser) {
                 //echo $arrUser->customer_id;
                 $arrAllUser[$arrUser['customer_id']] = $arrUser;
-                $arrTmpOrders = Order::where('customer_id', '=', $arrUser->customer_id)->get();
+                $arrTmpOrders = Order::where('customer_id', '=', $arrUser->customer_id)
+                    ->where('author_id',$author_id)
+                    ->get();
                 foreach ($arrTmpOrders as $arrOrder) {
                     $arrAllOrders[$arrOrder['id']] = $arrOrder;
                 }
             }
             $arrTmpProductOrders = ProductOrder::get();
+
+            $arrAllProductOrder = array();
+            foreach ($arrTmpProductOrders as $arrOrders) {
+                $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
+            }
+        }
+        else if ( Auth::user()->hasRole(['kho']) ){
+            $arrTmpAllUser = User::get();
+            $arrAllUser = array();
+            foreach ($arrTmpAllUser as $arrUser) {
+                $arrAllUser[$arrUser['id']] = $arrUser;
+            }
+            $arrTmpOrders = Order::where('author_id',$author_id)->orderBy('id', 'DESC')->get();
+            $arrTmpProductOrders = ProductOrder::get();
+            $arrAllOrders = array();
+            foreach ($arrTmpOrders as $arrOrder) {
+                $arrAllOrders[$arrOrder['id']] = $arrOrder;
+            }
 
             $arrAllProductOrder = array();
             foreach ($arrTmpProductOrders as $arrOrders) {
@@ -284,16 +305,17 @@ class OrderController extends Controller
         $order =Order::where('id',$id)->first();
 
         $customer = User::where('id', $order->customer_id)->first();
-        $productOrder = ProductOrder::select('product_orders.*', 'products.image')
+        $productOrder = ProductOrder::select('product_orders.*', 'products.code')
             ->leftJoin('products', 'product_orders.id_product', 'products.id')
             ->where('product_orders.order_id', $order->id)->get();
         $orderStatus = OrderStatus::get();
-        $historyOrder = HistoryUpdateStatusOrder::select('history_update_status_order.*','order_status.*')
+        $historyOrder = HistoryUpdateStatusOrder::select('history_update_status_order.*','order_status.*','users.name as username')
             ->leftJoin('order_status','history_update_status_order.status','=','order_status.id')
+            ->leftJoin('users','users.id','=','history_update_status_order.author_id')
             ->where('history_update_status_order.order_id',$id)
             ->orderBy('history_update_status_order.id','DESC')
             ->get();
-//        dd($historyOrder);
+        //dd($historyOrder);
         $data = [
             "order" => $order,
             "customer" => $customer,

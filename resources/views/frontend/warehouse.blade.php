@@ -13,17 +13,17 @@
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="item">
-                                    <img src="https://thitruongsistatic.r.worldssl.net/image/cached/size/1280/0/img/product/2016/10/17/580479d3a4b36.jpg" alt="..." width="100%" data-pagespeed-url-hash="3417132477" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                    <img src="{{ asset($ware_house->image_kho) }}" alt="..." width="100%">
                                 </div>
                                 <div class="item active">
-                                    <img alt="..." width="100%" data-pagespeed-url-hash="1585177283" src="https://thitruongsistatic.r.worldssl.net/image/cached/size/1280/0/img/product/2016/10/17/580479e2aa831.jpg" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                                    <img alt="..." width="100%" src="{{ asset($ware_house->image_kho) }}">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <i class="fa fa-angle-left" aria-hidden="true"></i>
                             </a>
                             <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -94,8 +94,9 @@
                 </table>
             </div>
             <div class="clear"></div>
+            <div class="clear"></div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        {{--<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
                 <div class="detail_veryfi">
                     <div class="tile_veryfy">
@@ -132,8 +133,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        </div>--}}
+        {{--<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
                 <div class="detail_veryfi">
                     <div class="tile_veryfy">
@@ -171,8 +172,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        </div>--}}
+        {{--<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
                 <div class="detail_veryfi">
                     <div class="tile_veryfy">
@@ -210,8 +211,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        </div>--}}
+        {{--<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
                 <div class="detail_veryfi">
                     <div class="tile_veryfy">
@@ -235,8 +236,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 hidden">
+        </div>--}}
+        {{--<div class="col-xs-12 col-sm-12 col-md-12 hidden">
             <div class="row">
                 <div class="detail_veryfi">
                     <div class="tile_veryfy">
@@ -268,6 +269,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
     </div>
 @endsection

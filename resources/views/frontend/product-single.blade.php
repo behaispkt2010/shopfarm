@@ -252,7 +252,7 @@
 
 										<div class="seller_info clearfix">
 
-											<a href="#" class="alignleft photo">
+											<a href="{{ url('/shop/'.$product->ware_houses_id) }}" class="alignleft photo">
 												@if($product->levelKho == 1)
 												<img src="{{url('/images')}}/level1.png" alt="">
 													@elseif($product->levelKho == 2)
@@ -267,7 +267,7 @@
 
 											<div class="wrapper">
 
-												<a href="#"><b>{{$product->nameKho}}</b></a>
+												<a href="{{ url('/shop/'.$product->ware_houses_id) }}"><b>{{$product->nameKho}}</b></a>
 
 												<p class="seller_category">Chủ kho cấp {{$product->levelKho}}</p>
 

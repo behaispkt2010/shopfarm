@@ -2,7 +2,6 @@
 @section('title', 'Quản lý đơn hàng')
 @section('pageHeader','Quản lý đơn hàng')
 @section('detailHeader','danh sách')
-
 @section('new-btn')
     <a href="{{route('orders.create')}}" class="btn btn-warning btn-fab">
         <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
@@ -139,7 +138,7 @@
                             ?>
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                                 <div class="well box_1">
-                                    <div ng-switch-when="WaitingToPick" class="box-status ng-scope"
+                                    <div class="box-status"
                                          style="background-color: @if($arrOrders->status==0) #8bc34a @else @foreach($arrOrderByStatus as $itemOrderStatus) @if(@$arrOrders->status==$itemOrderStatus->id) {{ $itemOrderStatus->color }} @endif @endforeach @endif ;">
                                         <p class="text-center status-title">@if($arrOrders->status==0) Mới tạo @else @foreach($arrOrderByStatus as $itemOrderStatus) @if(@$arrOrders->status==$itemOrderStatus->id) {{ $itemOrderStatus->name }} @endif @endforeach @endif</p>
                                     </div>
