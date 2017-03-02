@@ -82,4 +82,10 @@ class PageController extends Controller
         //dd($ware_house);
         return view('frontend.warehouse', $data);
     }
+    public function ConfirmKho(){
+        return view('frontend.xacthuckho');
+    }
+    public function QuangCao(){
+        return view('frontend.quangcao');
+    }
 }

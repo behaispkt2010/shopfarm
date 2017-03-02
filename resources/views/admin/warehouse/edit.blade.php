@@ -305,7 +305,8 @@
                                                         <button class="btn btn-success btn-raised btn-sm btnConfirmKho"> Đăng ký</button>
                                                     @endif
                                                 @endif
-                                                <button class="btn btn-info btn-raised btn-sm" href="{{url()}}"> Chi tiết
+                                                <button class="btn btn-info btn-raised btn-sm">
+                                                    <a target="_blank" style="color: #fff;" href="{{url('/xac-thuc-kho')}}">Chi tiết</a>
                                                 </button>
                                             </div>
                                         </div>
@@ -329,7 +330,8 @@
                                                         <button class="btn btn-success btn-raised btn-sm btnQuangCao"> Đăng ký</button>
                                                     @endif
                                                 @endif
-                                                <button class="btn btn-info btn-raised btn-sm" > Chi tiết
+                                                <button class="btn btn-info btn-raised btn-sm" >
+                                                    <a target="_blank" style="color: #fff;" href="{{url('/quang-cao')}}">Chi tiết</a>
                                                 </button>
                                             </div>
                                         </div>

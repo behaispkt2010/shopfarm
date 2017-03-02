@@ -66,6 +66,56 @@
 						<main class="col-md-9 col-sm-8">
 
 							{{--<h1 class="page_title">Contact Us</h1>--}}
+							<section class="section_offset">
+
+								<h3>Thông tin liên lạc</h3>
+
+								<div class="theme_box">
+
+									<div class="row">
+										<div class="col-sm-7">
+
+											<p class="form_caption">Hãy liên hệ với chúng tôi</p>
+
+											<ul class="c_info_list">
+
+												<li class="c_info_location" style="font-weight: 500">Km35 Quốc lộ 26, huyện Krông Păk, tỉnh Dăk Lăk</li>
+												<li class="c_info_phone" style="font-weight: 500">0944 619 493</li>
+												<li class="c_info_mail" style="font-weight: 500">Email: </span><a href="mailto:#">sale@nongsantunhien.com</a></li>
+												<li class="c_info_schedule" style="font-weight: 500">Thời gian làm việc: </span>
+
+													<ul>
+
+														<li>Sáng: 8h30-11h30
+
+														</li>
+														<li>Chiều: 13h00-21h00</li>
+														<li>Thứ 7 - Chủ nhật: nghỉ</li>
+
+													</ul>
+
+												</li>
+
+											</ul>
+											<div class="clear"></div>
+										</div><!--/ [col]-->
+										<div class="col-md-12 col-sm-12">
+
+											<div class="proportional_frame">
+
+												<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3024.238131852431!2d-74.006059!3d40.712773999999996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258fda88cefb3%3A0x7f1e88758d210007!2z0J3RjNGOLdC50L7RgNC60YHQutC40Lkg0KHQuNGC0Lgt0YXQvtC70Ls!5e0!3m2!1sru!2sua!4v1415946524959" style="border:0"></iframe>
+
+											</div>
+
+										</div><!--/ [col]-->
+
+
+
+									</div><!--/ .row -->
+
+								</div><!--/ .theme_box -->
+
+							</section>
 
 							<section class="section_offset">
 								
@@ -154,56 +204,7 @@
 
 							</section>
 
-							<section class="section_offset">
 
-								<h3>Thông tin liên lạc</h3>
-
-								<div class="theme_box">
-
-									<div class="row">
-
-										<div class="col-sm-5">
-
-											<div class="proportional_frame">
-
-												<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3024.238131852431!2d-74.006059!3d40.712773999999996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258fda88cefb3%3A0x7f1e88758d210007!2z0J3RjNGOLdC50L7RgNC60YHQutC40Lkg0KHQuNGC0Lgt0YXQvtC70Ls!5e0!3m2!1sru!2sua!4v1415946524959" style="border:0"></iframe>
-
-											</div>
-
-										</div><!--/ [col]-->
-
-										<div class="col-sm-7">
-
-											<p class="form_caption">Thông tin liên hệ của chúng tôi</p>
-
-											<ul class="c_info_list">
-
-												<li class="c_info_location">Km35 Quốc lộ 26, huyện Krông Păk, tỉnh Dăk Lăk</li>
-												<li class="c_info_phone">0944 619 493</li>
-												<li class="c_info_mail"><a href="mailto:#">sale@nongsantunhien.com</a></li>
-												<li class="c_info_schedule">
-
-													<ul>
-
-														<li>Sáng: 8h30-11h30
-
-															</li>
-														<li>Chiều: 13h00-21h00</li>
-														<li>Thứ 7 - Chủ nhật: nghỉ</li>
-
-													</ul>
-
-												</li>
-
-											</ul>
-
-										</div><!--/ [col]-->
-
-									</div><!--/ .row -->
-
-								</div><!--/ .theme_box -->
-
-							</section>
 
 						</main><!--/ [col]-->
 

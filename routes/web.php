@@ -164,6 +164,8 @@ Route::Post('/contact','Frontend\PageController@PostContact');
 
 //thông tin chủ kho
 Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');
+Route::get('/xac-thuc-kho', 'Frontend\PageController@ConfirmKho');
+Route::get('/quang-cao', 'Frontend\PageController@QuangCao');
 
 Route::get('/infoconfirmkho', 'Frontend\PageController@InfoConfirmKho');
 Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');
