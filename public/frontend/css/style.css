@@ -6844,6 +6844,15 @@ a:focus, a:hover{
 	float: left;
 	color: #000;
 }
+.right_list_verify {
+	width: 100px;
+	float: right;
+	color: #000;
+}
+.right_list_verify li{
+	float: right;
+	padding: 0px 5px;
+}
 .info-verified {
 	color: #ff771c;
 	font-size: 12px;

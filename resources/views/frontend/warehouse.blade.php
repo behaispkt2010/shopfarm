@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-4 col-md-4">
+            <div class="col-xs-8 col-sm-6 col-md-6">
                 <ul class="info_veryfi_content">
                     <li>
                         <label>Mô hình kinh doanh:</label>
@@ -40,7 +40,9 @@
                                 @endforeach
                             </li>
                         </ul>
-                        <span class="info-verified"><i class="fa fa-check" aria-hidden="true"></i>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span>
+                        <ul class="info-verified right_list_verify">
+                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                        </ul>
                         <div class="clear"></div>
                     </li>
                     <li>
@@ -48,7 +50,9 @@
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->name_company)) {{$ware_house->name_company}} @endif</li>
                         </ul>
-                        <span class="info-verified"><span class="fa fa-check"></span>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span>
+                        <ul class="info-verified right_list_verify">
+                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                        </ul>
                         <div class="clear"></div>
                     </li>
                     <li>
@@ -56,7 +60,9 @@
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->time_active)) {{$ware_house->time_active}} @endif</li>
                         </ul>
-                        <span class="info-verified"><span class="fa fa-check"></span>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span>
+                        <ul class="info-verified right_list_verify">
+                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                        </ul>
                         <div class="clear"></div>
                     </li>
                 </ul>
