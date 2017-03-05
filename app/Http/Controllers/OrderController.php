@@ -309,7 +309,7 @@ class OrderController extends Controller
             ->leftJoin('products', 'product_orders.id_product', 'products.id')
             ->where('product_orders.order_id', $order->id)->get();
         $orderStatus = OrderStatus::get();
-        $historyOrder = HistoryUpdateStatusOrder::select('history_update_status_order.*','order_status.*','users.name as username')
+        $historyOrder = HistoryUpdateStatusOrder::select('history_update_status_order.*','order_status.*','users.name as username','users.id as userid')
             ->leftJoin('order_status','history_update_status_order.status','=','order_status.id')
             ->leftJoin('users','users.id','=','history_update_status_order.author_id')
             ->where('history_update_status_order.order_id',$id)

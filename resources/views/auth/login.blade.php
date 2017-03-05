@@ -35,7 +35,7 @@
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="email">Email</label>
-                                    <input class="form-control"  type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
+                                    <input class="form-control" oninvalid="InvalidEmail(this);" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -50,8 +50,8 @@
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
-                                    <label class="control-label" for="email">Mật khẩu</label>
-                                    <input class="form-control"  type="password" name="password" required>
+                                    <label class="control-label" for="password">Mật khẩu</label>
+                                    <input class="form-control" oninvalid="InvalidPwd(this);" type="password" name="password" required>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -97,3 +97,29 @@
     {{--<div class="visible" style="background-image: url(https://5sao.ghn.vn/content/ontime/img/login/bg03.jpg?v=3.9.0.4); background-position: 50% 50%;"></div>--}}
 {{--</div>--}}
 @endsection
+@section('add_scripts')
+    <script type="text/javascript">
+        function InvalidEmail(textbox) {
+            if (textbox.value == '') {
+                textbox.setCustomValidity('Vui lòng nhập địa chỉ email');
+            }
+            else if(textbox.validity.typeMismatch){
+                textbox.setCustomValidity('Vui lòng nhập đúng địa chỉ email có chứa ký tự “ @ “.');
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+            return true;
+        }
+        function InvalidPwd(textbox) {
+            if (textbox.value == '') {
+                textbox.setCustomValidity('Vui lòng nhập mật khẩu');
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+            return true;
+        }
+    </script>
+@endsection
+

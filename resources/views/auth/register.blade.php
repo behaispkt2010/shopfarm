@@ -33,7 +33,7 @@
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="name">Tên</label>
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" oninvalid="InvalidName(this);" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -49,7 +49,7 @@
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="email">Email</label>
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" oninvalid="InvalidEmail(this);" class="form-control" name="email" value="{{ old('email') }}" required>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -65,7 +65,7 @@
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="email">Mật khẩu</label>
-                                    <input id="" type="password" class="form-control" name="password" required>
+                                    <input id="" type="password" oninvalid="InvalidPwd(this);" class="form-control" name="password" required>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -81,7 +81,7 @@
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="email">Xác nhận mật khẩu</label>
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="password-confirm" oninvalid="InvalidPwdCfm(this);" type="password" class="form-control" name="password_confirmation" required>
                                     @if ($errors->has('password_confirmation'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -114,6 +114,10 @@
                                     Đăng ký
                                 </button>
                             </div>
+                            <div class="col-md-12 col-xs-12 col-sm-12 text-center">
+                                <p style="font-size: 11px;">Bằng việc bấm chọn đăng ký tức là bạn đã đồng ý với những
+                                    <a href="#" style="color: #59b75c; ">chính sách và điều khoản</a> của nongsan.shop</p>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -121,4 +125,47 @@
         </div>
     </div>
 </div>
+@endsection
+@section('add_scripts')
+    <script type="text/javascript">
+        function InvalidEmail(textbox) {
+            if (textbox.value == '') {
+                textbox.setCustomValidity('Vui lòng nhập địa chỉ email');
+            }
+            else if(textbox.validity.typeMismatch){
+                textbox.setCustomValidity('Vui lòng nhập đúng địa chỉ email có chứa ký tự “ @ “.');
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+            return true;
+        }
+        function InvalidPwd(textbox) {
+            if (textbox.value == '') {
+                textbox.setCustomValidity('Vui lòng nhập mật khẩu');
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+            return true;
+        }
+        function InvalidName(textbox) {
+            if (textbox.value == '') {
+                textbox.setCustomValidity('Vui lòng nhập tên');
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+            return true;
+        }
+        function InvalidPwdCfm(textbox) {
+            if (textbox.value == '') {
+                textbox.setCustomValidity('Vui lòng nhập xác nhận mật khẩu ');
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+            return true;
+        }
+    </script>
 @endsection

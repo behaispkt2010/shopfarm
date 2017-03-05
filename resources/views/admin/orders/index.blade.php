@@ -16,42 +16,41 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                         <ul class="tab-fill">
                             <li class="show-menu active"><a href="{!! url('/') !!}/admin/orders">Tất cả</a><span
-                                        style="background-color: #35468A"
+                                        style="background-color: #9C27B0"
                                         class="ng-binding">{!! $arrCountOrderByStatus["all"] !!}</span></li>
                             <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/0">Mới tạo</a><span
-                                        style="background-color: #8bc34a"
+                                        style="background-color: #AEEA00"
                                         class="ng-binding">{!! $arrCountOrderByStatus["new"] !!}</span></li>
                             <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/1">Chưa tiếp nhận</a><span
-                                        style="background-color: #EEB390"
+                                        style="background-color: #2196F3"
                                         class="ng-binding">{!! $arrCountOrderByStatus[0] !!}</span></li>
                             <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/2">Đã tiếp nhận</a><span
-                                        style="background-color: #2B8388"
+                                        style="background-color: #03A9F4"
                                         class="ng-binding">{!! $arrCountOrderByStatus[1] !!}</span></li>
-                            <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/3">Chờ trả hàng</a><span
-                                        style="background-color: #35468A"
+                            <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/4">Chuyển chủ kho</a><span
+                                        style="background-color: #0097A7"
                                         class="ng-binding">{!! $arrCountOrderByStatus[2] !!}</span></li>
-                            <li class="show-menu"><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/4">Chuyển DH cho Chủ kho</a><span
-                                        style="background-color: #EEB390"
-                                        class="ng-binding">{!! $arrCountOrderByStatus[3] !!}</span></li>
                             <li class="show-menu other-item-button pst-tootip" style="">
                                 Trạng thái khác
                                 <span class="glyphicon glyphicon-menu-down"></span>
                                 <!-- ngIf: (orderByStatus.currentTutorialID == 4) -->
                                 <div class="other-item-list">
                                     <ul>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/5">Đang thu gom</a><span style="background-color: #2B8388"
-                                                                                                                             class="ng-binding">{!! $arrCountOrderByStatus[4] !!}</span></li>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/6">Đang sơ chế</a><span style="background-color: #35468A"
-                                                                                                                            class="ng-binding">{!! $arrCountOrderByStatus[5] !!}</span></li>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/7">Đang đóng gói</a><span style="background-color: #EEB390"
-                                                                                                                              class="ng-binding">{!! $arrCountOrderByStatus[6] !!}</span></li>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/8">Đã xuất kho</a><span style="background-color: #2B8388"
-                                                                                                                            class="ng-binding">{!! $arrCountOrderByStatus[7] !!}</span></li>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/9">Đang vận chuyển</a><span style="background-color: #35468A"
-                                                                                                                                class="ng-binding">{!! $arrCountOrderByStatus[8] !!}</span></li>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/10">Đã giao xong</a><span style="background-color: #2B8388"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/5">Đang thu gom</a><span style="background-color: #009688"
+                                                                                                                             class="ng-binding">{!! $arrCountOrderByStatus[3] !!}</span></li>
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/6">Đang sơ chế</a><span style="background-color: #1DE9B6"
+                                                                                                                            class="ng-binding">{!! $arrCountOrderByStatus[4] !!}</span></li>
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/7">Đang đóng gói</a><span style="background-color: #4CAF50"
+                                                                                                                              class="ng-binding">{!! $arrCountOrderByStatus[5] !!}</span></li>
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/8">Đã xuất kho</a><span style="background-color: #8BC34A"
+                                                                                                                            class="ng-binding">{!! $arrCountOrderByStatus[6] !!}</span></li>
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/9">Chuyển hàng</a><span style="background-color: #CDDC39"
+                                                                                                                                class="ng-binding">{!! $arrCountOrderByStatus[7] !!}</span></li>
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/10">Đã giao xong</a><span style="background-color: #64DD17"
+                                                                                                                              class="ng-binding">{!! $arrCountOrderByStatus[8] !!}</span></li>
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/10">Hàng bị lỗi</a><span style="background-color: #FF9800"
                                                                                                                               class="ng-binding">{!! $arrCountOrderByStatus[9] !!}</span></li>
-                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/11">Trả hàng nhập kho</a><span style="background-color: #ff0000"
+                                        <li><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/11">Trả hàng</a><span style="background-color: #DD2C00"
                                                                                                                                    class="ng-binding">{!! $arrCountOrderByStatus[10] !!}</span></li>
                                     </ul>
                                 </div>

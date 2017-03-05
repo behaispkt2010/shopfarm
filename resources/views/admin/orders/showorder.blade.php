@@ -133,11 +133,11 @@
                             @foreach($historyOrder as $itemHistoryOrder)
                                 @if($itemHistoryOrder->status==0)
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y')}}</span> Khởi tạo đơn hàng &nbsp;&nbsp;&nbsp;&nbsp; Người cập nhật: {{ $itemHistoryOrder->username }}</label>
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:120px; color: #fe6804">Khởi tạo đơn hàng </label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
                                     </div>
                                 @else
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y')}}</span> {{$itemHistoryOrder->name}} &nbsp;&nbsp;&nbsp;&nbsp; Người cập nhật: {{ $itemHistoryOrder->username }}</label>
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:120px; color: #fe6804">{{$itemHistoryOrder->name}}</label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
                                     </div>
                                 @endif
                             @endforeach

@@ -43,6 +43,7 @@
     </div>
 
     @include('partial.scripts')
-
+    @yield('add_scripts')
 </body>
 </html>
+

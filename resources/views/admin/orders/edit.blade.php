@@ -378,18 +378,10 @@
                     <p>Xác nhận đã thanh toán cho đơn hàng này?
                     </p>
 
-                    <p> Trạng thái thanh toán của đơn hàng là Đã thanh toán.Sau khi đơn hàng đã tạo, bạn không thể
-                        thay đổi phương thức hoặc trạng thái thanh toán.
+                    <p> Trạng thái thanh toán của đơn hàng này là ĐÃ THANH TOÁN. Nghĩa là bạn đã nhận đầy đủ tiền từ khách hàng bằng tiền mặt hoặc chuyển khoản.
+                        Sau khi đơn hàng đã tạo, bạn không thể thay đổi trạng thái thanh toán.
                     </p>
 
-                    {{--<p> Chọn phương thức thanh toán cho đơn hàng này</p>
-
-                    <div class="form-group">
-                        <select class="form-control select-payment">
-                            <option value="1">Chuyển khoản ngân hàng</option>
-                            <option value="2">Thanh toán trực tiếp</option>
-                        </select>
-                    </div>--}}
                 </div>
             </div>
             <div class="modal-footer">
@@ -416,18 +408,12 @@
                     <p>Xác nhận đã thanh toán cho đơn hàng này?
                     </p>
 
-                    <p> Trạng thái thanh toán của đơn hàng là Đã thanh toán.Sau khi đơn hàng đã tạo, bạn không thể
-                        thay đổi phương thức hoặc trạng thái thanh toán.
+                    <p> Trạng thái thanh toán của đơn hàng này là ĐẶT CỌC | THANH TOÁN SAU. Nghĩa là bạn đã nhận 1 khoản tiền đặt cọc hoặc chưa nhận từ khách hàng và họ sẽ thanh toán khoản còn lại sau khi giao hàng.
+                        Sau khi đơn hàng đã tạo, bạn không thể thay đổi trạng thái thanh toán.
                     </p>
 
-                    <p> Chọn phương thức thanh toán cho đơn hàng này</p>
+                    <p> Nhập thông tin thanh toán cho đơn hàng này</p>
 
-                    {{--<div class="form-group">
-                        <select class="form-control select-payment">
-                            <option value="1">Chuyển khoản ngân hàng</option>
-                            <option value="2">Thanh toán khi nhận hàng(COD)</option>
-                        </select>
-                    </div>--}}
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput1"> Đã nhận</label>
                         <input class="form-control received_pay" id="focusedInput1" type="number" name="received_pay" required>
@@ -592,7 +578,7 @@
     $("#create_transport").on('click', function (e) {
         e.preventDefault();
         var type_driver = $('.modal-transport input[name="type_driver"]').val();
-        var tmp_type_driver = 'Phương thức vận chuyển: ' + '<span style="font-weight: bold;">' + type_driver + '</span>';
+        var tmp_type_driver = '<span class="transport_tmp">Phương thức vận chuyển: </span>' + '<span style="font-weight: bold;">' + type_driver + '</span>';
         var name_driver = $('.modal-transport input[name="name_driver"]').val();
         var tmp_name_driver = 'Tên tài xế: ' + '<span style="font-weight: bold;">' + name_driver + '</span>';
         var phone_driver = $('.modal-transport input[name="phone_driver"]').val();

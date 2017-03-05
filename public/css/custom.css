@@ -4665,6 +4665,10 @@ ul.tab-fill li:hover{
 .list-unstyled li{
   font-size: 15px;
   margin-bottom: 5px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .list-unstyled .box-money {
   color: #e58b34;
@@ -4989,20 +4993,21 @@ ol, ul {
 .con-details-tracking .item label {
   font-weight: 100;
 }
+.con-details-tracking .item label {
+  font-weight: 100;
+}
 .con-details-tracking .item label:last-child {
-  position: absolute;
+  /*position: absolute;*/
   right: 0;
   top: 5px;
 }
-.con-details-tracking .item label:last-child span:first-child {
-  display: inline-block;
-  width: 265px;
-}
+
 .con-details-tracking .item label:last-child span:first-child:before {
   content: '';
   background-image: url(../images/ic-tracking.png);
   display: inline-block;
-  background-position: -30px 0;
+  background-position: 0 0;
+  /*background-position: -30px 0;*/
   width: 16px;
   height: 16px;
   position: absolute;
@@ -5097,7 +5102,7 @@ ol, ul {
 }
 .con-details-tracking .item label:last-child span:first-child {
   display: inline-block;
-  width: 150px;
+  width: 200px;
 }
 .modal-tracking .modal-title {
   font-size: 20px;
@@ -5609,7 +5614,9 @@ table.dtp-picker-days thead{
 .notification_title{
   color: #000;
 }
+.transport_tmp{
 
+}
 @media (max-width: 991px) {
 
   .value-das {

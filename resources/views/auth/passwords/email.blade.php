@@ -12,7 +12,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <div class="text-center">
+                        <img src="{{asset('/images/forgetpwd.jpg')}}" alt="">
+                        <h4>BẠN ĐÃ QUÊN MẬT KHẨU</h4>
+                    </div>
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
                         {{ csrf_field() }}
 
@@ -20,7 +23,7 @@
                             <label for="email" class="col-md-4 control-label">Địa chỉ E-Mail: </label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Nhập lại email của bạn">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -33,7 +36,7 @@
                         <div class="form-group">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-raised">
-                                   Gửi email Reset
+                                   Khôi phục
                                 </button>
                             </div>
                             <div class="col-md-6 col-md-offset-3 text-center">
