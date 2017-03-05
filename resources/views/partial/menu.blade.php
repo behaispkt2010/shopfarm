@@ -212,8 +212,8 @@
                 $notification = \App\Notification::JoinTable();
                 $num_notify = count(\App\Notification::where('is_read',0)->get());
                 ?>
-                <li role="presentation" class="dropdown menu_notify" style="display: block">
-                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                <li role="presentation" class="dropdown" style="display: block" >
+                    <a href="javascript;" class="dropdown-toggle info-number" id="menu_notify" data-toggle="dropdown"
                        aria-expanded="false">
                         <i class="fa fa-bell"></i>
                         @if ($num_notify != 0)<span class="badge bg-green" id="notify_count">{{$num_notify}}</span>
@@ -223,6 +223,44 @@
 
                         @if(count($notification) != 0)
                         @foreach($notification as $itemNotification)
+                            {{--Notify Chủ Kho--}}
+                            @if(Auth::user()->hasRole('kho'))
+                                <?php
+                                    if ($itemNotification->content == "")
+                                ?>
+
+
+
+                            {{--Notify Admin | Nhân Viên--}}
+                            @else
+                                <?php
+                                    if ($itemNotification->content == "dangkychukho"){
+
+                                    }
+                                ?>
+                                @if ($itemNotification->content == "dangkychukho")
+                                    <li class="notify">
+                                        <a href="{{ route('warehouse.create') }}" target="_blank">
+                                            <span class="image"><img src="{{url('/').'/images/user_default.png'}}" alt="Profile Image"/></span>
+                                            <span>
+                                                <span class="notification_title">Chủ kho đăng kí mới</span>
+                                                <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                                            </span>
+                                        </a>
+                                    </li>
+
+
+
+                            @endif
+
+
+
+
+
+
+
+
+
                         @if ($itemNotification->content == "contact" || $itemNotification->content == "dangkychukho" )
                         <li class="notify">
                             <a href="@if ($itemNotification->content == "dangkychukho"){{ route('warehouse.create') }} @else {{ route('notification.index') }} @endif" target="_blank">
@@ -262,6 +300,10 @@
                             </a>
                         </li>
                         @endif
+
+
+
+
                         @endforeach
 
                         <li>
@@ -347,7 +389,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('.menu_notify').on('click', function (e) {
+    $('#menu_notify').on('click', function (e) {
         //alert('click');
         e.preventDefault();
         $.ajax({

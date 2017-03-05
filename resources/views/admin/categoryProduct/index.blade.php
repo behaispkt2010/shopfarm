@@ -220,7 +220,7 @@
             e.preventDefault();
 
             var name = $('.modal-product-cate input[name="name"]').val();
-            var parent = $('.modal-product-cate select[name="parent"] :selected').html();
+            var parent = $('.modal-product-cate select[name="parent"] :selected').val();
             var note = $('.modal-product-cate textarea[name="note"]').val();
             var _token = $('.modal-product-cate input[name="_token"]').val();
             $('.loading').css('display','block');
@@ -230,9 +230,9 @@
                 data: {name: name, parent: parent, note: note,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
-                   $('.modal-product-cate input[name="name"]').val("");
+                    $('.modal-product-cate input[name="name"]').val("");
                     $('.modal-product-cate select[name="parent"]').val(0);
-                     $('.modal-product-cate textarea[name="note"]').val("");
+                    $('.modal-product-cate textarea[name="note"]').val("");
                     new PNotify({
                         title: 'Tạo thành công',
                         text: '',
@@ -261,7 +261,7 @@
             e.preventDefault();
 
             var name = $('.modal-product-cate-edit input[name="name"]').val();
-            var parent = $('.modal-product-cate-edit select[name="parent"] :selected').html();
+            var parent = $('.modal-product-cate-edit select[name="parent"] :selected').val();
             var note = $('.modal-product-cate-edit textarea[name="note"]').val();
             var _token = $('.modal-product-cate-edit input[name="_token"]').val();
             var id = $('.modal-product-cate-edit input[name="id"]').val();

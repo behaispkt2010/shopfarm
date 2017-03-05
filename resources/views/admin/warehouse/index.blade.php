@@ -17,7 +17,7 @@
                         <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
                             <div class="form-group label-floating">
 
-                                <label class="control-label" for="addon2">Tên chủ kho / Mã kho / Số điện thoại</label>
+                                <label class="control-label" for="addon2">Tên chủ kho | Mã kho | Số điện thoại</label>
 
                                 <div class="input-group text-center">
                                     <input type="text" id="addon2" name="q" class="form-control" value="{{Request::get('q')}}">
@@ -61,7 +61,8 @@
                                             <ul class="list-unstyled">
                                                 <li>Đại diện: {{$itemWareHouse->name}}</li>
                                                 <li>Cấp kho: {{$itemWareHouse->level}}</li>
-                                                <li>Ngày cấp phép: {{$itemWareHouse->created_at->format('d/m/Y')}}</li>
+                                                <li>Dịch vụ: @if ( $itemWareHouse->confirm_kho == 1) ICON XÁC THỰC @endif @if ($itemWareHouse->quangcao == 1) icon quảng cáo @endif</li>
+                                                <li>Cấp phép: {{$itemWareHouse->created_at->format('d/m/Y')}}</li>
                                             </ul>
                                         </div>
                                             </div>

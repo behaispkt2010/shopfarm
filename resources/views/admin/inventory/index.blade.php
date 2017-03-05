@@ -41,7 +41,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="form-group label-floating">
 
-                                <label class="control-label" for="addon2">Tên sản phẩm / Mã sản phẩm</label>
+                                <label class="control-label" for="addon2">Tên sản phẩm | Mã sản phẩm</label>
 
                                 <div class="input-group text-center">
                                     <input type="text" id="addon2" class="form-control" name="name" value="{{Request::get('name')}}">
@@ -83,16 +83,15 @@
                                              data-pin-nopin="true">
                                     </div>
                                     <div class="col-sm-12">
-                                            <h4 class="cod"><i>{{$product->title}}(#{{$product->id}})</i></h4>
-                                            <div class="col-xs-12">
-                                                <ul class="list-unstyled">
-                                                    <li><i class="fa fa-bar-chart" aria-hidden="true"></i>{{$product->inventory_num}} tồn kho</li>
-                                                    <li><i class="fa fa-database"></i> Chủ Kho #{{$product->kho}}
-                                                    </li>
-                                                    <li><i class="fa fa-archive" aria-hidden="true"></i>{{\App\CategoryProduct::getNameCateById($product->category)}}</li>
-                                                    <li><i class="fa fa-calendar"></i>{{$product->updated_at->format('d/m/Y')}}</li>
-                                                </ul>
-                                            </div>
+                                        <h4 class="cod"><i>{{$product->title}}(#{{$product->id}})</i></h4>
+                                        <div class="col-xs-12">
+                                            <ul class="list-unstyled">
+                                                <li>Tồn kho :{{$product->inventory_num}}</li>
+                                                <li>Chủ Kho # <strong>{{$product->kho}}</strong></li>
+                                                <li>Danh mục:{{\App\CategoryProduct::getNameCateById($product->category)}}</li>
+                                                <li>Cập nhật:{{$product->updated_at->format('d/m/Y')}}</li>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     <div class="col-xs-12 text-center">

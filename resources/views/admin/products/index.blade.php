@@ -53,7 +53,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="form-group label-floating">
 
-                                <label class="control-label" for="addon2">Tên sản phẩm / Mã sản phẩm</label>
+                                <label class="control-label" for="addon2">Tên sản phẩm | Mã sản phẩm</label>
 
                                 <div class="input-group text-center">
                                     <input type="text" id="addon2" class="form-control" name="name" value="{{Request::get('name')}}">
@@ -94,32 +94,29 @@
                                     <div id="update-product"  class="col-sm-12 input-product" data-toggle="modal"
                                          data-target=".modal-product" data-title="{{$itemProduct->title}} (#{{$itemProduct->code}})" data-id="{{$itemProduct->id}}">
 
-                                        <h4 class="cod">{{$itemProduct->title}}</h4>
+                                        <p style="font-size: 20px;" class="cod">{{$itemProduct->title}}</p>
                                         <h4 class="cod">#{{$itemProduct->code}}</h4>
 
 
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
-                                                <li><i class="fa fa-bar-chart" aria-hidden="true"></i>{{$itemProduct->inventory_num}} tồn kho</li>
-                                                <li><i class="fa fa-database"></i> Chủ Kho #{{$itemProduct->kho}}
-                                                </li>
-                                                <li><i class="fa fa-usd"></i> <span
-                                                            class="box-money"> Mua vào: {{$itemProduct->price_in}} VNĐ </span></li>
-                                                <li><i class="fa fa-usd"></i> <span
-                                                            class="box-money"> Bán ra: {{$itemProduct->price_out}} VNĐ</span></li>
-                                                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Ít nhất: {{$itemProduct->min_gram}} gram
-                                                </li>
-                                                <li><i class="fa fa-archive" aria-hidden="true"></i> {{\App\CategoryProduct::getNameCateById($itemProduct->category)}}</li>
-                                                <li><i class="fa fa-calendar"></i> {{$itemProduct->updated_at->format('d/m/Y')}}</li>
+                                                <li>Tồn kho: {{ number_format($itemProduct->inventory_num)}}</li>
+                                                <li>Chủ Kho # <strong>{{$itemProduct->kho}}</strong></li>
+                                                <li><span class="box-money"> Mua vào: {{number_format($itemProduct->price_in)}} VNĐ </span></li>
+                                                <li><span class="box-money"> Bán ra: {{number_format($itemProduct->price_out)}} VNĐ</span></li>
+                                                <li>Bán tối thiểu: {{$itemProduct->min_gram}} Kg </li>
+                                                <li>Danh mục: {{\App\CategoryProduct::getNameCateById($itemProduct->category)}}</li>
+                                                <li>Cập nhật: {{$itemProduct->updated_at->format('d/m/Y')}}</li>
                                             </ul>
                                         </div>
 
                                     </div>
 
                                     <div class="col-xs-12 text-center">
-                                        {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
-                                        {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
-                                        {{--</a>--}}
+                                        <a href="#" class="input-product btn btn-raised btn-info btn-xs" data-toggle="modal"
+                                           data-target=".modal-product" data-title="{{$itemProduct->title}} (#{{$itemProduct->code}})" data-id="{{$itemProduct->id}}" >
+                                        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Nhập kho
+                                        </a>
                                         <a href="{{route('products.edit',['id' => $itemProduct->id])}}"
                                            class="btn btn-raised btn-primary btn-xs">
                                             <i class="fa fa-pencil" aria-hidden="true"></i> Chỉnh sửa

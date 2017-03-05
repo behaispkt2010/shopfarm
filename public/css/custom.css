@@ -4675,6 +4675,10 @@ ul.tab-fill li:hover{
   /*font-family: 'Roboto-Regular';*/
   font-weight: 400;
 }
+.list-unstyled .form-group {
+  padding-bottom: 0px;
+  margin: 0px;
+}
 .well.box_1{
   box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07),1px 2px 5px 0 rgba(0,0,0,.06) !important;
   overflow: hidden;
@@ -4976,7 +4980,7 @@ ol, ul {
 .con-details-tracking .item {
   /*font-family: 'Roboto-Light';*/
   font-weight: 100;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: normal;
   position: relative;
   padding: 5px 380px 20px 50px;
@@ -4984,7 +4988,7 @@ ol, ul {
 .con-details-tracking .item label:first-child {
   padding: 0 3px;
   display: inline-block;
-  color: #fe6804;
+  color: #666;
   background: 0;
   position: absolute;
   left: 0;
@@ -5086,7 +5090,7 @@ ol, ul {
   font-weight: 100;
   color: #000;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 15px;
 }
 .tracking-toggle span:first-child {
   border-radius: 20px;
@@ -5129,6 +5133,15 @@ ol, ul {
   width: 100px;
   max-width: 100%;
   position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+}
+.img-refferalcode img{
+  margin: 0 auto;
+  height: 250px;
+  width: 270px;
+  max-width: 100%;
   right: 0;
   top: 0;
   padding: 10px;
@@ -5553,7 +5566,7 @@ table.dtp-picker-days thead{
 }
 .list-unstyled span.label-box{
   display: inline-block;
-  width: 90px;
+  width: 150px;
 }
 .list-unstyled span.label-box55{
   display: inline-block;
@@ -5615,7 +5628,7 @@ table.dtp-picker-days thead{
   color: #000;
 }
 .transport_tmp{
-
+  width: 200px;
 }
 @media (max-width: 991px) {
 

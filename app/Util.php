@@ -12,7 +12,20 @@ use Illuminate\Support\Facades\Mail;
  */
 class Util extends Model
 {
-//    public static $a = 20;
+    public static $datetest = 20;
+    /*Notify Admin | Nhân Viên*/
+    public static $dangkychukho = "dangkychukho";
+    public static $upgradeLevelKho = "upgradeLevelKho";
+    public static $quangcao = "quangcao";
+    public static $confirmkho = "confirmkho";
+    public static $dangkytraphi = "dangkytraphi";
+    public static $dangkygiahan = "dangkygiahan";
+    public static $newproduct = "newproduct";
+    public static $contact = "contact";
+
+    /*Notify Chủ kho*/
+    
+
     public static function saveFile($file, $type)
     {
         $today = date("Y-m-d_H-i-s");

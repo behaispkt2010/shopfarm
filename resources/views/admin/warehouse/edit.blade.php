@@ -498,17 +498,17 @@
                             <p>Quý khách có thể thanh toán cho chúng tôi bằng cách chuyển khoản trực tiếp tại ngân hàng, chuyển qua thẻ ATM, hoặc qua INTERNET BANKING của các ngân hàng sau:</p>
                             <p style="text-align: justify;">
                             @if (!empty(\App\Setting::getValue('stk1')))
-                                1) Chủ Tài Khoản: {{\App\Setting::getValue('chutk1')}}<br>
+                                1. Chủ Tài Khoản: {{\App\Setting::getValue('chutk1')}}<br>
                                 Số tài khoản: <span style="font-family: Lucida Sans Unicode,Lucida Grande,sans-serif;"><span style="color:#d40c02"><strong>{{ \App\Setting::getValue('stk1') }}</strong></span></span><br>
                                     Ngân hàng : {{\App\Setting::getValue('chinhanh1')}}</p>
                             @endif
                             <p style="text-align: justify;">
                             @if (!empty(\App\Setting::getValue('stk2')))
-                                2) Chủ Tài Khoản: {{\App\Setting::getValue('chutk2')}}<br>
+                                2. Chủ Tài Khoản: {{\App\Setting::getValue('chutk2')}}<br>
                                 Số tài khoản: <span style="font-family: Lucida Sans Unicode,Lucida Grande,sans-serif;"><span style="color:#d40c02"><strong>{{ \App\Setting::getValue('stk2') }}</strong></span></span><br>
                                 Ngân hàng : {{\App\Setting::getValue('chinhanh2')}}</p>
                             @endif
-                            <span style="color: red; font-size: medium;">Lưu ý: Khi chuyển khoản chủ kho sẽ ghi Mã kho – Nâng cấp kho – Cấp muốn nâng lên</span>
+                            <span style="color: red; font-size: medium;">Lưu ý: Khi chuyển khoản chủ kho sẽ ghi Mã kho – Nâng cấp kho – Cấp muốn nâng lên.  Ví dụ: BC86890KJ – Nâng cấp kho – Cấp 3</span>
                         </div>
                     </div>
                 </div>

@@ -339,7 +339,7 @@ class WarehouseController extends Controller
     {
         if ($request->get('q')) {
             $q = $request->get('q');
-            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level')
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)
@@ -348,13 +348,13 @@ class WarehouseController extends Controller
                 ->orwhere('users.id', 'LIKE', '%' . $q . '%')
                 ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')->get();
         } else {
-            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level')
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)
                 ->orderBy('id', 'DESC')
                 ->get();
-//            dd($users);
+            //dd($wareHouse);
         }
         $data = [
             'wareHouse' => $wareHouse,

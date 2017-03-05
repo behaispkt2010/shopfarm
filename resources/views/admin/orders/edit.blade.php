@@ -578,13 +578,13 @@
     $("#create_transport").on('click', function (e) {
         e.preventDefault();
         var type_driver = $('.modal-transport input[name="type_driver"]').val();
-        var tmp_type_driver = '<span class="transport_tmp">Phương thức vận chuyển: </span>' + '<span style="font-weight: bold;">' + type_driver + '</span>';
+        var tmp_type_driver = '<label class="transport_tmp">Phương thức vận chuyển: </label>' + '<span style="font-weight: bold;">' + type_driver + '</span>';
         var name_driver = $('.modal-transport input[name="name_driver"]').val();
-        var tmp_name_driver = 'Tên tài xế: ' + '<span style="font-weight: bold;">' + name_driver + '</span>';
+        var tmp_name_driver = '<label class="transport_tmp">Tên tài xế: </label>' + '<span style="font-weight: bold;">' + name_driver + '</span>';
         var phone_driver = $('.modal-transport input[name="phone_driver"]').val();
-        var tmp_phone_driver = 'Số điện thoại: ' + '<span style="font-weight: bold;">' + phone_driver + '</span>';
+        var tmp_phone_driver = '<label class="transport_tmp">Số điện thoại: </label>' + '<span style="font-weight: bold;">' + phone_driver + '</span>';
         var number_license_driver = $('.modal-transport input[name="number_license_driver"]').val();
-        var tmp_number_license_driver = 'Biển số xe: ' + '<span style="font-weight: bold;">' + number_license_driver + '</span>';
+        var tmp_number_license_driver = '<label class="transport_tmp">Biển số xe: </label>' + '<span style="font-weight: bold;">' + number_license_driver + '</span>';
 
         $('.type_driver').val(type_driver);
         $('.name_driver').val(name_driver);

@@ -64,8 +64,13 @@
 
                                     <div class="form-group">
                                         <label for="ex4">Mã sản phẩm</label>
-                                        <input type="text" id="ex4" class="form-control" name="code" required
-                                               value="@if(!empty($product->code)){{$product->code}}@else{{old('code')}}@endif">
+                                        @if(Request::is('admin/products/create'))
+                                        <input type="text" class="form-control" disabled>
+                                        <input type="hidden" name="code" id="code" value="">
+                                        @else
+                                            <input type="text" id="ex4" class="form-control" name="code" disabled
+                                                   value="@if(!empty($product->code)){{$product->code}}@else{{old('code')}}@endif">
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -109,7 +114,7 @@
                                                 </select>
                                             </div>--}}
                                             <div class="col-md-12">
-                                                <label for="ex4">Số lượng(Kg)</label>
+                                                <label for="ex4">Tồn kho hiện tại(Kg)</label>
                                                 <input type="number" id="ex4" class="form-control" name="inventory_num"
                                                        required
                                                        value="@if(!empty($product->inventory_num)){{$product->inventory_num}}@else{{old('inventory_num')}}@endif">
@@ -282,12 +287,12 @@
                                                 @if(!empty($product->image))
                                                     <img src="{{url('/').$product->image}}" alt="" class="img-responsive">
                                                     <div class="form-group">
-                                                        <label for="inputFile" class="col-md-4 control-label">Thay
-                                                            đổi</label>
+                                                        {{--<label for="inputFile" class="col-md-4 control-label">Thay
+                                                            đổi</label>--}}
 
                                                         <div class="col-md-8">
                                                             <input type="text" readonly="" class="form-control"
-                                                                   placeholder="đường dẫn...">
+                                                                   placeholder="Chọn hình ảnh">
                                                             <input type="file" name="image" id="inputFile">
                                                         </div>
                                                     </div>

@@ -65,7 +65,7 @@
                             </div>
                             <div class="col-md-8">
                                 <p>
-                                    @if(($order->type_pay == 1)) Đã thanh toán đầy đủ @elseif($order->type_pay == 2) Đã đặt cọc @if(!empty($order->received_pay)){{$order->received_pay}} VNĐ @endif @else Chưa thanh toán @endif
+                                    @if(($order->type_pay == 1)) Đã thanh toán đầy đủ @elseif($order->type_pay == 2) Đã đặt cọc @if(!empty($order->received_pay)){{number_format($order->received_pay)}} VNĐ @endif @else Chưa thanh toán @endif
                                 </p>
                             </div>
                         </div>
@@ -133,11 +133,11 @@
                             @foreach($historyOrder as $itemHistoryOrder)
                                 @if($itemHistoryOrder->status==0)
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:120px; color: #fe6804">Khởi tạo đơn hàng </label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">Khởi tạo đơn hàng </label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
                                     </div>
                                 @else
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:120px; color: #fe6804">{{$itemHistoryOrder->name}}</label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">{{$itemHistoryOrder->name}}</label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
                                     </div>
                                 @endif
                             @endforeach

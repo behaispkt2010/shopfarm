@@ -17,7 +17,7 @@
                     <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
                         <div class="form-group label-floating">
 
-                            <label class="control-label" for="addon2">Tên user / Mã user / Số điện thoại</label>
+                            <label class="control-label" for="addon2">Tên user | Mã user | Số điện thoại</label>
 
                             <div class="input-group text-center">
                                 <input type="text" id="addon2" name="q" class="form-control" value="{{Request::get('q')}}">

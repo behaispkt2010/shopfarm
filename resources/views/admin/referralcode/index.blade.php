@@ -11,14 +11,17 @@
             js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=1891742487703866";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-<div class="row" style="text-align: center; padding-top: 100px;">
+<div class="img-refferalcode" style="text-align: center; padding-top: 100px;">
     <img src="{{asset('/images/sharecodereferral.png')}}" alt="">
     <div class="link-id">
         <p id="txtReferralCode">@if (!empty($arrGetUser->myIntroCode)){{$arrGetUser->myIntroCode}} @endif</p>
     </div>
     <label for="" style="font-size: 18px; font-weight: bold; color: #000;">
-        Hãy chia sẻ mã giới thiệu đến bạn bè để cả hai
-        cùng nhận được những ưu đãi hấp dẫn nhé
+        <p>Góp phần tạo nên mạng lưới nông sản rộng khắp Việt Nam</p>
+
+        <p>Hãy chia sẻ MÃ GIỚI THIỆU đến bạn bè, đối tác kinh doanh để cả hai cùng</p>
+
+        <p>nhận được những ưu đãi hấp dẫn nhé.</p>
     </label>
     <div class="social">
         <ul>
