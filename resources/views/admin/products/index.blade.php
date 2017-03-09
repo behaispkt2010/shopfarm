@@ -113,14 +113,14 @@
 
                                     </div>
 
-                                    <div class="col-xs-12 text-center">
+                                    <div class="col-sm-12 text-center">
                                         <a href="#" class="input-product btn btn-raised btn-info btn-xs" data-toggle="modal"
                                            data-target=".modal-product" data-title="{{$itemProduct->title}} (#{{$itemProduct->code}})" data-id="{{$itemProduct->id}}" >
                                         <i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Nhập kho
                                         </a>
                                         <a href="{{route('products.edit',['id' => $itemProduct->id])}}"
                                            class="btn btn-raised btn-primary btn-xs">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i> Chỉnh sửa
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Sửa
                                         </a>
                                         <form action="{{route('products.destroy',['id' => $itemProduct->id])}}" method="post" class="form-delete" style="display: inline">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">

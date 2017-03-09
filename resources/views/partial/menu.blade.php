@@ -211,114 +211,12 @@
                 <?php
                 $notification = \App\Notification::JoinTable();
                 $num_notify = count(\App\Notification::where('is_read',0)->get());
+                $NotificationforWarehouse = \App\Notification::GetNotifyWarehouse(Auth::user()->id);
+                $num_NotifyforWarehouse = count(\App\Notification::where('is_read',0)->where('author_id',Auth::user()->id)->get());
                 ?>
-                <li role="presentation" class="dropdown" style="display: block" >
-                    <a href="javascript;" class="dropdown-toggle info-number" id="menu_notify" data-toggle="dropdown"
-                       aria-expanded="false">
-                        <i class="fa fa-bell"></i>
-                        @if ($num_notify != 0)<span class="badge bg-green" id="notify_count">{{$num_notify}}</span>
-                        @endif
-                    </a>
-                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-
-                        @if(count($notification) != 0)
-                        @foreach($notification as $itemNotification)
-                            {{--Notify Chủ Kho--}}
-                            @if(Auth::user()->hasRole('kho'))
-                                <?php
-                                    if ($itemNotification->content == "")
-                                ?>
 
 
 
-                            {{--Notify Admin | Nhân Viên--}}
-                            @else
-                                <?php
-                                    if ($itemNotification->content == "dangkychukho"){
-
-                                    }
-                                ?>
-                                @if ($itemNotification->content == "dangkychukho")
-                                    <li class="notify">
-                                        <a href="{{ route('warehouse.create') }}" target="_blank">
-                                            <span class="image"><img src="{{url('/').'/images/user_default.png'}}" alt="Profile Image"/></span>
-                                            <span>
-                                                <span class="notification_title">Chủ kho đăng kí mới</span>
-                                                <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
-                                            </span>
-                                        </a>
-                                    </li>
-
-
-
-                            @endif
-
-
-
-
-
-
-
-
-
-                        @if ($itemNotification->content == "contact" || $itemNotification->content == "dangkychukho" )
-                        <li class="notify">
-                            <a href="@if ($itemNotification->content == "dangkychukho"){{ route('warehouse.create') }} @else {{ route('notification.index') }} @endif" target="_blank">
-                                <span class="image"><img src="{{url('/').'/images/user_default.png'}}" alt="Profile Image"/></span>
-                            <span>
-                                <span class="notification_title">
-                                    @if ($itemNotification->content == "contact")Khách hàng cần hỗ trợ.
-                                    @elseif ($itemNotification->content == "dangkychukho")Đăng ký làm Chủ kho.
-                                    @endif
-                                </span>
-                                <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
-                            </span>
-                            <span class="message"> @if ($itemNotification->content == "contact")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần được hỗ trợ.
-                                @elseif ($itemNotification->content == "dangkychukho")Khách hàng <span class="different">{{$itemNotification->author_id}}</span> cần đăng ký làm Chủ kho.
-                                @endif
-                            </span>
-                            </a>
-                        </li>
-                        @else
-                        <li class="notify">
-                            <a href="{{ route('warehouse.edit',['id' => $itemNotification->id]) }}" target="_blank">
-                                <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
-                                    <span>
-                                        <span class="notification_title">
-                                            @if($itemNotification->content == "upgradeLevelKho")Nâng cấp kho.
-                                            @elseif ($itemNotification->content == "confirmkho")Xác thực kho.
-                                            @elseif ($itemNotification->content == "quangcao")Đăng ký Quảng cáo.
-                                            @endif
-                                        </span>
-                                        <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
-                                    </span>
-                                    <span class="message"> @if($itemNotification->content == "upgradeLevelKho")Chủ kho<span class="different">{{$itemNotification->name}}</span>muốn nâng cấp kho lên cấp<span class="different">{{$itemNotification->levelkho}}</span>.
-                                        @elseif ($itemNotification->content == "confirmkho")Chủ kho <span class="different">{{$itemNotification->name}}</span> muốn Xác thực kho. Hãy kiểm tra và Xác thực cho chủ kho nhé.
-                                        @elseif ($itemNotification->content == "quangcao")Chủ kho<span class="different">{{$itemNotification->name}}</span>muốn Đăng ký Quảng cáo.
-                                        @endif
-                                    </span>
-                            </a>
-                        </li>
-                        @endif
-
-
-
-
-                        @endforeach
-
-                        <li>
-                            <div class="text-center">
-                                <a href="{{ route('notification.index') }}">
-                                    <strong>Xem tất cả</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </li>
-                        @else
-                            <span class="different">Bạn không có thông báo mới.</span>
-                        @endif
-                    </ul>
-                </li>
             </ul>
         </nav>
     </div>

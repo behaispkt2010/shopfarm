@@ -78,7 +78,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="listselect">
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <label for="name" class="col-md-3 col-sm-3 control-label">Tỉnh/TP</label>
