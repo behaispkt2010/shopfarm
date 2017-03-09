@@ -50,7 +50,7 @@
                                             <label for="name" class="col-md-3 col-xs-12 control-label">Email</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="email"  class="form-control" name="email" value="{{old('email')}}"/>
+                                                <input type="email" required  class="form-control" name="email" value="{{old('email')}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
 
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
-                                                    <select name="user_test" id="user_test">
+                                                    <select name="user_test" id="user_test" class="form-control">
                                                         <option value="1" selected="selected">Trả Phí</option>
                                                         <option value="2">Dùng thử</option>
                                                     </select>
@@ -105,9 +105,9 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Mô hình kinh doanh</label>
+                                            <label for="name" class="col-md-4 col-xs-12 control-label" style="margin-top: 16px;">Mô hình kinh doanh</label>
 
-                                            <div class="col-md-9 col-xs-12 ">
+                                            <div class="col-md-8 col-xs-12 ">
                                                 <div class="form-group">
                                                     <select name="category_warehouse_id" id="category_warehouse_id" class="form-control">
                                                         @foreach($arrCategoryWarehouse as $itemCategoryWarehouse)
@@ -130,29 +130,38 @@
                                         </div>
                                     </div>
                                 </li>
+
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Địa chỉ</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="text"  class="form-control" name="address" value="{{old('address')}}"/>
+                                                <input type="text" required class="form-control" name="address" value="{{old('address')}}"/>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
+
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="code" class="col-md-3 col-xs-12 control-label">MS
-                                                thuế</label>
+                                            <label for="name" class="col-md-3 col-sm-3 control-label">Tỉnh/TP</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <input type="number"  class="form-control" name="mst" value="{{old('mst')}}" />
+                                                <div class="form-group">
+                                                    <select id="t" class="form-control" required name="province">
+                                                        <option value="0">Chọn khu vực</option>
+                                                        @foreach($province as $item)
+                                                            <option value="{{$item->provinceid}}">{{$item->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
+
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
@@ -167,8 +176,8 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="code" class="col-md-3 col-xs-12 control-label">Thời gian hoạt động</label>
-                                            <div class="col-md-9 col-xs-12">
+                                            <label for="code" class="col-md-4 col-xs-12 control-label">Thời gian hoạt động</label>
+                                            <div class="col-md-8 col-xs-12">
                                                 <input type="text" id="date-format" class="form-control" name="time_active" value="{{ old('time_active') }}"/>
                                             </div>
                                         </div>
@@ -251,5 +260,8 @@
             sortField: 'text'
         });
     </script>
+{{--<script>--}}
+    {{--$('#select-kh,#t,#q,.select-payment,#select-product').selectize({});--}}
+{{--</script>--}}
 
 @endsection

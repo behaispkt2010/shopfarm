@@ -188,6 +188,7 @@ public function AjaxGetProduct(Request $request){
         if($checkSlug != 0){
             $data['slug'] =  $data['slug'].'-'.$today;
         }
+//        $code = \App\Util::ProductCode(1)}}
         $product1 = Product::create($data);
 //        dd($product);
         $Price = new ProductUpdatePrice();

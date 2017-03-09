@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'title' => 'required|min:2|unique:products,title,'.$this->id,
-            'code' => 'required|min:2|unique:products,code,'.$this->id,
+//            'code' => 'required|min:2|unique:products,code,'.$this->id,
 
         ];
     }

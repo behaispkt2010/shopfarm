@@ -115,9 +115,9 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Mô hình kinh doanh</label>
+                                            <label for="name" class="col-md-4 col-xs-12 control-label" style="margin-top: 16px;">Mô hình kinh doanh</label>
 
-                                            <div class="col-md-9 col-xs-12 ">
+                                            <div class="col-md-8 col-xs-12 ">
                                                 <div class="form-group">
                                                     <select name="category_warehouse_id" id="category_warehouse_id" class="form-control">
                                                         @foreach($arrCategoryWarehouse as $itemCategoryWarehouse)
@@ -154,6 +154,24 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
+                                            <label for="name" class="col-md-3 col-sm-3 control-label">Tỉnh/TP</label>
+
+                                            <div class="col-md-9 col-xs-12">
+                                                <div class="form-group">
+                                                    <select id="t" class="form-control" required name="province">
+                                                        <option value="0">Chọn khu vực</option>
+                                                        @foreach($province as $item)
+                                                            <option value="{{$item->provinceid}}" @if($wareHouse->province == $item->provinceid) selected @endif>{{$item->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
                                             <label for="code" class="col-md-3 col-xs-12 control-label">MS
                                                 thuế</label>
 
@@ -181,7 +199,7 @@
 
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
-                                                    <select name="user_test" id="user_test">
+                                                    <select name="user_test" id="user_test" class="form-control">
                                                         <option value="1" @if ($wareHouse->user_test == 1)selected="selected" @endif>Trả Phí</option>
                                                         <option value="2" @if ($wareHouse->user_test == 2)selected="selected" @endif>Dùng thử</option>
                                                     </select>
@@ -193,9 +211,9 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="code" class="col-md-3 col-xs-12 control-label">Thời gian hoạt động</label>
+                                            <label for="code" class="col-md-4 col-xs-12 control-label">Thời gian hoạt động</label>
 
-                                            <div class="col-md-9 col-xs-12">
+                                            <div class="col-md-8 col-xs-12">
                                                 <input type="text" id="date-format" class="form-control" name="time_active" value="@if(!empty($wareHouse->time_active)){{$wareHouse->time_active}}@else{{old('time_active')}}@endif"/>
                                             </div>
                                         </div>

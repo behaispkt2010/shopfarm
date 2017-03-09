@@ -95,7 +95,8 @@
                                          data-target=".modal-product" data-title="{{$itemProduct->title}} (#{{$itemProduct->code}})" data-id="{{$itemProduct->id}}">
 
                                         <p style="font-size: 20px;" class="cod">{{$itemProduct->title}}</p>
-                                        <h4 class="cod">#{{$itemProduct->code}}</h4>
+                                        <h4 class="cod">#{{\App\Util::ProductCode($itemProduct->id)}}
+                                        </h4>
 
 
                                         <div class="col-xs-12">

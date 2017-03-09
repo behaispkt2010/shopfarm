@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Province;
 use App\Role;
 use App\RoleUser;
 use App\User;
@@ -103,8 +104,13 @@ public function AjaxCreateCustomer(UserRequest $request)
     public function create()
     {
         $roles = Role::get();
+        $province = Province::get();
+
         $data=[
-            'roles' => $roles
+            'roles' => $roles,
+            'province' => $province,
+
+
         ];
         return view('admin.users.edit',$data);
     }
@@ -167,13 +173,16 @@ public function AjaxCreateCustomer(UserRequest $request)
         $user = User::find($id);
         $roleUser = DB::table('role_user')
             ->where('user_id',$id)->first();
-        $roleUser =
+//        $roleUser =
 //        dd($roleUser);
+        $province = Province::get();
         $data=[
             'id' => $id,
             'roles' =>$roles,
             'user'=>$user,
-            'roleUser' =>$roleUser
+            'roleUser' =>$roleUser,
+            'province' => $province,
+
         ];
 //        dd($detailImage);
         return view('admin.users.edit',$data);

@@ -307,5 +307,79 @@ public static function _substr($str, $length, $minword = 3)
     return $sub . (($len < strlen($str)) ? '...' : '');
 }
 
+public  static function StringExplodeProvince($id)
+{
+    $province = Province::where('provinceid',$id)->first();
+    $code_provice = "";
+    if(count($province) !=0) {
+        $atr = explode(' ', $province->name);
+        foreach ($atr as $item) {
+            $code_provice = $code_provice . strtoupper($item[0]);
+        }
+    }
+    else{
+        $code_provice="XX";
+    }
+    return $code_provice;
+}
+public  static function StringExplodeCategory($id)
+{
+    $category = CategoryProduct::where('id',$id)->first();
+    $code_cate = "";
+    if(count($category) !=0) {
+        $atr = explode(' ', $category->name);
+        foreach ($atr as $item) {
+            $code_cate = $code_cate . strtoupper($item[0]);
+        }
+    }
+    else{
+        $code_cate="XX";
+    }
+    return $code_cate;
+}
+    public  static function UserCode($id){
+
+        $userInfo = User::select('users.*','role_user.user_id','role_user.role_id','roles.name as nameRole')
+            ->leftJoin('role_user','users.id','=','role_user.user_id')
+            ->leftJoin('roles','roles.id','=','role_user.role_id')
+            ->where('users.id',$id)
+            ->first();
+        $code_user ="";
+//        dd($userInfo);
+        if($userInfo->role_id!=4){
+            $code_1 = $userInfo->nameRole;
+            $code_3 = $userInfo->id;
+            $code_user = $code_1."-".$code_3;
+        }
+        else{
+            $id_province = WareHouse::where('user_id',$id)->first();
+            $code_1 = $userInfo->nameRole;
+            $code_2 = Util::StringExplodeProvince($id_province->province);
+            $code_3 = $userInfo->id;
+            $code_user = $code_1."-".$code_2."-".$code_3;
+        }
+
+        return $code_user;
+    }
+
+    public  static function ProductCode($id){
+        $product = Product::find($id);
+        $code_2 = $product->kho;
+        $code_1 = Util::StringExplodeCategory($product->category);
+        $code_3 = $product->id;
+        $code_product = $code_1."-".$code_2."-".$code_3;
+        return $code_product;
+    }
+    public  static function OrderCode($id){
+
+        $order = Order::find($id);
+        $user = User::find($order->customer_id);
+
+        $code_2 = $order->kho_id;
+        $code_1 = Util::StringExplodeProvince($user->id);
+        $code_3 = $order->id;
+        $code_order = $code_1."-".$code_2."-".$code_3;
+        return $code_order;
+    }
 
 }

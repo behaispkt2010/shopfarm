@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Province;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -47,8 +48,11 @@ class customerController extends Controller
      */
     public function create()
     {
+        $province = Province::get();
+
         $data=[
-            'role' => "customer"
+            'role' => "customer",
+            'province' => $province,
         ];
         return view('admin.users.edit',$data);
     }

@@ -81,6 +81,24 @@
                                                 <li>
                                                     <div class="form-group">
                                                         <div class="row">
+                                                            <label for="name" class="col-md-3 col-sm-3 control-label">Tỉnh/TP</label>
+
+                                                            <div class="col-md-9 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <select id="t" class="form-control" required name="province">
+                                                                        <option value="0">Chọn khu vực</option>
+                                                                        @foreach($province as $item)
+                                                                            <option value="{{$item->provinceid}}">{{$item->name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <div class="row">
                                                             <label for="name" class="col-md-3 col-xs-12 control-label">Phân quyền</label>
 
                                                             <div class="col-md-9 col-xs-12 ">

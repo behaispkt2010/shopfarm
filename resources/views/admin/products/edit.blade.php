@@ -68,8 +68,7 @@
                                         <input type="text" class="form-control" disabled>
                                         <input type="hidden" name="code" id="code" value="">
                                         @else
-                                            <input type="text" id="ex4" class="form-control" name="code" disabled
-                                                   value="@if(!empty($product->code)){{$product->code}}@else{{old('code')}}@endif">
+                                            #{{\App\Util::ProductCode($product->id)}}
                                         @endif
                                     </div>
                                     <div class="form-group">

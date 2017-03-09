@@ -18,6 +18,7 @@ class CreateWareHousesTable extends Migration
             $table->integer('user_id');
             $table->string('name_company')->nullable();
             $table->string('address')->nullable();
+            $table->integer('province')->nullable();
             $table->string('mst')->nullable();
             $table->string('ndd')->nullable();
             $table->integer('stk')->nullable();

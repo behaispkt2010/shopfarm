@@ -372,8 +372,11 @@ class WarehouseController extends Controller
     public function create()
     {
         $arrCategoryWarehouse = CategoryWarehouse::get();
+        $province = Province::get();
+
         $data=[
             'arrCategoryWarehouse'=>$arrCategoryWarehouse,
+            'province' => $province,
         ];
 
         return view('admin.warehouse.create',$data);
