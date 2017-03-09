@@ -88,4 +88,7 @@ class PageController extends Controller
     public function QuangCao(){
         return view('frontend.quangcao');
     }
+    public function TraPhi(){
+        return view('frontend.dungtraphi');
+    }
 }

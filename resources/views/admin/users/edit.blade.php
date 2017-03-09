@@ -78,7 +78,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li class="listselect">
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <label for="name" class="col-md-3 col-xs-12 control-label">Phân quyền</label>
