@@ -1000,6 +1000,7 @@
         });
     </script>
     <script>
+
         $('#update_detail').on('click', function (e) {
             e.preventDefault();
             var id = $('input[name="id"]').val();
@@ -1015,10 +1016,25 @@
             var user_test = $('#user_test').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
+//            alert(_token);
+            var data1 = new FormData();
+            data1.append('name_company', name_company);
+            data1.append('category_warehouse_id', category_warehouse_id);
+            data1.append('address', address);
+            data1.append('mst', mst);
+            data1.append('image_kho', file_image_kho);
+            data1.append('mst', mst);
+            data1.append('time_active', time_active);
+            data1.append('user_test', user_test);
+            data1.append('_token', _token);
+            data1.append('id', id);
             $.ajax({
-                type: "GET",
-                url: '{{ url('/') }}/admin/warehouse/AjaxDetail',
-                data: {name_company: name_company,category_warehouse_id: category_warehouse_id, address: address, mst: mst,image_kho: file_image_kho,ndd: ndd,time_active: time_active,user_test: user_test,_token: _token,id:id},
+                type: "Post",
+                contentType: false,       // The content type used when sending data to the server.
+                cache: false,             // To unable request pages to be cached
+                processData:false,
+                url: '{{ url('/') }}/warehouse/AjaxDetail',
+                data: data1,
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     new PNotify({
@@ -1028,7 +1044,7 @@
                         hide: true,
                         styling: 'bootstrap3'
                     });
-                    location.reload();
+//                    location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     var Data = JSON.parse(XMLHttpRequest.responseText);

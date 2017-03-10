@@ -208,12 +208,7 @@
                         <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>--}}
-                <?php
-                $notification = \App\Notification::JoinTable();
-                $num_notify = count(\App\Notification::where('is_read',0)->get());
-                $NotificationforWarehouse = \App\Notification::GetNotifyWarehouse(Auth::user()->id);
-                $num_NotifyforWarehouse = count(\App\Notification::where('is_read',0)->where('author_id',Auth::user()->id)->get());
-                ?>
+
 
 
 

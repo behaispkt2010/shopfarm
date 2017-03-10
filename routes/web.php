@@ -74,7 +74,6 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::resource('warehouse', 'WarehouseController');
 
 //    Route::post('warehouse/AjaxInfo', 'WarehouseController@AjaxInfo');
-    Route::get('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
     Route::post('warehouse/AjaxBank', 'WarehouseController@AjaxBank');
     Route::post('warehouse/AjaxEditBank', 'WarehouseController@AjaxEditBank');
     Route::post('warehouse/AjaxEditLevel', 'WarehouseController@AjaxEditLevel');
@@ -92,6 +91,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::resource('users', 'UserController');
     Route::post('users/AjaxCreateCustomer', 'UserController@AjaxCreateCustomer');
     Route::post('users/AjaxGetDataCustomer', 'UserController@AjaxGetDataCustomer');
+
 
 
 
@@ -129,7 +129,7 @@ Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
 Route::get('admin/getdashboard', 'DashboardAdminController@getdashboard');
 Route::get('admin/dashboardctrl', 'DashboardController@dashboard');
 Route::get('admin/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUpdateIsReadNotify');
-
+Route::post('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
 
 
 

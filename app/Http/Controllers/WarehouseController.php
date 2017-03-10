@@ -31,7 +31,6 @@ class WarehouseController extends Controller
 {
     public function AjaxChangePass(Request $request)
     {
-
         $user = User::find($request->get('id'));
         $pwdhash = ($request->get('old_password'));
         if (Hash::check($pwdhash, $user->password) == false) {
@@ -71,6 +70,7 @@ class WarehouseController extends Controller
 
     public function AjaxDetail(Request $request)
     {
+        dd($request->file('image_kho'));
         $id = $request->get('id');
         $warehouse = WareHouse::find($id);
         $data = $request->all();
@@ -87,6 +87,7 @@ class WarehouseController extends Controller
             $data['date_end_test'] = NULL;
         }
         dd($data);
+
         $warehouse->update($data);
         $response = array(
             'status' => 'success',
