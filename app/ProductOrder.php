@@ -37,4 +37,14 @@ class ProductOrder extends Model
         return $res;
 
     }
+    public static function getSumOrder($id){
+        $sum = 0 ;
+        $pd= ProductOrder::where('order_id',$id)->get();
+        if(count($pd)!=0) {
+            foreach ($pd as $item) {
+                $sum = $sum + $item->price * $item->num;
+            }
+        }
+        return $sum;
+    }
 }

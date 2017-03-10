@@ -346,17 +346,21 @@ public  static function StringExplodeCategory($id)
             ->first();
         $code_user ="";
 //        dd($userInfo);
-        if($userInfo->role_id!=4){
-            $code_1 = $userInfo->nameRole;
-            $code_3 = $userInfo->id;
-            $code_user = $code_1."-".$code_3;
+        if(count($userInfo)!=0) {
+            if ($userInfo->role_id != 4) {
+                $code_1 = $userInfo->nameRole;
+                $code_3 = $userInfo->id;
+                $code_user = $code_1 . "-" . $code_3;
+            } else {
+                $id_province = WareHouse::where('user_id', $id)->first();
+                $code_1 = $userInfo->nameRole;
+                $code_2 = Util::StringExplodeProvince($id_province->province);
+                $code_3 = $userInfo->id;
+                $code_user = $code_1 . "-" . $code_2 . "-" . $code_3;
+            }
         }
         else{
-            $id_province = WareHouse::where('user_id',$id)->first();
-            $code_1 = $userInfo->nameRole;
-            $code_2 = Util::StringExplodeProvince($id_province->province);
-            $code_3 = $userInfo->id;
-            $code_user = $code_1."-".$code_2."-".$code_3;
+            $code_user= "xx";
         }
 
         return $code_user;
