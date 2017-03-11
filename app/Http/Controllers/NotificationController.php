@@ -32,11 +32,13 @@ class NotificationController extends Controller
     public function index()
     {
         //$arrUser = User::get();
+        $strUserID = Auth::user()->id;
         $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
             ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
             ->selectRaw('users.* ')
+            ->where('users.id',$strUserID)
             ->selectRaw('ware_houses.* ')
-            ->selectRaw('notification.created_at,notification.content,notification.levelkho,notification.author_id')
+            ->selectRaw('notification.created_at,notification.content,notification.roleview,notification.author_id')
             ->orderBy('notification.id','DESC')
             ->get();
         /*echo "<pre>";
