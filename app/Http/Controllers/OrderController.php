@@ -35,48 +35,17 @@ class OrderController extends Controller
         }
     }
     public function getOrderByStatus($id){
-        $arrTmpAllOrders = Order::orderBy('id', 'DESC')->get();
-        $arrAllOrders = array();
-        foreach ($arrTmpAllOrders as $arrOrder) {
-            $arrAllOrders[$arrOrder['id']] = $arrOrder;
-        }
-
-
-        $arrTmpAllUser = User::get();
-        $arrAllUser = array();
-        foreach ($arrTmpAllUser as $arrUser) {
-            $arrAllUser[$arrUser['id']] = $arrUser;
-        }
-        $arrTmpOrders = Order::where('status','=',$id)->get();
-
-        $arrTmpProductOrders = ProductOrder::get();
-        $arrAllOrders = array();
-        /*$arrProductOrders = ProductOrder::where('order_id','=',$id)->get();*/
-
-        foreach ($arrTmpOrders as $arrOrder) {
-            $arrAllOrders[$arrOrder['id']] = $arrOrder;
-        }
-
-        $arrAllProductOrder = array();
-        foreach ($arrTmpProductOrders as $arrOrders) {
-            $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
-        }
+        $AllOrders = Order::count();
+        $arrAllOrders = Order::select('orders.*','users.address','users.province','users.name','users.phone_number')
+            ->leftJoin('users','orders.customer_id','=','users.id')
+            ->where('status',$id)
+            ->paginate(3);
         $arrOrderByStatus = OrderStatus::get();
-        $arrCountOrderByStatus = [];
-        foreach($arrOrderByStatus as $OrderStatus){
-            $countOrderByStatus = Order::getNumOrderByStatus($OrderStatus->id);
-            array_push($arrCountOrderByStatus,$countOrderByStatus);
-        }
-        $arrCountOrderByStatus['all'] = count(Order::orderBy('id', 'DESC')->get());
-        $arrCountOrderByStatus['new'] = count(Order::where('status',0)->get());
         $data = [
             'arrAllOrders' => $arrAllOrders,
-            'arrAllProductOrder' => $arrAllProductOrder,
-            'arrTmpProductOrders' => $arrTmpProductOrders,
-            'arrCountOrderByStatus' => $arrCountOrderByStatus,
             'arrOrderByStatus' => $arrOrderByStatus,
-            'id' => $id,
-            'arrAllUser' => $arrAllUser
+            'allOrders'=>$AllOrders,
+            'select'=>$id,
         ];
 
         return view('admin.orders.index',$data);
@@ -173,18 +142,46 @@ class OrderController extends Controller
 //    }
     public function index(Request $request)
     {
-        $arrAllOrders = Order::select('orders.*','users.address','users.province','users.name','users.phone_number')
-        ->leftJoin('users','orders.customer_id','=','users.id')
-        ->paginate(3);
-        $arrOrderByStatus = OrderStatus::get();
-        $data = [
-            'arrAllOrders' => $arrAllOrders,
-//            'arrAllProductOrder' => $arrAllProductOrder,
-//            'arrTmpProductOrders' => $arrTmpProductOrders,
-//            'arrCountOrderByStatus' => $arrCountOrderByStatus,
-            'arrOrderByStatus' => $arrOrderByStatus,
-//            'arrAllUser' => $arrAllUser
-        ];
+        $author_id = Auth::user()->id;
+        if($request->get('q')){
+            $q = $request->get('q');
+            if(Auth::user()->hasRole(['kho'])) {
+                $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
+                    ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                    ->where('kho_id', $author_id)
+                    ->where('users.name', 'LIKE', '%' . $q . '%')
+                    ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
+                    ->paginate(6);
+            }
+            else{
+                $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
+                    ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                    ->where('users.name', 'LIKE', '%' . $q . '%')
+                    ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
+                    ->paginate(6);
+            }
+
+        }
+        else if ( Auth::user()->hasRole(['kho']) ){
+            $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
+                ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                ->where('kho_id',$author_id)
+                ->paginate(6);
+        }
+        else {
+            $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
+                ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                ->paginate(6);
+        }
+
+            $AllOrders = Order::count();
+            $arrOrderByStatus = OrderStatus::get();
+            $data = [
+                'arrAllOrders' => $arrAllOrders,
+                'arrOrderByStatus' => $arrOrderByStatus,
+                'allOrders' => $AllOrders,
+                'select' => '99',
+            ];
         return view('admin.orders.index',$data);
 
     }
@@ -209,7 +206,8 @@ class OrderController extends Controller
             'province' =>$province,
             'district' =>$district,
             'products' =>$products,
-            'order_status' => $order_status
+            'order_status' => $order_status,
+
         ];
 //        dd($order_status);
         return view('admin.orders.edit',$data);

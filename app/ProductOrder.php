@@ -47,4 +47,7 @@ class ProductOrder extends Model
         }
         return $sum;
     }
+    public static function countOrderByStatus($id){
+        return Order::where('status',$id)->count();
+    }
 }
