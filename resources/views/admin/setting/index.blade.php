@@ -39,6 +39,11 @@
                                value="{{\App\Setting::getValue('phone')}}">
                     </div>
                     <div class="form-group">
+                        <label>Số điện thoại hỗ trợ thay đổi tài khoản (đăng ký dùng trả phí)</label>
+                        <input type="number" class="form-control" name="phonetraphi"
+                               value="{{\App\Setting::getValue('phonetraphi')}}">
+                    </div>
+                    <div class="form-group">
                         <label>Thời gian làm việc</label>
                         <textarea  class="form-control" name="time" rows="5"
                                >{{\App\Setting::getValue('time')}}</textarea>

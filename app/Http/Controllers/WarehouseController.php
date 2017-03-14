@@ -70,11 +70,13 @@ class WarehouseController extends Controller
 
     public function AjaxDetail(Request $request)
     {
-        dd($request->file('image_kho'));
+        //dd($request->file('image_kho'));
+        $userID = Auth::user()->id;
         $id = $request->get('id');
+        $viewer_id = $request->get('user_id');
         $warehouse = WareHouse::find($id);
         $data = $request->all();
-        $image_kho = $request->image_kho;
+        //$image_kho = $request->image_kho;
         if ($request->hasFile('image_kho')) {
             $data['image_kho']  = Util::saveFile($request->file('image_kho'), '');
         }
@@ -86,7 +88,13 @@ class WarehouseController extends Controller
         } else {
             $data['date_end_test'] = NULL;
         }
-        dd($data);
+        /*$data['keyname'] = Util::$upgradeLevelKhoSuccess;
+        $data['title'] = "Thay đổi tài khoản thành công";
+        $data['content'] = "";
+        $data['author_id'] = $userID;
+        $data['roleview'] = $viewer_id;
+        Notification::create($data);*/
+        //dd($data);
 
         $warehouse->update($data);
         $response = array(
@@ -177,12 +185,19 @@ class WarehouseController extends Controller
     public function AjaxEditLevel(LevelKhoRequest $request)
     {
         $id = $request->get('id');
+        $userID = Auth::user()->id;
+        $viewer_id = $request->get('user_id');
         $levelkho = $request->get('levelkho');
         $data = [
             'level' => $levelkho
         ];
         $warehouse = WareHouse::where('id', $id)->update($data);
-
+        $data['keyname'] = Util::$upgradeLevelKhoSuccess;
+        $data['title'] = "Nâng cấp kho thành công";
+        $data['content'] = "Cấp kho hiện tại ".$levelkho;
+        $data['author_id'] = $userID;
+        $data['roleview'] = $viewer_id;
+        Notification::create($data);
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -193,6 +208,8 @@ class WarehouseController extends Controller
     public function AjaxConfirmKho(Request $request)
     {
         $id = $request->get('id');
+        $userID = Auth::user()->id;
+        $viewer_id = $request->get('user_id');
         $checkWareHouse = WareHouse::find($id);
         if (($checkWareHouse->name_company == $request->name_company) && ($checkWareHouse->address == $request->address) && ($checkWareHouse->mst == $request->mst) && ($checkWareHouse->ndd == $request->ndd) && ($checkWareHouse->time_active == $request->time_active)) {
             $confirm_kho = 1;
@@ -200,7 +217,12 @@ class WarehouseController extends Controller
                 'confirm_kho' => $confirm_kho
             ];
             $warehouse = WareHouse::where('id', $id)->update($data);
-
+            $data['keyname'] = Util::$confirmkhoSuccess;
+            $data['title'] = "Xác thực doanh nghiệp thành công";
+            $data['content'] = "Xem thông tin xác thực doanh nghiệp";
+            $data['author_id'] = $userID;
+            $data['roleview'] = $viewer_id;
+            Notification::create($data);
             $response = array(
                 'status' => 'success',
                 'msg' => 'Setting created successfully',
@@ -217,12 +239,19 @@ class WarehouseController extends Controller
     public function AjaxQuangCao(Request $request)
     {
         $id = $request->get('id');
+        $userID = Auth::user()->id;
+        $viewer_id = $request->get('user_id');
         $quangcao = 1;
         $data = [
             'quangcao' => $quangcao
         ];
         $warehouse = WareHouse::where('id', $id)->update($data);
-
+        $data['keyname'] = Util::$quangcaoSuccess;
+        $data['title'] = "Đăng ký quảng cáo thành công";
+        $data['content'] = "Yêu cầu đăng ký quảng cáo của bạn đã được duyệt";
+        $data['author_id'] = $userID;
+        $data['roleview'] = $viewer_id;
+        Notification::create($data);
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -244,11 +273,13 @@ class WarehouseController extends Controller
             $email = $itemUser['email'];
             $phone_number = $itemUser['phone_number'];
         }
-        $data['keyname'] = "upgradeLevelKho";
-        $data['content'] = "Chủ kho";
+        $getCodeKho = Util::UserCode($userID);
+        $levelKho = $request->get('levelkho');
+        $data['keyname'] = Util::$quangcao;
+        $data['title'] = "Chủ kho đăng kí nâng cấp";
+        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho;
         $data['author_id'] = $userID;
-        $data['roleview'] = "admin";
-        $data['levelkho'] = $request->get('levelkho');
+        $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);
         //dd($data);
         $response = array(
@@ -281,8 +312,12 @@ class WarehouseController extends Controller
             $email = $itemUser['email'];
             $phone_number = $itemUser['phone_number'];
         }
-        $data['content'] = "confirmkho";
+        $getCodeKho = Util::UserCode($userID);
+        $data['keyname'] = Util::$confirmkho;
+        $data['title'] = "Chủ kho đăng kí xác thực kho";
+        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn xác thực kho";
         $data['author_id'] = $userID;
+        $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);
         //dd($data);
         $response = array(
@@ -315,8 +350,12 @@ class WarehouseController extends Controller
             $email = $itemUser['email'];
             $phone_number = $itemUser['phone_number'];
         }
-        $data['content'] = "quangcao";
+        $getCodeKho = Util::UserCode($userID);
+        $data['keyname'] = Util::$quangcao;
+        $data['title'] = "Chủ kho đăng kí quảng cáo";
+        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn đăng ký quảng cáo";
         $data['author_id'] = $userID;
+        $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);
         //dd($data);
         $response = array(
@@ -335,7 +374,7 @@ class WarehouseController extends Controller
 
         return \Response::json($response);
     }
-    public function AjaxReQuestDungTraPhi(Request $request){
+    public function AjaxReQuestTraphi(Request $request){
         //$data = $request->all();
         $userID = Auth::user()->id;
         $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
@@ -349,8 +388,12 @@ class WarehouseController extends Controller
             $email = $itemUser['email'];
             $phone_number = $itemUser['phone_number'];
         }
-        $data['content'] = "requestdungtraphi";
+        $getCodeKho = Util::UserCode($userID);
+        $data['keyname'] = Util::$dangkytraphi;
+        $data['title'] = "Chủ kho đăng kí dùng trả phí";
+        $data['content'] = "Mã chủ kho ".$getCodeKho.' - '.$phone_number;
         $data['author_id'] = $userID;
+        $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);
         //dd($data);
         $response = array(
@@ -370,13 +413,14 @@ class WarehouseController extends Controller
         return \Response::json($response);
     }
     public function UploadImgDetail(Request $request){
-        $dataImage['warehouse_id']=$product1->id;
+        dd($request->file('image_detail'));
+        $dataImage['warehouse_id']=$request->get('id');
         if(!empty($request->file('image_detail'))) {
             foreach ($request->file('image_detail') as $image_detail) {
 //            DetailImageProduct::where('id_product',$dataImage['id_product'])->delete();
-                $imageDetail = new DetailImageProduct();
-                $dataImage['image'] = Util::saveFile($image_detail, '');
-                DetailImageProduct::create($dataImage);
+                $imageDetail = new WarehouseImageDetail();
+                $dataImage['warehouse_detail_image'] = Util::saveFile($image_detail, '');
+                WarehouseImageDetail::create($dataImage);
             }
         }
         $response = array(

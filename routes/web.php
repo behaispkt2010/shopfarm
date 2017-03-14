@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     Route::post('warehouse/AjaxReQuestQuangCao', 'WarehouseController@AjaxReQuestQuangCao');
     Route::post('warehouse/AjaxConfirmKho', 'WarehouseController@AjaxConfirmKho');
     Route::post('warehouse/AjaxQuangCao', 'WarehouseController@AjaxQuangCao');
+    Route::post('warehouse/AjaxReQuestTraphi', 'WarehouseController@AjaxReQuestTraphi');
 
     //Khách hàng
     Route::resource('customers', 'customerController');
@@ -128,8 +129,10 @@ Route::post('product/updateProductAjax', 'ProductController@UpdateProductAjax');
 Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
 Route::get('admin/getdashboard', 'DashboardAdminController@getdashboard');
 Route::get('admin/dashboardctrl', 'DashboardController@dashboard');
-Route::get('admin/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUpdateIsReadNotify');
+Route::get('admin/notify/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUpdateIsReadNotify');
 Route::post('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
+Route::post('warehouse/deleteDetailImage', 'WarehouseController@deleteDetailImage');
+Route::post('warehouse/UploadImgDetail', 'WarehouseController@UploadImgDetail');
 
 
 
@@ -166,6 +169,7 @@ Route::Post('/contact','Frontend\PageController@PostContact');
 Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');
 Route::get('/xac-thuc-kho', 'Frontend\PageController@ConfirmKho');
 Route::get('/quang-cao', 'Frontend\PageController@QuangCao');
+Route::get('/tra-phi', 'Frontend\PageController@TraPhi');
 
 Route::get('/infoconfirmkho', 'Frontend\PageController@InfoConfirmKho');
 Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');

@@ -188,7 +188,7 @@ public function AjaxGetProduct(Request $request){
         if($checkSlug != 0){
             $data['slug'] =  $data['slug'].'-'.$today;
         }
-//        $code = \App\Util::ProductCode(1)}}
+        //$data['code'] = Util::ProductCode($request);
         $product1 = Product::create($data);
 //        dd($product);
         $Price = new ProductUpdatePrice();
@@ -200,9 +200,14 @@ public function AjaxGetProduct(Request $request){
         ProductUpdatePrice::create($dataPrice);
 
         $userID = Auth::user()->id;
-        $dataNotify['content'] = "newproduct";
-        $dataNotify['author_id'] = $userID;
         if (Auth::user()->hasRole('kho')) {
+            $getCodeKho = Util::UserCode($userID);
+            $dataNotify['keyname'] = Util::$newproduct;
+            $dataNotify['title'] = "Sản phẩm mới";
+            $dataNotify['content'] = "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.";
+            $dataNotify['author_id'] = $userID;
+            $dataNotify['roleview'] = Util::$roleviewAdmin;
+            $dataNotify['product_id'] = $product1->id;
             Notification::create($dataNotify);
         }
 
@@ -297,6 +302,16 @@ public function AjaxGetProduct(Request $request){
         if($checkSlug != 0){
             $data['slug'] =  $data['slug'].'-'.$today;
         }
+        if (($product->status == 0) && $request->get('status') == 1){
+            $getCodeKho = Util::ProductCode($product->id);
+            $dataNotify['keyname'] = Util::$newproductSuccess;
+            $dataNotify['title'] = "Sản phẩm mới";
+            $dataNotify['content'] = "Sản phẩm ".$getCodeKho." đã được duyệt.";
+            $dataNotify['author_id'] = Auth::user()->id;
+            $dataNotify['roleview'] = $product->kho;
+            Notification::create($dataNotify);
+        }
+
         $product->update($data);
         $Price = new ProductUpdatePrice();
         $dataPrice['product_id']=$id;

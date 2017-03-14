@@ -4,15 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Notification;
 use App\User;
+use App\Util;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class NotificationController extends Controller
 {
     public function AjaxUpdateIsReadNotify(Request $request){
         //Log::debug('behai',['vaooooo']);
-
-        $notify = Notification::where('is_read','=','0')->get();
+        if(Auth::user()->hasRole('kho')) {
+            $strUserID = Auth::user()->id;
+            $notify = Notification::where('is_read','=','0')->where('roleview',$strUserID)->get();
+        }
+        else {
+            $view = Util::$roleviewAdmin;
+            $notify = Notification::where('is_read','=','0')->where('roleview',$view)->get();
+        }
         if ( count($notify) !=0 ){
             $data = [
               'is_read' => 1
@@ -33,17 +41,28 @@ class NotificationController extends Controller
     {
         //$arrUser = User::get();
         $strUserID = Auth::user()->id;
-        $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
-            ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
-            ->selectRaw('users.* ')
-            ->where('users.id',$strUserID)
-            ->selectRaw('ware_houses.* ')
-            ->selectRaw('notification.created_at,notification.content,notification.roleview,notification.author_id')
-            ->orderBy('notification.id','DESC')
-            ->get();
-        /*echo "<pre>";
-        print_r($arrNotification);
-        echo "</pre>";*/
+        if(Auth::user()->hasRole('kho')) {
+            $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
+                ->where('notification.roleview',$strUserID)
+                ->selectRaw('users.* ')
+                ->selectRaw('ware_houses.* ')
+                ->selectRaw('notification.created_at,notification.keyname,,notification.product_id,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->orderBy('notification.id','DESC')
+                ->get();
+        }
+        else {
+            $view = Util::$roleviewAdmin;
+            $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
+                ->where('notification.roleview',$view)
+                ->selectRaw('users.* ')
+                ->selectRaw('ware_houses.* ')
+                ->selectRaw('notification.created_at,notification.keyname,notification.product_id,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->orderBy('notification.id','DESC')
+                ->get();
+        }
+
         $data = [
             'arrNotification' => $arrNotification
         ];

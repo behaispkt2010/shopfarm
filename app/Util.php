@@ -24,7 +24,18 @@ class Util extends Model
     public static $contact = "contact";
 
     /*Notify Chủ kho*/
-    
+    public static $dangkychukhoSuccess = "dangkychukhoSuccess";
+    public static $upgradeLevelKhoSuccess = "upgradeLevelKhoSuccess";
+    public static $quangcaoSuccess = "quangcaoSuccess";
+    public static $confirmkhoSuccess = "confirmkhoSuccess";
+    public static $dangkytraphiSuccess = "dangkytraphiSuccess";
+    public static $dangkygiahanSuccess = "dangkygiahanSuccess";
+    public static $newproductSuccess = "newproductSuccess";
+
+    public static $roleviewAdmin = "admin";
+    public static $roleviewChukho = "chukho";
+    public static $userexpired = "userexpired";
+    public static $orderfail = "orderfail";
 
     public static function saveFile($file, $type)
     {
@@ -51,7 +62,6 @@ class Util extends Model
         $urlScr = '/'.$destinationPath . '/' . $file_name;
         return $urlScr;
     }
-
     public static function stripUnicode($str)
     {
         if (!$str) return false;
@@ -77,7 +87,6 @@ class Util extends Model
         }
         return $str;
     }
-
     public static function builtSlug($str)
     {
         $today = date("Y-m-d_H-i-s");
@@ -90,7 +99,6 @@ class Util extends Model
         $str = str_replace(' ', '-', $str);
         return $str;
     }
-
     public static function mail_utf8($to, $from_user, $from_email, $subject = '(No subject)', $message = '')
     {
         $from_user = "=?UTF-8?B?" . base64_encode($from_user) . "?=";
@@ -100,27 +108,21 @@ class Util extends Model
             "Content-type: text/html; charset=UTF-8" . "\r\n";
         return mail($to, $subject, $message, $headers);
     }
-
     public static function RandomKey()
     {
         $s = "";
-
         $m = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j");
-
         for ($i = 1; $i <= 11; $i++) {
             $r = rand(0, count($m) - 1);
             $s = $s . $m[$r];
         }
-
         return $s;
     }
-
     public static function cate_parent($data, $parent = 0, $str = " ", $select = '0', $disableCate = " ")
     {
         foreach ($data as $val) {
             $id = $val->id;
             $name = $val->name;
-
             if ($val->id_parent == $parent) {
                 if ($select != 0 && $id == $select) {
                     echo "<option value='$id' selected>$str $name</option>";
@@ -132,9 +134,7 @@ class Util extends Model
                 cate_parent($data, $id, $str . "-", $select, $disableCate);
             }
         }
-
     }
-
     public static function AvataUser($file, $destination, $overlay = 'images/watermark.png', $X = 0, $Y = 0)
     {
         $watermark = imagecreatefrompng($overlay);
@@ -151,13 +151,10 @@ class Util extends Model
         }
         $thumb_width = 500;
         $thumb_height = 500;
-
         $width = imagesx($image);
         $height = imagesy($image);
-
         $original_aspect = $width / $height;
         $thumb_aspect = $thumb_width / $thumb_height;
-
         if ($original_aspect >= $thumb_aspect) {
             // If image is wider than thumbnail (in aspect ratio sense)
             $new_height = $thumb_height;
@@ -167,9 +164,7 @@ class Util extends Model
             $new_width = $thumb_width;
             $new_height = $height / ($width / $thumb_width);
         }
-
         $thumb = imagecreatetruecolor($thumb_width, $thumb_height);
-
 // Resize and crop
         imagecopyresampled($thumb,
             $image,
@@ -183,7 +178,6 @@ class Util extends Model
         imagedestroy($thumb);
         return $destination;
     }
-
     public static function resizeDrop($file, $destination)
     {
 //        $watermark =    imagecreatefrompng($overlay);
@@ -200,13 +194,10 @@ class Util extends Model
         }
         $thumb_width = 480;
         $thumb_height = 606;
-
         $width = imagesx($image);
         $height = imagesy($image);
-
         $original_aspect = $width / $height;
         $thumb_aspect = $thumb_width / $thumb_height;
-
         if ($original_aspect >= $thumb_aspect) {
             // If image is wider than thumbnail (in aspect ratio sense)
             $new_height = $thumb_height;
@@ -216,9 +207,7 @@ class Util extends Model
             $new_width = $thumb_width;
             $new_height = $height / ($width / $thumb_width);
         }
-
         $thumb = imagecreatetruecolor($thumb_width, $thumb_height);
-
 // Resize and crop
         imagecopyresampled($thumb,
             $image,
@@ -231,7 +220,6 @@ class Util extends Model
         imagedestroy($thumb);
         return $destination;
     }
-
     public static function watermark_image($file, $destination, $overlay = 'images/watermark.png', $X = 0, $Y = 0)
     {
         $watermark = imagecreatefrompng($overlay);
@@ -248,13 +236,10 @@ class Util extends Model
         }
         $thumb_width = 500;
         $thumb_height = 300;
-
         $width = imagesx($image);
         $height = imagesy($image);
-
         $original_aspect = $width / $height;
         $thumb_aspect = $thumb_width / $thumb_height;
-
         if ($original_aspect >= $thumb_aspect) {
             // If image is wider than thumbnail (in aspect ratio sense)
             $new_height = $thumb_height;
@@ -264,9 +249,7 @@ class Util extends Model
             $new_width = $thumb_width;
             $new_height = $height / ($width / $thumb_width);
         }
-
         $thumb = imagecreatetruecolor($thumb_width, $thumb_height);
-
         // Resize and crop
         imagecopyresampled($thumb,
             $image,
@@ -280,7 +263,6 @@ class Util extends Model
         imagedestroy($thumb);
         return $destination;
     }
-
     public static function product_price($priceFloat)
     {
         $symbol = ' VNĐ';
@@ -289,56 +271,53 @@ class Util extends Model
         $price = number_format($priceFloat, $decimal_place, '', $symbol_thousand);
         return $price . $symbol;
     }
-
-public static function _substr($str, $length, $minword = 3)
-{
-    $sub = '';
-    $len = 0;
-    foreach (explode(' ', $str) as $word)
+    public static function _substr($str, $length, $minword = 3)
     {
-        $part = (($sub != '') ? ' ' : '') . $word;
-        $sub .= $part;
-        $len += strlen($part);
-        if (strlen($word) > $minword && strlen($sub) >= $length)
+        $sub = '';
+        $len = 0;
+        foreach (explode(' ', $str) as $word)
         {
-            break;
+            $part = (($sub != '') ? ' ' : '') . $word;
+            $sub .= $part;
+            $len += strlen($part);
+            if (strlen($word) > $minword && strlen($sub) >= $length)
+            {
+                break;
+            }
         }
+        return $sub . (($len < strlen($str)) ? '...' : '');
     }
-    return $sub . (($len < strlen($str)) ? '...' : '');
-}
-
-public  static function StringExplodeProvince($id)
-{
-    $province = Province::where('provinceid',$id)->first();
-    $code_provice = "";
-    if(count($province) !=0) {
-        $atr = explode(' ', $province->name);
-        foreach ($atr as $item) {
-            $code_provice = $code_provice . strtoupper($item[0]);
+    public  static function StringExplodeProvince($id)
+    {
+        $province = Province::where('provinceid',$id)->first();
+        $code_provice = "";
+        if(count($province) !=0) {
+            $atr = explode(' ', $province->name);
+            foreach ($atr as $item) {
+                $code_provice = $code_provice . strtoupper($item[0]);
+            }
         }
-    }
-    else{
-        $code_provice="XX";
-    }
-    return $code_provice;
-}
-public  static function StringExplodeCategory($id)
-{
-    $category = CategoryProduct::where('id',$id)->first();
-    $code_cate = "";
-    if(count($category) !=0) {
-        $atr = explode(' ', $category->name);
-        foreach ($atr as $item) {
-            $code_cate = $code_cate . strtoupper($item[0]);
+        else{
+            $code_provice="XX";
         }
+        return $code_provice;
     }
-    else{
-        $code_cate="XX";
+    public  static function StringExplodeCategory($id)
+    {
+        $category = CategoryProduct::where('id',$id)->first();
+        $code_cate = "";
+        if(count($category) !=0) {
+            $atr = explode(' ', $category->name);
+            foreach ($atr as $item) {
+                $code_cate = $code_cate . strtoupper($item[0]);
+            }
+        }
+        else{
+            $code_cate="XX";
+        }
+        return $code_cate;
     }
-    return $code_cate;
-}
     public  static function UserCode($id){
-
         $userInfo = User::select('users.*','role_user.user_id','role_user.role_id','roles.name as nameRole')
             ->leftJoin('role_user','users.id','=','role_user.user_id')
             ->leftJoin('roles','roles.id','=','role_user.role_id')
@@ -348,24 +327,22 @@ public  static function StringExplodeCategory($id)
 //        dd($userInfo);
         if(count($userInfo)!=0) {
             if ($userInfo->role_id != 4) {
-                $code_1 = $userInfo->nameRole;
+                $code_1 = strtoupper($userInfo->nameRole);
                 $code_3 = $userInfo->id;
                 $code_user = $code_1 . "-" . $code_3;
             } else {
                 $id_province = WareHouse::where('user_id', $id)->first();
-                $code_1 = $userInfo->nameRole;
+                $code_1 = strtoupper($userInfo->nameRole);
                 $code_2 = Util::StringExplodeProvince($id_province->province);
                 $code_3 = $userInfo->id;
                 $code_user = $code_1 . "-" . $code_2 . "-" . $code_3;
             }
         }
         else{
-            $code_user= "xx";
+            $code_user= "XX";
         }
-
         return $code_user;
     }
-
     public  static function ProductCode($id){
         $product = Product::find($id);
         $code_2 = $product->kho;
@@ -375,10 +352,8 @@ public  static function StringExplodeCategory($id)
         return $code_product;
     }
     public  static function OrderCode($id){
-
         $order = Order::find($id);
         $user = User::find($order->customer_id);
-
         $code_2 = $order->kho_id;
         $code_1 = Util::StringExplodeProvince($user->id);
         $code_3 = $order->id;

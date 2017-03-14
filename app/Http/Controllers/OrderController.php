@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\District;
 use App\HistoryUpdateStatusOrder;
+use App\Notification;
 use App\Order;
 use App\OrderStatus;
 use App\Product;
 use App\ProductOrder;
 use App\Province;
 use App\User;
+use App\Util;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -450,6 +452,7 @@ class OrderController extends Controller
 //                $ProductOrder[$index]['num'] = $NumberProduct;
 //                $ProductOrder[$index]['order_id'] = $strOrderID;
 //            }
+
             foreach ($arrProductID as $key=>$ProductID) {
                 $ProductOrder1 = new ProductOrder();
                 $productInfo = Product::find($ProductID);
@@ -460,6 +463,16 @@ class OrderController extends Controller
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
+            }
+            if ($request->get('status') == 10) {
+                $arrUser = User::find($request->customer_id);
+                $getCodeOrder = Util::OrderCode($id);
+                $dataNotify['keyname'] = Util::$orderfail;
+                $dataNotify['title'] = "Đơn hàng lỗi sắp trả về kho";
+                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi sắp trả về kho";
+                $dataNotify['author_id'] = Auth::user()->id;
+                $dataNotify['roleview'] = Util::$roleviewAdmin;
+                Notification::create($dataNotify);
             }
 //            DB::table('product_orders')->insert($ProductOrder);
         }

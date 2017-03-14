@@ -1,6 +1,8 @@
 <?php namespace App\Http\Middleware;
 
+use App\Notification;
 use App\Permission;
+use App\Util;
 use App\WareHouse;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
@@ -39,6 +41,17 @@ class AuthorizeMiddleware {
 		//dd($user_test);
 		//dd($date_end_test);
 		$time_now = date('Y-m-d H:i:s');
+		$datediff = abs($time_now - $date_end_test);
+		$dateend = floor($datediff / (60*60*24));
+		if (($user_test == 2) && ($dateend = 3)){
+			$data['keyname'] = Util::$userexpired;
+			$data['title'] = "Tài khoản sắp hết thời gian dùng thử";
+			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
+			$data['roleview'] = $user_id;
+			Notification::firstOrCreate($data);
+		}
+
+
 		if (($user_test == 2) && ($date_end_test < $time_now )){
 			abort(401);
 		}

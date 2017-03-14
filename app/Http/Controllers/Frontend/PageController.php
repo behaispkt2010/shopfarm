@@ -45,9 +45,12 @@ class PageController extends Controller
             ];
             $to = "xtrieu30@gmail.com";
             Mail::to($to)->send(new Contact($data));
-            $data['content'] = "contact";
-            $data['author_id'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number');
-            Notification::create($data);
+            $dataNotify['keyname'] = Util::$contact;
+            $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
+            $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần được hỗ trợ";
+            $dataNotify['author_id'] = 1;
+            $dataNotify['roleview'] = Util::$roleviewAdmin;
+            Notification::create($dataNotify);
 //        }
         return redirect('/contact')->with('success','success');
     }
@@ -63,9 +66,13 @@ class PageController extends Controller
             "subject" => "Khách hàng cần đăng ký Chủ kho"
         ];
         $to = "xtrieu30@gmail.com";
-        $data['content'] = "dangkychukho";
-        $data['author_id'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number');
-        Notification::create($data);
+        $dataNotify['keyname'] = Util::$dangkychukho;
+        $dataNotify['title'] = "Chủ kho đăng kí mới";
+        $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho";
+        $dataNotify['author_id'] = 1;
+        $dataNotify['roleview'] = Util::$roleviewAdmin;
+        Notification::create($dataNotify);
+
         Mail::to($to)->send(new Contact($data));
         return redirect('/resisterWareHouse')->with('success','success');
     }

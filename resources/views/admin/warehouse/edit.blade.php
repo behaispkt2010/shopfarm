@@ -196,10 +196,9 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Loại Chủ kho</label>
-
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
-                                                    <select name="user_test" id="user_test" class="form-control">
+                                                    <select name="user_test" id="user_test" class="form-control" @if (Auth::user()->hasRole('kho')) disabled @endif>
                                                         <option value="1" @if ($wareHouse->user_test == 1)selected="selected" @endif>Trả Phí</option>
                                                         <option value="2" @if ($wareHouse->user_test == 2)selected="selected" @endif>Dùng thử</option>
                                                     </select>
@@ -221,7 +220,7 @@
                                 </li>
                                 <li>
                                     <div class="form-group">
-                                        <label class="mb5">Hình ảnh kho/doanh nghiệp</label>
+                                        <label class="mb5">Ảnh đại diện</label>
 
                                         <div class="image-view">
                                             @if(!empty($wareHouse->image_kho))
@@ -253,6 +252,10 @@
                                             @endif
                                         </div>
                                     </div>
+                                </li>
+                                <li>
+                                    <button class="btn btn-default btn-raised btn-sm" data-toggle="modal"
+                                            data-target=".modal-hinhchitietkho">Hình ảnh kho</button>
                                 </li>
                                 <li class="text-right">
                                     <button id="update_detail" class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
@@ -356,6 +359,26 @@
                                     </div>
 
                                 </li>
+                                @if (Auth::user()->hasRole('kho'))
+                                <li>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4 col-xs-12 control-label"> Đăng ký dùng trả phí
+                                            </label>
+
+                                            <div class="col-md-8 col-xs-12">
+                                                @if ($wareHouse->user_test == 2)
+                                                    <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
+                                                            data-target=".modal-traphi"> Đăng ký</button>
+                                                @endif
+                                                <button class="btn btn-info btn-raised btn-sm" >
+                                                    <a target="_blank" style="color: #fff;" href="{{url('/tra-phi')}}">Chi tiết</a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endif
                                 <li>
 
                                     <div class="row">
@@ -373,10 +396,8 @@
                                             @endif
                                         </div>
                                     </div>
-
                                 </li>
                             </ul>
-
                         </div>
                     </div>
 
@@ -435,6 +456,95 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Hủy</button>
                     <button type="button" class="btn btn-raised btn-primary btnReQuestQuangCao">Xác nhận</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-hinhchitietkho" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-hinhchitietkho">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Hình chi tiết kho</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <label class="mb5">Hình chi tiết</label>
+                        <br>
+                        @if(!empty($detailImage))
+                            @foreach($detailImage as $itemImage)
+                                <div class="filediv" style="display: block;">
+                                    <div id="abcd2" class="abcd">
+                                        <img class="img-responsive"
+                                             id="previewimg{{$itemImage->id}}"
+                                             src="{{ url('/').$itemImage->image}}">
+                                        <i id="img" data-id="{{$itemImage->id}}" class="fa fa-times red delete-img-ajax"></i>
+                                    </div>
+                                    <br>
+                                </div>
+                            @endforeach
+                        @endif
+                        <div class="filediv"><input name="image_detail[]" type="file" id="file"/></div>
+                        <br>
+
+                        <input type="button" id="add_more" class="upload btn btn-info btn-raised btn-xs"
+                               value="Thêm nhiều hình"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-primary btnLuuImageKho">Lưu</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-traphi" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-traphi">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Đăng ký dùng trả phí </h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Yêu cầu của bạn sẽ được gửi tới Admin, Nhân viên tư vấn sẽ điện thoại bạn trong thời gian sớm nhất</p>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                            <h2>Thông tin chuyển khoản</h2>
+                            <p>Quý khách có thể thanh toán cho chúng tôi bằng cách chuyển khoản trực tiếp tại ngân hàng, chuyển qua thẻ ATM, hoặc qua INTERNET BANKING của các ngân hàng sau:</p>
+                            <p style="text-align: justify;">
+                                @if (!empty(\App\Setting::getValue('stk1')))
+                                    1. Chủ Tài Khoản: {{\App\Setting::getValue('chutk1')}}<br>
+                                    Số tài khoản: <span style="font-family: Lucida Sans Unicode,Lucida Grande,sans-serif;"><span style="color:#d40c02"><strong>{{ \App\Setting::getValue('stk1') }}</strong></span></span><br>
+                                    Ngân hàng : {{\App\Setting::getValue('chinhanh1')}}</p>
+                            @endif
+                            <p style="text-align: justify;">
+                                @if (!empty(\App\Setting::getValue('stk2')))
+                                    2. Chủ Tài Khoản: {{\App\Setting::getValue('chutk2')}}<br>
+                                    Số tài khoản: <span style="font-family: Lucida Sans Unicode,Lucida Grande,sans-serif;"><span style="color:#d40c02"><strong>{{ \App\Setting::getValue('stk2') }}</strong></span></span><br>
+                                    Ngân hàng : {{\App\Setting::getValue('chinhanh2')}}</p>
+                            @endif
+                            <span style="color: red; font-size: medium;">Lưu ý: Khi chuyển khoản chủ kho sẽ ghi Mã kho – Trả phí.  Ví dụ: BC86890KJ – Trả phí</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-raised btn-primary btnReQuestTraphi">Xác nhận</button>
                 </div>
 
                 </div>
@@ -1004,6 +1114,7 @@
         $('#update_detail').on('click', function (e) {
             e.preventDefault();
             var id = $('input[name="id"]').val();
+            var user_id = $('input[name="user_id"]').val();
             var name_company = $('.info-kho input[name="name_company"]').val();
             var address = $('.info-kho input[name="address"]').val();
             var mst = $('.info-kho input[name="mst"]').val();
@@ -1028,6 +1139,7 @@
             data1.append('user_test', user_test);
             data1.append('_token', _token);
             data1.append('id', id);
+            data1.append('user_id', user_id);
             $.ajax({
                 type: "Post",
                 contentType: false,       // The content type used when sending data to the server.
@@ -1044,7 +1156,7 @@
                         hide: true,
                         styling: 'bootstrap3'
                     });
-//                    location.reload();
+                    location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     var Data = JSON.parse(XMLHttpRequest.responseText);
@@ -1102,6 +1214,7 @@
         $(".btnConfirmKho").on('click',function(e){
             e.preventDefault();
             var id = $('input[name="id"]').val();
+            var user_id = $('input[name="user_id"]').val();
             var _token = $('input[name="_token"]').val();
             var name_company = $('input[name="name_company"]').val();
             var address = $('input[name="address"]').val();
@@ -1115,7 +1228,7 @@
                 $.ajax({
                     type: "POST",
                     url: '{{ url('/') }}/admin/warehouse/AjaxConfirmKho',
-                    data: {id: id,name_company:name_company,address:address,mst:mst,ndd:ndd,time_active:time_active, _token: _token},
+                    data: {id: id,user_id: user_id,name_company:name_company,address:address,mst:mst,ndd:ndd,time_active:time_active, _token: _token},
                     success: function (msg) {
                         $('.loading').css('display', 'none');
                         //show notify
@@ -1160,12 +1273,13 @@
         $(".btnQuangCao").on('click',function(e){
             e.preventDefault();
             var id = $('input[name="id"]').val();
+            var user_id = $('input[name="user_id"]').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/warehouse/AjaxQuangCao',
-                data: {id: id, _token: _token},
+                data: {id: id,user_id: user_id, _token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     //show notify
@@ -1276,10 +1390,44 @@
         });
         $(".btnReQuestQuangCao").on('click', function (e) {
             var _token = $('input[name="_token"]').val();
-            $('.loading').css('display','block');
+            $('.loading').css('display', 'block');
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/warehouse/AjaxReQuestQuangCao',
+                data: {_token: _token},
+                success: function (msg) {
+                    $('.loading').css('display', 'none');
+                    //show notify
+                    new PNotify({
+                        title: 'Gửi yêu cầu thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: 'Không gửi được yêu cầu',
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display', 'none');
+
+                }
+            });
+        });
+        $(".btnReQuestTraphi").on('click', function (e) {
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '{{ url('/') }}/admin/warehouse/AjaxReQuestTraphi',
                 data: {_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
@@ -1308,7 +1456,132 @@
                 }
             });
         });
+        $(".btnLuuImageKho").on('click', function (e) {
+            var id = $('input[name="id"]').val();
+            var _token = $('input[name="_token"]').val();
+            var image_detail = document.getElementsByName("image_detail");
+            /*var len = image_detail.files.length;
+            console.log(len);*/
+
+            /*for (var i = 0; i < image_detail.files.length; i++) {
+                file_image_detail = image_detail[0].files[i];
+            }*/
+            $('.loading').css('display','block');
+            var data1 = new FormData();
+            data1.append('image_detail', image_detail);
+            data1.append('_token', _token);
+            data1.append('id', id);
+            $.ajax({
+                type: "POST",
+                url: '{{ url('/') }}/warehouse/UploadImgDetail',
+                data: data1,
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    new PNotify({
+                        title: 'Lưu hình ảnh thành công.',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: 'Không thể lưu hình ảnh.',
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        });
     </script>
+<script>
+    var abc = 0;      // Declaring and defining global increment variable.
+    $(document).ready(function () {
+//  To add new input file field dynamically, on click of "Add More Files" button below function will be executed.
+        $('#add_more').click(function () {
+            $(this).before($("<div/>", {
+                class: 'filediv'
+            }).fadeIn('slow').append($("<input/>", {
+                name: 'image_detail[]',
+                type: 'file',
+                id: 'file'
+            }), $("<br>")));
+        });
+// Following function will executes on change event of file input to select different file.
+        $('body').on('change', '#file', function () {
+            if (this.files && this.files[0]) {
+                abc += 1; // Incrementing global variable by 1.
+                var z = abc - 1;
+                var x = $(this).parent().find('#previewimg' + z).remove();
+                $(this).before("<div id='abcd" + abc + "' class='abcd'><img class='img-responsive' id='previewimg" + abc + "' src=''/></div>");
+                var reader = new FileReader();
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+                $(this).hide();
+                $("#abcd" + abc).append('<i id="img" class="fa fa-times red delete-img"></i>').click(function () {
+                    $(this).parent().remove();
+                });
+            }
+        });
+// To Preview Image
+        function imageIsLoaded(e) {
+            $('#previewimg' + abc).attr('src', e.target.result);
+        };
+        $('#upload').click(function (e) {
+            var name = $(":file").val();
+            if (!name) {
+                alert("First Image Must Be Selected");
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+<script>
+    $(document).on('click','.delete-img-ajax',function(e){
+        e.preventDefault();
+        var _token = $('input[name="_token"]').val();
+        var id = $(this).attr('data-id');
+        $(this).parent().remove();
+        $('.loading').css('display','block');
+        $.ajax({
+            type: "POST",
+            url: '/warehouse/deleteDetailImage',
+            data: {_token: _token,id: id},
+            success: function( msg ) {
+                $('.loading').css('display','none');
+                //show notify
+                new PNotify({
+                    title: 'Xóa thành công',
+                    text: '',
+                    type: 'success',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+//                    location.reload();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //show notify
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+                new PNotify({
+                    title: 'Lỗi',
+                    text: "Xóa không thành công",
+                    type: 'danger',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+                $('.loading').css('display','none');
+
+            }
+        });
+    })
+</script>
 
     <script>
         $(document).on('click', '.edit_bank', function () {

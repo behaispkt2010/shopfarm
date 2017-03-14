@@ -208,7 +208,89 @@
                         <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>--}}
+                @if(Auth::user()->hasRole('kho'))
+                    <?php
+                        $strUserID = Auth::user()->id;
+                        $strNumNotify = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
+                        $arrNotification = \App\Notification::GetNotify($strUserID);
+                    ?>
+                @else
+                    <?php
+                        $strUserID = Auth::user()->id;
+                        $arrNotificationAdmin = \App\Notification::GetNotifyAdmin();
+                        $strNumNotifyAdmin = count(\App\Notification::where('is_read',0)->where('roleview',\App\Util::$roleviewAdmin)->get());
+                    ?>
+                @endif
+                <li role="presentation" class="dropdown" style="display: block" >
+                    <a href="javascript;" class="dropdown-toggle info-number" id="menu_notify" data-toggle="dropdown"
+                       aria-expanded="false">
+                        <i class="fa fa-bell"></i>
+                        @if(Auth::user()->hasRole('kho'))
+                            <span class="badge bg-green" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
+                        @else
+                            <span class="badge bg-green" id="notify_count">@if ($strNumNotifyAdmin != 0) {{$strNumNotifyAdmin}} @endif</span>
+                        @endif
+                    </a>
+                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        @if(Auth::user()->hasRole('kho'))
+                            @if (count($arrNotification) != 0)
+                                @foreach ($arrNotification as $itemNotification)
+                                    <li class="notify">
+                                        <a href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
+                                                @else # @endif" target="_blank">
+                                            <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
+                                                <span>
+                                                    <span class="notification_title">{{$itemNotification->title}}</span>
+                                                    <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                                                </span>
+                                            <span class="message">{{$itemNotification->content}}</span>
+                                        </a>
 
+                                    </li>
+                                @endforeach
+
+                                <li>
+                                    <div class="text-center">
+                                        <a href="{{ route('notification.index') }}">
+                                            <strong>Xem tất cả</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            @else
+                                <span class="different">Bạn không có thông báo mới.</span>
+                            @endif
+                        @else
+                            @if (count($arrNotificationAdmin) != 0)
+                                @foreach ($arrNotificationAdmin as $itemNotificationAdmin)
+                                    <li class="notify">
+                                        <a href="@if ($itemNotificationAdmin->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotificationAdmin->product_id])}}
+                                                @else {{route('warehouse.edit',['id' => $itemNotificationAdmin->id])}} @endif" target="_blank">
+                                            <span class="image"><img src="@if (!empty($itemNotificationAdmin->image)){{ url('/').$itemNotificationAdmin->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
+                                                <span>
+                                                    <span class="notification_title">{{$itemNotificationAdmin->title}}</span>
+                                                    <span class="time">{{ $itemNotificationAdmin->created_at->diffForHumans() }}</span>
+                                                </span>
+                                            <span class="message">{{$itemNotificationAdmin->content}}</span>
+                                        </a>
+
+                                    </li>
+                                @endforeach
+
+                                <li>
+                                    <div class="text-center">
+                                        <a href="{{ route('notification.index') }}">
+                                            <strong>Xem tất cả</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            @else
+                                <span class="different">Bạn không có thông báo mới.</span>
+                            @endif
+                        @endif
+                    </ul>
+                </li>
 
 
 
@@ -287,7 +369,7 @@
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: '{{ url('/') }}/admin/AjaxUpdateIsReadNotify',
+            url: '{{ url('/') }}/admin/notify/AjaxUpdateIsReadNotify',
             success: function( msg ) {
                 console.log[msg];
                 $("#notify_count").addClass('hidden');
