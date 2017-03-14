@@ -78,11 +78,11 @@ public function AjaxCreateCustomer(UserRequest $request)
             $q = $request->get('q');
             $users = User::where('name','LIKE','%'.$q.'%')
                 ->orwhere('id','LIKE','%'.$q.'%')
-            ->orwhere('phone_number','LIKE','%'.$q.'%')->get();
+            ->orwhere('phone_number','LIKE','%'.$q.'%')->paginate(6);
         }
         else {
             $users = User::orderBy('id','DESC')
-                ->get();
+                ->paginate(6);
         }
         $roles = RoleUser::leftjoin('users','role_user.user_id','=','users.id')
             ->leftjoin('roles','roles.id','=','role_user.role_id')

@@ -200,7 +200,7 @@
         $('.tab-fill .show-menu').css('display','inline-block');
         $('.show-menu.other-item-button.pst-tootip .show-menu').css('display','none');
 
-        for(var i=11;i>y;i--){
+        for(var i=10;i>y;i--){
             $('.tab-fill .show-menu.li-'+i).css('display','none');
             $('.show-menu.other-item-button.pst-tootip .show-menu.li-'+i).css('display','block');
 

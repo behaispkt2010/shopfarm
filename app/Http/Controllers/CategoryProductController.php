@@ -66,10 +66,10 @@ class CategoryProductController extends Controller
         if($request->get('name') || $request->get('kho')){
             $name = $request->get('name');
             $kho = $request->get('kho');
-            $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->get();
+            $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->paginate(6);
         }
         else {
-            $categoryProduct = CategoryProduct::get();
+            $categoryProduct = CategoryProduct::paginate(6);
         }
         $categoryProduct0 = CategoryProduct::where('parent','0')->get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')

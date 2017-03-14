@@ -89,6 +89,9 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="text-center">
+                            {{ $users->appends(array('q' => Request::get('q')))->links() }}
+                        </div>
                         @else
                             <div>Không tìm thấy dữ liệu</div>
                         @endif

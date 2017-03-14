@@ -158,7 +158,7 @@
 
                                             <div class="col-md-9 col-xs-12">
                                                 <div class="form-group">
-                                                    <select id="t" class="form-control" required name="province">
+                                                    <select id="province" class="form-control" required name="province">
                                                         <option value="0">Chọn khu vực</option>
                                                         @foreach($province as $item)
                                                             <option value="{{$item->provinceid}}" @if($wareHouse->province == $item->provinceid) selected @endif>{{$item->name}}</option>
@@ -226,12 +226,9 @@
                                             @if(!empty($wareHouse->image_kho))
                                                 <img src="{{url('/').$wareHouse->image_kho}}" alt="" class="img-responsive">
                                                 <div class="form-group">
-                                                    <label for="inputFile" class="col-md-4 control-label">Thay
-                                                        đổi</label>
-
                                                     <div class="col-md-8">
                                                         <input type="text" readonly="" class="form-control"
-                                                               placeholder="đường dẫn...">
+                                                               placeholder="Chọn hình ảnh">
                                                         <input type="file" name="image_kho" id="inputFile">
                                                     </div>
                                                 </div>
@@ -1116,6 +1113,7 @@
             var id = $('input[name="id"]').val();
             var user_id = $('input[name="user_id"]').val();
             var name_company = $('.info-kho input[name="name_company"]').val();
+            var province = $('#province').val();
             var address = $('.info-kho input[name="address"]').val();
             var mst = $('.info-kho input[name="mst"]').val();
             var ndd = $('.info-kho input[name="ndd"]').val();
@@ -1127,13 +1125,14 @@
             var user_test = $('#user_test').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
-//            alert(_token);
+            //alert(province);
             var data1 = new FormData();
             data1.append('name_company', name_company);
             data1.append('category_warehouse_id', category_warehouse_id);
             data1.append('address', address);
             data1.append('mst', mst);
             data1.append('image_kho', file_image_kho);
+            data1.append('province', province);
             data1.append('mst', mst);
             data1.append('time_active', time_active);
             data1.append('user_test', user_test);

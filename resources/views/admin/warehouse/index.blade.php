@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="clearfix"></div>
-
+                        @if(count($wareHouse) != 0)
                         @foreach($wareHouse as $itemWareHouse)
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details box-detail">
                                 <div class="well box_1">
@@ -89,7 +89,12 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        <div class="text-center">
+                            {{ $wareHouse->appends(array('q' => Request::get('q')))->links() }}
+                        </div>
+                        @else
+                            <div>Không tìm thấy dữ liệu</div>
+                        @endif
                     </div>
                 </div>
             </div>

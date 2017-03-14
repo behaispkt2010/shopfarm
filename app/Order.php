@@ -78,8 +78,7 @@ class Order extends Model
                 ->leftJoin('orders','product_orders.order_id','=','orders.id')
                 ->where('orders.kho_id',$idUser)
                 ->where('orders.status','<>',$status)
-                ->where('orders.status','<>',11)
-
+                ->where('orders.status','<>',10)
                 ->get();
         }
         else {
@@ -89,7 +88,7 @@ class Order extends Model
                 ->where('orders.status', $status)
                 ->get();
         }
-
+        //dd($orderProducts);
         $price=0;
         $count=0;
         if(!empty($orderProducts)){
@@ -104,7 +103,7 @@ class Order extends Model
             "count" => $count
 
         ];
-//        dd($data);
+
         return $data;
     }
 

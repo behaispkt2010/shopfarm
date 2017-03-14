@@ -63,12 +63,19 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <table class="" style="width:50%">
+                    <table class="" style="width:100%">
 
-                        <tbody><tr>
+                        <tbody>
+                        <tr>
                             <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
                                 <canvas id="canvas2" height="100" width="100" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
                             </td>
+                            <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                                <canvas id="canvas3" height="100" width="100" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td>
                                 <table class="tile_info">
                                     <tbody><tr>
@@ -91,17 +98,6 @@
                                     </tr>
                                     </tbody></table>
                             </td>
-                        </tr>
-                        <input type="hidden" value="{!! $level1 !!}" name="level1">
-                        <input type="hidden" value="{!! $level2 !!}" name="level2">
-                        <input type="hidden" value="{!! $level3 !!}" name="level3">
-                        </tbody></table>
-                    <table class="" style="width:50%">
-
-                        <tbody><tr>
-                            <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-                                <canvas id="canvas3" height="100" width="100" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
-                            </td>
                             <td>
                                 <table class="tile_info">
                                     <tbody><tr>
@@ -118,9 +114,13 @@
                                     </tbody></table>
                             </td>
                         </tr>
+                        <input type="hidden" value="{!! $level1 !!}" name="level1">
+                        <input type="hidden" value="{!! $level2 !!}" name="level2">
+                        <input type="hidden" value="{!! $level3 !!}" name="level3">
                         <input type="hidden" value="{!! $traphi !!}" name="traphi">
                         <input type="hidden" value="{!! $dungthu !!}" name="dungthu">
                         </tbody></table>
+
                 </div>
             </div>
         </div>
@@ -147,6 +147,31 @@
                                     <p> <small>{!! $BestSell->numOrder !!} đơn hàng</small>
                                     </p>
                                     </p>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+            </div>
+        </div><div class="col-md-6 col-sm-6 col-xs-12">
+
+            <div class="x_panel fixed_height_320">
+                <div>
+                    <div class="x_title">
+                        <h2>Sản phẩm cần duyệt</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <ul class="list-unstyled top_profiles scroll-view">
+
+                        @foreach($arrProductWaitApproval as $itemProductWaitApproval)
+                            <li class="media event">
+                                <a class="pull-left border-aero profile_thumb">
+                                    <img src="{{url('/').$itemProductWaitApproval->image}}" alt="" class="img-responsive">
+                                </a>
+                                <div class="media-body">
+                                    <a class="title" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}">{!! $itemProductWaitApproval->title !!}</a> - <strong>Kho {{\App\Util::UserCode($itemProductWaitApproval->kho)}}</strong>
                                 </div>
                             </li>
                         @endforeach

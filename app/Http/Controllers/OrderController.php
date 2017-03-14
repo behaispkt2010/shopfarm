@@ -12,6 +12,7 @@ use App\ProductOrder;
 use App\Province;
 use App\User;
 use App\Util;
+use App\WareHouse;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -462,14 +463,14 @@ class OrderController extends Controller
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
             }
-            if ($request->get('status') == 10) {
+            if ($request->get('status') == Util::$statusOrderFail) {
                 $arrUser = User::find($request->customer_id);
                 $getCodeOrder = Util::OrderCode($id);
                 $dataNotify['keyname'] = Util::$orderfail;
                 $dataNotify['title'] = "Đơn hàng lỗi sắp trả về kho";
                 $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi sắp trả về kho";
                 $dataNotify['author_id'] = Auth::user()->id;
-                $dataNotify['roleview'] = Util::$roleviewAdmin;
+                $dataNotify['roleview'] = $kho_id;
                 Notification::create($dataNotify);
             }
 //            DB::table('product_orders')->insert($ProductOrder);

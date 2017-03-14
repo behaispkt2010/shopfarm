@@ -36,6 +36,7 @@ class Util extends Model
     public static $roleviewChukho = "chukho";
     public static $userexpired = "userexpired";
     public static $orderfail = "orderfail";
+    public static $statusOrderFail = 10;
 
     public static function saveFile($file, $type)
     {

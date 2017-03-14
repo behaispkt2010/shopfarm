@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="clearfix"></div>
-
+                        @if(count($productUpdatePrice) !=0)
                         @foreach($productUpdatePrice as $item)
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details box-detail">
 
@@ -79,7 +79,12 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        <div class="text-center">
+                            {{ $productUpdatePrice->appends(array('q' => Request::get('q')))->links() }}
+                        </div>
+                        @else
+                            <div>Không tìm thấy dữ liệu</div>
+                        @endif
                     </div>
                 </div>
             </div>

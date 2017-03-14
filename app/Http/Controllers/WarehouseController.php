@@ -70,15 +70,25 @@ class WarehouseController extends Controller
 
     public function AjaxDetail(Request $request)
     {
-        //dd($request->file('image_kho'));
+        /*if (!empty($request->file('image_kho'))) {
+            dd(" exsit");
+        }
+        else{
+            dd("not");
+        }*/
         $userID = Auth::user()->id;
         $id = $request->get('id');
         $viewer_id = $request->get('user_id');
         $warehouse = WareHouse::find($id);
         $data = $request->all();
         //$image_kho = $request->image_kho;
-        if ($request->hasFile('image_kho')) {
-            $data['image_kho']  = Util::saveFile($request->file('image_kho'), '');
+        if (!empty($request->file('image_kho'))) {
+            if ($request->hasFile('image_kho')) {
+                $data['image_kho'] = Util::saveFile($request->file('image_kho'), '');
+            }
+        }
+        else {
+            $data['image_kho'] = $warehouse->image_kho;
         }
         if ($request->get('user_test') == 2) {
             $dateTest = Util::$datetest;
@@ -445,14 +455,14 @@ class WarehouseController extends Controller
 //                ->orderBy('id','DESC')
                 ->orwhere('users.name', 'LIKE', '%' . $q . '%')
                 ->orwhere('users.id', 'LIKE', '%' . $q . '%')
-                ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')->get();
+                ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')->paginate(6);
         } else {
             $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)
                 ->orderBy('id', 'DESC')
-                ->get();
+                ->paginate(6);
             //dd($wareHouse);
         }
         $data = [
@@ -558,7 +568,7 @@ class WarehouseController extends Controller
         $bankWareHouse = BankWareHouse::where('ware_id', $id)->get();
         $arrCategoryWarehouse = CategoryWarehouse::get();
         $userInfo = User::where('id', $wareHouse->user_id)->first();
-        //dd($userInfo);
+        //dd($wareHouse);
         $data = [
             'wareHouse' => $wareHouse,
             'bank' => $bank,

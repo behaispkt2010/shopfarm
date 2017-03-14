@@ -19,7 +19,6 @@ class WareHouse extends Model
     public static function getIdWareHouse($user_id){
         $ware = WareHouse::where('user_id',$user_id)->first();
         return $ware->id;
-
     }
     public static function checkUserTest($user_id){
         $user = User::leftjoin('ware_houses','users.id','=','ware_houses.user_id')

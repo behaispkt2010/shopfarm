@@ -105,18 +105,18 @@ public function AjaxGetProduct(Request $request){
                 $product1 =  $product1->where('kho',$kho);
             }
 
-            $product = $product1->get();
+            $product = $product1->paginate(6);
 
 
         }
         else {
             if(!Auth::user()->hasRole('kho'))
                 $product = Product::orderBy('id','DESC')
-                    ->get();
+                    ->paginate(6);
             else {
                 $product = Product::orderBy('id','DESC')
                     ->where('kho',Auth::user()->id)
-                    ->get();
+                    ->paginate(6);
             }
         }
         $category = CategoryProduct::get();

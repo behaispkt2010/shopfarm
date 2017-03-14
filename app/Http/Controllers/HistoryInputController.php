@@ -23,7 +23,7 @@ class HistoryInputController extends Controller
             $date = $request->get('date');
 //            dd($date);
             $productUpdatePrice=ProductUpdatePrice::where(DB::raw("(DATE_FORMAT(created_at,'%d-%m-%Y'))"),$date)
-                ->get();
+                ->paginate(6);
             $data=[
                 'productUpdatePrice'=>$productUpdatePrice,
                 'date'=>$date,
@@ -42,7 +42,7 @@ class HistoryInputController extends Controller
                 ->selectRaw('sum(number) as sum_number')
                 ->selectRaw('created_at')
                 ->whereBetween('created_at', array(new DateTime($from), new DateTime($to)))
-                ->get();
+                ->paginate(6);
 //        dd($productUpdatePrice);
             $data = [
                 'productUpdatePrice' => $productUpdatePrice,
@@ -56,7 +56,7 @@ class HistoryInputController extends Controller
                 ->selectRaw('count(*) as count')
                 ->selectRaw('sum(number) as sum_number')
                 ->selectRaw('created_at')
-                ->get();
+                ->paginate(6);
 //        dd($productUpdatePrice);
             $data = [
                 'productUpdatePrice' => $productUpdatePrice,

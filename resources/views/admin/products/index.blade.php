@@ -132,6 +132,9 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="text-center">
+                            {{ $product->appends(array('q' => Request::get('q')))->links() }}
+                        </div>
                         @else
                         <div>không tìm thấy dữ liệu</div>
                         @endif
