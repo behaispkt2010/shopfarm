@@ -471,6 +471,7 @@ class OrderController extends Controller
                 $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi sắp trả về kho";
                 $dataNotify['author_id'] = Auth::user()->id;
                 $dataNotify['roleview'] = $kho_id;
+                $dataNotify['orderID_or_productID'] = $id;
                 Notification::create($dataNotify);
             }
 //            DB::table('product_orders')->insert($ProductOrder);

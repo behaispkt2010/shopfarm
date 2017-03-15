@@ -237,6 +237,7 @@
                                 @foreach ($arrNotification as $itemNotification)
                                     <li class="notify">
                                         <a href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$orderfail) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
                                                 @else # @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                                 <span>
@@ -264,7 +265,7 @@
                             @if (count($arrNotificationAdmin) != 0)
                                 @foreach ($arrNotificationAdmin as $itemNotificationAdmin)
                                     <li class="notify">
-                                        <a href="@if ($itemNotificationAdmin->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotificationAdmin->product_id])}}
+                                        <a href="@if ($itemNotificationAdmin->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @else {{route('warehouse.edit',['id' => $itemNotificationAdmin->id])}} @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotificationAdmin->image)){{ url('/').$itemNotificationAdmin->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                                 <span>

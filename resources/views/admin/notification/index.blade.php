@@ -31,25 +31,19 @@
                                 </li>--}}
                                 <li class="notify">
                                     @if(Auth::user()->hasRole('kho'))
-                                        @if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess)
-                                            <a href="{{url('/shop/'.$itemNotification->id)}}" target="_blank"><span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
-                                                <span class="notification_title">{{$itemNotification->title}}</span>
-                                                <br>
-                                                <span class="message">{{$itemNotification->content}}</span>
-                                                <br>
-                                                <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
-                                            </a>
-                                        @else
-                                            <a href="#"><span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
-                                                <span class="notification_title">{{$itemNotification->title}}</span>
-                                                <br>
-                                                <span class="message">{{$itemNotification->content}}</span>
-                                                <br>
-                                                <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
-                                            </a>
-                                        @endif
+                                        <a href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
+                                        @else # @endif" target="_blank">
+                                            <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
+                                            <span class="notification_title">{{$itemNotification->title}}</span>
+                                            <br>
+                                            <span class="message">{{$itemNotification->content}}</span>
+                                            <br>
+                                            <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                                        </a>
                                     @else
-                                        <a href="{{route('warehouse.edit',['id' => $itemNotification->id])}}" target="_blank"><span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
+                                        <a href="@if ($itemNotification->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                        @else {{route('warehouse.edit',['id' => $itemNotification->id])}} @endif" target="_blank">
+                                            <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                             <span class="notification_title">{{$itemNotification->title}}</span>
                                             <br>
                                             <span class="message">{{$itemNotification->content}}</span>

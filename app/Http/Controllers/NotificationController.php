@@ -47,7 +47,7 @@ class NotificationController extends Controller
                 ->where('notification.roleview',$strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('ware_houses.* ')
-                ->selectRaw('notification.created_at,notification.keyname,,notification.product_id,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
                 ->orderBy('notification.id','DESC')
                 ->get();
         }
@@ -58,7 +58,7 @@ class NotificationController extends Controller
                 ->where('notification.roleview',$view)
                 ->selectRaw('users.* ')
                 ->selectRaw('ware_houses.* ')
-                ->selectRaw('notification.created_at,notification.keyname,notification.product_id,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
                 ->orderBy('notification.id','DESC')
                 ->get();
         }

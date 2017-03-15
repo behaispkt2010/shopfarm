@@ -19,7 +19,7 @@
 
 						<li><a href="/">Trang chủ</a></li>
 						<li><a href="/products">Sản phẩm</a></li>
-						<li>aaa</li>
+						<li>{{$product->title}}</li>
 
 					</ul>
 					@if (\Session::has('success'))
@@ -62,13 +62,10 @@
 												@if(count($detailImage) != 0)
 													@foreach($detailImage as $item)
 													<a href="#" data-image="{{url('/')}}{{$item->image}}" data-zoom-image="{{url('/')}}{{$item->image}}">
-
 														<img src="{{url('/')}}{{$item->image}}" data-large-image="{{url('/')}}{{$item->image}}" alt="">
-
 													</a>
 													@endforeach
 												@endif
-
 											</div><!--/ .owl-carousel-->
 
 										</div><!--/ .product_preview-->
@@ -127,105 +124,70 @@
 										</div>
 										<!-- - - - - - - - - - - - - - End of page navigation - - - - - - - - - - - - - - - - -->
 
-
-
 										<div class="description_section">
-
-											<table class="product_info">
-
-												<tbody>
-
+											<table class="product_info" style="width: 100%">
+												<tbody style="font-size: 15px;">
 													<tr>
-
-														<td>Chủ kho: </td>
-														<td><a href="#">#{{$product->kho}}</a></td>
-
-													</tr>
-
-													<tr>
-
-														<td>Mua tối thiểu: </td>
+														<td style="width: 150px;">Mua tối thiểu: </td>
 														<td><span class="in_stock">{{$product->min_gram}}</span> (kg)</td>
-
 													</tr>
-
 													<tr>
-
-														<td>Mã sản phẩm: </td>
-														<td>#{{$product->id}}</td>
-
+														<td style="width: 150px;">Mã sản phẩm: </td>
+														<td>#{{\App\Util::ProductCode($product->id)}}</td>
 													</tr>
-
 												</tbody>
-
 											</table>
-
 										</div>
 										<p class="product_price"><b class="theme_color">{{ number_format($product->price_out)  }} VNĐ</b></p>
-
 										<hr>
-
-										<div class="description_section">
-
+										<div class="row text-center">
+											<div class="col-xs-6 col-sm-6 col-md-6 col-md-offset-3">
+												<div style="height: 100px; background-color: #fff; padding: 15px 15px 0px 15px; ">
+													<button id="phoneKho" style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;"
+														data-toggle="modal" data-target=".modal-buy" class="btn btn-warning btnBuy" data-phone="{{$product->phoneKho}}">
+														Mua Ngay
+													</button>
+													<br>
+													<p>Mua trực tiếp với nhà cung cấp</p>
+												</div>
+											</div>
+										</div>
+										{{--<div class="description_section">
 											<p class="text-info">Vui lòng để lại thông tin liên lạc để chúng tôi liên hệ lại trong thời gian sớm nhất</p>
-
 										</div>
 										<div class="description_section">
 										<form action="{{url('/single-order')}}" method="post"  class="contactform type_2" id="contact_form">
 											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
 											<ul>
-
 												<li class="row">
 													<input type="hidden"  name="cf_url" value="{{url('/')}}{{$_SERVER['REQUEST_URI']}}">
 													<div class="col-sm-6">
-
 														<label for="cf_name" class="required">Tên</label>
 														<input type="text" required name="cf_name" id="cf_name" title="Name">
-
-													</div><!--/ [col]-->
-
+													</div>
 													<div class="col-sm-6">
-
 														<label for="cf_email" class="required">Địa chỉ Email</label>
 														<input type="email" required name="cf_email" id="cf_email" title="Email">
-
-													</div><!--/ [col]-->
-
-												</li><!--/ .row -->
-
+													</div>
+												</li>
 												<li class="row">
-
 													<div class="col-xs-12">
-
 														<label for="cf_order_number" class="required">Số điện thoại</label>
 														<input type="text" required name="cf_order_number" id="cf_order_number" title="Order number">
-
-													</div><!--/ [col]-->
-
-												</li><!--/ .row -->
-
+													</div>
+												</li>
 												<li class="row">
-
 													<div class="col-xs-12">
-
 														<label for="cf_message" class="">Tin nhắn</label>
 														<textarea id="cf_message"  name="cf_message" title="Message" rows="4"></textarea>
-
-													</div><!--/ [col]-->
-
-												</li><!--/ .row -->
-
+													</div>
+												</li>
 											</ul>
 											<div class="buttons_row">
-
 												<button class="button_blue middle_btn" type="submit" id="send-order-info">Gửi thông tin</button>
-
 											</div>
-
 										</form>
-
-									</div>
+									</div>--}}
 										<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
 
 
@@ -859,6 +821,25 @@
 			</div><!--/ .page_wrapper-->
 			
 			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
+	<div class="modal fade modal-buy" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+		 data-backdrop="static">
+		<div class="modal-dialog modal-buy">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"></button>
+					<h4 class="modal-title" id="myModalLabel">Mua ngay</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<p><strong>Hãy liên hệ Chủ kho theo thông tin bên dưới để mua trực tiếp</strong></p>
+						<br>
+						<input type="text" name="phone" value="" disabled>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 @endsection
 @section('add-script')
 	<script src="{{asset('frontend/js/jquery.elevateZoom-3.0.8.min.js')}}"></script>
@@ -871,5 +852,10 @@
 
 		{{--})--}}
 	{{--</script>--}}
-
+	<script>
+		$(document).on("click", "#phoneKho", function () {
+			var _self = $(this);
+			$('.modal-buy input[name="phone"]').val(_self.data('phone'));
+		});
+	</script>
 	@endsection

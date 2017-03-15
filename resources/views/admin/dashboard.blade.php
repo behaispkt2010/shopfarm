@@ -156,7 +156,7 @@
             </div>
         </div><div class="col-md-6 col-sm-6 col-xs-12">
 
-            <div class="x_panel fixed_height_320">
+            <div class="x_panel" style="min-height: 550px;">
                 <div>
                     <div class="x_title">
                         <h2>Sản phẩm cần duyệt</h2>
@@ -175,6 +175,9 @@
                                 </div>
                             </li>
                         @endforeach
+                        <div class="text-center">
+                            {{ $arrProductWaitApproval->appends(array('q' => Request::get('q')))->links() }}
+                        </div>
                     </ul>
                 </div>
 

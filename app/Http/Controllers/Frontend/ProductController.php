@@ -63,7 +63,7 @@ class ProductController extends Controller
 
     }
     public function SingleProduct($cate,$slug){
-        $product=Product::select('products.*','users.name as nameKho','users.id as idKho','users.address as addressKho','ware_houses.id as ware_houses_id','ware_houses.level as levelKho','users.name as nameKho')
+        $product=Product::select('products.*','users.name as nameKho','users.phone_number as phoneKho','users.id as idKho','users.address as addressKho','ware_houses.id as ware_houses_id','ware_houses.level as levelKho','users.name as nameKho')
                  ->leftJoin('users','users.id','=','products.kho')
             ->leftJoin('ware_houses','users.id','=','ware_houses.user_id')
             ->where('slug',$slug)

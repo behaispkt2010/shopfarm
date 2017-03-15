@@ -82,7 +82,7 @@ class DashboardController extends Controller
             $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
         }
         $arrBestSellProduct = Product::getBestSellerProduct(3);
-        $arrProductWaitApproval = Product::where('status',0)->orderBy('id','DESC')->get();
+        $arrProductWaitApproval = Product::where('status',0)->orderBy('id','DESC')->paginate(6);
         //dd($arrProductWaitApproval);
         $data =[
             'countOrder' =>$countOrder,

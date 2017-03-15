@@ -1312,6 +1312,7 @@ ul.list_notify li a .image img {
 ul.list_notify li a {
   padding: 3px 5px !important;
   color: #000000;
+  width: 100%;
 }
 ul.list_notify li a .message .different {
   font-size: 16px;

@@ -6,52 +6,19 @@
 
         <!-- - - - - - - - - - - - - - Top part - - - - - - - - - - - - - - - - -->
 
-        <div class="top_part">
-
+        {{--<div class="top_part">
             <div class="container">
-
                 <div class="row">
-
                     <div class="col-lg-6 col-md-7 col-sm-8 col-xs-6 text-left">
+                        <span>Liên hệ với chúng tôi:</span> <b>{!! \App\Setting::getValue('phone')!!}</b>
 
 
-                        <span>Liên hệ với chúng tôi:</span> <b>+1888 234 5678</b>
+                    </div>
+                </div>
 
+            </div>
 
-
-                        <!-- - - - - - - - - - - - - - Login - - - - - - - - - - - - - - - - -->
-
-
-
-                        <!-- - - - - - - - - - - - - - End login - - - - - - - - - - - - - - - - -->
-
-                    </div> <!--/ [col]-->
-
-                    <div class="col-lg-6 col-md-5 col-sm-4  col-xs-6 text-right" style="text-align: right;">
-                @if(( !Auth::check()))
-                        <p> <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}">Đăng nhập</a> or <a href="{{url('/register')}}">Đăng ký</a></p>
-
-                     @else
-                    <p> chào bạn <a href="">{{Auth::user()->name}}</a> |  <a href="{{ url('/logout') }}"
-                                                                             onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">
-                            <i class="fa fa-unlock" aria-hidden="true"></i> Đăng xuất
-                        </a></p>
-                    @endif
-
-                    <form id="logout-form"
-                          action="{{ url('/logout') }}"
-                          method="POST"
-                          style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                    </div><!--/ [col]-->
-
-                </div><!--/ .row-->
-
-            </div><!--/ .container -->
-
-        </div><!--/ .top_part -->
+        </div>--}}
 
         <!-- - - - - - - - - - - - - - End of top part - - - - - - - - - - - - - - - - -->
 
@@ -73,7 +40,7 @@
 
                             <a href="/" class="logo">
 
-                                <img src="../../../frontend/images/logo.png" alt="">
+                                <img src="{{asset('frontend/images/logo.png')}}" alt="">
 
                             </a>
 
@@ -81,15 +48,6 @@
 
                         </div><!--/ [col]-->
 
-                        <div class="col-sm-3">
-
-                            <!-- - - - - - - - - - - - - - Call to action - - - - - - - - - - - - - - - - -->
-
-
-
-                            <!-- - - - - - - - - - - - - - End call to action - - - - - - - - - - - - - - - - -->
-
-                        </div><!--/ [col]-->
 
                         <div class="col-sm-6">
 
@@ -126,6 +84,44 @@
                             <!-- - - - - - - - - - - - - - End search form - - - - - - - - - - - - - - - - -->
 
                         </div><!--/ [col]-->
+                        <div class="col-sm-2" style="font-size: 16px;">
+
+                            <!-- - - - - - - - - - - - - - Call to action - - - - - - - - - - - - - - - - -->
+
+                            @if(( !Auth::check()))
+                                <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}">Đăng nhập</a> | <a href="{{url('/register')}}">Đăng ký</a>
+
+                            {{--@else
+                                Chào bạn <a href="">{{Auth::user()->name}}</a> |  <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Đăng xuất
+                                    </a>
+                            @endif--}}
+
+                            @else
+                                Chào bạn <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                            aria-expanded="false">{{Auth::user()->name}}</a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 60%;right: 20px;">
+                                    <li><a href="{{ url('/logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out pull-right"></i>Thoát
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endif
+
+                            <form id="logout-form"
+                                  action="{{ url('/logout') }}"
+                                  method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+
+                            <!-- - - - - - - - - - - - - - End call to action - - - - - - - - - - - - - - - - -->
+
+                        </div><!--/ [col]-->
+                        <div class="col-sm-3" style="padding: 0px;">
+                            <p><i class="fa fa-phone" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><b>{!! \App\Setting::getValue('phone')!!}</b></p>
+                        </div>
 
                     </div><!--/ .main_header_row-->
 
@@ -156,9 +152,7 @@
                             <!-- - - - - - - - - - - - - - Navigation item - - - - - - - - - - - - - - - - -->
 
                             <div class="nav_item">
-
                                 <nav class="main_navigation">
-
                                     <ul>
 
                                     {{\App\Menu::get_menu_frontend()}}

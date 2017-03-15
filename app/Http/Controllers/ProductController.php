@@ -207,7 +207,7 @@ public function AjaxGetProduct(Request $request){
             $dataNotify['content'] = "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.";
             $dataNotify['author_id'] = $userID;
             $dataNotify['roleview'] = Util::$roleviewAdmin;
-            $dataNotify['product_id'] = $product1->id;
+            $dataNotify['orderID_or_productID'] = $product1->id;
             Notification::create($dataNotify);
         }
 

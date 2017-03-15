@@ -2115,7 +2115,8 @@
 		#main_navigation_wrap{
 			width: inherit;
 			position: relative;
-			background-color: #fff;
+			/*background-color: #fff;*/
+			background-color: #4e8d1a;
 			z-index: 115;
 		}
 
@@ -2168,8 +2169,10 @@
 
 		.main_navigation:not(.full_width_nav) > ul > li > a{
 			border: 1px solid #eaeaea;
-			background-color: #fff;
+			/*background-color: #fff;*/
+			background-color: #4e8d1a;
 			padding: 16px 18px 17px;
+			color: #fff;
 		}
 
 		/* main theme submenu */
@@ -2342,8 +2345,8 @@
 		.main_navigation .tablet_active > a,
 		.main_navigation:not(.full_width_nav) > ul > li:hover > a{
 			color: #fff !important;
-			background: #4e8d1a !important;
-			border-color: #4e8d1a !important;
+			background: #9acd32 !important;
+			border-color: #fff !important;
 		}
 
 		.full_width_nav > ul > li > .submenu{ margin-top: 1px; }
@@ -2576,7 +2579,7 @@
 			}
 
 			.nav_item .toggle_menu{
-				width: 100% !important;
+				width: 10% !important;
 			}
 
 		/* --------------------------------------------

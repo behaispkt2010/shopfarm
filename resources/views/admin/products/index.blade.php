@@ -247,7 +247,7 @@
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
-                url: '/product/updateProductAjax',
+                url: '{{url('/')}}/product/updateProductAjax',
                 data: {id: id, price_in: price_in,price_out: price_out,number: number,supplier: supplier,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
