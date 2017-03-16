@@ -71,3 +71,9 @@ $(document).ready(function () {
     });
 });
 </script>
+<script>
+	$(document).on('click', '.required_login', function(e){
+		e.preventDefault();
+		$('#required_login').modal({ backdrop: 'static', keyboard: false });
+	});
+</script>

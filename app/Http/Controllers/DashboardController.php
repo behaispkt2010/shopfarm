@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Notification;
 use App\Order;
 use App\Product;
 use App\ProductOrder;
 use App\User;
+use App\Util;
 use App\WareHouse;
 use DateTime;
 use Illuminate\Http\Request;
@@ -56,6 +58,24 @@ class DashboardController extends Controller
         return \Response::json($response);
 
     }
+    public function Approval(Request $request){
+        $strProductID = $request->get('pid');
+        $strKhoID = $request->get('khoid');
+
+        $product =  Product::find($strProductID);
+        $data = [
+            'status' => 1
+        ];
+        $product->update($data);
+        $getCodeProduct = Util::ProductCode($strProductID);
+        $dataNotify['keyname'] = Util::$newproductSuccess;
+        $dataNotify['title'] = "Sản phẩm mới";
+        $dataNotify['content'] = "Sản phẩm ".$getCodeProduct." đã được duyệt.";
+        $dataNotify['author_id'] = Auth::user()->id;
+        $dataNotify['orderID_or_productID'] = $strProductID;
+        $dataNotify['roleview'] = $strKhoID;
+        Notification::create($dataNotify);
+    }
     public function index(){
         //echo "admin";
         $level1 = WareHouse::countLevelKho(1);
@@ -82,7 +102,7 @@ class DashboardController extends Controller
             $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
         }
         $arrBestSellProduct = Product::getBestSellerProduct(3);
-        $arrProductWaitApproval = Product::where('status',0)->orderBy('id','DESC')->paginate(6);
+        $arrProductWaitApproval = Product::where('status',0)->orderBy('id','DESC')->paginate(10);
         //dd($arrProductWaitApproval);
         $data =[
             'countOrder' =>$countOrder,

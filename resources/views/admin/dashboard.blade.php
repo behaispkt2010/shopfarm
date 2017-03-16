@@ -154,7 +154,7 @@
                 </div>
 
             </div>
-        </div><div class="col-md-6 col-sm-6 col-xs-12">
+        </div><div class="col-md-12 col-sm-12 col-xs-12">
 
             <div class="x_panel" style="min-height: 550px;">
                 <div>
@@ -166,14 +166,20 @@
                     <ul class="list-unstyled top_profiles scroll-view">
 
                         @foreach($arrProductWaitApproval as $itemProductWaitApproval)
-                            <li class="media event">
+                            <li class="media event product0" style="height: 50px;" id="">
                                 <a class="pull-left border-aero profile_thumb">
                                     <img src="{{url('/').$itemProductWaitApproval->image}}" alt="" class="img-responsive">
                                 </a>
-                                <div class="media-body">
-                                    <a class="title" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}">{!! $itemProductWaitApproval->title !!}</a> - <strong>Kho {{\App\Util::UserCode($itemProductWaitApproval->kho)}}</strong>
+                                <div class="media-body" style="padding-top: 10px;">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left"><a class="title" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}" target="_blank">{!! $itemProductWaitApproval->title !!}</a></div>
+                                    <div class="col-md-2 col-sm-2 col-xs-2"><strong>Kho {{\App\Util::UserCode($itemProductWaitApproval->kho)}}</strong></div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 text-right"><a class="btn-warning btnApproval" onclick="Approval(this)" style="padding: 5px 30px;">Duyệt</a></div>
                                 </div>
+                                <input type="hidden" name="txtProductID" value="{{$itemProductWaitApproval->id}}">
+                                <input type="hidden" name="txtKhoID" value="{{$itemProductWaitApproval->kho}}">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                             </li>
+
                         @endforeach
                         <div class="text-center">
                             {{ $arrProductWaitApproval->appends(array('q' => Request::get('q')))->links() }}
@@ -353,7 +359,7 @@
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: '{!! url("/") !!}/admin/dashboardctrl',
                 data: {data: data,_token: _token},
                 success: function( msg ) {
@@ -408,7 +414,7 @@
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: '{!! url("/") !!}/admin/dashboardctrl',
                 data: {data: data,_token: _token},
                 success: function( msg ) {
@@ -656,4 +662,56 @@
     {{--});--}}
     {{--</script>--}}
     <!-- /bootstrap-daterangepicker -->
+    <script type="text/javascript">
+        function ParseRow($LI){
+            var ctlPID = $LI.find('input[type="hidden"][name="txtProductID"]');
+            var ctlKhoID = $LI.find('input[type="hidden"][name="txtKhoID"]');
+            var pid = ctlPID.val();
+            var khoid = ctlKhoID.val();
+            var result = {
+                "pid"    : pid,
+                "khoid"    : khoid
+            };
+            return result;
+        }
+
+        function Approval(sender){
+            var parentLI = $(sender).parent().parent().parent();
+            //console.log(parentLI);
+            var product = ParseRow(parentLI);
+            var pid = product['pid'];
+            var khoid = product['khoid'];
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                type: "POST",
+                url: '{{ url('/') }}/admin/dashboard/Approval',
+                data: {pid: pid, khoid: khoid, _token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Duyệt sản phẩm thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: "Có lỗi xảy ra",
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        }
+    </script>
 @endsection

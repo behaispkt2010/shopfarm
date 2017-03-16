@@ -79,20 +79,35 @@
                                 <div class="col-md-6 col-xs-12 text-right">
                                     <p>Tổng giá trị sản phẩm <span id="allpaymoney">0</span> VNĐ</p>
                                     @if(Request::is('admin/orders/create'))
-                                        <p><a href="" class="add_attr" class="add_attr" data-toggle="modal"
-                                              data-target=".modal-transport"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a></p>
+                                        <p><a href="#" class="transport_info add_attr" data-toggle="modal"
+                                              data-target=".modal-transport"data-type_driver="{{$arrOrder->type_driver}}" data-name_driver="{{$arrOrder->name_driver}}"
+                                              data-phone_driver="{{$arrOrder->phone_driver}}" data-number_license_driver="{{$arrOrder->number_license_driver}}">
+                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a></p>
                                     @else
-                                        <p><a href="" class="add_attr" class="add_attr" data-toggle="modal"
-                                              data-target=".modal-transport"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                                Sửa Thông tin vận chuyển</a></p>
+                                        <p><a href="#" class="transport_info add_attr" data-toggle="modal"
+                                              data-target=".modal-transport" data-type_driver="{{$arrOrder->type_driver}}" data-name_driver="{{$arrOrder->name_driver}}"
+                                            data-phone_driver="{{$arrOrder->phone_driver}}" data-number_license_driver="{{$arrOrder->number_license_driver}}">
+                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>Sửa Thông tin vận chuyển</a></p>
                                     @endif
 
                                 </div>
                                 <div class="col-md-6 col-xs-12">
-                                    <div class="tmp_type_driver">@if(!empty($arrOrder->type_driver))Phương thức vận chuyển: {{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif</div>
-                                    <div class="tmp_name_driver">@if(!empty($arrOrder->name_driver))Tên tài xế: {{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif</div>
-                                    <div class="tmp_phone_driver">@if(!empty($arrOrder->phone_driver))Số điện thoại: {{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif</div>
-                                    <div class="tmp_number_license_driver">@if(!empty($arrOrder->number_license_driver))Biển số xe: {{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif</div>
+                                    <div class="tmp_type_driver ">@if(!empty($arrOrder->type_driver))
+                                            <label for="" class="transport_tmp">Phương thức vận chuyển: </label>
+                                            <span style="font-weight: bold;"> {{$arrOrder->type_driver}}@else{{old('type_driver')}} </span> @endif
+                                    </div>
+                                    <div class="tmp_name_driver ">@if(!empty($arrOrder->name_driver))
+                                            <label for="" class="transport_tmp">Tên tài xế: </label>
+                                            <span style="font-weight: bold;"> {{$arrOrder->name_driver}}@else{{old('name_driver')}} </span> @endif
+                                    </div>
+                                    <div class="tmp_phone_driver ">@if(!empty($arrOrder->phone_driver))
+                                            <label for="" class="transport_tmp">Số điện thoại: </label>
+                                            <span style="font-weight: bold;"> {{$arrOrder->phone_driver}}@else{{old('phone_driver')}} </span> @endif
+                                    </div>
+                                    <div class="tmp_number_license_driver ">@if(!empty($arrOrder->number_license_driver))
+                                            <label for="" class="transport_tmp">Biển số xe: </label>
+                                            <span style="font-weight: bold;"> {{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}} </span> @endif
+                                    </div>
                                     <input type="hidden" name="type_driver" class="type_driver" value="@if(!empty($arrOrder->type_driver)){{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif">
                                     <input type="hidden" name="name_driver" class="name_driver" value="@if(!empty($arrOrder->name_driver)){{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif">
                                     <input type="hidden" name="phone_driver" class="phone_driver" value="@if(!empty($arrOrder->phone_driver)){{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif">
@@ -128,7 +143,7 @@
 
                                 <div class="text-center">
                                     @if(Request::is('admin/orders/create'))
-                                        <button type="submit" class="btn btn-raised btn-success">Tạo mới</button>
+                                        <button type="submit" class="btn btn-raised btn-success">Tạo mới </button>
                                     @else
                                         <button type="submit" class="btn btn-raised btn-success">Cập nhật</button>
                                         <form action=""></form>
@@ -699,6 +714,15 @@
                 }
             });
         }
+    });
+</script>
+<script>
+    $(document).on("click", ".transport_info", function () {
+        var _self = $(this);
+        $('.modal-transport input[name="name_driver"]').val(_self.data('name_driver'));
+        $('.modal-transport input[name="type_driver"]').val(_self.data('type_driver'));
+        $('.modal-transport input[name="phone_driver"]').val(_self.data('phone_driver'));
+        $('.modal-transport input[name="number_license_driver"]').val(_self.data('number_license_driver'));
     });
 </script>
 @endsection

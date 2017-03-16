@@ -143,10 +143,17 @@
 										<div class="row text-center">
 											<div class="col-xs-6 col-sm-6 col-md-6 col-md-offset-3">
 												<div style="height: 100px; background-color: #fff; padding: 15px 15px 0px 15px; ">
-													<button id="phoneKho" style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;"
-														data-toggle="modal" data-target=".modal-buy" class="btn btn-warning btnBuy" data-phone="{{$product->phoneKho}}">
-														Mua Ngay
-													</button>
+													@if (( !Auth::check()))
+														<button id="" style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;"
+																data-toggle="modal" data-target=".modal-login" class="btn btn-warning required_login">
+															Mua Ngay
+														</button>
+													@else
+														<button id="phoneKho" style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;"
+															data-toggle="modal" data-target=".modal-buy" class="btn btn-warning" data-phone="{{$product->phoneKho}}" data-title="Mua Ngay" data-namekho="{{$product->nameKho}}">
+															Mua Ngay
+														</button>
+													@endif
 													<br>
 													<p>Mua trực tiếp với nhà cung cấp</p>
 												</div>
@@ -821,25 +828,62 @@
 			</div><!--/ .page_wrapper-->
 			
 			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
+	@include('admin.partial.modal_requiredlogin')
 	<div class="modal fade modal-buy" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
 		 data-backdrop="static">
 		<div class="modal-dialog modal-buy">
 			<div class="modal-content">
-
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"></button>
-					<h4 class="modal-title" id="myModalLabel">Mua ngay</h4>
+					<h4 class="modal-title text-center" id="myModalLabel">Mua ngay</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
+					<div class="form-group" style="padding-left: 70px;">
 						<p><strong>Hãy liên hệ Chủ kho theo thông tin bên dưới để mua trực tiếp</strong></p>
-						<br>
-						<input type="text" name="phone" value="" disabled>
+						<p>Tên Chủ kho : <strong name="namekho"></strong> </p>
+						<p>Số điện thoại: <strong class="text-center" name="phone"></strong></p>
 					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Đóng</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	{{--<div class="modal fade modal-login" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+		 data-backdrop="static">
+		<div class="modal-dialog modal-login">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Bạn hãy đăng nhập để có thể Mua ngay</h4>
+				</div>
+				<div class="modal-body">
+					<div class="col-xs-6 col-sm-6 col-md-6 text-center">
+						<button style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;" class="btn btn-success">
+							Đăng nhập
+						</button>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 text-center">
+						<button style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;" class="btn btn-warning">
+							Đăng ký
+						</button>
+					</div>
+					<br>
+					<p class="text-center" style="padding-top: 30px;">----- Hỗ trợ và chăm sóc khách hàng -----</p>
+					<div style="text-align:center;margin-top:10px" class="col-sm-6 col-md-6">
+						<i class="fa fa-phone" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>
+						<span>Hotline - {{\App\Setting::getValue('phone')}}</span>
+					</div>
+					<div style="text-align:center;margin-top:10px" class="col-sm-6 col-md-6">
+						<i class="fa fa-envelope-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>
+						<span>{{\App\Setting::getValue('email')}}</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>--}}
 @endsection
 @section('add-script')
 	<script src="{{asset('frontend/js/jquery.elevateZoom-3.0.8.min.js')}}"></script>
@@ -855,7 +899,9 @@
 	<script>
 		$(document).on("click", "#phoneKho", function () {
 			var _self = $(this);
-			$('.modal-buy input[name="phone"]').val(_self.data('phone'));
+			$('.modal-product .title').text(_self.data('title'));
+			$('.modal-buy [name="phone"]').html(_self.data('phone'));
+			$('.modal-buy [name="namekho"]').html(_self.data('namekho'));
 		});
 	</script>
 	@endsection

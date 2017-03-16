@@ -196,13 +196,21 @@ class OrderController extends Controller
      */
     public function create()
     {
+        $strUserID = Auth::user()->id;
         $customer = User::leftjoin('role_user','role_user.user_id','=','users.id')
             ->where('role_user.role_id',3)
             ->orderBy('id','DESC')
             ->get();
         $province = Province::get();
         $district = District::get();
-        $products = Product::get();
+        if (Auth::user()->hasRole('kho')){
+            $products = Product::where('kho',$strUserID)
+                ->where('status',1)
+                ->get();
+        }
+        else {
+            $products = Product::where('status',1)->get();
+        }
         $order_status = OrderStatus::get();
         $data=[
             'customer' =>$customer,
@@ -212,7 +220,7 @@ class OrderController extends Controller
             'order_status' => $order_status,
 
         ];
-//        dd($order_status);
+        //dd($products);
         return view('admin.orders.edit',$data);
     }
 

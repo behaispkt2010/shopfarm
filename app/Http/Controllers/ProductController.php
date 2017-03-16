@@ -303,11 +303,12 @@ public function AjaxGetProduct(Request $request){
             $data['slug'] =  $data['slug'].'-'.$today;
         }
         if (($product->status == 0) && $request->get('status') == 1){
-            $getCodeKho = Util::ProductCode($product->id);
+            $getCodeProduct = Util::ProductCode($product->id);
             $dataNotify['keyname'] = Util::$newproductSuccess;
             $dataNotify['title'] = "Sản phẩm mới";
-            $dataNotify['content'] = "Sản phẩm ".$getCodeKho." đã được duyệt.";
+            $dataNotify['content'] = "Sản phẩm ".$getCodeProduct." đã được duyệt.";
             $dataNotify['author_id'] = Auth::user()->id;
+            $dataNotify['orderID_or_productID'] = $product->id;
             $dataNotify['roleview'] = $product->kho;
             Notification::create($dataNotify);
         }
