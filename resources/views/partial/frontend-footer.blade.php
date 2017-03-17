@@ -123,57 +123,29 @@
 							</div><!--/ [col]-->
 							<div class="col-md-3 col-sm-6">
 
-								<!-- - - - - - - - - - - - - - Blog widget - - - - - - - - - - - - - - - - -->
+								<a href="{{url('/resisterWareHouse')}}"><img src="{{asset('/images/dangkychukho.jpg')}}" alt=""></a>
 
-								<section class="widget">
+								{{--<section class="widget">
 
 									<h4>Tin tức mới nhất</h4>
-
 									<ul class="list_of_entries">
-
-										<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
 										@foreach(\App\Article::getNewArticle() as $item)
 										<li>
-
 											<article class="entry">
-
-												<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
-
 												<a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}" class="entry_thumb">
-
 													<img src="{{url('/')}}{{$item->image}}" alt="">
-
 												</a>
-
-												<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
 												<div class="wrapper">
-
 													<h6 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}">{{$item->title}}</a></h6>
-
-													<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
-
 													<div class="entry_meta">
-
 														<span><i class="icon-calendar"></i> {{$item->created_at->format('d-m-Y')}}</span>
-
-													</div><!--/ .entry_meta-->
-
-													<!-- - - - - - - - - - - - - - End of byline - - - - - - - - - - - - - - - - -->
-
-												</div><!--/ .wrapper-->
-
-											</article><!--/ .clearfix-->
-
+													</div>
+												</div>
+											</article>
 										</li>
-											@endforeach
-
+										@endforeach
 									</ul>
-
-								</section><!--/ .widget-->
-
-								<!-- - - - - - - - - - - - - - End of blog widget - - - - - - - - - - - - - - - - -->
-
+								</section>--}}
 							</div>
 
 

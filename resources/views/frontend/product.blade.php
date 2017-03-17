@@ -20,7 +20,7 @@
 
 			<aside class="col-md-3 col-sm-4">
 
-						@include('frontend.witgets.category-product')
+					@include('frontend.witgets.category-product')
 
 				<!-- - - - - - - - - - - - - - Infoblocks - - - - - - - - - - - - - - - - -->
 
@@ -122,17 +122,29 @@
 
 									<div class="description">
 
-										<a href="#">{{$product->title}}</a>
+										<a href="#" class="clearfix">{{$product->title}}</a>
 
-										<div class="clearfix product_info">
-
-											<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
-											<span class="alignright">
-											{!! \App\Rate::getRateProduct($product->id)!!}
-											</span>
-
+										<div class="kho_info clearfix">
+											<a href="#" class="alignleft photo">
+												@if($product->levelKho == 1)
+													<img src="{{url('/images')}}/level1.png" alt="">
+												@elseif($product->levelKho == 2)
+													<img src="{{url('/images')}}/level2.png" alt="">
+												@elseif($product->levelKho == 3)
+													<img src="{{url('/images')}}/level3.png" alt="">
+												@else
+													<img src="{{url('/images')}}/level0.jpg" alt="">
+												@endif
+											</a>
+											<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
 										</div>
-
+										<div class="clearfix product_info">
+											<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+											<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+										</div>
+										<div class="clearfix product_info">
+											<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+										</div>
 									</div>
 
 									<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->

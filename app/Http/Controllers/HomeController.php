@@ -45,7 +45,7 @@ class HomeController extends Controller
         $getBestStarsProduct = Product::getBestStarsProduct(9);
         $getBestSellerProduct = Product::getBestSellerProduct(9);
         $getNewProduct = Product::getNewProduct(9);
-
+        //dd($getNewProduct);
 
         $data = [
             'getNewProduct' =>$getNewProduct,

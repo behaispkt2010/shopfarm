@@ -5,7 +5,7 @@
     <div class="col-xs-12 col-sm-3 col-md-3">
 
     </div>
-    <div class="col-xs-12 col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3">
+    <div class="col-xs-12 col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3" style="padding-top: 20px;">
         <div class="content_verify">
             <div class="col-xs-12 col-sm-5 col-md-5">
                 <div class="row">
@@ -79,8 +79,13 @@
                     </tr>
                     <tr>
                         <td>Địa chỉ:</td>
-                        <td>@if (!empty($ware_house->ware_houses_address)) {{$ware_house->ware_houses_address}} @endif</td>
-                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                        @if (( !Auth::check()))
+                            <td><a href="" class="required_login" style="color: blue;">Đăng nhập để địa chỉ</a></td>
+                            <td class="td_icon_verified"><span class="info-verified"></span></td>
+                        @else
+                            <td>@if (!empty($ware_house->ware_houses_address)) {{$ware_house->ware_houses_address}} @endif</td>
+                            <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                        @endif
                     </tr>
                     </tbody>
                 </table>
@@ -96,57 +101,83 @@
                     </tr>
                     <tr>
                         <td>Điện thoại</td>
-                        <td>@if (!empty($ware_house->phone_number)) {{$ware_house->phone_number}} @endif</td>
-                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                        @if (( !Auth::check()))
+                            <td><a href="" class="required_login" style="color: blue;">Đăng nhập để địa chỉ</a></td>
+                            <td class="td_icon_verified"><span class="info-verified"></span></td>
+                        @else
+                            <td>@if (!empty($ware_house->phone_number)) {{$ware_house->phone_number}} @endif</td>
+                            <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                        @endif
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>@if (!empty($ware_house->email)) {{$ware_house->email}} @endif</td>
-                        <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                        @if (( !Auth::check()))
+                            <td><a href="" class="required_login" style="color: blue;">Đăng nhập để địa chỉ</a></td>
+                            <td class="td_icon_verified"><span class="info-verified"></span></td>
+                        @else
+                            <td>@if (!empty($ware_house->email)) {{$ware_house->email}} @endif</td>
+                            <td class="td_icon_verified"><span class="info-verified">@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</span></td>
+                        @endif
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="clear"></div>
         </div>
-        {{--<div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-10 col-sm-10 col-md-10" style="padding-bottom: 30px;">
             <div class="row">
                 <div class="detail_veryfi">
-                    <div class="tile_veryfy">
-                        <h4>Quy mô sản xuất</h4>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Thị trường</th>
-                                <th>Ngành hàng</th>
-                                <th>Nhân sự</th>
-                                <th>Sản lượng</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <a class="product-price btn_login" href="#" data-toggle="modal" data-target="#login_modal"><strong>Đăng nhập để xem thông tin</strong></a>
-                                </td>
-                                <td>
-                                    <a class="product-price btn_login" href="#" data-toggle="modal" data-target="#login_modal"><strong>Đăng nhập để xem thông tin</strong></a>
-                                </td>
-                                <td>
-                                    <a class="product-price btn_login" href="#" data-toggle="modal" data-target="#login_modal"><strong>Đăng nhập để xem thông tin</strong></a>
-                                </td>
-                                <td>
-                                    <a class="product-price btn_login" href="#" data-toggle="modal" data-target="#login_modal"><strong>Đăng nhập để xem thông tin</strong></a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="clear"></div>
+                    <div class="detail_veryfi">
+                        <div class="tile_veryfy">
+                            <h4>Kho hàng</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Địa chỉ</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    @if (( !Auth::check()))
+                                        <td>
+                                        <a href="" class="required_login" style="color: blue;">Đăng nhập để xem địa chỉ</a>
+                                        </td>
+                                    @else
+                                        <td>{{$ware_house->ware_houses_address}}</td>
+                                    @endif
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="clear"></div>
+                            <div class="block-inner">
+                                <div class="left_arrow_carousel">
+                                    <i tag="2" class="fa fa-chevron-left" aria-hidden="true"></i>
+                                </div>
+                                <ul id="owl-shop" class="products owl-carousel owl-theme" style="opacity: 1; display: block;">
+                                    <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 1320px; left: 0px; display: block; transition: all 0ms ease; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 165px;"><li class="image_verified">
+                                            <img src="https://scdn.thitruongsi.com/image/cached/size/w1280-h0/img/product/2017/03/09/a4b1af90-0481-11e7-83cf-4b366e3c6043.jpg" alt="" data-pagespeed-url-hash="946240150" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                        </li></div><div class="owl-item" style="width: 165px;"><li class="image_verified">
+                                            <img src="https://scdn.thitruongsi.com/image/cached/size/w1280-h0/img/product/2017/03/09/a4db57a0-0481-11e7-83cf-4b366e3c6043.jpg" alt="" data-pagespeed-url-hash="2437335082" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                        </li></div><div class="owl-item" style="width: 165px;"><li class="image_verified">
+                                            <img src="https://scdn.thitruongsi.com/image/cached/size/w1280-h0/img/product/2017/03/09/a4f23b00-0481-11e7-92f0-7335f34c9bcc.jpg" alt="" data-pagespeed-url-hash="2821219811" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                        </li></div><div class="owl-item" style="width: 165px;"><li class="image_verified">
+                                            <img src="https://scdn.thitruongsi.com/image/cached/size/w1280-h0/img/product/2017/03/09/a4fc9b40-0481-11e7-a4ba-810d7f1ee6bd.jpg" alt="" data-pagespeed-url-hash="1988268675" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                        </li></div></div></div>
+                                    <div class="owl-controls clickable" style="display: none;"><div class="owl-pagination"><div class="owl-page"><span class=""></span></div></div></div></ul>
+                                <div class="right_arrow_carousel">
+                                    <i style="display:block" tag="2" class="fa fa-chevron-right" aria-hidden="true"></i>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>--}}
+        </div>
+        <div class="clear"></div>
+        @include('admin.partial.modal_requiredlogin')
         {{--<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
                 <div class="detail_veryfi">

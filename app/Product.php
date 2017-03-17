@@ -19,24 +19,34 @@ class Product extends Model
 //        $hotProducts = Product::get();
 //    }
     public static function getNewProduct(){
-        $newProducts = Product::orderBy('id',"DESC")->take(4)->get();
+        $newProducts = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+            ->leftjoin('users','users.id','ware_houses.user_id')
+            ->selectRaw('products.*')
+            ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+            ->orderBy('products.id',"DESC")->take(8)->get();
         return $newProducts;
 
     }
     public static function getBestSellerProduct($limit=0){
         if($limit==0) {
             $bestSellerProduct = ProductOrder::leftJoin('products', 'product_orders.id_product', '=', 'products.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
                 ->groupBy('product_orders.id_product')
                 ->selectRaw('products.*, sum(product_orders.num) as numOrder')
                 ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                 ->orderBy('numOrder', 'DESC')
                 ->get();
         }
         else{
             $bestSellerProduct = ProductOrder::leftJoin('products', 'product_orders.id_product', '=', 'products.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
                 ->groupBy('product_orders.id_product')
                 ->selectRaw('products.*, sum(product_orders.num) as numOrder')
                 ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                 ->orderBy('numOrder', 'DESC')
                 ->take($limit)
                 ->get();
@@ -49,14 +59,22 @@ class Product extends Model
 //        dd($getCategory);
 
         if($limit==0) {
-            $getRelatedProduct = Product::where('category', $getCategory->category)
-                ->whereNotIn('id', [$id])
+            $getRelatedProduct = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
+                ->selectRaw('products.*')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->where('products.category', $getCategory->category)
+                ->whereNotIn('products.id', [$id])
                 ->inRandomOrder()
                 ->get();
         }
         else{
-            $getRelatedProduct = Product::where('category', $getCategory->category)
-                ->whereNotIn('id', [$id])
+            $getRelatedProduct = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
+                ->selectRaw('products.*')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->where('products.category', $getCategory->category)
+                ->whereNotIn('products.id', [$id])
                 ->inRandomOrder()
                 ->take($limit)
                 ->get();
@@ -67,6 +85,10 @@ class Product extends Model
     public static function getBestStarsProduct($limit=0){
         if($limit==0) {
             $bestSellerProduct = Rate::leftJoin('products', 'rates.product_id', '=', 'products.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
+                ->selectRaw('products.*')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                 ->groupBy('rates.product_id')
                 ->selectRaw('products.*, sum(rates.rate) as numRate')
                 ->orderBy('numRate', 'DESC')
@@ -74,6 +96,10 @@ class Product extends Model
         }
         else{
             $bestSellerProduct = Rate::leftJoin('products', 'rates.product_id', '=', 'products.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
+                ->selectRaw('products.*')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                 ->groupBy('rates.product_id')
                 ->selectRaw('products.*, sum(rates.rate) as numRate')
                 ->orderBy('numRate', 'DESC')
@@ -97,5 +123,24 @@ class Product extends Model
 
         return $getLevelKhoProduct;
     }
-
+    public static function getProductByKhoVIP($limit=0){
+        if($limit==0) {
+            $getProductByKhoVIP = Product::leftjoin('ware_houses', 'ware_houses.user_id', 'products.kho')
+                ->leftjoin('users', 'users.id', 'ware_houses.user_id')
+                ->selectRaw('products.*')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->where('ware_houses.level', 3)
+                ->get();
+        }
+        else{
+            $getProductByKhoVIP = Product::leftjoin('ware_houses', 'ware_houses.user_id', 'products.kho')
+                ->leftjoin('users', 'users.id', 'ware_houses.user_id')
+                ->selectRaw('products.*')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->where('ware_houses.level', 3)
+                ->take($limit)
+                ->get();
+        }
+        return $getProductByKhoVIP;
+    }
 }

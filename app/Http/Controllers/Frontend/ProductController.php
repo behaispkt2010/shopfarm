@@ -21,27 +21,45 @@ class ProductController extends Controller
     public function index(Request $request){
         if(!empty($request->get('q'))){
             if($request->get('q')=="ten-san-pham") {
-                $products = Product::orderBy('title', 'DESC')
+                $products = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                    ->leftjoin('users','users.id','ware_houses.user_id')
+                    ->selectRaw('products.*')
+                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->orderBy('title', 'DESC')
                     ->paginate(16);
             }
             elseif($request->get('q')=="moi-nhat") {
-                $products = Product::orderBy('id', 'DESC')
+                $products = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                    ->leftjoin('users','users.id','ware_houses.user_id')
+                    ->selectRaw('products.*')
+                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                    ->orderBy('id', 'DESC')
                     ->paginate(16);
             }
             elseif($request->get('q')=="cap-kho") {
-                $products = Product::select('products.*')
-                ->leftJoin('ware_houses','products.kho','ware_houses.user_id')
-                ->orderBy('ware_houses.level', 'DESC')
+                $products = Product::leftJoin('ware_houses','products.kho','ware_houses.user_id')
+                    ->leftjoin('users','users.id','ware_houses.user_id')
+                    ->selectRaw('products.*')
+                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                    ->orderBy('ware_houses.level', 'DESC')
                     ->paginate(16);
             }
             elseif($request->get('q')=="gia") {
-                $products = Product::orderBy('price_out', 'ASC')
+                $products = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                    ->leftjoin('users','users.id','ware_houses.user_id')
+                    ->selectRaw('products.*')
+                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                    ->orderBy('price_out', 'ASC')
                     ->paginate(16);
             }
 
         }
         else {
-            $products = Product::paginate(16);
+            $products = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
+                ->selectRaw('products.*')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->paginate(16);
         }
         $data =[
           "products"=>$products,

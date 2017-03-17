@@ -176,7 +176,7 @@ Route::get('/infoconfirmkho', 'Frontend\PageController@InfoConfirmKho');
 Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');
 
 Route::get('/resisterWareHouse','Frontend\PageController@GetResisterWareHouse');
-Route::Post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');
+Route::post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');
 
 Route::get('/about','Frontend\PageController@About');
 Route::get('/{slug}','Frontend\PageController@CustomPage');

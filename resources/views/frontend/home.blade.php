@@ -12,15 +12,10 @@
 
 						<div class="row">
 
-							<div class="col-xs-12">
-
-
-
+							<div class="col-xs-12 col-md-12">
 									{!! \App\Setting::getValue('slider')!!}
 								</div><!--/ #layerslider-->
-
 								<!-- - - - - - - - - - - - - - End of layer slider - - - - - - - - - - - - - - - - -->
-								
 							</div><!--/ [col]-->
 
 						</div><!--/ .row-->
@@ -29,11 +24,12 @@
 
 					<div class="row">
 
-						<aside class="col-md-3 col-sm-4">
-								@include('partial.frontend-banner')
+						<aside class="col-md-2">
+							@include('frontend.witgets.category-product')
+							@include('partial.frontend-banner')
 						</aside>
 
-						<main class="col-md-9 col-sm-8">
+						<main class="col-md-10 col-sm-12">
 
 							<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
@@ -92,44 +88,46 @@
 
 																<div class="description">
 
-																	<a href="#">{{$product->title}}</a>
+																	<a href="#" class="clearfix">{{$product->title}}</a>
 
-																	<div class="clearfix product_info">
-
-																		<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
-																		<span class="alignright">
-											{!! \App\Rate::getRateProduct($product->id)!!}
-											</span>
-
+																	<div class="kho_info clearfix">
+																		<a href="#" class="alignleft photo">
+																		@if($product->levelKho == 1)
+																			<img src="{{url('/images')}}/level1.png" alt="">
+																		@elseif($product->levelKho == 2)
+																			<img src="{{url('/images')}}/level2.png" alt="">
+																		@elseif($product->levelKho == 3)
+																			<img src="{{url('/images')}}/level3.png" alt="">
+																		@else
+																			<img src="{{url('/images')}}/level0.jpg" alt="">
+																		@endif
+																		</a>
+																		<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
 																	</div>
-
+																	<div class="clearfix product_info">
+																		<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+																		<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+																	</div>
+																	<div class="clearfix product_info">
+																		<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+																	</div>
 																</div>
 
 																<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
 
 															</div><!--/ .product_item-->
-
 														</div>
-														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=3|| $j>=count($getNewProduct))
+														<?php $i = $i+1; $j=$j+1; ?>
+														@if ($i>=4 || $j>=count($getNewProduct))
 															<?php $i=0 ?>
 															</div>
 														@endif
-
 											@endforeach
-
-
-
 										</div>
-
 										<!-- - - - - - - - - - - - - - View all products - - - - - - - - - - - - - - - - -->
-
 										<footer class="bottom_box">
-
 											<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
-
 										</footer>
-
 										<!-- - - - - - - - - - - - - - End of view all products - - - - - - - - - - - - - - - - -->
 
 									</div>
@@ -176,16 +174,30 @@
 															<div class="description">
 
 																<a href="#">{{$product->title}}</a>
-
+																<div class="kho_info clearfix">
+																	<a href="#" class="alignleft photo">
+																		@if($product->levelKho == 1)
+																			<img src="{{url('/images')}}/level1.png" alt="">
+																		@elseif($product->levelKho == 2)
+																			<img src="{{url('/images')}}/level2.png" alt="">
+																		@elseif($product->levelKho == 3)
+																			<img src="{{url('/images')}}/level3.png" alt="">
+																		@else
+																			<img src="{{url('/images')}}/level0.jpg" alt="">
+																		@endif
+																	</a>
+																	<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+																</div>
 																<div class="clearfix product_info">
 
 																	<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
 																	<span class="alignright">
 											{!! \App\Rate::getRateProduct($product->id)!!}
 											</span>
-
 																</div>
-
+																<div class="clearfix product_info">
+																	<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+																</div>
 															</div>
 
 															<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
@@ -194,7 +206,7 @@
 
 													</div>
 													<?php $i = $i+1;$j=$j+1; ?>
-													@if($i>=3|| $j>=count($getBestStarsProduct))
+													@if($i>=4|| $j>=count($getBestStarsProduct))
 														<?php $i=0 ?>
 												</div>
 												@endif
@@ -271,7 +283,20 @@
 													<div class="description">
 
 														<a href="#">{{$product->title}}</a>
-
+														<div class="kho_info clearfix">
+															<a href="#" class="alignleft photo">
+																@if($product->levelKho == 1)
+																	<img src="{{url('/images')}}/level1.png" alt="">
+																@elseif($product->levelKho == 2)
+																	<img src="{{url('/images')}}/level2.png" alt="">
+																@elseif($product->levelKho == 3)
+																	<img src="{{url('/images')}}/level3.png" alt="">
+																@else
+																	<img src="{{url('/images')}}/level0.jpg" alt="">
+																@endif
+															</a>
+															<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+														</div>
 														<div class="clearfix product_info">
 
 															<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
@@ -280,7 +305,9 @@
 											</span>
 
 														</div>
-
+														<div class="clearfix product_info">
+															<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+														</div>
 													</div>
 
 													<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
@@ -289,7 +316,7 @@
 
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
-											@if($i>=3|| $j>=count($bestSellerProduct))
+											@if($i>=4|| $j>=count($bestSellerProduct))
 												<?php $i=0 ?>
 										</div>
 										@endif

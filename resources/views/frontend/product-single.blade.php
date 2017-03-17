@@ -214,13 +214,10 @@
 								<!-- - - - - - - - - - - - - - Seller Information - - - - - - - - - - - - - - - - -->
 
 								<section class="section_offset">
-						@if(!empty($product->levelKho))
+							@if(!empty($product->levelKho))
 									<h3>Thông tin chủ kho</h3>
-
 									<div class="theme_box">
-
 										<div class="seller_info clearfix">
-
 											<a href="{{ url('/shop/'.$product->ware_houses_id) }}" class="alignleft photo">
 												@if($product->levelKho == 1)
 												<img src="{{url('/images')}}/level1.png" alt="">
@@ -229,49 +226,24 @@
 												@elseif($product->levelKho == 3)
 													<img src="{{url('/images')}}/level3.png" alt="">
 												@endif
-
-
-
 											</a>
-
 											<div class="wrapper">
-
 												<a href="{{ url('/shop/'.$product->ware_houses_id) }}"><b>{{$product->nameKho}}</b></a>
-
 												<p class="seller_category">Chủ kho cấp {{$product->levelKho}}</p>
-
 											</div>
 
 										</div><!--/ .seller_info-->
 
 										<ul class="seller_stats">
-
 											<li>
-												
 												<ul class="topbar">
-													
 													<li>{{$product->addressKho}}</li>
-
 													<li>Mã: #{{$product->idKho}}</li>
-
 												</ul>
-
 											</li>
-
-											{{--<li><span class="bold">99.8%</span> Positive Feedback</li>--}}
-
-											{{--<li><span class="bold">7606</span> Transactions</li>--}}
-
 										</ul>
-
-
-
-									</div><!--/ .theme_box -->
-
-
-@endif
-									{{--</footer>--}}
-
+									</div>
+									@endif
 								</section>
 
 								<!-- - - - - - - - - - - - - - End of seller information - - - - - - - - - - - - - - - - -->
@@ -282,7 +254,7 @@
 
 									<a href="#" class="banner">
 										
-										<img src="../../../frontend/images/banner_img_13.jpg" alt="">
+										<img src="{{asset('frontend/images/banner_img_13.jpg')}}" alt="">
 
 									</a>
 
@@ -299,152 +271,98 @@
 					<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
 					<div class="section_offset">
-
 						<div class="tabs type_2">
-
-							<!-- - - - - - - - - - - - - - Navigation of tabs - - - - - - - - - - - - - - - - -->
-
 							<ul class="tabs_nav clearfix">
-
 								<li><a href="#tab-1">Thông tin chi tiết</a></li>
 								<li><a href="#tab-2">Vận chuyển - Thanh toán</a></li>
 								<li><a href="#tab-3">Đánh giá</a></li>
-
 							</ul>
-							
-							<!-- - - - - - - - - - - - - - End navigation of tabs - - - - - - - - - - - - - - - - -->
-
-							<!-- - - - - - - - - - - - - - Tabs container - - - - - - - - - - - - - - - - -->
 
 							<div class="tab_containers_wrap">
-
-								<!-- - - - - - - - - - - - - - Tab - - - - - - - - - - - - - - - - -->
-
 								<div id="tab-1" class="tab_container">
-
 									{!! $product->content!!}
-								</div><!--/ #tab-1-->
-
-								<!-- - - - - - - - - - - - - - End tab - - - - - - - - - - - - - - - - -->
-
-								<!-- - - - - - - - - - - - - - Tab - - - - - - - - - - - - - - - - -->
-
+								</div>
 								<div id="tab-2" class="tab_container">
-
-									{!! $product->content!!}
-
-								</div><!--/ #tab-2-->
-
-								<!-- - - - - - - - - - - - - - End tab - - - - - - - - - - - - - - - - -->
-
-								<!-- - - - - - - - - - - - - - Tab - - - - - - - - - - - - - - - - -->
-
+									<div class="tabs-content active" id="tab1" style="display: block;">
+										<p><span style="color: #008000; font-size: 12pt;"><span style="color: #99cc00;"><strong>Hình thức vận chuyển</strong></span>:&nbsp;<br><br><strong>Xe khách | Chành xe</strong><br></span></p>
+										<p><span style="color: #008000; font-size: 12pt;">- Áp dụng số lượng tối thiểu : <strong>300 Kg</strong>&nbsp;</span><br>
+											<span style="color: #008000; font-size: 12pt;">-&nbsp;Phí vận chuyển phụ thuộc Nhà Xe | Chành Xe theo từng khu vực.
+												<br><br><strong>Xe tải</strong><br>- Áp dụng số lượng tối thiểu : <strong>2000 Kg</strong>&nbsp;<br>-&nbsp;Phí vận chuyển phụ thuộc theo từng khu vực.
+											</span>
+										</p>
+									</div>
+									<br><br>
+									<div class="tabs-content " id="tab2" style="display: block;">
+										<p><span style="color: #008000; font-size: 12pt;"><span style="color: #99cc00;"><strong>Hình thức thanh toán</strong></span></span></p>
+										<p><span style="color: #008000; font-size: 12pt;"><br><strong>Đơn hàng đầu tiên</strong></span></p>
+										<p><span style="color: #008000; font-size: 12pt;">Đặt cọc 30 - 50% Giá trị đơn hàng: Giao hàng tận nơi và nhận tiền còn lại&nbsp;qua nhà xe hoặc chuyển khoản.</span></p>
+										<p><span style="color: #008000; font-size: 12pt;"><strong>Đơn hàng thứ 2 trở đi</strong></span></p>
+										<p><span style="color: #008000; font-size: 12pt;">Nhận hàng tận nơi và gửi tiền cho nha xe hoặc chuyển khoản.<br><br>
+												<span style="color: #99cc00;"><strong>Thông tin chuyển khoản:</strong></span><br>
+												+ {{\App\Setting::getValue('chinhanh1')}}<br>
+												Chủ TK: {{\App\Setting::getValue('chutk1')}} <br>Số TK: {{\App\Setting::getValue('stk1')}} <br>
+												+ {{\App\Setting::getValue('chinhanh2')}} <br>
+												Chủ TK: {{\App\Setting::getValue('chutk2')}} <br>Số TK: {{\App\Setting::getValue('stk2')}} <br><br>
+												<span style="color: #ff0000;">
+													Để yên tâm, trước khi chuyển có thể xác nhận thông tin chuyển khoản qua SĐT <strong>{{\App\Setting::getValue('phone')}}</strong> Tín
+												</span>
+											</span></p>
+									</div>
+								</div>
 								<div id="tab-3" class="tab_container">
-
 									<section class="section_offset">
-
-
-										<div class="comment">
-											<div class="fb-comments" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-width="100%" data-numposts="5"></div>
-										</div>
-
-
-
-									</section><!--/ .section_offset -->
-
-									<section class="section_offset">
-
-
-
 										<div class="row">
 											<div class="col-lg-4 col-md-6">
 												<p>Đóng góp đánh giá: <a href="#">{{$product->title}}</a><br>
 													@if( !Auth::check())<span style="color: red">Vui lòng đăng nhập để được đánh giá*</span>@endif
 												</p>
 											</div>
-
 											<div class="col-lg-8 col-md-6 text-right">
-
-												<form action="/customer-rate" method="post" class="type_2">
+												<form action="{{url('/customer-rate')}}" method="post" class="type_2">
 												<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-												<!-- - - - - - - - - - - - - - Rate the - - - - - - - - - - - - - - - - -->
-
 												<div class="table_wrap rate_table">
-
 													<table>
-
 														<thead>
-
 															<tr>
-																	
 																<th></th>
 																<th>1 sao</th>
 																<th>2 sao</th>
 																<th>3 sao</th>
 																<th>4 sao</th>
 																<th>5 sao</th>
-
 															</tr>
-
 														</thead>
-
 														<tbody>
-
 															<tr>
-																
 																<td>Giá</td>
-
 																<td>
-																		
 																	<input checked type="radio" value="1" name="price_rate" id="rate_1">
 																	<label for="rate_1"></label>
-
 																</td>
-
 																<td>
-																		
 																	<input type="radio" value="2" name="price_rate" id="rate_2">
 																	<label for="rate_2"></label>
-
 																</td>
-
 																<td>
-																		
 																	<input type="radio" value="3" name="price_rate" id="rate_3">
 																	<label for="rate_3"></label>
-
 																</td>
-
 																<td>
-																		
 																	<input type="radio" value="4" name="price_rate" id="rate_4">
 																	<label for="rate_4"></label>
-
 																</td>
-
 																<td>
-																		
 																	<input type="radio" value="5" name="price_rate" id="rate_5">
 																	<label for="rate_5"></label>
-
 																</td>
-
 															</tr>
-
 															<tr>
-																
 																<td>Giao hàng</td>
-
 																<td>
-																		
 																	<input checked type="radio" value="1" name="value_rate" id="rate_6">
 																	<label for="rate_6"></label>
-
 																</td>
-
 																<td>
-																		
 																	<input type="radio" value="2" name="value_rate" id="rate_7">
 																	<label for="rate_7"></label>
 
@@ -605,7 +523,13 @@
 								<!-- - - - - - - - - - - - - - End tab - - - - - - - - - - - - - - - - -->
 
 							</div><!--/ .tab_containers_wrap -->
-
+							<div>
+								<section class="section_offset">
+									<div class="comment">
+										<div class="fb-comments" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-width="100%" data-numposts="5"></div>
+									</div>
+								</section>
+							</div>
 							<!-- - - - - - - - - - - - - - End of tabs containers - - - - - - - - - - - - - - - - -->
 
 						</div><!--/ .tabs-->
@@ -625,7 +549,7 @@
 							<ul class="tabs_nav clearfix">
 
 								<li><a href="#tab-5">Sản phẩm có thể bạn thích</a></li>
-								<li><a href="#tab-6">Sản phẩm đánh giá cao</a></li>
+								<li><a href="#tab-6">Nhà cung cấp có uy tín</a></li>
 								<li><a href="#tab-7">Sản phẩm bán chạy</a></li>
 
 							</ul>
@@ -644,39 +568,33 @@
 										@foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
 										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
-										<div class="product_item">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
+										<div class="product_item" style="max-width: 219px;">
 											<div class="image_wrap">
 
 												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-												{{--<div class="label_new">New</div>--}}
-
-												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
+											</div>
 											<div class="description">
-
-												<a href="#">{{$product->title}}</a>
-
+												<a href="#" class="clearfix">{{$product->title}}</a>
+												<div class="kho_info clearfix">
+													<a href="#" class="alignleft photo">
+														@if($product->levelKho == 1)
+															<img src="{{url('/images')}}/level1.png" alt="">
+														@elseif($product->levelKho == 2)
+															<img src="{{url('/images')}}/level2.png" alt="">
+														@elseif($product->levelKho == 3)
+															<img src="{{url('/images')}}/level3.png" alt="">
+														@else
+															<img src="{{url('/images')}}/level0.jpg" alt="">
+														@endif
+													</a>
+													<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+												</div>
 												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-													{!! \App\Rate::getRateProduct($product->id)!!}
-
+													<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+												</div>
+												<div class="clearfix product_info">
+													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
 												</div>
 
 											</div>
@@ -700,10 +618,10 @@
 
 									<div class="owl_carousel type_2 carousel_in_tabs">
 
-										@foreach(\App\Product::getBestStarsProduct(8) as $product)
+										@foreach(\App\Product::getProductByKhoVIP(8) as $product)
 												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
-										<div class="product_item">
+										<div class="product_item" style="max-width: 219px;">
 
 											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
@@ -728,14 +646,27 @@
 											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
 
 											<div class="description">
-
-												<a href="#">{{$product->title}}</a>
-
+												<a href="#" class="clearfix">{{$product->title}}</a>
+												<div class="kho_info clearfix">
+													<a href="#" class="alignleft photo">
+														@if($product->levelKho == 1)
+															<img src="{{url('/images')}}/level1.png" alt="">
+														@elseif($product->levelKho == 2)
+															<img src="{{url('/images')}}/level2.png" alt="">
+														@elseif($product->levelKho == 3)
+															<img src="{{url('/images')}}/level3.png" alt="">
+														@else
+															<img src="{{url('/images')}}/level0.jpg" alt="">
+														@endif
+													</a>
+													<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+												</div>
 												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-													{!! \App\Rate::getRateProduct($product->id)!!}
-
+													<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+												</div>
+												<div class="clearfix product_info">
+													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
 												</div>
 
 											</div>
@@ -758,12 +689,12 @@
 
 									<!-- - - - - - - - - - - - - - Carousel of hot products - - - - - - - - - - - - - - - - -->
 
-									<div class="owl_carousel type_2 carousel_in_tabs">
+									<div class="owl_carousel type_2 carousel_in_tabs" >
 
 										@foreach(\App\Product::getBestSellerProduct(8) as $product)
 												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
-										<div class="product_item">
+										<div class="product_item" style="max-width: 219px;">
 
 											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
@@ -788,14 +719,27 @@
 											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
 
 											<div class="description">
-
-												<a href="#">{{$product->title}}</a>
-
+												<a href="#" class="clearfix">{{$product->title}}</a>
+												<div class="kho_info clearfix">
+													<a href="#" class="alignleft photo">
+														@if($product->levelKho == 1)
+															<img src="{{url('/images')}}/level1.png" alt="">
+														@elseif($product->levelKho == 2)
+															<img src="{{url('/images')}}/level2.png" alt="">
+														@elseif($product->levelKho == 3)
+															<img src="{{url('/images')}}/level3.png" alt="">
+														@else
+															<img src="{{url('/images')}}/level0.jpg" alt="">
+														@endif
+													</a>
+													<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+												</div>
 												<div class="clearfix product_info">
-
-													<p class="product_price alignleft"><b>{{$product->price_out}} VNĐ</b></p>
-													{!! \App\Rate::getRateProduct($product->id)!!}
-
+													<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+												</div>
+												<div class="clearfix product_info">
+													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
 												</div>
 
 											</div>
