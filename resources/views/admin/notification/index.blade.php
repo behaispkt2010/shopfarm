@@ -53,10 +53,14 @@
                                     @endif
                                 </li>
                             @endforeach
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="text-center">
+                            {{ $arrNotification->appends(array('q' => Request::get('q')))->links() }}
+                        </div>
                         @else
                             Bạn không có thông báo mới.
                         @endif
-                        </ul>
                     </div>
                 </div>
             </div>

@@ -49,7 +49,7 @@ class NotificationController extends Controller
                 ->selectRaw('ware_houses.* ')
                 ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
                 ->orderBy('notification.id','DESC')
-                ->get();
+                ->paginate(20);
         }
         else {
             $view = Util::$roleviewAdmin;
@@ -60,7 +60,7 @@ class NotificationController extends Controller
                 ->selectRaw('ware_houses.* ')
                 ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
                 ->orderBy('notification.id','DESC')
-                ->get();
+                ->paginate(20);
         }
 
         $data = [

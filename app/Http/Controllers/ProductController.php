@@ -89,35 +89,42 @@ public function AjaxGetProduct(Request $request){
      */
     public function index(Request $request)
     {
-
         if($request->get('name') || $request->get('kho')|| $request->get('category')){
             $name = $request->get('name');
             $kho = $request->get('kho');
             $cate = $request->get('category');
             $product1 = Product::query();
             if(!empty($name)){
-                $product1 =  $product1->where('title','LiKE','%'.$name.'%');
+                if(!Auth::user()->hasRole('kho'))
+                    $product1 =  $product1->where('title','LiKE','%'.$name.'%');
+                else {
+                    $product1 =  $product1->where('title','LiKE','%'.$name.'%')->where('kho',Auth::user()->id);
+                }
             }
             if(!empty($cate)){
-                $product1 =  $product1->where('category',$cate);
+                if(!Auth::user()->hasRole('kho'))
+                    $product1 =  $product1->where('category',$cate);
+                else {
+                    $product1 =  $product1->where('category',$cate)->where('kho',Auth::user()->id);
+                }
             }
             if(!empty($kho)){
-                $product1 =  $product1->where('kho',$kho);
+                if(!Auth::user()->hasRole('kho'))
+                    $product1 =  $product1->where('kho',$kho);
+                else {
+                    $product1 =  $product1->where('kho',$kho)->where('kho',Auth::user()->id);
+                }
             }
-
             $product = $product1->paginate(6);
-
-
+        }
+        else if(!Auth::user()->hasRole('kho')) {
+            $product = Product::orderBy('id', 'DESC')
+                ->paginate(6);
         }
         else {
-            if(!Auth::user()->hasRole('kho'))
-                $product = Product::orderBy('id','DESC')
-                    ->paginate(6);
-            else {
-                $product = Product::orderBy('id','DESC')
-                    ->where('kho',Auth::user()->id)
-                    ->paginate(6);
-            }
+            $product = Product::orderBy('id','DESC')
+                ->where('kho',Auth::user()->id)
+                ->paginate(6);
         }
         $category = CategoryProduct::get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')

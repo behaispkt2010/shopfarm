@@ -105,6 +105,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="clearfix"></div>
                         <div class="text-center">
                             {{ $users->appends(array('q' => Request::get('q')))->links() }}
                         </div>

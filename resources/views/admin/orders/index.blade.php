@@ -126,6 +126,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="clearfix"></div>
                         <div class="text-center">
                             {{ $arrAllOrders->appends(array('q' => Request::get('q')))->links() }}
                         </div>

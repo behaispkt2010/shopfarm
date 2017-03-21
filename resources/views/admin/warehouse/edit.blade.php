@@ -1461,17 +1461,22 @@
             var image_detail = document.getElementsByName("image_detail");
             /*var len = image_detail.files.length;
             console.log(len);*/
-
-            /*for (var i = 0; i < image_detail.files.length; i++) {
-                file_image_detail = image_detail[0].files[i];
-            }*/
+            var file_image_detail = "";
+            len = $('.modal-hinhchitietkho input[type=file]').length;
+            /*alert(len);*/
+            for (var i = 0; i <= len; i++) {
+                file_image_detail = image_detail[0].files[0];
+            }
             $('.loading').css('display','block');
             var data1 = new FormData();
-            data1.append('image_detail', image_detail);
+            data1.append('image_detail', file_image_detail);
             data1.append('_token', _token);
             data1.append('id', id);
             $.ajax({
                 type: "POST",
+                contentType: false,
+                cache: false,
+                processData:false,
                 url: '{{ url('/') }}/warehouse/UploadImgDetail',
                 data: data1,
                 success: function( msg ) {
@@ -1483,7 +1488,7 @@
                         hide: true,
                         styling: 'bootstrap3'
                     });
-                    location.reload();
+                    //location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     var Data = JSON.parse(XMLHttpRequest.responseText);

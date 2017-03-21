@@ -132,8 +132,9 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="clearfix"></div>
                         <div class="text-center">
-                            {{ $product->appends(array('q' => Request::get('q')))->links() }}
+                            {{ $product->appends(array('kho' => Request::get('kho'),'name' => Request::get('name'),'category' => Request::get('category')))->links() }}
                         </div>
                         @else
                         <div>không tìm thấy dữ liệu</div>

@@ -79,8 +79,9 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="clearfix"></div>
                         <div class="text-center">
-                            {{ $productUpdatePrice->appends(array('q' => Request::get('q')))->links() }}
+                            {{ $productUpdatePrice->appends(array('from' => Request::get('from'),'to' => Request::get('to')))->links() }}
                         </div>
                         @else
                             <div>Không tìm thấy dữ liệu</div>

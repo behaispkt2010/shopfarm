@@ -89,6 +89,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="clearfix"></div>
                         <div class="text-center">
                             {{ $wareHouse->appends(array('q' => Request::get('q')))->links() }}
                         </div>
