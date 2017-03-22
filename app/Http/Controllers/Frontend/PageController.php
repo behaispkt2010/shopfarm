@@ -8,6 +8,7 @@ use App\Mail\OrderInfo;
 use App\Notification;
 use App\Util;
 use App\WareHouse;
+use App\WarehouseImageDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -78,12 +79,14 @@ class PageController extends Controller
     }
     public function DetailWarehouse($warehouse_id) {
         $arrCategoryWarehouse = CategoryWarehouse::get();
+        $arrImageDetail = WarehouseImageDetail::where('warehouse_id',$warehouse_id)->get();
         $ware_house = WareHouse::select('ware_houses.*','users.*','ware_houses.address as ware_houses_address')
             ->leftjoin('users','users.id','=','ware_houses.user_id')
             ->where('ware_houses.id',$warehouse_id)
             ->first();
         $data = [
             'ware_house' => $ware_house,
+            'arrImageDetail' => $arrImageDetail,
             'arrCategoryWarehouse' => $arrCategoryWarehouse,
         ];
         //dd($ware_house);

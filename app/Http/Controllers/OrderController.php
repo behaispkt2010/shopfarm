@@ -38,11 +38,17 @@ class OrderController extends Controller
         }
     }
     public function getOrderByStatus($id){
-        $AllOrders = Order::count();
+        $idUser = Auth::user()->id;
+        if(Auth::user()->hasRole('kho')) {
+            $AllOrders = Order::where('kho_id',$idUser)->count();
+        }
+        else {
+            $AllOrders = Order::count();
+        }
         $arrAllOrders = Order::select('orders.*','users.address','users.province','users.name','users.phone_number')
             ->leftJoin('users','orders.customer_id','=','users.id')
             ->where('status',$id)
-            ->paginate(3);
+            ->paginate(6);
         $arrOrderByStatus = OrderStatus::get();
         $data = [
             'arrAllOrders' => $arrAllOrders,

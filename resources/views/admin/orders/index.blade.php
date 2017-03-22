@@ -59,7 +59,7 @@
                         <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
                             <div class="form-group label-floating">
 
-                                <label class="control-label" for="addon2">Số điện thoại / Tên khách hàng</label>
+                                <label class="control-label" for="addon2">Số điện thoại | Tên khách hàng</label>
 
                                 <div class="input-group text-center">
                                     <input type="text" id="addon2" class="form-control" name="q" value="{{Request::get('q')}}">
@@ -163,7 +163,7 @@
         // similar behavior as clicking on a link
         var href = $('#select-status').val();
         window.location.href = href;
-    })
+    });
     // provide a resizeend event
 //    var timer = window.setTimeout(function() {}, 0);
     var rtime;

@@ -480,7 +480,7 @@
                                     <div id="abcd2" class="abcd">
                                         <img class="img-responsive"
                                              id="previewimg{{$itemImage->id}}"
-                                             src="{{ url('/').$itemImage->image}}">
+                                             src="{{ url('/').$itemImage->warehouse_detail_image}}">
                                         <i id="img" data-id="{{$itemImage->id}}" class="fa fa-times red delete-img-ajax"></i>
                                     </div>
                                     <br>
@@ -1459,17 +1459,16 @@
             var id = $('input[name="id"]').val();
             var _token = $('input[name="_token"]').val();
             var image_detail = document.getElementsByName("image_detail");
-            /*var len = image_detail.files.length;
-            console.log(len);*/
-            var file_image_detail = "";
-            len = $('.modal-hinhchitietkho input[type=file]').length;
-            /*alert(len);*/
-            for (var i = 0; i <= len; i++) {
-                file_image_detail = image_detail[0].files[0];
-            }
-            $('.loading').css('display','block');
             var data1 = new FormData();
-            data1.append('image_detail', file_image_detail);
+
+            $.each ($('.modal-hinhchitietkho input[type=file]'), function (i,obj) {
+                $.each(obj.files, function (j, file) {
+                    console.log(file);
+                    data1.append('file[' + i + ']', file);
+                })
+            });
+            $('.loading').css('display','block');
+
             data1.append('_token', _token);
             data1.append('id', id);
             $.ajax({
@@ -1488,7 +1487,7 @@
                         hide: true,
                         styling: 'bootstrap3'
                     });
-                    //location.reload();
+                    location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     var Data = JSON.parse(XMLHttpRequest.responseText);
@@ -1556,7 +1555,7 @@
         $('.loading').css('display','block');
         $.ajax({
             type: "POST",
-            url: '/warehouse/deleteDetailImage',
+            url: '{{url('/')}}/warehouse/deleteDetailImage',
             data: {_token: _token,id: id},
             success: function( msg ) {
                 $('.loading').css('display','none');

@@ -70,12 +70,6 @@ class WarehouseController extends Controller
 
     public function AjaxDetail(Request $request)
     {
-        /*if (!empty($request->file('image_kho'))) {
-            dd(" exsit");
-        }
-        else{
-            dd("not");
-        }*/
         $userID = Auth::user()->id;
         $id = $request->get('id');
         $viewer_id = $request->get('user_id');
@@ -95,15 +89,20 @@ class WarehouseController extends Controller
             $date = date('Y-m-d H:i:s');
             $dateafter = date('Y-m-d H:i:s', strtotime($date . ' +' . $dateTest . ' days'));
             $data['date_end_test'] = $dateafter;
-        } else {
+        } else if ($warehouse->user_test == 2){
+            $data['date_end_test'] = $warehouse->date_end_test;
+        }
+        else {
             $data['date_end_test'] = NULL;
         }
-        /*$data['keyname'] = Util::$upgradeLevelKhoSuccess;
-        $data['title'] = "Thay đổi tài khoản thành công";
-        $data['content'] = "";
-        $data['author_id'] = $userID;
-        $data['roleview'] = $viewer_id;
-        Notification::create($data);*/
+        if(Auth::user()->hasRole('admin')) {
+            $dataNotify['keyname'] = Util::$upgradeLevelKhoSuccess;
+            $dataNotify['title'] = "Thay đổi tài khoản thành công";
+            $dataNotify['content'] = "Bạn đã đăng ký trả phí thành công";
+            $dataNotify['author_id'] = $userID;
+            $dataNotify['roleview'] = $viewer_id;
+            Notification::create($dataNotify);
+        }
         //dd($data);
 
         $warehouse->update($data);
@@ -423,11 +422,11 @@ class WarehouseController extends Controller
         return \Response::json($response);
     }
     public function UploadImgDetail(Request $request){
-        dd($request->file('image_detail'));
+        //dd($request->all());
+        $dataImage = $request->all();
         $dataImage['warehouse_id']=$request->get('id');
-        if(!empty($request->file('image_detail'))) {
-            foreach ($request->file('image_detail') as $image_detail) {
-//            DetailImageProduct::where('id_product',$dataImage['id_product'])->delete();
+        if(!empty($request->file('file'))) {
+            foreach ($request->file('file') as $image_detail) {
                 $imageDetail = new WarehouseImageDetail();
                 $dataImage['warehouse_detail_image'] = Util::saveFile($image_detail, '');
                 WarehouseImageDetail::create($dataImage);
@@ -453,9 +452,11 @@ class WarehouseController extends Controller
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)
 //                ->orderBy('id','DESC')
-                ->orwhere('users.name', 'LIKE', '%' . $q . '%')
+                ->where('users.name', 'LIKE', '%' . $q . '%')
                 ->orwhere('users.id', 'LIKE', '%' . $q . '%')
-                ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')->paginate(6);
+                ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
+                ->paginate(6);
+            //dd($wareHouse);
         } else {
             $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
@@ -463,8 +464,9 @@ class WarehouseController extends Controller
                 ->where('role_user.role_id', 4)
                 ->orderBy('id', 'DESC')
                 ->paginate(6);
-            //dd($wareHouse);
+
         }
+
         $data = [
             'wareHouse' => $wareHouse,
         ];
@@ -614,8 +616,6 @@ class WarehouseController extends Controller
 
             DB::rollback();
             return redirect('admin/warehouse/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
-
-
         }
 
         DB::commit();
@@ -624,7 +624,7 @@ class WarehouseController extends Controller
     }
     public function deleteDetailImage(Request $request)
     {
-        WarehouseImageDetail::where('warehouse_id',$request->get('id'))->delete();
+        WarehouseImageDetail::where('id',$request->get('id'))->delete();
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',

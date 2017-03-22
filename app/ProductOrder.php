@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Auth;
+
 class ProductOrder extends Model
 {
     protected $table = 'product_orders';
@@ -48,6 +49,14 @@ class ProductOrder extends Model
         return $sum;
     }
     public static function countOrderByStatus($id){
-        return Order::where('status',$id)->count();
+        $idUser = Auth::user()->id;
+        if(Auth::user()->hasRole('kho')) {
+            return Order::where('status', $id)
+                ->where('kho_id',$idUser)
+                ->count();
+        }
+        else {
+            return Order::where('status', $id)->count();
+        }
     }
 }
