@@ -2,7 +2,7 @@
 @section('title', 'Thông tin chủ kho')
 @section('description','Thông tin chủ kho')
 @section('content')
-    <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px;">
+    <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px; padding-left: 50px;">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">

@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
-@section('title', 'liên hệ')
-@section('description','liên hệ')
+@section('title', 'Đăng ký Chủ kho')
+@section('description','Đăng ký Chủ kho')
 @section('add_styles')
 {{-- --}}
 @endsection

@@ -171,6 +171,7 @@ Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');
 Route::get('/xac-thuc-kho', 'Frontend\PageController@ConfirmKho');
 Route::get('/quang-cao', 'Frontend\PageController@QuangCao');
 Route::get('/tra-phi', 'Frontend\PageController@TraPhi');
+Route::get('//nang-cap-kho', 'Frontend\PageController@UpgradeKho');
 
 Route::get('/infoconfirmkho', 'Frontend\PageController@InfoConfirmKho');
 Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');

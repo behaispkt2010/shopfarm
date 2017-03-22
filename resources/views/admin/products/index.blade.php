@@ -102,7 +102,7 @@
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
                                                 <li>Tồn kho: {{ number_format($itemProduct->inventory_num)}}</li>
-                                                <li>Chủ Kho # <strong>{{$itemProduct->kho}}</strong></li>
+                                                <li>Chủ Kho # <strong>{{\App\Util::UserCode($itemProduct->kho)}}</strong></li>
                                                 <li><span class="box-money"> Mua vào: {{number_format($itemProduct->price_in)}} VNĐ </span></li>
                                                 <li><span class="box-money"> Bán ra: {{number_format($itemProduct->price_out)}} VNĐ</span></li>
                                                 <li>Bán tối thiểu: {{$itemProduct->min_gram}} Kg </li>

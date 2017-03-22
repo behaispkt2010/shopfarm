@@ -100,7 +100,7 @@
                                         <p class="text-center status-title">@if($arrOrders->status==0) Mới tạo @else @foreach($arrOrderByStatus as $itemOrderStatus) @if(@$arrOrders->status==$itemOrderStatus->id) {{ $itemOrderStatus->name }} @endif @endforeach @endif</p>
                                     </div>
                                     <div class="col-sm-12" data-toggle="modal" data-target=".modal-tracking" href="{{route('orders.show',['id' => $arrOrders->id])}}">
-                                        <h4 class="cod"><i>#{{\App\Util::OrderCode( $arrOrders->id)}}</i></h4>
+                                        <h4 class="cod">#{{\App\Util::OrderCode( $arrOrders->id)}}</h4>
 
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">

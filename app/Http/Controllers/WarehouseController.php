@@ -84,7 +84,7 @@ class WarehouseController extends Controller
         else {
             $data['image_kho'] = $warehouse->image_kho;
         }
-        if ($request->get('user_test') == 2) {
+        if ($request->get('user_test') == 2 && $warehouse->user_test != 2) {
             $dateTest = Util::$datetest;
             $date = date('Y-m-d H:i:s');
             $dateafter = date('Y-m-d H:i:s', strtotime($date . ' +' . $dateTest . ' days'));
@@ -447,7 +447,7 @@ class WarehouseController extends Controller
     {
         if ($request->get('q')) {
             $q = $request->get('q');
-            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id','ware_houses.user_id as userID', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)
@@ -458,7 +458,7 @@ class WarehouseController extends Controller
                 ->paginate(6);
             //dd($wareHouse);
         } else {
-            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id','ware_houses.user_id as userID', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)

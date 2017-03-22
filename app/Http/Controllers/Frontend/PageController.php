@@ -101,4 +101,7 @@ class PageController extends Controller
     public function TraPhi(){
         return view('frontend.dungtraphi');
     }
+    public function UpgradeKho(){
+        return view('frontend.upgradekho');
+    }
 }

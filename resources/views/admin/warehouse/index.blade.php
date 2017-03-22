@@ -55,13 +55,13 @@
                                     </div>
                                     <div class="col-sm-12 " >
                                         <a href="{{route('warehouse.edit',['id' => $itemWareHouse->ware_houses_id])}}">
-                                        <h4 class="cod">#{{$itemWareHouse->id}}</h4>
+                                        <h4 class="cod"># {{\App\Util::UserCode($itemWareHouse->userID)}}{{-- {{ $itemWareHouse->id }}--}}</h4>
                                             <div class="row">
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
                                                 <li>Đại diện: {{$itemWareHouse->name}}</li>
                                                 <li>Cấp kho: {{$itemWareHouse->level}}</li>
-                                                <li>Dịch vụ: @if ( $itemWareHouse->confirm_kho == 1) ICON XÁC THỰC @endif @if ($itemWareHouse->quangcao == 1) icon quảng cáo @endif</li>
+                                                <li>Dịch vụ: @if ( $itemWareHouse->confirm_kho == 1) ICON XÁC THỰC @endif @if ($itemWareHouse->quangcao == 1) icon quảng cáo @endif @if ($itemWareHouse->user_test == 1) icon trả phí @else icon dung thử @endif</li>
                                                 <li>Cấp phép: {{$itemWareHouse->created_at->format('d/m/Y')}}</li>
                                             </ul>
                                         </div>
