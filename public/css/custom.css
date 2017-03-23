@@ -4666,7 +4666,7 @@ ul.tab-fill li:hover{
 .list-unstyled li{
   font-size: 15px;
   margin-bottom: 5px;
-  width: 80%;
+  /*width: 80%;*/
   /*overflow: hidden;*/
   white-space: nowrap;
   text-overflow: ellipsis;

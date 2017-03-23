@@ -568,7 +568,7 @@
 										@foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
 										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
-										<div class="product_item" style="max-width: 219px;">
+										<div class="product_item" style="">
 											<div class="image_wrap">
 
 												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
@@ -621,7 +621,7 @@
 										@foreach(\App\Product::getProductByKhoVIP(8) as $product)
 												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
-										<div class="product_item" style="max-width: 219px;">
+										<div class="product_item" style="">
 
 											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
@@ -694,7 +694,7 @@
 										@foreach(\App\Product::getBestSellerProduct(8) as $product)
 												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
-										<div class="product_item" style="max-width: 219px;">
+										<div class="product_item" style="">
 
 											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
