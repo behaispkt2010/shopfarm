@@ -28,7 +28,7 @@
                             @if(Request::is('admin/orders/create'))
                                 <h2>Thông tin đơn hàng</h2>
                             @else
-                                <h2>Chi tiết đơn hàng #{!! $id !!}</h2>
+                                <h2>Chi tiết đơn hàng # {{\App\Util::OrderCode($id)}}</h2>
                             @endif
                             <table class="table">
                                 <tbody class="list_product">

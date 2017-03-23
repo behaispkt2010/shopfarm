@@ -3,7 +3,7 @@
 
 					<section class="infoblock type_2 animated transparent" data-animation="fadeInDown">
 
-						<img class="img-responsive" src="../../../frontend/images/left_image_ad_1.png">
+						<img class="img-responsive" src="{{asset('frontend/images/left_image_ad_1.png')}}">
 
 					</section><!--/ .infoblock.type_2-->
 
@@ -13,7 +13,7 @@
 
 					<section class="infoblock type_2 animated transparent" data-animation="fadeInDown">
 
-						<img class="img-responsive" src="../../../frontend/images/left_image_ad_2.png">
+						<img class="img-responsive" src="{{asset('frontend/images/left_image_ad_2.png')}}">
 
 					</section><!--/ .infoblock.type_2-->
 
@@ -23,7 +23,7 @@
 
 					<section class="infoblock type_2 animated transparent" data-animation="fadeInDown">
 
-						<img class="img-responsive" src="../../../frontend/images/left_image_ad_3.png">
+						<img class="img-responsive" src="{{asset('frontend/images/left_image_ad_3.png')}}">
 
 					</section><!--/ .infoblock.type_2-->
 

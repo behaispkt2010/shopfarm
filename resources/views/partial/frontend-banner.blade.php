@@ -1,8 +1,8 @@
 
 
-							<!-- - - - - - - - - - - - - - Infoblocks - - - - - - - - - - - - - - - - -->
+							<!-- - - - - - - - - - - - - - Infoblocks 1- - - - - - - - - - - - - - - - -->
 
-							<div class="section_offset">
+							<div class="section_offset hidden-xs">
 
 								<!-- - - - - - - - - - - - - - Infoblock - - - - - - - - - - - - - - - - -->
 

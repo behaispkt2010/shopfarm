@@ -34,7 +34,7 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Mã</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <div  disabled class="form-control" id="code" placeholder="#000">#{{$userInfo->id}}</div>
+                                                <div  disabled class="form-control" id="code" placeholder="#000">#{{\App\Util::UserCode($userInfo->id)}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -279,12 +279,12 @@
                                             <label for="code" class="col-md-9 col-xs-12 control-label">   <span class="stt-num">{{$i}}</span> {{$itemBankWareHouse->card_name}}: {{$itemBankWareHouse->card_number}}</label>
 
                                             <div class="col-md-3 col-xs-12 ">
-                                                <div class="togglebutton">
+                                                <div class="togglebutton" style="padding-top: 10px;">
                                                     <i data-toggle="modal"
                                                        data-target=".modal-bank-edit"
                                                        class="fa fa-pencil edit_bank" data-id="{{$itemBankWareHouse->id}}"
                                                        data-bank="{{$itemBankWareHouse->bank}}" data-province="{{$itemBankWareHouse->province}}"
-                                                       data-card_number="{{$itemBankWareHouse->card_number}}"data-check="{{$itemBankWareHouse->check}}"  data-card_name="{{$itemBankWareHouse->card_name}}" class="fa fa-pencil" style="margin-right: 5px"></i> &nbsp;&nbsp;
+                                                       data-card_number="{{$itemBankWareHouse->card_number}}"data-check="{{$itemBankWareHouse->check}}"  data-card_name="{{$itemBankWareHouse->card_name}}" class="fa fa-pencil" {{--style="margin-right: 5px"--}}></i> &nbsp;&nbsp;
                                                     <label>
                                                         <input style="display: none" name="bankHas"  type="checkbox" @if($itemBankWareHouse->check==1) checked @endif disabled>
                                                         <input type="hidden" name="bankcheck" value="{{ $itemBankWareHouse->check }}">
@@ -605,15 +605,24 @@
                 <div class="modal-body sroll">
                     <div class="row">
                         <div class="form-group">
-                            <label for="code" class="col-md-5 control-label">Cấp kho:</label>
+                            <label for="code" class="col-md-5 control-label">Cấp kho: </label>
                             <div class="col-md-7">
                                 <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="code" class="col-md-5 control-label">Thời gian sử dụng dịch vụ: </label>
+                            <select name="time_upgrade_level" id="time_upgrade_level">
+                                <option value="6">6 tháng</option>
+                                <option value="12">12 tháng</option>
+                                <option value="24">24 tháng</option>
+                                <option value="36">36 tháng</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label for="code" class="col-md-5 control-label"><a href="#" target="_blank">Quyền lợi khi nâng cấp kho</a></label>
+                            <label for="code" class="col-md-5 control-label"><a href="{{url('/nang-cap-kho')}}" target="_blank">Quyền lợi khi nâng cấp kho</a></label>
                         </div>
                     </div>
                     <br>
@@ -1310,12 +1319,13 @@
     <script>
         $("#btnSendRequestUpgrade").on('click', function (e) {
             var levelkho = $('input[name="levelkhoUpgrade"]').val();
+            var time_upgrade_level = $('input[name="time_upgrade_level"]').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/warehouse/AjaxSendRequestUpdateLevelKho',
-                data: {levelkho: levelkho, _token: _token},
+                data: {levelkho: levelkho,time_upgrade_level: time_upgrade_level, _token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     //show notify

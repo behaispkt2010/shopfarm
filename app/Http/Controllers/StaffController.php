@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Province;
 use App\Role;
 use App\RoleUser;
 use App\User;
@@ -53,8 +54,10 @@ class StaffController extends Controller
     public function create()
     {
 //        $roles = Role::get();
+        $province = Province::get();
         $data=[
-            'role' => 'staff'
+            'role' => 'staff',
+            'province' => $province
         ];
         return view('admin.users.edit',$data);
     }

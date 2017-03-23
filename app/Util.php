@@ -290,6 +290,7 @@ class Util extends Model
     }
     public  static function StringExplodeProvince($id)
     {
+
         $province = Province::where('provinceid',$id)->first();
         $code_provice = "";
         if(count($province) !=0) {

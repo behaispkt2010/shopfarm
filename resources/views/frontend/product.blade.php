@@ -24,7 +24,7 @@
 
 				<!-- - - - - - - - - - - - - - Infoblocks - - - - - - - - - - - - - - - - -->
 
-				<div class="section_offset">
+				<div class="section_offset hidden-xs">
 					@include('frontend.panner.product-banner')
 
 				</div>

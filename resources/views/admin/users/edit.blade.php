@@ -39,7 +39,7 @@
                                                             <label for="code" class="col-md-3 col-xs-12 control-label">Mã</label>
 
                                                             <div class="col-md-9 col-xs-12">
-                                                                <div  disabled class="form-control" id="code" >@if(!empty($user->id)){{$user->id}}@endif</div>
+                                                                <div  disabled class="form-control" id="code" >@if(!empty($user->id)){{\App\Util::UserCode($user->id)}}@endif</div>
                                                             </div>
                                                         </div>
                                                     </div>

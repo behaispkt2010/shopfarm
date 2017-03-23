@@ -238,7 +238,7 @@
 											<li>
 												<ul class="topbar">
 													<li>{{$product->addressKho}}</li>
-													<li>Mã: #{{$product->idKho}}</li>
+													<li>Mã: #{{\App\Util::UserCode($product->idKho)}}</li>
 												</ul>
 											</li>
 										</ul>
@@ -781,8 +781,8 @@
 					<h4 class="modal-title text-center" id="myModalLabel">Mua ngay</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group" style="padding-left: 70px;">
-						<p><strong>Hãy liên hệ Chủ kho theo thông tin bên dưới để mua trực tiếp</strong></p>
+					<div class="form-group" style="padding-left: 70px; font-size: 15px;">
+						<p style="color: #4e8d1a"><strong>Hãy liên hệ Chủ kho theo thông tin bên dưới để mua trực tiếp</strong></p>
 						<p>Tên Chủ kho : <strong name="namekho"></strong> </p>
 						<p>Số điện thoại: <strong class="text-center" name="phone"></strong></p>
 					</div>
