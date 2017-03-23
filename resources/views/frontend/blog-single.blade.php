@@ -55,7 +55,7 @@
 											<span><i class="icon-comment"></i>@if(empty($singleBlog->view)) 0 @else {{$singleBlog->view}}@endif</span>
 
 
-											<span><i class="icon-folder-open-empty-1"></i> <a href="{{url('/blog')}}/{{$cate}}">{{\App\Category::getNameCateById($singleBlog->category)}}</a></span>
+											<span><i class="icon-folder-open-empty-1"></i> <a href="{{url('/category-blog')}}/{{$cate}}">{{\App\Category::getNameCateById($singleBlog->category)}}</a></span>
 
 										</div>
 

@@ -11,12 +11,44 @@
 					<div class="section_offset">
 
 						<div class="row">
+							<div class="col-xs-12 col-md-3">
+								@include('frontend.witgets.category-product')
 
-							<div class="col-xs-12 col-md-12">
+							</div>
+							<div class="col-xs-12 col-md-9">
 									{!! \App\Setting::getValue('slider')!!}
 								</div><!--/ #layerslider-->
 								<!-- - - - - - - - - - - - - - End of layer slider - - - - - - - - - - - - - - - - -->
-							</div><!--/ [col]-->
+							<div class="clear"></div>
+							<br>
+							<div class="section_offset">
+
+								<div class="row">
+
+									<div class="col-sm-6">
+
+										<a href="#" class="banner animated visible fadeInDown" data-animation="fadeInDown">
+
+											<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
+
+										</a>
+
+									</div><!--/ [col]-->
+
+									<div class="col-sm-6">
+
+										<a href="#" class="banner animated visible fadeInDown" data-animation="fadeInDown" data-animation-delay="150" style="animation-delay: 150ms;">
+
+											<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
+
+										</a>
+
+									</div><!--/ [col]-->
+
+								</div><!--/ .row-->
+
+							</div>
+								</div><!--/ [col]-->
 
 						</div><!--/ .row-->
 
@@ -24,12 +56,11 @@
 
 					<div class="row">
 
-						<aside class="col-md-2">
-							@include('frontend.witgets.category-product')
+						<aside class="col-md-3 col-sm-12">
 							@include('partial.frontend-banner')
 						</aside>
 
-						<main class="col-md-10 col-sm-12">
+						<main class="col-md-9 col-sm-12">
 
 							<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 

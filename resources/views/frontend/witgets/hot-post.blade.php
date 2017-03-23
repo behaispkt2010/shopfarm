@@ -30,7 +30,7 @@
 
 												<div class="entry_meta">
 
-													<span><i class="icon-calendar"></i> {{$item->created_at->format('d-m-Y')}}</span>
+													{{--<span><i class="icon-calendar"></i> {{$item->created_at}}</span>--}}
 
 													<span><i class="icon-comment"></i> {{$item->view}}</span>
 

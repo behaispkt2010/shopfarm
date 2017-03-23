@@ -66,7 +66,44 @@ class CategoryProduct extends Model
 
         return $data;
     }
+    static public function get_numberChil($id){
+        return CategoryProduct::where('parent',$id)->count();
+    }
+    static public function get_menu_cate_frontend($parent=0)
+    {
+        $data = CategoryProduct::get();
+        foreach($data as $key=>$itemMenu1) {
+            if ($parent == $itemMenu1->parent) {
+                $numchil = CategoryProduct::get_numberChil($itemMenu1->id);
+//                dd($numchil);
+                if ($numchil == 0) {
+                    echo '<li class=""><a href="'.url("/category-product/$itemMenu1->slug").'">'.$itemMenu1->name.'</a></li>';
+                } else {
+                    echo '     <li class="has_megamenu"><a href="#">'.$itemMenu1->name.'</a>
+                <div class="mega_menu clearfix">
 
+                <div class="mega_menu_item">
+
+                    <ul class="list_of_links">
+                     ';
+
+
+                    $parent1 = $itemMenu1->id;
+                    CategoryProduct::get_menu_cate_frontend($parent1);
+
+                    echo '
+                    </ul>
+
+                </div><!--/ .mega_menu_item-->
+
+            </div><!--/ .mega_menu-->
+            </li>';
+
+                }
+
+            }
+        }
+    }
 
 
 }

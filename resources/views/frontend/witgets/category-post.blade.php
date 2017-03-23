@@ -1,19 +1,15 @@
+
 <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
 
-<section class="section_offset">
+<section class="section_offset ">
 
     <h3>Danh mục</h3>
+    <ul class="theme_menu cats">
 
-    <ul class="theme_menu">
-        @foreach(\App\Category::getAllCategory() as $item)
-        <li><a href="{{url('/category-blog')}}/{{$item->slug}}">{{$item->name}}</a></li>
-        @endforeach
-            {{--<li><a href="{{url('/category-blog')}}/khac">Khác</a></li>--}}
-
-
+       {!! \App\Category::get_menu_cate_frontend() !!}
 
     </ul>
 
-</section><!--/ .section_offset -->
+</section><!--/ .animated.transparent-->
 
 <!-- - - - - - - - - - - - - - End of categories - - - - - - - - - - - - - - - - -->

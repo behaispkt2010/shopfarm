@@ -70,6 +70,9 @@
 							<!-- - - - - - - - - - - - - - List of entries - - - - - - - - - - - - - - - - -->
 
 							<ul id="main_blog_list" class="list_of_entries list_view">
+								@if(count($blogs)==0)
+									<h4 class="text-center">Không tìm thấy bài viết</h4>
+									@else
 								@foreach($blogs as $blog)
 
 								<li>
@@ -80,7 +83,7 @@
 
 										<!-- - - - - - - - - - - - - - Entry image - - - - - - - - - - - - - - - - -->
 
-										<a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($blog->id)}}/{{$blog->slug}}" class="thumbnail entry_image">
+										<a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($blog->category)}}/{{$blog->slug}}" class="thumbnail entry_image">
 
 											<img src="{{url('/')}}{{$blog->image}}" alt="">
 
@@ -88,7 +91,7 @@
 
 										<!-- - - - - - - - - - - - - - End of entry image - - - - - - - - - - - - - - - - -->
 
-										<h4 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($blog->id)}}/{{$blog->slug}}">{{$blog->title}}</a></h4>
+										<h4 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($blog->category)}}/{{$blog->slug}}">{{$blog->title}}</a></h4>
 
 										<!-- - - - - - - - - - - - - - Entry meta - - - - - - - - - - - - - - - - -->
 
@@ -98,10 +101,10 @@
 
 												<span><i class="icon-calendar"></i> {{$blog->created_at->format('d-m-Y')}}</span>
 
-												<span><a href="#" class="comments"><i class="icon-comment"></i> @if(empty($blog->view))0@else{{$blog->view}}@endif</a></span>
+												<span><a href="#" class="comments"><i class="icon-comment"></i> @if(empty($blog->view))0 @else{{$blog->view}}@endif</a></span>
 
 
-												<span><i class="icon-folder-open-empty-1"></i> <a href="#">{{\App\Category::getNameCateById($blog->id)}}</a></span>
+												<span><i class="icon-folder-open-empty-1"></i> <a href="#">{{\App\Category::getNameCateById($blog->category)}}</a></span>
 
 											</div>
 
@@ -120,7 +123,9 @@
 									<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
 
 								</li>
+
 							@endforeach
+								@endif
 
 							</ul>
 

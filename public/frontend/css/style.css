@@ -2402,7 +2402,7 @@
 			left: 100%;
 			margin-left: -1px;
 			border-radius:0 3px 3px 3px;
-
+			z-index: 9999;
 			-webkit-backface-visibility: hidden;
 		}
 

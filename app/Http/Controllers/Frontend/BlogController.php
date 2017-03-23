@@ -13,7 +13,7 @@ class BlogController extends Controller
         $blogs = Article::select('articles.*','views.view')
         ->leftJoin('views', 'articles.id', '=', 'views.blog_id')
             ->orderBy('articles.id','DESC')
-            ->paginate(2);
+            ->paginate(10);
         $data=[
             'blogs'=>$blogs
         ];
@@ -28,12 +28,15 @@ class BlogController extends Controller
         if(count($category) == 0){
             $idCate = 0;
         }
-        $idCate = $category->id;
+        else {
+            $idCate = $category->id;
+        }
         $blogs = Article::select('articles.*','views.view')
             ->leftJoin('views', 'articles.id', '=', 'views.blog_id')
             ->orderBy('articles.id','DESC')
             ->where('articles.category',$idCate)
             ->paginate(10);
+
         $data=[
             'blogs'=>$blogs,
             'category'=>$category

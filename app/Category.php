@@ -23,27 +23,35 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Model
 {
-    protected $fillable = ['name', 'slug','description','parent'];
-    public static function getNameCateById($id){
+    protected $fillable = ['name', 'slug', 'description', 'parent'];
+
+    public static function getNameCateById($id)
+    {
         $name = "mặc định";
-        $query=  Category::find($id);
-        if(!empty($query)){
+        $query = Category::find($id);
+        if (!empty($query)) {
             $name = $query->name;
         }
         return $name;
     }
-    public static function getAllCategory(){
+
+    public static function getAllCategory()
+    {
         return Category::get();
     }
-    public static function getSlugCategory($id){
+
+    public static function getSlugCategory($id)
+    {
         $slug = "mac-dinh";
-        $query=  Category::find($id);
-        if(!empty($query)){
+        $query = Category::find($id);
+        if (!empty($query)) {
             $slug = $query->slug;
         }
         return $slug;
     }
-    static public function CateMulti($data, $parent_id = 0, $str="&nbsp&nbsp&nbsp&nbsp",$select = 0){
+
+    static public function CateMulti($data, $parent_id = 0, $str = "&nbsp&nbsp&nbsp&nbsp", $select = 0)
+    {
 
         foreach ($data as $val) {
             $id = $val->id;
@@ -58,5 +66,46 @@ class Category extends Model
             }
         }
 
+    }
+
+    static public function get_numberChil($id)
+    {
+        return Category::where('parent', $id)->count();
+    }
+
+    static public function get_menu_cate_frontend($parent = 0)
+    {
+        $data = Category::get();
+        foreach ($data as $key => $itemMenu1) {
+            if ($parent == $itemMenu1->parent) {
+                $numchil = Category::get_numberChil($itemMenu1->id);
+//                dd($numchil);
+                if ($numchil == 0) {
+                    echo '<li class=""><a href="' . url("/category-blog/$itemMenu1->slug") . '">' . $itemMenu1->name . '</a></li>';
+                } else {
+                    echo '     <li class="has_megamenu"><a href="' . url("/category-blog/$itemMenu1->slug") . '">' . $itemMenu1->name . '</a>
+                <div class="mega_menu clearfix">
+
+                <div class="mega_menu_item">
+
+                    <ul class="list_of_links">
+                     ';
+
+
+                    $parent1 = $itemMenu1->id;
+                    Category::get_menu_cate_frontend($parent1);
+
+                    echo '
+                    </ul>
+
+                </div><!--/ .mega_menu_item-->
+
+            </div><!--/ .mega_menu-->
+            </li>';
+
+                }
+
+            }
+        }
     }
 }
