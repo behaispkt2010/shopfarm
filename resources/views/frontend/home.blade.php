@@ -62,6 +62,122 @@
 
 						<main class="col-md-9 col-sm-12">
 
+
+
+							<!-- - - - - - - - - - - - - - Category - - - - - - - - - - - - - - - - -->
+
+							@foreach($allCategory as $itemAllCategory)
+							<section class="section_offset animated transparent" data-animation="fadeInDown">
+
+								<h3 class="offset_title">{{$itemAllCategory->name}}</h3>
+
+								<div class="tabs type_3 products">
+
+									<!-- - - - - - - - - - - - - - Navigation of tabs - - - - - - - - - - - - - - - - -->
+
+									<ul class="theme_menu tabs_nav clearfix theme_menu_{{$itemAllCategory->id}}">
+
+										@foreach(\App\Product::getChildCateByCate($itemAllCategory->id) as $item)
+										<li class="has_submenu"><a href="#tab-{{$item->id}}">{{$item->name}}</a></li>
+										@endforeach
+
+									</ul>
+
+									<!-- - - - - - - - - - - - - - End navigation of tabs - - - - - - - - - - - - - - - - -->
+
+									<!-- - - - - - - - - - - - - - Tabs container - - - - - - - - - - - - - - - - -->
+
+									<div class="tab_containers_wrap">
+										@foreach(\App\Product::getChildCateByCate($itemAllCategory->id) as $item)
+
+										<div id="tab-{{$item->id}}" class="tab_container">
+
+											<!-- - - - - - - - - - - - - - Carousel of today's deals - - - - - - - - - - - - - - - - -->
+
+											<div class="owl_carousel carousel_in_tabs ">
+
+												@foreach(\App\Product::getProductByCate($item->id) as $product)
+												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
+
+												<div class="product_item">
+
+													<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
+
+													<div class="image_wrap">
+
+														<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+
+														<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
+
+														<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
+
+														<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
+
+														<div class="label_new">New</div>
+
+														<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
+
+													</div><!--/. image_wrap-->
+
+													<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
+
+													<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
+
+													<div class="description">
+
+														<a href="#" class="clearfix">{{$product->title}}</a>
+
+														<div class="kho_info clearfix">
+															<a href="#" class="alignleft photo">
+																@if($product->levelKho == 1)
+																	<img src="{{url('/images')}}/level1.png" alt="">
+																@elseif($product->levelKho == 2)
+																	<img src="{{url('/images')}}/level2.png" alt="">
+																@elseif($product->levelKho == 3)
+																	<img src="{{url('/images')}}/level3.png" alt="">
+																@else
+																	<img src="{{url('/images')}}/level0.jpg" alt="">
+																@endif
+															</a>
+															<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+														</div>
+														<div class="clearfix product_info">
+															<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+															<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+														</div>
+														<div class="clearfix product_info">
+															<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+														</div>
+													</div>
+
+													<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
+
+												</div><!--/ .product_item-->
+
+
+												<!-- - - - - - - - - - - - - - End of product - - - - - - - - - - - - - - - - -->
+
+												@endforeach
+											</div><!--/ .owl_carousel-->
+
+											<!-- - - - - - - - - - - - - - End of carousel of today's deals - - - - - - - - - - - - - - - - -->
+
+										</div><!--/ #tab-15-->
+										@endforeach
+
+
+									</div>
+
+									<!-- - - - - - - - - - - - - - End of tabs containers - - - - - - - - - - - - - - - - -->
+
+								</div>
+
+							</section>
+
+							<!-- - - - - - - - - - - - - - End of cate - - - - - - - - - - - - - - - - -->
+							@endforeach
+
+
 							<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
 							<div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">
@@ -274,7 +390,7 @@
 
 							<!-- - - - - - - - - - - - - - Bestsellers - - - - - - - - - - - - - - - - -->
 
-							<section class="section_offset animated transparent" data-animation="fadeInDown">
+							<section class="section_offset animated transparent" data-animation="fadeInDown" style="display: none;">
 
 								<h3>Sản phẩm bán chạy</h3>
 								<div class="table_layout">

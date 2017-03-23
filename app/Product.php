@@ -143,4 +143,18 @@ class Product extends Model
         }
         return $getProductByKhoVIP;
     }
+    public static function getChildCateByCate($id){
+        return CategoryProduct::where('parent',$id)->get();
+    }
+    public static function getProductByCate($id){
+
+        $products = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+            ->leftjoin('users','users.id','ware_houses.user_id')
+            ->selectRaw('products.*')
+            ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+            ->where('products.category',$id)
+            ->orderBy('products.id',"DESC")->take(8)->get();
+        return $products;
+    }
+
 }

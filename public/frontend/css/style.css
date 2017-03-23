@@ -4092,7 +4092,7 @@
 		border-radius: 3px;
 	}
 
-	.offset_title{ padding-right:75px; }
+	.offset_title{ padding-right:75px;     text-transform: uppercase;}
 
 	.seller{
 		padding-top: 19px;
@@ -6938,4 +6938,16 @@ a:focus, a:hover{
 	.ul-date-car li{
 		position: relative;
 	}
+}
+
+/*set background*/
+.tabs.type_3 .tabs_nav.theme_menu_1::before{
+background:url("/images/bg_1.jpg");
+	background-size: cover;
+	opacity: 0.4;
+}
+.tabs.type_3 .tabs_nav.theme_menu_5::before{
+	background:url("/images/bg_2.jpg");
+	background-size: cover;
+	opacity: 0.4;
 }

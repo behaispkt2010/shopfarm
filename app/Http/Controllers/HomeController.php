@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\CategoryProduct;
 use App\Product;
 use App\ProductOrder;
 use Illuminate\Http\Request;
@@ -46,11 +48,13 @@ class HomeController extends Controller
         $getBestSellerProduct = Product::getBestSellerProduct(9);
         $getNewProduct = Product::getNewProduct(9);
         //dd($getNewProduct);
+        $allCategory = CategoryProduct::where('parent',0)->get();
 
         $data = [
             'getNewProduct' =>$getNewProduct,
             'bestSellerProduct'=>$getBestSellerProduct,
-            'getBestStarsProduct'=>$getBestStarsProduct
+            'getBestStarsProduct'=>$getBestStarsProduct,
+            'allCategory'=>$allCategory
         ];
         return view('frontend.home',$data);
     }
