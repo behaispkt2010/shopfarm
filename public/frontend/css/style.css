@@ -70,9 +70,9 @@
 ------------------------------------------------ */
 
 	body{
-		font:400 14px/21px 'Roboto', sans-serif;
+		font:500 15px/21px 'Roboto-Light', sans-serif;
 		color:#777;
-		background-color: #4e8d1a;
+		background-color: #0f9d58;
 		background-attachment: fixed;
 	}
 
@@ -553,7 +553,7 @@
 
 		/* Breadcrumbs */
 
-		.breadcrumbs{ margin-bottom: 43px; }
+		.breadcrumbs{ margin-bottom: 14px; }
 
 		.breadcrumbs > li{ display: inline-block; }
 
@@ -1249,7 +1249,7 @@
 		.search, .login{ color:#b2b2b2;}
 
 		.search > * {
-			height:44px !important;
+			height:47px !important;
 			border-top:2px solid #4e8d1a !important;
 			border-bottom:2px solid #4e8d1a !important;
 		}
@@ -1873,9 +1873,10 @@
 	#header .topbar li{ z-index: 121; }
 
 	.bottom_part{
-		padding-top:29px;
-		padding-bottom:32px;
+		padding-top:15px;
+		padding-bottom:20px;
 		width: inherit;
+		background-color: #0f9d58;
 	}
 
 	.call_us{
@@ -1952,7 +1953,7 @@
 	.account_bar > li:not(:first-child){ margin-left: 4px; }
 
 	.search_category{
-		width:185px;
+		width:150px;
 		position: relative;
 		z-index:117;
 		cursor:pointer;
@@ -3253,7 +3254,8 @@
 		-------------------------------------------- */
 
 			.single_product{
-				max-width: 360px;
+				max-width: 400px;
+				width: 390px;
 				float: left;
 				margin-right: 30px;
 			}
@@ -4092,7 +4094,7 @@
 		border-radius: 3px;
 	}
 
-	.offset_title{ padding-right:75px;     text-transform: uppercase;}
+	.offset_title{ padding-right:75px;     /*text-transform: uppercase;*/}
 
 	.seller{
 		padding-top: 19px;
@@ -6415,6 +6417,7 @@ only screen and (min-resolution: 144 dpi){
 }
 
 .tracking {
+	font-size: 16px;
 	width: 100%;
 	padding: 20px;
 	height: auto;

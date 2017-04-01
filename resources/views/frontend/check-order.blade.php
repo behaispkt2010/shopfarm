@@ -12,38 +12,27 @@
         @if(!empty($order))
     <div class="row">
 
-<h3 class="text-center">Đơn hàng #{{$order->id}}</h3>
-        <br>
-        <div class="tracking">
+<h4 class="text-center">Đơn hàng {{\App\Util::OrderCode($order->id)}}</h4>
+        <div class="tracking con-tracking" style="border-radius: 5px;">
             <div class="col-sm-12 col-xs-12 fix-padlr cl-center">
-
                 <ul class="ul-date-car">
-
                     @foreach($orderStatus as $itemOrderStatus)
                     <li class="date-past @if($itemOrderStatus->id ==$order->status) active @endif">
-
-
-                        <img src="{{url('/')}}{{$itemOrderStatus->image}}" class="icon-tracking" alt="">
+                        <img src="{{url('/')}}{{$itemOrderStatus->image}}" class="icon-tracking" alt="" title="{{$itemOrderStatus->name}}">
                         <div class="clear"></div>
                             @if($itemOrderStatus->id ==$order->status)
                             <span>{{$order->updated_at->format('d-m-Y')}}</span>
                             <div class=" fix-status">{{$itemOrderStatus->name}}</div>
                             @endif
-
                     </li>
                         @endforeach
-
-
-
                 </ul>
             </div>
             <div class="clear"></div>
-            <br>
-            <br>
             <div class="col-md-12 con-tracking ">
                 <div class="col-sm-6 col-xs-12 fix-padlr">
                     {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
-                    <h2>Thông tin đặt hàng</h2>
+                    <h4>Thông tin đặt hàng</h4>
                     <table class="table list-order table-curved product-list">
                         <tbody>
                         <?php $total = 0; ?>
@@ -67,7 +56,7 @@
                             </td>
                             <td></td>
                             <td>Tổng: </td>
-                            <td><span class="total">  {{$total}} đ</span></td>
+                            <td><span class="total">  {{number_format($total)}} VNĐ</span></td>
                         </tr>
 
                         </tbody>
@@ -119,7 +108,7 @@
                 </div>
                 <div class="col-sm-4 col-xs-12 fix-padlr">
                     {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
-                    <h2>Thông tin nhận hàng</h2>
+                    <h4>Thông tin nhận hàng</h4>
                     <p><i class="ic-tracking ic-nguoidung"></i> {{$customer->name}} </p>
                     <p><i class="ic-tracking ic-diadiem"></i> {{$customer->address}} </p>
 

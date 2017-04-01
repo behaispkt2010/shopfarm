@@ -68,10 +68,10 @@
                         <tbody>
                         <tr>
                             <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-                                <canvas id="canvas2" height="100" width="100" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
+                                <canvas id="canvas2" height="120" width="120" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
                             </td>
                             <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
-                                <canvas id="canvas3" height="100" width="100" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
+                                <canvas id="canvas3" height="120" width="120" style="margin: 15px 10px 10px 0px; width: 120px; height: 120px;"></canvas>
                             </td>
                         </tr>
 
@@ -102,13 +102,13 @@
                                 <table class="tile_info">
                                     <tbody><tr>
                                         <td>
-                                            <p><i class="fa fa-square red"></i>Dùng thử</p>
+                                            <p><i class="fa fa-square" style="color:#009688;"></i>Trả phí</p>
                                         </td>
 
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p><i class="fa fa-square chartreuse" style="color:chartreuse;"></i>Trả phí</p>
+                                            <p><i class="fa fa-square" style="color: #CDDC39"></i>Dùng thử</p>
                                         </td>
                                     </tr>
                                     </tbody></table>
@@ -154,7 +154,9 @@
                 </div>
 
             </div>
-        </div><div class="col-md-12 col-sm-12 col-xs-12">
+        </div>
+        @if(Auth::user()->hasRole(['editor', 'admin']))
+        <div class="col-md-12 col-sm-12 col-xs-12">
 
             <div class="x_panel" style="min-height: 550px;">
                 <div>
@@ -167,13 +169,13 @@
 
                         @foreach($arrProductWaitApproval as $itemProductWaitApproval)
                             <li class="media event product0" style="height: 50px;" id="">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <img src="{{url('/').$itemProductWaitApproval->image}}" alt="" class="img-responsive">
+                                <a class="pull-left border-aero profile_thumb" style="margin: -4px; padding: 0px;">
+                                    <img src="{{url('/').$itemProductWaitApproval->image}}" alt="" class="img-responsive" style="height: 50px;">
                                 </a>
                                 <div class="media-body" style="padding-top: 10px;">
                                     <div class="col-md-6 col-sm-6 col-xs-6 text-left"><a class="title" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}" target="_blank">{!! $itemProductWaitApproval->title !!}</a></div>
                                     <div class="col-md-2 col-sm-2 col-xs-2"><strong>Kho {{\App\Util::UserCode($itemProductWaitApproval->kho)}}</strong></div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 text-right"><a class="btn-warning btnApproval" onclick="Approval(this)" style="padding: 5px 30px;">Duyệt</a></div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 text-right" style="top: -6px;"><button class="btn-warning btnApproval" onclick="Approval(this)" style="padding: 5px 30px;">Duyệt</button></div>
                                 </div>
                                 <input type="hidden" name="txtProductID" value="{{$itemProductWaitApproval->id}}">
                                 <input type="hidden" name="txtKhoID" value="{{$itemProductWaitApproval->kho}}">
@@ -188,7 +190,9 @@
                 </div>
 
             </div>
+            <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
         </div>
+        @endif
 
     </div>
 
@@ -522,12 +526,12 @@
                     datasets: [{
                         data: [traphi,dungthu],
                         backgroundColor: [
-                            "#49f436",
-                            "#f3493a"
+                            "#009688",
+                            "#CDDC39"
                         ],
                         hoverBackgroundColor: [
-                            "#49f436",
-                            "#f3493a"
+                            "#009688",
+                            "#CDDC39"
                         ]
                     }]
                 },
@@ -682,6 +686,7 @@
             var pid = product['pid'];
             var khoid = product['khoid'];
             var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/dashboard/Approval',

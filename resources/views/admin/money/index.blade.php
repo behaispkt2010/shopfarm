@@ -77,8 +77,8 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(9)['price']}} VNĐ</p>
-                                        <span class="">{{\App\Order::getInfoOrder(9)['count']}} đơn hàng</span>
+                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(10)['price']}} VNĐ</p>
+                                        <span class="">{{\App\Order::getInfoOrder(10)['count']}} đơn hàng</span> {{--status Trả hàng mới tính--}}
                                     </div>
                                 </div>
                             </div>

@@ -16,12 +16,12 @@
     <div class="link-id">
         <p id="txtReferralCode">@if (!empty($arrGetUser->myIntroCode)){{$arrGetUser->myIntroCode}} @endif</p>
     </div>
-    <label for="" style="font-size: 18px; font-weight: bold; color: #000;">
-        <p>Góp phần tạo nên mạng lưới nông sản rộng khắp Việt Nam</p>
+    <label for="" style="font-size: 18px; color: #000;" >
+        <p style="margin: 3px;">Góp phần tạo nên mạng lưới nông sản rộng khắp Việt Nam</p>
 
-        <p>Hãy chia sẻ MÃ GIỚI THIỆU đến bạn bè, đối tác kinh doanh để cả hai cùng</p>
+        <p style="margin: 3px;">Hãy chia sẻ MÃ GIỚI THIỆU đến bạn bè, đối tác kinh doanh để cả hai cùng</p>
 
-        <p>nhận được những ưu đãi hấp dẫn nhé.</p>
+        <p style="margin: 3px;">nhận được những ưu đãi hấp dẫn nhé.</p>
     </label>
     <div class="social">
         <ul>

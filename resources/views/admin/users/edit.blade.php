@@ -19,7 +19,7 @@
                         @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="type_staff" value="@if(Request::is('admin/staffs'))staffs @else users @endif">
-                        <div class="col-md-12 col-xs-12">
+                        <div class="col-md-12 col-xs-12" style="top: -27px;">
                             <!-- Name and Description -->
                             <div class="text-right">
                                 <button type="submit" class="btn-update btn btn-success btn-raised text-right btn-small" > Lưu</button>
@@ -29,7 +29,7 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
                                         <div class="well box1 info-warehouse" style="min-height: 440px;">
-                                            <h4 class="text-center">Thông tin user <i style="float: right"
+                                            <h4 class="text-center">Thông tin Tài khoản <i style="float: right"
                                                                                             class="fa fa-edit"
                                                                                             aria-hidden="true"></i></h4>
                                             <ul class="list-unstyled">
@@ -88,7 +88,7 @@
                                                                     <select id="t" class="form-control" required name="province">
                                                                         <option value="0">Chọn khu vực</option>
                                                                         @foreach($province as $item)
-                                                                            <option value="{{$item->provinceid}}">{{$item->name}}</option>
+                                                                            <option value="{{$item->provinceid}}" @if (!empty($user->province) && $user->province == $item->provinceid) selected="selected" @endif>{{$item->name}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>

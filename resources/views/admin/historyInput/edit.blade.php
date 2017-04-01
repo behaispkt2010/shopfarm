@@ -40,8 +40,8 @@
                                     <td>{{$item->price_in}} VNĐ</td>
                                     {{--<td>{{$item->price_out}} VNĐ</td>--}}
                                     <?php
-                                    $total_price_in +=$item->number;
-                                    $total_num +=$item->price_in;
+                                    $total_num +=$item->number;
+                                    $total_price_in +=$item->price_in;
                                     ?>
                                 </tr>
                                     @endforeach

@@ -26,7 +26,7 @@
                                 <li class="active"><a href="{{url('/')}}/register">Đăng ký</a></li>
                             </ul>
                         </div>
-                    <div class="clear"></div>
+                    {{--<div class="clear"></div>--}}
                         <br><br>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
@@ -110,7 +110,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 col-xs-12 col-sm-12 text-center">
-                                <button type="submit" class="btn btn-success btn-raised btn-large">
+                                <button type="submit" class="btn btn-success btn-raised btn-large" style="font-weight: bold; font-size: 16px;">
                                     Đăng ký
                                 </button>
                             </div>

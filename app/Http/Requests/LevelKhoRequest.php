@@ -25,6 +25,7 @@ class LevelKhoRequest extends FormRequest
     {
         return [
             'levelkho' => 'required|numeric|min:1|max:3',
+            /*'time_upgrade_level' => 'required',*/
         ];
     }
 }

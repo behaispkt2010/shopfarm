@@ -33,8 +33,12 @@ class LoginController extends Controller
         if(Auth::user()->hasRole('user')) {
             return '/';
         }
-
-        return '/admin';
+        else if(Auth::user()->hasRole('kho')) {
+            return '/admin/dashboard';
+        }
+        else {
+            return '/admin';
+        }
     }
     /**
      * Create a new controller instance.

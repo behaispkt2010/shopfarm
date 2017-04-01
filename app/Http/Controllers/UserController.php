@@ -203,6 +203,7 @@ public function AjaxCreateCustomer(UserRequest $request)
         $data['name']=$request->get('name');
         $data['address']=$request->get('address');
         $data['phone_number']=$request->get('phone_number');
+        $data['province']=$request->get('province');
         if(!empty($request->get('email'))){
             $data['email']=$request->get('email');
         }

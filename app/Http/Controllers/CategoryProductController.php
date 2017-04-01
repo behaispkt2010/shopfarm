@@ -69,7 +69,7 @@ class CategoryProductController extends Controller
             $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->paginate(6);
         }
         else {
-            $categoryProduct = CategoryProduct::paginate(6);
+            $categoryProduct = CategoryProduct::paginate(12);
         }
         $categoryProduct0 = CategoryProduct::where('parent','0')->get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')

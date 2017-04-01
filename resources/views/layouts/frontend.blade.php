@@ -6,7 +6,7 @@
 @yield('content')
 @include('partial.frontend-footer')
 </div><!--/ [layout]-->
-@include('partial.frontend-social_feeds')
+{{--@include('partial.frontend-social_feeds')--}}
 
 <!-- - - - - - - - - - - - - - End Main Wrapper - - - - - - - - - - - - - - - - -->
 @include('partial.frontend-script')

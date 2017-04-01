@@ -310,7 +310,17 @@ class OrderController extends Controller
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
             }
-
+            if ($request->get('status') == Util::$statusOrderFail) {
+                $arrUser = User::find($request->customer_id);
+                $getCodeOrder = Util::OrderCode($strOrderID);
+                $dataNotify['keyname'] = Util::$ordernew;
+                $dataNotify['title'] = "Đơn hàng mới";
+                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name;
+                $dataNotify['author_id'] = Auth::user()->id;
+                $dataNotify['roleview'] = Util::$roleviewAdmin;
+                $dataNotify['orderID_or_productID'] = $strOrderID;
+                Notification::create($dataNotify);
+            }
 //            DB::table('product_orders')->insert($ProductOrder);
         }
         catch(\Exception $e){
@@ -481,10 +491,21 @@ class OrderController extends Controller
                 $arrUser = User::find($request->customer_id);
                 $getCodeOrder = Util::OrderCode($id);
                 $dataNotify['keyname'] = Util::$orderfail;
-                $dataNotify['title'] = "Đơn hàng lỗi sắp trả về kho";
-                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi sắp trả về kho";
+                $dataNotify['title'] = "Đơn hàng bị lỗi";
+                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi";
                 $dataNotify['author_id'] = Auth::user()->id;
-                $dataNotify['roleview'] = $kho_id;
+                $dataNotify['roleview'] = Util::$roleviewAdmin;
+                $dataNotify['orderID_or_productID'] = $id;
+                Notification::create($dataNotify);
+            }
+            elseif ($request->get('status') == Util::$statusOrderReturn) {
+                $arrUser = User::find($request->customer_id);
+                $getCodeOrder = Util::OrderCode($id);
+                $dataNotify['keyname'] = Util::$orderreturn;
+                $dataNotify['title'] = "Đơn hàng sắp trả về kho";
+                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " sắp trả về kho";
+                $dataNotify['author_id'] = Auth::user()->id;
+                $dataNotify['roleview'] = Util::$roleviewAdmin;
                 $dataNotify['orderID_or_productID'] = $id;
                 Notification::create($dataNotify);
             }

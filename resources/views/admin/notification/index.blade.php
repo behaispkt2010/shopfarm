@@ -38,17 +38,21 @@
                                             <br>
                                             <span class="message">{{$itemNotification->content}}</span>
                                             <br>
-                                            <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                                            <span class="time">{{ $itemNotification->created_at}}</span>
                                         </a>
                                     @else
                                         <a href="@if ($itemNotification->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                        @elseif ($itemNotification->keyname == \App\Util::$orderfail) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
+                                        @elseif ($itemNotification->keyname == \App\Util::$orderreturn) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
+                                        @elseif ($itemNotification->keyname == \App\Util::$ordernew) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
+                                        @elseif ($itemNotification->keyname == \App\Util::$dangkychukho) {{route('warehouse.create')}}
                                         @else {{route('warehouse.edit',['id' => $itemNotification->id])}} @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                             <span class="notification_title">{{$itemNotification->title}}</span>
                                             <br>
                                             <span class="message">{{$itemNotification->content}}</span>
                                             <br>
-                                            <span class="time">{{ $itemNotification->created_at->diffForHumans() }}</span>
+                                            <span class="time">{{ $itemNotification->created_at }}</span>
                                         </a>
                                     @endif
                                 </li>

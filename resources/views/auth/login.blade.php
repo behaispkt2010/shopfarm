@@ -74,7 +74,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-success btn-raised btn-large">
+                                <button type="submit" class="btn btn-success btn-raised btn-large" style="font-weight: bold; font-size: 16px;">
                                     Đăng nhập
                                 </button>
                                 </div>

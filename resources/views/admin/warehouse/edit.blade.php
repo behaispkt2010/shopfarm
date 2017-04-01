@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse info-user" style="min-height: 825px;">
+                        <div class="well box1 info-warehouse info-user" style="min-height: 825px; position: relative;">
                             <h4 class="text-center">Thông tin người đại diện <i style="float: right"
                                                                                 class="fa fa-edit"
                                                                                 aria-hidden="true"></i></h4>
@@ -98,7 +98,7 @@
                                     </div>
                                 </li>
 
-                                <li class="text-right">
+                                <li class="text-right" style="position: absolute;top: 710px;text-align: right;right: 20px;">
                                     <button id="update_info" class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
                                 </li>
 
@@ -285,7 +285,7 @@
                                                        class="fa fa-pencil edit_bank" data-id="{{$itemBankWareHouse->id}}"
                                                        data-bank="{{$itemBankWareHouse->bank}}" data-province="{{$itemBankWareHouse->province}}"
                                                        data-card_number="{{$itemBankWareHouse->card_number}}"data-check="{{$itemBankWareHouse->check}}"  data-card_name="{{$itemBankWareHouse->card_name}}" class="fa fa-pencil" {{--style="margin-right: 5px"--}}></i> &nbsp;&nbsp;
-                                                    <label>
+                                                    <label style="margin-bottom: -1px;">
                                                         <input style="display: none" name="bankHas"  type="checkbox" @if($itemBankWareHouse->check==1) checked @endif disabled>
                                                         <input type="hidden" name="bankcheck" value="{{ $itemBankWareHouse->check }}">
                                                     </label>
@@ -397,7 +397,7 @@
                             </ul>
                         </div>
                     </div>
-
+                    <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
                 </div>
             </div>
         </div>
@@ -429,6 +429,7 @@
                 </div>
 
                 </div>
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
             </div>
         </div>
     </div>
@@ -456,6 +457,7 @@
                 </div>
 
                 </div>
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
             </div>
         </div>
     </div>
@@ -499,6 +501,7 @@
                 </div>
 
                 </div>
+            <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
             </div>
         </div>
     </div>
@@ -545,6 +548,7 @@
                 </div>
 
                 </div>
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
             </div>
         </div>
     </div>
@@ -587,7 +591,7 @@
                 <div class="modal-footer">
                     <button  id="changePassbtn" type="button" class="btn btn-raised btn-primary">Lưu</button>
                 </div>
-
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
             </div>
         </div>
     </div>
@@ -610,7 +614,7 @@
                                 <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label for="code" class="col-md-5 control-label">Thời gian sử dụng dịch vụ: </label>
                             <select name="time_upgrade_level" id="time_upgrade_level">
                                 <option value="6">6 tháng</option>
@@ -618,7 +622,7 @@
                                 <option value="24">24 tháng</option>
                                 <option value="36">36 tháng</option>
                             </select>
-                        </div>
+                        </div>--}}
                     </div>
                     <div class="row">
                         <div class="form-group">
@@ -649,7 +653,7 @@
                 <div class="modal-footer">
                     <button  id="btnSendRequestUpgrade" type="button" class="btn btn-raised btn-primary">Gửi Yêu Cầu</button>
                 </div>
-
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
             </div>
         </div>
     </div>
@@ -729,6 +733,7 @@
                     <button id="create_bank" type="button" class="btn btn-raised btn-primary">Lưu</button>
                 </div>
             </div>
+            <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
         </div>
     </div>
 
@@ -806,6 +811,7 @@
                     <button id="edit_bank" type="button" class="btn btn-raised btn-primary">Lưu</button>
                 </div>
             </div>
+            <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
         </div>
     </div>
 
@@ -1186,12 +1192,13 @@
             e.preventDefault();
             var id = $('input[name="id"]').val();
             var levelkho = $('input[name="levelkho"]').val();
+            var user_id = $('input[name="user_id"]').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/warehouse/AjaxEditLevel',
-                data: {id: id, levelkho: levelkho, _token: _token},
+                data: {id: id, levelkho: levelkho, user_id: user_id, _token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     //show notify

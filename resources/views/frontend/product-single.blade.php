@@ -37,7 +37,7 @@
 
 							<main class="col-md-9 col-sm-8">
 
-								<div class="clearfix">
+
 
 									<!-- - - - - - - - - - - - - - Product image column - - - - - - - - - - - - - - - - -->
 
@@ -76,8 +76,6 @@
 										
 										<div class="v_centered">
 
-											<span class="title">Chia sẻ:</span>
-
 											<div class="addthis_widget_container">
 												<!-- AddThis Button BEGIN -->
 												<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
@@ -97,7 +95,7 @@
 
 									<div class="single_product_description">
 
-										<h3 class="offset_title">{{$product->title}}</h3>
+										<h4 class="offset_title">{{$product->title}}</h4>
 
 										<!-- - - - - - - - - - - - - - Page navigation - - - - - - - - - - - - - - - - -->
 
@@ -139,10 +137,10 @@
 											</table>
 										</div>
 										<p class="product_price"><b class="theme_color">{{ number_format($product->price_out)  }} VNĐ</b></p>
-										<hr>
+
 										<div class="row text-center">
 											<div class="col-xs-6 col-sm-6 col-md-6 col-md-offset-3">
-												<div style="height: 100px; background-color: #fff; padding: 15px 15px 0px 15px; ">
+												<div style="height: 100px; padding: 15px 15px 0px 15px; ">
 													@if (( !Auth::check()))
 														<button id="" style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;"
 																data-toggle="modal" data-target=".modal-login" class="btn btn-warning required_login">
@@ -205,7 +203,7 @@
 
 									<!-- - - - - - - - - - - - - - End of product description column - - - - - - - - - - - - - - - - -->
 
-								</div>
+
 
 							</main><!--/ [col] -->
 
@@ -215,7 +213,7 @@
 
 								<section class="section_offset">
 							@if(!empty($product->levelKho))
-									<h3>Thông tin chủ kho</h3>
+									<h4>Thông tin chủ kho</h4>
 									<div class="theme_box">
 										<div class="seller_info clearfix">
 											<a href="{{ url('/shop/'.$product->ware_houses_id) }}" class="alignleft photo">

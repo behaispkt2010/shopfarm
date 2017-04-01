@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title text-center" id="myModalLabel">Đơn hàng #{!! $order->id !!}</h4>
+        <h4 class="modal-title text-center" id="myModalLabel">Đơn hàng #{{ \App\Util::OrderCode($order->id) }}</h4>
     </div>
     <div class="modal-body sroll">
         <div class="row">
@@ -17,8 +17,6 @@
 
                         @foreach($orderStatus as $itemOrderStatus)
                             <li class="date-past @if($itemOrderStatus->id ==$order->status) active @endif">
-
-
                                 <img src="{{url('/')}}{{$itemOrderStatus->image}}" class="icon-tracking" alt="" title="{{ $itemOrderStatus->name }}">
                                 <div class="clear"></div>
                                 @if($itemOrderStatus->id ==$order->status)

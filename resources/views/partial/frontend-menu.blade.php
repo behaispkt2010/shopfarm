@@ -56,7 +56,7 @@
                             <form action="/" class="clearfix search" method="get">
 
 
-                                <input type="text"  tabindex="1" placeholder="Tên,mã sản phẩm..." name="search" class="alignleft">
+                                <input type="text"  tabindex="1" placeholder="Tìm sản phẩm bạn mong muốn..." name="search" class="alignleft">
 
                                 <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
 
@@ -89,7 +89,7 @@
                             <!-- - - - - - - - - - - - - - Call to action - - - - - - - - - - - - - - - - -->
 
                             @if(( !Auth::check()))
-                                <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}">Đăng nhập</a> | <a href="{{url('/register')}}">Đăng ký</a>
+                                <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}">Đăng nhập</a> <br> Hoặc <a href="{{url('/register')}}">Đăng ký</a>
 
                             {{--@else
                                 Chào bạn <a href="">{{Auth::user()->name}}</a> |  <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -119,7 +119,9 @@
                             <!-- - - - - - - - - - - - - - End call to action - - - - - - - - - - - - - - - - -->
 
                         </div><!--/ [col]-->
-                        <div class="col-sm-3" style="padding: 0px;">
+                        <div class="col-sm-3" style="padding: 0px;left: -17px;">
+                            {{--<img src="{{asset('/images/user_default.png')}}" class="img-responsive" alt="">--}}
+                            <p style="margin: 0px;">Hotline liên hệ</p>
                             <p><i class="fa fa-phone" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><b>{!! \App\Setting::getValue('phone')!!}</b></p>
                         </div>
 

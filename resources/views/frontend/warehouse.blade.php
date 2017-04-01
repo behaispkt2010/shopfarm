@@ -167,6 +167,7 @@
                                 </tbody>
                             </table>
                             <div class="clear"></div>
+                            @if ($ware_house->confirm_kho == 1)
                             <div class="block-inner">
                                 <div class="left_arrow_carousel">
                                     <i tag="2" class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -188,7 +189,9 @@
                                     <i style="display:block" tag="2" class="fa fa-chevron-right" aria-hidden="true"></i>
                                 </div>
                             </div>
-
+                            @else
+                                <div></div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -80,8 +80,7 @@
                                     <p>Tổng giá trị sản phẩm <span id="allpaymoney">0</span> VNĐ</p>
                                     @if(Request::is('admin/orders/create'))
                                         <p><a href="#" class="transport_info add_attr" data-toggle="modal"
-                                              data-target=".modal-transport"data-type_driver="{{$arrOrder->type_driver}}" data-name_driver="{{$arrOrder->name_driver}}"
-                                              data-phone_driver="{{$arrOrder->phone_driver}}" data-number_license_driver="{{$arrOrder->number_license_driver}}">
+                                              data-target=".modal-transport">
                                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a></p>
                                     @else
                                         <p><a href="#" class="transport_info add_attr" data-toggle="modal"

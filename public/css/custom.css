@@ -359,8 +359,8 @@ body .container.body .right_col {
 body {
   color: #666;
   background: #0f9d58;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
-  font-size: 15px;
+  font-family: "Roboto-Light",Helvetica,Arial,sans-serif !important;
+  font-size: 17px;
   font-weight: 400;
   line-height: 1.471; }
 
@@ -1260,7 +1260,7 @@ ul.msg_list li {
   display: -ms-flexbox;
   display: flex;
   margin: 6px 6px 0;
-  height: 70px;
+  height: 88px;
   width: 96% !important; }
 
 ul.msg_list li:last-child {
@@ -1281,8 +1281,8 @@ ul.msg_list li a .time {
   font-size: 11px;
   font-style: italic;
   font-weight: bold;
-  position: absolute;
-  right: 35px; }
+  position: relative;
+  /*right: 35px; */}
 
 ul.msg_list li a .message {
   display: block !important;
@@ -4791,7 +4791,7 @@ ol, ul {
 }
 .ul-date-car li {
   float: left;
-  width: 9%;
+  width: 10%;
   text-align: center;
   /*background: url(../images/dot-tracking.png) no-repeat center 10px;*/
   height: 50px;
@@ -4843,8 +4843,8 @@ ol, ul {
   bottom: 100px;
   border: solid 1px #53d68b;
   margin: 0 auto;
-  width: 150%;
-  left: -30%;
+  width: 100%;
+  left: 6%;
   padding: 5px;
   color: #53d68b;
   font-weight: 400;
@@ -5091,7 +5091,7 @@ ol, ul {
   font-weight: 100;
   color: #000;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 17px;
 }
 .tracking-toggle span:first-child {
   border-radius: 20px;
@@ -5118,7 +5118,7 @@ ol, ul {
 .ul-date-car li img{
   width: 50px;
   position: absolute;
-  top: -38px;
+  top: -42px;
   right: 17px;
   z-index: 999;
 }
@@ -5501,6 +5501,7 @@ div.dataTables_wrapper div.dataTables_processing {
   padding: 10px;
   text-decoration: none;
   font-size: 16px;
+  font-weight: bold;
 }
 .login-register-form{
   padding: 15px 45px;
@@ -5614,7 +5615,7 @@ table.dtp-picker-days thead{
   display: inline-block;
   margin-top: 30px;
   font-weight: bold;
-  font-family: 'Roboto-Bold';
+  /*font-family: 'Roboto-Bold';*/
 }
 .sologen{
   text-align: center;
@@ -5636,5 +5637,32 @@ table.dtp-picker-days thead{
   .value-das {
     font-size: 20px;
     font-weight: 400;
+  }
+}
+@media only screen and (max-width:767px) {
+  .date-past {
+    display: none;
+  }
+  .date-past.active {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    width: auto;
+    float: none;
+  }
+  .ul-date-car li{
+    position: relative;
+  }
+  .fix-status {
+    left: 5%;
+    bottom: 110px;
+  }
+  .ul-date-car li img {
+    right: 28%;
+    top: -51px;
+  }
+  .ul-date-car li >span {
+    font-weight: normal;
+    padding-left: 16%;
   }
 }
