@@ -59,21 +59,21 @@
                                 <input type="text"  tabindex="1" placeholder="Tìm sản phẩm bạn mong muốn..." name="search" class="alignleft">
 
                                 <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
-
-                                <div class="search_category alignleft">
+                                <!-- @foreach(\App\CategoryProduct::getCate() as $itemCate)
+                                        <li class="animated_item" data-id="{{$itemCate->id}}"><a>{{$itemCate->name}}</a></li>
+                                        @endforeach 
+                                    <div class="search_category alignleft">
                                     <input type="hidden" id="" name="cateSearch" class="hidden">
 
                                     <div class="open_categories">Danh mục</div>
 
                                     <ul class="categories_list dropdown">
 
-                                        @foreach(\App\CategoryProduct::getCate() as $itemCate)
-                                        <li class="animated_item" data-id="{{$itemCate->id}}"><a>{{$itemCate->name}}</a></li>
-                                        @endforeach
+                                        
 
                                     </ul>
 
-                                </div><!--/ .search_category.alignleft-->
+                                </div> -->
 
                                 <!-- - - - - - - - - - - - - - End of categories - - - - - - - - - - - - - - - - -->
 
@@ -84,12 +84,12 @@
                             <!-- - - - - - - - - - - - - - End search form - - - - - - - - - - - - - - - - -->
 
                         </div><!--/ [col]-->
-                        <div class="col-sm-2" style="font-size: 16px;">
+                        <div class="col-sm-2" style="font-size: 16px; color: #fff;">
 
                             <!-- - - - - - - - - - - - - - Call to action - - - - - - - - - - - - - - - - -->
 
                             @if(( !Auth::check()))
-                                <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}">Đăng nhập</a> <br> Hoặc <a href="{{url('/register')}}">Đăng ký</a>
+                                <a href="{{url('/login')}}" data-modal-url="{{url('/login')}}" style="color: #fff;">Đăng nhập</a> <br> Hoặc <a href="{{url('/register')}}" style="color: #fff;">Đăng ký</a>
 
                             {{--@else
                                 Chào bạn <a href="">{{Auth::user()->name}}</a> |  <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -99,7 +99,7 @@
 
                             @else
                                 Chào bạn <br><a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false">{{Auth::user()->name}}</a>
+                                            aria-expanded="false" style="color: #fff;">{{Auth::user()->name}}</a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 60%;right: 20px;">
                                     <li><a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -119,7 +119,7 @@
                             <!-- - - - - - - - - - - - - - End call to action - - - - - - - - - - - - - - - - -->
 
                         </div><!--/ [col]-->
-                        <div class="col-sm-3" style="padding: 0px;left: -17px;">
+                        <div class="col-sm-3" style="padding: 0px;left: -17px; color: #fff;">
                             {{--<img src="{{asset('/images/user_default.png')}}" class="img-responsive" alt="">--}}
                             <p style="margin: 0px;">Hotline liên hệ</p>
                             <p><i class="fa fa-phone" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><b>{!! \App\Setting::getValue('phone')!!}</b></p>

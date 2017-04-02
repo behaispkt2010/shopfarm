@@ -25,21 +25,30 @@
 
 								<div class="row">
 
-									<div class="col-sm-6">
+									<div class="col-sm-4 img_banner" style="padding: 0px;">
 
-										<a href="#" class="banner animated visible fadeInDown" data-animation="fadeInDown">
+										<a href="#" class="">
 
-											<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
+											<img src="{{url('/')}}/images/fruit.jpg" alt="">
 
 										</a>
 
 									</div><!--/ [col]-->
 
-									<div class="col-sm-6">
+									<div class="col-sm-4 img_banner" style="padding: 0px;">
 
-										<a href="#" class="banner animated visible fadeInDown" data-animation="fadeInDown" data-animation-delay="150" style="animation-delay: 150ms;">
+										<a href="#" class="">
 
-											<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
+											<img src="{{url('/')}}/images/go.jpg" alt="">
+
+										</a>
+
+									</div><!--/ [col]-->
+									<div class="col-sm-4 img_banner" style="padding: 0px;">
+
+										<a href="#" class="">
+
+											<img src="{{url('/')}}/images/seafood.jpeg" alt="">
 
 										</a>
 
@@ -55,18 +64,27 @@
 					</div><!--/ .section_offset-->
 
 					<div class="row">
-
-						<aside class="col-md-3 col-sm-12">
-							@include('partial.frontend-banner')
-						</aside>
-
-						<main class="col-md-9 col-sm-12">
-
-
+						<main class="col-md-12 col-sm-12">
 
 							<!-- - - - - - - - - - - - - - Category - - - - - - - - - - - - - - - - -->
 
 							@foreach($allCategory as $itemAllCategory)
+							<div>
+								<ul>
+									<li>
+										<h3 class="offset_title">{{$itemAllCategory->name}}</h3>
+									</li>
+									@foreach(\App\Product::getChildCateByCate($itemAllCategory->id) as $item)
+									<li class="has_submenu"><a href="#tab-{{$item->id}}">{{$item->name}}</a></li>
+									@endforeach
+								</ul>
+								<div>
+									
+								</div>
+							</div>
+
+							<!-- - - - - - - - - - - - - - End of cate - - - - - - - - - - - - - - - - -->
+							@endforeach
 							<section class="section_offset animated transparent" data-animation="fadeInDown">
 
 								<h3 class="offset_title">{{$itemAllCategory->name}}</h3>
@@ -173,10 +191,6 @@
 								</div>
 
 							</section>
-
-							<!-- - - - - - - - - - - - - - End of cate - - - - - - - - - - - - - - - - -->
-							@endforeach
-
 
 							<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 

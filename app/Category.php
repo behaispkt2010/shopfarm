@@ -56,6 +56,7 @@ class Category extends Model
             $id = $val->id;
             $name = $val->name;
             if ($val['parent'] == $parent_id) {
+
                 if ($select != 0 && $id == $select) {
                     echo '<option value="' . $id . '" selected>' . $str . " " . $name . '</option>';
                 } else {
