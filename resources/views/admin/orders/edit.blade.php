@@ -28,7 +28,7 @@
                             @if(Request::is('admin/orders/create'))
                                 <h2>Thông tin đơn hàng</h2>
                             @else
-                                <h2>Chi tiết đơn hàng # {{\App\Util::OrderCode($id)}}</h2>
+                                <h2>Chi tiết đơn hàng {{\App\Util::OrderCode($id)}}</h2>
                             @endif
                             <table class="table">
                                 <tbody class="list_product">
@@ -37,10 +37,10 @@
                                     @foreach($arrProductOrders as $arrProductOrder)
                                         <tr class="item-product">
                                             <th><img src="{{url('/')}}/{!! $products[$arrProductOrder['id_product']]['image'] !!}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
-                                            <td><span class="name-product"><span>{!! $products[$arrProductOrder['id_product']]['title'] !!}(#{!! $arrProductOrder->id_product !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
+                                            <td><span class="name-product"><span>{!! $products[$arrProductOrder['id_product']]['title'] !!} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
                                             <td><span class="price-product"><span>{!! $products[$arrProductOrder['id_product']]['price_out'] !!}</span> đ </span></td>
-                                            <td><span>x </span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="{!! $arrProductOrder->num !!}"></td>
-                                            <td><span class="total"> <span>{!! $arrProductOrder->price !!}</span> đ</span><input type="hidden" value="{!! $arrProductOrder->price !!}" name="pricetotal[]"></td>
+                                            <td><span>x </span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="{{ $arrProductOrder->num }}"></td>
+                                            <td><span class="total"> <span>{{ number_format($arrProductOrder->price) }}</span> VNĐ</span><input type="hidden" value="{{ $arrProductOrder->price }}" name="pricetotal[]"></td>
                                             <td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>
                                         </tr>
                                     @endforeach
@@ -56,7 +56,7 @@
                                             @if(!empty($products))
                                                 @foreach($products as $product)
                                                     <option value="{{$product->id}}" data-image="dsa" data-name="dsa">
-                                                        {{$product->title}} (#{{$product->id}})
+                                                        {{$product->title}} ({{\App\Util::ProductCode($product->id)}})
                                                     </option>
                                                 @endforeach
                                             @endif
@@ -83,8 +83,9 @@
                                               data-target=".modal-transport">
                                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a></p>
                                     @else
-                                        <p><a href="#" class="transport_info add_attr" data-toggle="modal"
-                                              data-target=".modal-transport" data-type_driver="{{$arrOrder->type_driver}}" data-name_driver="{{$arrOrder->name_driver}}"
+                                        <p><a href="#"  data-toggle="modal"
+                                              data-target=".modal-transport" class="transport_info add_attr" id="transport_info"
+                                              data-type_driver="{{$arrOrder->type_driver}}" data-name_driver="{{$arrOrder->name_driver}}"
                                             data-phone_driver="{{$arrOrder->phone_driver}}" data-number_license_driver="{{$arrOrder->number_license_driver}}">
                                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>Sửa Thông tin vận chuyển</a></p>
                                     @endif
@@ -282,19 +283,19 @@
 
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput2"> Phương thức vận chuyển</label>
-                        <input class="form-control" id="focusedInput2" type="text" name="type_driver">
+                        <input class="form-control" id="focusedInput2" type="text" name="type_driver" value=" ">
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput2"> Tên tài xế</label>
-                        <input class="form-control" id="focusedInput2" type="text" name="name_driver">
+                        <input class="form-control" id="focusedInput2" type="text" name="name_driver" value=" ">
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput2"> Số điện thoại</label>
-                        <input class="form-control" id="focusedInput2" type="number" name="phone_driver">
+                        <input class="form-control" id="focusedInput2" type="text" name="phone_driver" value=" ">
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput2"> Biển số xe</label>
-                        <input class="form-control" id="focusedInput2" type="text" name="number_license_driver">
+                        <input class="form-control" id="focusedInput2" type="text" name="number_license_driver" value=" ">
                     </div>
                 </div>
             </div>
@@ -716,7 +717,7 @@
     });
 </script>
 <script>
-    $(document).on("click", ".transport_info", function () {
+    $(document).on("click", "#transport_info", function () {
         var _self = $(this);
         $('.modal-transport input[name="name_driver"]').val(_self.data('name_driver'));
         $('.modal-transport input[name="type_driver"]').val(_self.data('type_driver'));

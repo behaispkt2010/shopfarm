@@ -92,6 +92,24 @@
 
                             </div>
                         </div>
+                        <?php
+                        $province = \App\Province::get();
+                        ?>
+                        <div class="form-group">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label" for="">Tỉnh/TP</label>
+                                    <div class="form-group">
+                                        <select id="t" class="form-control" required name="province">
+                                            <option value="">Chọn khu vực</option>
+                                            @foreach($province as $item)
+                                                <option value="{{$item->provinceid}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">

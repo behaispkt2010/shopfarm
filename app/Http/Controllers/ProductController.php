@@ -271,7 +271,7 @@ public function AjaxGetProduct(Request $request){
             'detailImage' =>$detailImage,
             'wareHouses'=>$wareHouses
         ];
-//        dd($detailImage);
+        //dd($wareHouses);
         return view('admin.products.edit',$data);
     }
 

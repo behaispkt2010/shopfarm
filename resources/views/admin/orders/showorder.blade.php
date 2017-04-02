@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title text-center" id="myModalLabel">Đơn hàng #{{ \App\Util::OrderCode($order->id) }}</h4>
+        <h4 class="modal-title text-center" id="myModalLabel">Đơn hàng {{ \App\Util::OrderCode($order->id) }}</h4>
     </div>
     <div class="modal-body sroll">
         <div class="row">
@@ -37,16 +37,16 @@
                             <?php $total = 0; ?>
                             @foreach($productOrder as $itemProductOrder)
                                 <tr class="item-product">
-                                    <th><span class="code-product">{{ $itemProductOrder->code }}</span></th>
-                                    <td><span class="name-product"><span>{{$itemProductOrder->title}}(#{{ $itemProductOrder->id_product }})</span></span></td>
+                                    {{--<th><span class="code-product">{{ $itemProductOrder->code }}</span></th>--}}
+                                    <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
                                     <td><span class="price-product"><span>{{number_format($itemProductOrder->price) }}</span> VNĐ </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>
-                                    <td><span class="total"> <span>{{ number_format($itemProductOrder->price) }}</span> VNĐ</span></td>
+                                    <td><span class="total"> <span>{{ number_format(($itemProductOrder->price)*($itemProductOrder->num)) }}</span> VNĐ</span></td>
                                 </tr>
-                                <?php $total=$total + $itemProductOrder->price; ?>
+                                <?php $total=$total + (($itemProductOrder->price)*($itemProductOrder->num)); ?>
                             @endforeach
                             <tr>
-                                <th></th>
+                                {{--<th></th>--}}
                                 <td>
                                 </td>
                                 <td></td>
@@ -131,11 +131,11 @@
                             @foreach($historyOrder as $itemHistoryOrder)
                                 @if($itemHistoryOrder->status==0)
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">Khởi tạo đơn hàng </label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">Khởi tạo đơn hàng </label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: {{ \App\Util::UserCode($itemHistoryOrder->userid) }}</label>
                                     </div>
                                 @else
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">{{$itemHistoryOrder->name}}</label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: #{{ $itemHistoryOrder->userid }}</label>
+                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">{{$itemHistoryOrder->name}}</label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: {{ \App\Util::UserCode($itemHistoryOrder->userid) }}</label>
                                     </div>
                                 @endif
                             @endforeach

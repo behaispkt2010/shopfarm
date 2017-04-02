@@ -34,7 +34,7 @@
                                             <label for="code" class="col-md-3 col-xs-12 control-label">Mã</label>
 
                                             <div class="col-md-9 col-xs-12">
-                                                <div  disabled class="form-control" id="code" placeholder="#000">#{{\App\Util::UserCode($userInfo->id)}}</div>
+                                                <div  disabled class="form-control" id="code" placeholder="000">{{\App\Util::UserCode($userInfo->id)}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -316,7 +316,7 @@
 
                                             <div class="col-md-8 col-xs-12">
                                                 @if ($wareHouse->confirm_kho == 0)
-                                                    @if(Auth::user()->hasRole(['kho','editor']))
+                                                    @if(Auth::user()->hasRole('kho'))
                                                         <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                                                                 data-target=".modal-service"> Đăng ký</button>
                                                     @else
@@ -341,7 +341,7 @@
 
                                             <div class="col-md-8 col-xs-12">
                                                 @if ($wareHouse->quangcao == 0)
-                                                    @if(Auth::user()->hasRole(['kho','editor']))
+                                                    @if(Auth::user()->hasRole('kho'))
                                                         <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                                                                 data-target=".modal-quangcao"> Đăng ký</button>
                                                     @else
@@ -381,7 +381,7 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <label class="col-md-4  col-xs-12 control-label"> Cấp kho : <input type="number" class="form-control" name="levelkho" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif></label>
-                                            @if(Auth::user()->hasRole(['kho','editor']))
+                                            @if(Auth::user()->hasRole('kho'))
                                             <div class="col-md-8 col-xs-12">
                                                 <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                                                         data-target=".modal-upgrade"> Nâng cấp</button>

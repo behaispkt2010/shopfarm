@@ -47,7 +47,7 @@ class AuthorizeMiddleware {
 		/*$datediff = abs($date_end_test - $time_now);
 		$dateend = floor($datediff / (60*60*24));*/
 
-		if (($user_test == 2) && ($dateend = 3)){
+		if (($user_test == 2) && ($dateend < 3)){
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Tài khoản sắp hết thời gian dùng thử";
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";

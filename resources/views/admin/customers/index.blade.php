@@ -55,7 +55,7 @@
                                              data-pin-nopin="true">
                                     </div>
                                     <div class="col-sm-12" data-toggle="modal" data-target=".modal-history" href="{{route('customers.show',['id' => $user->id])}}">
-                                        <h4 class="cod">#{{$user->id}}</h4>
+                                        <h4 class="cod">{{\App\Util::UserCode($user->id)}}</h4>
 
                                         <div class="row">
                                             <div class="col-xs-12">

@@ -68,7 +68,7 @@
                                         <input type="text" class="form-control" disabled>
                                         <input type="hidden" name="code" id="code" value="">
                                         @else
-                                            #{{\App\Util::ProductCode($product->id)}}
+                                            {{\App\Util::ProductCode($product->id)}}
                                         @endif
                                     </div>
                                     <div class="form-group">
@@ -238,12 +238,12 @@
                                                 @foreach($wareHouses  as $itemData)
                                                     <option value="{{$itemData->id}}"
                                                             @if(!empty($product->kho) && $product->kho == $itemData->id) selected @endif >
-                                                        {{$itemData->name}}(#{{$itemData->id}})
+                                                        {{$itemData->name}}({{$itemData->id}})
                                                     </option>
                                                 @endforeach
                                                     @else
                                                     <option value="{{Auth::user()->id}}">
-                                                        {{Auth::user()->name}}(#{{Auth::user()->id}})
+                                                        {{Auth::user()->name}}({{\App\Util::UserCode(Auth::user()->id)}})
                                                     </option>
                                                 @endif
 

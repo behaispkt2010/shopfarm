@@ -51,6 +51,7 @@ class RegisterController extends Controller
         $data['captcha'] = $this->captchaCheck();
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'province' => 'required',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|numbers|symbols|min:6|confirmed',
             'g-recaptcha-response'  => 'required',
@@ -72,6 +73,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'myIntroCode' => $data['myIntroCode'],
             'introCode' => $data['introCode'],
+            'province' => $data['province'],
             'image' => '/images/user_default.png',
             'password' => $data['password'],
         ]);

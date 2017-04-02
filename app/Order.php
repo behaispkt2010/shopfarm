@@ -73,20 +73,35 @@ class Order extends Model
     }
     public static function getInfoOrder($status,$type=0){
         $idUser = Auth::user()->id;
-        if($type==1){
-            $orderProducts = ProductOrder::select('product_orders.price','product_orders.num')
-                ->leftJoin('orders','product_orders.order_id','=','orders.id')
-                ->where('orders.kho_id',$idUser)
-                ->where('orders.status','<>',$status)
-                ->where('orders.status','<>',10)
-                ->get();
+        if(Auth::user()->hasRole('kho')) {
+            if ($type == 1) {
+                $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
+                    ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
+                    ->where('orders.kho_id', $idUser)
+                    ->where('orders.status', '<>', $status)
+                    ->where('orders.status', '<>', 10)
+                    ->get();
+            } else {
+                $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
+                    ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
+                    ->where('orders.kho_id', $idUser)
+                    ->where('orders.status', $status)
+                    ->get();
+            }
         }
         else {
-            $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
-                ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
-                ->where('orders.kho_id', $idUser)
-                ->where('orders.status', $status)
-                ->get();
+            if ($type == 1) {
+                $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
+                    ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
+                    ->where('orders.status', '<>', $status)
+                    ->where('orders.status', '<>', 10)
+                    ->get();
+            } else {
+                $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
+                    ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
+                    ->where('orders.status', $status)
+                    ->get();
+            }
         }
         //dd($orderProducts);
         $price=0;

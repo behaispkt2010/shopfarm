@@ -23,7 +23,7 @@
                                 <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
                                     <option value="0" >Tất cả kho</option>
                                     @foreach($wareHouses  as $wareHouse)
-                                        <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>#{{$wareHouse->id}}({{$wareHouse->name}})</option>
+                                        <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>{{$wareHouse->id}}({{$wareHouse->name}})</option>
 
                                     @endforeach
                                 </select>
@@ -137,8 +137,8 @@
                             <input class="form-control" id="focusedInput2" type="text" name="name">
                         </div>
                         <div class="form-group">
-                            <select name="parent" class="form-control" data-placeholder="Chọn Danh mục">
-                                <option value="0">Chọn danh mục</option>
+                            <select id="select-cate" name="parent" class="form-control" data-placeholder="Chọn Danh mục">
+                                <option value="0">Mặc định</option>
                                @foreach($categoryProduct0 as $itemCategoryProduct0)
                                 <option value="{{$itemCategoryProduct0->id}}">{{$itemCategoryProduct0->name}}</option>
                                 @endforeach
@@ -181,8 +181,8 @@
                             <input class="form-control" id="focusedInput2" type="text" name="name" value=" ">
                         </div>
                         <div class="form-group">
-                            <select name="parent" class="form-control" data-placeholder="Chọn Danh mục">
-                                <option value="0">Chọn Danh mục</option>
+                            <select id="select-cate" name="parent" class="form-control" data-placeholder="Chọn Danh mục">
+                                <option value="0">Mặc định</option>
                                 @foreach($categoryProduct0 as $itemCategoryProduct0)
                                     <option value="{{$itemCategoryProduct0->id}}">{{$itemCategoryProduct0->name}}</option>
                                 @endforeach

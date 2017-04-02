@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('title', 'Tồn kho')
-@section('pageHeader','Tồn kho sản phẩm ')
-@section('detailHeader','kiểm tra tồn kho')
+@section('title', 'Sổ quỹ')
+@section('pageHeader','Sổ quỹ')
+@section('detailHeader','Sổ quỹ')
 @section('add_styles')
 @endsection
 @section('content')
@@ -21,7 +21,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                         <div class="content-money">
-                                            <p style="color: #52b256;">{{\App\Order::getInfoOrder(0)['price']}} VNĐ</p>
+                                            <p style="color: #52b256;">{{number_format(\App\Order::getInfoOrder(0)['price'])}} VNĐ</p>
                                             <span class="">{{\App\Order::getInfoOrder(0)['count']}} đơn hàng</span>
                                         </div>
                                 </div>
@@ -35,7 +35,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(8,1)['price']}} VNĐ</p>
+                                        <p style="color: #52b256;">{{number_format(\App\Order::getInfoOrder(8,1)['price'])}} VNĐ</p>
                                         <span class="">{{\App\Order::getInfoOrder(8,1)['count']}} đơn hàng</span>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                         <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(7)['price']}} VNĐ</p>
+                                        <p style="color: #52b256;">{{number_format(\App\Order::getInfoOrder(7)['price'])}} VNĐ</p>
                                         <span class="">{{\App\Order::getInfoOrder(7)['count']}} đơn hàng</span>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(8)['price']}} VNĐ</p>
+                                        <p style="color: #52b256;">{{number_format(\App\Order::getInfoOrder(8)['price'])}} VNĐ</p>
                                         <span class="">{{\App\Order::getInfoOrder(8)['count']}} đơn hàng</span>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Order::getInfoOrder(10)['price']}} VNĐ</p>
+                                        <p style="color: #52b256;">{{number_format(\App\Order::getInfoOrder(10)['price'])}} VNĐ</p>
                                         <span class="">{{\App\Order::getInfoOrder(10)['count']}} đơn hàng</span> {{--status Trả hàng mới tính--}}
                                     </div>
                                 </div>

@@ -293,14 +293,10 @@ class Util extends Model
     }
     public  static function StringExplodeProvince($id)
     {
-
         $province = Province::where('provinceid',$id)->first();
         $code_provice = "";
         if(count($province) !=0) {
-            $atr = explode(' ', $province->name);
-            foreach ($atr as $item) {
-                $code_provice = $code_provice . strtoupper($item[0]);
-            }
+            $code_provice = $province->province_code;
         }
         else{
             $code_provice="XX";
@@ -312,10 +308,11 @@ class Util extends Model
         $category = CategoryProduct::where('id',$id)->first();
         $code_cate = "";
         if(count($category) !=0) {
-            $atr = explode(' ', $category->name);
+            $code_cate = $category->cate_code;
+            /*$atr = explode(' ', $category->name);
             foreach ($atr as $item) {
                 $code_cate = $code_cate . strtoupper($item[0]);
-            }
+            }*/
         }
         else{
             $code_cate="XX";
@@ -332,9 +329,11 @@ class Util extends Model
 //        dd($userInfo);
         if(count($userInfo)!=0) {
             if ($userInfo->role_id != 4) {
+                $id_province = User::where('id', $id)->first();
                 $code_1 = strtoupper($userInfo->nameRole);
+                $code_2 = Util::StringExplodeProvince($id_province->province);
                 $code_3 = $userInfo->id;
-                $code_user = $code_1 . "-" . $code_3;
+                $code_user = $code_1 . "-" . $code_2 . "-" . $code_3;
             } else {
                 $id_province = WareHouse::where('user_id', $id)->first();
                 $code_1 = strtoupper($userInfo->nameRole);

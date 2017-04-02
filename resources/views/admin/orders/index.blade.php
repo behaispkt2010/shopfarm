@@ -33,9 +33,11 @@
                                 <div class="other-item-list">
                                     <ul>
                                         @foreach($arrOrderByStatus as $item)
-                                            <li class="show-menu li-{{$item->id}} @if($select == $item->id )  active @endif" style="display: none" ><a href="{!! url('/') !!}/admin/orders/getOrderByStatus/{{$item->id}}">{{$item->name}}</a><span
-                                                        style="background-color:{{$item->color}}"
-                                                        class="ng-binding">{{\App\ProductOrder::countOrderByStatus($item->id)}}</span></li>
+                                            <li class="show-menu li-{{$item->id}} @if($select == $item->id )  active @endif" style="display: none" >
+                                                <a href="{!! url('/') !!}/admin/orders/getOrderByStatus/{{$item->id}}">{{$item->name}}</a>
+                                                <span style="background-color:{{$item->color}}"class="ng-binding">{{\App\ProductOrder::countOrderByStatus($item->id)}}
+                                                </span>
+                                            </li>
                                         @endforeach                                                                                 {{--class="ng-binding">{!! $arrCountOrderByStatus[3] !!}</span></li>--}}
                                     </ul>
                                 </div>
@@ -100,17 +102,17 @@
                                         <p class="text-center status-title">@if($arrOrders->status==0) Mới tạo @else @foreach($arrOrderByStatus as $itemOrderStatus) @if(@$arrOrders->status==$itemOrderStatus->id) {{ $itemOrderStatus->name }} @endif @endforeach @endif</p>
                                     </div>
                                     <div class="col-sm-12" data-toggle="modal" data-target=".modal-tracking" href="{{route('orders.show',['id' => $arrOrders->id])}}">
-                                        <h4 class="cod">#{{\App\Util::OrderCode( $arrOrders->id)}}</h4>
+                                        <h4 class="cod">{{\App\Util::OrderCode( $arrOrders->id)}}</h4>
 
-                                        <div class="col-xs-12">
+                                        <div class="col-xs-12" style="padding-left: 0px;">
                                             <ul class="list-unstyled">
                                                 <li><i class="fa fa-user"></i> {{ $arrOrders->name }} </li>
                                                 <li><i class="fa fa-building"></i>
                                                     <span style="">{{ $arrOrders->address }}</span>
                                                 </li>
                                                 <li><i class="fa fa-phone"></i> {{$arrOrders->phone_number }}</li>
-                                                <li><i class="fa fa-usd"></i> <span class="box-money">{!! number_format(\App\ProductOrder::getSumOrder($arrOrders->id)) !!} VNĐ</span></li>
-                                                <li><i class="fa fa-database"></i> Thuộc Chủ Kho #{{\App\Util::UserCode($arrOrders->kho_id)}}
+                                                <li><i class="fa fa-usd"></i> <span class="box-money">{{ number_format(\App\ProductOrder::getSumOrder($arrOrders->id)) }} VNĐ</span></li>
+                                                <li><i class="fa fa-database"></i> Thuộc Chủ Kho {{\App\Util::UserCode($arrOrders->kho_id)}}
                                             </ul>
                                         </div>
                                     </div>

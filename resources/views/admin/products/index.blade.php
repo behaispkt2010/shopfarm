@@ -92,22 +92,22 @@
                                              data-pin-nopin="true">
                                     </div>
                                     <div id="update-product"  class="col-sm-12 input-product" data-toggle="modal"
-                                         data-target=".modal-product" data-title="{{$itemProduct->title}} (#{{$itemProduct->code}})" data-id="{{$itemProduct->id}}">
+                                         data-target=".modal-product" data-title="{{$itemProduct->title}} ({{\App\Util::ProductCode($itemProduct->id)}})" data-id="{{$itemProduct->id}}">
 
-                                        <p style="font-size: 20px;width: 80%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" class="cod">{{$itemProduct->title}}</p>
-                                        <h4 class="cod">#{{\App\Util::ProductCode($itemProduct->id)}}
-                                        </h4>
+                                        <p style="font-size: 16px;width: 80%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" class="cod">{{$itemProduct->title}}</p>
+                                        <h2 class="cod">{{\App\Util::ProductCode($itemProduct->id)}}
+                                        </h2>
 
 
-                                        <div class="col-xs-12">
+                                        <div class="col-xs-12 " style="padding-left: 0px;">
                                             <ul class="list-unstyled">
-                                                <li>Tồn kho: {{ number_format($itemProduct->inventory_num)}}</li>
-                                                <li>Chủ Kho # <strong>{{\App\Util::UserCode($itemProduct->kho)}}</strong></li>
-                                                <li><span class="box-money"> Mua vào: {{number_format($itemProduct->price_in)}} VNĐ </span></li>
-                                                <li><span class="box-money"> Bán ra: {{number_format($itemProduct->price_out)}} VNĐ</span></li>
-                                                <li>Bán tối thiểu: {{$itemProduct->min_gram}} Kg </li>
-                                                <li>Danh mục: {{\App\CategoryProduct::getNameCateById($itemProduct->category)}}</li>
-                                                <li>Cập nhật: {{$itemProduct->updated_at->format('d/m/Y')}}</li>
+                                                <li><span class="label-box">Tồn kho:</span>{{ number_format($itemProduct->inventory_num)}}</li>
+                                                <li><span class="label-box">Chủ Kho:</span><strong>{{\App\Util::UserCode($itemProduct->kho)}}</strong></li>
+                                                <li><span class="box-money"><span class="label-box">Mua vào:</span>{{number_format($itemProduct->price_in)}} VNĐ </span></li>
+                                                <li><span class="box-money"><span class="label-box">Bán ra:</span>{{number_format($itemProduct->price_out)}} VNĐ</span></li>
+                                                <li><span class="label-box">Bán tối thiểu:</span>{{$itemProduct->min_gram}} Kg </li>
+                                                <li><span class="label-box">Danh mục:</span>{{\App\CategoryProduct::getNameCateById($itemProduct->category)}}</li>
+                                                <li><span class="label-box">Cập nhật:</span>{{$itemProduct->updated_at->format('d/m/Y')}}</li>
                                             </ul>
                                         </div>
 
@@ -156,7 +156,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title text-center title" id="myModalLabel"></h4>
+                    <h2 class="modal-title text-center title" id="myModalLabel" style="font-weight: 300;"></h2>
                     <input type="hidden" name="id">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

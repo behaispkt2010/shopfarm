@@ -98,7 +98,7 @@
                             @endif--}}
 
                             @else
-                                Chào bạn <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                Chào bạn <br><a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                             aria-expanded="false">{{Auth::user()->name}}</a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 60%;right: 20px;">
                                     <li><a href="{{ url('/logout') }}"

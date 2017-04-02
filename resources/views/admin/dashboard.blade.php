@@ -174,7 +174,7 @@
                                 </a>
                                 <div class="media-body" style="padding-top: 10px;">
                                     <div class="col-md-6 col-sm-6 col-xs-6 text-left"><a class="title" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}" target="_blank">{!! $itemProductWaitApproval->title !!}</a></div>
-                                    <div class="col-md-2 col-sm-2 col-xs-2"><strong>Kho {{\App\Util::UserCode($itemProductWaitApproval->kho)}}</strong></div>
+                                    <div class="col-md-2 col-sm-2 col-xs-2">Kho {{\App\Util::UserCode($itemProductWaitApproval->kho)}}</div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 text-right" style="top: -6px;"><button class="btn-warning btnApproval" onclick="Approval(this)" style="padding: 5px 30px;">Duyệt</button></div>
                                 </div>
                                 <input type="hidden" name="txtProductID" value="{{$itemProductWaitApproval->id}}">

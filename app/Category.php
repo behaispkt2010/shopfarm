@@ -52,7 +52,6 @@ class Category extends Model
 
     static public function CateMulti($data, $parent_id = 0, $str = "&nbsp&nbsp&nbsp&nbsp", $select = 0)
     {
-
         foreach ($data as $val) {
             $id = $val->id;
             $name = $val->name;

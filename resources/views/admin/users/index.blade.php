@@ -67,7 +67,7 @@
                                     <div class="col-sm-10 col-sm-offset-1">
 
                                         <a href="{{route('users.edit',['id' => $user->id])}}">
-                                            <h4 class="cod">#{{ \App\Util::UserCode($user->id)}}</h4>
+                                            <h4 class="cod">{{ \App\Util::UserCode($user->id)}}</h4>
 
                                             <div class="row">
                                                 <div class="col-xs-12">
