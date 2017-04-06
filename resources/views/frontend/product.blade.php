@@ -169,7 +169,7 @@
 			</div><!--/ .table_layout -->
 
 			@if($products->perPage() != 0)
-			<footer class="bottom_box on_the_sides">
+			<footer class="bottom_box text-center">
 				<div class="right_side">
 
 					{!! $products->render() !!}
@@ -194,7 +194,7 @@
 	<script>
 		$(document).on('change','select[name="fillter"]',function(){
 			var q= $(this).val();
-			window.location.href ="/products?q="+q;
+			window.location.href ="{{url('/')}}/products?q="+q;
 		})
 	</script>
 @endsection

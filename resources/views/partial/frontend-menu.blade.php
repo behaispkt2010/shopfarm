@@ -38,7 +38,7 @@
 
                             <!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
 
-                            <a href="/" class="logo">
+                            <a href="{{url('/')}}" class="logo">
 
                                 <img src="{{asset('frontend/images/logo.png')}}" alt="">
 

@@ -35,7 +35,7 @@
 
 						<main class="col-md-9 col-sm-8">
 
-							<h1>@if(empty($category))Tin tức @else {{$category->name}} @endif</h1>
+							<h3>@if(empty($category))Tin tức @else {{$category->name}} @endif</h3>
 
 							<header class="top_box on_the_sides">
 
@@ -91,7 +91,7 @@
 
 										<!-- - - - - - - - - - - - - - End of entry image - - - - - - - - - - - - - - - - -->
 
-										<h4 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($blog->category)}}/{{$blog->slug}}">{{$blog->title}}</a></h4>
+										<h4 class="entry_title" style="font-size:16px;"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($blog->category)}}/{{$blog->slug}}">{{$blog->title}}</a></h4>
 
 										<!-- - - - - - - - - - - - - - Entry meta - - - - - - - - - - - - - - - - -->
 

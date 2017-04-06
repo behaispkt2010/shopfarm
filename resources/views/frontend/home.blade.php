@@ -106,7 +106,7 @@
 									</li>
 									@endforeach
 								</ul>
-								<div class="temp-wrapper" style="height: 407px;">
+								<div class="temp-wrapper" style="height: 508px;">
 									<ul class="category_khovip_list">Chủ kho Uy tín <br>
 										@foreach(\App\WareHouse::getVipByCate($itemAllCategory->id,5) as $key=> $warehousevip)
 											<li class="category_khovip_item">
@@ -126,55 +126,6 @@
 										@endforeach
 									</ul>
 									<div class="category_product">
-										<!-- <div class="tab_containers_wrap">
-										@foreach(\App\Product::getChildCateByCate($itemAllCategory->id) as $item)
-
-											<div id="tab-{{$item->id}}">
-												<?php $i=0 ;$j=0?>
-												@foreach (\App\Product::getProductByCate($item->id) as $product)
-													@if($i==0)<div class="category_product_row">@endif
-												<div class="col-md-4 category_product_cell">
-
-													<div class="product_bestselt">
-
-														<div class="image_wrap">
-
-															<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-
-														</div>
-														<div class="description">
-
-															<a href="#" style="text-transform: uppercase;">{{$product->title}}</a>
-															<div class="kho_info clearfix">
-																<a href="#" class="alignleft photo" >
-																	@if($product->levelKho == 1)
-																		<img src="{{url('/images')}}/level1.png" alt="">
-																	@elseif($product->levelKho == 2)
-																		<img src="{{url('/images')}}/level2.png" alt="">
-																	@elseif($product->levelKho == 3)
-																		<img src="{{url('/images')}}/level3.png" alt="">
-																	@else
-																		<img src="{{url('/images')}}/level0.jpg" alt="">
-																	@endif
-																</a>
-																<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
-															</div>
-															<div class="clearfix product_info">
-																<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
-															</div>
-														</div>
-													</div>
-												</div>
-												<?php $i = $i+1;$j=$j+1; ?>
-												@if($i>=3|| $j>=count(\App\Product::getProductByCate($item->id)))
-													<?php $i=0 ?>
-											</div>
-											@endif
-												@endforeach
-											</div>
-
-										@endforeach
-										</div> -->
 										<?php $i=0 ;$j=0?>
 										@foreach(\App\Product::getBestSellerProductByCate($itemAllCategory->id,6) as $key=> $product)
 											@if($i==0)<div class="category_product_row">@endif
