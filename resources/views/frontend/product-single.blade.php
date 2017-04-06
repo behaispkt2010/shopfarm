@@ -546,9 +546,9 @@
 
 							<ul class="tabs_nav clearfix">
 
-								<li><a href="#tab-5">Sản phẩm có thể bạn thích</a></li>
-								<li><a href="#tab-6">Nhà cung cấp có uy tín</a></li>
-								<li><a href="#tab-7">Sản phẩm bán chạy</a></li>
+								<li class="tab_bottom"><a href="#tab-5">Sản phẩm có thể bạn thích</a></li>
+								<li class="tab_bottom"><a href="#tab-6">Nhà cung cấp có uy tín</a></li>
+								<li class="tab_bottom"><a href="#tab-7">Sản phẩm bán chạy</a></li>
 
 							</ul>
 							

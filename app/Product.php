@@ -53,6 +53,42 @@ class Product extends Model
         }
         return $bestSellerProduct;
     }
+    public static function getBestSellerProductByCate($cateID,$limit=0){
+        $getCate = CategoryProduct::where('parent',$cateID)->get();
+        $arrCateProductID = array();
+        foreach ($getCate as $itemgetCate) {
+            if (!in_array($itemgetCate['id'], $arrCateProductID)){
+                $arrCateProductID[] = $itemgetCate['id'];
+            }
+        }
+        // dd($arrCateProductID);
+        if($limit==0) {
+            $bestSellerProduct = ProductOrder::leftJoin('products', 'product_orders.id_product', '=', 'products.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
+                ->whereIn('products.category',$arrCateProductID)
+                ->groupBy('product_orders.id_product')
+                ->selectRaw('products.*, sum(product_orders.num) as numOrder')
+                ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->orderBy('numOrder', 'DESC')
+                ->get();
+        }
+        else{
+            $bestSellerProduct = ProductOrder::leftJoin('products', 'product_orders.id_product', '=', 'products.id')
+                ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
+                ->leftjoin('users','users.id','ware_houses.user_id')
+                ->whereIn('products.category',$arrCateProductID)
+                ->groupBy('product_orders.id_product')
+                ->selectRaw('products.*, sum(product_orders.num) as numOrder')
+                ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->orderBy('numOrder', 'DESC')
+                ->take($limit)
+                ->get();
+        }
+        return $bestSellerProduct;
+    }
     public static function getRelatedProduct($id,$limit){
 
       $getCategory=Product::find($id);
@@ -153,7 +189,7 @@ class Product extends Model
             ->selectRaw('products.*')
             ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
             ->where('products.category',$id)
-            ->orderBy('products.id',"DESC")->take(8)->get();
+            ->orderBy('products.id',"DESC")->take(6)->get();
         return $products;
     }
 

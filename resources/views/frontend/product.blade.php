@@ -84,16 +84,16 @@
 
 			<div class="table_layout" id="products_container">
 
-				<div class="table_layout">
+				<div class="table_layout" style="">
 
 					@if(count($products)!=0)
 					<?php $i=0 ;$j=0?>
 					@foreach($products as $key=> $product)
-						@if($i==0)<div class="table_row">@endif
+						@if($i==0)<div class="category_product_row" style="margin-bottom: 15px; background-color: #fff;">@endif
 									<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-							<div class="table_cell">
+							<div class="col-md-4 category_product_cell">
 
-								<div class="product_item">
+								<div class="product_bestselt" style="border: 1px solid #eaeaea;">
 
 									<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
@@ -153,7 +153,7 @@
 
 							</div>
 							<?php $i = $i+1;$j=$j+1; ?>
-							@if($i>=4|| $j>=count($products))
+							@if($i>=3|| $j>=count($products))
 								<?php $i=0 ?>
 						</div>
 						@endif

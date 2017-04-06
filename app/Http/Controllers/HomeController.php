@@ -6,6 +6,7 @@ use App\Category;
 use App\CategoryProduct;
 use App\Product;
 use App\ProductOrder;
+use App\WareHouse;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -47,9 +48,9 @@ class HomeController extends Controller
         $getBestStarsProduct = Product::getBestStarsProduct(9);
         $getBestSellerProduct = Product::getBestSellerProduct(9);
         $getNewProduct = Product::getNewProduct(9);
-        //dd($getNewProduct);
         $allCategory = CategoryProduct::where('parent',0)->get();
-
+        /*$getVipByCate = WareHouse::getVipByCate(1,3);
+        dd($getVipByCate);*/
         $data = [
             'getNewProduct' =>$getNewProduct,
             'bestSellerProduct'=>$getBestSellerProduct,

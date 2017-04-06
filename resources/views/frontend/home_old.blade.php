@@ -8,7 +8,7 @@
 
 				<div class="container">
 
-					<div class="section_offset" style="margin-bottom:0px;">
+					<div class="section_offset">
 
 						<div class="row">
 							<div class="col-xs-12 col-md-3">
@@ -25,30 +25,21 @@
 
 								<div class="row">
 
-									<div class="col-sm-4 img_banner" style="padding: 0px;">
+									<div class="col-sm-6">
 
-										<a href="#" class="">
+										<a href="#" class="banner animated visible fadeInDown" data-animation="fadeInDown">
 
-											<img src="{{url('/')}}/images/fruit.jpg" alt="">
-
-										</a>
-
-									</div><!--/ [col]-->
-
-									<div class="col-sm-4 img_banner" style="padding: 0px;">
-
-										<a href="#" class="">
-
-											<img src="{{url('/')}}/images/go.jpg" alt="">
+											<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
 
 										</a>
 
 									</div><!--/ [col]-->
-									<div class="col-sm-4 img_banner" style="padding: 0px;">
 
-										<a href="#" class="">
+									<div class="col-sm-6">
 
-											<img src="{{url('/')}}/images/seafood.jpeg" alt="">
+										<a href="#" class="banner animated visible fadeInDown" data-animation="fadeInDown" data-animation-delay="150" style="animation-delay: 150ms;">
+
+											<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
 
 										</a>
 
@@ -62,168 +53,131 @@
 						</div><!--/ .row-->
 
 					</div><!--/ .section_offset-->
-					<div class="row" style="padding:0px; marging:0px;">
-						<div class="col-sm-4" style="padding: 0px;">
-							<a href="#" class="">
-								<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
-							</a>
-						</div>
-						<div class="col-sm-4" style="padding: 0px;">
-							<a href="#" class="">
-								<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
-							</a>
-						</div>
-						<div class="col-sm-4" style="padding: 0px;">
-							<a href="#" class="">
-								<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
-							</a>
-						</div>
-					</div>
-					<br>
+
 					<div class="row">
-						<main class="col-md-12 col-sm-12" style="padding-left:0px;">
+
+						<aside class="col-md-3 col-sm-12">
+							@include('partial.frontend-banner')
+						</aside>
+
+						<main class="col-md-9 col-sm-12">
+
+
 
 							<!-- - - - - - - - - - - - - - Category - - - - - - - - - - - - - - - - -->
 
 							@foreach($allCategory as $itemAllCategory)
-							<div class="homepage_category">
-								<ul class="homepage_category_list">
-									<li class="category_item">
-										<h3>
-											<a href="#">
-												<div class="category_item_icon"><img src="{{url('/')}}/images/{{$itemAllCategory->slug}}.png"></div>
-												<div class="category_item_title">{{$itemAllCategory->name}}</div>
-											</a>
-										</h3>
-									</li>
-									@foreach(\App\Product::getChildCateByCate($itemAllCategory->id) as $item)
-									<li class="subcategory_item">
-										<!-- <a href="#tab-{{$item->id}}" title="{{$item->name}}"> --> 
-										<a href="{{url('/category-product/').'/'.$item->slug}}" title="{{$item->name}}" target="_blank"> 
-											<div class="subcategory_item_icon"><img src="{{url('/')}}/images/{{$item->slug}}.png"></div>
-											<div class="subcategory_item_title">{{$item->name}}<div>
-										</a>
-									</li>
-									@endforeach
-								</ul>
-								<div class="temp-wrapper" style="height: 407px;">
-									<ul class="category_khovip_list">Chủ kho Uy tín <br>
-										@foreach(\App\WareHouse::getVipByCate($itemAllCategory->id,5) as $key=> $warehousevip)
-											<li class="category_khovip_item">
-												<a href="#" class="alignleft photo" >
-													@if($warehousevip->levelKho == 1)
-														<img src="{{url('/images')}}/level1.png" alt="">
-													@elseif($warehousevip->levelKho == 2)
-														<img src="{{url('/images')}}/level2.png" alt="">
-													@elseif($warehousevip->levelKho == 3)
-														<img src="{{url('/images')}}/level3.png" alt="">
-													@else
-														<img src="{{url('/images')}}/level0.jpg" alt="">
-													@endif
-												</a>
-												<p class="alignleft"><b>{{ $warehousevip->nameKho  }}</b></p>
-											</li>
+							<section class="section_offset animated transparent" data-animation="fadeInDown">
+
+								<h3 class="offset_title">{{$itemAllCategory->name}}</h3>
+
+								<div class="tabs type_3 products">
+
+									<!-- - - - - - - - - - - - - - Navigation of tabs - - - - - - - - - - - - - - - - -->
+
+									<ul class="theme_menu tabs_nav clearfix theme_menu_{{$itemAllCategory->id}}">
+
+										@foreach(\App\Product::getChildCateByCate($itemAllCategory->id) as $item)
+										<li class="has_submenu"><a href="#tab-{{$item->id}}">{{$item->name}}</a></li>
 										@endforeach
+
 									</ul>
-									<div class="category_product">
-										<!-- <div class="tab_containers_wrap">
+
+									<!-- - - - - - - - - - - - - - End navigation of tabs - - - - - - - - - - - - - - - - -->
+
+									<!-- - - - - - - - - - - - - - Tabs container - - - - - - - - - - - - - - - - -->
+
+									<div class="tab_containers_wrap">
 										@foreach(\App\Product::getChildCateByCate($itemAllCategory->id) as $item)
 
-											<div id="tab-{{$item->id}}">
-												<?php $i=0 ;$j=0?>
-												@foreach (\App\Product::getProductByCate($item->id) as $product)
-													@if($i==0)<div class="category_product_row">@endif
-												<div class="col-md-4 category_product_cell">
+										<div id="tab-{{$item->id}}" class="tab_container">
 
-													<div class="product_bestselt">
+											<!-- - - - - - - - - - - - - - Carousel of today's deals - - - - - - - - - - - - - - - - -->
 
-														<div class="image_wrap">
+											<div class="owl_carousel carousel_in_tabs ">
 
-															<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+												@foreach(\App\Product::getProductByCate($item->id) as $product)
+												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
+												<div class="product_item">
+
+													<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
+
+													<div class="image_wrap">
+
+														<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+
+														<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
+
+														<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
+
+														<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
+
+														<div class="label_new">New</div>
+
+														<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
+
+													</div><!--/. image_wrap-->
+
+													<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
+
+													<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
+
+													<div class="description">
+
+														<a href="#" class="clearfix">{{$product->title}}</a>
+
+														<div class="kho_info clearfix">
+															<a href="#" class="alignleft photo">
+																@if($product->levelKho == 1)
+																	<img src="{{url('/images')}}/level1.png" alt="">
+																@elseif($product->levelKho == 2)
+																	<img src="{{url('/images')}}/level2.png" alt="">
+																@elseif($product->levelKho == 3)
+																	<img src="{{url('/images')}}/level3.png" alt="">
+																@else
+																	<img src="{{url('/images')}}/level0.jpg" alt="">
+																@endif
+															</a>
+															<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
 														</div>
-														<div class="description">
-
-															<a href="#" style="text-transform: uppercase;">{{$product->title}}</a>
-															<div class="kho_info clearfix">
-																<a href="#" class="alignleft photo" >
-																	@if($product->levelKho == 1)
-																		<img src="{{url('/images')}}/level1.png" alt="">
-																	@elseif($product->levelKho == 2)
-																		<img src="{{url('/images')}}/level2.png" alt="">
-																	@elseif($product->levelKho == 3)
-																		<img src="{{url('/images')}}/level3.png" alt="">
-																	@else
-																		<img src="{{url('/images')}}/level0.jpg" alt="">
-																	@endif
-																</a>
-																<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
-															</div>
-															<div class="clearfix product_info">
-																<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
-															</div>
+														<div class="clearfix product_info">
+															<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+															<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+														</div>
+														<div class="clearfix product_info">
+															<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
 														</div>
 													</div>
-												</div>
-												<?php $i = $i+1;$j=$j+1; ?>
-												@if($i>=3|| $j>=count(\App\Product::getProductByCate($item->id)))
-													<?php $i=0 ?>
-											</div>
-											@endif
+
+													<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
+
+												</div><!--/ .product_item-->
+
+
+												<!-- - - - - - - - - - - - - - End of product - - - - - - - - - - - - - - - - -->
+
 												@endforeach
-											</div>
+											</div><!--/ .owl_carousel-->
 
+											<!-- - - - - - - - - - - - - - End of carousel of today's deals - - - - - - - - - - - - - - - - -->
+
+										</div><!--/ #tab-15-->
 										@endforeach
-										</div> -->
-										<?php $i=0 ;$j=0?>
-										@foreach(\App\Product::getBestSellerProductByCate($itemAllCategory->id,6) as $key=> $product)
-											@if($i==0)<div class="category_product_row">@endif
-												<div class="col-md-4 category_product_cell">
 
-													<div class="product_bestselt">
 
-														<div class="image_wrap">
-
-															<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-
-														</div>
-														<div class="description">
-
-															<a href="#" style="text-transform: uppercase;">{{$product->title}}</a>
-															<div class="kho_info clearfix">
-																<a href="#" class="alignleft photo" >
-																	@if($product->levelKho == 1)
-																		<img src="{{url('/images')}}/level1.png" alt="">
-																	@elseif($product->levelKho == 2)
-																		<img src="{{url('/images')}}/level2.png" alt="">
-																	@elseif($product->levelKho == 3)
-																		<img src="{{url('/images')}}/level3.png" alt="">
-																	@else
-																		<img src="{{url('/images')}}/level0.jpg" alt="">
-																	@endif
-																</a>
-																<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>
-															</div>
-															<div class="clearfix product_info">
-																<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
-															</div>
-														</div>
-													</div>
-												</div>
-												<?php $i = $i+1;$j=$j+1; ?>
-												@if($i>=3|| $j>=count(\App\Product::getBestSellerProductByCate($itemAllCategory->id,6)))
-													<?php $i=0 ?>
-											</div>
-											@endif
-										@endforeach
 									</div>
-									<div class="banner_home_category"><img src="{{url('/')}}/images/{{$itemAllCategory->slug}}.png">
-									</div>
+
+									<!-- - - - - - - - - - - - - - End of tabs containers - - - - - - - - - - - - - - - - -->
+
 								</div>
-							</div>
+
+							</section>
+
 							<!-- - - - - - - - - - - - - - End of cate - - - - - - - - - - - - - - - - -->
 							@endforeach
-				
+
+
 							<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
 							<div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">
@@ -232,8 +186,8 @@
 
 								<ul class="tabs_nav clearfix">
 
-									<li class="tab_bottom"><a href="#tab-1">Sản phẩm mới</a></li>
-									<li class="tab_bottom"><a href="#tab-2">Sản phẩm đánh giá tốt</a></li>
+									<li><a href="#tab-1">Sản phẩm mới</a></li>
+									<li><a href="#tab-2">Sản phẩm đánh giá tốt</a></li>
 
 
 								</ul>
@@ -251,11 +205,11 @@
 										<div class="table_layout">
 											<?php $i=0 ;$j=0?>
 											@foreach($getNewProduct as $key => $product)
-												@if($i==0)<div class="category_product_row" style="margin-bottom: 15px; background-color: #fff;">@endif
+												@if($i==0)<div class="table_row">@endif
 																<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-														<div class="col-md-3 col-xs-12 category_product_cell">
+														<div class="table_cell">
 
-															<div class="product_bestselt" style="border: 1px solid #eaeaea;">
+															<div class="product_item">
 
 																<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
@@ -295,7 +249,7 @@
 																			<img src="{{url('/images')}}/level0.jpg" alt="">
 																		@endif
 																		</a>
-																		<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>
+																		<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
 																	</div>
 																	<div class="clearfix product_info">
 																		<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
@@ -319,7 +273,7 @@
 										</div>
 										<!-- - - - - - - - - - - - - - View all products - - - - - - - - - - - - - - - - -->
 										<footer class="bottom_box">
-											<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+											<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 										</footer>
 										<!-- - - - - - - - - - - - - - End of view all products - - - - - - - - - - - - - - - - -->
 
@@ -334,11 +288,11 @@
 										<div class="table_layout">
 											<?php $i=0 ;$j=0?>
 											@foreach($getBestStarsProduct as $key=> $product)
-												@if($i==0)<div class="category_product_row" style="margin-bottom: 15px; background-color: #fff;">@endif
+												@if($i==0)<div class="table_row">@endif
 															<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-													<div class="col-md-3 col-xs-12 category_product_cell">
+													<div class="table_cell">
 
-														<div class="product_bestselt" style="border: 1px solid #eaeaea;">
+														<div class="product_item">
 
 															<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
@@ -379,7 +333,7 @@
 																			<img src="{{url('/images')}}/level0.jpg" alt="">
 																		@endif
 																	</a>
-																	<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>
+																	<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
 																</div>
 																<div class="clearfix product_info">
 
@@ -414,7 +368,7 @@
 
 										<footer class="bottom_box">
 
-											<a href="url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+											<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 										</footer>
 
@@ -488,7 +442,7 @@
 																	<img src="{{url('/images')}}/level0.jpg" alt="">
 																@endif
 															</a>
-															<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>
+															<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
 														</div>
 														<div class="clearfix product_info">
 
@@ -525,7 +479,7 @@
 
 								<footer class="bottom_box">
 
-									<a href="url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+									<a href="/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 
 								</footer>
 

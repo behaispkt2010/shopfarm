@@ -183,7 +183,7 @@
 
 	.section_offset{ position: relative; }
 
-	.section_offset:not(:last-child){ margin-bottom:40px; }
+	.section_offset:not(:last-child){ margin-bottom:40px; padding-top: 10px;}
 
 	[class*="page_wrapper"]{
 		background:#f8f8f8;
@@ -197,9 +197,9 @@
 		padding: 10px 0 60px;
 	}
 
-	.main_product .title a{ color:#4e8d1a; }
+	.main_product .title a{ color:#0f9d58; }
 
-	.main_product .title a:hover{ color:#4e8d1a; }
+	.main_product .title a:hover{ color:#0f9d58; }
 
 	.thumbnail{ 
 		display: block;
@@ -3539,8 +3539,8 @@
 		.tabs_nav > li.active > a,
 		.tabs_nav > li:hover > a{
 			color:#fff;
-			background:#4e8d1a;
-			border-color:#4e8d1a;
+			background:#0f9d58;
+			border-color:#0f9d58;
 		}
 
 		.tabs:not(.type_3) .tabs_nav li a{ border-radius:3px 3px 0 0; }
@@ -4397,7 +4397,7 @@
 
 	.table_layout{
 		display: table;
-		/*width: 100%;*/
+		width: 100%;
 		table-layout: fixed;
 	}
 
@@ -6971,4 +6971,164 @@ background:url("/images/bg_1.jpg");
 .img_banner img{
 	width: 292px;
 	height: 300px;	
+}
+.homepage_category {
+	/*margin-top: 32px;*/
+    border: 1px solid #EEEEEE;
+    margin-bottom: 20px;
+}
+.homepage_category_list {
+	padding-left: 0;
+  	list-style: none;
+  	margin-left: -5px;
+  	height: 78px;
+  	width: auto;
+  	background-color: #FFFFFF;
+  	margin-left: 0;
+  	margin-bottom: 0;
+  	overflow: hidden;
+  	position: relative;
+  	box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.12);
+  	z-index: 1;
+  	padding-left: 170px;
+}
+.homepage_category_list > li{
+	display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.category_item {
+	height: 78px;
+    width: 17%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #0f9d58;
+}
+.category_item_icon {
+	width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    margin-top: -16px;
+    line-height: 32px;
+    text-align: center;
+}
+.category_item_title {
+	margin-left: 40px;
+    margin-top: 27px;
+    margin-bottom: 0;
+    font-size: 15px;
+    text-transform: uppercase;
+    line-height: 20px;
+    color: #FFFFFF;
+    width: 150px;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.subcategory_item {
+	height: 78px;
+	margin-left: 20px;
+    width: 150px;
+    padding: 9px 0;
+    margin-right: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+.subcategory_item_icon {
+	width: 45px;
+    height: 45px;
+    margin-left: 60px;
+
+}
+.subcategory_item_title {
+	color: #333333;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    margin-left: 10px;
+}
+.category_khovip_list {
+	z-index: -2;
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1px;
+    width: 17%;
+    height: 407px;
+    overflow: hidden;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    float: left;
+    background-color: #fff;
+}
+.category_khovip_list .photo{
+	margin-right: 15px;
+    width: 20px;
+}
+
+.category_khovip_list .category_khovip_item{
+	float: left;
+	width: 100%;
+	padding-top: 5px;
+}
+.category_khovip_list .category_khovip_item p{
+	width: 75%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.category_product {
+	position: relative;
+    float: left;
+    width: 69%;
+    height: 407px;
+	background-color: #fff;
+}
+.banner_home_category {
+	z-index: -2;
+    float: left;
+    width: 14%;
+    height: 407px;
+    background-color: #fff;
+    /*padding: 14px 8px 18px;*/
+}
+.category_product_row {
+	/*display: table-row;*/
+	height: 204px;
+}
+.category_product_cell {
+	float: left;
+	height: 204px;
+	padding: 0px;
+}
+.category_product_cell .product_bestselt .image_wrap {
+	height: 120px;
+	text-align: center;
+}
+.category_product_cell .product_bestselt .image_wrap img {
+	height: 100%;
+	width: 100%;
+}
+.category_product_cell .product_bestselt .description {
+	width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+}
+.category_product_cell .product_bestselt .description .kho_info {
+	margin: 0px;
+}
+.tab_bottom {
+	text-transform: uppercase;
+	font-size: 15px;
+}
+.tab_bottom > a {
+	font-size: 15px;
 }

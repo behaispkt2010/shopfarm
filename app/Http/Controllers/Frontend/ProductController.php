@@ -72,7 +72,12 @@ class ProductController extends Controller
 
         $cate = CategoryProduct::where('slug',$cate)->first();
 
-        $products = Product::where('category',$cate->id)->paginate(16);
+        $products = Product::where('category',$cate->id)
+            ->leftJoin('ware_houses','products.kho','=','ware_houses.user_id')
+            ->selectRaw('products.*')
+            ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+            ->paginate(16);
+        // dd($products);
         $data =[
             "products"=>$products,
             "nameCate"=>$cate->name
