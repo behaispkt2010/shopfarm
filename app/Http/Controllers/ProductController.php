@@ -9,6 +9,7 @@ use App\Notification;
 use App\Product;
 use App\ProductUpdatePrice;
 use App\User;
+use App\WareHouse;
 use App\Util;
 use Illuminate\Http\Request;
 
@@ -171,64 +172,70 @@ public function AjaxGetProduct(Request $request){
      */
     public function store(ProductRequest $request)
     {
-        $today = date("Y-m-d_H-i-s");
-        $product = new Product;
-        $data = $request->all();
-        if(!empty(Auth::user()->id)) {
-            $data['author_id'] = Auth::user()->id;
-        }
-        else{
-            $data['author_id'] = 1;
-        }
-
-        if ($request->hasFile('image')) {
-            $data['image']  = Util::saveFile($request->file('image'), '');
-        }
-
-        if (!empty($request->get('slug_seo'))) {
-            $data['slug']  = Util::builtSlug($request->get('slug_seo'));
-        }
-        else{
-            $data['slug']  = Util::builtSlug($request->get('title'));
-        }
-        $checkSlug = Product::where('slug', $data['slug'])->count();
-        if($checkSlug != 0){
-            $data['slug'] =  $data['slug'].'-'.$today;
-        }
-        //$data['code'] = Util::ProductCode($request);
-        $product1 = Product::create($data);
-//        dd($product);
-        $Price = new ProductUpdatePrice();
-        $dataPrice['product_id']=$product1->id;
-        $dataPrice['price_in']=$request->get('price_in');
-        $dataPrice['price_out']=$request->get('price_out');
-        $dataPrice['supplier']= "create";
-        $dataPrice['number']= $request->get('inventory_num');
-        ProductUpdatePrice::create($dataPrice);
-
-        $userID = Auth::user()->id;
-        if (Auth::user()->hasRole('kho')) {
-            $getCodeKho = Util::UserCode($userID);
-            $dataNotify['keyname'] = Util::$newproduct;
-            $dataNotify['title'] = "Sản phẩm mới";
-            $dataNotify['content'] = "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.";
-            $dataNotify['author_id'] = $userID;
-            $dataNotify['roleview'] = Util::$roleviewAdmin;
-            $dataNotify['orderID_or_productID'] = $product1->id;
-            Notification::create($dataNotify);
-        }
-
-        $dataImage['product_id']=$product1->id;
-        if(!empty($request->file('image_detail'))) {
-            foreach ($request->file('image_detail') as $image_detail) {
-//            DetailImageProduct::where('id_product',$dataImage['id_product'])->delete();
-                $imageDetail = new DetailImageProduct();
-                $dataImage['image'] = Util::saveFile($image_detail, '');
-                DetailImageProduct::create($dataImage);
+        $strKho = $request->get('kho');
+        $countProductOfKhoByLevel = Product::checkCountProductByLevelKho($strKho);
+        if ($countProductOfKhoByLevel == 1) {
+            $today = date("Y-m-d_H-i-s");
+            $product = new Product;
+            $data = $request->all();
+            if(!empty(Auth::user()->id)) {
+                $data['author_id'] = Auth::user()->id;
             }
-        }
+            else{
+                $data['author_id'] = 1;
+            }
 
-        return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+            if ($request->hasFile('image')) {
+                $data['image']  = Util::saveFile($request->file('image'), '');
+            }
+
+            if (!empty($request->get('slug_seo'))) {
+                $data['slug']  = Util::builtSlug($request->get('slug_seo'));
+            }
+            else{
+                $data['slug']  = Util::builtSlug($request->get('title'));
+            }
+            $checkSlug = Product::where('slug', $data['slug'])->count();
+            if($checkSlug != 0){
+                $data['slug'] =  $data['slug'].'-'.$today;
+            }
+            //$data['code'] = Util::ProductCode($request);
+            $product1 = Product::create($data);
+    //        dd($product);
+            $Price = new ProductUpdatePrice();
+            $dataPrice['product_id']=$product1->id;
+            $dataPrice['price_in']=$request->get('price_in');
+            $dataPrice['price_out']=$request->get('price_out');
+            $dataPrice['supplier']= "create";
+            $dataPrice['number']= $request->get('inventory_num');
+            ProductUpdatePrice::create($dataPrice);
+
+            $userID = Auth::user()->id;
+            if (Auth::user()->hasRole('kho')) {
+                $getCodeKho = Util::UserCode($userID);
+                $dataNotify['keyname'] = Util::$newproduct;
+                $dataNotify['title'] = "Sản phẩm mới";
+                $dataNotify['content'] = "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.";
+                $dataNotify['author_id'] = $userID;
+                $dataNotify['roleview'] = Util::$roleviewAdmin;
+                $dataNotify['orderID_or_productID'] = $product1->id;
+                Notification::create($dataNotify);
+            }
+
+            $dataImage['product_id']=$product1->id;
+            if(!empty($request->file('image_detail'))) {
+                foreach ($request->file('image_detail') as $image_detail) {
+    //            DetailImageProduct::where('id_product',$dataImage['id_product'])->delete();
+                    $imageDetail = new DetailImageProduct();
+                    $dataImage['image'] = Util::saveFile($image_detail, '');
+                    DetailImageProduct::create($dataImage);
+                }
+            }
+            return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+        }
+        else {
+            return redirect('admin/products/')->with(['flash_level' => 'danger', 'flash_message' => 'Đã quá số sản phẩm cho phép, vui lòng nâng cấp kho để có thể đăng nhiều sản phẩm !!!']);
+        }
     }
 
     /**
@@ -356,7 +363,7 @@ public function AjaxGetProduct(Request $request){
             return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
         else{
-            return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+            return redirect('admin/products/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
 
         }
     }
