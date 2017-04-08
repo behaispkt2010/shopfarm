@@ -192,5 +192,21 @@ class Product extends Model
             ->orderBy('products.id',"DESC")->take(6)->get();
         return $products;
     }
+    public static function checkCountProductByLevelKho ($strKhoID){
+        $arrGetKhoInfo = WareHouse::where('user_id',$strKhoID)->get();
+        foreach ($arrGetKhoInfo as $itemGetInfoKho) {
+            $strLevelKho = $itemGetInfoKho->level;
+        }
+        $check = Product::leftJoin('ware_houses','products.kho','ware_houses.user_id')
+            ->where('products.kho',$strKhoID)
+            ->get();
+        $countProduct = count($check);    
+        if (($strLevelKho == 1 && ($countProduct < Util::$strNumberProductOfLevel1)) || ($strLevelKho == 2 && ($countProduct < Util::$strNumberProductOfLevel2)) || ($strLevelKho == 3 && ($countProduct < Util::$strNumberProductOfLevel3))) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
 
 }

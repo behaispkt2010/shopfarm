@@ -40,6 +40,9 @@ class Util extends Model
     public static $orderreturn = "orderreturn";
     public static $statusOrderFail = 9;
     public static $statusOrderReturn = 10;
+    public static $strNumberProductOfLevel1 = 5;
+    public static $strNumberProductOfLevel2 = 10;
+    public static $strNumberProductOfLevel3 = 100;
 
     public static function saveFile($file, $type)
     {

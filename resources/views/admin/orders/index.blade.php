@@ -156,11 +156,19 @@
 
     @section('add_scripts')
             <!-- Datatables -->
+    <script src="{{asset('js/selectize.js')}}"></script>        
+    <script>
+        $('#select-status').selectize({
+            create: true,
+            sortField: 'text'
+        });
+    </script>
 <script type="text/javascript">
 
     $(document).ready(function () {
         updateContainer();
     });
+
     $(document).on('change','#select-status',function(){
         // similar behavior as clicking on a link
         var href = $('#select-status').val();
