@@ -358,9 +358,9 @@
                             <div class="form-group">
                                 <select id="q" class="form-control" name="q">
                                     <option value="0">Chọn phường xã</option>
-                                    @foreach($district as $item)
+                                    <!-- @foreach($district as $item)
                                         <option value="{{$item->name}}">{{$item->name}}</option>
-                                    @endforeach
+                                    @endforeach -->
                                 </select>
                             </div>
                         </div>
@@ -500,7 +500,7 @@
 </script>
 <!-- Select2 -->
 <script>
-    $('#select-kh,#t,#q,.select-payment,#select-product').selectize({});
+    $('#select-kh,.select-payment,#select-product').selectize({});
 </script>
 <script>
     $('#select-kh').on('change', function (e) {
@@ -686,7 +686,7 @@
             alert("Sản phẩm đã tồn tại! Vui lòng chọn sản phẩm khác");
         }
         else {
-
+            $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
                 url: '{!! url("/") !!}/admin/products/AjaxGetProduct',
@@ -715,6 +715,41 @@
             });
         }
     });
+</script>
+<script type="text/javascript">
+    var xhr;
+    var select_state, $select_state;
+    var select_city, $select_city;
+    var _token = $('input[name="_token"]').val();
+    $select_state = $('#t').selectize({
+        onChange: function(value) {
+            // alert(value.length);
+            if (!value.length) return;
+            select_city.clearOptions();
+            select_city.load(function(callback) {
+                xhr && xhr.abort();
+                xhr = $.ajax({
+                    type: 'POST',
+                    url: '{{ url("/") }}/admin/orders/AjaxGetDistrictByProvince',
+                    data: {name: value, _token: _token},
+                    success: function(results) {
+                        callback(results);
+                        console.log(results);
+                    },
+                    error: function() {
+                        callback();
+                    }
+                })
+            });
+        }
+    });
+
+    $select_city = $('#q').selectize({valueField: 'name',
+    labelField: 'name',
+    searchField: ['name']});
+
+    select_city  = $select_city[0].selectize;
+    select_state = $select_state[0].selectize;
 </script>
 <script>
     $(document).on("click", "#transport_info", function () {

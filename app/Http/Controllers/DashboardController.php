@@ -28,14 +28,14 @@ class DashboardController extends Controller
         $barDatas2 =[];
 
         $orders = Order::whereBetween('updated_at', array(new DateTime($dateRes[0]), new DateTime($dateRes[1])))
-            ->whereIn('status',[9,11])
+            ->whereIn('status',[8,10])
             ->groupBy(DB::raw("DATE(updated_at)"))
             ->get();
         $i=0;
         foreach($orders as $key=>$order ){
             $barLabels[$i]=$order->updated_at->format('d-m-Y');
-            $barDatas1[$i] = Order::getNumOrderAdmin(9,$order->updated_at->format('d-m-Y'));
-            $barDatas2[$i] = Order::getNumOrderAdmin(11,$order->updated_at->format('d-m-Y'));
+            $barDatas1[$i] = Order::getNumOrderAdmin(8,$order->updated_at->format('d-m-Y'));
+            $barDatas2[$i] = Order::getNumOrderAdmin(10,$order->updated_at->format('d-m-Y'));
 
             $lineLabels[$i]=$order->updated_at->format('d-m-Y');
             $lineDatas[$i] = ProductOrder::getSumPriceAdmin($order->updated_at->format('d-m-Y'));

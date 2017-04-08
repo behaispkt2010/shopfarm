@@ -31,11 +31,11 @@ class OrderController extends Controller
      */
     public function AjaxGetDistrictByProvince(Request $request){
         $name = $request->get('name');
-        $provinceID = Province::where('name',$name);
-        $arrDistrictByProvince = District::where('provinceid',$provinceID->provinceid)->get();
-        foreach($arrDistrictByProvince as $DistrictByProvince){
+        $arrDistrictByProvince = Order::GetRelateProvince($name);
+        return \Response::json($arrDistrictByProvince);
+        /*foreach($arrDistrictByProvince as $DistrictByProvince){
             echo "<option value='$DistrictByProvince->name'>$DistrictByProvince->name</option>";
-        }
+        }*/
     }
     public function getOrderByStatus($id){
         $idUser = Auth::user()->id;
@@ -59,96 +59,6 @@ class OrderController extends Controller
 
         return view('admin.orders.index',$data);
     }
-//    public function index(Request $request)
-//    {
-//        $author_id = Auth::user()->id;
-//        if($request->get('q')){
-//            $q = $request->get('q');
-//            $arrTmpAllUser = User::leftjoin('orders','users.id','=','orders.customer_id')
-//                ->where('name','LIKE','%'.$q.'%')
-//                ->orwhere('phone_number','LIKE','%'.$q.'%')
-//                ->get();
-//            $arrAllUser = array();
-//            $arrAllOrders = array();
-//            foreach ($arrTmpAllUser as $arrUser) {
-//                //echo $arrUser->customer_id;
-//                $arrAllUser[$arrUser['customer_id']] = $arrUser;
-//                $arrTmpOrders = Order::where('customer_id', '=', $arrUser->customer_id)
-//                    ->where('author_id',$author_id)
-//                    ->get();
-//                foreach ($arrTmpOrders as $arrOrder) {
-//                    $arrAllOrders[$arrOrder['id']] = $arrOrder;
-//                }
-//            }
-//            $arrTmpProductOrders = ProductOrder::get();
-//
-//            $arrAllProductOrder = array();
-//            foreach ($arrTmpProductOrders as $arrOrders) {
-//                $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
-//            }
-//        }
-//        else if ( Auth::user()->hasRole(['kho']) ){
-//            $arrTmpAllUser = User::get();
-//            $arrAllUser = array();
-//            foreach ($arrTmpAllUser as $arrUser) {
-//                $arrAllUser[$arrUser['id']] = $arrUser;
-//            }
-//            $arrTmpOrders = Order::where('author_id',$author_id)->orderBy('id', 'DESC')->get();
-//            $arrTmpProductOrders = ProductOrder::get();
-//            $arrAllOrders = array();
-//            foreach ($arrTmpOrders as $arrOrder) {
-//                $arrAllOrders[$arrOrder['id']] = $arrOrder;
-//            }
-//
-//            $arrAllProductOrder = array();
-//            foreach ($arrTmpProductOrders as $arrOrders) {
-//                $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
-//            }
-//        }
-//        else {
-//            $arrTmpAllUser = User::get();
-//            $arrAllUser = array();
-//            foreach ($arrTmpAllUser as $arrUser) {
-//                $arrAllUser[$arrUser['id']] = $arrUser;
-//            }
-//            $arrTmpOrders = Order::orderBy('id', 'DESC')->get();
-//            $arrTmpProductOrders = ProductOrder::get();
-//            $arrAllOrders = array();
-//            foreach ($arrTmpOrders as $arrOrder) {
-//                $arrAllOrders[$arrOrder['id']] = $arrOrder;
-//            }
-//
-//            $arrAllProductOrder = array();
-//            foreach ($arrTmpProductOrders as $arrOrders) {
-//                $arrAllProductOrder[$arrOrders['order_id']] = $arrOrders;
-//            }
-//        }
-//
-//        $arrOrderByStatus = OrderStatus::get();
-//
-//
-//        $arrCountOrderByStatus = [];
-//        foreach($arrOrderByStatus as $OrderStatus){
-//            $countOrderByStatus = Order::getNumOrderByStatus($OrderStatus->id);
-//            array_push($arrCountOrderByStatus,$countOrderByStatus);
-//        }
-//        $arrCountOrderByStatus['all'] = count($arrAllOrders);
-//        $arrCountOrderByStatus['new'] = count(Order::where('status',0)->get());
-//        $data = [
-//            'arrAllOrders' => $arrAllOrders,
-//            'arrAllProductOrder' => $arrAllProductOrder,
-//            'arrTmpProductOrders' => $arrTmpProductOrders,
-//            'arrCountOrderByStatus' => $arrCountOrderByStatus,
-//            'arrOrderByStatus' => $arrOrderByStatus,
-//            'arrAllUser' => $arrAllUser
-//        ];
-//        //dd($arrCountOrderByStatus);
-//        /*echo "<pre>";
-//        print_r($arrCountOrderByStatus);
-//        echo "</pre>";
-//        die;*/
-//        return view('admin.orders.index',$data);
-//    }
     public function index(Request $request)
     {
         $author_id = Auth::user()->id;
@@ -160,6 +70,7 @@ class OrderController extends Controller
                     ->where('kho_id', $author_id)
                     ->where('users.name', 'LIKE', '%' . $q . '%')
                     ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
+                    ->orderBy('id','DESC')
                     ->paginate(6);
             }
             else{
@@ -167,6 +78,7 @@ class OrderController extends Controller
                     ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
                     ->where('users.name', 'LIKE', '%' . $q . '%')
                     ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
+                    ->orderBy('id','DESC')
                     ->paginate(6);
             }
 
@@ -175,11 +87,13 @@ class OrderController extends Controller
             $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
                 ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
                 ->where('kho_id',$author_id)
+                ->orderBy('id','DESC')
                 ->paginate(6);
         }
         else {
             $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
                 ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                ->orderBy('id','DESC')
                 ->paginate(6);
         }
 

@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff'
     //Đơn hàng
     Route::resource('orders', 'OrderController');
     Route::get('orders/getOrderByStatus/{id}', 'OrderController@getOrderByStatus');
-    Route::get('orders/AjaxGetDistrictByProvince', 'OrderController@AjaxGetDistrictByProvince');
+    Route::post('orders/AjaxGetDistrictByProvince', 'OrderController@AjaxGetDistrictByProvince');
     //ql kho
     Route::resource('inventory', 'InventoryController');
     //ql sỗ quỹ
@@ -127,7 +127,7 @@ Route::post('users/changeAvata', 'UserController@AjaxChangeImage');
 Route::post('product/checkProductAjax', 'ProductController@checkProductAjax');
 Route::post('product/updateProductAjax', 'ProductController@UpdateProductAjax');
 Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
-Route::get('admin/getdashboard', 'DashboardAdminController@getdashboard');
+Route::post('admin/getdashboard', 'DashboardAdminController@getdashboard');
 Route::post('admin/dashboardctrl', 'DashboardController@dashboard');
 Route::post('admin/dashboard/Approval', 'DashboardController@Approval');
 Route::get('admin/notify/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUpdateIsReadNotify');

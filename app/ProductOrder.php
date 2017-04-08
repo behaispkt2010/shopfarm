@@ -21,7 +21,22 @@ class ProductOrder extends Model
             ->get();
         $res = 0;
         foreach($orderProducts as $orderProduct){
-            $res = $res+ $orderProduct->price * $orderProduct->num;
+            $res = $res+ $orderProduct->price;
+        }
+        return $res;
+
+    }
+    public static function getSumPriceProfit($date){
+        $idUser = Auth::user()->id;
+
+        $orderProducts = ProductOrder::select('product_orders.price','product_orders.num','product_orders.updated_at')
+            ->leftJoin('orders','product_orders.order_id','=','orders.id')
+            ->where('orders.kho_id',$idUser)
+            ->where(DB::raw("(DATE_FORMAT(product_orders.updated_at,'%d-%m-%Y'))"),$date)
+            ->get();
+        $res = 0;
+        foreach($orderProducts as $orderProduct){
+            $res = $res + ($orderProduct->price - $orderProduct->price_in);
         }
         return $res;
 
@@ -43,7 +58,7 @@ class ProductOrder extends Model
         $pd= ProductOrder::where('order_id',$id)->get();
         if(count($pd)!=0) {
             foreach ($pd as $item) {
-                $sum = $sum + $item->price * $item->num;
+                $sum = $sum + $item->price;
             }
         }
         return $sum;

@@ -121,6 +121,13 @@ class Order extends Model
 
         return $data;
     }
-
+    public static function GetRelateProvince ($provinceName) {
+        $province = Province::where('name',$provinceName)->get();
+        foreach ($province as $itemProvince) {
+            $provinceID = $itemProvince->provinceid;
+        }
+        $district = District::where('provinceid',$provinceID)->get();
+        return $district;
+    }
 
 }

@@ -185,7 +185,8 @@
             var check_num_product = $('.modal-product-inventory .check-num-product').val();
 //            alert(check_num_product);
             $('.number-fix').text(parseInt(check_num_product) - parseInt(number_inventory));
-                });
+            });
+    
     </script>
     <script>
         $('#update-product').on('click', function (e) {
