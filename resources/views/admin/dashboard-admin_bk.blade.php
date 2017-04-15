@@ -234,14 +234,6 @@
                         barLabels = msg['barLabels'];
                         barDatas1 = msg['barDatas1'];
                         barDatas2 = msg['barDatas2'];
-
-                        lineDatasProfit = msg['lineDatasProfit'];
-
-                        /*lineLabelsProfit = msg['lineLabelsProfit'];
-                        lineDatasProfit = msg['lineDatasProfit'];
-                        barLabelsProfit = msg['barLabelsProfit'];
-                        barDatas1Profit = msg['barDatas1Profit'];
-                        barDatas2Profit = msg['barDatas2Profit'];*/
                         // Line chart
                         var ctx = document.getElementById("lineChart");
                         var lineChart = new Chart(ctx, {
@@ -260,16 +252,6 @@
                                     pointHoverBorderColor: "rgba(220,220,220,1)",
                                     pointBorderWidth: 1,
                                     data: lineDatas,
-                                }, {
-                                    label: "Lợi Nhuận",
-                                    backgroundColor: "rgba(76, 175, 80, 0.68)",
-//                                  borderColor: "rgba(38, 185, 154, 0.7)",
-                                    pointBorderColor: "rgba(38, 185, 154, 0.7)",
-                                    pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-                                    pointHoverBackgroundColor: "#fff",
-                                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                                    pointBorderWidth: 1,
-                                    data: lineDatasProfit,
                                 }]
                             },
                             options: {

@@ -7,9 +7,9 @@
     <div class="row">
         <br>
         <div class="col-md-3 col-xs-6 col-ms-6  text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{!! number_format($totalPrice)  !!} VNĐ</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{!! \App\Util::FormatMoney($totalPrice)  !!} </span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Khách Hàng Hiện Tại<br><span class="value-das">{!! $customer !!}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Trung Bình Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! number_format($totalPrice/$countOrder) !!} VNĐ @else 0 VNĐ @endif</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Trung Bình Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! \App\Util::FormatMoney($totalPrice/$countOrder) !!}  @else 0 VNĐ @endif</span></div>
 
     </div>
     <div class="row">
@@ -383,13 +383,16 @@
                             labels: lineLabels,
                             datasets: [{
                                 label: "Doanh Thu",
+                                fill: false,
                                 backgroundColor: "rgba(76, 175, 80, 0.68)",
-//                                  borderColor: "rgba(38, 185, 154, 0.7)",
+                                borderColor: "rgba(38, 185, 154, 0.7)",
                                 pointBorderColor: "rgba(38, 185, 154, 0.7)",
                                 pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-                                pointHoverBackgroundColor: "#fff",
-                                pointHoverBorderColor: "rgba(220,220,220,1)",
                                 pointBorderWidth: 1,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "rgba(38, 185, 154, 0.7)",
+                                pointHoverBorderColor: "rgba(38, 185, 154, 0.7)",
+                                pointHoverBorderWidth: 2,
                                 data: lineDatas,
                             }]
                         },

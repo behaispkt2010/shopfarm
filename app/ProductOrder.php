@@ -29,7 +29,7 @@ class ProductOrder extends Model
     public static function getSumPriceProfit($date){
         $idUser = Auth::user()->id;
 
-        $orderProducts = ProductOrder::select('product_orders.price','product_orders.num','product_orders.updated_at')
+        $orderProducts = ProductOrder::select('product_orders.price','product_orders.price_in','product_orders.num','product_orders.updated_at')
             ->leftJoin('orders','product_orders.order_id','=','orders.id')
             ->where('orders.kho_id',$idUser)
             ->where(DB::raw("(DATE_FORMAT(product_orders.updated_at,'%d-%m-%Y'))"),$date)

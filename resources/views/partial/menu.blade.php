@@ -266,7 +266,7 @@
                                     <li class="notify">
                                         <a href="@if ($itemNotificationAdmin->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @elseif ($itemNotificationAdmin->keyname == \App\Util::$orderfail) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$orderreturn) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$orderreturn) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @elseif ($itemNotificationAdmin->keyname == \App\Util::$ordernew) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @elseif ($itemNotificationAdmin->keyname == \App\Util::$dangkychukho) {{route('warehouse.create')}}
                                                 @else {{route('warehouse.edit',['id' => $itemNotificationAdmin->id])}} @endif" target="_blank">

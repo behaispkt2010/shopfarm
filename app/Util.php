@@ -367,5 +367,19 @@ class Util extends Model
         $code_order = $code_1."-".$code_2."-".$code_3;
         return $code_order;
     }
-
+    public static function FormatMoney($strMoney) {
+        $unit=array('VNĐ','VNĐ','triệu(VNĐ)','tỉ(VNĐ)','nghìn tỉ(VNĐ)');
+        $len = strlen($strMoney);
+        if ($len > 6) {
+            $money = $strMoney/pow(1000,($i=floor(log($strMoney,1000))));
+            if(is_int($money)){ 
+                return $money.' '.$unit[$i]; 
+            } else { 
+                return number_format($money,2).' '.$unit[$i]; 
+            }
+        }
+        else {
+            return number_format($strMoney).' VNĐ';
+        }
+    }
 }

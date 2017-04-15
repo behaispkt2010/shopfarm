@@ -19,7 +19,7 @@
             @else
                 <form action="{{route('orders.update',['id' => $id])}}" method="POST" enctype="multipart/form-data">
                     {{ method_field('PUT') }}
-                    <input type="hidden" name="id" value="{{$id}}">
+                    <input type="hidden" name="id" value="{{ $id }}">
                     @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-8 col-xs-12">
@@ -36,11 +36,11 @@
                                 @else
                                     @foreach($arrProductOrders as $arrProductOrder)
                                         <tr class="item-product">
-                                            <th><img src="{{url('/')}}/{!! $products[$arrProductOrder['id_product']]['image'] !!}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
-                                            <td><span class="name-product"><span>{!! $products[$arrProductOrder['id_product']]['title'] !!} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
-                                            <td><span class="price-product"><span>{!! $products[$arrProductOrder['id_product']]['price_out'] !!}</span> đ </span></td>
-                                            <td><span>x </span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="{{ $arrProductOrder->num }}"></td>
-                                            <td><span class="total"> <span>{{ number_format($arrProductOrder->price) }}</span> VNĐ</span><input type="hidden" value="{{ $arrProductOrder->price }}" name="pricetotal[]"></td>
+                                            <th><img src="{{url('/')}}/{!! $arrProductOrder->image !!}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
+                                            <td><span class="name-product"><span>{{ $arrProductOrder->title }} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
+                                            <td><span class="price-product"><span>{{ $arrProductOrder->price_out }}</span>VNĐ </span></td>
+                                            <td><span>x</span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="{{ $arrProductOrder->num }}"></td>
+                                            <td><span class="total"> <span>{{ number_format($arrProductOrder->price) }}</span>VNĐ</span><input type="hidden" value="{{ $arrProductOrder->price }}" name="pricetotal[]"></td>
                                             <td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>
                                         </tr>
                                     @endforeach
@@ -697,9 +697,9 @@
                             + '<th><img src="{{url('/')}}/' + msg['image'] + '" class="img-responsive img-thumbnail"'
                             + 'style="max-width: 50px;" alt=""></th>'
                             + '<td><span class="name-product"><span>' + msg['name'] + '(#' + id + ')</span></span><input type="hidden" value="' + id + '" name="product_id[]"></td>'
-                            + '<td><span class="price-product"><span>' + msg['price'] + '</span> đ </span></td>'
-                            + '<td><span>x </span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="1"></td>'
-                            + '<td><span class="total"> <span>' + msg['price'] + '</span> đ</span><input type="hidden" value="' + msg['price'] + '" name="pricetotal[]"></td>'
+                            + '<td><span class="price-product"><span>' + msg['price'] + '</span>VNĐ </span></td>'
+                            + '<td><span>x</span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="1"></td>'
+                            + '<td><span class="total"> <span>' + msg['price'] + '</span>VNĐ</span><input type="hidden" value="' + msg['price'] + '" name="pricetotal[]"></td>'
                             + '<td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>'
                             + '</tr>'
                     );

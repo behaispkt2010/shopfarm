@@ -291,7 +291,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $arrAllProductOrder = array();
+        $strUserID = Auth::user()->id;
         $customer = User::leftjoin('role_user','role_user.user_id','=','users.id')
             ->where('role_user.role_id',3)
             ->orderBy('id','DESC')
@@ -299,13 +299,18 @@ class OrderController extends Controller
         $arrOrder = Order::find($id);
         $province = Province::get();
         $district = District::get();
-        $arrTmpProductsOrder = Product::get();
-        foreach($arrTmpProductsOrder as $arrProduct){
-            $arrAllProductOrder[$arrProduct['id']] = $arrProduct;
+        if (Auth::user()->hasRole('kho')){
+            $products = Product::where('kho',$strUserID)
+                ->where('status',1)
+                ->get();
+        }
+        else {
+            $products = Product::where('status',1)->get();
         }
         $order_status = OrderStatus::get();
         $arrCustomerOrder = User::find($arrOrder->customer_id);
-        $arrProductOrders = ProductOrder::where('order_id','=',$id)->get();
+        $arrProductOrders = ProductOrder::leftJoin('products','products.id','=','product_orders.id_product')
+            ->where('order_id','=',$id)->get();
         /*echo "<pre>";
         print_r($arrOrder);
         echo "</pre>";
@@ -314,13 +319,14 @@ class OrderController extends Controller
             'customer' =>$customer,
             'province' =>$province,
             'district' =>$district,
-            'products' =>$arrAllProductOrder,
+            'products' =>$products,
             'order_status' => $order_status,
             'arrOrder' => $arrOrder,
             'arrCustomerOrder' => $arrCustomerOrder,
             'arrProductOrders' => $arrProductOrders,
             'id' => $id
         ];
+        // dd($arrProductOrders);
         return view('admin.orders.edit',$data);
     }
 
@@ -410,7 +416,7 @@ class OrderController extends Controller
                 $dataNotify['author_id'] = Auth::user()->id;
                 $dataNotify['roleview'] = Util::$roleviewAdmin;
                 $dataNotify['orderID_or_productID'] = $id;
-                Notification::create($dataNotify);
+                Notification::firstOrCreate($dataNotify);
             }
             elseif ($request->get('status') == Util::$statusOrderReturn) {
                 $arrUser = User::find($request->customer_id);
@@ -421,7 +427,7 @@ class OrderController extends Controller
                 $dataNotify['author_id'] = Auth::user()->id;
                 $dataNotify['roleview'] = Util::$roleviewAdmin;
                 $dataNotify['orderID_or_productID'] = $id;
-                Notification::create($dataNotify);
+                Notification::firstOrCreate($dataNotify);
             }
 //            DB::table('product_orders')->insert($ProductOrder);
         }

@@ -15,16 +15,17 @@ class DashboardAdminController extends Controller
 {
     public function getdashboard(Request $request){
         $data=$request->get('data');
-        $dateRes = explode('->', $data);
-        dd($data);
+        $dateRes = explode('->',$data);
+        //dd($dateRes);
         $lineLabels = [];
+        $lineDatasProfit = [];
         $lineDatas = [];
         $barLabels = [];
         $barDatas1= [];
         $barDatas2 =[];
 
         $idUser = Auth::user()->id;
-        $orders = Order::whereBetween('updated_at', array(new DateTime($dateRes[0]), new DateTime($dateRes[1])))
+        $orders = Order::whereBetween('updated_at', array(new DateTime(trim($dateRes[0])), new DateTime(trim($dateRes[1]))))
             ->where('kho_id',$idUser)
             ->whereIn('status',[8,10])
             ->groupBy(DB::raw("DATE(updated_at)"))
@@ -42,31 +43,6 @@ class DashboardAdminController extends Controller
 
         }
 
-        //chart lợi nhuận
-        /*$lineLabelsProfit = [];
-        $lineDatasProfit = [];
-        $barLabelsProfit = [];
-        $barDatas1Profit = [];
-        $barDatas2Profit =[];
-
-        $idUser = Auth::user()->id;
-        $orders = Order::whereBetween('updated_at', array(new DateTime($dateRes[0]), new DateTime($dateRes[1])))
-            ->where('kho_id',$idUser)
-            ->whereIn('status',[8,10])
-            ->groupBy(DB::raw("DATE(updated_at)"))
-            ->get();
-        $i=0;
-        foreach($orders as $key=>$order ){
-            $barLabelsProfit[$i]=$order->updated_at->format('d-m-Y');
-            $barDatas1Profit[$i] = Order::getNumOrder(8,$order->updated_at->format('d-m-Y'));
-            $barDatas2Profit[$i] = Order::getNumOrder(10,$order->updated_at->format('d-m-Y'));
-
-            $lineLabelsProfit[$i]=$order->updated_at->format('d-m-Y');
-            $lineDatasProfit[$i] = ProductOrder::getSumPriceProfit($order->updated_at->format('d-m-Y'));
-            $i++;
-
-        }*/
-
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -76,14 +52,8 @@ class DashboardAdminController extends Controller
             'barDatas1'=>$barDatas1,
             'barDatas2'=>$barDatas2,
             'lineDatasProfit' => $lineDatasProfit,
-            /*'lineLabelsProfit' => $lineLabelsProfit,
-            'lineDatasProfit' => $lineDatasProfit,
-            'barLabelsProfit'=>$barLabelsProfit,
-            'barDatas1Profit'=>$barDatas1Profit,
-            'barDatas2Profit'=>$barDatas2Profit,*/
-
         );
-        dd($response);
+        // dd($response);
         return \Response::json($response);
 
     }

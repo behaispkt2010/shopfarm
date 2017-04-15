@@ -111,7 +111,7 @@
                                                     <span style="">{{ $arrOrders->address }}</span>
                                                 </li>
                                                 <li><i class="fa fa-phone"></i> {{$arrOrders->phone_number }}</li>
-                                                <li><i class="fa fa-usd"></i> <span class="box-money">{{ number_format(\App\ProductOrder::getSumOrder($arrOrders->id)) }} VNĐ</span></li>
+                                                <li><i class="fa fa-usd"></i> <span class="box-money">{{ \App\Util::FormatMoney(\App\ProductOrder::getSumOrder($arrOrders->id)) }} </span></li>
                                                 <li><i class="fa fa-database"></i> Thuộc Chủ Kho {{\App\Util::UserCode($arrOrders->kho_id)}}
                                             </ul>
                                         </div>

@@ -7,8 +7,8 @@
     <div class="row">
         <br>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Đơn Hàng<br><span class="value-das">{{$numOrder}}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{{$totalPrice}}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Lợi nhuận<br><span class="value-das">{{$profit}}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{!!\App\Util::FormatMoney($totalPrice)!!}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Lợi nhuận<br><span class="value-das">{{\App\Util::FormatMoney($profit)}}</span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Số sản phẩm<br><span class="value-das">{{$numProduct}}</span></div>
 
     </div>
@@ -67,6 +67,7 @@
     @section('add_scripts')
         <script>
             var lineLabels="";
+            var lineDatasProfit="";
             var lineDatas="";
             var barLabels="";
             var barDatas1="";
@@ -234,6 +235,8 @@
                         barLabels = msg['barLabels'];
                         barDatas1 = msg['barDatas1'];
                         barDatas2 = msg['barDatas2'];
+
+                        lineDatasProfit = msg['lineDatasProfit'];
                         // Line chart
                         var ctx = document.getElementById("lineChart");
                         var lineChart = new Chart(ctx, {
@@ -244,14 +247,30 @@
                                 labels: lineLabels,
                                 datasets: [{
                                     label: "Doanh Thu",
+                                    fill: false,
                                     backgroundColor: "rgba(76, 175, 80, 0.68)",
-//                                  borderColor: "rgba(38, 185, 154, 0.7)",
+                                    borderColor: "rgba(38, 185, 154, 0.7)",
                                     pointBorderColor: "rgba(38, 185, 154, 0.7)",
                                     pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-                                    pointHoverBackgroundColor: "#fff",
-                                    pointHoverBorderColor: "rgba(220,220,220,1)",
                                     pointBorderWidth: 1,
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "rgba(38, 185, 154, 0.7)",
+                                    pointHoverBorderColor: "rgba(38, 185, 154, 0.7)",
+                                    pointHoverBorderWidth: 2,
                                     data: lineDatas,
+
+                                }, {
+                                    label: "Lợi Nhuận",
+                                    fill: false,
+                                    backgroundColor: "#FF9800",
+                                    borderColor: "#FF9800",
+                                    pointBorderColor: "#FF9800",
+                                    pointBackgroundColor: "#FF9800",
+                                    pointHoverBackgroundColor: "#fff",
+                                    pointHoverBorderColor: "#FF9800",
+                                    pointBorderWidth: 1,
+                                    pointHoverRadius: 5,
+                                    data: lineDatasProfit,
                                 }]
                             },
                             options: {
@@ -289,7 +308,6 @@
                         barDatas1 = msg['barDatas1'];
                         barDatas2 = msg['barDatas2'];
 
-                        //graph options
                         var ctx = document.getElementById("mybarChart");
                         var mybarChart = new Chart(ctx, {
 
@@ -338,7 +356,7 @@
     <script src="{{asset('plugin/Chart.js/dist/Chart.js')}}"></script>
     <!-- gauge.js -->
     <!-- Doughnut Chart -->
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             var options = {
                 legend: false,
@@ -377,7 +395,7 @@
                 options: options
             });
         });
-    </script>
+    </script> -->
     <!-- /Doughnut Chart -->
     <script>
 
