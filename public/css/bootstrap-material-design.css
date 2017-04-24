@@ -78,7 +78,7 @@ h6 {
 a,
 a:hover,
 a:focus {
-  color: #009688;
+  color: #0f9d58;
 }
 a .material-icons,
 a:hover .material-icons,
@@ -147,7 +147,7 @@ body .container .well-primary,
 body .container-fluid .well-primary,
 body .container .jumbotron-primary,
 body .container-fluid .jumbotron-primary {
-  background-color: #009688;
+  background-color: #0f9d58;
 }
 body .container .well-success,
 body .container-fluid .well-success,

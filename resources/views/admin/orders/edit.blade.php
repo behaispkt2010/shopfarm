@@ -184,10 +184,10 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label>Thông tin khách hàng</label>
-                                            <select id="select-kh" name="select_kh" class="form-control" data-placeholder="Tên / số điện thoại">
+                                            <select id="select-kh" name="select_kh" class="form-control" data-placeholder="Tên | số điện thoại">
                                                 <option></option>
                                                 @foreach($customer as $itemCustomer)
-                                                    <option value="{{$itemCustomer->id}}" @if(!empty($arrOrder->id) && ($arrOrder->customer_id == $itemCustomer->id)) selected='selected' @endif>{{$itemCustomer->name}}</option>
+                                                    <option style="width: 100%; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" value="{{$itemCustomer->id}}" @if(!empty($arrOrder->id) && ($arrOrder->customer_id == $itemCustomer->id)) selected='selected' @endif>{{$itemCustomer->name}} - {{ $itemCustomer->phone_number }}</option>
                                                 @endforeach
                                             </select>
 

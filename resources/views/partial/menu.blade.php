@@ -93,7 +93,7 @@
                     </li>
                     @endpermission
 
-                    <li><a><i class="fa fa-tag"></i>Quản lý kho <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-database"></i>Quản lý kho <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @permission('warehouse')
 

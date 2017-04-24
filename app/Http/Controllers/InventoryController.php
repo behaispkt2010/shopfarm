@@ -34,13 +34,13 @@ class InventoryController extends Controller
                 $product1 =  $product1->where('kho',$kho);
             }
 
-            $product = $product1->paginate(6);
+            $product = $product1->paginate(9);
 
 
         }
         else {
             $product = Product::orderBy('id','DESC')
-                ->paginate(6);
+                ->paginate(9);
         }
         $category = CategoryProduct::get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')

@@ -320,7 +320,8 @@
                                                         <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                                                                 data-target=".modal-service"> Đăng ký</button>
                                                     @else
-                                                        <button class="btn btn-success btn-raised btn-sm btnConfirmKho"> Đăng ký</button>
+                                                        <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
+                                                                data-target=".modal-confirmservice"> Đăng ký</button>
                                                     @endif
                                                 @endif
                                                 <button class="btn btn-info btn-raised btn-sm">
@@ -345,7 +346,8 @@
                                                         <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                                                                 data-target=".modal-quangcao"> Đăng ký</button>
                                                     @else
-                                                        <button class="btn btn-success btn-raised btn-sm btnQuangCao"> Đăng ký</button>
+                                                        <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
+                                                                data-target=".modal-confirmquangcao"> Đăng ký</button>
                                                     @endif
                                                 @endif
                                                 <button class="btn btn-info btn-raised btn-sm" >
@@ -388,7 +390,8 @@
                                             </div>
                                             @else
                                             <div class="col-md-8 col-xs-12">
-                                                <button class="btn btn-success btn-raised btn-sm btnUpgrade" > Nâng cấp</button>
+                                                <button class="btn btn-success btn-raised btn-sm confirmUpgradelevel" data-toggle="modal"
+                                                        data-target=".modal-confirmlevel" data-level="{{ $wareHouse->level }}" data-timerequest="{{ $wareHouse->time_upgrade_level }}" data-timebonus="{{ $wareHouse->time_upgrade_bonus }}"> Nâng cấp</button>
                                             </div>
                                             @endif
                                         </div>
@@ -397,13 +400,173 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
                 </div>
             </div>
         </div>
 
     </div>
+    <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
+    <!-- admin confirm các thông báo -->
 
+    <div class="modal fade modal-confirmservice" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-confirmservice">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Xác thực kho</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Vui lòng chọn số tháng theo yêu cầu chủ kho</p>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_confirm_kho" class="form-control" required name="time_confirm_kho">
+                                    <option value="">Chọn số tháng</option>
+                                    <option value="6">6 tháng</option>
+                                    <option value="12">12 tháng</option>
+                                    <option value="24">24 tháng</option>
+                                    <option value="36">36 tháng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label for="name" class="col-md-2 col-sm-2 control-label">Tặng thêm:</label>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_confirm_kho_bonus" class="form-control" required name="time_confirm_kho_bonus">
+                                    <option value="0">Chọn số tháng</option>
+                                    <?php for($i = 1; $i<=12 ;$i++){ ?>
+                                    <option value="<?php echo $i ?>"><?php echo $i ?> tháng</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-raised btn-primary btnConfirmKho">Xác nhận</button>
+                </div>
+
+                </div>
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-confirmquangcao" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-confirmquangcao">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Xác thực quảng cáo</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Vui lòng chọn số tháng theo yêu cầu chủ kho</p>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_quangcao" class="form-control" required name="time_quangcao">
+                                    <option value="">Chọn số tháng</option>
+                                    <option value="6">6 tháng</option>
+                                    <option value="12">12 tháng</option>
+                                    <option value="24">24 tháng</option>
+                                    <option value="36">36 tháng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label for="name" class="col-md-2 col-sm-2 control-label">Tặng thêm:</label>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_quangcao_bonus" class="form-control" required name="time_quangcao_bonus">
+                                    <option value="0">Chọn số tháng</option>
+                                    <?php for($i = 1; $i<=12 ;$i++){ ?>
+                                    <option value="<?php echo $i ?>"><?php echo $i ?> tháng</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-raised btn-primary btnQuangCao">Xác nhận</button>
+                </div>
+
+                </div>
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-confirmlevel" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-confirmlevel">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Xác thực nâng cấp kho</h4>
+                </div>
+                <div class="modal-body sroll">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="code" class="col-md-3 control-label">Cấp kho: </label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif/>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-md-12">
+                            <p>Vui lòng chọn số tháng theo yêu cầu chủ kho</p>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_upgrade_level" class="form-control" required name="time_upgrade_level">
+                                    <option value="">Chọn số tháng</option>
+                                    <option value="6">6 tháng</option>
+                                    <option value="12">12 tháng</option>
+                                    <option value="24">24 tháng</option>
+                                    <option value="36">36 tháng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label for="name" class="col-md-2 col-sm-2 control-label">Tặng thêm:</label>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_upgrade_bonus" class="form-control" required name="time_upgrade_bonus">
+                                    <option value="0">Chọn số tháng</option>
+                                    <?php for($i = 1; $i<=12 ;$i++){ ?>
+                                    <option value="<?php echo $i ?>"><?php echo $i ?> tháng</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-raised btn-primary btnUpgrade">Xác nhận</button>
+                </div>
+
+                </div>
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="modal fade modal-service" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
@@ -420,7 +583,20 @@
                 <div class="modal-body sroll">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>Thông tin xác thực sẽ được gửi tới Admin sau khi bạn xác nhận</p>
+                            <p>Thông tin xác thực sẽ được gửi tới Admin, bạn hãy chọn số tháng cần đăng ký sử dụng dịch vụ:</p>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_request_confirm_kho" class="form-control" required name="time_request_confirm_kho">
+                                    <option value="">Chọn số tháng</option>
+                                    <option value="6">6 tháng</option>
+                                    <option value="12">12 tháng</option>
+                                    <option value="24">24 tháng</option>
+                                    <option value="36">36 tháng</option>
+                                </select>
+                            </div>
+                        </div>  
+                          
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -448,7 +624,19 @@
                 <div class="modal-body sroll">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>Yêu cầu của bạn sẽ được gửi tới Admin, Nhân viên tư vấn sẽ điện thoại bạn trong thời gian sớm nhất</p>
+                            <p>Yêu cầu của bạn sẽ được gửi tới Admin, bạn hãy chọn số tháng cần đăng ký sử dụng dịch vụ:</p>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="time_request_quangcao" class="form-control" required name="time_request_quangcao">
+                                    <option value="">Chọn số tháng</option>
+                                    <option value="6">6 tháng</option>
+                                    <option value="12">12 tháng</option>
+                                    <option value="24">24 tháng</option>
+                                    <option value="36">36 tháng</option>
+                                </select>
+                            </div>
+                        </div>    
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -519,7 +707,19 @@
                 <div class="modal-body sroll">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>Yêu cầu của bạn sẽ được gửi tới Admin, Nhân viên tư vấn sẽ điện thoại bạn trong thời gian sớm nhất</p>
+                            <p>Yêu cầu của bạn sẽ được gửi tới Admin, bạn hãy chọn số tháng cần đăng ký sử dụng dịch vụ:</p>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="form-group">
+                                <select id="month_required" class="form-control" required name="month_required">
+                                    <option value="">Chọn số tháng</option>
+                                    <option value="6">6 tháng</option>
+                                    <option value="12">12 tháng</option>
+                                    <option value="24">24 tháng</option>
+                                    <option value="36">36 tháng</option>
+                                </select>
+                            </div>
+                        </div>    
                     </div>
                     <br>
                     <div class="row">
@@ -609,21 +809,27 @@
                 <div class="modal-body sroll">
                     <div class="row">
                         <div class="form-group">
-                            <label for="code" class="col-md-5 control-label">Cấp kho: </label>
-                            <div class="col-md-7">
+                            <label for="code" class="col-md-4 control-label">Cấp kho: </label>
+                            <div class="col-md-7" style="padding-right: 24px;">
                                 <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif/>
                             </div>
                         </div>
-                        {{--<div class="form-group">
-                            <label for="code" class="col-md-5 control-label">Thời gian sử dụng dịch vụ: </label>
-                            <select name="time_upgrade_level" id="time_upgrade_level">
-                                <option value="6">6 tháng</option>
-                                <option value="12">12 tháng</option>
-                                <option value="24">24 tháng</option>
-                                <option value="36">36 tháng</option>
-                            </select>
-                        </div>--}}
+                        <div class="col-md-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="code" class="control-label" style="float: left;">Thời gian sử dụng dịch vụ: </label>
+                                <div class="col-md-7 col-xs-8">
+                                    <select id="time_request_upgrade_level" class="form-control" required name="time_request_upgrade_level">
+                                        <option value="">Chọn số tháng</option>
+                                        <option value="6">6 tháng</option>
+                                        <option value="12">12 tháng</option>
+                                        <option value="24">24 tháng</option>
+                                        <option value="36">36 tháng</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
                     </div>
+                    
                     <div class="row">
                         <div class="form-group">
                             <label for="code" class="col-md-5 control-label"><a href="{{url('/nang-cap-kho')}}" target="_blank">Quyền lợi khi nâng cấp kho</a></label>
@@ -848,10 +1054,11 @@
     <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
     <!-- Select2 -->
     <script>
-        $('select').selectize({
+        $('#province, #category_warehouse_id').selectize({
             create: true,
             sortField: 'text'
         });
+        $('#time_upgrade_bonus, #time_upgrade_level, #time_confirm_kho, #time_confirm_kho_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_upgrade_level, #time_request_quangcao, #month_required, #time_request_confirm_kho').selectize({create: true,});
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -1139,7 +1346,7 @@
             //console.log(file_image_kho);
             var user_test = $('#user_test').val();
             var _token = $('input[name="_token"]').val();
-            $('.loading').css('display','block');
+            
             //alert(province);
             var data1 = new FormData();
             data1.append('name_company', name_company);
@@ -1148,12 +1355,14 @@
             data1.append('mst', mst);
             data1.append('image_kho', file_image_kho);
             data1.append('province', province);
+            data1.append('ndd', ndd);
             data1.append('mst', mst);
             data1.append('time_active', time_active);
             data1.append('user_test', user_test);
             data1.append('_token', _token);
             data1.append('id', id);
             data1.append('user_id', user_id);
+            $('.loading').css('display','block');
             $.ajax({
                 type: "Post",
                 contentType: false,       // The content type used when sending data to the server.
@@ -1191,14 +1400,16 @@
         $(".btnUpgrade").on('click',function(e){
             e.preventDefault();
             var id = $('input[name="id"]').val();
-            var levelkho = $('input[name="levelkho"]').val();
+            var levelkho = $('input[name="levelkhoUpgrade"]').val();
+            var time_upgrade_level = $('#time_upgrade_level').val();
+            var time_upgrade_bonus = $('#time_upgrade_bonus').val();
             var user_id = $('input[name="user_id"]').val();
             var _token = $('input[name="_token"]').val();
             $('.loading').css('display','block');
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/warehouse/AjaxEditLevel',
-                data: {id: id, levelkho: levelkho, user_id: user_id, _token: _token},
+                data: {id: id, levelkho: levelkho,time_upgrade_level: time_upgrade_level, time_upgrade_bonus: time_upgrade_bonus, user_id: user_id, _token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     //show notify
@@ -1234,131 +1445,145 @@
             var name_company = $('input[name="name_company"]').val();
             var address = $('input[name="address"]').val();
             var mst = $('input[name="mst"]').val();
+            var time_confirm_kho = $('#time_confirm_kho').val();
+            var time_confirm_kho_bonus = $('#time_confirm_kho_bonus').val();
             var ndd = $('input[name="ndd"]').val();
             var time_active = $('input[name="time_active"]').val();
-            if(name_company == "" || address == "" || time_active == "" || mst == "" || ndd == ""){
-                alert("Vui lòng kiểm tra đầy đủ thông tin Kho")
-            } else {
-                $('.loading').css('display', 'block');
-                $.ajax({
-                    type: "POST",
-                    url: '{{ url('/') }}/admin/warehouse/AjaxConfirmKho',
-                    data: {id: id,user_id: user_id,name_company:name_company,address:address,mst:mst,ndd:ndd,time_active:time_active, _token: _token},
-                    success: function (msg) {
-                        $('.loading').css('display', 'none');
-                        //show notify
-                        if(msg['status'] != "danger") {
+            if (time_confirm_kho == "") {
+                alert("Vui lòng chọn số tháng theo yều cầu Chủ kho");
+            }
+            else {
+                if(name_company == "" || address == "" || time_active == "" || mst == "" || ndd == ""){
+                    alert("Vui lòng kiểm tra đầy đủ thông tin Kho")
+                } else {
+                    $('.loading').css('display', 'block');
+                    $.ajax({
+                        type: "POST",
+                        url: '{{ url('/') }}/admin/warehouse/AjaxConfirmKho',
+                        data: {id: id,user_id: user_id,name_company:name_company,address:address,mst:mst,ndd:ndd,time_active:time_active, time_confirm_kho: time_confirm_kho, time_confirm_kho_bonus: time_confirm_kho_bonus, _token: _token},
+                        success: function (msg) {
+                            $('.loading').css('display', 'none');
+                            if(msg['status'] != "danger") {
+                                new PNotify({
+                                    title: 'Xác nhận kho thành công',
+                                    text: '',
+                                    type: 'success',
+                                    hide: true,
+                                    styling: 'bootstrap3'
+                                });
+                                location.reload();
+                            }
+                            else{
+                                new PNotify({
+                                    title: msg['msg'],
+                                    text: '',
+                                    type: msg['status'],
+                                    hide: true,
+                                    styling: 'bootstrap3'
+                                });
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var Data = JSON.parse(XMLHttpRequest.responseText);
                             new PNotify({
-                                title: 'Xác nhận kho thành công',
-                                text: '',
-                                type: 'success',
+                                title: 'Lỗi',
+                                text: 'Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin',
+                                type: 'danger',
                                 hide: true,
                                 styling: 'bootstrap3'
                             });
-                            location.reload();
+                            $('.loading').css('display', 'none');
                         }
-                        else{
-                            new PNotify({
-                                title: msg['msg'],
-                                text: '',
-                                type: msg['status'],
-                                hide: true,
-                                styling: 'bootstrap3'
-                            });
-
-
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        //show notify
-                        var Data = JSON.parse(XMLHttpRequest.responseText);
-                        new PNotify({
-                            title: 'Lỗi',
-                            text: 'Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin',
-                            type: 'danger',
-                            hide: true,
-                            styling: 'bootstrap3'
-                        });
-                        $('.loading').css('display', 'none');
-
-                    }
-                });
+                    });
+                }
             }
         });
         $(".btnQuangCao").on('click',function(e){
             e.preventDefault();
             var id = $('input[name="id"]').val();
             var user_id = $('input[name="user_id"]').val();
+            var time_quangcao = $('#time_quangcao').val();
+            var time_quangcao_bonus = $('#time_quangcao_bonus').val();
             var _token = $('input[name="_token"]').val();
-            $('.loading').css('display','block');
-            $.ajax({
-                type: "POST",
-                url: '{{ url('/') }}/admin/warehouse/AjaxQuangCao',
-                data: {id: id,user_id: user_id, _token: _token},
-                success: function( msg ) {
-                    $('.loading').css('display','none');
-                    //show notify
-                    new PNotify({
-                        title: 'Cập nhật thành công',
-                        text: '',
-                        type: 'success',
-                        hide: true,
-                        styling: 'bootstrap3'
-                    });
-                    location.reload();
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    //show notify
-                    var Data = JSON.parse(XMLHttpRequest.responseText);
-                    new PNotify({
-                        title: 'Lỗi',
-                        text: 'Có lỗi xảy ra! Vui lòng kiểm tra lại',
-                        type: 'danger',
-                        hide: true,
-                        styling: 'bootstrap3'
-                    });
-                    $('.loading').css('display','none');
+            if (time_quangcao == "") {
+                alert("Vui lòng chọn số tháng để đăng ký");
+            }
+            else {
+                $('.loading').css('display','block');
+                $.ajax({
+                    type: "POST",
+                    url: '{{ url('/') }}/admin/warehouse/AjaxQuangCao',
+                    data: {id: id,user_id: user_id,time_quangcao: time_quangcao,time_quangcao_bonus: time_quangcao_bonus, _token: _token},
+                    success: function( msg ) {
+                        $('.loading').css('display','none');
+                        //show notify
+                        new PNotify({
+                            title: 'Cập nhật thành công',
+                            text: '',
+                            type: 'success',
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+                        location.reload();
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        //show notify
+                        var Data = JSON.parse(XMLHttpRequest.responseText);
+                        new PNotify({
+                            title: 'Lỗi',
+                            text: 'Có lỗi xảy ra! Vui lòng kiểm tra lại',
+                            type: 'danger',
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+                        $('.loading').css('display','none');
 
-                }
-            });
+                    }
+                });
+            }
         });
     </script>
     <script>
         $("#btnSendRequestUpgrade").on('click', function (e) {
             var levelkho = $('input[name="levelkhoUpgrade"]').val();
-            var time_upgrade_level = $('input[name="time_upgrade_level"]').val();
+            var time_request_upgrade_level = $('#time_request_upgrade_level').val();
             var _token = $('input[name="_token"]').val();
-            $('.loading').css('display','block');
-            $.ajax({
-                type: "POST",
-                url: '{{ url('/') }}/admin/warehouse/AjaxSendRequestUpdateLevelKho',
-                data: {levelkho: levelkho,time_upgrade_level: time_upgrade_level, _token: _token},
-                success: function( msg ) {
-                    $('.loading').css('display','none');
-                    //show notify
-                    new PNotify({
-                        title: 'Gửi yêu cầu thành công',
-                        text: '',
-                        type: 'success',
-                        hide: true,
-                        styling: 'bootstrap3'
-                    });
-                    location.reload();
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    //show notify
-                    var Data = JSON.parse(XMLHttpRequest.responseText);
-                    new PNotify({
-                        title: 'Lỗi',
-                        text: 'Cấp kho không được nhỏ hơn 1 hoặc lớn hơn 3',
-                        type: 'danger',
-                        hide: true,
-                        styling: 'bootstrap3'
-                    });
-                    $('.loading').css('display','none');
+            if (time_request_upgrade_level == "") {
+                alert("Vui lòng chọn số tháng để đăng ký");
+            }
+            else {
+                $('.loading').css('display','block');
+                $.ajax({
+                    type: "POST",
+                    url: '{{ url('/') }}/admin/warehouse/AjaxSendRequestUpdateLevelKho',
+                    data: {levelkho: levelkho,time_request_upgrade_level: time_request_upgrade_level, _token: _token},
+                    success: function( msg ) {
+                        $('.loading').css('display','none');
+                        //show notify
+                        new PNotify({
+                            title: 'Gửi yêu cầu thành công',
+                            text: '',
+                            type: 'success',
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+                        location.reload();
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        //show notify
+                        var Data = JSON.parse(XMLHttpRequest.responseText);
+                        new PNotify({
+                            title: 'Lỗi',
+                            text: 'Cấp kho không được nhỏ hơn 1 hoặc lớn hơn 3',
+                            type: 'danger',
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+                        $('.loading').css('display','none');
 
-                }
-            });
+                    }
+                });
+            }
         });
         $(".btnReQuestConfirmKho").on('click', function (e) {
             var name_company = $('input[name="name_company"]').val();
@@ -1367,15 +1592,16 @@
             var ndd = $('input[name="ndd"]').val();
             var time_active = $('input[name="time_active"]').val();
             var _token = $('input[name="_token"]').val();
+            var time_request_confirm_kho = $('#time_request_confirm_kho').val();
 
-            if(name_company == "" || address == "" || time_active == "" || mst == "" || ndd == ""){
-                alert("Vui lòng kiểm tra đầy đủ thông tin Kho")
+            if(name_company == "" || address == "" || time_active == "" || mst == "" || ndd == "" || time_request_confirm_kho == ""){
+                alert("Vui lòng kiểm tra đầy đủ thông tin Kho hoặc Chọn số tháng cần đăng ký");
             } else {
                 $('.loading').css('display','block');
                 $.ajax({
                     type: "POST",
                     url: '{{ url('/') }}/admin/warehouse/AjaxReQuestConfirmKho',
-                    data: {_token: _token},
+                    data: {_token: _token, time_request_confirm_kho: time_request_confirm_kho},
                     success: function (msg) {
                         $('.loading').css('display', 'none');
                         //show notify
@@ -1406,37 +1632,43 @@
         });
         $(".btnReQuestQuangCao").on('click', function (e) {
             var _token = $('input[name="_token"]').val();
-            $('.loading').css('display', 'block');
-            $.ajax({
-                type: "POST",
-                url: '{{ url('/') }}/admin/warehouse/AjaxReQuestQuangCao',
-                data: {_token: _token},
-                success: function (msg) {
-                    $('.loading').css('display', 'none');
-                    //show notify
-                    new PNotify({
-                        title: 'Gửi yêu cầu thành công',
-                        text: '',
-                        type: 'success',
-                        hide: true,
-                        styling: 'bootstrap3'
-                    });
-                    location.reload();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    //show notify
-                    var Data = JSON.parse(XMLHttpRequest.responseText);
-                    new PNotify({
-                        title: 'Lỗi',
-                        text: 'Không gửi được yêu cầu',
-                        type: 'danger',
-                        hide: true,
-                        styling: 'bootstrap3'
-                    });
-                    $('.loading').css('display', 'none');
+            var time_request_quangcao = $('#time_request_quangcao').val();
+            if (time_request_quangcao == "") {
+                alert("Vui lòng chọn số tháng để đăng ký");
+            }
+            else {
+                $('.loading').css('display', 'block');
+                $.ajax({
+                    type: "POST",
+                    url: '{{ url('/') }}/admin/warehouse/AjaxReQuestQuangCao',
+                    data: {_token: _token, time_request_quangcao: time_request_quangcao},
+                    success: function (msg) {
+                        $('.loading').css('display', 'none');
+                        //show notify
+                        new PNotify({
+                            title: 'Gửi yêu cầu thành công',
+                            text: '',
+                            type: 'success',
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+                        location.reload();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //show notify
+                        var Data = JSON.parse(XMLHttpRequest.responseText);
+                        new PNotify({
+                            title: 'Lỗi',
+                            text: 'Không gửi được yêu cầu',
+                            type: 'danger',
+                            hide: true,
+                            styling: 'bootstrap3'
+                        });
+                        $('.loading').css('display', 'none');
 
-                }
-            });
+                    }
+                });
+            }
         });
         $(".btnReQuestTraphi").on('click', function (e) {
             var _token = $('input[name="_token"]').val();
@@ -1617,6 +1849,14 @@
             else{
                 $('.modal-bank-edit input[name="check"]').prop('checked', false);
             }
+        });
+    </script>
+    <script>
+        $(document).on('click', '.confirmUpgradelevel', function () {
+            _self = $(this);
+            $('.modal-confirmlevel select[name="levelkhoUpgrade"]').val(_self.data('level'));
+            $('.modal-confirmlevel select[name="time_upgrade_level"]').val(_self.data('timerequest'));
+            $('.modal-confirmlevel select[name="time_upgrade_bonus"]').val(_self.data('timebonus'));
         });
     </script>
 

@@ -5291,12 +5291,12 @@ ol, ul {
 .btn-new{
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  right: 10px;
   z-index: 9999;
 }
 .btn-new a{
-  width: 70px !important;
-  height: 70px !important;
+  width: 60px !important;
+  height: 60px !important;
 }
 .btn-new a:hover{
 
@@ -5665,4 +5665,7 @@ table.dtp-picker-days thead{
     font-weight: normal;
     padding-left: 16%;
   }
+}
+.style_format {
+  font-size: 20px;
 }

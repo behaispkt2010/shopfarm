@@ -100,7 +100,11 @@
                             @else
                                 Chào bạn <br><a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                             aria-expanded="false" style="color: #fff;">{{Auth::user()->name}}</a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 60%;right: 20px;">
+                                <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 71%;right: 0px;">
+                                    <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
+                                            <i class="fa fa-info-circle pull-right"></i>Thông tin tài khoản
+                                        </a>
+                                    </li>
                                     <li><a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="fa fa-sign-out pull-right"></i>Thoát

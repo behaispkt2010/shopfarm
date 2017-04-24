@@ -375,11 +375,11 @@ class Util extends Model
             if(is_int($money)){ 
                 return $money.' '.$unit[$i]; 
             } else { 
-                return number_format($money,2).' '.$unit[$i]; 
+                return number_format($money,2).' <span class="unit ">'.$unit[$i] .'</span>'; 
             }
         }
         else {
-            return number_format($strMoney).' VNĐ';
+            return number_format($strMoney).'<span class="unit "> VNĐ </span>';
         }
     }
 }

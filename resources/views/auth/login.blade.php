@@ -6,7 +6,7 @@
             <div class="panel panel-default">
 
                 @if (count($errors) > 0)
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger" style="border: none; border-top-right-radius: 5px !important;border-top-left-radius: 5px !important;">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>

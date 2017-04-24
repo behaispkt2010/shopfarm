@@ -45,7 +45,7 @@
                         </ul>
 
                     </div>
-                    <div class="tab-fill visible-xs">
+                    <div class="col-xs-12 tab-fill visible-xs">
                         <select name="" class="form-control" id="select-status">
                             <option value="{!! url('/') !!}/admin/orders" @if($select == 99 )  selected @endif>Tất cả ({{$allOrders}})</option>
                             <option  value="{!! url('/') !!}/admin/orders/getOrderByStatus/0" @if($select == 0 )  selected @endif>Mới tạo ({{\App\ProductOrder::countOrderByStatus(0)}})</option>
@@ -111,7 +111,7 @@
                                                     <span style="">{{ $arrOrders->address }}</span>
                                                 </li>
                                                 <li><i class="fa fa-phone"></i> {{$arrOrders->phone_number }}</li>
-                                                <li><i class="fa fa-usd"></i> <span class="box-money">{{ \App\Util::FormatMoney(\App\ProductOrder::getSumOrder($arrOrders->id)) }} </span></li>
+                                                <li><i class="fa fa-usd"></i> <span class="box-money">{!! \App\Util::FormatMoney(\App\ProductOrder::getSumOrder($arrOrders->id)) !!} </span></li>
                                                 <li><i class="fa fa-database"></i> Thuộc Chủ Kho {{\App\Util::UserCode($arrOrders->kho_id)}}
                                             </ul>
                                         </div>
@@ -159,8 +159,8 @@
     <script src="{{asset('js/selectize.js')}}"></script>        
     <script>
         $('#select-status').selectize({
-            create: true,
-            sortField: 'text'
+            //create: true,
+            //sortField: 'text'
         });
     </script>
 <script type="text/javascript">

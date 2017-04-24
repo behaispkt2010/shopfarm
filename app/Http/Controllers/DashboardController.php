@@ -19,8 +19,8 @@ class DashboardController extends Controller
 {
     public function dashboard(Request $request){
         $data=$request->get('data');
-        $dateRes = explode('->', $data);
-        //dd($data);
+        $dateRes = explode('>', $data);
+        // dd($data);
         $lineLabels = [];
         $lineDatas = [];
         $barLabels = [];

@@ -125,7 +125,7 @@
 										<a href="#" class="clearfix">{{$product->title}}</a>
 
 										<div class="kho_info clearfix">
-											<a href="#" class="alignleft photo">
+											<a href="#" class="alignleft" style="width: 70px;">
 												@if($product->levelKho == 1)
 													<img src="{{url('/images')}}/level1.png" alt="">
 												@elseif($product->levelKho == 2)
@@ -133,17 +133,23 @@
 												@elseif($product->levelKho == 3)
 													<img src="{{url('/images')}}/level3.png" alt="">
 												@else
-													<img src="{{url('/images')}}/level0.jpg" alt="">
+													<img src="{{url('/images')}}/level0.png" alt="">
 												@endif
 											</a>
-											<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+											<a href="#" class="alignleft" style="width: 70px;">
+												@if($product->confirm_kho == 1)
+													<img src="{{url('/images')}}/xacthuc.png" alt="">
+												@else
+												@endif
+											</a>
+											<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 										</div>
 										<div class="clearfix product_info">
-											<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+											<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 											<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 										</div>
 										<div class="clearfix product_info">
-											<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+											<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
 										</div>
 									</div>
 

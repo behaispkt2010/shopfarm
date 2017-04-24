@@ -17,11 +17,11 @@ use App\Province;
 use App\User;
 use App\WareHouse;
 use App\WarehouseImageDetail;
-use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use DB;
 use App\Util;
 use App\Http\Requests;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -197,10 +197,34 @@ class WarehouseController extends Controller
         $userID = Auth::user()->id;
         $viewer_id = $request->get('user_id');
         $levelkho = $request->get('levelkho');
-        $data = [
-            'level' => $levelkho
-        ];
-        $warehouse = WareHouse::where('id', $id)->update($data);
+        $time_upgrade_level = $request->get('time_upgrade_level');
+        $time_upgrade_bonus = $request->get('time_upgrade_bonus');
+        $time_now = date("Y-m-d H:i:s");
+        $dateStart = new DateTime($time_now);
+        $arrGetWarehouse = wareHouse::where('id',$id)->get();
+        foreach ($arrGetWarehouse as $itemGetWarehouse) {
+            $strLevelOld = $itemGetWarehouse->level;
+            $strCreateOld = $itemGetWarehouse->created_upgrade_level;
+        }
+        
+        if ($levelkho != $strLevelOld) {
+            $dataKho = [
+                'level' => $levelkho,
+                'time_upgrade_level' => $time_upgrade_level,
+                'time_upgrade_bonus' => $time_upgrade_bonus,
+                'created_upgrade_level' => $dateStart
+            ];
+        }
+        else {
+            $dataKho = [
+                'level' => $levelkho,
+                'time_upgrade_level' => $time_upgrade_level,
+                'time_upgrade_bonus' => $time_upgrade_bonus,
+                'created_upgrade_level' => $strCreateOld
+            ];
+            
+        }
+        $warehouse = WareHouse::where('id', $id)->update($dataKho);
         $data['keyname'] = Util::$upgradeLevelKhoSuccess;
         $data['title'] = "Nâng cấp kho thành công";
         $data['content'] = "Cấp kho hiện tại ".$levelkho;
@@ -219,13 +243,20 @@ class WarehouseController extends Controller
         $id = $request->get('id');
         $userID = Auth::user()->id;
         $viewer_id = $request->get('user_id');
+        $time_confirm_kho = $request->get('time_confirm_kho');
+        $time_confirm_kho_bonus = $request->get('time_confirm_kho_bonus');
         $checkWareHouse = WareHouse::find($id);
         if (($checkWareHouse->name_company == $request->name_company) && ($checkWareHouse->address == $request->address) && ($checkWareHouse->mst == $request->mst) && ($checkWareHouse->ndd == $request->ndd) && ($checkWareHouse->time_active == $request->time_active)) {
             $confirm_kho = 1;
-            $data = [
-                'confirm_kho' => $confirm_kho
+            $time_now = date("Y-m-d H:i:s");
+            $dateStart = new DateTime($time_now);
+            $dataKho = [
+                'confirm_kho' => $confirm_kho,
+                'time_confirm_kho' => $time_confirm_kho,
+                'time_confirm_kho_bonus' => $time_confirm_kho_bonus,
+                'created_confirm_kho' => $dateStart
             ];
-            $warehouse = WareHouse::where('id', $id)->update($data);
+            $warehouse = WareHouse::where('id', $id)->update($dataKho);
             $data['keyname'] = Util::$confirmkhoSuccess;
             $data['title'] = "Xác thực doanh nghiệp thành công";
             $data['content'] = "Xem thông tin xác thực doanh nghiệp";
@@ -250,11 +281,18 @@ class WarehouseController extends Controller
         $id = $request->get('id');
         $userID = Auth::user()->id;
         $viewer_id = $request->get('user_id');
+        $time_quangcao = $request->get('time_quangcao');
+        $time_quangcao_bonus = $request->get('time_quangcao_bonus');
         $quangcao = 1;
-        $data = [
-            'quangcao' => $quangcao
+        $time_now = date("Y-m-d H:i:s");
+        $dateStart = new DateTime($time_now);
+        $dataKho = [
+            'quangcao' => $quangcao,
+            'time_quangcao' => $time_quangcao,
+            'time_quangcao_bonus' => $time_quangcao_bonus,
+            'created_time_quangcao' => $dateStart
         ];
-        $warehouse = WareHouse::where('id', $id)->update($data);
+        $warehouse = WareHouse::where('id', $id)->update($dataKho);
         $data['keyname'] = Util::$quangcaoSuccess;
         $data['title'] = "Đăng ký quảng cáo thành công";
         $data['content'] = "Yêu cầu đăng ký quảng cáo của bạn đã được duyệt";
@@ -270,6 +308,7 @@ class WarehouseController extends Controller
     }
     public function AjaxSendRequestUpdateLevelKho(LevelKhoRequest $request){
         //$data = $request->all();
+        $time_request_upgrade_level = $request->get('time_request_upgrade_level');
         $userID = Auth::user()->id;
         $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
         $name = "";
@@ -286,7 +325,7 @@ class WarehouseController extends Controller
         $levelKho = $request->get('levelkho');
         $data['keyname'] = Util::$quangcao;
         $data['title'] = "Chủ kho đăng kí nâng cấp";
-        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho;
+        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho." với thời gian" .$time_request_upgrade_level." tháng";
         $data['author_id'] = $userID;
         $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);
@@ -309,6 +348,7 @@ class WarehouseController extends Controller
     }
     public function AjaxReQuestConfirmKho(Request $request){
         //$data = $request->all();
+        $time_request_confirm_kho = $request->get('time_request_confirm_kho');
         $userID = Auth::user()->id;
         $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
         $name = "";
@@ -324,7 +364,7 @@ class WarehouseController extends Controller
         $getCodeKho = Util::UserCode($userID);
         $data['keyname'] = Util::$confirmkho;
         $data['title'] = "Chủ kho đăng kí xác thực kho";
-        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn xác thực kho";
+        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn xác thực kho với thời gian " .$time_request_confirm_kho ." tháng";
         $data['author_id'] = $userID;
         $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);
@@ -347,6 +387,7 @@ class WarehouseController extends Controller
     }
     public function AjaxReQuestQuangCao(Request $request){
         //$data = $request->all();
+        $time_request_quangcao = $request->get('time_request_quangcao');
         $userID = Auth::user()->id;
         $user = User::leftjoin('ware_houses','ware_houses.user_id','=','users.id')->where('users.id',$userID)->get()->toArray();
         $name = "";
@@ -362,7 +403,7 @@ class WarehouseController extends Controller
         $getCodeKho = Util::UserCode($userID);
         $data['keyname'] = Util::$quangcao;
         $data['title'] = "Chủ kho đăng kí quảng cáo";
-        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn đăng ký quảng cáo";
+        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng";
         $data['author_id'] = $userID;
         $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);
@@ -455,7 +496,7 @@ class WarehouseController extends Controller
                 ->where('users.name', 'LIKE', '%' . $q . '%')
                 ->orwhere('users.id', 'LIKE', '%' . $q . '%')
                 ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
-                ->paginate(6);
+                ->paginate(9);
             //dd($wareHouse);
         } else {
             $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id','ware_houses.user_id as userID', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
@@ -463,7 +504,7 @@ class WarehouseController extends Controller
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)
                 ->orderBy('id', 'DESC')
-                ->paginate(6);
+                ->paginate(9);
 
         }
 

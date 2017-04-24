@@ -71,7 +71,7 @@ class OrderController extends Controller
                     ->where('users.name', 'LIKE', '%' . $q . '%')
                     ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
                     ->orderBy('id','DESC')
-                    ->paginate(6);
+                    ->paginate(9);
             }
             else{
                 $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
@@ -79,7 +79,7 @@ class OrderController extends Controller
                     ->where('users.name', 'LIKE', '%' . $q . '%')
                     ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
                     ->orderBy('id','DESC')
-                    ->paginate(6);
+                    ->paginate(9);
             }
 
         }
@@ -88,13 +88,13 @@ class OrderController extends Controller
                 ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
                 ->where('kho_id',$author_id)
                 ->orderBy('id','DESC')
-                ->paginate(6);
+                ->paginate(9);
         }
         else {
             $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
                 ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
                 ->orderBy('id','DESC')
-                ->paginate(6);
+                ->paginate(9);
         }
 
             $AllOrders = Order::count();

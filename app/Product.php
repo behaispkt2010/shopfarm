@@ -33,7 +33,7 @@ class Product extends Model
                 ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
                 ->leftjoin('users','users.id','ware_houses.user_id')
                 ->groupBy('product_orders.id_product')
-                ->selectRaw('products.*, sum(product_orders.num) as numOrder')
+                ->selectRaw('products.*, count(product_orders.num) as numOrder')
                 ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
                 ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                 ->orderBy('numOrder', 'DESC')
@@ -44,7 +44,7 @@ class Product extends Model
                 ->leftjoin('ware_houses','ware_houses.user_id','products.kho')
                 ->leftjoin('users','users.id','ware_houses.user_id')
                 ->groupBy('product_orders.id_product')
-                ->selectRaw('products.*, sum(product_orders.num) as numOrder')
+                ->selectRaw('products.*, count(product_orders.num) as numOrder')
                 ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
                 ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                 ->orderBy('numOrder', 'DESC')
@@ -70,7 +70,7 @@ class Product extends Model
                 ->groupBy('product_orders.id_product')
                 ->selectRaw('products.*, sum(product_orders.num) as numOrder')
                 ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
-                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho, ware_houses.confirm_kho as confirm_kho, products.id as product_ID, products.min_gram as min_kg')
                 ->orderBy('numOrder', 'DESC')
                 ->get();
         }
@@ -82,7 +82,7 @@ class Product extends Model
                 ->groupBy('product_orders.id_product')
                 ->selectRaw('products.*, sum(product_orders.num) as numOrder')
                 ->selectRaw('products.*, sum(product_orders.price) as priceProduct')
-                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho, ware_houses.confirm_kho as confirm_kho, products.id as product_ID, products.min_gram as min_kg')
                 ->orderBy('numOrder', 'DESC')
                 ->take($limit)
                 ->get();

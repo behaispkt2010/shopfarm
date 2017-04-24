@@ -15,7 +15,7 @@ class DashboardAdminController extends Controller
 {
     public function getdashboard(Request $request){
         $data=$request->get('data');
-        $dateRes = explode('->',$data);
+        $dateRes = explode('>',$data);
         //dd($dateRes);
         $lineLabels = [];
         $lineDatasProfit = [];

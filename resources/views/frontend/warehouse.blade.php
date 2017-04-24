@@ -29,10 +29,10 @@
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 {{--<div class="item">
-                                    <img src="{{ asset($ware_house->image_kho) }}" alt="..." width="100%">
+                                    <img src="{{ asset($ware_house->image_kho) }}" style="border-radius: 5px;" alt="..." width="100%">
                                 </div>--}}
                                 <div class="item active">
-                                    <img alt="..." width="100%" src="{{ asset($ware_house->image_kho) }}">
+                                    <img alt="..." width="100%" style="border-radius: 5px;" src="{{ asset($ware_house->image_kho) }}">
                                 </div>
                             </div>
                             {{--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -178,7 +178,7 @@
                                             @foreach($arrImageDetail as $itemImageDetail)
                                                 <div class="owl-item" style="width: 165px;">
                                                     <li class="image_verified">
-                                                        <img src="{{url('/').$itemImageDetail->warehouse_detail_image}}" alt="Hình ảnh kho hàng">
+                                                        <img src="{{url('/').$itemImageDetail->warehouse_detail_image}}" style="border-radius: 5px;" alt="Hình ảnh kho hàng">
                                                     </li>
                                                 </div>
                                             @endforeach

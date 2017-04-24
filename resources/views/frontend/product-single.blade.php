@@ -15,7 +15,7 @@
 
 					<!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
 
-					<ul class="breadcrumbs">
+					<ul class="breadcrumbs" style="margin: 0px;">
 
 						<li><a href="/">Trang chủ</a></li>
 						<li><a href="/products">Sản phẩm</a></li>
@@ -45,9 +45,9 @@
 
 										<!-- - - - - - - - - - - - - - Image preview container - - - - - - - - - - - - - - - - -->
 
-										<div class="image_preview_container">
+										<div class="image_preview_container" style="height: 293px;">
 
-											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="" style="width: 390px;">
+											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="" style="width: 450px;height: 293px; border-radius: 5px;">
 
 											<button class="button_grey_2 icon_btn middle_btn open_qv"><i class="icon-resize-full-6"></i></button>
 
@@ -125,35 +125,55 @@
 										<div class="description_section">
 											<table class="product_info" style="width: 100%">
 												<tbody style="font-size: 15px;">
-													<tr>
+													<tr style="padding-bottom: 10px;">
 														<td style="width: 150px;">Mua tối thiểu: </td>
-														<td><span class="in_stock">{{$product->min_gram}}</span> (kg)</td>
+														<td><span class="in_stock">{{$product->min_gram}}</span> sản phẩm</td>
 													</tr>
-													<tr>
+													<tr style="padding-bottom: 10px;">
 														<td style="width: 150px;">Mã sản phẩm: </td>
-														<td>#{{\App\Util::ProductCode($product->id)}}</td>
+														<td>{{\App\Util::ProductCode($product->id)}}</td>
+													</tr>
+													<tr style="padding-bottom: 10px;">
+														<td style="width: 150px;">Tồn kho: </td>
+														<td><span class="in_stock">{{$product->inventory_num}}</span> sản phẩm</td>
 													</tr>
 												</tbody>
 											</table>
 										</div>
-										<p class="product_price"><b class="theme_color">{{ number_format($product->price_out)  }} VNĐ</b></p>
+										<p class="product_price">{{ number_format($product->price_out)  }} VNĐ</p>
 
 										<div class="row text-center">
-											<div class="col-xs-6 col-sm-6 col-md-6 col-md-offset-3">
-												<div style="height: 100px; padding: 15px 15px 0px 15px; ">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;"
-																data-toggle="modal" data-target=".modal-login" class="btn btn-warning required_login">
-															Mua Ngay
+														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;"
+																data-toggle="modal" data-target=".modal-login" class="btn btn-success required_login">
+															Gọi điện
 														</button>
 													@else
-														<button id="phoneKho" style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;"
-															data-toggle="modal" data-target=".modal-buy" class="btn btn-warning" data-phone="{{$product->phoneKho}}" data-title="Mua Ngay" data-namekho="{{$product->nameKho}}">
-															Mua Ngay
+														<button id="phoneKho" style="line-height: 26px;width: 165px; font-size: 16px;"
+															data-toggle="modal" data-target=".modal-buy" class="btn btn-success" data-phone="{{$product->phoneKho}}" data-title="Mua Ngay" data-namekho="{{$product->nameKho}}">
+															Gọi điện
 														</button>
 													@endif
 													<br>
 													<p>Mua trực tiếp với nhà cung cấp</p>
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
+													@if (( !Auth::check()))
+														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;"
+																data-toggle="modal" data-target=".modal-login" class="btn btn-info required_login">
+															Chat Facebook
+														</button>
+													@else
+														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;">
+															Chat Facebook
+														</button>
+													@endif
+													<br>
+													<p>Chat với nhà cung cấp</p>
 												</div>
 											</div>
 										</div>
@@ -213,7 +233,7 @@
 
 								<section class="section_offset">
 							@if(!empty($product->levelKho))
-									<h4>Thông tin chủ kho</h4>
+									<h5 class="text-center">Thông tin chủ kho</h5>
 									<div class="theme_box">
 										<div class="seller_info clearfix">
 											<a href="{{ url('/shop/'.$product->ware_houses_id) }}" class="alignleft photo">
@@ -268,7 +288,7 @@
 
 					<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
-					<div class="section_offset">
+					<div class="section_offset" style="margin-bottom: 10px;">
 						<div class="tabs type_2">
 							<ul class="tabs_nav clearfix">
 								<li><a href="#tab-1">Thông tin chi tiết</a></li>
@@ -538,17 +558,17 @@
 
 					<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
-					<div class="section_offset">
+					<div class="section_offset" style="margin-bottom: 10px;">
 
-						<div class="tabs products">
+						<div class="tabs type_2 initialized products">
 
 							<!-- - - - - - - - - - - - - - Navigation of tabs - - - - - - - - - - - - - - - - -->
 
 							<ul class="tabs_nav clearfix">
 
-								<li class="tab_bottom"><a href="#tab-5">Sản phẩm có thể bạn thích</a></li>
-								<li class="tab_bottom"><a href="#tab-6">Nhà cung cấp có uy tín</a></li>
-								<li class="tab_bottom"><a href="#tab-7">Sản phẩm bán chạy</a></li>
+								<li class="tab_bottom"><a href="#tab-5" style="font-size: 16px;">Sản phẩm có thể bạn thích</a></li>
+								<li class="tab_bottom"><a href="#tab-6" style="font-size: 16px;">Nhà cung cấp có uy tín</a></li>
+								<li class="tab_bottom"><a href="#tab-7" style="font-size: 16px;">Sản phẩm bán chạy</a></li>
 
 							</ul>
 							
@@ -574,7 +594,7 @@
 											<div class="description">
 												<a href="#" class="clearfix">{{$product->title}}</a>
 												<div class="kho_info clearfix">
-													<a href="#" class="alignleft photo">
+													<a href="#" class="alignleft" style="width: 70px;">
 														@if($product->levelKho == 1)
 															<img src="{{url('/images')}}/level1.png" alt="">
 														@elseif($product->levelKho == 2)
@@ -582,17 +602,23 @@
 														@elseif($product->levelKho == 3)
 															<img src="{{url('/images')}}/level3.png" alt="">
 														@else
-															<img src="{{url('/images')}}/level0.jpg" alt="">
+															<img src="{{url('/images')}}/level0.png" alt="">
 														@endif
 													</a>
-													<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+													<a href="#" class="alignleft" style="width: 70px;">
+														@if($product->confirm_kho == 1)
+															<img src="{{url('/images')}}/xacthuc.png" alt="">
+														@else
+														@endif
+													</a>
+													<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 												</div>
 												<div class="clearfix product_info">
-													<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 												</div>
 												<div class="clearfix product_info">
-													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
 												</div>
 
 											</div>
@@ -646,7 +672,7 @@
 											<div class="description">
 												<a href="#" class="clearfix">{{$product->title}}</a>
 												<div class="kho_info clearfix">
-													<a href="#" class="alignleft photo">
+													<a href="#" class="alignleft" style="width: 70px;">
 														@if($product->levelKho == 1)
 															<img src="{{url('/images')}}/level1.png" alt="">
 														@elseif($product->levelKho == 2)
@@ -654,17 +680,23 @@
 														@elseif($product->levelKho == 3)
 															<img src="{{url('/images')}}/level3.png" alt="">
 														@else
-															<img src="{{url('/images')}}/level0.jpg" alt="">
+															<img src="{{url('/images')}}/level0.png" alt="">
 														@endif
 													</a>
-													<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+													<a href="#" class="alignleft" style="width: 70px;">
+														@if($product->confirm_kho == 1)
+															<img src="{{url('/images')}}/xacthuc.png" alt="">
+														@else
+														@endif
+													</a>
+													<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 												</div>
 												<div class="clearfix product_info">
-													<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 												</div>
 												<div class="clearfix product_info">
-													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
 												</div>
 
 											</div>
@@ -719,7 +751,7 @@
 											<div class="description">
 												<a href="#" class="clearfix">{{$product->title}}</a>
 												<div class="kho_info clearfix">
-													<a href="#" class="alignleft photo">
+													<a href="#" class="alignleft" style="width: 70px;">
 														@if($product->levelKho == 1)
 															<img src="{{url('/images')}}/level1.png" alt="">
 														@elseif($product->levelKho == 2)
@@ -727,13 +759,19 @@
 														@elseif($product->levelKho == 3)
 															<img src="{{url('/images')}}/level3.png" alt="">
 														@else
-															<img src="{{url('/images')}}/level0.jpg" alt="">
+															<img src="{{url('/images')}}/level0.png" alt="">
 														@endif
 													</a>
-													<p class="alignleft"><b>{{ $product->nameKho  }}</b></p>
+													<a href="#" class="alignleft" style="width: 70px;">
+														@if($product->confirm_kho == 1)
+															<img src="{{url('/images')}}/xacthuc.png" alt="">
+														@else
+														@endif
+													</a>
+													<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 												</div>
 												<div class="clearfix product_info">
-													<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 												</div>
 												<div class="clearfix product_info">

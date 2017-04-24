@@ -13,7 +13,7 @@
 
 					<!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
 
-					<ul class="breadcrumbs">
+					<ul class="breadcrumbs" style="margin-bottom: 0px; ">
 
 						<li><a href="/">Trang chủ</a></li>
 						<li>Liên hệ</li>
@@ -22,7 +22,7 @@
 
 					<div class="row">
 
-						<aside class="col-md-3 col-sm-4">
+						<aside class="col-md-3 col-sm-4" style="top: -7px;">
 
 							<!-- - - - - - - - - - - - - - Information - - - - - - - - - - - - - - - - -->
 

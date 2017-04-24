@@ -8,7 +8,7 @@
         <br>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Đơn Hàng<br><span class="value-das">{{$numOrder}}</span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{!!\App\Util::FormatMoney($totalPrice)!!}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Lợi nhuận<br><span class="value-das">{{\App\Util::FormatMoney($profit)}}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Lợi nhuận<br><span class="value-das">{!! \App\Util::FormatMoney($profit)!!}</span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Số sản phẩm<br><span class="value-das">{{$numProduct}}</span></div>
 
     </div>
@@ -23,8 +23,8 @@
                         <div class="col-md-4">
                     <h2>Doanh thu </h2>
                         </div>
-                    <div class="col-md-8">
-                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <div class="col-md-8" style="float: right; font-size: 15px;">
+                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             <span id="date-filter1"></span> <b class="caret"></b>
                         </div>
@@ -45,8 +45,8 @@
                         <div class="col-md-4">
                             <h2>Đơn hàng </h2>
                         </div>
-                        <div class="col-md-8">
-                            <div id="reportrange2" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                        <div class="col-md-8" style="float: right; font-size: 15px;">
+                            <div id="reportrange2" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                 <span id="date-filter2"></span> <b class="caret"></b>
                             </div>
@@ -80,7 +80,7 @@
 
                 var cb = function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
-                    $('#reportrange2 span').html(start.format('DD-MM-YYYY') + ' -> ' + end.format('DD-MM-YYYY'));
+                    $('#reportrange2 span').html(start.format('DD-MM-YYYY') + ' > ' + end.format('DD-MM-YYYY'));
                 };
 
                 var optionSet1 = {
@@ -119,7 +119,7 @@
                         firstDay: 1
                     }
                 };
-                $('#reportrange2 span').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' -> ' + moment().format('DD-MM-YYYY'));
+                $('#reportrange2 span').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' > ' + moment().format('DD-MM-YYYY'));
                 $('#reportrange2').daterangepicker(optionSet1, cb);
                 $('#reportrange2').on('show.daterangepicker', function() {
                     console.log("show event fired");
@@ -152,7 +152,7 @@
 
                 var cb = function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
-                    $('#reportrange span#date-filter1').html(start.format('DD-MM-YYYY') + ' -> ' + end.format('DD-MM-YYYY'));
+                    $('#reportrange span#date-filter1').html(start.format('DD-MM-YYYY') + ' > ' + end.format('DD-MM-YYYY'));
                 };
 
                 var optionSet1 = {
@@ -191,7 +191,7 @@
                         firstDay: 1
                     }
                 };
-                $('#reportrange span#date-filter1').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' -> ' + moment().format('DD-MM-YYYY'));
+                $('#reportrange span#date-filter1').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' > ' + moment().format('DD-MM-YYYY'));
                 $('#reportrange').daterangepicker(optionSet1, cb);
                 $('#reportrange').on('show.daterangepicker', function() {
                     console.log("show event fired");

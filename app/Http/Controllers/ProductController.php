@@ -116,16 +116,16 @@ public function AjaxGetProduct(Request $request){
                     $product1 =  $product1->where('kho',$kho)->where('kho',Auth::user()->id);
                 }
             }
-            $product = $product1->paginate(6);
+            $product = $product1->paginate(9);
         }
         else if(!Auth::user()->hasRole('kho')) {
             $product = Product::orderBy('id', 'DESC')
-                ->paginate(6);
+                ->paginate(9);
         }
         else {
             $product = Product::orderBy('id','DESC')
                 ->where('kho',Auth::user()->id)
-                ->paginate(6);
+                ->paginate(9);
         }
         $category = CategoryProduct::get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')

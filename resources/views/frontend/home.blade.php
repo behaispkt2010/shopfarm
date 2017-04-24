@@ -11,61 +11,44 @@
 					<div class="section_offset" style="margin-bottom:0px;">
 
 						<div class="row">
-							<div class="col-xs-12 col-md-3">
+							<div class="col-xs-12 col-md-3" style="padding-bottom: 22px;">
 								@include('frontend.witgets.category-product')
-
 							</div>
-							<div class="col-xs-12 col-md-9">
+							<div class="col-xs-12 col-md-9" style="padding-bottom: 22px;">
 									{!! \App\Setting::getValue('slider')!!}
-								</div><!--/ #layerslider-->
-								<!-- - - - - - - - - - - - - - End of layer slider - - - - - - - - - - - - - - - - -->
-							<div class="clear"></div>
-							<br>
-							<div class="section_offset">
-
-								<div class="row">
-
-									<div class="col-sm-4 img_banner" style="padding: 0px;">
-
-										<a href="#" class="">
-
-											<img src="{{url('/')}}/images/fruit.jpg" alt="">
-
-										</a>
-
-									</div><!--/ [col]-->
-
-									<div class="col-sm-4 img_banner" style="padding: 0px;">
-
-										<a href="#" class="">
-
-											<img src="{{url('/')}}/images/go.jpg" alt="">
-
-										</a>
-
-									</div><!--/ [col]-->
-									<div class="col-sm-4 img_banner" style="padding: 0px;">
-
-										<a href="#" class="">
-
-											<img src="{{url('/')}}/images/seafood.jpeg" alt="">
-
-										</a>
-
-									</div><!--/ [col]-->
-
-								</div><!--/ .row-->
-
 							</div>
+							<div class="clear"></div>
+							
+							<div class="col-xs-12">
+								<div class="col-sm-3 img_banner" style="padding: 0px;">
+									<a href="#" class="">
+										<img src="{{url('/')}}/images/fruit.jpg" alt="" class="img_left_border">
+									</a>
+								</div><!--/ [col]-->
+								<div class="col-sm-3 img_banner" style="padding: 0px;">
+									<a href="#" class="">
+										<img src="{{url('/')}}/images/go.jpg" alt="">
+									</a>
+								</div><!--/ [col]-->
+								<div class="col-sm-3 img_banner" style="padding: 0px;">
+									<a href="#" class="">
+										<img src="{{url('/')}}/images/seafood.jpeg" alt="">
+									</a>
+								</div><!--/ [col]-->
+								<div class="col-sm-3 img_banner" style="padding: 0px;">
+									<a href="#" class="">
+										<img src="{{url('/')}}/images/go.jpg" alt="" class="img_right_border">
+									</a>
 								</div><!--/ [col]-->
 
-						</div><!--/ .row-->
-
+							</div><!--/ .row-->
+						</div>
+							
 					</div><!--/ .section_offset-->
-					<div class="row" style="padding:0px; marging:0px;">
+					<div class="col-xs-12 hidden-xs" style="padding:0px; padding-bottom: 20px;">
 						<div class="col-sm-4" style="padding: 0px;">
 							<a href="#" class="">
-								<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
+								<img src="{{url('/')}}/images/home-banner.jpeg" alt="" class="img_left_border">
 							</a>
 						</div>
 						<div class="col-sm-4" style="padding: 0px;">
@@ -75,13 +58,13 @@
 						</div>
 						<div class="col-sm-4" style="padding: 0px;">
 							<a href="#" class="">
-								<img src="{{url('/')}}/images/home-banner.jpeg" alt="">
+								<img src="{{url('/')}}/images/home-banner.jpeg" alt="" class="img_right_border">
 							</a>
 						</div>
 					</div>
 					<br>
 					<div class="row">
-						<main class="col-md-12 col-sm-12" style="padding-left:0px;">
+						<main class="col-md-12 col-sm-12">
 
 							<!-- - - - - - - - - - - - - - Category - - - - - - - - - - - - - - - - -->
 
@@ -106,22 +89,17 @@
 									</li>
 									@endforeach
 								</ul>
-								<div class="temp-wrapper" style="height: 508px;">
-									<ul class="category_khovip_list">Chủ kho Uy tín <br>
-										@foreach(\App\WareHouse::getVipByCate($itemAllCategory->id,5) as $key=> $warehousevip)
+								<div class="temp-wrapper" style="height: 654px;">
+									<ul class="category_khovip_list">
+										@foreach(\App\WareHouse::getVipByCate($itemAllCategory->id,4) as $key=> $warehousevip)
 											<li class="category_khovip_item">
-												<a href="#" class="alignleft photo" >
-													@if($warehousevip->levelKho == 1)
-														<img src="{{url('/images')}}/level1.png" alt="">
-													@elseif($warehousevip->levelKho == 2)
-														<img src="{{url('/images')}}/level2.png" alt="">
-													@elseif($warehousevip->levelKho == 3)
-														<img src="{{url('/images')}}/level3.png" alt="">
+												<a href="#" class="alignleft" style="padding: 0px 40px;">
+													@if (!empty($warehousevip->imageKho))
+													<img src="{{url('/').$warehousevip->imageKho}}" alt="" style="border-radius: 5px;">
 													@else
-														<img src="{{url('/images')}}/level0.jpg" alt="">
 													@endif
 												</a>
-												<p class="alignleft"><b>{{ $warehousevip->nameKho  }}</b></p>
+												<p class="alignleft">{{ $warehousevip->nameKho  }}</p>
 											</li>
 										@endforeach
 									</ul>
@@ -138,11 +116,12 @@
 															<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
 														</div>
+
 														<div class="description">
 
-															<a href="#" style="text-transform: uppercase;">{{$product->title}}</a>
+															<a href="#" style="font-size: 16px;">{{$product->title}}</a>
 															<div class="kho_info clearfix">
-																<a href="#" class="alignleft photo" >
+																<a href="#" class="alignleft" style="width: 70px;">
 																	@if($product->levelKho == 1)
 																		<img src="{{url('/images')}}/level1.png" alt="">
 																	@elseif($product->levelKho == 2)
@@ -150,13 +129,20 @@
 																	@elseif($product->levelKho == 3)
 																		<img src="{{url('/images')}}/level3.png" alt="">
 																	@else
-																		<img src="{{url('/images')}}/level0.jpg" alt="">
+																		<img src="{{url('/images')}}/level0.png" alt="">
 																	@endif
 																</a>
-																<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>
+																<a href="#" class="alignleft" style="width: 70px;">
+																	@if($product->confirm_kho == 1)
+																		<img src="{{url('/images')}}/xacthuc.png" alt="">
+																	@else
+																	@endif
+																</a>
+																<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->product_ID)  }}</p>
 															</div>
 															<div class="clearfix product_info">
-																<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+																<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+																<p class="alignright">Tối thiểu: {!! number_format($product->min_kg) !!} SP</p>
 															</div>
 														</div>
 													</div>
@@ -183,8 +169,8 @@
 
 								<ul class="tabs_nav clearfix">
 
-									<li class="tab_bottom"><a href="#tab-1">Sản phẩm mới</a></li>
-									<li class="tab_bottom"><a href="#tab-2">Sản phẩm đánh giá tốt</a></li>
+									<li class="tab_bottom"><a href="#tab-1" style="font-size: 16px;">Sản phẩm mới</a></li>
+									<li class="tab_bottom"><a href="#tab-2" style="font-size: 16px;">Sản phẩm đánh giá tốt</a></li>
 
 
 								</ul>
@@ -235,7 +221,7 @@
 																	<a href="#" class="clearfix">{{$product->title}}</a>
 
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft photo">
+																		<a href="#" class="alignleft" style="width: 70px;">
 																		@if($product->levelKho == 1)
 																			<img src="{{url('/images')}}/level1.png" alt="">
 																		@elseif($product->levelKho == 2)
@@ -243,13 +229,19 @@
 																		@elseif($product->levelKho == 3)
 																			<img src="{{url('/images')}}/level3.png" alt="">
 																		@else
-																			<img src="{{url('/images')}}/level0.jpg" alt="">
+																			<img src="{{url('/images')}}/level0.png" alt="">
 																		@endif
 																		</a>
-																		<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>
+																		<a href="#" class="alignleft" style="width: 70px;">
+																			@if($product->confirm_kho == 1)
+																				<img src="{{url('/images')}}/xacthuc.png" alt="">
+																			@else
+																			@endif
+																		</a>
+																		<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 																	</div>
 																	<div class="clearfix product_info">
-																		<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+																		<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 																		<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 																	</div>
 																	<div class="clearfix product_info">
@@ -319,7 +311,7 @@
 
 																<a href="#">{{$product->title}}</a>
 																<div class="kho_info clearfix">
-																	<a href="#" class="alignleft photo">
+																	<a href="#" class="alignleft" style="width: 70px;">
 																		@if($product->levelKho == 1)
 																			<img src="{{url('/images')}}/level1.png" alt="">
 																		@elseif($product->levelKho == 2)
@@ -327,14 +319,20 @@
 																		@elseif($product->levelKho == 3)
 																			<img src="{{url('/images')}}/level3.png" alt="">
 																		@else
-																			<img src="{{url('/images')}}/level0.jpg" alt="">
+																			<img src="{{url('/images')}}/level0.png" alt="">
 																		@endif
 																	</a>
-																	<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>
+																	<a href="#" class="alignleft" style="width: 70px;">
+																		@if($product->confirm_kho == 1)
+																			<img src="{{url('/images')}}/xacthuc.png" alt="">
+																		@else
+																		@endif
+																	</a>
+																	<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 																</div>
 																<div class="clearfix product_info">
 
-																	<p class="product_price alignleft"><b>{{ number_format($product->price_out)  }} VNĐ</b></p>
+																	<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 																	<span class="alignright">
 											{!! \App\Rate::getRateProduct($product->id)!!}
 											</span>
@@ -436,7 +434,7 @@
 																@elseif($product->levelKho == 3)
 																	<img src="{{url('/images')}}/level3.png" alt="">
 																@else
-																	<img src="{{url('/images')}}/level0.jpg" alt="">
+																	<img src="{{url('/images')}}/level0.png" alt="">
 																@endif
 															</a>
 															<p class="alignleft" style="width: 80%; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><b>{{ $product->nameKho  }}</b></p>

@@ -30,7 +30,7 @@
 <script>
 	$(document).on('ready',function(){
 		var url      = window.location.pathname;
-//		alert(url);
+		// alert(url);
 
 		$('.main_navigation ul li a[href ="'+url+'"]').closest('li').addClass('current');
 	})

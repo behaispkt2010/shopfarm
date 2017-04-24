@@ -8,8 +8,8 @@
         <br>
         <div class="col-md-3 col-xs-6 col-ms-6  text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{!! \App\Util::FormatMoney($totalPrice)  !!} </span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Khách Hàng Hiện Tại<br><span class="value-das">{!! $customer !!}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Trung Bình Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! \App\Util::FormatMoney($totalPrice/$countOrder) !!}  @else 0 VNĐ @endif</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Khách Hàng<br><span class="value-das">{!! $customer !!}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">TB Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! \App\Util::FormatMoney($totalPrice/$countOrder) !!}  @else 0 VNĐ @endif</span></div>
 
     </div>
     <div class="row">
@@ -19,8 +19,8 @@
                 <div class="x_title">
                     <h2>Doanh thu </h2>
 
-                    <div class="col-md-8">
-                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <div class="col-md-8" style="float: right; font-size: 15px;">
+                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             <span id="date-filter1"></span> <b class="caret"></b>
                         </div>
@@ -37,8 +37,8 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Số đơn hàng </h2>
-                    <div class="col-md-8">
-                        <div id="reportrange2" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <div class="col-md-8" style="float: right; font-size: 15px;">
+                        <div id="reportrange2" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             <span id="date-filter2"></span> <b class="caret"></b>
                         </div>
@@ -139,11 +139,11 @@
                         @foreach($arrBestSellProduct as $BestSell)
                             <li class="media event">
                                 <a class="pull-left border-aero profile_thumb">
-                                    <img src="{{url('/').$BestSell->image}}" alt="" class="img-responsive">
+                                    <img src="{{url('/').$BestSell->image}}" alt="" class="img-responsive" style="border-radius: 5px;">
                                 </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">{!! $BestSell->title !!}</a>
-                                    <p><strong>{!! $BestSell->priceProduct !!} VNĐ</strong>{{--Kho A--}}</p>
+                                <div class="media-body" style="font-weight: 700;">
+                                    <a class="title" style="font-weight: 100; font-size: 17px;" href="#">{!! $BestSell->title !!}</a>
+                                    <p><strong >{!! \App\Util::FormatMoney($BestSell->priceProduct) !!} </strong></p>
                                     <p> <small>{!! $BestSell->numOrder !!} đơn hàng</small>
                                     </p>
                                     </p>
@@ -170,12 +170,13 @@
                         @foreach($arrProductWaitApproval as $itemProductWaitApproval)
                             <li class="media event product0" style="height: 50px;" id="">
                                 <a class="pull-left border-aero profile_thumb" style="margin: -4px; padding: 0px;">
-                                    <img src="{{url('/').$itemProductWaitApproval->image}}" alt="" class="img-responsive" style="height: 50px;">
+                                    <img src="{{url('/').$itemProductWaitApproval->image}}" alt="" class="img-responsive" style="height: 50px; border-radius: 5px;">
                                 </a>
                                 <div class="media-body" style="padding-top: 10px;">
-                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left"><a class="title" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}" target="_blank">{!! $itemProductWaitApproval->title !!}</a></div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left"><a class="title" style="font-weight :100;" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}" target="_blank">{!! $itemProductWaitApproval->title !!}</a></div>
                                     <div class="col-md-2 col-sm-2 col-xs-2">Kho {{\App\Util::UserCode($itemProductWaitApproval->kho)}}</div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 text-right" style="top: -6px;"><button class="btn-warning btnApproval" onclick="Approval(this)" style="padding: 5px 30px;">Duyệt</button></div>
+
+                                    <div class="col-md-3 col-sm-3 col-xs-3 text-right" style="top: -13px;"><button class="btn btn-raised btn-success btnApproval" onclick="Approval(this)" style="padding: 5px 30px;">Duyệt</button></div>
                                 </div>
                                 <input type="hidden" name="txtProductID" value="{{$itemProductWaitApproval->id}}">
                                 <input type="hidden" name="txtKhoID" value="{{$itemProductWaitApproval->kho}}">
@@ -213,12 +214,17 @@
 
 
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('span').find('.unit').addClass('style_format');
+        });
+    </script>
     <script>
         $(document).ready(function() {
 
             var cb = function(start, end, label) {
                 console.log(start.toISOString(), end.toISOString(), label);
-                $('#reportrange2 span').html(start.format('DD-MM-YYYY') + ' -> ' + end.format('DD-MM-YYYY'));
+                $('#reportrange2 span').html(start.format('DD-MM-YYYY') + ' > ' + end.format('DD-MM-YYYY'));
             };
 
             var optionSet1 = {
@@ -257,7 +263,7 @@
                     firstDay: 1
                 }
             };
-            $('#reportrange2 span').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' -> ' + moment().format('DD-MM-YYYY'));
+            $('#reportrange2 span').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' > ' + moment().format('DD-MM-YYYY'));
             $('#reportrange2').daterangepicker(optionSet1, cb);
             $('#reportrange2').on('show.daterangepicker', function() {
                 console.log("show event fired");
@@ -290,7 +296,7 @@
 
             var cb = function(start, end, label) {
                 console.log(start.toISOString(), end.toISOString(), label);
-                $('#reportrange span#date-filter1').html(start.format('DD-MM-YYYY') + ' -> ' + end.format('DD-MM-YYYY'));
+                $('#reportrange span#date-filter1').html(start.format('DD-MM-YYYY') + ' > ' + end.format('DD-MM-YYYY'));
             };
 
             var optionSet1 = {
@@ -329,7 +335,7 @@
                     firstDay: 1
                 }
             };
-            $('#reportrange span#date-filter1').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' -> ' + moment().format('DD-MM-YYYY'));
+            $('#reportrange span#date-filter1').html(moment().subtract(6, 'days').format('DD-MM-YYYY') + ' > ' + moment().format('DD-MM-YYYY'));
             $('#reportrange').daterangepicker(optionSet1, cb);
             $('#reportrange').on('show.daterangepicker', function() {
                 console.log("show event fired");

@@ -25,7 +25,7 @@ class ProductController extends Controller
                     ->leftjoin('users','users.id','ware_houses.user_id')
                     ->selectRaw('products.*')
                     ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
-                ->orderBy('title', 'DESC')
+                    ->orderBy('title', 'DESC')
                     ->paginate(16);
             }
             elseif($request->get('q')=="moi-nhat") {

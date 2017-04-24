@@ -45,7 +45,7 @@
       <div class="content">
         <div class="title">401</div>
         <div class="quote" style="color: #0b97c4; font-weight: bold">
-          Tài khoản của bạn đã hết thời gian dung thử. Vui lòng liên hệ hotline: {{\App\Setting::getValue('phonetraphi')}} để được hỗ trợ nâng cấp tài khoản.
+          Tài khoản của bạn đã hết thời gian sử dụng dịch vụ. <br> Vui lòng liên hệ hotline: {{\App\Setting::getValue('phonetraphi')}} để được hỗ trợ nâng cấp tài khoản.
         </div>
         <div class="explanation">
           <br>

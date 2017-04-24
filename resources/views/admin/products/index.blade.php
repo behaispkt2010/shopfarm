@@ -4,7 +4,7 @@
 @section('detailHeader','danh sách')
 @section('new-btn')
     <a href="{{route('products.create')}}" class="btn btn-warning btn-fab">
-        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @endsection
     @section('add_styles')
@@ -42,10 +42,11 @@
                             <div class="form-group">
                                 <select id="select-cate" class="form-control" name="category" data-placeholder="chọn danh mục">
                                     <option value="0" >Chọn danh mục sản phẩm</option>
-                                    @foreach($category  as $itemCategory)
+                                    {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",old('parent')) }}
+                                    <!-- @foreach($category  as $itemCategory)
                                         <option value="{{$itemCategory->id}}" @if(Request::get('category')==$itemCategory->id) selected @endif>{{$itemCategory->name}}
                                         </option>
-                                    @endforeach
+                                    @endforeach -->
                                 </select>
                             </div>
                             <div class="clear"></div>

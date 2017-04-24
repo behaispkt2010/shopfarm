@@ -27,13 +27,13 @@ class StaffController extends Controller
                 ->where('name','LIKE','%'.$q.'%')
                 ->orwhere('id','LIKE','%'.$q.'%')
                 ->orwhere('phone_number','LIKE','%'.$q.'%')
-                ->paginate(6);
+                ->paginate(9);
         }
         else {
             $users = User::leftjoin('role_user','role_user.user_id','=','users.id')
                 ->where('role_user.role_id',5)
                 ->orderBy('id','DESC')
-                ->paginate(6);
+                ->paginate(9);
         }
         $roles = RoleUser::leftjoin('users','role_user.user_id','=','users.id')
             ->leftjoin('roles','roles.id','=','role_user.role_id')
