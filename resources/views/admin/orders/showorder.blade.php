@@ -28,7 +28,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-md-12 con-tracking ">
+                <div class="col-md-12 con-tracking hidden-xs">
                     <div class="col-sm-6 col-xs-12 fix-padlr">
                         {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
                         <h2>Thông tin đặt hàng</h2>
@@ -121,8 +121,96 @@
                     </div>
 
                 </div>
+                <div class="col-md-12 con-tracking visible-xs">
+                    <div class="col-sm-6 col-xs-12 fix-padlr">
+                        <h2>Thông tin đặt hàng</h2>
+                        <table class="table list-order table-curved">
+                            <tbody>
+                            <?php $total = 0; ?>
+                            @foreach($productOrder as $itemProductOrder)
+                                <tr class="item-product">
+                                    <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
+                                    <td><span class="price-product"><span>{{number_format($itemProductOrder->price) }}</span> VNĐ </span></td>
+                                    <td><span>x </span>{{ $itemProductOrder->num }}</td>
+                                    
+                                </tr>
+                                <?php $total=$total + (($itemProductOrder->price)*($itemProductOrder->num)); ?>
+                            @endforeach
+                            <tr>
+                                <td></td>
+                                <td>Tổng: </td>
+                                <td><span class="total">  {{number_format($total)}} VNĐ</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
 
-                <div class=" row">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Thanh toán:
+                            </div>
+                            <div class="col-md-8">
+                                <p>
+                                    @if(($order->type_pay == 1)) Đã thanh toán đầy đủ @elseif($order->type_pay == 2) Đã đặt cọc @if(!empty($order->received_pay)){{number_format($order->received_pay)}} VNĐ @endif @else Chưa thanh toán @endif
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Vận chuyển:
+                            </div>
+                            <div class="col-md-8">
+                                <p>@if(!empty($order->type_driver)){{$order->type_driver}}@else{{old('type_driver')}}@endif</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Thông tin tài xế:
+                            </div>
+                            <div class="col-md-8">
+                                <p>Tên: @if(!empty($order->name_driver)){{$order->name_driver}}@else{{old('name_driver')}}@endif</p>
+                                <p>SĐT: @if(!empty($order->phone_driver)){{$order->phone_driver}}@else{{old('phone_driver')}}@endif</p>
+                                <p>Biển số xe: @if(!empty($order->number_license_driver)){{$order->number_license_driver}}@else{{old('number_license_driver')}}@endif</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                Ghi chú:
+                            </div>
+                            <div class="col-md-8">
+
+                                <p class="note-order">@if(!empty($order->note)){{$order->note}}@else Không có ghi chú @endif</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-xs-12 fix-padlr cl-center">
+
+                    </div>
+                    <div class="col-sm-4 col-xs-12 fix-padlr">
+                        {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
+                        <h2>Thông tin nhận hàng</h2>
+                        <table class="tracking-table">
+                            <tbody>
+                            <tr>
+                                <td><i class="ic-tracking ic-nguoidung"></i></td>
+                                <td>@if(!empty($customer->name)){{$customer->name}}@endif</td>
+                            </tr>
+                            <tr>
+                                <td><i class="ic-tracking ic-diadiem"></i></td>
+                                <td>@if(!empty($customer->address)){{$customer->address}}@endif</td>
+                            </tr>
+                            <tr>
+                                <td><i class="ic-tracking ic-dienthoai"></i></td>
+                                <td>@if(!empty($customer->phone_number)){{$customer->phone_number}}@endif</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class=" row hidden-xs">
                     <div class="col-md-12 details-tracking ">
                         <label class="title">Chi tiết hành trình</label>
                         <div id="demo0" class="collapse in" style="padding-left: 20px;">

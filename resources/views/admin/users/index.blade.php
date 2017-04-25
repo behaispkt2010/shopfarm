@@ -6,11 +6,11 @@
 @section('new-btn')
     @if(Request::is('admin/staffs'))
     <a href="{{route('staffs.create')}}" class="btn btn-warning btn-fab">
-        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @else
     <a href="{{route('users.create')}}" class="btn btn-warning btn-fab">
-        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @endif
 @endsection

@@ -103,19 +103,19 @@
 
                                                             <div class="col-md-9 col-xs-12 ">
                                                                 <div class="form-group">
-                                                                    <select id="select-role" class="form-control"  name="role" data-placeholder="phân quyền">
+                                                                    <select id="select-role" class="form-control"  name="role" data-placeholder="Phân quyền" @if(Auth::user()->hasRole(['user','staff'])) disabled="disabled" @endif>
                                                                         @if(!empty($role))
                                                                             @if($role=="staff")
                                                                             <option value="5">Nhân viên</option>
-                                                                                @elseif($role=="customer")
-                                                                                <option value="3">Khách hàng</option>
-                                                                            @endif
+                                                                            @elseif($role=="customer")
+                                                                            <option value="3">Khách hàng</option>
+                                                                        @endif
                                                                         @else
                                                                             @foreach($roles as $itemRoles)
                                                                                 @if($itemRoles->id!=4)
-                                                                            <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
-                                                                            @endif
-                                                                                    @endforeach
+                                                                                    <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
+                                                                                @endif
+                                                                            @endforeach
                                                                         @endif
                                                                     </select>
                                                                 </div>

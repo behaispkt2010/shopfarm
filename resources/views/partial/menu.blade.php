@@ -48,6 +48,7 @@
             <div class="menu_section">
                 <div class="clear"></div>
                 <ul class="nav side-menu">
+                    @if(Auth::user()->hasRole(['editor','admin','kho']))
                     <li><a><i class="fa fa-laptop"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @permission('dashboard')
@@ -58,6 +59,7 @@
                             @endpermission
                         </ul>
                     </li>
+                    @endif
                     @permission('news')
                     <li><a><i class="fa fa-newspaper-o"></i> Tin tức <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
@@ -92,7 +94,7 @@
                         </ul>
                     </li>
                     @endpermission
-
+                    @if(Auth::user()->hasRole(['editor','admin','kho']))
                     <li><a><i class="fa fa-database"></i>Quản lý kho <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @permission('warehouse')
@@ -114,6 +116,7 @@
 
                         </ul>
                     </li>
+                    @endif
                     @permission('customers')
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
                     @endpermission

@@ -22,7 +22,7 @@
 
 					<div class="row">
 
-						<aside class="col-md-3 col-sm-4">
+						<aside class="col-md-3 col-sm-4" style="top: -8px;">
 
 							<!-- - - - - - - - - - - - - - Information - - - - - - - - - - - - - - - - -->
 

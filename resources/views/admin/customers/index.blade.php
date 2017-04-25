@@ -5,7 +5,7 @@
 
 @section('new-btn')
     <a href="{{route('customers.create')}}" class="btn btn-warning btn-fab">
-        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection
 @section('content')
@@ -60,7 +60,9 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <ul class="list-unstyled">
-                                                    <li><span class="label-box55">Tên:</span> {{$user->name}}</li>
+                                                    <li style="width: 80%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                    <span class="label-box55">Tên:</span> {{$user->name}}
+                                                    </li>
                                                     <li><span class="label-box55">Email:</span> {{$user->email}}</li>
                                                     <li><span class="label-box55">SDT:</span> {{$user->phone_number}}</li>
                                                     <li><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>

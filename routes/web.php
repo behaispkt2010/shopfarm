@@ -23,7 +23,7 @@ Auth::routes();
  *
  */
 
-Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff','auth', 'authorize']], function () {
+Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|user','auth', 'authorize']], function () {
 
     Route::get('/', 'DashboardController@index');
     Route::get('/dashboard', 'DashboardAdminController@index');

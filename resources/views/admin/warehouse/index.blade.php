@@ -4,7 +4,7 @@
 @section('detailHeader','danh sách')
 @section('new-btn')
     <a href="{{route('warehouse.create')}}" data-placement="top" title="" data-original-title="Tạo mới" class="btn btn-warning btn-fab">
-        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection
 @section('content')

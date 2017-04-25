@@ -18,9 +18,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            if(Auth::user()->hasRole(['editor', 'admin','kho'])){
+            if(Auth::user()->hasRole(['editor', 'admin'])){
                 return redirect('/admin');
-
+            }
+            else if (Auth::user()->hasRole('kho')) {
+                return redirect('/admin/dashboard');
             }
             else {
                 return redirect('/');

@@ -5669,3 +5669,9 @@ table.dtp-picker-days thead{
 .style_format {
   font-size: 20px;
 }
+.has-options{
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

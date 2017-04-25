@@ -8,7 +8,7 @@
 @endsection
 @section('new-btn')
     <a href="{{route('historyInput.create')}}" class="btn btn-warning btn-fab">
-        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection
 @section('content')
