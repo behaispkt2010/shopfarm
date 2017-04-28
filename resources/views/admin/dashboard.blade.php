@@ -156,6 +156,22 @@
             </div>
         </div>
         @if(Auth::user()->hasRole(['editor', 'admin']))
+        <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" style="min-height: 550px;">
+                <div>
+                    <div class="x_title">
+                        <h2>Địa điểm các chủ kho</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="gmap" id="gmap-3" style="height:600px;width: 100%; float:left"></div>
+                    <div id="script">
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+
         <div class="col-md-12 col-sm-12 col-xs-12">
 
             <div class="x_panel" style="min-height: 550px;">
@@ -204,7 +220,35 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{asset('/js/moment/moment.min.js')}}"></script>
     <script src="{{asset('/js/datepicker/daterangepicker.js')}}"></script>
+
+    <!-- <link rel="stylesheet" href="{{url('/')}}/maps/css/libs.min.css">
+    <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyBLcEsjlc0sBoDPAYnPI_Y-_6nQFiX_C50">
+    </script>
+    <script src="{{url('/')}}/maps/js/maplace.min.js"></script> -->
     <!-- Doughnut Chart -->
+    <script>
+        /*var LocsA = [
+            {
+                lat: 45.9,
+                lon: 10.9,
+                title: 'Title A1',
+                html: '<h3>Loading map....</h3>',
+                icon: 'http://maps.google.com/mapfiles/markerA.png',
+                animation: google.maps.Animation.DROP
+            }
+
+        ];
+        var maplace =  new Maplace({
+                map_div: '#gmap-3',
+                controls_type: 'list',
+                controls_on_map: true,});
+        maplace.SetLocations(LocsA,true);
+        $('#script').load('{{url("/")}}/map'), function() {
+            maplace.SetLocations(LocsA,true).Load();
+        };*/
+
+    </script>
+    
     <script>
         var lineLabels="";
         var lineDatas="";
@@ -214,6 +258,8 @@
 
 
     </script>
+    
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('span').find('.unit').addClass('style_format');
@@ -602,79 +648,6 @@
             }
         });
     </script>
-    <!-- bootstrap-daterangepicker -->
-    {{--<script>--}}
-    {{--$(document).ready(function() {--}}
-
-    {{--var cb = function(start, end, label) {--}}
-    {{--console.log(start.toISOString(), end.toISOString(), label);--}}
-    {{--$('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));--}}
-    {{--};--}}
-
-    {{--var optionSet1 = {--}}
-    {{--startDate: moment().subtract(29, 'days'),--}}
-    {{--endDate: moment(),--}}
-    {{--minDate: '01/01/2012',--}}
-    {{--maxDate: '12/31/2015',--}}
-    {{--dateLimit: {--}}
-    {{--days: 60--}}
-    {{--},--}}
-    {{--showDropdowns: true,--}}
-    {{--showWeekNumbers: true,--}}
-    {{--timePicker: false,--}}
-    {{--timePickerIncrement: 1,--}}
-    {{--timePicker12Hour: true,--}}
-    {{--ranges: {--}}
-    {{--'Today': [moment(), moment()],--}}
-    {{--'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],--}}
-    {{--'Last 7 Days': [moment().subtract(6, 'days'), moment()],--}}
-    {{--'Last 30 Days': [moment().subtract(29, 'days'), moment()],--}}
-    {{--'This Month': [moment().startOf('month'), moment().endOf('month')],--}}
-    {{--'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]--}}
-    {{--},--}}
-    {{--opens: 'left',--}}
-    {{--buttonClasses: ['btn btn-default'],--}}
-    {{--applyClass: 'btn-small btn-primary',--}}
-    {{--cancelClass: 'btn-small',--}}
-    {{--format: 'DD/MM/YYYY',--}}
-    {{--separator: ' to ',--}}
-    {{--locale: {--}}
-    {{--applyLabel: 'Submit',--}}
-    {{--cancelLabel: 'Clear',--}}
-    {{--fromLabel: 'From',--}}
-    {{--toLabel: 'To',--}}
-    {{--customRangeLabel: 'Custom',--}}
-    {{--daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],--}}
-    {{--monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],--}}
-    {{--firstDay: 1--}}
-    {{--}--}}
-    {{--};--}}
-    {{--$('#reportrange span').html(moment().subtract(29, 'days').format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY'));--}}
-    {{--$('#reportrange').daterangepicker(optionSet1, cb);--}}
-    {{--$('#reportrange').on('show.daterangepicker', function() {--}}
-    {{--console.log("show event fired");--}}
-    {{--});--}}
-    {{--$('#reportrange').on('hide.daterangepicker', function() {--}}
-    {{--console.log("hide event fired");--}}
-    {{--});--}}
-    {{--$('#reportrange').on('apply.daterangepicker', function(ev, picker) {--}}
-    {{--console.log("apply event fired, start/end dates are " + picker.startDate.format('DD/MM/YYYY') + " to " + picker.endDate.format('DD/MM/YYYY'));--}}
-    {{--});--}}
-    {{--$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {--}}
-    {{--console.log("cancel event fired");--}}
-    {{--});--}}
-    {{--$('#options1').click(function() {--}}
-    {{--$('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);--}}
-    {{--});--}}
-    {{--$('#options2').click(function() {--}}
-    {{--$('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);--}}
-    {{--});--}}
-    {{--$('#destroy').click(function() {--}}
-    {{--$('#reportrange').data('daterangepicker').remove();--}}
-    {{--});--}}
-    {{--});--}}
-    {{--</script>--}}
-    <!-- /bootstrap-daterangepicker -->
     <script type="text/javascript">
         function ParseRow($LI){
             var ctlPID = $LI.find('input[type="hidden"][name="txtProductID"]');

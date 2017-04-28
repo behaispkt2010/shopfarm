@@ -63,13 +63,13 @@
 						</div>
 					</div>
 					<br>
-					<div class="row">
+					<div class="row ">
 						<main class="col-md-12 col-sm-12">
 
 							<!-- - - - - - - - - - - - - - Category - - - - - - - - - - - - - - - - -->
 
 							@foreach($allCategory as $itemAllCategory)
-							<div class="homepage_category">
+							<div class="homepage_category hidden-xs">
 								<ul class="homepage_category_list">
 									<li class="category_item">
 										<h3>

@@ -688,8 +688,8 @@
 		.theme_button:hover,
 		.button_grey_2:hover{
 			color:#fff;
-			background: #009688;
-			border-color: #009688;
+			background: #00695c;
+			border-color: #00695c;
 		}
 
 		.button_dark_grey,
@@ -1250,8 +1250,8 @@
 
 		.search > * {
 			height:47px !important;
-			border-top:2px solid #009688 !important;
-			border-bottom:2px solid #009688 !important;
+			/*border-top:2px solid #00695c !important;*/
+			/*border-bottom:2px solid #009688 !important;*/
 		}
 
 		.newsletter > input,
@@ -2119,7 +2119,8 @@
 			background-color: #fff;
 			/*background-color: #0f9d58;*/
 			z-index: 115;
-			border: 1px solid #EEEEEE;
+			/*border: 1px solid #EEEEEE;*/
+			height: 52px;
 		}
 
 		#main_navigation_wrap::after,
@@ -2205,7 +2206,7 @@
 			left: -1px;
 			right: -1px;
 			border-width: 1px 0 0 0;
-			border-color: #009688;
+			border-color: #00695c;
 			border-style: solid;
 			opacity: 0;
 
@@ -2220,8 +2221,8 @@
 		.theme_menu > .tablet_active > a,
 		.theme_menu > .mobile_active > a{
 			color: #fff;
-			background: #009688;
-			border-color: #009688;
+			background: #00695c;
+			border-color: #00695c;
 		}
 
 		.theme_menu > li:hover > a::before,
@@ -2240,8 +2241,8 @@
 		.theme_menu > .tablet_active > a::after,
 		.theme_menu > .mobile_active > a::after{
 			color: #fff;
-			background: #009688;
-			border-color: #009688;
+			background: #00695c;
+			border-color: #00695c;
 		}
 		/* submenu */
 
@@ -2351,9 +2352,9 @@
 		.main_navigation .mobile_active > a,
 		.main_navigation .tablet_active > a,
 		.main_navigation:not(.full_width_nav) > ul > li:hover > a{
-			color: #000 !important;
-			background: #009688 !important;
-			border-color: #009688 !important;
+			    color: #fff !important;
+			    background: #00695c !important;
+			    border-color: #00695c !important;
 		}
 
 		.full_width_nav > ul > li > .submenu{ margin-top: 1px; }
@@ -2501,7 +2502,7 @@
 				padding:5px 10px;
 			}
 
-			.mega_menu .list_of_links > li > a:hover{ background-color: #009688; color: #fff; }
+			.mega_menu .list_of_links > li > a:hover{ background-color: #00695c; color: #fff; }
 
 			.mega_menu.type_3 .mega_menu_item{
 				display: block;
@@ -6950,6 +6951,10 @@ a:focus, a:hover{
 	.ul-date-car li{
 		position: relative;
 	}
+	li.user a:not(.fa) {
+	    line-height: 30px;
+	}
+
 }
 
 /*set background*/
@@ -7156,4 +7161,45 @@ background:url("/images/bg_1.jpg");
 .img_right_border {
 	border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+ul.mobile-menu-icon {
+	margin: 0px;
+}
+ul.mobile-menu-icon>li {
+	float: right;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+li.user{
+	color: #fff;
+	font-size: 18px!important;
+	list-style: none;
+}
+li.user a:not(.fa) {
+	font-size: 18px!important;
+	font-weight: bold;
+	line-height: 50px;
+}
+ul.mobile-menu-icon .user a {
+	color: #fff;
+	font-size: 35px;
+    padding: 5px;
+}
+
+ul.mobile-menu-icon {
+	margin: 0px;
+}
+.main_navigation_fronend {
+	background: #0f9d58;
+	border-color: #0f9d58; 
+	color: #fff; 
+	float: left; 
+	margin: 0px; 
+	font-size: 20px; 
+	padding: 0px; 
+	padding-right: 30px;
+}
+.icon_fa_frmlogin {
+	margin-top: 16px;
+    margin-right: 0px;
 }

@@ -171,7 +171,7 @@ Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');
 Route::get('/xac-thuc-kho', 'Frontend\PageController@ConfirmKho');
 Route::get('/quang-cao', 'Frontend\PageController@QuangCao');
 Route::get('/tra-phi', 'Frontend\PageController@TraPhi');
-Route::get('//nang-cap-kho', 'Frontend\PageController@UpgradeKho');
+Route::get('/nang-cap-kho', 'Frontend\PageController@UpgradeKho');
 
 Route::get('/infoconfirmkho', 'Frontend\PageController@InfoConfirmKho');
 Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');
@@ -183,6 +183,14 @@ Route::get('/about','Frontend\PageController@About');
 Route::get('/{slug}','Frontend\PageController@CustomPage');
 
 Route::post('/customer-rate','Frontend\ProductController@customerRate');
+
+// maps
+/*Route::get('/', ['as' => 'getLocation', 'uses' => 'LocationCotroller@getLocation']);*/
+
+/*Route::get('/map', 'PageController@About');
+Route::get('/addmaps', 'LocationCotroller@getAdd');
+Route::post('/addmaps', 'LocationCotroller@postAdd');*/
+
 
 ////cart
 //Route::get('/cart', 'CartController@index');

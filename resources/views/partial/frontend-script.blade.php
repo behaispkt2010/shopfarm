@@ -15,8 +15,8 @@
 		<script src="{{asset('frontend/js/jquery.countdown.min.js')}}"></script>
 		<script src="{{asset('frontend/js/arcticmodal/jquery.arcticmodal.js')}}"></script>
 		<script src="{{asset('frontend/twitter/jquery.tweet.min.js')}}"></script>
-				<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
-
+		<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
+		<script src="{{asset('plugin/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
 		<!-- <script src="js/colorpicker/colorpicker.js"></script> -->
 		<!-- <script src="js/retina.min.js"></script> -->
@@ -75,5 +75,9 @@ $(document).ready(function () {
 	$(document).on('click', '.required_login', function(e){
 		e.preventDefault();
 		$('#required_login').modal({ backdrop: 'static', keyboard: false });
+	});
+	$(document).on('click', '.login_xs', function(e){
+		e.preventDefault();
+		$('#login_xs').modal({ backdrop: 'static', keyboard: false });
 	});
 </script>

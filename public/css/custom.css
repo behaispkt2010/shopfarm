@@ -320,6 +320,10 @@ body .container.body .right_col {
   background: #1ABB9C !important;
   border: 1px solid #1ABB9C !important;
   color: #fff; }
+.bg-template {
+  background: #0f9d58 !important;
+  border: 1px solid #0f9d58 !important;
+  color: #fff; }
 
 .bg-red {
   background: #E74C3C !important;
@@ -495,7 +499,7 @@ a:hover, a:focus {
   padding: 12px 20px; }
 
 .top_nav li a i {
-  font-size: 15px; }
+  font-size: 20px; }
 
 .navbar-static-top {
   position: fixed;

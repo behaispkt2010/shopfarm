@@ -227,11 +227,11 @@
                 <li role="presentation" class="dropdown" style="display: block" >
                     <a href="javascript;" class="dropdown-toggle info-number" id="menu_notify" data-toggle="dropdown"
                        aria-expanded="false">
-                        <i class="fa fa-bell"></i>
+                        <i class="fa fa-bell-o"></i>
                         @if(Auth::user()->hasRole('kho'))
-                            <span class="badge bg-green" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
+                            <span class="badge bg-template" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
                         @else
-                            <span class="badge bg-green" id="notify_count">@if ($strNumNotifyAdmin != 0) {{$strNumNotifyAdmin}} @endif</span>
+                            <span class="badge bg-template" id="notify_count">@if ($strNumNotifyAdmin != 0) {{$strNumNotifyAdmin}} @endif</span>
                         @endif
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">

@@ -31,19 +31,21 @@ class HomeController extends Controller
         if (!empty($request->get('search'))){
             $name = $request->get('search');
             $cate= $request->get('search');
+            //dd($cate);
             $product1 = Product::query();
             if(!empty($name)){
-                $product1 =  $product1->where('title','LiKE','%'.$request->get('search').'%');
+                $product2 =  $product1->where('title','LiKE','%'.$request->get('search').'%');
             }
             if(!empty($cate)){
-                $product1 =  $product1->where('category',$request->get('cateSearch'));
+                $product2 =  $product1->where('category',$request->get('cateSearch'));
             }
+            //dd($product2);
             $products = $product1->paginate(16);
                 $data = [
                     "products" => $products,
                 ];
             return view('frontend.product',$data);
-            }
+        }
 
         $getBestStarsProduct = Product::getBestStarsProduct(9);
         $getBestSellerProduct = Product::getBestSellerProduct(9);

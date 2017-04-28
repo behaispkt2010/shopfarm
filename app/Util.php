@@ -362,7 +362,7 @@ class Util extends Model
         $order = Order::find($id);
         $user = User::find($order->customer_id);
         $code_2 = $order->kho_id;
-        $code_1 = Util::StringExplodeProvince($user->id);
+        $code_1 = Util::StringExplodeProvince($user->province);
         $code_3 = $order->id;
         $code_order = $code_1."-".$code_2."-".$code_3;
         return $code_order;

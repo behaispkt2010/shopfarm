@@ -39,11 +39,11 @@
                                 <tr class="item-product">
                                     {{--<th><span class="code-product">{{ $itemProductOrder->code }}</span></th>--}}
                                     <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
-                                    <td><span class="price-product"><span>{{number_format($itemProductOrder->price) }}</span> VNĐ </span></td>
+                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_out) !!}</span>  </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>
-                                    <td><span class="total"> <span>{{ number_format(($itemProductOrder->price)*($itemProductOrder->num)) }}</span> VNĐ</span></td>
+                                    <td><span class="total"> <span>{!! \App\Util::FormatMoney(($itemProductOrder->price_out)*($itemProductOrder->num)) !!}</span> </span></td>
                                 </tr>
-                                <?php $total=$total + (($itemProductOrder->price)*($itemProductOrder->num)); ?>
+                                <?php $total=$total + (($itemProductOrder->price_out)*($itemProductOrder->num)); ?>
                             @endforeach
                             <tr>
                                 {{--<th></th>--}}
@@ -51,7 +51,7 @@
                                 </td>
                                 <td></td>
                                 <td>Tổng: </td>
-                                <td><span class="total">  {{number_format($total)}} VNĐ</span></td>
+                                <td><span class="total">  {!! \App\Util::FormatMoney($total)!!} </span></td>
                             </tr>
                             </tbody>
                         </table>

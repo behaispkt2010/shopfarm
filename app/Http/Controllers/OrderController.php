@@ -261,7 +261,7 @@ class OrderController extends Controller
         $order =Order::where('id',$id)->first();
 
         $customer = User::where('id', $order->customer_id)->first();
-        $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title')
+        $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title', 'products.price_out')
             ->leftJoin('products', 'product_orders.id_product', 'products.id')
             ->where('product_orders.order_id', $order->id)->get();
         $orderStatus = OrderStatus::get();

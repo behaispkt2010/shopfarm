@@ -21,7 +21,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                         <div class="content-money">
-                                            <p style="color: #52b256;">{{\App\Util::FormatMoney(\App\Order::getInfoOrder(0)['price'])}} </p>
+                                            <p style="color: #52b256;">{!!\App\Util::FormatMoney(\App\Order::getInfoOrder(0)['price'])!!} </p>
                                             <span class="">{{\App\Order::getInfoOrder(0)['count']}} đơn hàng</span>
                                         </div>
                                 </div>
@@ -35,7 +35,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Util::FormatMoney(\App\Order::getInfoOrder(8,1)['price'])}} </p>
+                                        <p style="color: #52b256;">{!!\App\Util::FormatMoney(\App\Order::getInfoOrder(8,1)['price'])!!} </p>
                                         <span class="">{{\App\Order::getInfoOrder(8,1)['count']}} đơn hàng</span>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                         <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Util::FormatMoney(\App\Order::getInfoOrder(7)['price'])}} </p>
+                                        <p style="color: #52b256;">{!!\App\Util::FormatMoney(\App\Order::getInfoOrder(7)['price'])!!} </p>
                                         <span class="">{{\App\Order::getInfoOrder(7)['count']}} đơn hàng</span>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Util::FormatMoney(\App\Order::getInfoOrder(8)['price'])}} </p>
+                                        <p style="color: #52b256;">{!!\App\Util::FormatMoney(\App\Order::getInfoOrder(8)['price'])!!} </p>
                                         <span class="">{{\App\Order::getInfoOrder(8)['count']}} đơn hàng</span>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     <!-- ngIf: (transaction.currentTutorialID == 1) -->
                                     </span>
                                     <div class="content-money">
-                                        <p style="color: #52b256;">{{\App\Util::FormatMoney(\App\Order::getInfoOrder(10)['price'])}} </p>
+                                        <p style="color: #52b256;">{!!\App\Util::FormatMoney(\App\Order::getInfoOrder(10)['price'])!!} </p>
                                         <span class="">{{\App\Order::getInfoOrder(10)['count']}} đơn hàng</span> {{--status Trả hàng mới tính--}}
                                     </div>
                                 </div>
