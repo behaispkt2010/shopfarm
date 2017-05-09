@@ -22,7 +22,7 @@ Auth::routes();
  *ADMIN
  *
  */
-
+Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|user','auth', 'authorize']], function () {
 
     Route::get('/', 'DashboardController@index');
@@ -117,8 +117,13 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|
 
     //Mã giới thiệu
     Route::resource('sharingreferralcode', 'ReferralCodeController');
-});
 
+    
+});
+//Maps
+    Route::get('/mapsgetmap', 'LocationCotroller@getMap');
+    Route::get('/mapsadd', 'LocationCotroller@getAdd');
+    Route::post('/mapsadd', 'LocationCotroller@postAdd');
 /**
  * ajax
  */
@@ -187,9 +192,7 @@ Route::post('/customer-rate','Frontend\ProductController@customerRate');
 // maps
 /*Route::get('/', ['as' => 'getLocation', 'uses' => 'LocationCotroller@getLocation']);*/
 
-/*Route::get('/map', 'PageController@About');
-Route::get('/addmaps', 'LocationCotroller@getAdd');
-Route::post('/addmaps', 'LocationCotroller@postAdd');*/
+Route::get('/xac-thuc-kho', 'HomeController@testmap');
 
 
 ////cart

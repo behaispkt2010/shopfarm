@@ -7,10 +7,12 @@ echo '<script type="text/javascript">
     lat:{{$item->lat}},
     lon:{{$item->lon}},
     title: '{{$item->name}}',
-    icon: '{{$item->description}}',
+    icon: 'http://maps.google.com/mapfiles/markerA.png',
     html: [
     '<h3>{{$item->name}}</h3>',
-    '<p>{{$item->address}}</p>'
+    '<p>{{$item->phone_number}}</p>',
+    '<p>{{$item->address}}</p>',
+    '<p>{{\App\Util::UserCode($item->users_id)}}</p>'
     ].join(''),
     zoom: 16,
     },

@@ -28,7 +28,6 @@ class AuthorizeMiddleware {
 	{
 		$user = $this->auth->user();
 
-
 		$permissions = $this->permission->all();
 
 		$uri = $request->route()->uri();

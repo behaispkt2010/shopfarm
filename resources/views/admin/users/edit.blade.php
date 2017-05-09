@@ -103,20 +103,33 @@
 
                                                             <div class="col-md-9 col-xs-12 ">
                                                                 <div class="form-group">
-                                                                    <select id="select-role" class="form-control"  name="role" data-placeholder="Phân quyền" @if(Auth::user()->hasRole(['user','staff'])) disabled="disabled" @endif>
-                                                                        @if(!empty($role))
-                                                                            @if($role=="staff")
+                                                                    <select id="select-role" class="form-control"  name="role" data-placeholder="Phân quyền" >
+                                                                        @if(Auth::user()->hasRole('admin'))
+                                                                            @foreach($roles as $itemRoles)
+                                                                                <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
+                                                                            @endforeach
+                                                                        @elseif (Auth::user()->hasRole('staff'))
                                                                             <option value="5">Nhân viên</option>
-                                                                            @elseif($role=="customer")
+                                                                        @elseif (Auth::user()->hasRole('user'))
                                                                             <option value="3">Khách hàng</option>
                                                                         @endif
-                                                                        @else
-                                                                            @foreach($roles as $itemRoles)
-                                                                                @if($itemRoles->id!=4)
-                                                                                    <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endif
+
+
+                                                                        <!-- @if(!empty($role))
+                                                                             @if($role=="staff")
+                                                                             <option value="5">Nhân viên</option>
+                                                                                 @elseif($role=="customer")
+                                                                                 <option value="3">Khách hàng</option>
+                                                                             @endif
+                                                                         @else
+                                                                             @foreach($roles as $itemRoles)
+                                                                                 @if($itemRoles->id!=4)
+                                                                             <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
+                                                                             @endif
+                                                                                     @endforeach
+                                                                         @endif -->
+
+
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -187,8 +200,12 @@
         });
     </script>
     <script>
-        $('.info-kho .fa-edit,.info-warehouse .fa-edit').click(function(){
+        $('.info-warehouse .fa-edit').click(function(){
             $(this).parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display','inline-block');
+        });
+        $('.info-kho .fa-edit').click(function(){
+            $(this).parent().parent().parent().parent().find('input').removeAttr('disabled');
             $(this).parent().parent().find('.btn-update').css('display','inline-block');
         });
     </script>

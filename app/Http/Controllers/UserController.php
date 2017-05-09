@@ -239,7 +239,7 @@ public function AjaxCreateCustomer(UserRequest $request)
         }
         else{
 
-                return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+                return redirect()->back()->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
         }
     }
 }

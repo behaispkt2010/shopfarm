@@ -204,7 +204,10 @@ $(document).ready(function(){
 });
 </script>
 <script >
-$(".alert").fadeTo(5000, 500).slideUp(500, function(){
+$(".alert-success").fadeTo(5000, 500).slideUp(500, function(){
+    $(".alert").slideUp(50);
+});
+$(".alert-danger").fadeTo(15000, 500).slideUp(500, function(){
     $(".alert").slideUp(50);
 });
 
@@ -218,7 +221,7 @@ $(document).on('click','.bs-example-modal-avata .avarta-item img',function(){
             $('.loading').css('display','block');
             $.ajax({
                 type: "Post",
-                url: '/users/changeAvata',
+                url: '{{ url("/") }}/users/changeAvata',
 
                 data: {img: img,_token: _token},
                 success: function( msg ) {

@@ -8,9 +8,11 @@ use App\Mail\OrderInfo;
 use App\Notification;
 use App\Util;
 use App\WareHouse;
+use App\Product;
 use App\WarehouseImageDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
@@ -84,12 +86,14 @@ class PageController extends Controller
             ->leftjoin('users','users.id','=','ware_houses.user_id')
             ->where('ware_houses.id',$warehouse_id)
             ->first();
+        $getNewProduct = Product::getProductOfWarehouse($warehouse_id,9);
         $data = [
             'ware_house' => $ware_house,
             'arrImageDetail' => $arrImageDetail,
+            'getNewProduct' => $getNewProduct,
             'arrCategoryWarehouse' => $arrCategoryWarehouse,
         ];
-        //dd($ware_house);
+        //dd($getNewProduct);
         return view('frontend.warehouse', $data);
     }
     public function ConfirmKho(){

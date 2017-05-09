@@ -4,7 +4,7 @@
 @section('detailHeader','thông tin')
 @section('rightHeader')
     <a href="{{route('warehouse.create')}}" class="btn btn-raised btn-warning btn-md">
-        <i class="fa fa-plus" aria-hidden="true"></i> Tạo mới
+        <i class="fa fa-paper-plane" aria-hidden="true"></i> Tạo mới
     </a>
 @endsection
 @section('content')
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-warehouse info-user" style="min-height: 825px; position: relative;">
+                        <div class="well box1 info-warehouse info-user" style="min-height: 846px; position: relative;">
                             <h4 class="text-center">Thông tin người đại diện <i style="float: right"
                                                                                 class="fa fa-edit"
                                                                                 aria-hidden="true"></i></h4>
@@ -98,7 +98,7 @@
                                     </div>
                                 </li>
 
-                                <li class="text-right" style="position: absolute;top: 710px;text-align: right;right: 20px;">
+                                <li class="text-right " style="position: absolute;top: 778px;text-align: right;right: 20px;">
                                     <button id="update_info" class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
                                 </li>
 
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 profile_details product-detail">
 
-                        <div class="well box1 info-kho" style="min-height: 825px;">
+                        <div class="well box1 info-kho" style="min-height: 846px;">
                             <h4 class="text-center">Thông tin Kho / doanh nghiệp <i style="float: right"
                                                                                     class="fa fa-edit"
                                                                                     aria-hidden="true"></i></h4>
@@ -195,6 +195,17 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
+                                            <label for="name" class="col-md-3 col-xs-12 control-label">Fanpage fb</label>
+
+                                            <div class="col-md-9 col-xs-12">
+                                                <input type="text" disabled class="form-control" name="fanpage_fb" value="{{$wareHouse->fanpage_fb}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
                                             <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Loại Chủ kho</label>
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
@@ -254,7 +265,7 @@
                                     <button class="btn btn-default btn-raised btn-sm" data-toggle="modal"
                                             data-target=".modal-hinhchitietkho">Hình ảnh kho</button>
                                 </li>
-                                <li class="text-right">
+                                <li class="text-right btnCapNhat">
                                     <button id="update_detail" class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
                                 </li>
 
@@ -1342,6 +1353,7 @@
             var category_warehouse_id = $('#category_warehouse_id').val();
             var time_active = $('.info-kho input[name="time_active"]').val();
             var image_kho = document.getElementsByName("image_kho");
+            var fanpage_fb = $('.info-kho input[name="fanpage_fb"]').val();
             var file_image_kho = image_kho[0].files[0];
             //console.log(file_image_kho);
             var user_test = $('#user_test').val();
@@ -1356,6 +1368,7 @@
             data1.append('image_kho', file_image_kho);
             data1.append('province', province);
             data1.append('ndd', ndd);
+            data1.append('fanpage_fb', fanpage_fb);
             data1.append('mst', mst);
             data1.append('time_active', time_active);
             data1.append('user_test', user_test);

@@ -12,7 +12,7 @@ class LocationGps extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'lat', 'lon','address', 'description','name'
+        'id_user', 'maps_maplat', 'maps_maplng','address', 'description','name'
     ];
 
     /**

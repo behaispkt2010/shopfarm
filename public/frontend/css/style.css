@@ -7203,3 +7203,9 @@ ul.mobile-menu-icon {
 	margin-top: 16px;
     margin-right: 0px;
 }
+#chat_page{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 999;
+}

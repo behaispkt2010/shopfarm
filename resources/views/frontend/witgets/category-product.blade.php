@@ -1,7 +1,7 @@
 
 <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
 
-<section class="section_offset ">
+<section class="section_offset " style="padding-top: 0px;">
 
     <ul class="theme_menu cats hidden-xs">
 

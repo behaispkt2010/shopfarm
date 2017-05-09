@@ -320,42 +320,42 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/1.png')}}" data-value="1">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/2.png')}}" data-value="2">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/3.png')}}" data-value="3">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/4.png')}}" data-value="4">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/5.png')}}" data-value="5">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/6.png')}}" data-value="6">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/7.png')}}" data-value="7">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <div class="img-circle avarta-item">
                             <img src="{{asset('/images/8.png')}}" data-value="8">
                         </div>

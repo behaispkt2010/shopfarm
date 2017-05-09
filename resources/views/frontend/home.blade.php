@@ -174,48 +174,22 @@
 
 
 								</ul>
-
-								<!-- - - - - - - - - - - - - - End navigation of tabs - - - - - - - - - - - - - - - - -->
-
-								<!-- - - - - - - - - - - - - - Tabs container - - - - - - - - - - - - - - - - -->
-
 								<div class="tab_containers_wrap">
-
-									<!-- - - - - - - - - - - - - - news products - - - - - - - - - - - - - - - - -->
-
 									<div id="tab-1" class="tab_container">
 
 										<div class="table_layout">
 											<?php $i=0 ;$j=0?>
 											@foreach($getNewProduct as $key => $product)
 												@if($i==0)<div class="category_product_row" style="margin-bottom: 15px; background-color: #fff;">@endif
-																<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 														<div class="col-md-3 col-xs-12 category_product_cell">
 
 															<div class="product_bestselt" style="border: 1px solid #eaeaea;">
 
-																<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
 																<div class="image_wrap">
 
 																	<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-
-																	<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-																	<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-																	<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
-																	<div class="label_new">New</div>
-
-																	<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-																</div><!--/. image_wrap-->
-
-																<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-																<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
+																<div class="label_new">New</div>
+																</div>
 																<div class="description">
 
 																	<a href="#" class="clearfix">{{$product->title}}</a>
@@ -249,9 +223,7 @@
 																	</div>
 																</div>
 
-																<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-															</div><!--/ .product_item-->
+															</div>
 														</div>
 														<?php $i = $i+1; $j=$j+1; ?>
 														@if ($i>=4 || $j>=count($getNewProduct))
@@ -260,53 +232,30 @@
 														@endif
 											@endforeach
 										</div>
-										<!-- - - - - - - - - - - - - - View all products - - - - - - - - - - - - - - - - -->
 										<footer class="bottom_box">
 											<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
 										</footer>
-										<!-- - - - - - - - - - - - - - End of view all products - - - - - - - - - - - - - - - - -->
-
+										
 									</div>
-
-									<!-- - - - - - - - - - - - - - End of featured products - - - - - - - - - - - - - - - - -->
-
-									<!-- - - - - - - - - - - - - - good products - - - - - - - - - - - - - - - - -->
 									<div id="tab-2" class="tab_container">
 
 
 										<div class="table_layout">
 											<?php $i=0 ;$j=0?>
 											@foreach($getBestStarsProduct as $key=> $product)
-												@if($i==0)<div class="category_product_row" style="margin-bottom: 15px; background-color: #fff;">@endif
-															<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
+												@if($i==0)<div class="category_product_row" style=" background-color: #fff;">@endif
+														
 													<div class="col-md-3 col-xs-12 category_product_cell">
 
 														<div class="product_bestselt" style="border: 1px solid #eaeaea;">
-
-															<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
 															<div class="image_wrap">
 
 																<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
-
-																<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-																<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-																<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
 																<div class="label_hot">Hot</div>
 
-
-																<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-															</div><!--/. image_wrap-->
-
-															<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-															<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
+															</div>
 															<div class="description">
 
 																<a href="#">{{$product->title}}</a>
@@ -342,9 +291,7 @@
 																</div>
 															</div>
 
-															<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-														</div><!--/ .product_item-->
+														</div>
 
 													</div>
 													<?php $i = $i+1;$j=$j+1; ?>
@@ -355,11 +302,7 @@
 
 											@endforeach
 
-
-
 										</div>
-
-										<!-- - - - - - - - - - - - - - View all products - - - - - - - - - - - - - - - - -->
 
 										<footer class="bottom_box">
 
@@ -367,23 +310,11 @@
 
 										</footer>
 
-										<!-- - - - - - - - - - - - - - End of view all products - - - - - - - - - - - - - - - - -->
-
 									</div>
-
-									<!-- - - - - - - - - - - - - - End of new products - - - - - - - - - - - - - - - - -->
 
 								</div>
 
-								<!-- - - - - - - - - - - - - - End of tabs container - - - - - - - - - - - - - - - - -->
-
 							</div>
-
-							<!-- - - - - - - - - - - - - - End of tabs - - - - - - - - - - - - - - - - -->
-
-							
-
-							<!-- - - - - - - - - - - - - - Bestsellers - - - - - - - - - - - - - - - - -->
 
 							<section class="section_offset animated transparent" data-animation="fadeInDown" style="display: none;">
 
@@ -397,31 +328,12 @@
 
 												<div class="product_item">
 
-													<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
-
 													<div class="image_wrap">
-
 														<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-
-
-														<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-														<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-														<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
 
 														<div class="label_bestseller">Bestseller</div>
 
-
-
-														<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-													</div><!--/. image_wrap-->
-
-													<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-													<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
+													</div>
 													<div class="description">
 
 														<a href="#">{{$product->title}}</a>
@@ -452,9 +364,7 @@
 														</div>
 													</div>
 
-													<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-												</div><!--/ .product_item-->
+												</div>
 
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
@@ -465,12 +375,7 @@
 
 									@endforeach
 
-
-
 								</div>
-
-
-								<!-- - - - - - - - - - - - - - View all products - - - - - - - - - - - - - - - - -->
 
 								<footer class="bottom_box">
 
@@ -478,13 +383,7 @@
 
 								</footer>
 
-								<!-- - - - - - - - - - - - - - End of view all products - - - - - - - - - - - - - - - - -->
-
 							</section>
-
-							<!-- - - - - - - - - - - - - - End of bestsellers - - - - - - - - - - - - - - - - -->
-
-							
 
 						</main>
 
@@ -492,7 +391,5 @@
 
 				</div><!--/ .container-->
 
-			</div><!--/ .page_wrapper-->
-			
-			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
+			</div>
 @endsection

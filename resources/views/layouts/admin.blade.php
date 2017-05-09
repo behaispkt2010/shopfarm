@@ -26,7 +26,14 @@ description: template admin
     <script src="{{asset('plugin/ckfinder/ckfinder.js')}}" ></script>
 
     <script src="{{asset('plugin/func_ckfinder.js')}}" ></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<!-- Scripts -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
     <!-- Theme style -->
     @include('partial.styles')
     @yield('add_styles')

@@ -198,6 +198,80 @@
             </div>
         </div>
         <div class="clear"></div>
+        <div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">
+
+            <ul class="tabs_nav clearfix">
+
+                <li class="tab_bottom"><a href="#tab-1" style="font-size: 16px;">Sản phẩm của NCC</a></li>
+
+            </ul>
+            <div class="tab_containers_wrap">
+                <div id="tab-1" class="tab_container">
+
+                    <div class="table_layout">
+                        <?php $i=0 ;$j=0?>
+                        @foreach($getNewProduct as $key => $product)
+                            @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+                                    <div class="col-md-3 col-xs-12 category_product_cell">
+
+                                        <div class="product_bestselt" style="border: 1px solid #eaeaea;">
+
+                                            <div class="image_wrap">
+
+                                                <a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+                                            
+                                            </div>
+                                            <div class="description">
+
+                                                <a href="#" class="clearfix">{{$product->title}}</a>
+
+                                                <div class="kho_info clearfix">
+                                                    <a href="#" class="alignleft" style="width: 70px;">
+                                                    @if($product->levelKho == 1)
+                                                        <img src="{{url('/images')}}/level1.png" alt="">
+                                                    @elseif($product->levelKho == 2)
+                                                        <img src="{{url('/images')}}/level2.png" alt="">
+                                                    @elseif($product->levelKho == 3)
+                                                        <img src="{{url('/images')}}/level3.png" alt="">
+                                                    @else
+                                                        <img src="{{url('/images')}}/level0.png" alt="">
+                                                    @endif
+                                                    </a>
+                                                    <a href="#" class="alignleft" style="width: 70px;">
+                                                        @if($product->confirm_kho == 1)
+                                                            <img src="{{url('/images')}}/xacthuc.png" alt="">
+                                                        @else
+                                                        @endif
+                                                    </a>
+                                                    <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+                                                </div>
+                                                <div class="clearfix product_info">
+                                                    <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+                                                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+                                                </div>
+                                                <div class="clearfix product_info">
+                                                    <p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <?php $i = $i+1; $j=$j+1; ?>
+                                    @if ($i>=3 || $j>=count($getNewProduct))
+                                        <?php $i=0 ?>
+                                        </div>
+                                    @endif
+                        @endforeach
+                    </div>
+                    <footer class="bottom_box">
+                        <a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+                    </footer>
+                    
+                </div>
+
+            </div>
+
+        </div>
         @include('admin.partial.modal_requiredlogin')
         {{--<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">

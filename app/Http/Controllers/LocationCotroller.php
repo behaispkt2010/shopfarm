@@ -14,26 +14,29 @@ class LocationCotroller extends Controller
 
     }*/
     public function getMap(){
-        $location = LocationGps::get();
-        dd($location);
-        return View('admin.partial.maps',compact('location'));
+        $location = LocationGps::select('location_gps.*','ware_houses.ndd as name','users.phone_number as phone_number','ware_houses.address as address','users.id as users_id')
+        ->leftjoin('users','users.id','=','location_gps.id_user')
+        ->leftjoin('ware_houses','ware_houses.user_id','=','location_gps.id_user')
+        ->get();
+        // dd($location);
+        return view('admin.partial.maps',compact('location'));
 
     }
     public function getAdd(){
-        return View('add');
+        return view('admin.partial.add');
     }
     public function postAdd(Request $request){
         $idUser= $request->get('id_user');
-        $lat= $request->get('lat');
-        $lon= $request->get('lon');
+        $lat= $request->get('maps_maplat');
+        $lon= $request->get('maps_maplng');
 //        $address= $request->get('address');
 //        $description= $request->get('description');
         $isExistuser = LocationGps::where('id_user',$idUser)->first();
         if(count($isExistuser) == 0) {
             $location = new LocationGps();
             $location->id_user = $idUser;
-            $location->lat = $lat;
-            $location->lon = $lon;
+            $location->maps_maplat = $lat;
+            $location->maps_maplng = $lon;
 //            $location->address = $address;
 //            $location->description = $description;
             $location->save();
@@ -41,14 +44,14 @@ class LocationCotroller extends Controller
         else{
 //            dd($isExistuser);
             $location = LocationGps::find($isExistuser->id);
-            $location->lat = $lat;
-            $location->lon = $lon;
+            $location->maps_maplat = $lat;
+            $location->maps_maplng = $lon;
 //            $location->address = $address;
 //            $location->description = $description;
             $location->save();
         }
 
-        return View('add');
+        return view('admin.partial.add');
 
     }
 }

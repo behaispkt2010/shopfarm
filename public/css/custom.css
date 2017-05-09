@@ -5636,6 +5636,12 @@ table.dtp-picker-days thead{
 .transport_tmp{
   width: 100px;
 }
+.btnCapNhat {
+  position: absolute;
+  top: 778px;
+  text-align: right;
+  right: 26px;
+}
 @media (max-width: 991px) {
 
   .value-das {
@@ -5668,6 +5674,12 @@ table.dtp-picker-days thead{
   .ul-date-car li >span {
     font-weight: normal;
     padding-left: 16%;
+  }
+  .btnCapNhat {
+    top: 965px;
+    position: absolute;
+    text-align: right;
+    right: 26px;
   }
 }
 .style_format {

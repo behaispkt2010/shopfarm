@@ -3,7 +3,7 @@
 		<!-- Include Libs & Plugins
 		============================================ -->
 		<script src="{{asset('frontend/js/jquery-2.1.1.min.js')}}"></script>
-				<script src="{{asset('frontend/js/jquery-2.1.1.min.js')}}"></script>
+		
 
 		<script src="{{asset('frontend/js/queryloader2.min.js')}}"></script>
 		<script src="{{asset('frontend/js/layerslider/js/greensock.js')}}"></script>

@@ -38,9 +38,11 @@
                                         <tr class="item-product">
                                             <th><img src="{{url('/')}}/{!! $arrProductOrder->image !!}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
                                             <td><span class="name-product"><span>{{ $arrProductOrder->title }} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
-                                            <td><span class="price-product"><span>{!! \App\Util::FormatMoney($arrProductOrder->price_out) !!}</span> </span></td>
+                                            <td><span class="price-product"><span>{!! \App\Util::FormatMoney($arrProductOrder->price_out) !!}</span> </span>
+                                            <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_out }}">
+                                            </td>
                                             <td><span>x</span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="{{ $arrProductOrder->num }}"></td>
-                                            <td><span class="total"> <span>{!! \App\Util::FormatMoney($arrProductOrder->price) !!}</span>VNĐ</span><input type="hidden" value="{{ $arrProductOrder->price }}" name="pricetotal[]"></td>
+                                            <td><span class="total"> <span>{!! \App\Util::FormatMoney($arrProductOrder->price) !!}</span></span><input type="hidden" value="{{ $arrProductOrder->price }}" name="pricetotal[]"></td>
                                             <td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>
                                         </tr>
                                     @endforeach
@@ -639,7 +641,8 @@
     });
     $(document).on('change','td .number-product', function (e) {
         var num = $(this).val();
-        var price = $(this).closest('.item-product').find('.price-product span').text();
+        var price = $(this).closest('.item-product').find('input[type="hidden"][name="price_product_tmp[]"]').val();
+        
         var total = num*price;
         $(this).closest('.item-product').find('.total span').text(total);
         $(this).closest('.item-product').find('input[type="hidden"][name="pricetotal[]"]').val(total);
@@ -697,7 +700,7 @@
                             + '<th><img src="{{url('/')}}/' + msg['image'] + '" class="img-responsive img-thumbnail"'
                             + 'style="max-width: 50px;" alt=""></th>'
                             + '<td><span class="name-product"><span>' + msg['name'] + '(#' + id + ')</span></span><input type="hidden" value="' + id + '" name="product_id[]"></td>'
-                            + '<td><span class="price-product"><span>' + msg['price'] + '</span>VNĐ </span></td>'
+                            + '<td><span class="price-product"><span>' + msg['price'] + '</span>VNĐ </span><input type="hidden" value="' + msg['price'] + '" name="price_product_tmp[]"></td>'
                             + '<td><span>x</span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="1"></td>'
                             + '<td><span class="total"> <span>' + msg['price'] + '</span>VNĐ</span><input type="hidden" value="' + msg['price'] + '" name="pricetotal[]"></td>'
                             + '<td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>'

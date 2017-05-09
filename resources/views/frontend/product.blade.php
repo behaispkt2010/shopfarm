@@ -22,18 +22,12 @@
 
 					@include('frontend.witgets.category-product')
 
-				<!-- - - - - - - - - - - - - - Infoblocks - - - - - - - - - - - - - - - - -->
-
-				<div class="section_offset hidden-xs">
+				<div class="section_offset hidden-xs" >
 					@include('frontend.panner.product-banner')
 
 				</div>
 
-				<!-- - - - - - - - - - - - - - End of infoblocks - - - - - - - - - - - - - - - - -->
-
-
 			</aside>
-		<!-- - - - - - - - - - - - - - Products - - - - - - - - - - - - - - - - -->
 <div class="col-md-9">
 		<div class="section_offset">
 
@@ -71,14 +65,7 @@
 
 					</div>
 
-					<!-- - - - - - - - - - - - - - End of sort by - - - - - - - - - - - - - - - - -->
-
-					<!-- - - - - - - - - - - - - - Number of products shown - - - - - - - - - - - - - - - - -->
-
-
 				</div>
-
-
 
 			</header>
 
@@ -89,7 +76,7 @@
 					@if(count($products)!=0)
 					<?php $i=0 ;$j=0?>
 					@foreach($products as $key=> $product)
-						@if($i==0)<div class="category_product_row" style="margin-bottom: 15px; background-color: #fff;">@endif
+						@if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
 									<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 							<div class="col-md-4 category_product_cell">
 

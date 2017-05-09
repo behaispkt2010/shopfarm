@@ -27,6 +27,16 @@ class Product extends Model
         return $newProducts;
 
     }
+    public static function getProductOfWarehouse($warehouse_id,$limit){
+        $newProducts = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+            ->leftjoin('users','users.id','ware_houses.user_id')
+            ->where('ware_houses.id',$warehouse_id)
+            ->selectRaw('products.*')
+            ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+            ->orderBy('products.id',"DESC")->take($limit)->get();
+        return $newProducts;
+
+    }
     public static function getBestSellerProduct($limit=0){
         if($limit==0) {
             $bestSellerProduct = ProductOrder::leftJoin('products', 'product_orders.id_product', '=', 'products.id')

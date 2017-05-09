@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WareHouse extends Model
 {
     //protected $fillable = ['user_id','name_company','address','mst','ndd','stk','level'];
-    protected $fillable = ['user_id','name_company','address','province','mst','ndd','stk','level','time_upgrade_level','time_upgrade_bonus','image_kho','time_active','confirm_kho','quangcao','time_confirm_kho','time_confirm_kho_bonus','time_quangcao','time_quangcao_bonus','user_test','date_end_test','category_warehouse_id'];
+    protected $fillable = ['user_id','name_company','address','province','fanpage_fb','mst','ndd','stk','level','time_upgrade_level','time_upgrade_bonus','image_kho','time_active','confirm_kho','quangcao','time_confirm_kho','time_confirm_kho_bonus','time_quangcao','time_quangcao_bonus','user_test','date_end_test','category_warehouse_id'];
     public static function countLevelKho($level){
         $ware = WareHouse::where('level',$level)->get();
         return count($ware);

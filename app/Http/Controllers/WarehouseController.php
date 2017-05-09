@@ -119,6 +119,7 @@ class WarehouseController extends Controller
         $id = $request->get('id');
         $user = User::find($id);
         $data = $request->all();
+        //dd($data);
         $user->update($data);
         $response = array(
             'status' => 'success',
@@ -611,7 +612,7 @@ class WarehouseController extends Controller
         $bankWareHouse = BankWareHouse::where('ware_id', $id)->get();
         $arrCategoryWarehouse = CategoryWarehouse::get();
         $userInfo = User::where('id', $wareHouse->user_id)->first();
-        //dd($wareHouse);
+        // dd($wareHouse);
         $data = [
             'wareHouse' => $wareHouse,
             'bank' => $bank,

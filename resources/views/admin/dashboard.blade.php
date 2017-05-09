@@ -156,21 +156,25 @@
             </div>
         </div>
         @if(Auth::user()->hasRole(['editor', 'admin']))
-        <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel" style="min-height: 550px;">
                 <div>
                     <div class="x_title">
                         <h2>Địa điểm các chủ kho</h2>
-                        <div class="clearfix"></div>
+                    </div>
+                    <div class="text-left">
+                        <button class="btn btn-raised btn-info btnLoadMaps" style="padding: 5px 30px; ">Load maps</button>
+                        <a href="{{ url('/mapsadd') }}" target="_blank" class="btn btn-raised btn-info btn" style="padding: 5px 30px;">Add maps</a>
                     </div>
                     <div class="gmap" id="gmap-3" style="height:600px;width: 100%; float:left"></div>
                     <div id="script">
                         
                     </div>
+                    <div id="map"></div>
                 </div>
 
             </div>
-        </div> -->
+        </div>
 
         <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -221,13 +225,19 @@
     <script src="{{asset('/js/moment/moment.min.js')}}"></script>
     <script src="{{asset('/js/datepicker/daterangepicker.js')}}"></script>
 
-    <!-- <link rel="stylesheet" href="{{url('/')}}/maps/css/libs.min.css">
+    <!-- <link rel="stylesheet" href="{{url('/')}}/maps/css/libs.min.css"> -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ly9FzEHY0YeCm5dvVliYSGeTfIN_XhU"></script> -->
+    <!-- <script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ly9FzEHY0YeCm5dvVliYSGeTfIN_XhU&callback=initMap"
+  type="text/javascript"></script> -->
+    <!-- <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyD1ly9FzEHY0YeCm5dvVliYSGeTfIN_XhU">
+    </script> -->
     <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyBLcEsjlc0sBoDPAYnPI_Y-_6nQFiX_C50">
     </script>
-    <script src="{{url('/')}}/maps/js/maplace.min.js"></script> -->
+    <script src="{{url('/')}}/maps/js/maplace.min.js"></script>
     <!-- Doughnut Chart -->
     <script>
-        /*var LocsA = [
+        var LocsA = [
             {
                 lat: 45.9,
                 lon: 10.9,
@@ -243,12 +253,97 @@
                 controls_type: 'list',
                 controls_on_map: true,});
         maplace.SetLocations(LocsA,true);
-        $('#script').load('{{url("/")}}/map'), function() {
+        $('#script').load('{{url("/")}}/mapsgetmap'), function() {
             maplace.SetLocations(LocsA,true).Load();
-        };*/
+        };
 
     </script>
+    <script>
+    $(document).ready(function(){
+
+        $('.btnLoadMaps').on('click', function(){
+            $('#script').load('{{url("/")}}/mapsgetmap');
+                maplace.SetLocations(LocsA,true);
+        });
+    });
     
+</script>
+    <!-- <script type="text/javascript">
+              var customLabel = {
+        restaurant: {
+          label: 'R'
+        },
+        bar: {
+          label: 'B'
+        }
+      };
+
+        function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-33.863276, 151.207977),
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var id = markerElem.getAttribute('id');
+              var name = markerElem.getAttribute('name');
+              var address = markerElem.getAttribute('address');
+              var type = markerElem.getAttribute('type');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = name
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = address
+              infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+
+
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing() {}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLcEsjlc0sBoDPAYnPI_Y-_6nQFiX_C50&callback=initMap">
+    </script> -->
     <script>
         var lineLabels="";
         var lineDatas="";

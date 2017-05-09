@@ -80,36 +80,19 @@
 												<!-- AddThis Button BEGIN -->
 												<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
 
-												<!-- AddThis Button END -->
 											</div>
 											
 										</div>
-										
-										<!-- - - - - - - - - - - - - - End of share - - - - - - - - - - - - - - - - -->
-
 									</div>
-
-									<!-- - - - - - - - - - - - - - End of product image column - - - - - - - - - - - - - - - - -->
-
-									<!-- - - - - - - - - - - - - - Product description column - - - - - - - - - - - - - - - - -->
 
 									<div class="single_product_description">
 
 										<h4 class="offset_title">{{$product->title}}</h4>
 
-										<!-- - - - - - - - - - - - - - Page navigation - - - - - - - - - - - - - - - - -->
-
-
 										<div class="description_section v_centered">
-
-											<!-- - - - - - - - - - - - - - Product rating - - - - - - - - - - - - - - - - -->
 
 											{!! \App\Rate::getRateProduct($product->id)!!}
 
-
-											<!-- - - - - - - - - - - - - - End of product rating - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Reviews menu - - - - - - - - - - - - - - - - -->
 
 											<ul class="topbar">
 
@@ -117,11 +100,8 @@
 
 											</ul>
 
-											<!-- - - - - - - - - - - - - - End of reviews menu - - - - - - - - - - - - - - - - -->
-
 										</div>
-										<!-- - - - - - - - - - - - - - End of page navigation - - - - - - - - - - - - - - - - -->
-
+									
 										<div class="description_section">
 											<table class="product_info" style="width: 100%">
 												<tbody style="font-size: 15px;">
@@ -168,12 +148,27 @@
 															Chat Facebook
 														</button>
 													@else
-														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;">
+														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;" class="chat_chukho btn btn-info">
 															Chat Facebook
 														</button>
 													@endif
 													<br>
 													<p>Chat với nhà cung cấp</p>
+													
+												</div>
+												<div id="chat_page" class="hidden">
+													<div class="sidebar-footer hidden-small">
+													    <div class="pageface">
+													        <div class="fb-page" data-href="{{ $product->fanpage_fb }}"
+													             data-tabs="messages"
+													             data-small-header="false"
+													             data-adapt-container-width="true"
+													             data-hide-cover="false" data-show-facepile="true">
+
+													        </div>
+													    </div>
+
+													</div>
 												</div>
 											</div>
 										</div>
@@ -213,23 +208,11 @@
 											</div>
 										</form>
 									</div>--}}
-										<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-
-
-										<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
+										
 									</div>
 
-									<!-- - - - - - - - - - - - - - End of product description column - - - - - - - - - - - - - - - - -->
-
-
-
-							</main><!--/ [col] -->
-
+							</main>
 							<aside class="col-md-3 col-sm-4">
-
-								<!-- - - - - - - - - - - - - - Seller Information - - - - - - - - - - - - - - - - -->
 
 								<section class="section_offset">
 							@if(!empty($product->levelKho))
@@ -264,10 +247,6 @@
 									@endif
 								</section>
 
-								<!-- - - - - - - - - - - - - - End of seller information - - - - - - - - - - - - - - - - -->
-
-								<!-- - - - - - - - - - - - - - Banner - - - - - - - - - - - - - - - - -->
-
 								<div class="section_offset">
 
 									<a href="#" class="banner">
@@ -278,15 +257,10 @@
 
 								</div>
 
-								<!-- - - - - - - - - - - - - - End of banner - - - - - - - - - - - - - - - - -->
-
 							</aside>
 
-						</div><!--/ .row -->
-
+						</div>
 					</div>
-
-					<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
 					<div class="section_offset" style="margin-bottom: 10px;">
 						<div class="tabs type_2">
@@ -527,20 +501,12 @@
 
 											{{--</div>--}}
 
-										</div><!--/ .row -->
+										</div>
 
-									</section><!--/ .section_offset -->
+									</section>
 
-								</div><!--/ #tab-3-->
-
-								<!-- - - - - - - - - - - - - - End tab - - - - - - - - - - - - - - - - -->
-
-								<!-- - - - - - - - - - - - - - Tab - - - - - - - - - - - - - - - - -->
-
-
-								<!-- - - - - - - - - - - - - - End tab - - - - - - - - - - - - - - - - -->
-
-							</div><!--/ .tab_containers_wrap -->
+								</div>
+							</div>
 							<div>
 								<section class="section_offset">
 									<div class="comment">
@@ -548,21 +514,11 @@
 									</div>
 								</section>
 							</div>
-							<!-- - - - - - - - - - - - - - End of tabs containers - - - - - - - - - - - - - - - - -->
-
-						</div><!--/ .tabs-->
-
-					</div><!--/ .section_offset -->
-
-					<!-- - - - - - - - - - - - - - End of tabs - - - - - - - - - - - - - - - - -->
-
-					<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
-
+						</div>
+					</div>
 					<div class="section_offset" style="margin-bottom: 10px;">
 
 						<div class="tabs type_2 initialized products">
-
-							<!-- - - - - - - - - - - - - - Navigation of tabs - - - - - - - - - - - - - - - - -->
 
 							<ul class="tabs_nav clearfix">
 
@@ -572,20 +528,13 @@
 
 							</ul>
 							
-							<!-- - - - - - - - - - - - - - End navigation of tabs - - - - - - - - - - - - - - - - -->
-
-							<!-- - - - - - - - - - - - - - Tabs container - - - - - - - - - - - - - - - - -->
-
 							<div class="tab_containers_wrap">
 
 								<div id="tab-5" class="tab_container">
 
-									<!-- - - - - - - - - - - - - - Carousel of featured products - - - - - - - - - - - - - - - - -->
-
 									<div class="owl_carousel carousel_in_tabs type_2">
 										@foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
-										<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
+										
 										<div class="product_item" style="">
 											<div class="image_wrap">
 
@@ -622,53 +571,25 @@
 												</div>
 
 											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-
-
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
+										</div>
 											@endforeach
-									</div><!--/ .sh_container-->
-									
-									<!-- - - - - - - - - - - - - - End of carousel of featured products - - - - - - - - - - - - - - - - -->
-
-								</div><!--/ #tab-1-->
-
+									</div>
+								</div>
 								<div id="tab-6" class="tab_container">
-
-									<!-- - - - - - - - - - - - - - Carousel of bestsellers - - - - - - - - - - - - - - - - -->
 
 									<div class="owl_carousel type_2 carousel_in_tabs">
 
 										@foreach(\App\Product::getProductByKhoVIP(8) as $product)
-												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
+												
 										<div class="product_item" style="">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
 											<div class="image_wrap">
 
 												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
 												{{--<div class="label_new">New</div>--}}
 
-												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
-
+											</div>
 											<div class="description">
 												<a href="#" class="clearfix">{{$product->title}}</a>
 												<div class="kho_info clearfix">
@@ -700,53 +621,26 @@
 												</div>
 
 											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-
-
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
+										</div>
 										@endforeach
 
-									</div><!--/ .sh_container-->
-
-									<!-- - - - - - - - - - - - - - End of carousel of bestsellers - - - - - - - - - - - - - - - - -->
-
-								</div><!--/ #tab-2-->
-
+									</div>
+								</div>
 								<div id="tab-7" class="tab_container">
-
-									<!-- - - - - - - - - - - - - - Carousel of hot products - - - - - - - - - - - - - - - - -->
 
 									<div class="owl_carousel type_2 carousel_in_tabs" >
 
 										@foreach(\App\Product::getBestSellerProduct(8) as $product)
-												<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
+												
 										<div class="product_item" style="">
-
-											<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
 
 											<div class="image_wrap">
 
 												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
-												<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-												<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-												<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
 												<div class="label_bestseller">BESTSELLER</div>
 
-												<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-											</div><!--/. image_wrap-->
-
-											<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-											<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
+											</div>
 
 											<div class="description">
 												<a href="#" class="clearfix">{{$product->title}}</a>
@@ -779,35 +673,18 @@
 												</div>
 
 											</div>
-
-											<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-										</div><!--/ .product_item-->
-
-
-										<!-- - - - - - - - - - - - - - End product - - - - - - - - - - - - - - - - -->
+										</div>
 										@endforeach
-									</div><!--/ .sh_container-->
-									
-									<!-- - - - - - - - - - - - - - End of carousel of hot products - - - - - - - - - - - - - - - - -->
-
-								</div><!--/ #tab-3-->
-
+									</div>
+								</div>
 							</div>
-
-							<!-- - - - - - - - - - - - - - End of tabs containers - - - - - - - - - - - - - - - - -->
-
-						</div><!--/ .tabs.section_offset-->
-
+						</div>
 					</div>
-						
-					<!-- - - - - - - - - - - - - - End of tabs - - - - - - - - - - - - - - - - -->
+					
+				</div>
 
-				</div><!--/ .container-->
+			</div>
 
-			</div><!--/ .page_wrapper-->
-			
-			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
 	@include('admin.partial.modal_requiredlogin')
 	<div class="modal fade modal-buy" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
 		 data-backdrop="static">
@@ -829,6 +706,7 @@
 			</div>
 		</div>
 	</div>
+	
 	{{--<div class="modal fade modal-login" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
 		 data-backdrop="static">
 		<div class="modal-dialog modal-login">
@@ -871,11 +749,6 @@
 	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-media.js')}}"></script>
 	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.js')}}"></script>
 
-	{{--<script>--}}
-		{{--$(document).on('click','send-order-info',function(){--}}
-
-		{{--})--}}
-	{{--</script>--}}
 	<script>
 		$(document).on("click", "#phoneKho", function () {
 			var _self = $(this);
@@ -883,5 +756,12 @@
 			$('.modal-buy [name="phone"]').html(_self.data('phone'));
 			$('.modal-buy [name="namekho"]').html(_self.data('namekho'));
 		});
+	</script>
+	<script type="text/javascript">
+
+		$('.chat_chukho').on('click',function() {
+			$('#chat_page').toggleClass("hidden");
+		});
+		
 	</script>
 	@endsection

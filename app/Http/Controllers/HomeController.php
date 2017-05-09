@@ -61,4 +61,8 @@ class HomeController extends Controller
         ];
         return view('frontend.home',$data);
     }
+    public function testmap() {
+        return view('frontend.test');
+        return view('frontend.test1');
+    }
 }
