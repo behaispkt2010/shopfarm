@@ -3,7 +3,7 @@
 @section('pageHeader','Quản lý đơn hàng')
 @section('detailHeader','danh sách')
 @section('new-btn')
-    <a href="{{route('orders.create')}}" class="btn btn-warning btn-fab">
+    <a href="{{route('orders.create')}}" class="btn btn-warning btn-fab" title="Tạo mới đơn hàng">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection

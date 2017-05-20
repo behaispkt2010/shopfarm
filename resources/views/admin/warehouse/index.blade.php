@@ -3,7 +3,7 @@
 @section('pageHeader','Quản lý chủ kho ')
 @section('detailHeader','danh sách')
 @section('new-btn')
-    <a href="{{route('warehouse.create')}}" data-placement="top" title="" data-original-title="Tạo mới" class="btn btn-warning btn-fab">
+    <a href="{{route('warehouse.create')}}" data-placement="top" title="" data-original-title="Tạo mới" class="btn btn-warning btn-fab" title="Tạo Chủ kho mới">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection

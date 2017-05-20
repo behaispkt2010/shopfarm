@@ -3,7 +3,7 @@
 @section('pageHeader','Danh sách sản phẩm ')
 @section('detailHeader','danh sách')
 @section('new-btn')
-    <a href="{{route('products.create')}}" class="btn btn-warning btn-fab">
+    <a href="{{route('products.create')}}" class="btn btn-warning btn-fab" title="Tạo mới sản phẩm">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @endsection
@@ -209,7 +209,7 @@
     <script>
         $('#select-ck,#select-cate,#select-ncc').selectize({
             create: true,
-            sortField: 'text'
+            /*sortField: 'text'*/
         });
     </script>
 

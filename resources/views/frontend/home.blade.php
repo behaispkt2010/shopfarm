@@ -19,7 +19,7 @@
 							</div>
 							<div class="clear"></div>
 							
-							<div class="col-xs-12">
+							<div class="col-xs-12 hidden-xs">
 								<div class="col-sm-3 img_banner" style="padding: 0px;">
 									<a href="#" class="">
 										<img src="{{url('/')}}/images/fruit.jpg" alt="" class="img_left_border">
@@ -45,7 +45,7 @@
 						</div>
 							
 					</div><!--/ .section_offset-->
-					<div class="col-xs-12 hidden-xs" style="padding:0px; padding-bottom: 20px;">
+					<div class="col-md-12 hidden-xs" style="padding:0px; padding-bottom: 20px;">
 						<div class="col-sm-4" style="padding: 0px;">
 							<a href="#" class="">
 								<img src="{{url('/')}}/images/home-banner.jpeg" alt="" class="img_left_border">
@@ -180,10 +180,10 @@
 										<div class="table_layout">
 											<?php $i=0 ;$j=0?>
 											@foreach($getNewProduct as $key => $product)
-												@if($i==0)<div class="category_product_row" style="margin-bottom: 15px; background-color: #fff;">@endif
+												@if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
 														<div class="col-md-3 col-xs-12 category_product_cell">
 
-															<div class="product_bestselt" style="border: 1px solid #eaeaea;">
+															<div class="product_bestselt">
 
 																<div class="image_wrap">
 
@@ -247,7 +247,7 @@
 														
 													<div class="col-md-3 col-xs-12 category_product_cell">
 
-														<div class="product_bestselt" style="border: 1px solid #eaeaea;">
+														<div class="product_bestselt">
 
 															<div class="image_wrap">
 

@@ -25,7 +25,7 @@
                                             aria-expanded="false" style="color: #fff;">{{Auth::user()->name}}</a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 71%;right: 0px;">
                                     <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
-                                            <i class="fa fa-info-circle pull-right"></i>Thông tin tài khoản
+                                            <i class="fa fa-info-circle pull-right"></i>Tài khoản
                                         </a>
                                     </li>
                                     <li><a href="{{ url('/logout') }}"
@@ -84,19 +84,19 @@
                                     <span class="sr-only">Toggle navigation</span>
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                 </button>
-                                    <a href="{{url('/')}}" class="logo" style="float: left;width: 71%;margin-top: -12px;">
-                                        <img src="{{asset('frontend/images/logo.png')}}" alt="" style="">
+                                    <a href="{{url('/')}}" class="logo" style="float: left;width: 72%;margin-top: -17px;">
+                                        <img src="{{asset('frontend/images/logo_rp_shop.png')}}" alt="" style="">
                                     </a>
                                     <li class="user">
                                         @if(( !Auth::check()))
                                             <a href="#" title="Đăng nhập" class="fa fa-user login_xs" style="color: #fff; padding-left: 15px;"></a>
                                         @else
                                             <a href="javascript:;" class="fa fa-user user-profile dropdown-toggle" data-toggle="dropdown"
-                                                        aria-expanded="false" style="color: #fff;"></a>
+                                                        aria-expanded="false" style="color: #fff; font-size: 22px; float: right;padding-top: 4px;"></a>
                                             <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 38%;right: 0px;">
                                                 <li><a href="#">Xin chào {{Auth::user()->name}} !!! </a></li>
                                                 <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
-                                                        <i class="fa fa-info-circle pull-right icon_fa_frmlogin"></i>Thông tin tài khoản
+                                                        <i class="fa fa-info-circle pull-right icon_fa_frmlogin"></i>Tài khoản
                                                     </a>
                                                 </li>
                                                 <li><a href="{{ url('/logout') }}"
@@ -114,20 +114,9 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                <div class="pull-right mobile-menu-icon-wrapper" >
-
-                                    <ul class="mobile-menu-icon">
-                                        <li class="search">
-                                        <div class="">
-                                            <form action="{{ url('/') }}" class="clearfix search" method="get">
-                                                <input type="text"  tabindex="1" placeholder="Tìm sản phẩm bạn mong muốn..." name="search" class="alignleft">
-                                                <button class="button_blue def_icon_btn alignleft"></button>
-                                            </form>
-                                        </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                    </div>
+                                
+                            
                             <div id="navbar" class="navbar-collapse collapse" style="height: 1px;">
                                 <ul class="nav navbar-nav clearfix sm">
                                     {{\App\Menu::get_menu_frontend()}}
@@ -140,6 +129,18 @@
             </div>
         </div>   
     </header>
+    <div class="mobile-menu-icon-wrapper visible-xs" style="width: 100%;margin-top: 8px;height: 45px;">
+        <ul class="mobile-menu-icon">
+            <li class="search" style="width: 100%;margin: 0px;padding-left: 10px;">
+            <div class="">
+                <form action="{{ url('/') }}" class="clearfix search" method="get">
+                    <input type="text"  tabindex="1" placeholder="Tìm sản phẩm bạn mong muốn..." name="search" class="alignleft">
+                    <button class="button_blue def_icon_btn alignleft"></button>
+                </form>
+            </div>
+            </li>
+        </ul>
+    </div>
 @include('admin.partial.modal_login_xs')
     <div class="modal fade " id="modalCheckOrder" role="dialog">
         <div class="modal-dialog ">

@@ -11,7 +11,7 @@
 <link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 @endsection
 @section('new-btn')
-    <a href="{{route('permission.create')}}" class="btn btn-warning btn-fab">
+    <a href="{{route('permission.create')}}" class="btn btn-warning btn-fab" title="Tạo Phân quyền mới">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection

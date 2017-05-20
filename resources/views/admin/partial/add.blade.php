@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin - Add Địa điểm của Chủ kho</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{url('/')}}/maps/css/libs.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="{{url('/')}}/maps/js/maplace.min.js"></script>
 </head>
@@ -18,9 +24,42 @@
     }
 </style>
 
-<form action="{{ url('/mapsadd') }}" method="POST" enctype="multipart/form-data" style="width: 500px; margin: 0px auto;">
+<form action="{{ url('/mapsadd') }}" method="POST" enctype="multipart/form-data" style="width: 70%; margin: 0px auto;">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  <h1>Add địa điểm Chủ kho</h1>
+  <h2>Thêm địa điểm Chủ kho</h2>
+  <label for="">Id User. VD: KHO-BRI-54 -> Id User là 54</label>
+  
+  <div class="col-xs-6 col-md-12" style="padding: 0px;">
+    <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon">Id User</span>
+          <input type="text" class="form-control" name="id_user" id="id_user" value="" required="required">
+      </div>
+     </div>
+  </div> 
+  <input type="hidden" class="form-control" name="maps_link" id="maps_link" value="" required="required">
+  
+  <br>
+  <br>
+  <div class="col-xs-6 col-md-12" style="padding: 0px;">
+    <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon">L</span>
+          <input type="text" class="form-control" name="maps_maplat" id="maps_maplat" value="{maps_maplat}" readonly="readonly">
+      </div>
+     </div>
+    </div>
+  <div class="col-xs-6 col-md-12" style="padding: 0px;">
+    <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon">N</span>
+          <input type="text" class="form-control" name="maps_maplng" id="maps_maplng" value="{maps_maplng}" readonly="readonly">
+      </div>
+      </div>
+    </div>
+  <input type="submit" class="btn btn-raised btn-primary btnAdd" value="Thêm mới" style=" width: 100px; height: 30px; color: #fff; background: #00BCD4;">
+  <br>
+  <br>
   <input type="text" class="form-control" name="maps_address" id="maps_address" value="" placeholder="Nhập tên địa điểm cần tìm">
   <div id="maps_maparea">
       <div id="maps_mapcanvas" style="margin-top:10px;" class="form-group"></div>
@@ -35,34 +74,7 @@
           </div> -->
           <br>
           <br>
-          <label for="">Demo Id User: KHO-BRI-54 -> Id User là 54</label>
-          <br>
-          <br>
-          <div class="col-xs-6">
-            <div class="form-group">
-              <div class="input-group">
-                  <span class="input-group-addon">Id User</span>
-                  <input type="text" class="form-control" name="id_user" id="id_user" value="">
-              </div>
-             </div>
-          </div> 
-          <div class="col-xs-6">
-            <div class="form-group">
-              <div class="input-group">
-                  <span class="input-group-addon">L</span>
-                  <input type="text" class="form-control" name="maps_maplat" id="maps_maplat" value="{maps_maplat}" readonly="readonly">
-              </div>
-             </div>
-          </div>
-          <div class="col-xs-6">
-            <div class="form-group">
-              <div class="input-group">
-                  <span class="input-group-addon">N</span>
-                  <input type="text" class="form-control" name="maps_maplng" id="maps_maplng" value="{maps_maplng}" readonly="readonly">
-              </div>
-              </div>
-          </div>
-          <input type="submit" value="ADD" style=" width: 100px; height: 30px; color: #fff; background: #00BCD4;">
+          
       </div>
       <!-- <div class="row">
           <div class="col-xs-12">
@@ -99,6 +111,7 @@ mapZ = 'maps_mapzoom';
 mapArea = 'maps_maparea';
 mapCenLat = 'maps_mapcenterlat';
 mapCenLng = 'maps_mapcenterlng';
+maps_link = 'maps_link';
 
 // Call Google MAP API
 if( ! document.getElementById('googleMapAPI') ){
@@ -143,7 +156,7 @@ function initializeMap(){
         animation: google.maps.Animation.DROP
     });
     markerdragEvent(markers);
-
+    
     // Init search box
     var searchBox = new google.maps.places.SearchBox(document.getElementById(addEle));
 
@@ -192,6 +205,7 @@ function initializeMap(){
         });
 
         markerdragEvent(markers);
+        
     });
 
     // Event on zoom map
@@ -205,6 +219,7 @@ function initializeMap(){
         $("#" + mapCenLng).val(map.getCenter().lng());
         console.log( map.getCenter() );
     });
+    
 }
 
 // Show, hide map on select change
@@ -228,7 +243,15 @@ function markerdragEvent(markers){
         });
     }
 }
-</script>
 
+</script>
+<script type="text/javascript">
+  $('.btnAdd').on('click',function (){
+    var la = $('#maps_maplat').val();
+    var lo = $('#maps_maplng').val();
+    var maps_link = "https://www.google.com/maps/place//@"+ la +","+ lo +",15z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d"+ la +"!4d"+ lo +"?hl=vi";
+    $('#maps_link').val(maps_link);
+  });
+</script>
 </body>
 </html>

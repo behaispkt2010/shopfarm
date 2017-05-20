@@ -68,7 +68,7 @@ class PageController extends Controller
             "comment" => $request->get('cf_message'),
             "subject" => "Khách hàng cần đăng ký Chủ kho"
         ];
-        $to = "xtrieu30@gmail.com";
+        $to = "behaispkt2010@gmail.com";
         $dataNotify['keyname'] = Util::$dangkychukho;
         $dataNotify['title'] = "Chủ kho đăng kí mới";
         $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho";

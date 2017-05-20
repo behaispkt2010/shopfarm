@@ -2,24 +2,26 @@
 @section('title', 'Thông tin chủ kho')
 @section('description','Thông tin chủ kho')
 @section('content')
-    <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px; padding-left: 50px;">
+    <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px;">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-university" aria-hidden="true"></i> Thông tin NCC
+                    <i class="fa fa-user" aria-hidden="true"></i> Thông tin NCC
                 </h4>
             </div>
             <div id="filter_ncc_seach" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <ul class="site_info_ncc">
-                        <li><i class="fa fa-map-signs" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
+                        <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
                         <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>
                         <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->email}}</li>
                     </ul>
                 </div>
             </div>
         </div>
+        <div class="hidden-xs">
         @include('frontend.witgets.category-product')
+        </div>
     </div>
     <div class="col-xs-12 col-sm-9 col-md-9 " style="padding-top: 20px;">
         <div class="content_verify">
@@ -28,24 +30,24 @@
                     <div class="gallery_img_ncc">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                {{--<div class="item">
+                                <!-- <div class="item">
                                     <img src="{{ asset($ware_house->image_kho) }}" style="border-radius: 5px;" alt="..." width="100%">
-                                </div>--}}
+                                </div> -->
                                 <div class="item active">
                                     <img alt="..." width="100%" style="border-radius: 5px;" src="{{ asset($ware_house->image_kho) }}">
                                 </div>
                             </div>
-                            {{--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                                 <i class="fa fa-angle-left" aria-hidden="true"></i>
                             </a>
                             <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            </a>--}}
+                            </a> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-8 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-6">
                 <ul class="info_veryfi_content">
                     <li>
                         <label>Mô hình kinh doanh:</label>
@@ -140,7 +142,7 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class="col-xs-10 col-sm-10 col-md-10" style="padding-bottom: 30px;">
+        <div class="col-xs-12 col-sm-11 col-md-11" style="padding-bottom: 30px;">
             <div class="row">
                 <div class="detail_veryfi">
                     <div class="detail_veryfi">
@@ -174,9 +176,9 @@
                                 </div>
                                 <ul id="owl-shop" class="products owl-carousel owl-theme" style="opacity: 1; display: block;">
                                     <div class="owl-wrapper-outer">
-                                        <div class="owl-wrapper" style="width: auto; left: 0px; display: block; transition: all 0ms ease; transform: translate3d(0px, 0px, 0px);">
+                                        <div class="owl-wrapper" style="width: auto; float: right; display: block; transition: all 0ms ease; transform: translate3d(0px, 0px, 0px);">
                                             @foreach($arrImageDetail as $itemImageDetail)
-                                                <div class="owl-item" style="width: 165px;">
+                                                <div class="owl-item" style="width: 170px;padding-bottom: 5px;padding-left: 10px;">
                                                     <li class="image_verified">
                                                         <img src="{{url('/').$itemImageDetail->warehouse_detail_image}}" style="border-radius: 5px;" alt="Hình ảnh kho hàng">
                                                     </li>
@@ -212,9 +214,9 @@
                         <?php $i=0 ;$j=0?>
                         @foreach($getNewProduct as $key => $product)
                             @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
-                                    <div class="col-md-3 col-xs-12 category_product_cell">
+                                    <div class="col-md-4 col-xs-12 category_product_cell">
 
-                                        <div class="product_bestselt" style="border: 1px solid #eaeaea;">
+                                        <div class="product_bestselt">
 
                                             <div class="image_wrap">
 

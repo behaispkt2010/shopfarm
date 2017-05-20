@@ -7,7 +7,7 @@
 <link href="{{asset('css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
 @endsection
 @section('new-btn')
-    <a href="{{route('historyInput.create')}}" class="btn btn-warning btn-fab">
+    <a href="{{route('historyInput.create')}}" class="btn btn-warning btn-fab" title="Tạo thêm lịch sử nhập hàng">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection

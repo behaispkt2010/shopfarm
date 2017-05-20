@@ -392,7 +392,7 @@
                     $('input[name="menu_class"]').val("");
                 }
                 else{
-                    alert('tên hiển thị và đường dẫn không được bỏ trống');
+                    alert('Tên hiển thị và đường dẫn không được bỏ trống');
                 }
 
 

@@ -5,7 +5,7 @@
 
 @section('new-btn')
     @if(Request::is('admin/staffs'))
-    <a href="{{route('staffs.create')}}" class="btn btn-warning btn-fab">
+    <a href="{{route('staffs.create')}}" class="btn btn-warning btn-fab" title="Tạo mới người dùng">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @else

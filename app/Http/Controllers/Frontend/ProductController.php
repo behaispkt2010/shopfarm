@@ -26,7 +26,7 @@ class ProductController extends Controller
                     ->selectRaw('products.*')
                     ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('title', 'DESC')
-                    ->paginate(16);
+                    ->paginate(18);
             }
             elseif($request->get('q')=="moi-nhat") {
                 $products = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
@@ -34,7 +34,7 @@ class ProductController extends Controller
                     ->selectRaw('products.*')
                     ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('id', 'DESC')
-                    ->paginate(16);
+                    ->paginate(18);
             }
             elseif($request->get('q')=="cap-kho") {
                 $products = Product::leftJoin('ware_houses','products.kho','ware_houses.user_id')
@@ -42,7 +42,7 @@ class ProductController extends Controller
                     ->selectRaw('products.*')
                     ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('ware_houses.level', 'DESC')
-                    ->paginate(16);
+                    ->paginate(18);
             }
             elseif($request->get('q')=="gia") {
                 $products = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
@@ -50,7 +50,7 @@ class ProductController extends Controller
                     ->selectRaw('products.*')
                     ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('price_out', 'ASC')
-                    ->paginate(16);
+                    ->paginate(18);
             }
 
         }
@@ -59,7 +59,7 @@ class ProductController extends Controller
                 ->leftjoin('users','users.id','ware_houses.user_id')
                 ->selectRaw('products.*')
                 ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
-                ->paginate(16);
+                ->paginate(18);
         }
         $data =[
           "products"=>$products,
@@ -76,7 +76,7 @@ class ProductController extends Controller
             ->leftJoin('ware_houses','products.kho','=','ware_houses.user_id')
             ->selectRaw('products.*')
             ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
-            ->paginate(16);
+            ->paginate(18);
         // dd($products);
         $data =[
             "products"=>$products,

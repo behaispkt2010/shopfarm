@@ -3,7 +3,7 @@
 @section('pageHeader','Bài viết ')
 @section('detailHeader','danh sách')
 @section('new-btn')
-    <a href="{{route('news.create')}}" class="btn btn-warning btn-fab">
+    <a href="{{route('news.create')}}" class="btn btn-warning btn-fab" title="Tạo mới Tin tức">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @endsection

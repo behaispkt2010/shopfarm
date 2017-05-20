@@ -48,7 +48,7 @@ class Menu extends Model
             if ($parent == $itemMenu1->parent) {
                 $numchil = Menu::get_numberChil($itemMenu1->id);
                 if ($numchil == 0) {
-                    echo ' <li class="theme_menu '.$itemMenu1->class.'"><a href="'.url('/').$itemMenu1->link.'" style="height: 53px;">'.$itemMenu1->label.'</a></li>';
+                    echo ' <li class="theme_menu '.$itemMenu1->class.'"><a href="'.url('/').$itemMenu1->link.'" style="height: 53px; ">'.$itemMenu1->label.'</a></li>';
                 } else 
                 {
                     echo '   <li class="has_submenu">

@@ -60,7 +60,7 @@ class Category extends Model
                 if ($select != 0 && $id == $select) {
                     echo '<option value="' . $id . '" selected>' . $str . " " . $name . '</option>';
                 } else {
-                    echo '<option value="' . $id . '">' . $str . " " . $name . '</option>';
+                    echo '<option value="' . $id . '" disabled="disabled">' . $str . " " . $name . '</option>';
                 }
                 Category::CateMulti($data, $id, $str . "&nbsp&nbsp&nbsp&nbsp", $select);
             }

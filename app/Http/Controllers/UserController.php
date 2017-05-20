@@ -31,6 +31,9 @@ public function AjaxCreateCustomer(UserRequest $request)
 {
     $user = new User();
     $data = $request->all();
+    $t = $request->get('t');
+    $pro = Province::where('name',$t)->first();
+    $data['province'] = $pro->provinceid;
     if(empty($request->get('password'))){
         $data['password'] = "123456";
     }
@@ -45,6 +48,7 @@ public function AjaxCreateCustomer(UserRequest $request)
     {
         $user->roles()->sync([]);
     }*/
+    // dd($data);
     $response = array(
         'status' => 'success',
         'msg' => 'Setting created successfully',

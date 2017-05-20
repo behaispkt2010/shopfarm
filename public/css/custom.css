@@ -5311,6 +5311,12 @@ ol, ul {
   background-color: #fff !important;
 }
 .btn-new a:hover i{
+  border-radius: 50%;
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
   color:#ff5722 !important;
 }
 .btn-new a:focus i{
@@ -5690,4 +5696,10 @@ table.dtp-picker-days thead{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.gm-style-iw {
+  top: 26px;
+  position: absolute;
+  left: 26px;
+  width: 323px;
 }

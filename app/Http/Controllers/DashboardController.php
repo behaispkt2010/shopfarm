@@ -87,7 +87,12 @@ class DashboardController extends Controller
             ->where('role_user.role_id',3)
             ->orderBy('id','DESC')
             ->get();
+        $chukho = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('role_user.role_id',4)
+            ->orderBy('id','DESC')
+            ->get();
         $customer = count($users);
+        $chukho = count($chukho);
         $arrAllOrder = Order::get();
         $countOrder = count($arrAllOrder);
         $arrAllProductOrder = ProductOrder::get();
@@ -108,6 +113,7 @@ class DashboardController extends Controller
             'countOrder' =>$countOrder,
             'arrBestSellProduct' =>$arrBestSellProduct,
             'customer' =>$customer,
+            'chukho' =>$chukho,
             'level1' =>$level1,
             'level2' =>$level2,
             'level3' =>$level3,

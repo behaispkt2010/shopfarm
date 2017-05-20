@@ -220,6 +220,7 @@
                 <!-- modals -->
                 <!-- Large modal -->
 </div>
+<div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
 @include('admin.partial.modal_delete')
 <div class="modal fade bs-example-modal-km" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
      data-backdrop="static">
@@ -307,6 +308,7 @@
             </div>
         </div>
     </div>
+    <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
 </div>
 
 
@@ -377,6 +379,7 @@
 
         </div>
     </div>
+    <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
 </div>
 
 
@@ -554,7 +557,7 @@
         $.ajax({
             type: "POST",
             url: '{!! url("/") !!}/admin/users/AjaxCreateCustomer',
-            data: {name: name, phone_number: phone_number, email: email,address: address,_token: _token},
+            data: {name: name,t: t, phone_number: phone_number, email: email,address: address,_token: _token},
             success: function( msg ) {
                 //console.log(msg);
                 $('.loading').css('display','none');

@@ -7,8 +7,8 @@
     <div class="row">
         <br>
         <div class="col-md-3 col-xs-6 col-ms-6  text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Doanh Thu<br><span class="value-das">{!! \App\Util::FormatMoney($totalPrice)  !!} </span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Khách Hàng<br><span class="value-das">{!! $customer !!}</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">Giao Dịch<br><span class="value-das">{!! \App\Util::FormatMoney($totalPrice)  !!} </span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">KH | CK<br><span class="value-das">{!! $customer !!} | {!! $chukho !!}</span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">TB Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! \App\Util::FormatMoney($totalPrice/$countOrder) !!}  @else 0 VNĐ @endif</span></div>
 
     </div>
@@ -242,7 +242,7 @@
                 lat: 45.9,
                 lon: 10.9,
                 title: 'Title A1',
-                html: '<h3>Loading map....</h3>',
+                html: '<h3>Nhấn vào nút Load Maps</h3>',
                 icon: 'http://maps.google.com/mapfiles/markerA.png',
                 animation: google.maps.Animation.DROP
             }

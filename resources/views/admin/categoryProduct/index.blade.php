@@ -4,7 +4,7 @@
 
 @section('new-btn')
     <a href="#" data-toggle="modal"
-       data-target=".modal-product-cate" class="btn btn-warning btn-fab">
+       data-target=".modal-product-cate" class="btn btn-warning btn-fab" title="Tạo mới Nhóm sản phẩm">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @endsection

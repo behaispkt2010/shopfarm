@@ -45,9 +45,9 @@
 
 										<!-- - - - - - - - - - - - - - Image preview container - - - - - - - - - - - - - - - - -->
 
-										<div class="image_preview_container" style="height: 293px;">
+										<div class="image_preview_container" >
 
-											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="" style="width: 450px;height: 293px; border-radius: 5px;">
+											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="" style="width: 450px;/*height: 293px;*/ border-radius: 5px;">
 
 											<button class="button_grey_2 icon_btn middle_btn open_qv"><i class="icon-resize-full-6"></i></button>
 
@@ -122,43 +122,49 @@
 										</div>
 										<p class="product_price">{{ number_format($product->price_out)  }} VNĐ</p>
 
-										<div class="row text-center">
-											<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="row text-center col-xs-12">
+											<div class="col-xs-6 col-sm-6 col-md-6" style="float: left;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;"
+														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;"
 																data-toggle="modal" data-target=".modal-login" class="btn btn-success required_login">
 															Gọi điện
 														</button>
 													@else
-														<button id="phoneKho" style="line-height: 26px;width: 165px; font-size: 16px;"
+														<button id="phoneKho" style="line-height: 26px;width: 139px; font-size: 16px;"
 															data-toggle="modal" data-target=".modal-buy" class="btn btn-success" data-phone="{{$product->phoneKho}}" data-title="Mua Ngay" data-namekho="{{$product->nameKho}}">
 															Gọi điện
 														</button>
 													@endif
 													<br>
-													<p>Mua trực tiếp với nhà cung cấp</p>
+													<p style="padding: 1px 0px 0px 20px;">Mua trực tiếp với nhà cung cấp</p>
 												</div>
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="col-xs-6 col-sm-6 col-md-6" style="float: right;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;"
+														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;"
 																data-toggle="modal" data-target=".modal-login" class="btn btn-info required_login">
 															Chat Facebook
 														</button>
 													@else
-														<button id="" style="line-height: 26px;width: 165px; font-size: 16px;" class="chat_chukho btn btn-info">
+														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;" class="chat_chukho btn btn-info">
 															Chat Facebook
 														</button>
+														<input type="hidden" id="is_fanpage_fb" name="is_fanpage_fb" value="{{ $product->fanpage_fb }}">
 													@endif
 													<br>
-													<p>Chat với nhà cung cấp</p>
+													<p style="padding: 1px 0px 0px 20px;">Chat với nhà cung cấp</p>
 													
 												</div>
-												<div id="chat_page" class="hidden">
+											</div>
+											<div id="chat_page" class="hidden">
 													<div class="sidebar-footer hidden-small">
 													    <div class="pageface">
+													    <div class="title">
+										                    
+										                    <i class="fa fa-minus" style="float: right;"></i>
+										                </div>
 													        <div class="fb-page" data-href="{{ $product->fanpage_fb }}"
 													             data-tabs="messages"
 													             data-small-header="false"
@@ -170,7 +176,6 @@
 
 													</div>
 												</div>
-											</div>
 										</div>
 										{{--<div class="description_section">
 											<p class="text-info">Vui lòng để lại thông tin liên lạc để chúng tôi liên hệ lại trong thời gian sớm nhất</p>
@@ -251,8 +256,7 @@
 
 									<a href="#" class="banner">
 										
-										<img src="{{asset('frontend/images/banner_img_13.jpg')}}" alt="">
-
+										<img src="{{asset('frontend/images/banner_img_13.jpg')}}" alt="" style="width: 100%;">
 									</a>
 
 								</div>
@@ -531,151 +535,178 @@
 							<div class="tab_containers_wrap">
 
 								<div id="tab-5" class="tab_container">
+									<div class="table_layout">
+				                        <?php $i=0 ;$j=0?>
+				                        @foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
+				                            @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+				                                    <div class="col-md-3 col-xs-12 category_product_cell">
 
-									<div class="owl_carousel carousel_in_tabs type_2">
-										@foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
-										
-										<div class="product_item" style="">
-											<div class="image_wrap">
+				                                        <div class="product_bestselt">
 
-												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-											</div>
-											<div class="description">
-												<a href="#" class="clearfix">{{$product->title}}</a>
-												<div class="kho_info clearfix">
-													<a href="#" class="alignleft" style="width: 70px;">
-														@if($product->levelKho == 1)
-															<img src="{{url('/images')}}/level1.png" alt="">
-														@elseif($product->levelKho == 2)
-															<img src="{{url('/images')}}/level2.png" alt="">
-														@elseif($product->levelKho == 3)
-															<img src="{{url('/images')}}/level3.png" alt="">
-														@else
-															<img src="{{url('/images')}}/level0.png" alt="">
-														@endif
-													</a>
-													<a href="#" class="alignleft" style="width: 70px;">
-														@if($product->confirm_kho == 1)
-															<img src="{{url('/images')}}/xacthuc.png" alt="">
-														@else
-														@endif
-													</a>
-													<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
-												</div>
-												<div class="clearfix product_info">
-													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
-													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
-												</div>
-												<div class="clearfix product_info">
-													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
-												</div>
+				                                            <div class="image_wrap">
 
-											</div>
-										</div>
-											@endforeach
-									</div>
+				                                                <a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+				                                            
+				                                            </div>
+				                                            <div class="description">
+
+				                                                <a href="#" class="clearfix">{{$product->title}}</a>
+
+				                                                <div class="kho_info clearfix">
+				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    @if($product->levelKho == 1)
+				                                                        <img src="{{url('/images')}}/level1.png" alt="">
+				                                                    @elseif($product->levelKho == 2)
+				                                                        <img src="{{url('/images')}}/level2.png" alt="">
+				                                                    @elseif($product->levelKho == 3)
+				                                                        <img src="{{url('/images')}}/level3.png" alt="">
+				                                                    @else
+				                                                        <img src="{{url('/images')}}/level0.png" alt="">
+				                                                    @endif
+				                                                    </a>
+				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                        @if($product->confirm_kho == 1)
+				                                                            <img src="{{url('/images')}}/xacthuc.png" alt="">
+				                                                        @else
+				                                                        @endif
+				                                                    </a>
+				                                                    <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+				                                                </div>
+				                                                <div class="clearfix product_info">
+				                                                    <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+				                                                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+				                                                </div>
+				                                                <div class="clearfix product_info">
+				                                                    <p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+				                                                </div>
+				                                            </div>
+
+				                                        </div>
+				                                    </div>
+				                                    <?php $i = $i+1; $j=$j+1; ?>
+				                                    @if ($i>=4 || $j>=count(\App\Product::getRelatedProduct($product->id,8)))
+				                                        <?php $i=0 ?>
+				                                        </div>
+				                                    @endif
+				                        @endforeach
+				                    </div>
+
 								</div>
 								<div id="tab-6" class="tab_container">
+									<div class="table_layout">
+				                        <?php $i=0 ;$j=0?>
+				                        @foreach(\App\Product::getProductByKhoVIP(8) as $product)
+				                            @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+				                                    <div class="col-md-3 col-xs-12 category_product_cell">
 
-									<div class="owl_carousel type_2 carousel_in_tabs">
+				                                        <div class="product_bestselt">
 
-										@foreach(\App\Product::getProductByKhoVIP(8) as $product)
-												
-										<div class="product_item" style="">
+				                                            <div class="image_wrap">
 
-											<div class="image_wrap">
+				                                                <a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+				                                            
+				                                            </div>
+				                                            <div class="description">
 
-												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+				                                                <a href="#" class="clearfix">{{$product->title}}</a>
 
-												{{--<div class="label_new">New</div>--}}
+				                                                <div class="kho_info clearfix">
+				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    @if($product->levelKho == 1)
+				                                                        <img src="{{url('/images')}}/level1.png" alt="">
+				                                                    @elseif($product->levelKho == 2)
+				                                                        <img src="{{url('/images')}}/level2.png" alt="">
+				                                                    @elseif($product->levelKho == 3)
+				                                                        <img src="{{url('/images')}}/level3.png" alt="">
+				                                                    @else
+				                                                        <img src="{{url('/images')}}/level0.png" alt="">
+				                                                    @endif
+				                                                    </a>
+				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                        @if($product->confirm_kho == 1)
+				                                                            <img src="{{url('/images')}}/xacthuc.png" alt="">
+				                                                        @else
+				                                                        @endif
+				                                                    </a>
+				                                                    <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+				                                                </div>
+				                                                <div class="clearfix product_info">
+				                                                    <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+				                                                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+				                                                </div>
+				                                                <div class="clearfix product_info">
+				                                                    <p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+				                                                </div>
+				                                            </div>
 
-											</div>
-											<div class="description">
-												<a href="#" class="clearfix">{{$product->title}}</a>
-												<div class="kho_info clearfix">
-													<a href="#" class="alignleft" style="width: 70px;">
-														@if($product->levelKho == 1)
-															<img src="{{url('/images')}}/level1.png" alt="">
-														@elseif($product->levelKho == 2)
-															<img src="{{url('/images')}}/level2.png" alt="">
-														@elseif($product->levelKho == 3)
-															<img src="{{url('/images')}}/level3.png" alt="">
-														@else
-															<img src="{{url('/images')}}/level0.png" alt="">
-														@endif
-													</a>
-													<a href="#" class="alignleft" style="width: 70px;">
-														@if($product->confirm_kho == 1)
-															<img src="{{url('/images')}}/xacthuc.png" alt="">
-														@else
-														@endif
-													</a>
-													<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
-												</div>
-												<div class="clearfix product_info">
-													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
-													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
-												</div>
-												<div class="clearfix product_info">
-													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
-												</div>
-
-											</div>
-										</div>
-										@endforeach
-
-									</div>
+				                                        </div>
+				                                    </div>
+				                                    <?php $i = $i+1; $j=$j+1; ?>
+				                                    @if ($i>=4 || $j>=count(\App\Product::getProductByKhoVIP(8)))
+				                                        <?php $i=0 ?>
+				                                        </div>
+				                                    @endif
+				                        @endforeach
+				                    </div>
+									
 								</div>
 								<div id="tab-7" class="tab_container">
+									<div class="table_layout">
+				                        <?php $i=0 ;$j=0?>
+				                        @foreach(\App\Product::getBestSellerProduct(8) as $product)
+				                            @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+				                                    <div class="col-md-3 col-xs-12 category_product_cell">
 
-									<div class="owl_carousel type_2 carousel_in_tabs" >
+				                                        <div class="product_bestselt">
 
-										@foreach(\App\Product::getBestSellerProduct(8) as $product)
-												
-										<div class="product_item" style="">
+				                                            <div class="image_wrap">
 
-											<div class="image_wrap">
+				                                                <a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+				                                            
+				                                            </div>
+				                                            <div class="description">
 
-												<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+				                                                <a href="#" class="clearfix">{{$product->title}}</a>
 
-												<div class="label_bestseller">BESTSELLER</div>
+				                                                <div class="kho_info clearfix">
+				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    @if($product->levelKho == 1)
+				                                                        <img src="{{url('/images')}}/level1.png" alt="">
+				                                                    @elseif($product->levelKho == 2)
+				                                                        <img src="{{url('/images')}}/level2.png" alt="">
+				                                                    @elseif($product->levelKho == 3)
+				                                                        <img src="{{url('/images')}}/level3.png" alt="">
+				                                                    @else
+				                                                        <img src="{{url('/images')}}/level0.png" alt="">
+				                                                    @endif
+				                                                    </a>
+				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                        @if($product->confirm_kho == 1)
+				                                                            <img src="{{url('/images')}}/xacthuc.png" alt="">
+				                                                        @else
+				                                                        @endif
+				                                                    </a>
+				                                                    <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+				                                                </div>
+				                                                <div class="clearfix product_info">
+				                                                    <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+				                                                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+				                                                </div>
+				                                                <div class="clearfix product_info">
+				                                                    <p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+				                                                </div>
+				                                            </div>
 
-											</div>
-
-											<div class="description">
-												<a href="#" class="clearfix">{{$product->title}}</a>
-												<div class="kho_info clearfix">
-													<a href="#" class="alignleft" style="width: 70px;">
-														@if($product->levelKho == 1)
-															<img src="{{url('/images')}}/level1.png" alt="">
-														@elseif($product->levelKho == 2)
-															<img src="{{url('/images')}}/level2.png" alt="">
-														@elseif($product->levelKho == 3)
-															<img src="{{url('/images')}}/level3.png" alt="">
-														@else
-															<img src="{{url('/images')}}/level0.png" alt="">
-														@endif
-													</a>
-													<a href="#" class="alignleft" style="width: 70px;">
-														@if($product->confirm_kho == 1)
-															<img src="{{url('/images')}}/xacthuc.png" alt="">
-														@else
-														@endif
-													</a>
-													<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
-												</div>
-												<div class="clearfix product_info">
-													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
-													<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
-												</div>
-												<div class="clearfix product_info">
-													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
-												</div>
-
-											</div>
-										</div>
-										@endforeach
-									</div>
+				                                        </div>
+				                                    </div>
+				                                    <?php $i = $i+1; $j=$j+1; ?>
+				                                    @if ($i>=4 || $j>=count(\App\Product::getBestSellerProduct(8)))
+				                                        <?php $i=0 ?>
+				                                        </div>
+				                                    @endif
+				                        @endforeach
+				                    </div>
+									
 								</div>
 							</div>
 						</div>
@@ -760,8 +791,16 @@
 	<script type="text/javascript">
 
 		$('.chat_chukho').on('click',function() {
-			$('#chat_page').toggleClass("hidden");
+			var is_fanpage_fb = $('#is_fanpage_fb').val();
+			if (is_fanpage_fb != "") {
+				$('#chat_page').toggleClass("hidden");
+			}
+			else {
+				alert('Chủ kho không có FanPage Facebook');
+			}
 		});
-		
+		$('.fa-minus').on('click',function() {
+			$('#chat_page').addClass("hidden");
+		});
 	</script>
 	@endsection

@@ -4,7 +4,7 @@
 @section('detailHeader','danh sách')
 
 @section('new-btn')
-    <a href="{{route('customers.create')}}" class="btn btn-warning btn-fab">
+    <a href="{{route('customers.create')}}" class="btn btn-warning btn-fab" title="Tạo khách hàng mới">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection

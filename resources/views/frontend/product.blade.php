@@ -43,8 +43,6 @@
 				</div>
 				<div class="right_side clearfix v_centered">
 
-					<!-- - - - - - - - - - - - - - Sort by - - - - - - - - - - - - - - - - -->
-
 					<div class="v_centered">
 
 						<span>Xắp xếp theo:</span>
@@ -80,32 +78,15 @@
 									<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 							<div class="col-md-4 category_product_cell">
 
-								<div class="product_bestselt" style="border: 1px solid #eaeaea;">
-
-									<!-- - - - - - - - - - - - - - Thumbmnail - - - - - - - - - - - - - - - - -->
+								<div class="product_bestselt">
 
 									<div class="image_wrap">
 
 										<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
 
-
-										<!-- - - - - - - - - - - - - - Product actions - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - End of product actions - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Label - - - - - - - - - - - - - - - - -->
-
 										{{--<div class="label_bestseller"></div>--}}
 
-
-
-										<!-- - - - - - - - - - - - - - End label - - - - - - - - - - - - - - - - -->
-
-									</div><!--/. image_wrap-->
-
-									<!-- - - - - - - - - - - - - - End thumbmnail - - - - - - - - - - - - - - - - -->
-
-									<!-- - - - - - - - - - - - - - Product title & price - - - - - - - - - - - - - - - - -->
+									</div>
 
 									<div class="description">
 
@@ -140,10 +121,7 @@
 										</div>
 									</div>
 
-									<!-- - - - - - - - - - - - - - End of product title & price - - - - - - - - - - - - - - - - -->
-
-								</div><!--/ .product_item-->
-
+								</div>
 							</div>
 							<?php $i = $i+1;$j=$j+1; ?>
 							@if($i>=3|| $j>=count($products))
@@ -159,8 +137,7 @@
 				@endif
 				</div>
 
-			</div><!--/ .table_layout -->
-
+			</div>
 			@if($products->perPage() != 0)
 			<footer class="bottom_box text-center">
 				<div class="right_side">
@@ -172,16 +149,10 @@
 				@endif
 
 		</div>
-
-		<!-- - - - - - - - - - - - - - End of products - - - - - - - - - - - - - - - - -->
 		</div>
 	</div>
-	</div><!--/ .container-->
-
-</div><!--/ .page_wrapper-->
-
-<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
-
+	</div>
+</div>
 	@endsection
 @section('add-script')
 	<script>

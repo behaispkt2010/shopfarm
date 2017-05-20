@@ -5,65 +5,31 @@
 {{-- --}}
 @endsection
 @section('content')
-			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
-
 			<div class="secondary_page_wrapper">
-
 				<div class="container">
-
-					<!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
-
 					<ul class="breadcrumbs">
-
 						<li><a href="/">Trang chủ</a></li>
 						<li>Đăng ký Chủ kho</li>
-
 					</ul>
-
 					<div class="row">
-
 						<aside class="col-md-3 col-sm-4" style="top: -8px;">
-
-							<!-- - - - - - - - - - - - - - Information - - - - - - - - - - - - - - - - -->
-
 							<section class="section_offset">
-
 								<h3>Thông tin</h3>
-
 								<ul class="theme_menu">
-
 									<li><a href="#">Giới thiệu</a></li>
 									<li><a href="#">Dịch vụ</a></li>
 									<li><a href="#">Điều khoản</a></li>
 									<li ><a href="#">Chính sách bảo mật</a></li>
 									<li ><a href="#">Liên hệ</a></li>
 									<li class="active"><a href="#">Đăng ký Chủ kho</a></li>
-
-
-
 								</ul>
-
-							</section><!--/ .section_offset -->
-
-							<!-- - - - - - - - - - - - - - End of information - - - - - - - - - - - - - - - - -->
-
-							<!-- - - - - - - - - - - - - - Banner - - - - - - - - - - - - - - - - -->
-
+							</section>
 							<div class="section_offset">
-
 								<a href="#" class="banner">
-									
 									<img src="../../../frontend/images/banner_img_11.png" alt="">
-
 								</a>
-
 							</div>
-
-							<!-- - - - - - - - - - - - - - End of banner - - - - - - - - - - - - - - - - -->
-
-
-						</aside><!--/ [col]-->
-
+						</aside>
 						<main class="col-md-9 col-sm-8">
 
 							{{--<h1 class="page_title">Contact Us</h1>--}}
@@ -82,59 +48,35 @@
 											<p class="message red" style="color: red;">Cảm ơn quý khách đã đăng ký. Chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
 											<br>
 										@endif
-
-									<!-- - - - - - - - - - - - - - Contact form - - - - - - - - - - - - - - - - -->
-
-
 										<ul>
-										
 											<li class="row">
-
 												<div class="col-sm-6">
-												
 													<label for="cf_name" class="required">Tên</label>
 													<input type="text" required name="cf_name" id="cf_name" title="Name">
 
-												</div><!--/ [col]-->
-
+												</div>
 												<div class="col-sm-6">
-
 													<label for="cf_email" class="required">Email</label>
 													<input type="email" required name="cf_email" id="cf_email" title="Email">
 
-												</div><!--/ [col]-->
-
-											</li><!--/ .row -->
-
+												</div>
+											</li>
 											<li class="row">
-
 												<div class="col-xs-12">
-
 													<label for="cf_order_number" required class="required">Số điện thoại</label>
 													<input type="text" name="cf_order_number" id="cf_order_number" title="Order number">
-
-												</div><!--/ [col]-->
-
-											</li><!--/ .row -->
-
+												</div>
+											</li>
 											<li class="row">
-
 												<div class="col-xs-12">
 
 													<label for="cf_message" class="required">Tin nhắn</label>
 													<textarea id="cf_message" required name="cf_message" title="Message" rows="6"></textarea>
 
-												</div><!--/ [col]-->
-
-											</li><!--/ .row -->
-
+												</div>
+											</li>
 										</ul>
-
-
-									<!-- - - - - - - - - - - - - - End of contact form - - - - - - - - - - - - - - - - -->
-
-								</div><!--/ .theme_box -->
-
+								</div>
 								<footer class="bottom_box on_the_sides">
 
 									<div class="left_side">
@@ -150,9 +92,7 @@
 									</div>
 
 								</footer>
-								</form><!--/ .contactform -->
-
-
+								</form>
 							</section>
 
 							<section class="section_offset">
@@ -171,8 +111,7 @@
 
 											</div>
 
-										</div><!--/ [col]-->
-
+										</div>
 										<div class="col-sm-7">
 
 											<p class="form_caption">Thông tin liên hệ của chúng tôi</p>
@@ -183,7 +122,6 @@
 												<li class="c_info_phone">0944 619 493</li>
 												<li class="c_info_mail"><a href="mailto:#">sale@nongsantunhien.com</a></li>
 												<li class="c_info_schedule">
-
 													<ul>
 
 														<li>Sáng: 8h30-11h30
@@ -212,7 +150,5 @@
 
 				</div><!--/ .container-->
 
-			</div><!--/ .page_wrapper-->
-			
-			<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
+			</div>
 @endsection

@@ -30,10 +30,11 @@
                             <div class="form-group">
                                 <select id="select-cate" class="form-control" name="category" data-placeholder="chọn danh mục">
                                     <option value="0" >Tất cả</option>
-                                    @foreach($category  as $itemCategory)
+                                    {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",old('parent')) }}
+                                    <!-- @foreach($category  as $itemCategory)
                                         <option value="{{$itemCategory->id}}" @if(Request::get('category')==$itemCategory->id) selected @endif>{{$itemCategory->name}}
                                         </option>
-                                    @endforeach
+                                    @endforeach -->
                                 </select>
                             </div>
                             <div class="clear"></div>
@@ -169,7 +170,7 @@
     <script>
         $('#select-ck,#select-cate,#parent-cate').selectize({
             create: true,
-            sortField: 'text'
+            /*sortField: 'text'*/
         });
     </script>
     <script>
