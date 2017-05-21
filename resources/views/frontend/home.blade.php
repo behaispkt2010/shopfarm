@@ -158,9 +158,49 @@
 									</div>
 								</div>
 							</div>
+							
 							<!-- - - - - - - - - - - - - - End of cate - - - - - - - - - - - - - - - - -->
 							@endforeach
-				
+							
+
+
+							<div class="product_respone_list visible-xs">
+								@foreach($getNewProduct as $key => $product)
+									<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}" class="product_respone" style="width: 50%;">
+										<div class="image_wrap">
+											<img src="{{url('/').$product->image}}" alt="">
+										</div>
+										<div class="description">
+											<h3>{{$product->title}}</h3>
+											<div class="kho_info clearfix">
+												<a href="#" class="alignleft" style="width: 70px;">
+													@if($product->levelKho == 1)
+														<img src="{{url('/images')}}/level1.png" alt="">
+													@elseif($product->levelKho == 2)
+														<img src="{{url('/images')}}/level2.png" alt="">
+													@elseif($product->levelKho == 3)
+														<img src="{{url('/images')}}/level3.png" alt="">
+													@else
+														<img src="{{url('/images')}}/level0.png" alt="">
+													@endif
+												</a>
+												<a href="#" class="alignleft" style="width: 70px;">
+													@if($product->confirm_kho == 1)
+														<img src="{{url('/images')}}/xacthuc.png" alt="">
+													@else
+													@endif
+												</a>
+												<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+											</div>
+											<div class="clearfix product_info">
+												<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+												<p class="alignright">Tối thiểu: {!! number_format($product->min_gram) !!} SP</p>
+											</div>
+										</div>
+									</a>
+								@endforeach
+							</div>
+							
 							<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
 							<div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">

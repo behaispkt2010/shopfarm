@@ -214,7 +214,7 @@
                         <?php $i=0 ;$j=0?>
                         @foreach($getNewProduct as $key => $product)
                             @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
-                                    <div class="col-md-4 col-xs-12 category_product_cell">
+                                    <div class="col-md-3 col-xs-12 category_product_cell">
 
                                         <div class="product_bestselt">
 
@@ -265,9 +265,9 @@
                                     @endif
                         @endforeach
                     </div>
-                    <footer class="bottom_box">
+                    <div class="bottom_box">
                         <a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
-                    </footer>
+                    </div>
                     
                 </div>
 
