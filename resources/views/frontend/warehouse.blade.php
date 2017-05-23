@@ -4,13 +4,13 @@
 @section('content')
     <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px;">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" style="padding-left: 23px;">
                 <h4 class="panel-title">
                     <i class="fa fa-user" aria-hidden="true"></i> Thông tin NCC
                 </h4>
             </div>
             <div id="filter_ncc_seach" class="panel-collapse collapse in">
-                <div class="panel-body">
+                <div class="panel-body" style="padding-left: 23px;">
                     <ul class="site_info_ncc">
                         <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
                         <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>

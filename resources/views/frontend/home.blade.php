@@ -11,10 +11,10 @@
 					<div class="section_offset" style="margin-bottom:0px;">
 
 						<div class="row">
-							<div class="col-xs-12 col-md-3" style="padding-bottom: 22px;">
+							<div class="col-xs-12 col-md-3 hidden-xs" style="padding-bottom: 22px;">
 								@include('frontend.witgets.category-product')
 							</div>
-							<div class="col-xs-12 col-md-9" style="padding-bottom: 22px;">
+							<div class="col-xs-12 col-md-9" style="padding-bottom: 22px; ">
 									{!! \App\Setting::getValue('slider')!!}
 							</div>
 							<div class="clear"></div>
@@ -164,46 +164,64 @@
 							
 
 
-							<div class="product_respone_list visible-xs">
-								@foreach($getNewProduct as $key => $product)
-									<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}" class="product_respone" style="width: 50%;">
-										<div class="image_wrap">
-											<img src="{{url('/').$product->image}}" alt="">
-										</div>
-										<div class="description">
-											<h3>{{$product->title}}</h3>
-											<div class="kho_info clearfix">
-												<a href="#" class="alignleft" style="width: 70px;">
-													@if($product->levelKho == 1)
-														<img src="{{url('/images')}}/level1.png" alt="">
-													@elseif($product->levelKho == 2)
-														<img src="{{url('/images')}}/level2.png" alt="">
-													@elseif($product->levelKho == 3)
-														<img src="{{url('/images')}}/level3.png" alt="">
-													@else
-														<img src="{{url('/images')}}/level0.png" alt="">
-													@endif
-												</a>
-												<a href="#" class="alignleft" style="width: 70px;">
-													@if($product->confirm_kho == 1)
-														<img src="{{url('/images')}}/xacthuc.png" alt="">
-													@else
-													@endif
-												</a>
-												<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+							<div class="row product_respone_list visible-xs">
+								<br>
+								<h2 class="text-center">Sản phẩm bán chạy</h2>
+								@foreach($bestSellerProduct as $key => $product)
+									<div class="product_respone col-xs-6" style="padding: 5px 4px;">
+										<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}" class="">
+											<div class="image_wrap_respone text-center" style="background-color: #f8f8f8;">
+												<img src="{{url('/').$product->image}}" style="height: 104px; border-radius: 5px;">
 											</div>
-											<div class="clearfix product_info">
-												<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
-												<p class="alignright">Tối thiểu: {!! number_format($product->min_gram) !!} SP</p>
+											<div class="description_product_respone">
+												<div class="title_product">{{$product->title}}</div>
+												<p>{{ \App\Util::ProductCode($product->id)  }}</p>
+												
+												<div class="clearfix product_info">
+													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+													
+												</div>
+												<div class="clearfix product_info">
+													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
+												</div>
 											</div>
-										</div>
-									</a>
+										</a>
+									</div>
 								@endforeach
+								<div class="bottom_box text-center">
+									<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+								</div>
+								<br>
+								<h2 class="text-center clearfix">Sản phẩm mới</h2>
+								@foreach($getNewProduct as $key => $product)
+									<div class="product_respone col-xs-6" style="padding: 5px 4px;">
+										<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}" class="">
+											<div class="image_wrap_respone text-center" style="background-color: #f8f8f8;">
+												<img src="{{url('/').$product->image}}" style="height: 104px; border-radius: 5px;">
+											</div>
+											<div class="description_product_respone">
+												<div class="title_product">{{$product->title}}</div>
+												<p>{{ \App\Util::ProductCode($product->id)  }}</p>
+												
+												<div class="clearfix product_info">
+													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+													
+												</div>
+												<div class="clearfix product_info">
+													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
+												</div>
+											</div>
+										</a>
+									</div>
+								@endforeach
+								<div class="bottom_box text-center">
+									<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+								</div>
 							</div>
 							
 							<!-- - - - - - - - - - - - - - Tabs - - - - - - - - - - - - - - - - -->
 
-							<div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">
+							<div class="tabs products section_offset animated transparent hidden-xs" data-animation="fadeInDown" data-animation-delay="150">
 
 								<!-- - - - - - - - - - - - - - Navigation of tabs - - - - - - - - - - - - - - - - -->
 
@@ -272,9 +290,9 @@
 														@endif
 											@endforeach
 										</div>
-										<footer class="bottom_box">
+										<div class="bottom_box">
 											<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
-										</footer>
+										</div>
 										
 									</div>
 									<div id="tab-2" class="tab_container">
@@ -344,11 +362,9 @@
 
 										</div>
 
-										<footer class="bottom_box">
-
-											<a href="url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
-
-										</footer>
+										<div class="bottom_box">
+											<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+										</div>
 
 									</div>
 

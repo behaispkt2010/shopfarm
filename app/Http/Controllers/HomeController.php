@@ -49,8 +49,8 @@ class HomeController extends Controller
         }
 
         $getBestStarsProduct = Product::getBestStarsProduct(9);
-        $getBestSellerProduct = Product::getBestSellerProduct(9);
-        $getNewProduct = Product::getNewProduct(9);
+        $getBestSellerProduct = Product::getBestSellerProduct(10);
+        $getNewProduct = Product::getNewProduct(10);
         $allCategory = CategoryProduct::where('parent',0)->get();
         /*$getVipByCate = WareHouse::getVipByCate(1,3);
         dd($getVipByCate);*/

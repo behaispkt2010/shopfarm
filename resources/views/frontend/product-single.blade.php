@@ -47,7 +47,7 @@
 
 										<div class="image_preview_container" >
 
-											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="" style="width: 450px;/*height: 293px;*/ border-radius: 5px;">
+											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="" class="image_product_single" style="border-radius: 5px;">
 
 											<button class="button_grey_2 icon_btn middle_btn open_qv"><i class="icon-resize-full-6"></i></button>
 
