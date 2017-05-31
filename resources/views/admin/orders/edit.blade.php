@@ -80,7 +80,8 @@
                                 </div>
                                 <div class="col-md-6 col-xs-12 text-right">
                                     <p>Tổng giá trị sản phẩm <span id="allpaymoney">0</span> VNĐ</p>
-                                    @if(Request::is('admin/orders/create'))
+                                    
+                                    <!-- @if(Request::is('admin/orders/create'))
                                         <p><a href="#" class="transport_info add_attr" data-toggle="modal"
                                               data-target=".modal-transport">
                                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a></p>
@@ -90,33 +91,52 @@
                                               data-type_driver="{{$arrOrder->type_driver}}" data-name_driver="{{$arrOrder->name_driver}}"
                                             data-phone_driver="{{$arrOrder->phone_driver}}" data-number_license_driver="{{$arrOrder->number_license_driver}}">
                                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>Sửa Thông tin vận chuyển</a></p>
-                                    @endif
+                                    @endif -->
 
                                 </div>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="tmp_type_driver ">@if(!empty($arrOrder->type_driver))
-                                            <label for="" class="transport_tmp">Phương thức vận chuyển: </label>
-                                            <span style="font-weight: bold;"> {{$arrOrder->type_driver}}@else{{old('type_driver')}} </span> @endif
-                                    </div>
-                                    <div class="tmp_name_driver ">@if(!empty($arrOrder->name_driver))
-                                            <label for="" class="transport_tmp">Tên tài xế: </label>
-                                            <span style="font-weight: bold;"> {{$arrOrder->name_driver}}@else{{old('name_driver')}} </span> @endif
-                                    </div>
-                                    <div class="tmp_phone_driver ">@if(!empty($arrOrder->phone_driver))
-                                            <label for="" class="transport_tmp">Số điện thoại: </label>
-                                            <span style="font-weight: bold;"> {{$arrOrder->phone_driver}}@else{{old('phone_driver')}} </span> @endif
-                                    </div>
-                                    <div class="tmp_number_license_driver ">@if(!empty($arrOrder->number_license_driver))
-                                            <label for="" class="transport_tmp">Biển số xe: </label>
-                                            <span style="font-weight: bold;"> {{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}} </span> @endif
-                                    </div>
-                                    <input type="hidden" name="type_driver" class="type_driver" value="@if(!empty($arrOrder->type_driver)){{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif">
-                                    <input type="hidden" name="name_driver" class="name_driver" value="@if(!empty($arrOrder->name_driver)){{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif">
-                                    <input type="hidden" name="phone_driver" class="phone_driver" value="@if(!empty($arrOrder->phone_driver)){{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif">
-                                    <input type="hidden" name="number_license_driver" class="number_license_driver" value="@if(!empty($arrOrder->number_license_driver)){{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif">
-                                </div>
+
                             </div>
+                            <div class="clear"></div>
+                            <hr>
+                            <div class="form-group">
+                                    <div class="form-group">
+                                        <label>Thông tin vận chuyển</label>
+                                        <select id="select-transport" name="select_transport" class="form-control" data-placeholder="Tên | Số điện thoại">
+                                            <option>Chọn Thông tin vận chuyển</option>
+                                            @foreach($driver as $itemDriver)
+                                                <option style="width: 100%; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" value="{{$itemDriver->id}}">{{$itemDriver->name_driver}} - {{ $itemDriver->phone_driver }}</option>
+                                            @endforeach
+                                        </select>
 
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-raised btn-success col-xs-12" data-toggle="modal"
+                                                    data-target=".modal-transport">Tạo thông tin vận chuyển mới
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="tmp_type_driver ">@if(!empty($arrOrder->type_driver))
+                                                <label for="" class="transport_tmp">Phương thức vận chuyển: </label>
+                                                <span style="font-weight: bold;"> {{$arrOrder->type_driver}}@else{{old('type_driver')}} </span> @endif
+                                        </div>
+                                        <div class="tmp_name_driver ">@if(!empty($arrOrder->name_driver))
+                                                <label for="" class="transport_tmp">Tên tài xế: </label>
+                                                <span style="font-weight: bold;"> {{$arrOrder->name_driver}}@else{{old('name_driver')}} </span> @endif
+                                        </div>
+                                        <div class="tmp_phone_driver ">@if(!empty($arrOrder->phone_driver))
+                                                <label for="" class="transport_tmp">Số điện thoại: </label>
+                                                <span style="font-weight: bold;"> {{$arrOrder->phone_driver}}@else{{old('phone_driver')}} </span> @endif
+                                        </div>
+                                        <div class="tmp_number_license_driver ">@if(!empty($arrOrder->number_license_driver))
+                                                <label for="" class="transport_tmp">Biển số xe: </label>
+                                                <span style="font-weight: bold;"> {{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}} </span> @endif
+                                        </div>
+                                        <input type="hidden" name="type_driver" class="type_driver" value="@if(!empty($arrOrder->type_driver)){{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif">
+                                        <input type="hidden" name="name_driver" class="name_driver" value="@if(!empty($arrOrder->name_driver)){{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif">
+                                        <input type="hidden" name="phone_driver" class="phone_driver" value="@if(!empty($arrOrder->phone_driver)){{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif">
+                                        <input type="hidden" name="number_license_driver" class="number_license_driver" value="@if(!empty($arrOrder->number_license_driver)){{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif">
+                                    </div>
+                                </div>  
                             <div class="clear"></div>
                             <hr>
                             <div class="footer_order">
@@ -133,8 +153,6 @@
                                 <input type="hidden" value="@if(!empty($arrOrder->received_pay)){!! $arrOrder->received_pay !!} @else{!! "" !!} @endif" name="received_pay">
                                 <input type="hidden" value="@if(!empty($arrOrder->remain_pay)){!! $arrOrder->remain_pay !!} @else{!! "" !!} @endif" name="remain_pay">
                             </div>
-
-
                         </div>
 
                     </div>
@@ -505,7 +523,7 @@
 </script>
 <!-- Select2 -->
 <script>
-    $('#select-kh,.select-payment,#select-product').selectize({});
+    $('#select-kh,.select-payment,#select-product,#select-transport').selectize({});
 </script>
 <script>
     $('#select-kh').on('change', function (e) {
@@ -525,6 +543,40 @@
                 $('.cus_address span').text(msg['address']);
                 $('.customer_id').val(msg['customer_id']);
                 $('.view_map').attr('href','https://www.google.com/maps/search/'+msg['address']);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //show notify
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+                new PNotify({
+                    title: 'Lỗi',
+                    text: 'Không tải được thông tin',
+                    type: 'danger',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+                $('.loading').css('display', 'none');
+            }
+        });
+    });
+    $('#select-transport').on('change', function (e) {
+        e.preventDefault();
+        var id_select_transport = $('select[name="select_transport"] :selected').val();
+        var _token = $('input[name="_token"]').val();
+        $('.loading').css('display', 'block');
+        $.ajax({
+            type: "POST",
+            url: '{!! url("/") !!}/admin/driver/AjaxGetDataTransport',
+            data: {id_select_transport: id_select_transport, _token: _token},
+            success: function (msg) {
+                $('.loading').css('display', 'none');
+                $('.tmp_type_driver').html('<label class="transport_tmp">Phương thức vận chuyển: </label>' + '<span style="font-weight: bold;">' + msg['type_driver'] + '</span>');
+                $('.tmp_name_driver').html('<label class="transport_tmp">Tên tài xế: </label>' + '<span style="font-weight: bold;">' + msg['name_driver'] + '</span>');
+                $('.tmp_phone_driver').html('<label class="transport_tmp">Số điện thoại: </label>' + '<span style="font-weight: bold;">' + msg['phone_driver'] + '</span>');
+                $('.tmp_number_license_driver').html('<label class="transport_tmp">Biển số xe: </label>' + '<span style="font-weight: bold;">' + msg['number_license_driver'] + '</span>');
+                $('.type_driver').val(msg['type_driver']);
+                $('.name_driver').val(msg['name_driver']);
+                $('.phone_driver').val(msg['phone_driver']);
+                $('.number_license_driver').val(msg['number_license_driver']);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 //show notify
@@ -606,17 +658,53 @@
         var number_license_driver = $('.modal-transport input[name="number_license_driver"]').val();
         var tmp_number_license_driver = '<label class="transport_tmp">Biển số xe: </label>' + '<span style="font-weight: bold;">' + number_license_driver + '</span>';
 
-        $('.type_driver').val(type_driver);
-        $('.name_driver').val(name_driver);
-        $('.phone_driver').val(phone_driver);
-        $('.number_license_driver').val(number_license_driver);
+        
 
-        $('.tmp_type_driver').html('<p>' + tmp_type_driver + '</p>');
-        $('.tmp_name_driver').html('<p>' + tmp_name_driver + '</p>');
-        $('.tmp_phone_driver').html('<p>' + tmp_phone_driver + '</p>');
-        $('.tmp_number_license_driver').html('<p>' + tmp_number_license_driver + '</p>');
-
-        $('.modal-transport').modal('hide');
+        
+        var _token = $('input[name="_token"]').val();
+        $('.loading').css('display','block');
+       
+        $.ajax({
+            type: "POST",
+            url: '{!! url("/") !!}/admin/driver/AjaxCreateTransport',
+            data: {type_driver: type_driver,name_driver: name_driver, phone_driver: phone_driver, number_license_driver: number_license_driver,_token: _token},
+            success: function( msg ) {
+                //console.log(msg);
+                $('.loading').css('display','none');
+                //show notify
+                new PNotify({
+                    title: 'Tạo mới thành công',
+                    text: '',
+                    type: 'success',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+//                location.reload();
+                $('.tmp_type_driver').html('<p>' + tmp_type_driver + '</p>');
+                $('.tmp_name_driver').html('<p>' + tmp_name_driver + '</p>');
+                $('.tmp_phone_driver').html('<p>' + tmp_phone_driver + '</p>');
+                $('.tmp_number_license_driver').html('<p>' + tmp_number_license_driver + '</p>');
+                
+                $('.type_driver').val(type_driver);
+                $('.name_driver').val(name_driver);
+                $('.phone_driver').val(phone_driver);
+                $('.number_license_driver').val(number_license_driver);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //show notify
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+                new PNotify({
+                    title: 'Lỗi',
+                    text: 'Vui lòng kiểm tra lại thông tin',
+                    type: 'danger',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+                $('.loading').css('display','none');
+            }
+        }).done(function () {
+            $('.modal-transport').modal('hide');
+        });
     });
 </script>
 <script>

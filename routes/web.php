@@ -56,9 +56,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|
     Route::resource('categoryProducts', 'CategoryProductController');
     Route::post('categoryProducts/createAjax', 'CategoryProductController@createAjax');
     Route::post('categoryProducts/updateAjax', 'CategoryProductController@updateAjax');
-
-
-
+ 
     //Đơn hàng
     Route::resource('orders', 'OrderController');
     Route::get('orders/getOrderByStatus/{id}', 'OrderController@getOrderByStatus');
@@ -94,12 +92,13 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|
     Route::post('users/AjaxGetDataCustomer', 'UserController@AjaxGetDataCustomer');
 
 
-
-
-
-
     //Nhân sự
-    Route::resource('staffs', 'StaffController');
+    Route::resource('staffs', 'StaffController'); 
+    // Vận chuyển
+    Route::resource('driver', 'DriverController'); 
+    Route::get('driver/data/json', 'DriverController@data');
+    Route::post('driver/AjaxCreateTransport', 'DriverController@AjaxCreateTransport');
+    Route::post('driver/AjaxGetDataTransport', 'DriverController@AjaxGetDataTransport');
     //Cài đặt
     Route::resource('setting', 'SettingController');
     //Menu

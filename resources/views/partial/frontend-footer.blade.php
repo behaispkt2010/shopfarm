@@ -1,12 +1,6 @@
 
-			<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
-
 			<footer id="footer">
-
-
 				<hr>
-
-				<!-- - - - - - - - - - - - - - Footer section- - - - - - - - - - - - - - - - -->
 
 				<div class="footer_section">
 
@@ -16,32 +10,33 @@
 
 							<div class="col-md-3 col-sm-6">
 
-								<!-- - - - - - - - - - - - - - Information widget - - - - - - - - - - - - - - - - -->
-
-								<section class="widget">
+								<section class="widget hidden-xs">
 
 									<h4>Thông tin</h4>
-
 									<ul class="list_of_links">
 
 										<li><a href="#">Giới thiệu</a></li>
-
 										<li><a href="#">Dịch vụ</a></li>
-										<li><a href="#">liên hệ</a></li>
+										<li><a href="#">Liên hệ</a></li>
 										<li><a href="#">Điều khoản</a></li>
 										<li><a href="#">Chính sách bảo mật</a></li>
 
 									</ul>
-
 								</section>
-
-								<!-- - - - - - - - - - - - - - End information widget - - - - - - - - - - - - - - - - -->
-
+								<section class="widget visible-xs">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thông tin <span class="caret"></span></a>
+							          <ul class="dropdown-menu">
+							            <li><a href="#">Giới thiệu</a></li>
+										<li><a href="#">Dịch vụ</a></li>
+										<li><a href="#">Liên hệ</a></li>
+										<li><a href="#">Điều khoản</a></li>
+										<li><a href="#">Chính sách bảo mật</a></li>
+							          </ul>
+							        </li>
+								</section>
 							</div><!--/ [col]-->
 
-							<div class="col-md-3 col-sm-6">
-
-								<!-- - - - - - - - - - - - - - Contact Us widget - - - - - - - - - - - - - - - - -->
+							<div class="col-md-3 col-sm-6 hidden-xs">
 
 								<section class="widget">
 
@@ -68,13 +63,9 @@
 
 								</section><!--/ .widget-->
 
-								<!-- - - - - - - - - - - - - - End of contact us widget - - - - - - - - - - - - - - - - -->
-
 							</div>
 
-							<div class="col-md-3 col-sm-6">
-
-								<!-- - - - - - - - - - - - - - Subscribe widget - - - - - - - - - - - - - - - - -->
+							<div class="col-md-3 col-sm-6 hidden-xs">
 
 								<section class="widget">
 
@@ -118,12 +109,10 @@
 
 								</section><!--/ .widget-->
 
-								<!-- - - - - - - - - - - - - - End of subscribe widget - - - - - - - - - - - - - - - - -->
-
 							</div><!--/ [col]-->
 							<div class="col-md-3 col-sm-6">
-
-								<a href="{{url('/resisterWareHouse')}}"><img src="{{asset('/images/dangkychukho.jpg')}}" alt=""></a>
+								Đăng ký chủ kho tại đây <a href="{{url('/resisterWareHouse')}}" class="btn btn-raised btn-primary btn-xs transformUppercase" style="background: #0f9d58;">Đăng ký</a>
+								<a class="hidden-xs" href="{{url('/resisterWareHouse')}}"><img src="{{asset('/images/dangkychukho.jpg')}}" alt=""></a>
 
 								{{--<section class="widget">
 

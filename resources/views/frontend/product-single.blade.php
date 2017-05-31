@@ -126,12 +126,12 @@
 											<div class="col-xs-6 col-sm-6 col-md-6" style="float: left;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;"
+														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;background: #00695c;"
 																data-toggle="modal" data-target=".modal-login" class="btn btn-success required_login">
 															Gọi điện
 														</button>
 													@else
-														<button id="phoneKho" style="line-height: 26px;width: 139px; font-size: 16px;"
+														<button id="phoneKho" style="line-height: 26px;width: 139px; font-size: 16px;background: #00695c;"
 															data-toggle="modal" data-target=".modal-buy" class="btn btn-success" data-phone="{{$product->phoneKho}}" data-title="Mua Ngay" data-namekho="{{$product->nameKho}}">
 															Gọi điện
 														</button>
@@ -143,12 +143,12 @@
 											<div class="col-xs-6 col-sm-6 col-md-6" style="float: right;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;"
+														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;background: #0f9d58;"
 																data-toggle="modal" data-target=".modal-login" class="btn btn-info required_login">
 															Chat Facebook
 														</button>
 													@else
-														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;" class="chat_chukho btn btn-info">
+														<button id="" style="line-height: 26px;width: 139px; font-size: 16px;background: #0f9d58;" class="chat_chukho btn btn-info">
 															Chat Facebook
 														</button>
 														<input type="hidden" id="is_fanpage_fb" name="is_fanpage_fb" value="{{ $product->fanpage_fb }}">

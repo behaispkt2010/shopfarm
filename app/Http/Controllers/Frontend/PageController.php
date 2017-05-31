@@ -46,7 +46,7 @@ class PageController extends Controller
 //                "link" => "từ trang liên hệ",
                 "subject" => "Khách hàng cần tư vấn"
             ];
-            $to = "xtrieu30@gmail.com";
+            $to = "behaispkt2010@gmail.com";
             Mail::to($to)->send(new Contact($data));
             $dataNotify['keyname'] = Util::$contact;
             $dataNotify['title'] = "Khách hàng cần được hỗ trợ";

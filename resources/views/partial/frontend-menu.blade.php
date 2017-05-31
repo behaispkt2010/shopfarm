@@ -7,7 +7,7 @@
                     <div class="main_header_row">
                         <div class="col-sm-3">
                             <a href="{{url('/')}}" class="logo">
-                                <img src="{{asset('frontend/images/logo.png')}}" alt="">
+                                <img src="{{asset('frontend/images/logo.png')}}" alt="" style="">
                             </a>
                         </div>
                         <div class="col-sm-6">
@@ -74,7 +74,7 @@
     </header>
 
     <header class="type_6 visible-xs">
-        <div id="main_navigation_wrap">
+        <div id="main_navigation_wrap" >
             <div class="bottom_part">
                 <div class="container">
                     <div class="row">
@@ -85,7 +85,7 @@
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                 </button>
                                     <a href="{{url('/')}}" class="logo" style="float: left;width: 72%;margin-top: -17px;">
-                                        <img src="{{asset('frontend/images/logo_rp_shop.png')}}" alt="" style="">
+                                        <img src="{{asset('frontend/images/logo_rp_shop.png')}}" alt="" style="height: 60px;">
                                     </a>
                                     <li class="user">
                                         @if(( !Auth::check()))
@@ -129,13 +129,13 @@
             </div>
         </div>   
     </header>
-    <div class="mobile-menu-icon-wrapper visible-xs" style="width: 100%;margin-top: 8px;height: 45px;">
+    <div class="mobile-menu-icon-wrapper visible-xs" style="width: 100%;padding-top: 8px;height: 56px;background-color: #f8f8f8;">
         <ul class="mobile-menu-icon">
-            <li class="search" style="width: 100%;margin: 0px;padding-left: 10px;">
+            <li class="search" style="width: 93%;-webkit-box-shadow: 3px 4px 15px -5px #888;">
             <div class="">
-                <form action="{{ url('/') }}" class="clearfix search" method="get">
-                    <input type="text"  tabindex="1" placeholder="Tìm sản phẩm bạn mong muốn..." name="search" class="alignleft">
-                    <button class="button_blue def_icon_btn alignleft"></button>
+                <form action="{{ url('/') }}" class="clearfix search" method="get" style="">
+                    <input type="text"  tabindex="1" placeholder="Tìm sản phẩm bạn mong muốn..." name="search" class="alignleft" style="">
+                    <button class="button_blue def_icon_btn alignleft" ></button>
                 </form>
             </div>
             </li>

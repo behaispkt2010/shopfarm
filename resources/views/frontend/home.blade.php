@@ -140,10 +140,19 @@
 																</a>
 																<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->product_ID)  }}</p>
 															</div>
+															@if (( !Auth::check()))
+															<div class="clearfix product_info">
+											                    <p><a href="#" class="required_login not_login" style="">Đăng nhập để xem giá</a></p>
+															</div>
+															<div class="clearfix product_info">
+																<p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_kg)  }}</a> SP</p>
+															</div>
+															@else
 															<div class="clearfix product_info">
 																<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 																<p class="alignright">Tối thiểu: {!! number_format($product->min_kg) !!} SP</p>
 															</div>
+															@endif
 														</div>
 													</div>
 												</div>
@@ -166,56 +175,63 @@
 
 							<div class="row product_respone_list visible-xs">
 								<br>
-								<h2 class="text-center">Sản phẩm bán chạy</h2>
+								<h4 class="text-center transformUppercase">Sản phẩm bán chạy</h4>
 								@foreach($bestSellerProduct as $key => $product)
-									<div class="product_respone col-xs-6" style="padding: 5px 4px;">
+									<div class="product_respone col-xs-6" >
 										<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}" class="">
-											<div class="image_wrap_respone text-center" style="background-color: #f8f8f8;">
-												<img src="{{url('/').$product->image}}" style="height: 104px; border-radius: 5px;">
+											<div class="image_wrap_respone text-center bg-white" style="border-radius: 5px; ">
+												<img src="{{url('/').$product->image}}" class="img_product_respone" style="height: 104px;">
 											</div>
-											<div class="description_product_respone">
+											<div class="description_product_respone bg-white">
 												<div class="title_product">{{$product->title}}</div>
 												<p>{{ \App\Util::ProductCode($product->id)  }}</p>
 												
 												<div class="clearfix product_info">
+												@if (( !Auth::check()))
+								                    <p><a href="#" class="required_login not_login" style="">Đăng nhập để xem giá</a> </p>
+								                @else
 													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+												@endif
 													
 												</div>
 												<div class="clearfix product_info">
-													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
+													<p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_gram)  }}</a> SP</p>
 												</div>
 											</div>
 										</a>
 									</div>
 								@endforeach
-								<div class="bottom_box text-center">
-									<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+								<div class="bottom_box text-center bg-home">
+									<a href="{{url('/')}}/products" class="button_grey middle_btn btn-viewmore">Xem nhiều sản phẩm</a>
 								</div>
 								<br>
-								<h2 class="text-center clearfix">Sản phẩm mới</h2>
+								<h4 class="text-center clearfix transformUppercase">Sản phẩm mới</h4>
 								@foreach($getNewProduct as $key => $product)
-									<div class="product_respone col-xs-6" style="padding: 5px 4px;">
+									<div class="product_respone col-xs-6" >
 										<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}" class="">
-											<div class="image_wrap_respone text-center" style="background-color: #f8f8f8;">
-												<img src="{{url('/').$product->image}}" style="height: 104px; border-radius: 5px;">
+											<div class="image_wrap_respone text-center bg-white" style="border-radius: 5px; ">
+												<img src="{{url('/').$product->image}}" class="img_product_respone" style="height: 104px;">
 											</div>
-											<div class="description_product_respone">
+											<div class="description_product_respone bg-white">
 												<div class="title_product">{{$product->title}}</div>
 												<p>{{ \App\Util::ProductCode($product->id)  }}</p>
 												
 												<div class="clearfix product_info">
+												@if (( !Auth::check()))
+								                    <p><a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a></p>
+								                @else
 													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
-													
+												@endif
 												</div>
 												<div class="clearfix product_info">
-													<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
+													<p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_gram)  }}</a> SP</p>
 												</div>
 											</div>
 										</a>
 									</div>
 								@endforeach
-								<div class="bottom_box text-center">
-									<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+								<div class="bottom_box text-center bg-home">
+									<a href="{{url('/')}}/products" class="button_grey middle_btn btn-viewmore">Xem nhiều sản phẩm</a>
 								</div>
 							</div>
 							
@@ -272,12 +288,18 @@
 																		</a>
 																		<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 																	</div>
+
 																	<div class="clearfix product_info">
+																	@if (( !Auth::check()))
+													                    <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
+													                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+													                @else
 																		<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
 																		<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+																	@endif
 																	</div>
 																	<div class="clearfix product_info">
-																		<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+																		<p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_gram)  }}</a> SP</p>
 																	</div>
 																</div>
 
@@ -337,16 +359,20 @@
 																	</a>
 																	<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 																</div>
-																<div class="clearfix product_info">
 
-																	<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
-																	<span class="alignright">
-											{!! \App\Rate::getRateProduct($product->id)!!}
-											</span>
+																<div class="clearfix product_info">
+																	@if (( !Auth::check()))
+													                    <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
+													                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+													                @else
+																		<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+																		<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+																	@endif
 																</div>
 																<div class="clearfix product_info">
-																	<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} Kg</p>
+																	<p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_gram)  }}</a> SP</p>
 																</div>
+
 															</div>
 
 														</div>
@@ -448,4 +474,5 @@
 				</div><!--/ .container-->
 
 			</div>
+			@include('admin.partial.modal_requiredlogin')
 @endsection

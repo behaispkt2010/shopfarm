@@ -162,7 +162,7 @@ class NewController extends Controller
             return redirect('admin/news/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
         else{
-            return redirect('admin/news/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+            return redirect('admin/news/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
 
         }
     }

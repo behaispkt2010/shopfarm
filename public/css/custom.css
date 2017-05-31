@@ -5640,7 +5640,7 @@ table.dtp-picker-days thead{
   color: #000;
 }
 .transport_tmp{
-  width: 100px;
+  width: 200px;
 }
 .btnCapNhat {
   position: absolute;
@@ -5686,6 +5686,9 @@ table.dtp-picker-days thead{
     position: absolute;
     text-align: right;
     right: 26px;
+  }
+  .transport_tmp{
+    width: 100px;
   }
 }
 .style_format {

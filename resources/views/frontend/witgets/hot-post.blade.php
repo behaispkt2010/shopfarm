@@ -2,17 +2,14 @@
 
 							<section class="section_offset">
 
-								<h3>Bài viết hot</h3>
+								<h5>Bài viết hot</h5>
 
 								<ul class="list_of_entries">
 						@foreach(\App\Article::getBestViewProduct(5) as $item)
-									<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
 
 									<li>
 
 										<article class="entry">
-
-											<!-- - - - - - - - - - - - - - Thumbnail - - - - - - - - - - - - - - - - -->
 
 											<a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}" class="entry_thumb">
 
@@ -20,13 +17,9 @@
 
 											</a>
 
-											<!-- - - - - - - - - - - - - - End of thumbnail - - - - - - - - - - - - - - - - -->
-
 											<div class="wrapper">
 
 												<h6 class="entry_title"><a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($item->blog_id)}}/{{$item->slug}}">{{$item->title}}</a></h6>
-
-												<!-- - - - - - - - - - - - - - Byline - - - - - - - - - - - - - - - - -->
 
 												<div class="entry_meta">
 

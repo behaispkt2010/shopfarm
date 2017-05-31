@@ -76,7 +76,7 @@
 					@foreach($products as $key=> $product)
 						@if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
 									<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-							<div class="col-md-4 category_product_cell">
+							<div class="col-md-4 col-xs-12 category_product_cell">
 
 								<div class="product_bestselt">
 
@@ -112,13 +112,19 @@
 											</a>
 											<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 										</div>
+
 										<div class="clearfix product_info">
-											<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
-											<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
-										</div>
-										<div class="clearfix product_info">
-											<p class="alignleft">Tối thiểu: {{ number_format($product->min_gram)  }} SP</p>
-										</div>
+                                        @if (( !Auth::check()))
+                                            <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
+                                            <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+                                        @else
+                                            <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+                                            <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+                                        @endif
+                                        </div>
+                                        <div class="clearfix product_info">
+                                            <p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_gram)  }}</a> SP</p>
+                                        </div>
 									</div>
 
 								</div>

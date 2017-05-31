@@ -120,6 +120,14 @@
                     @permission('customers')
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
                     @endpermission
+                    @permission('driver')
+                    <li><a><i class="fa fa-car"></i>Quản lý vận chuyển <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('driver.index')}}">Thông tin tài xế</a></li>
+                            <li><a href="{{route('driver.create')}}">Tạo mới</a></li>
+                        </ul>
+                    </li>
+                    @endpermission
                     @permission('sharingreferralcode')
                     <li><a href="{{ route('sharingreferralcode.index') }}"><i class="fa fa-qrcode"></i>Mã Giới thiệu</a></li>
                     @endpermission

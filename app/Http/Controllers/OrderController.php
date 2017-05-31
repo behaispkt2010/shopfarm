@@ -12,6 +12,7 @@ use App\ProductOrder;
 use App\Province;
 use App\User;
 use App\Util;
+use App\Driver;
 use App\WareHouse;
 use DateTime;
 use Illuminate\Http\Request;
@@ -123,6 +124,7 @@ class OrderController extends Controller
             ->get();
         $province = Province::get();
         $district = District::get();
+        $driver = Driver::get();
         if (Auth::user()->hasRole('kho')){
             $products = Product::where('kho',$strUserID)
                 ->where('status',1)
@@ -137,6 +139,7 @@ class OrderController extends Controller
             'province' =>$province,
             'district' =>$district,
             'products' =>$products,
+            'driver' =>$driver,
             'order_status' => $order_status,
 
         ];
@@ -299,6 +302,7 @@ class OrderController extends Controller
         $arrOrder = Order::find($id);
         $province = Province::get();
         $district = District::get();
+        $driver = Driver::get();
         if (Auth::user()->hasRole('kho')){
             $products = Product::where('kho',$strUserID)
                 ->where('status',1)
@@ -320,6 +324,7 @@ class OrderController extends Controller
             'province' =>$province,
             'district' =>$district,
             'products' =>$products,
+            'driver' =>$driver,
             'order_status' => $order_status,
             'arrOrder' => $arrOrder,
             'arrCustomerOrder' => $arrCustomerOrder,

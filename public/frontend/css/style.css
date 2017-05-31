@@ -1015,7 +1015,7 @@
 		input:not([type="submit"]),
 		textarea, .active_option{
 			color:#b2b2b2;
-			border:1px solid #eaeaea;
+			/*border:1px solid #eaeaea*/;
 			padding:8px 10px 8px 12px;
 			height: 38px;
 			width:100%;
@@ -1263,9 +1263,9 @@
 		}
 
 		.newsletter > button,
-		.search > *:last-child{ border-radius:0 3px 3px 0; }
+		.search > *:last-child{ border-radius:0 5px 5px 0; }
 
-		.search > *:last-child{ border-right:0px solid #00695c; }
+		.search > *:last-child{ /*border-right:0px solid #00695c;*/ }
 
 		.search .def_icon_btn{
 			width:50px;
@@ -5585,7 +5585,7 @@
 
 	.search_category{ width: 137px; }
 
-	.search input{ width: calc(100% - 60px); }
+	.search input{ width: calc(100% - 50px); }
 
 	#open_shopping_cart{ margin-top:5px; }
 
@@ -6877,7 +6877,7 @@ a:focus, a:hover{
 	width: 200px;
 	float: left;
 	color: #000;
-	width: 40%;
+	width: 34%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -6987,7 +6987,13 @@ a:focus, a:hover{
 		height: 120px;
 	}
 	.description_product_respone {
-		background-color: #f8f8f8;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;
+		background-color: #f8f8f8;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+		padding: 5px;
+	}
+	.product_respone {
+		padding: 5px 4px;background-color: #eaeaea;
 	}
 }
 
@@ -7231,7 +7237,7 @@ ul.mobile-menu-icon {
 	margin: 0px; 
 	font-size: 22px; 
 	padding: 0px; 
-	padding-right: 24px;
+	padding-right: 40px;
 	padding-top: 4px;
 }
 .icon_fa_frmlogin {
@@ -7247,4 +7253,34 @@ ul.mobile-menu-icon {
 .image_product_single {
 	width: 450px;
     max-height: 250px;
+}
+.bg-white {
+	background-color: #fff;
+}
+.bg-home {
+	background-color: #eaeaea;
+}
+.transformUppercase{
+	text-transform: uppercase;
+}
+.img_product_respone {
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+.bg-number {
+	color: #0f9d58;
+}
+.btn-viewmore {
+	margin-top: 10px;
+	background: #fff;
+}
+.img-warehouse{
+	width: 153px;padding-bottom: 10px;padding-left: 10px;
+}
+.not_login {
+	color: #008b00;
+	width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
