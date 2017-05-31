@@ -80,19 +80,19 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed main_navigation_fronend" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" >
+                                <button type="button" style="float: left;" class="navbar-toggle collapsed main_navigation_fronend" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" >
                                     <span class="sr-only">Toggle navigation</span>
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                 </button>
-                                    <a href="{{url('/')}}" class="logo" style="float: left;width: 72%;margin-top: -17px;">
+                                    <a href="{{url('/')}}" class="logo" style="float: left; width: 72%;margin-top: -17px;">
                                         <img src="{{asset('frontend/images/logo_rp_shop.png')}}" alt="" style="height: 60px;">
                                     </a>
                                     <li class="user">
                                         @if(( !Auth::check()))
-                                            <a href="#" title="Đăng nhập" class="fa fa-user login_xs" style="color: #fff; padding-left: 15px;"></a>
+                                            <a href="#" title="Đăng nhập" class="fa fa-user login_xs" style="color: #fff; padding-left: 15px; float: right;"></a>
                                         @else
-                                            <a href="javascript:;" class="fa fa-user user-profile dropdown-toggle" data-toggle="dropdown"
-                                                        aria-expanded="false" style="color: #fff; font-size: 22px; float: right;padding-top: 4px;"></a>
+                                            <a href="javascript:;" class="fa fa-user user-profile dropdown-toggle is_login" data-toggle="dropdown"
+                                                        aria-expanded="false" ></a>
                                             <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 38%;right: 0px;">
                                                 <li><a href="#">Xin chào {{Auth::user()->name}} !!! </a></li>
                                                 <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">

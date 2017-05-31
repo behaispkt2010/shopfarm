@@ -30,15 +30,15 @@ class HomeController extends Controller
     {
         if (!empty($request->get('search'))){
             $name = $request->get('search');
-            $cate= $request->get('search');
+            //$cate= $request->get('search');
             // dd($cate);
             $product1 = Product::query();
             if(!empty($name)){
-                $product2 =  $product1->where('title','LiKE','%'.$request->get('search').'%');
+                $product1 =  $product1->where('title','LiKE','%'.$request->get('search').'%');
             }
-            if(!empty($cate)){
-                $product2 =  $product1->where('category',$request->get('cateSearch'));
-            }
+            // if(!empty($cate)){
+            //     $product2 =  $product1->where('category',$request->get('cateSearch'));
+            // }
             
             $products = $product1->paginate(16);
             // dd($products);

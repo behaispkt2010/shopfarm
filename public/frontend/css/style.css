@@ -7237,8 +7237,14 @@ ul.mobile-menu-icon {
 	margin: 0px; 
 	font-size: 22px; 
 	padding: 0px; 
-	padding-right: 40px;
-	padding-top: 4px;
+	padding-right: 38px;
+	padding-top: 1px;
+}
+.is_login {    
+	color: #fff;
+    font-size: 22px;
+    float: right;
+    padding-top: 1px;
 }
 .icon_fa_frmlogin {
 	/*margin-top: 16px;*/
@@ -7283,4 +7289,9 @@ ul.mobile-menu-icon {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+@media only screen and (max-width:320px){
+	.main_navigation_fronend {
+		padding-right: 22px;
+	}
 }
