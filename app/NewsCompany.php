@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class NewsCompany extends Model
 {
     protected $table = 'news_company';
-    protected $fillable = ['title','slug','category', 'content', 'title_seo','description','image','author_id','status'];
+    protected $fillable = ['title','slug','category', 'content', 'title_seo','description','image','author_id','status','view_count'];
 	public static function getUserName($userID) {
     	$user = User::find($userID);
     	return $user->name;

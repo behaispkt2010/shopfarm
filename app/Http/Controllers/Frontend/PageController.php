@@ -9,6 +9,7 @@ use App\Notification;
 use App\Util;
 use App\WareHouse;
 use App\Product;
+use App\Events\ViewsCompanyEvents;
 use App\CompanyImage;
 use App\NewsCompany;
 use App\Company;
@@ -115,6 +116,7 @@ class PageController extends Controller
     }
 
     public function DetailNewsCompany($newscompanySlug, $company_id, $newscompany_id) {
+
         $arrImageDetail = CompanyImage::where('company_id', $company_id)->get();
         $arrNewsCompany = NewsCompany::select('users.*','company.*','news_company.*','company.name as namecompany','company.id as companyID')
             ->leftjoin('users','users.id','=','news_company.author_id')
@@ -125,6 +127,7 @@ class PageController extends Controller
             'arrImageDetail' => $arrImageDetail,
             'arrNewsCompany' => $arrNewsCompany,
         ];    
+        event(new ViewsCompanyEvents($arrNewsCompany));
         return view('frontend.newscompany-single', $data);   
     }
 
