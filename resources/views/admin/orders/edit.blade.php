@@ -30,18 +30,48 @@
                             @else
                                 <h2>Chi tiết đơn hàng {{\App\Util::OrderCode($id)}}</h2>
                             @endif
-                            <table class="table">
-                                <tbody class="list_product">
+                            
+                            <div class="col-md-6 col-xs-12 text-left visible-xs">
+                                <p>Tổng giá trị sản phẩm <span class="allpaymoney">0</span> VNĐ</p>
+                            </div>
+                            <div class="list_product_respone visible_xs_list_product text-left">
+                                @if(Request::is('admin/orders/create'))
+                                @else
+                                    @foreach($arrProductOrders as $arrProductOrder)
+                                        <div class="item-product" style="float: left;">
+                                            <div class="clear"></div>
+                                            <hr>
+                                            <div class="img_product_respone col-xs-3">
+                                                <img src="{{url('/')}}/{!! $arrProductOrder->image !!}" class="img-responsive img-thumbnail" alt="">
+                                                <i class="fa fa-times red delete-img-order" id="delete_product" style="cursor: pointer" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="name-product col-xs-7">
+                                                <p><span>{{ $arrProductOrder->title }} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></p>
+                                                <span class="total"> <span>{!! \App\Util::FormatMoney($arrProductOrder->price) !!}</span></span>
+                                                <input type="hidden" name="pricetotal[]" value="{{ $arrProductOrder->price }}" >
+                                                <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_sale }}">
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <span>x</span><input type="number" class="number-product" style="width:21px;" name="product_number[]" value="{{ $arrProductOrder->num }}">
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+                                @endif
+                            </div>
+
+                            <table class="table hidden_xs_list_product">
+                                <tbody class="list_product" style="width:100%;">
                                 @if(Request::is('admin/orders/create'))
                                 @else
                                     @foreach($arrProductOrders as $arrProductOrder)
                                         <tr class="item-product">
                                             <th><img src="{{url('/')}}/{!! $arrProductOrder->image !!}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
-                                            <td><span class="name-product"><span>{{ $arrProductOrder->title }} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
-                                            <td><span class="price-product"><span>{!! \App\Util::FormatMoney($arrProductOrder->price_out) !!}</span> </span>
-                                            <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_out }}">
+                                            <td style="min-width: 210px;"><span class="name-product"><span>{{ $arrProductOrder->title }} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
+                                            <td><span class="price-product"><span>{!! \App\Util::FormatMoney($arrProductOrder->price_sale) !!}</span> </span>
+                                            <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_sale }}">
                                             </td>
-                                            <td><span>x</span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="{{ $arrProductOrder->num }}"></td>
+                                            <td><span>x</span><input type="number" class="number-product" style="width:70px;" name="product_number[]" value="{{ $arrProductOrder->num }}"></td>
                                             <td><span class="total"> <span>{!! \App\Util::FormatMoney($arrProductOrder->price) !!}</span></span><input type="hidden" value="{{ $arrProductOrder->price }}" name="pricetotal[]"></td>
                                             <td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>
                                         </tr>
@@ -49,10 +79,18 @@
                                 @endif
                                 </tbody>
                             </table>
-
+                            
+                            <div class="row hidden-xs">
+                                <hr>
+                                <div class="col-md-6 col-md-offset-6 col-xs-12 text-right">
+                                    <p>Tổng giá trị sản phẩm <span class="allpaymoney">0</span> VNĐ</p>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <hr>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-9" style="margin-top: 13px">
+                                    <div class="col-md-9 col-xs-12" style="margin-top: 13px">
                                         <select id="select-product" name="select-product"  class="form-control " placeholder="Thêm sản phấm">
                                             <option value=""></option>
                                             @if(!empty($products))
@@ -65,44 +103,28 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <button type="button" id="btn_add_product" class="btn btn-raised btn-success">Thêm</button>
+
+                                    <div class="col-md-3 col-xs-12">
+                                        <button type="button" id="btn_add_product" class="btn btn-raised btn-success col-xs-12">Thêm</button>
                                     </div>
                                 </div>
+
+                                
                             </div>
                             <input type="hidden" class="form-control" name="slug" placeholder="slug" id="txtSlug" required>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-xs-12">
-                                    <label>Ghi chú</label>
-                                    <textarea class="form-control note-order-edit"  rows="5" name="note">@if(!empty($arrOrder->note)){{$arrOrder->note}}@else{{old('note')}}@endif</textarea>
+                                    <label style="margin-bottom: 16px;">Ghi chú</label>
+                                    <textarea class="form-control note-order-edit"  rows="10" name="note">@if(!empty($arrOrder->note)){{$arrOrder->note}}@else{{old('note')}}@endif</textarea>
 
                                 </div>
-                                <div class="col-md-6 col-xs-12 text-right">
-                                    <p>Tổng giá trị sản phẩm <span id="allpaymoney">0</span> VNĐ</p>
-                                    
-                                    <!-- @if(Request::is('admin/orders/create'))
-                                        <p><a href="#" class="transport_info add_attr" data-toggle="modal"
-                                              data-target=".modal-transport">
-                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thông tin vận chuyển</a></p>
-                                    @else
-                                        <p><a href="#"  data-toggle="modal"
-                                              data-target=".modal-transport" class="transport_info add_attr" id="transport_info"
-                                              data-type_driver="{{$arrOrder->type_driver}}" data-name_driver="{{$arrOrder->name_driver}}"
-                                            data-phone_driver="{{$arrOrder->phone_driver}}" data-number_license_driver="{{$arrOrder->number_license_driver}}">
-                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>Sửa Thông tin vận chuyển</a></p>
-                                    @endif -->
-
-                                </div>
-
-                            </div>
-                            <div class="clear"></div>
-                            <hr>
-                            <div class="form-group">
+                                
+                                <div class="col-md-6 col-xs-12" style="margin-top: -10px;">
                                     <div class="form-group">
                                         <label>Thông tin vận chuyển</label>
                                         <select id="select-transport" name="select_transport" class="form-control" data-placeholder="Tên | Số điện thoại">
-                                            <option>Chọn Thông tin vận chuyển</option>
+                                            <option></option>
                                             @foreach($driver as $itemDriver)
                                                 <option style="width: 100%; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" value="{{$itemDriver->id}}">{{$itemDriver->name_driver}} - {{ $itemDriver->phone_driver }}</option>
                                             @endforeach
@@ -114,29 +136,30 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-xs-12">
-                                        <div class="tmp_type_driver ">@if(!empty($arrOrder->type_driver))
-                                                <label for="" class="transport_tmp">Phương thức vận chuyển: </label>
-                                                <span style="font-weight: bold;"> {{$arrOrder->type_driver}}@else{{old('type_driver')}} </span> @endif
-                                        </div>
-                                        <div class="tmp_name_driver ">@if(!empty($arrOrder->name_driver))
-                                                <label for="" class="transport_tmp">Tên tài xế: </label>
-                                                <span style="font-weight: bold;"> {{$arrOrder->name_driver}}@else{{old('name_driver')}} </span> @endif
-                                        </div>
-                                        <div class="tmp_phone_driver ">@if(!empty($arrOrder->phone_driver))
-                                                <label for="" class="transport_tmp">Số điện thoại: </label>
-                                                <span style="font-weight: bold;"> {{$arrOrder->phone_driver}}@else{{old('phone_driver')}} </span> @endif
-                                        </div>
-                                        <div class="tmp_number_license_driver ">@if(!empty($arrOrder->number_license_driver))
-                                                <label for="" class="transport_tmp">Biển số xe: </label>
-                                                <span style="font-weight: bold;"> {{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}} </span> @endif
-                                        </div>
-                                        <input type="hidden" name="type_driver" class="type_driver" value="@if(!empty($arrOrder->type_driver)){{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif">
-                                        <input type="hidden" name="name_driver" class="name_driver" value="@if(!empty($arrOrder->name_driver)){{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif">
-                                        <input type="hidden" name="phone_driver" class="phone_driver" value="@if(!empty($arrOrder->phone_driver)){{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif">
-                                        <input type="hidden" name="number_license_driver" class="number_license_driver" value="@if(!empty($arrOrder->number_license_driver)){{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif">
+
+                                    <div class="tmp_type_driver ">@if(!empty($arrOrder->type_driver))
+                                            <label for="" class="transport_tmp">Phương thức vận chuyển: </label>
+                                            <span> {{$arrOrder->type_driver}}@else{{old('type_driver')}} </span> @endif
                                     </div>
-                                </div>  
+                                    <div class="tmp_name_driver ">@if(!empty($arrOrder->name_driver))
+                                            <label for="" class="transport_tmp">Tên tài xế: </label>
+                                            <span> {{$arrOrder->name_driver}}@else{{old('name_driver')}} </span> @endif
+                                    </div>
+                                    <div class="tmp_phone_driver ">@if(!empty($arrOrder->phone_driver))
+                                            <label for="" class="transport_tmp">Số điện thoại: </label>
+                                            <span> {{$arrOrder->phone_driver}}@else{{old('phone_driver')}} </span> @endif
+                                    </div>
+                                    <div class="tmp_number_license_driver ">@if(!empty($arrOrder->number_license_driver))
+                                            <label for="" class="transport_tmp">Biển số xe: </label>
+                                            <span> {{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}} </span> @endif
+                                    </div>
+                                    <input type="hidden" name="type_driver" class="type_driver" value="@if(!empty($arrOrder->type_driver)){{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif">
+                                    <input type="hidden" name="name_driver" class="name_driver" value="@if(!empty($arrOrder->name_driver)){{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif">
+                                    <input type="hidden" name="phone_driver" class="phone_driver" value="@if(!empty($arrOrder->phone_driver)){{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif">
+                                    <input type="hidden" name="number_license_driver" class="number_license_driver" value="@if(!empty($arrOrder->number_license_driver)){{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif">
+                                </div>
+                            </div>
+                            
                             <div class="clear"></div>
                             <hr>
                             <div class="footer_order">
@@ -238,7 +261,7 @@
                 <!-- modals -->
                 <!-- Large modal -->
 </div>
-<div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
+<div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" style="position: fixed;" alt=""></div>
 @include('admin.partial.modal_delete')
 <div class="modal fade bs-example-modal-km" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
      data-backdrop="static">
@@ -458,7 +481,7 @@
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label" for="focusedInput2"> Còn lại</label>
-                        <input class="form-control remain_pay" id="focusedInput2" type="number" name="remain_pay" required>
+                        <input class="form-control remain_pay" id="focusedInput2" type="number" name="remain_pay" required disabled="disabled">
                     </div>
                 </div>
             </div>
@@ -509,7 +532,7 @@
         $('input[type="hidden"][name="pricetotal[]"]').each(function() {
             price = parseInt(price) + parseInt($(this).val());
         });
-        $('#allpaymoney').html(price);
+        $('.allpaymoney').html(price);
     }
     $(document).ready(function () {
         $('#date-format').bootstrapMaterialDatePicker
@@ -518,12 +541,29 @@
             lang: 'vi',
             time: false,
         });
-        pricetotal();
+        
     });
 </script>
 <!-- Select2 -->
 <script>
     $('#select-kh,.select-payment,#select-product,#select-transport').selectize({});
+</script>
+<script type="text/javascript">
+    function pricecaculator(){
+        var price = 0;
+        $('input[type="hidden"][name="pricetotal[]"]').each(function() {
+            price = parseInt(price) + parseInt($(this).val());
+        });
+        return price;
+    }
+    $('.received_pay').on('change', function() {
+        var allpaymoney = pricecaculator();
+        var pay_received = $(this).val();
+        pay_remain = allpaymoney - pay_received;
+        $('.remain_pay').val(pay_remain);
+        /*alert(allpaymoney);
+        console.log(allpaymoney);*/
+    });
 </script>
 <script>
     $('#select-kh').on('change', function (e) {
@@ -569,10 +609,10 @@
             data: {id_select_transport: id_select_transport, _token: _token},
             success: function (msg) {
                 $('.loading').css('display', 'none');
-                $('.tmp_type_driver').html('<label class="transport_tmp">Phương thức vận chuyển: </label>' + '<span style="font-weight: bold;">' + msg['type_driver'] + '</span>');
-                $('.tmp_name_driver').html('<label class="transport_tmp">Tên tài xế: </label>' + '<span style="font-weight: bold;">' + msg['name_driver'] + '</span>');
-                $('.tmp_phone_driver').html('<label class="transport_tmp">Số điện thoại: </label>' + '<span style="font-weight: bold;">' + msg['phone_driver'] + '</span>');
-                $('.tmp_number_license_driver').html('<label class="transport_tmp">Biển số xe: </label>' + '<span style="font-weight: bold;">' + msg['number_license_driver'] + '</span>');
+                $('.tmp_type_driver').html('<label class="transport_tmp">Phương thức vận chuyển: </label>' + '<span>' + msg['type_driver'] + '</span>');
+                $('.tmp_name_driver').html('<label class="transport_tmp">Tên tài xế: </label>' + '<span>' + msg['name_driver'] + '</span>');
+                $('.tmp_phone_driver').html('<label class="transport_tmp">Số điện thoại: </label>' + '<span>' + msg['phone_driver'] + '</span>');
+                $('.tmp_number_license_driver').html('<label class="transport_tmp">Biển số xe: </label>' + '<span>' + msg['number_license_driver'] + '</span>');
                 $('.type_driver').val(msg['type_driver']);
                 $('.name_driver').val(msg['name_driver']);
                 $('.phone_driver').val(msg['phone_driver']);
@@ -650,13 +690,13 @@
     $("#create_transport").on('click', function (e) {
         e.preventDefault();
         var type_driver = $('.modal-transport input[name="type_driver"]').val();
-        var tmp_type_driver = '<label class="transport_tmp">Phương thức vận chuyển: </label>' + '<span style="font-weight: bold;">' + type_driver + '</span>';
+        var tmp_type_driver = '<label class="transport_tmp">Phương thức vận chuyển: </label>' + '<span>' + type_driver + '</span>';
         var name_driver = $('.modal-transport input[name="name_driver"]').val();
-        var tmp_name_driver = '<label class="transport_tmp">Tên tài xế: </label>' + '<span style="font-weight: bold;">' + name_driver + '</span>';
+        var tmp_name_driver = '<label class="transport_tmp">Tên tài xế: </label>' + '<span>' + name_driver + '</span>';
         var phone_driver = $('.modal-transport input[name="phone_driver"]').val();
-        var tmp_phone_driver = '<label class="transport_tmp">Số điện thoại: </label>' + '<span style="font-weight: bold;">' + phone_driver + '</span>';
+        var tmp_phone_driver = '<label class="transport_tmp">Số điện thoại: </label>' + '<span>' + phone_driver + '</span>';
         var number_license_driver = $('.modal-transport input[name="number_license_driver"]').val();
-        var tmp_number_license_driver = '<label class="transport_tmp">Biển số xe: </label>' + '<span style="font-weight: bold;">' + number_license_driver + '</span>';
+        var tmp_number_license_driver = '<label class="transport_tmp">Biển số xe: </label>' + '<span>' + number_license_driver + '</span>';
 
         
 
@@ -726,11 +766,11 @@
         }
     });
 
-    $(document).on('click','td #delete_product', function (e) {
+    $(document).on('click','#delete_product', function (e) {
         $(this).closest('.item-product').remove();
         pricetotal();
     });
-    $(document).on('change','td .number-product', function (e) {
+    $(document).on('change','.number-product', function (e) {
         var num = $(this).val();
         var price = $(this).closest('.item-product').find('input[type="hidden"][name="price_product_tmp[]"]').val();
         
@@ -753,31 +793,24 @@
     $('#btn_add_product').on('click', function (e) {
 
         var id = $('select[name="select-product"] :selected').val();
-        if(id == 0){
-            alert("Vui lòng chọn sản phẩm");
-        }
-
+        
         $('select[name="select-product"]')[0].selectize.setValue();
-//        alert(id+"-"+image);
         var _token = $('input[name="_token"]').val();
-        $('.loading').css('display','block');
-//            alert(check);
-        var values = $("input[name='product_id']")
-                .map(function(){return $(this).val();}).get();
-        //alert(values);
 
+        var values = $("input[name='product_id']")
+                .map(function(){return $(this).val();}).get(); 
         var tmp_product = [];
         $('input[type="hidden"][name="product_id[]"]').each(function(){
-            //alert($(this).val());
             tmp_product.push($(this).val(),tmp_product);
         });
-        var price_total = parseInt($('#allpaymoney').html());
+        var price_total = parseInt($('.allpaymoney').html());
 
-        //alert(price_total);
-        //alert(tmp_product);
         var checkExist = ProductIDExist(id);
         if(checkExist >= 1){
             alert("Sản phẩm đã tồn tại! Vui lòng chọn sản phẩm khác");
+        }
+        if(id == 0){
+            alert("Vui lòng chọn sản phẩm");
         }
         else {
             $('.loading').css('display','block');
@@ -786,20 +819,42 @@
                 url: '{!! url("/") !!}/admin/products/AjaxGetProduct',
                 data: {id: id, _token: _token},
                 success: function (msg) {
+                    var inventory_num = msg['inventory_num'];
+                    if(inventory_num <= 10) {
+                        alert('Sản phẩm này sắp hết hàng, vui lòng kiểm tra lại kho !!!');
+                    }
                     $('.loading').css('display', 'none');
                     $('.list_product').append('<tr class="item-product">'
                             + '<th><img src="{{url('/')}}/' + msg['image'] + '" class="img-responsive img-thumbnail"'
                             + 'style="max-width: 50px;" alt=""></th>'
-                            + '<td><span class="name-product"><span>' + msg['name'] + '(#' + id + ')</span></span><input type="hidden" value="' + id + '" name="product_id[]"></td>'
+                            + '<td style="min-width: 210px;"><span class="name-product"><span>' + msg['name'] + '(#' + id + ')</span></span><input type="hidden" value="' + id + '" name="product_id[]"></td>'
                             + '<td><span class="price-product"><span>' + msg['price'] + '</span>VNĐ </span><input type="hidden" value="' + msg['price'] + '" name="price_product_tmp[]"></td>'
                             + '<td><span>x</span><input type="number" class="number-product" style="width:50px;" name="product_number[]" value="1"></td>'
                             + '<td><span class="total"> <span>' + msg['price'] + '</span>VNĐ</span><input type="hidden" value="' + msg['price'] + '" name="pricetotal[]"></td>'
                             + '<td><i class="fa fa-times red delete" id="delete_product" style="cursor: pointer" aria-hidden="true"></i></td>'
                             + '</tr>'
                     );
+                    $('.list_product_respone').append('<div class="clear"></div>'
+                            +'<hr>'
+                            +'<div class="item-product ">'
+                            + '<div class="img_product_respone col-xs-3">'
+                            +    '<img src="{{url('/')}}/' + msg['image'] + '" class="img-responsive img-thumbnail" alt="">'
+                            +    '<i class="fa fa-times red delete-img-order" id="delete_product" style="cursor: pointer" aria-hidden="true"></i>'
+                            +'</div>'
+                            +'<div class="name-product col-xs-7">'
+                            +    '<p><span>' + msg['name'] + '(#' + id + ')</span></span><input type="hidden" value="' + id + '" name="product_id[]"></p>'
+                            +    '<span class="total"> <span>' + msg['price'] + '</span>VNĐ</span>'
+                            +    '<input type="hidden" name="pricetotal[]" value="'+ msg['price'] +'" >'
+                            +    '<input type="hidden" name="price_product_tmp[]" value="' + msg['price'] + '">'
+                            +'</div>'
+                            +'<div class="col-xs-2">'
+                            +    '<span>x</span><input type="number" class="number-product" style="width:21px;" name="product_number[]" value="1">'
+                            +'</div>'
+                            +'</div>'
+                    );
                     price_total = price_total + parseInt(msg['price']);
                     //alert(price_total);
-                    $('#allpaymoney').html(price_total);
+                    $('.allpaymoney').html(price_total);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     //show notify
@@ -853,5 +908,51 @@
         $('.modal-transport input[name="phone_driver"]').val(_self.data('phone_driver'));
         $('.modal-transport input[name="number_license_driver"]').val(_self.data('number_license_driver'));
     });
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        updateContainer();
+        pricetotal();
+    });
+    var rtime;
+    var timeout = false;
+    var delta = 200;
+    $(window).resize(function() {
+        rtime = new Date();
+        if (timeout === false) {
+            timeout = true;
+            setTimeout(resizeend, delta);
+        }
+    });
+
+    function resizeend() {
+        if (new Date() - rtime < delta) {
+            setTimeout(resizeend, delta);
+        } else {
+            timeout = false;
+            updateContainer();
+        }
+    }
+    function updateContainer() {
+        var width = $('.right_col').width();
+        var y=0;
+        if (width <= 767) {
+            y=1;
+        }
+        else {
+            y=2;
+        }
+        if ( y == 1 ) {
+            $('.visible_xs_list_product').css('display','inline-block');
+            $('.hidden_xs_list_product').remove();
+            $('.hidden_xs_list_product').css('display','none');
+        }
+        else {
+            $('.hidden_xs_list_product').css('display','inline-block');
+            $('.visible_xs_list_product').remove();
+            $('.visible_xs_list_product').css('display','none');
+        }
+    }
 </script>
 @endsection

@@ -7,82 +7,125 @@
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
     @endsection
-@section('add_styles')
-        <!-- Datatables -->
-<link href="{{asset('plugin/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
-    @endsection
 @section('content')
-    <br>
+    <div class="row top-right">
+
+            <div class="x_panel">
+                <form action="" method="GET">
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <select id="select-driver" class="form-control" name="kho" data-placeholder="Chọn kho">
+                                    @if(!Auth::user()->hasRole('kho'))
+
+                                    <option value="0" >Chọn kho</option>
+                                    @foreach($user as $user)
+                                        <option value="{{$user->id}}" @if(Request::get('kho')==$user->id) selected @endif>{{$user->name}}</option>
+
+                                    @endforeach
+                                        @else
+                                        <option value="{{Auth::user()->id}}" selected >{{Auth::user()->name}}</option>
+                                    @endif
+
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group label-floating">
+
+                                <label class="control-label" for="addon2">Tên tài xế | Số điện thoại</label>
+
+                                <div class="input-group text-center">
+                                    <input type="text" id="addon2" class="form-control" name="name" value="{{Request::get('name')}}">
+                                      <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-fab btn-fab-mini">
+                                            <i class="material-icons">search</i>
+                                        </button>
+                                      </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </form>
+            </div>
+
+    </div>
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <!-- Name and Description -->
+
+        <div class="col-md-12">
+            <div class="">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        @if(count($driver) != 0)
+                        @foreach($driver as $itemDriver)
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                <div class="well box_1">
+                                    
+                                    <div id="driver" class="col-sm-12">
+
+                                        <div class="col-xs-12 " style="padding-left: 0px;">
+                                            <ul class="list-unstyled " style="font-size: 16px;width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                                                <li><span class="label-box">Tên tài xế:</span>{{ $itemDriver['name_driver'] }}</li>
+                                                <li><span class="label-box">Loại xe:</span>{{ $itemDriver['type_driver'] }}</li>
+                                                <li><span class="label-box">Số điện thoại:</span>{{ $itemDriver['phone_driver'] }}</li>
+                                                <li><span class="label-box">Biển số xe:</span>{{ $itemDriver['number_license_driver'] }}</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <a href="{{route('driver.edit',['id' => $itemDriver->id])}}"
+                                           class="btn btn-raised btn-primary btn-xs">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Sửa
+                                        </a>
+                                        <form action="{{route('driver.destroy',['id' => $itemDriver->id])}}" method="post" class="form-delete" style="display: inline">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                            <input type="text" class="hidden" value="{{$itemDriver->id}}">
+                                            {{method_field("DELETE")}}
+                                            <a type="submit" class = "btn btn-raised  btn-xs btn-danger" name ="delete_modal" style="display: inline-block"><i class="fa fa-times" aria-hidden="true"></i> Xóa</a>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="clearfix"></div>
+                        <div class="text-center">
+                            {{ $driver->appends(array('kho' => Request::get('kho'),'name' => Request::get('name')))->links() }}
+                        </div>
+                        @else
+                        <div>không tìm thấy dữ liệu</div>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="x_panel">
-        <table id="table" class="table table-striped table-bordered bulk_action" data-form="deleteForm">
-            <thead>
-            <tr>
-                <th>Phương thức vận chuyển</th>
-                <th>Tên tài xế</th>
-                <th>Số điện thoại</th>
-                <th>Biển số xe</th>
-                <th width="50px"></th>
-            </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
+
     @include('admin.partial.modal_delete')
 
 @endsection
-
 @section('add_scripts')
-        <!-- Datatables -->
-    <script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-    <script src="{{asset('plugin/datatables.net-scroller/js/datatables.scroller.min.js')}}"></script>
-    <script src="{{asset('plugin/jszip/dist/jszip.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
-
-
-
-    <script type="text/javascript">
-                @if(isset($type))
-                var oTable;
-        $(document).ready(function () {
-            oTable = $('#table').DataTable({
-                "language": {
-                    "url": "/plugin/datatable-lang/Vietnamese.json"
-                },
-                "processing": true,
-                "serverSide": true,
-                "responsive": true,
-                "order": [],
-                "aoColumnDefs" : [ {
-                    'bSortable' : false,
-                    'aTargets' : [ 4 ]
-                } ],
-                "ajax": "{{ url('admin/'.$type.'/data/json') }}",
-            });
+            <!-- Datatables -->
+    <script src="{{asset('js/selectize.js')}}"></script>        
+    <script>
+        $('#select-driver').selectize({
+            //create: true,
+            //sortField: 'text'
         });
-        @endif
     </script>
-
-
 @endsection
 

@@ -73,21 +73,26 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label for="ex4">Giá thu vào</label>
                                                 <input type="number" class="form-control" name="price_in" required
                                                        value="@if(!empty($product->price_in)){{$product->price_in}}@else{{old('price_in')}}@endif">
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label for="ex4">Giá bán ra</label>
                                                 <input type="number" class="form-control" name="price_out" required
                                                        value="@if(!empty($product->price_out)){{$product->price_out}}@else{{old('price_out')}}@endif">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="ex4">Giá khuyến mãi</label>
+                                                <input type="number" class="form-control" name="price_sale"
+                                                       value="@if(!empty($product->price_sale)){{$product->price_sale}}@else{{old('price_sale')}}@endif">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="ex4">Khối lượng (Kg)</label>
+                                        <label for="ex4">Giá tính theo bao nhiêu Kg</label>
                                         <input type="number" id="ex4" class="form-control" name="gram" required
                                                value="@if(!empty($product->gram)){{$product->gram}}@else{{old('gram')}}@endif">
                                     </div>

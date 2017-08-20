@@ -9,6 +9,9 @@ use App\Notification;
 use App\Util;
 use App\WareHouse;
 use App\Product;
+use App\CompanyImage;
+use App\NewsCompany;
+use App\Company;
 use App\WarehouseImageDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -96,6 +99,37 @@ class PageController extends Controller
         //dd($getNewProduct);
         return view('frontend.warehouse', $data);
     }
+    public function DetailCompany($company_id) {
+        $arrImageDetail = CompanyImage::where('company_id', $company_id)->get();
+        $arrCompany = Company::select('company.*', 'users.*', 'company.address as company_address', 'company.name as name_company')
+            ->leftjoin('users','users.id','=','company.user_id')
+            ->where('company.id', $company_id)
+            ->first();
+        $getNewsCompany = NewsCompany::getNewsCompany($company_id, 16);  
+        $data = [
+            'company' => $arrCompany,
+            'arrImageDetail' => $arrImageDetail,
+            'getNewsCompany' => $getNewsCompany,
+        ];
+        return view('frontend.company-single', $data);
+    }
+
+    public function DetailNewsCompany($newscompanySlug, $company_id, $newscompany_id) {
+        $arrImageDetail = CompanyImage::where('company_id', $company_id)->get();
+        $arrNewsCompany = NewsCompany::select('users.*','company.*','news_company.*','company.name as namecompany','company.id as companyID')
+            ->leftjoin('users','users.id','=','news_company.author_id')
+            ->leftjoin('company','company.user_id','=','news_company.author_id')
+            ->where('news_company.id', $newscompany_id)
+            ->first();
+        $data = [
+            'arrImageDetail' => $arrImageDetail,
+            'arrNewsCompany' => $arrNewsCompany,
+        ];    
+        return view('frontend.newscompany-single', $data);   
+    }
+
+
+
     public function ConfirmKho(){
         return view('frontend.xacthuckho');
     }

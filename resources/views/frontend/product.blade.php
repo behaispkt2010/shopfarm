@@ -110,7 +110,7 @@
 												@else
 												@endif
 											</a>
-											<p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+											<p class="alignleft textoverlow">{{ \App\Util::ProductCode($product->id)  }}</p>
 										</div>
 
 										<div class="clearfix product_info">
@@ -118,7 +118,7 @@
                                             <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
                                             <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
                                         @else
-                                            <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+                                            <p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
                                             <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
                                         @endif
                                         </div>
@@ -152,7 +152,7 @@
 
 				</div>
 			</footer>
-				@endif
+			@endif
 
 		</div>
 		</div>

@@ -97,7 +97,7 @@ class OrderController extends Controller
                 ->orderBy('id','DESC')
                 ->paginate(9);
         }
-
+        // dd($arrAllOrders);
             $AllOrders = Order::count();
             $arrOrderByStatus = OrderStatus::get();
             $data = [
@@ -124,7 +124,11 @@ class OrderController extends Controller
             ->get();
         $province = Province::get();
         $district = District::get();
-        $driver = Driver::get();
+        if ( Auth::user()->hasRole(['kho']) ){
+            $driver = Driver::where('kho', $strUserID)->get();
+        } else {
+            $driver = Driver::get();
+        }
         if (Auth::user()->hasRole('kho')){
             $products = Product::where('kho',$strUserID)
                 ->where('status',1)
@@ -193,36 +197,13 @@ class OrderController extends Controller
             $historyUpdateStatusOrder->save();
 
 
-//            $ProductOrder = [];
-//
-//            foreach ($arrProductID as $index => $ProductID) {
-//                $ProductOrder[$index]['id_product'] = $ProductID;
-//                $ProductOrder[$index]['order_id'] = $strOrderID;
-//                $ProductOrder[$index]['created_at'] = new DateTime();
-//                $ProductOrder[$index]['updated_at'] = new DateTime();
-//            }
-//            foreach ($arrPriceTotal as $index => $PriceTotal) {
-//                $ProductOrder[$index]['price'] = $PriceTotal;
-//                $ProductOrder[$index]['order_id'] = $strOrderID;
-//                $ProductOrder[$index]['created_at'] = new DateTime();
-//                $ProductOrder[$index]['updated_at'] = new DateTime();
-//            }
-//            foreach ($arrNumberProduct as $index => $NumberProduct) {
-//                $ProductOrder[$index]['num'] = $NumberProduct;
-//                $ProductOrder[$index]['order_id'] = $strOrderID;
-//                $ProductOrder[$index]['created_at'] = new DateTime();
-//                $ProductOrder[$index]['updated_at'] = new DateTime();
-//
-//            }
-
-
             foreach ($arrProductID as $key=>$ProductID) {
                 $ProductOrder1 = new ProductOrder();
                 $productInfo = Product::find($ProductID);
                 $ProductOrder1['id_product'] = $ProductID;
                 $ProductOrder1['order_id'] = $strOrderID;
                 $ProductOrder1['price_in'] = $productInfo->price_in;
-                $ProductOrder1['price'] = $productInfo->price_out * $arrNumberProduct[$key];
+                $ProductOrder1['price'] = $productInfo->price_sale * $arrNumberProduct[$key];
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
@@ -264,7 +245,7 @@ class OrderController extends Controller
         $order =Order::where('id',$id)->first();
 
         $customer = User::where('id', $order->customer_id)->first();
-        $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title', 'products.price_out')
+        $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title', 'products.price_sale')
             ->leftJoin('products', 'product_orders.id_product', 'products.id')
             ->where('product_orders.order_id', $order->id)->get();
         $orderStatus = OrderStatus::get();
@@ -384,30 +365,13 @@ class OrderController extends Controller
             $historyUpdateStatusOrder->save();
 
 
-
-
-//            $ProductOrder = [];
-//
-//            foreach ($arrProductID as $index => $ProductID) {
-//                $ProductOrder[$index]['id_product'] = $ProductID;
-//                $ProductOrder[$index]['order_id'] = $strOrderID;
-//            }
-//            foreach ($arrPriceTotal as $index => $PriceTotal) {
-//                $ProductOrder[$index]['price'] = $PriceTotal;
-//                $ProductOrder[$index]['order_id'] = $strOrderID;
-//            }
-//            foreach ($arrNumberProduct as $index => $NumberProduct) {
-//                $ProductOrder[$index]['num'] = $NumberProduct;
-//                $ProductOrder[$index]['order_id'] = $strOrderID;
-//            }
-
             foreach ($arrProductID as $key=>$ProductID) {
                 $ProductOrder1 = new ProductOrder();
                 $productInfo = Product::find($ProductID);
                 $ProductOrder1['id_product'] = $ProductID;
                 $ProductOrder1['order_id'] = $strOrderID;
                 $ProductOrder1['price_in'] = $productInfo->price_in;
-                $ProductOrder1['price'] = $productInfo->price_out * $arrNumberProduct[$key];
+                $ProductOrder1['price'] = $productInfo->price_sale * $arrNumberProduct[$key];
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
@@ -415,24 +379,49 @@ class OrderController extends Controller
             if ($request->get('status') == Util::$statusOrderFail) {
                 $arrUser = User::find($request->customer_id);
                 $getCodeOrder = Util::OrderCode($id);
+                $strIDChuKho = Auth::user()->id;
+                $arrChuKho = User::find($strIDChuKho);
+
+                $dataNotifyAdmin['keyname'] = Util::$orderfail;
+                $dataNotifyAdmin['title'] = "Đơn hàng bị lỗi";
+                $dataNotifyAdmin['content'] = "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua đang bị lỗi";
+                $dataNotifyAdmin['author_id'] = Auth::user()->id;
+                $dataNotifyAdmin['roleview'] = Util::$roleviewAdmin;
+                $dataNotifyAdmin['orderID_or_productID'] = $id;
+
+
                 $dataNotify['keyname'] = Util::$orderfail;
                 $dataNotify['title'] = "Đơn hàng bị lỗi";
                 $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi";
                 $dataNotify['author_id'] = Auth::user()->id;
-                $dataNotify['roleview'] = Util::$roleviewAdmin;
+                $dataNotify['roleview'] = $strIDChuKho;
                 $dataNotify['orderID_or_productID'] = $id;
+                
                 Notification::firstOrCreate($dataNotify);
+                Notification::firstOrCreate($dataNotifyAdmin);
             }
             elseif ($request->get('status') == Util::$statusOrderReturn) {
                 $arrUser = User::find($request->customer_id);
                 $getCodeOrder = Util::OrderCode($id);
+                $strIDChuKho = Auth::user()->id;
+                $arrChuKho = User::find($strIDChuKho);
+
+                $dataNotifyAdmin['keyname'] = Util::$orderreturn;
+                $dataNotifyAdmin['title'] = "Đơn hàng sắp trả về kho";
+                $dataNotifyAdmin['content'] = "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua sắp trả về kho";
+                $dataNotifyAdmin['author_id'] = Auth::user()->id;
+                $dataNotifyAdmin['roleview'] = Util::$roleviewAdmin;
+                $dataNotifyAdmin['orderID_or_productID'] = $id;
+
                 $dataNotify['keyname'] = Util::$orderreturn;
                 $dataNotify['title'] = "Đơn hàng sắp trả về kho";
                 $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " sắp trả về kho";
                 $dataNotify['author_id'] = Auth::user()->id;
-                $dataNotify['roleview'] = Util::$roleviewAdmin;
+                $dataNotify['roleview'] = $strIDChuKho;
                 $dataNotify['orderID_or_productID'] = $id;
+
                 Notification::firstOrCreate($dataNotify);
+                Notification::firstOrCreate($dataNotifyAdmin);
             }
 //            DB::table('product_orders')->insert($ProductOrder);
         }

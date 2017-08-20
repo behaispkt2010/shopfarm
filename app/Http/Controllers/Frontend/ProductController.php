@@ -11,6 +11,8 @@ use App\Product;
 use App\ProductOrder;
 use App\Rate;
 use App\User;
+use App\WareHouse;
+use App\NewsCompany;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -83,6 +85,76 @@ class ProductController extends Controller
             "nameCate"=>$cate->name
         ];
         return view('frontend.product',$data);
+
+    }
+    public function GetAllCompany(){
+
+        $getAllNewsCompany = NewsCompany::leftjoin('users','users.id','=','news_company.author_id')
+            ->leftjoin('company','company.user_id','=','users.id')
+            ->where('news_company.status',1)
+            ->inRandomOrder()
+            ->paginate(30);
+        $data =[
+            "getAllNewsCompany" => $getAllNewsCompany
+        ];
+        return view('frontend.company-business',$data);
+
+    }
+    public function GetAllWareHouse(){
+
+        $getAllWareHouse = WareHouse::inRandomOrder()->paginate(30);
+
+        $data =[
+            "getAllWareHouse" => $getAllWareHouse
+        ];
+        return view('frontend.warehouse-business',$data);
+
+    }
+    public function GetAllProduct(Request $request){
+
+        if (!empty($request->get('search'))){
+            $name = $request->get('search');
+            //$cate= $request->get('search');
+            // dd($cate);
+            $product1 = Product::query();
+            if(!empty($name)){
+                $product1 =  $product1->where('title','LiKE','%'.$request->get('search').'%');
+            }
+            // if(!empty($cate)){
+            //     $product2 =  $product1->where('category',$request->get('cateSearch'));
+            // }
+            
+            $products = $product1->paginate(16);
+            // dd($products);
+                $data = [
+                    "products" => $products,
+                ];
+            return view('frontend.productview',$data);
+        }
+
+        $getBestStarsProduct = Product::getBestStarsProduct(9);
+        $getBestSellerProduct = Product::getBestSellerProduct(10);
+        $getNewProduct = Product::getNewProduct(10);
+        $allCategory = CategoryProduct::where('parent',0)->get();
+
+        /*$getAllNewsCompany = NewsCompany::leftjoin('users','users.id','=','news_company.author_id')
+            ->leftjoin('company','company.user_id','=','users.id')
+            ->where('news_company.status',1)
+            ->inRandomOrder()
+            ->paginate(16);
+        $getAllWareHouse = WareHouse::inRandomOrder()->paginate(16);*/
+
+        /*$getVipByCate = WareHouse::getVipByCate(1,3);*/
+        // dd($getAllNewsCompany);
+        $data = [
+            'getNewProduct' =>$getNewProduct,
+            'bestSellerProduct'=>$getBestSellerProduct,
+            'getBestStarsProduct'=>$getBestStarsProduct,
+            'allCategory'=>$allCategory,
+            /*'getAllNewsCompany'=>$getAllNewsCompany,
+            'getAllWareHouse'=>$getAllWareHouse*/
+        ];
+        return view('frontend.productview',$data);
 
     }
     public function SingleProduct($cate,$slug){

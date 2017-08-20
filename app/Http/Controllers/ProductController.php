@@ -26,10 +26,8 @@ class ProductController extends Controller
     {
         $id = $request->get('id');
         $product =  Product::find($id);
-        $productUpdatePrice = new ProductUpdatePrice();
         $data['product_id']=$id;
         $data['price_in']=$request->get('price_in');
-        $data['price_out']=0;
         $data['number']=$request->get('number');
         if(empty($request->get('supplier'))) {
             $supplier= "none";
@@ -40,7 +38,7 @@ class ProductController extends Controller
         $data['supplier'] = $supplier;
 
 
-        $productUpdatePrice->create($data);
+        ProductUpdatePrice::create($data);
 
         $data1['price_in']=$request->get('price_in');
 //        $data1['price_out']=0;
@@ -57,6 +55,37 @@ class ProductController extends Controller
     /**
      * ajax update
      */
+    public function UpdateProductHistoryInput(Request $request)
+    {
+        $id = $request->get('id');
+        $historyID = $request->get('historyid');
+        $numberold = $request->get('numberold');
+        $product =  Product::find($id);
+        $productprice =  ProductUpdatePrice::find($historyID);
+        $data['product_id']=$id;
+        $data['price_in']=$request->get('price_in');
+        $data['number']=$request->get('number');
+        if(empty($request->get('supplier'))) {
+            $supplier= "none";
+        }
+        else{
+            $supplier=$request->get('supplier');
+        }
+        $data['supplier'] = $supplier;
+        $productprice->update($data);
+
+        $data1['price_in']=$request->get('price_in');
+        $data1['inventory_num']=$data['number']+$product->inventory_num-$numberold;
+
+        $product->update($data1);
+
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return \Response::json($response);
+    }
+
     public function checkProductAjax(Request $request)
     {
         $id = $request->get('id');
@@ -79,7 +108,8 @@ public function AjaxGetProduct(Request $request){
     $response = array(
         'image' => $product->image,
         'name' => $product->title,
-        'price' => $product->price_out,
+        'price' => $product->price_sale,
+        'inventory_num' => $product->inventory_num,
     );
     return \Response::json($response);
 }
@@ -113,7 +143,7 @@ public function AjaxGetProduct(Request $request){
                 if(!Auth::user()->hasRole('kho'))
                     $product1 =  $product1->where('kho',$kho);
                 else {
-                    $product1 =  $product1->where('kho',$kho)->where('kho',Auth::user()->id);
+                    $product1 =  $product1->where('kho',Auth::user()->id);
                 }
             }
             $product = $product1->paginate(9);
@@ -200,12 +230,23 @@ public function AjaxGetProduct(Request $request){
                 $data['slug'] =  $data['slug'].'-'.$today;
             }
             //$data['code'] = Util::ProductCode($request);
+            if ( $request->get('price_sale') != 0 ) {
+                $data['price_sale']=$request->get('price_sale');
+            }
+            else {
+                $data['price_sale']=$request->get('price_out');
+            }
             $product1 = Product::create($data);
     //        dd($product);
-            $Price = new ProductUpdatePrice();
             $dataPrice['product_id']=$product1->id;
             $dataPrice['price_in']=$request->get('price_in');
             $dataPrice['price_out']=$request->get('price_out');
+            if ( $request->get('price_sale') != 0 ) {
+                $dataPrice['price_sale']=$request->get('price_sale');
+            }
+            else {
+                $dataPrice['price_sale']=$request->get('price_out');
+            }
             $dataPrice['supplier']= "create";
             $dataPrice['number']= $request->get('inventory_num');
             ProductUpdatePrice::create($dataPrice);
@@ -326,12 +367,23 @@ public function AjaxGetProduct(Request $request){
             $dataNotify['roleview'] = $product->kho;
             Notification::create($dataNotify);
         }
-
+        if ( $request->get('price_sale') != 0 ) {
+            $data['price_sale']=$request->get('price_sale');
+        }
+        else {
+            $data['price_sale']=$request->get('price_out');
+        }
         $product->update($data);
-        $Price = new ProductUpdatePrice();
         $dataPrice['product_id']=$id;
         $dataPrice['price_in']=$request->get('price_in');
         $dataPrice['price_out']=$request->get('price_out');
+        /*$dataPrice['price_sale']=$request->get('price_sale');*/
+        if ( $request->get('price_sale') != 0 ) {
+            $dataPrice['price_sale']=$request->get('price_sale');
+        }
+        else {
+            $dataPrice['price_sale']=$request->get('price_out');
+        }
         $dataPrice['supplier']= "create";
         $dataPrice['number']= 0;
         ProductUpdatePrice::create($dataPrice);

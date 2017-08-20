@@ -54,7 +54,10 @@ return [
     |
     */
 
-    'from' => ['address' => "info.memojapanese@gmail.com", 'name' => "Nông sản tự nhiên"],
+    'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
+    ],
 
     /*
     |--------------------------------------------------------------------------

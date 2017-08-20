@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Util;
+
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -73,13 +75,14 @@ class Order extends Model
     }
     public static function getInfoOrder($status,$type=0){
         $idUser = Auth::user()->id;
+        $statusOrderReturn = Util::$statusOrderReturn;
         if(Auth::user()->hasRole('kho')) {
             if ($type == 1) {
                 $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
                     ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
                     ->where('orders.kho_id', $idUser)
                     ->where('orders.status', '<>', $status)
-                    ->where('orders.status', '<>', 10)
+                    ->where('orders.status', '<>', $statusOrderReturn)
                     ->get();
             } else {
                 $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
@@ -94,7 +97,7 @@ class Order extends Model
                 $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
                     ->leftJoin('orders', 'product_orders.order_id', '=', 'orders.id')
                     ->where('orders.status', '<>', $status)
-                    ->where('orders.status', '<>', 10)
+                    ->where('orders.status', '<>', $statusOrderReturn)
                     ->get();
             } else {
                 $orderProducts = ProductOrder::select('product_orders.price', 'product_orders.num')
@@ -108,7 +111,7 @@ class Order extends Model
         $count=0;
         if(!empty($orderProducts)){
         foreach($orderProducts as $orderProduct){
-            $price=$price+($orderProduct->price * $orderProduct->num);
+            $price=$price+($orderProduct->price);
             }
           $count =  count($orderProducts);
         }

@@ -54,14 +54,19 @@ class AuthorizeMiddleware {
 			$time_quangcao_bonus = $itemCheck->time_quangcao_bonus;
 			$created_time_quangcao = $itemCheck->created_time_quangcao;
 		}
+		if ( $user_test == 1 ) {
+			$date_end_test = "3100-01-01 00:00:00";
+		}
 		$CodeChuKho = Util::UserCode($user_id_kho);
 		$time_now = date("Y-m-d H:i:s");
 		$dteStart = new DateTime($time_now);
 		$dteEnd   = new DateTime($date_end_test);
 		$dteDiff  = $dteStart->diff($dteEnd);
-		$dateend = $dteDiff->format('%R%a');
+		$dateend = ($dteDiff->format('%R%a'));
+		/*var_dump($date_end_test);
+		var_dump($dateend);*/
 // check user_test và add Notification
-		if (($user_test == 2) && ($dateend < 3)){
+		if (( $user_test == 2 ) && ( $dateend < 3 )) {
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Tài khoản sắp hết thời gian dùng thử";
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
@@ -71,12 +76,12 @@ class AuthorizeMiddleware {
 
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Tài khoản sắp hết thời gian dùng thử";
-			$data['content'] = "Chủ kho " .$CodeChuKho. "còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = Util::$roleviewAdmin;
 			Notification::firstOrCreate($data);
 		}
-		if (($user_test == 2) && ($date_end_test < $time_now )){
+		if (( $user_test == 2 ) && ( $date_end_test < $time_now )){
 			abort(401);
 		}
 // check Xác nhận kho và add Notification 	
@@ -95,7 +100,7 @@ class AuthorizeMiddleware {
 
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Sắp hết thời gian Xác nhận kho";
-			$data['content'] = "Chủ kho " .$CodeChuKho. "còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = Util::$roleviewAdmin;
 			Notification::firstOrCreate($data);
@@ -110,7 +115,7 @@ class AuthorizeMiddleware {
 		$dateDifflevel  = $dteStart->diff($timeEndlevelTmp);
 		$countTimelevel = $dateDifflevel->format('%R%a');
 
-		if (($level != 0) && ($countTimeConfirm < 3)){
+		if (($level != 0) && ($countTimelevel < 3) && !empty($created_upgrade_level)){
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại";
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
@@ -120,7 +125,7 @@ class AuthorizeMiddleware {
 
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại";
-			$data['content'] = "Chủ kho " .$CodeChuKho. "còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = Util::$roleviewAdmin;
 			Notification::firstOrCreate($data);
@@ -134,7 +139,7 @@ class AuthorizeMiddleware {
 		$timeEndquangcaoTmp = date_add($created_upgrade_quangcaoTmp, date_interval_create_from_date_string($total_time_quangcao_kho.' months'));
 		$dateDiffquangcao  = $dteStart->diff($timeEndquangcaoTmp);
 		$countTimequangcao = $dateDiffquangcao->format('%R%a');
-		if (($quangcao == 1) && ($countTimeConfirm < 3)){
+		if (($quangcao == 1) && ($countTimequangcao < 3)){
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Sắp hết thời gian Quảng Cáo";
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
@@ -144,7 +149,7 @@ class AuthorizeMiddleware {
 
 			$data['keyname'] = Util::$userexpired;
 			$data['title'] = "Sắp hết thời gian Quảng Cáo";
-			$data['content'] = "Chủ kho " .$CodeChuKho. "còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = Util::$roleviewAdmin;
 			Notification::firstOrCreate($data);

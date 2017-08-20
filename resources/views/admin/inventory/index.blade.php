@@ -16,11 +16,28 @@
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
-                                    <option value="0" >Tất cả kho</option>
-                                    @foreach($wareHouses  as $wareHouse)
+                                    
+                                    @if(Auth::user()->hasRole('admin'))
+                                        <option value="0"
+                                                @if(!empty($article->category) && $article->category == 0) selected @endif >
+                                            Mặc định
+                                        </option>
+                                        @foreach($wareHouses  as $itemData)
+                                            <option value="{{$itemData->id}}"
+                                                    @if(!empty($product->kho) && $product->kho == $itemData->id) selected @endif >
+                                                {{$itemData->name}}({{$itemData->id}})
+                                            </option>
+                                        @endforeach
+                                    @else
+                                    <option value="{{Auth::user()->id}}">
+                                        {{Auth::user()->name}}({{\App\Util::UserCode(Auth::user()->id)}})
+                                    </option>
+                                    @endif
+
+                                    <!-- @foreach($wareHouses  as $wareHouse)
                                         <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>#{{$wareHouse->id}}({{$wareHouse->name}})</option>
 
-                                    @endforeach
+                                    @endforeach -->
 
                                 </select>
                             </div>

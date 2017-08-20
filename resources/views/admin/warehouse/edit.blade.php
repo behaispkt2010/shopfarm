@@ -537,7 +537,7 @@
                         <div class="form-group">
                             <label for="code" class="col-md-3 control-label">Cấp kho: </label>
                             <div class="col-md-4">
-                                <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif/>
+                                <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }} " @endif />
                             </div>
                         </div>
                         <br>
@@ -821,14 +821,14 @@
                     <div class="row">
                         <div class="form-group">
                             <label for="code" class="col-md-4 control-label">Cấp kho: </label>
-                            <div class="col-md-7" style="padding-right: 24px;">
-                                <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }}" @endif/>
+                            <div class="col-md-7 col-xs-8" style="padding-right: 24px;">
+                                <input type="number" class="form-control" name="levelkhoUpgrade" required min="1" max="3" value="@if(!empty($wareHouse->level)){{ $wareHouse->level }} " @endif />
                             </div>
                         </div>
                         <div class="col-md-12 col-xs-12">
                             <div class="form-group">
                                 <label for="code" class="control-label" style="float: left;">Thời gian sử dụng dịch vụ: </label>
-                                <div class="col-md-7 col-xs-8">
+                                <div class="col-md-7 col-xs-11">
                                     <select id="time_request_upgrade_level" class="form-control" required name="time_request_upgrade_level">
                                         <option value="">Chọn số tháng</option>
                                         <option value="6">6 tháng</option>
@@ -1558,7 +1558,7 @@
     </script>
     <script>
         $("#btnSendRequestUpgrade").on('click', function (e) {
-            var levelkho = $('input[name="levelkhoUpgrade"]').val();
+            var levelkho = $('.modal-upgrade input[name="levelkhoUpgrade"]').val();
             var time_request_upgrade_level = $('#time_request_upgrade_level').val();
             var _token = $('input[name="_token"]').val();
             if (time_request_upgrade_level == "") {
@@ -1749,7 +1749,8 @@
                         hide: true,
                         styling: 'bootstrap3'
                     });
-                    location.reload();
+                    $('.modal-hinhchitietkho').modal('hide');
+                    // location.reload();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     var Data = JSON.parse(XMLHttpRequest.responseText);
@@ -1829,6 +1830,7 @@
                     hide: true,
                     styling: 'bootstrap3'
                 });
+                $('.modal-hinhchitietkho').modal('hide');
 //                    location.reload();
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {

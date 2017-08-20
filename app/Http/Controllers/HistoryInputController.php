@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HistoryInputController extends Controller
 {
@@ -21,13 +22,25 @@ class HistoryInputController extends Controller
     {
         if(!empty($request->get('date'))){
             $date = $request->get('date');
-//            dd($date);
-            $productUpdatePrice=ProductUpdatePrice::where(DB::raw("(DATE_FORMAT(created_at,'%d-%m-%Y'))"),$date)
-                ->paginate(9);
-            $data=[
-                'productUpdatePrice'=>$productUpdatePrice,
-                'date'=>$date,
-            ];
+            $user_id = Auth::user()->id;
+            if ( Auth::user()->hasRole(['admin','editor']) ) {
+
+                $productUpdatePrice=ProductUpdatePrice::where(DB::raw("(DATE_FORMAT(created_at,'%d-%m-%Y'))"),$date)
+                    ->orderBy('id','DESC')
+                    ->paginate(9);
+            } else {
+                $productUpdatePrice=ProductUpdatePrice::select('product_update_prices.*')
+                    ->where(DB::raw("(DATE_FORMAT(product_update_prices.created_at,'%d-%m-%Y'))"),$date)
+                    ->leftjoin('products','products.id','=','product_update_prices.product_id')
+                    ->where('products.kho', $user_id)
+                    ->orderBy('id','DESC')
+                    ->paginate(9);
+            }
+                $data=[
+                    'productUpdatePrice'=>$productUpdatePrice,
+                    'date'=>$date,
+                ];
+            
             return view('admin.historyInput.edit',$data);
         }
         elseif(!empty($request->get('from'))){
@@ -42,6 +55,7 @@ class HistoryInputController extends Controller
                 ->selectRaw('sum(number) as sum_number')
                 ->selectRaw('created_at')
                 ->whereBetween('created_at', array(new DateTime($from), new DateTime($to)))
+                ->orderBy('id','DESC')
                 ->paginate(9);
 //        dd($productUpdatePrice);
             $data = [
@@ -56,6 +70,7 @@ class HistoryInputController extends Controller
                 ->selectRaw('count(*) as count')
                 ->selectRaw('sum(number) as sum_number')
                 ->selectRaw('created_at')
+                ->orderBy('id','DESC')
                 ->paginate(9);
 //        dd($productUpdatePrice);
             $data = [

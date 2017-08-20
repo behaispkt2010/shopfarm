@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\NewsCompany;
 use App\Util;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -180,7 +181,7 @@ class NewController extends Controller
                     'id' => $article->id,
                     'title' => $article->title,
                     'category' => Category::getNameCateById($article->category),
-                    'author_id' => $article->author_id,
+                    'author_id' => NewsCompany::getUserName($article->author_id),
                     'created_at' => $article->created_at->format('d/m/Y'),
                 ];
             });

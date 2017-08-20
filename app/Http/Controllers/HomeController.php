@@ -6,7 +6,9 @@ use App\Category;
 use App\CategoryProduct;
 use App\Product;
 use App\ProductOrder;
+use App\Company;
 use App\WareHouse;
+use App\NewsCompany;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -52,13 +54,24 @@ class HomeController extends Controller
         $getBestSellerProduct = Product::getBestSellerProduct(10);
         $getNewProduct = Product::getNewProduct(10);
         $allCategory = CategoryProduct::where('parent',0)->get();
-        /*$getVipByCate = WareHouse::getVipByCate(1,3);
-        dd($getVipByCate);*/
+
+        $getAllNewsCompany = NewsCompany::select('users.*', 'company.*', 'news_company.*' , 'company.id as companyID' ,'news_company.id as newscompanyID')
+            ->leftjoin('users','users.id','=','news_company.author_id')
+            ->leftjoin('company','company.user_id','=','users.id')
+            ->where('news_company.status',1)
+            ->inRandomOrder()
+            ->paginate(16);
+        $getAllWareHouse = WareHouse::inRandomOrder()->paginate(16);
+
+        /*$getVipByCate = WareHouse::getVipByCate(1,3);*/
+        // dd($getAllNewsCompany);
         $data = [
             'getNewProduct' =>$getNewProduct,
             'bestSellerProduct'=>$getBestSellerProduct,
             'getBestStarsProduct'=>$getBestStarsProduct,
-            'allCategory'=>$allCategory
+            'allCategory'=>$allCategory,
+            'getAllNewsCompany'=>$getAllNewsCompany,
+            'getAllWareHouse'=>$getAllWareHouse
         ];
         return view('frontend.home',$data);
     }

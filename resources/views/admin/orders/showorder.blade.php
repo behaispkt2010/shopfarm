@@ -29,7 +29,7 @@
                     </ul>
                 </div>
                 <div class="col-md-12 con-tracking hidden-xs">
-                    <div class="col-sm-6 col-xs-12 fix-padlr">
+                    <div class="col-md-7 col-sm-6 col-xs-12 fix-padlr">
                         {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
                         <h2>Thông tin đặt hàng</h2>
                         <table class="table list-order table-curved">
@@ -39,11 +39,11 @@
                                 <tr class="item-product">
                                     {{--<th><span class="code-product">{{ $itemProductOrder->code }}</span></th>--}}
                                     <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
-                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_out) !!}</span>  </span></td>
+                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_sale) !!}</span>  </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>
-                                    <td><span class="total"> <span>{!! \App\Util::FormatMoney(($itemProductOrder->price_out)*($itemProductOrder->num)) !!}</span> </span></td>
+                                    <td><span class="total"> <span>{!! \App\Util::FormatMoney(($itemProductOrder->price_sale)*($itemProductOrder->num)) !!}</span> </span></td>
                                 </tr>
-                                <?php $total=$total + (($itemProductOrder->price_out)*($itemProductOrder->num)); ?>
+                                <?php $total=$total + (($itemProductOrder->price_sale)*($itemProductOrder->num)); ?>
                             @endforeach
                             <tr>
                                 {{--<th></th>--}}
@@ -96,10 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-xs-12 fix-padlr cl-center">
-
-                    </div>
-                    <div class="col-sm-4 col-xs-12 fix-padlr">
+                    <div class="col-md-5 col-sm-4 col-xs-12 fix-padlr">
                         {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
                         <h2>Thông tin nhận hàng</h2>
                         <table class="tracking-table">
@@ -121,8 +118,8 @@
                     </div>
 
                 </div>
-                <div class="col-md-12 con-tracking visible-xs">
-                    <div class="col-sm-6 col-xs-12 fix-padlr">
+                <div class="col-md-12 col-xs-12 con-tracking visible-xs">
+                    <div class="col-md-7 col-sm-6 col-xs-12 fix-padlr">
                         <h2>Thông tin đặt hàng</h2>
                         <table class="table list-order table-curved">
                             <tbody>
@@ -130,16 +127,16 @@
                             @foreach($productOrder as $itemProductOrder)
                                 <tr class="item-product">
                                     <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
-                                    <td><span class="price-product"><span>{{number_format($itemProductOrder->price) }}</span> VNĐ </span></td>
+                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_sale) !!}</span> </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>
                                     
                                 </tr>
-                                <?php $total=$total + (($itemProductOrder->price)*($itemProductOrder->num)); ?>
+                                <?php $total=$total + (($itemProductOrder->price)); ?>
                             @endforeach
                             <tr>
                                 <td></td>
                                 <td>Tổng: </td>
-                                <td><span class="total">  {{number_format($total)}} VNĐ</span></td>
+                                <td><span class="total">  {!!\App\Util::FormatMoney($total)!!}</span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -184,10 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-xs-12 fix-padlr cl-center">
-
-                    </div>
-                    <div class="col-sm-4 col-xs-12 fix-padlr">
+                    <div class="col-md-5 col-sm-4 col-xs-12 fix-padlr">
                         {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
                         <h2>Thông tin nhận hàng</h2>
                         <table class="tracking-table">

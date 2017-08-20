@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\ProductOrder;
+use App\Product;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -72,8 +73,10 @@ class DashboardAdminController extends Controller
         $orderProduct = ProductOrder::select('product_orders.id','orders.kho_id','product_orders.price_in','product_orders.price','product_orders.num')
             ->leftJoin('orders','product_orders.order_id','=','orders.id')
             ->where('orders.kho_id',$idUser)
+            ->where('orders.status','=',8)
             ->get();
 //        dd($orderProduct);
+        $numProduct = count(Product::where('kho',$idUser)->get());   
         $totalPriceIn=0;
         $totalPrice=0;
         /*$users = User::leftjoin('role_user','role_user.user_id','=','users.id')
@@ -81,12 +84,13 @@ class DashboardAdminController extends Controller
             ->orderBy('id','DESC')
             ->get();*/
         foreach($orderProduct as $itemOrder){
-            $totalPrice = $totalPrice + ($itemOrder->num * $itemOrder->price);
+            $totalPrice = $totalPrice + ($itemOrder->price);
             $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
 
         }
+        // dd($totalPrice);
         $profit =$totalPrice - $totalPriceIn;
-        $numProduct = count($orderProduct);
+        // $numProduct = count($orderProduct);
         $data =[
             'numOrder' =>$numOrder,
             'totalPrice' =>$totalPrice,

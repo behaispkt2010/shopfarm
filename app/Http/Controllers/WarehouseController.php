@@ -96,7 +96,7 @@ class WarehouseController extends Controller
             $data['date_end_test'] = NULL;
         }
         if(Auth::user()->hasRole('admin')) {
-            $dataNotify['keyname'] = Util::$upgradeLevelKhoSuccess;
+            $dataNotify['keyname'] = Util::$dangkytraphiSuccess;
             $dataNotify['title'] = "Thay đổi tài khoản thành công";
             $dataNotify['content'] = "Bạn đã đăng ký trả phí thành công";
             $dataNotify['author_id'] = $userID;
@@ -326,7 +326,7 @@ class WarehouseController extends Controller
         $levelKho = $request->get('levelkho');
         $data['keyname'] = Util::$quangcao;
         $data['title'] = "Chủ kho đăng kí nâng cấp";
-        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho." với thời gian" .$time_request_upgrade_level." tháng";
+        $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho." với thời gian " .$time_request_upgrade_level." tháng";
         $data['author_id'] = $userID;
         $data['roleview'] = Util::$roleviewAdmin;
         Notification::create($data);

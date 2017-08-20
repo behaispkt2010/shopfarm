@@ -7,6 +7,8 @@ use App\Traits\CaptchaTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\NotificationUser;
+use Illuminate\Notifications\Notifiable;
 
 class RegisterController extends Controller
 {

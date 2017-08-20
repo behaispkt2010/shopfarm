@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\DriverRequest;
 use App\Driver;
+use App\User;
 use Yajra\Datatables\Datatables;
+
+use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class DriverController extends Controller
 {
@@ -33,12 +37,46 @@ class DriverController extends Controller
         );
         return \Response::json($response);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $driver = Driver::get();
+        if ($request->get('name') || $request->get('kho')) {
+            $name = $request->get('name');
+            $kho = $request->get('kho');
+            $driver1 = Driver::query();
+            if(!empty($name)){
+                if(!Auth::user()->hasRole('kho'))
+                    $driver1 =  $driver1->where('name_driver','LiKE','%'.$name.'%')->orwhere('phone_driver','LiKE','%'.$name.'%');
+                else {
+                    $driver1 =  $driver1->where('kho', Auth::user()->id)->where('name_driver','LiKE','%'.$name.'%')->orwhere('phone_driver','LiKE','%'.$name.'%');
+                }
+            }
+            if(!empty($kho)){
+                if(!Auth::user()->hasRole('kho'))
+                    $driver1 =  $driver1->where('kho',$kho);
+                else {
+                    $driver1 =  $driver1->where('kho',Auth::user()->id);
+                }
+            }
+            $driver = $driver1->paginate(9);
+        }
+        else if(!Auth::user()->hasRole('kho')) {
+            $driver = Driver::orderBy('id', 'DESC')
+                ->paginate(9);
+        }
+        else {
+            $driver = Driver::orderBy('id','DESC')
+                ->where('kho',Auth::user()->id)
+                ->paginate(9);
+        }
+        $user = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
+            ->leftjoin('role_user','role_user.user_id','=','users.id')
+            ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
+            ->where('role_user.role_id',4)
+            ->get();
+        
         $data = [
+            'user' => $user,
             'driver' => $driver,
-            'type'  => 'driver'
         ];
         return view('admin.driver.index', $data);
     }
@@ -62,6 +100,7 @@ class DriverController extends Controller
     public function store(DriverRequest $request)
     {
         $data = $request->all();
+        $data['kho'] = Auth::user()->id;
         Driver::create($data);
         return redirect('admin/driver/')->with(['flash_level'=>'success','flash_message'=>'Thành công']);
     }
@@ -128,30 +167,5 @@ class DriverController extends Controller
         else{
             return redirect('admin/driver/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
         }
-    }
-    public function data()
-    {
-        $driver = Driver::get()
-            ->map(function ($driver) {
-                return [
-                    'id' => $driver->id,
-                    'type_driver' => $driver->type_driver,
-                    'name_driver' => $driver->name_driver,
-                    'phone_driver' => $driver->phone_driver,
-                    'number_license_driver' => $driver->number_license_driver,
-                ];
-            });
-
-        return Datatables::of($driver)
-            ->add_column('actions',
-                '<a class = "btn-xs btn-info" href="{{route(\'driver.edit\',[\'id\' => $id])}}" style="margin-right: 5px;display: inline"><i class="fa fa-pencil"  aria-hidden="true"></i></a>
-                            <form action="{{route(\'driver.destroy\',[\'id\' => $id])}}" method="post" class="form-delete" style="display: inline">
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                <input type="text" class="hidden" value="{{$id}}">
-                                 {{method_field("DELETE")}}
-                           <a type="submit" class = "btn-xs btn-danger" name ="delete_modal" style="display: inline-block"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                            </form>')
-            ->remove_column('id')
-            ->make();
     }
 }

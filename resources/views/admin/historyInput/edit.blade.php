@@ -23,7 +23,9 @@
                                     <th>Tên sản phẩm</th>
                                     <th>Số luợng nhập</th>
                                     <th>Số tiền nhập</th>
-                                    {{--<th>Số tiền bán</th>--}}
+                                    <th>Tổng số tiền nhập</th>
+                                    <th>Tên nhà cung cấp</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,14 +36,20 @@
                               @foreach($productUpdatePrice as $item)
                                 <tr>
                                     <td>{{$item->created_at->format('h:i')}}</td>
-                                    <td>#{{$item->product_id}}</td>
+                                    <td>#{{\App\Util::ProductCode($item->product_id)}}</td>
                                     <td>{{\App\Product::getNameById($item->product_id)}}</td>
                                     <td>{{$item->number}}</td>
-                                    <td>{{$item->price_in}} VNĐ</td>
-                                    {{--<td>{{$item->price_out}} VNĐ</td>--}}
+                                    <td>{!! \App\Util::FormatMoney($item->price_in) !!}</td>
+                                    <td>{!! \App\Util::FormatMoney($item->price_in * $item->number) !!}</td>
+                                    <td>@if($item->supplier != "create"){{ $item->supplier }} @endif</td>
+                                    <td><a href="#" id="input-hisinput" class="btn btn-raised btn-primary btn-xs" data-toggle="modal"
+                                           data-target=".modal-hisinput" data-title="{{\App\Product::getNameById($item->product_id)}} ({{\App\Util::ProductCode($item->product_id)}})" 
+                                           data-gia="{{$item->price_in}}" data-number="{{$item->number}}" data-supplier="{{$item->supplier}}" data-id="{{$item->product_id}}" data-historyid="{{$item->id}}" >
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> </a>
+                                    </td>
                                     <?php
                                     $total_num +=$item->number;
-                                    $total_price_in +=$item->price_in;
+                                    $total_price_in = $total_price_in + ($item->price_in * $item->number);
                                     ?>
                                 </tr>
                                     @endforeach
@@ -50,21 +58,76 @@
                                     <td></td>
                                     <td></td>
                                     <td>{{$total_num}}</td>
-                                    <td>{{$total_price_in}} VNĐ</td>
-                                    {{--<td>{{$item->price_out}} VNĐ</td>--}}
+                                    <td></td>
+                                    <td>{!! \App\Util::FormatMoney($total_price_in) !!}</td>
+                                    <td></td>
+                                    <td></td>
+                                    
                                 </tr>
 
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="clearfix"></div>
+                        <div class="text-center">
+                            {{ $productUpdatePrice->appends(array('date' => Request::get('date')))->links() }}
+                        </div>
                 </div>
 
             </div>
         </div>
 
     </div>
+    <!-- modal -->
+    <div class="modal fade modal-hisinput" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+         data-backdrop="static">
+        <div class="modal-dialog modal-tracking">
 
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h2 class="modal-title text-center title" id="myModalLabel" style="font-weight: 300;"></h2>
+                    <input type="hidden" name="id">
+                    <input type="hidden" name="historyid">
+                    <input type="hidden" name="numberold">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                </div>
+                <div class="modal-body sroll">
+                    <div class="form-group">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInput2"> Giá mua</label>
+                                <input class="form-control" id="focusedInput2" type="number" name="price_in">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInput2"> Số lượng</label>
+                                <input class="form-control" id="focusedInput2" type="number" name="number">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label" for="focusedInput2"> Nhà cung cấp</label>
+                                <input class="form-control" id="focusedInput2" type="text" name="supplier">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-raised btn-primary" id="histinput">Sửa</button>
+                </div>
+                <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
+            </div>
+        </div>
+    </div>
     @endsection
 
 
@@ -91,27 +154,78 @@
             });
         });
     </script>
-    <!-- /jQuery Tags Input -->
-
-    <script src="{{asset('js/selectize.js')}}"></script>
     <!-- Select2 -->
+    
     <script>
-        $('select').selectize({
-            create: true,
-            sortField: 'text'
+        $('#histinput').on('click', function (e) {
+            e.preventDefault();
+
+            var id = $('.modal-hisinput input[name="id"]').val();
+            var numberold = $('.modal-hisinput input[name="numberold"]').val();
+            var historyid = $('.modal-hisinput input[name="historyid"]').val();
+            var price_in = $('.modal-hisinput input[name="price_in"]').val();
+            var number = $('.modal-hisinput input[name="number"]').val();
+            var supplier = $('.modal-hisinput input[name="supplier"]').val();
+
+            var _token = $('input[name="_token"]').val();
+            if ( price_in=="" || number=="") {
+                new PNotify({
+                    title: 'Vui lòng nhập thông tin',
+                    text: '',
+                    type: 'danger',
+                    hide: true,
+                    styling: 'bootstrap3'
+                });
+                return false;
+            }
+//            alert(id);
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '{{url('/')}}/product/UpdateProductHistoryInput',
+                data: {id: id, numberold: numberold, historyid: historyid, price_in: price_in,number: number,supplier: supplier,_token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    $('.modal-hisinput input[name="price_in"]').val("");
+                    $('.modal-hisinput input[name="number"]').val("");
+                    $('.modal-hisinput input[name="supplier"]').val("");
+
+                    //show notify
+                    new PNotify({
+                        title: 'Cập nhật thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: Data['name'],
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
         });
     </script>
     <script>
-        $('.info-kho,.info-warehouse').click(function(){
-            $(this).find('input').removeAttr('disabled');
-            $(this).find('.btn-update').css('display','block');
-
-        })
-        $('button.btn-update').click(function(){
-//            alert("dsds");
-//            $(this).closest().find('input').attr('disabled');
-//            $('button.btn-update').css('display','none');
-        })
+        $(document).on("click", "#input-hisinput", function () {
+            var _self = $(this);
+            $('.modal-hisinput input[name="id"]').val(_self.data('id'));
+            $('.modal-hisinput input[name="historyid"]').val(_self.data('historyid'));
+            $('.modal-hisinput input[name="supplier"]').val(_self.data('supplier'));
+            $('.modal-hisinput input[name="number"]').val(_self.data('number'));
+            $('.modal-hisinput input[name="numberold"]').val(_self.data('number'));
+            $('.modal-hisinput input[name="price_in"]').val(_self.data('gia'));
+            $('.modal-hisinput .title').text(_self.data('title'));
+        });
     </script>
-
 @endsection

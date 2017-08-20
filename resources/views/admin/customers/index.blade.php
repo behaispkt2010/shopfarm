@@ -65,7 +65,7 @@
                                                     </li>
                                                     <li><span class="label-box55">Email:</span> {{$user->email}}</li>
                                                     <li><span class="label-box55">SDT:</span> {{$user->phone_number}}</li>
-                                                    <li><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>
+                                                    <li class="limitcharacter"><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>
                                                 </ul>
                                             </div>
                                         </div>

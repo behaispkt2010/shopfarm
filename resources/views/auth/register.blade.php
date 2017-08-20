@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group label-floating">
-                                    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE')  }} "></div>
+                                    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                                 </div>
                             </div>
                         </div>

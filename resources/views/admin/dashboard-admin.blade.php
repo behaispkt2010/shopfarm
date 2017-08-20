@@ -23,7 +23,7 @@
                         <div class="col-md-4">
                     <h2>Doanh thu </h2>
                         </div>
-                    <div class="col-md-8" style="float: right; font-size: 15px;">
+                    <div class="col-md-8" style="float: right; font-size: 13px;">
                         <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             <span id="date-filter1"></span> <b class="caret"></b>
@@ -45,7 +45,7 @@
                         <div class="col-md-4">
                             <h2>Đơn hàng </h2>
                         </div>
-                        <div class="col-md-8" style="float: right; font-size: 15px;">
+                        <div class="col-md-8" style="float: right; font-size: 13px;">
                             <div id="reportrange2" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                 <span id="date-filter2"></span> <b class="caret"></b>
@@ -275,6 +275,14 @@
                             },
                             options: {
                                 scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                            callback: function(value) {
+                                                return value.toLocaleString();
+                                            }
+                                        }
+                                    }],
                                     xAxes: [{
                                         display: false
                                     }]
@@ -329,7 +337,10 @@
                                 scales: {
                                     yAxes: [{
                                         ticks: {
-                                            beginAtZero: true
+                                            beginAtZero: true,
+                                            callback: function(value) {
+                                                return value.toLocaleString();
+                                            }
                                         }
                                     }],
                                     xAxes: [{

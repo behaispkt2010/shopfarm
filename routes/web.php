@@ -23,13 +23,17 @@ Auth::routes();
  *
  */
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|user','auth', 'authorize']], function () {
+Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|user|company','auth', 'authorize']], function () {
 
     Route::get('/', 'DashboardController@index');
     Route::get('/dashboard', 'DashboardAdminController@index');
     //Tin tức
     Route::resource('news', 'NewController');
     Route::get('news/data/json', 'NewController@data');
+
+    // Thông tin cần mua từ các Công ty
+    Route::resource('newscompany', 'NewsCompanyController');
+    Route::get('newscompany/data/json', 'NewsCompanyController@data');
 
     //Nhóm tin tức
     Route::resource('category', 'CategoryController');
@@ -67,6 +71,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|
     Route::resource('money', 'MoneyController');
     //ql lịch sữ giao dịch
     Route::resource('historyInput', 'HistoryInputController');
+    Route::resource('company', 'CompanyController');
 
     //Quản lý kho
     Route::resource('warehouse', 'WarehouseController');
@@ -83,6 +88,18 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|
     Route::post('warehouse/AjaxConfirmKho', 'WarehouseController@AjaxConfirmKho');
     Route::post('warehouse/AjaxQuangCao', 'WarehouseController@AjaxQuangCao');
     Route::post('warehouse/AjaxReQuestTraphi', 'WarehouseController@AjaxReQuestTraphi');
+
+    Route::post('company/AjaxBank', 'CompanyController@AjaxBank');
+    Route::post('company/AjaxEditBank', 'CompanyController@AjaxEditBank');
+    // Route::post('company/AjaxEditLevel', 'WarehouseController@AjaxEditLevel');
+    Route::post('company/AjaxInfo', 'CompanyController@AjaxInfo');
+    Route::post('company/AjaxChangePass', 'CompanyController@AjaxChangePass');
+    // Route::post('company/AjaxSendRequestUpdateLevelKho', 'WarehouseController@AjaxSendRequestUpdateLevelKho');
+    Route::post('company/AjaxReQuestConfirmKho', 'CompanyController@AjaxReQuestConfirmKho');
+    Route::post('company/AjaxReQuestQuangCao', 'CompanyController@AjaxReQuestQuangCao');
+    Route::post('company/AjaxConfirmKho', 'CompanyController@AjaxConfirmKho');
+    Route::post('company/AjaxQuangCao', 'CompanyController@AjaxQuangCao');
+    Route::post('company/AjaxReQuestTraphi', 'CompanyController@AjaxReQuestTraphi');
 
     //Khách hàng
     Route::resource('customers', 'customerController');
@@ -130,6 +147,7 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|
 Route::post('users/changeAvata', 'UserController@AjaxChangeImage');
 Route::post('product/checkProductAjax', 'ProductController@checkProductAjax');
 Route::post('product/updateProductAjax', 'ProductController@UpdateProductAjax');
+Route::post('product/UpdateProductHistoryInput', 'ProductController@UpdateProductHistoryInput');
 Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
 Route::post('admin/getdashboard', 'DashboardAdminController@getdashboard');
 Route::post('admin/dashboardctrl', 'DashboardController@dashboard');
@@ -138,7 +156,9 @@ Route::get('admin/notify/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUp
 Route::post('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
 Route::post('warehouse/deleteDetailImage', 'WarehouseController@deleteDetailImage');
 Route::post('warehouse/UploadImgDetail', 'WarehouseController@UploadImgDetail');
-
+Route::post('company/UploadImgDetail', 'CompanyController@UploadImgDetail');
+Route::post('company/AjaxDetail', 'CompanyController@AjaxDetail');
+Route::post('company/deleteDetailImage', 'CompanyController@deleteDetailImage');
 
 
 
@@ -159,6 +179,12 @@ Route::get('/product/{cateSlug}/{productSlug}', 'Frontend\ProductController@Sing
 Route::get('/check-order', 'Frontend\ProductController@CheckOrder');
 //Route::post('/check-order', 'Frontend\ProductController@PostCheckOrder');
 Route::post('/single-order', 'Frontend\ProductController@singleOrder');
+
+Route::get('/company-business', 'Frontend\ProductController@GetAllCompany');
+Route::get('/warehouse-business', 'Frontend\ProductController@GetAllWareHouse');
+Route::get('/productview', 'Frontend\ProductController@GetAllProduct');
+Route::get('/company/{company_id}', 'Frontend\PageController@DetailCompany');
+Route::get('/company/{company_id}/{newscompanySlug}/{newscompany_id}', 'Frontend\PageController@DetailNewsCompany');
 
 
 

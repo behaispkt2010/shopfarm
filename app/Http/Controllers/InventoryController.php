@@ -9,6 +9,7 @@ use App\WareHouse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class InventoryController extends Controller
 {
@@ -19,29 +20,51 @@ class InventoryController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->get('name') || $request->get('kho')|| $request->get('category')){
-            $name = $request->get('name');
-            $kho = $request->get('kho');
-            $cate = $request->get('category');
-            $product1 = Product::query();
-            if(!empty($name)){
-                $product1 =  $product1->where('title','LiKE','%'.$name.'%');
-            }
-            if(!empty($cate)){
-                $product1 =  $product1->where('category',$cate);
-            }
-            if(!empty($kho)){
-                $product1 =  $product1->where('kho',$kho);
-            }
+        $user_id = Auth::user()->id;
+        if ( Auth::user()->hasRole(['admin','editor']) ) {
+            if($request->get('name') || $request->get('kho')|| $request->get('category')){
+                $name = $request->get('name');
+                $kho = $request->get('kho');
+                $cate = $request->get('category');
+                $product1 = Product::query();
+                if(!empty($name)){
+                    $product1 =  $product1->where('title','LiKE','%'.$name.'%');
+                }
+                if(!empty($cate)){
+                    $product1 =  $product1->where('category',$cate);
+                }
+                if(!empty($kho)){
+                    $product1 =  $product1->where('kho',$kho);
+                }
 
-            $product = $product1->paginate(9);
-
-
-        }
-        else {
+                $product = $product1->paginate(9);
+            }
+            else {
             $product = Product::orderBy('id','DESC')
                 ->paginate(9);
+            }
         }
+        else if ( Auth::user()->hasRole(['kho']) ) {
+            if($request->get('name') || $request->get('category')){
+                $name = $request->get('name');
+                $cate = $request->get('category');
+                $product1 = Product::query();
+                if(!empty($name)){
+                    $product1 =  $product1->where('title','LiKE','%'.$name.'%')->where('kho',$user_id);
+                }
+                if(!empty($cate)){
+                    $product1 =  $product1->where('category',$cate)->where('kho',$user_id);
+                }
+                $product = $product1->paginate(9);
+            }
+            else {
+            $product = Product::where('kho',$user_id)
+                ->orderBy('id','DESC')
+                ->paginate(9);
+            }
+            
+        }
+        
         $category = CategoryProduct::get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
             ->leftjoin('role_user','role_user.user_id','=','users.id')

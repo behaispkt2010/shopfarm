@@ -9,7 +9,7 @@
         <div class="col-md-3 col-xs-6 col-ms-6  text-center">Đơn Hàng<br><span class="value-das">{!! $countOrder !!}</span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">Giao Dịch<br><span class="value-das">{!! \App\Util::FormatMoney($totalPrice)  !!} </span></div>
         <div class="col-md-3 col-xs-6 col-ms-6 text-center">KH | CK<br><span class="value-das">{!! $customer !!} | {!! $chukho !!}</span></div>
-        <div class="col-md-3 col-xs-6 col-ms-6 text-center">TB Đơn Hàng<br><span class="value-das">@if(!empty($countOrder)){!! \App\Util::FormatMoney($totalPrice/$countOrder) !!}  @else 0 VNĐ @endif</span></div>
+        <div class="col-md-3 col-xs-6 col-ms-6 text-center">TB Đơn Hàng<br><span class="value-das">@if(!empty($countOrderFinish)){!! \App\Util::FormatMoney($totalPrice/$countOrderFinish) !!}  @else 0 VNĐ @endif</span></div>
 
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
                 <div class="x_title">
                     <h2>Doanh thu </h2>
 
-                    <div class="col-md-8" style="float: right; font-size: 15px;">
+                    <div class="col-md-8" style="float: right; font-size: 13px;">
                         <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             <span id="date-filter1"></span> <b class="caret"></b>
@@ -37,7 +37,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Số đơn hàng </h2>
-                    <div class="col-md-8" style="float: right; font-size: 15px;">
+                    <div class="col-md-8" style="float: right; font-size: 13px;">
                         <div id="reportrange2" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;border-radius: 4px;">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             <span id="date-filter2"></span> <b class="caret"></b>
@@ -545,6 +545,14 @@
                         },
                         options: {
                             scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        callback: function(value) {
+                                            return value.toLocaleString();
+                                        }
+                                    }
+                                }],
                                 xAxes: [{
                                     display: false
                                 }]
@@ -580,6 +588,20 @@
                     barDatas2 = msg['barDatas2'];
 
                     //graph options
+                    var options = {
+                        scaleOverride: true,
+                        scaleSteps: 8,
+                        scaleStepWidth: 1800,
+                        scaleStartValue: 10800,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scaleLabel: function(valuePayload) {
+                          return new Date(valuePayload.value * 1000).toISOString().substr(12, 7);
+                        },
+                        multiTooltipTemplate: function(valuePayload) {
+                          return valuePayload.datasetLabel + " " + new Date(valuePayload.value * 1000).toISOString().substr(12, 7)
+                        }
+                      };
                     var ctx = document.getElementById("mybarChart");
                     var mybarChart = new Chart(ctx, {
 
@@ -595,13 +617,16 @@
                                 backgroundColor: "#FF9800",
                                 data: barDatas2
                             }]
-                        },
+                        }, 
 
                         options: {
                             scales: {
                                 yAxes: [{
                                     ticks: {
-                                        beginAtZero: true
+                                        beginAtZero: true,
+                                        callback: function(value) {
+                                            return value.toLocaleString();
+                                        }
                                     }
                                 }],
                                 xAxes: [{

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Util;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,10 +15,11 @@ class ProductOrder extends Model
 
     public static function getSumPrice($date){
         $idUser = Auth::user()->id;
-
+        $statusOrderSuccess = Util::$statusOrderSuccess;
         $orderProducts = ProductOrder::select('product_orders.price','product_orders.num','product_orders.updated_at')
             ->leftJoin('orders','product_orders.order_id','=','orders.id')
             ->where('orders.kho_id',$idUser)
+            ->where('orders.status',$statusOrderSuccess)
             ->where(DB::raw("(DATE_FORMAT(product_orders.updated_at,'%d-%m-%Y'))"),$date)
             ->get();
         $res = 0;
@@ -28,10 +31,11 @@ class ProductOrder extends Model
     }
     public static function getSumPriceProfit($date){
         $idUser = Auth::user()->id;
-
+        $statusOrderSuccess = Util::$statusOrderSuccess;
         $orderProducts = ProductOrder::select('product_orders.price','product_orders.price_in','product_orders.num','product_orders.updated_at')
             ->leftJoin('orders','product_orders.order_id','=','orders.id')
             ->where('orders.kho_id',$idUser)
+            ->where('orders.status',$statusOrderSuccess)
             ->where(DB::raw("(DATE_FORMAT(product_orders.updated_at,'%d-%m-%Y'))"),$date)
             ->get();
         $res = 0;
@@ -42,8 +46,10 @@ class ProductOrder extends Model
 
     }
     public static function getSumPriceAdmin($date){
+        $statusOrderSuccess = Util::$statusOrderSuccess;
         $orderProducts = ProductOrder::select('product_orders.price','product_orders.num','product_orders.updated_at')
             ->leftJoin('orders','product_orders.order_id','=','orders.id')
+            ->where('orders.status',$statusOrderSuccess)
             ->where(DB::raw("(DATE_FORMAT(product_orders.updated_at,'%d-%m-%Y'))"),$date)
             ->get();
         $res = 0;

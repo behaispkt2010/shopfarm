@@ -120,8 +120,8 @@
 												</tbody>
 											</table>
 										</div>
-										<p class="product_price">{{ number_format($product->price_out)  }} VNĐ</p>
-
+										<p class="product_price">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+									
 										<div class="row text-center col-xs-12">
 											<div class="col-xs-6 col-sm-6 col-md-6" style="float: left;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
@@ -446,64 +446,7 @@
 												</form>
 											</div><!--/ [col]-->
 
-											{{--<div class="col-lg-7 col-md-6">--}}
-
-												{{--<p class="subcaption">Yêu cầu nhập đủ thông tin</p>--}}
-
-												{{--<!-- - - - - - - - - - - - - - Review form - - - - - - - - - - - - - - - - -->--}}
-
-												{{--<form action="/customer-rate" method="post" class="type_2">--}}
-													{{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-
-													{{--<ul>--}}
-
-														{{--<li class="row">--}}
-
-															{{--<div class="col-sm-6">--}}
-																{{----}}
-																{{--<label for="nickname">Tên</label>--}}
-																{{--<input type="text" name="cm_name" id="nickname">--}}
-
-															{{--</div>--}}
-
-															{{--<div class="col-sm-6">--}}
-																{{----}}
-																{{--<label for="summary">Email</label>--}}
-																{{--<input type="text" name="cm_comment" id="summary">--}}
-
-															{{--</div>--}}
-
-														{{--</li>--}}
-
-														{{--<li class="row">--}}
-
-															{{--<div class="col-xs-12">--}}
-
-																{{--<label for="review_message">Email</label>--}}
-
-																{{--<textarea rows="5" name="cm_comment" id="cm_comment"></textarea>--}}
-
-															{{--</div>--}}
-
-														{{--</li>--}}
-
-														{{--<li class="row">--}}
-
-															{{--<div class="col-xs-12">--}}
-															{{----}}
-																{{--<button  type="submit"  class="button_dark_grey middle_btn">Đánh giá</button>--}}
-
-															{{--</div>--}}
-
-														{{--</li>--}}
-
-													{{--</ul>--}}
-
-												{{--</form>--}}
-
-												{{--<!-- - - - - - - - - - - - - - End of review form - - - - - - - - - - - - - - - - -->--}}
-
-											{{--</div>--}}
+											
 
 										</div>
 
@@ -573,7 +516,8 @@
 				                                                    <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 				                                                </div>
 				                                                <div class="clearfix product_info">
-				                                                    <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+				                                                    <p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+																
 				                                                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 				                                                </div>
 				                                                <div class="clearfix product_info">
@@ -631,7 +575,8 @@
 				                                                    <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 				                                                </div>
 				                                                <div class="clearfix product_info">
-				                                                    <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+				                                                    <p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+																
 				                                                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 				                                                </div>
 				                                                <div class="clearfix product_info">
@@ -689,7 +634,8 @@
 				                                                    <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
 				                                                </div>
 				                                                <div class="clearfix product_info">
-				                                                    <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}</p>
+				                                                    <p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+																
 				                                                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 				                                                </div>
 				                                                <div class="clearfix product_info">

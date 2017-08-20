@@ -87,7 +87,7 @@
                     @foreach($product as $itemProduct)
                             <div class="col-md-4 col-sm-4 col-xs-12 profile_details product-detail">
 
-                                <div class="well box_1">
+                                <div class="well box_1" style="@if($itemProduct->inventory_num <= '10') {{'background-color: #ffb100 !important;'}} @endif">
                                     <div class="img-product-view">
                                         <img src="{{url('/')}}{{$itemProduct->image}}" alt="" class="img-circle img-responsive"
                                              data-pin-nopin="true">
@@ -116,7 +116,7 @@
 
                                     <div class="col-sm-12 text-center">
                                         <a href="#" class="input-product btn btn-raised btn-info btn-xs" data-toggle="modal"
-                                           data-target=".modal-product" data-title="{{$itemProduct->title}} (#{{$itemProduct->code}})" data-id="{{$itemProduct->id}}" >
+                                           data-target=".modal-product" data-title="{{$itemProduct->title}} ({{\App\Util::ProductCode($itemProduct->id)}})" data-id="{{$itemProduct->id}}" >
                                         <i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Nhập kho
                                         </a>
                                         <a href="{{route('products.edit',['id' => $itemProduct->id])}}"
@@ -180,7 +180,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group label-floating">
-                                <label class="control-label" for="focusedInput2"> số lượng</label>
+                                <label class="control-label" for="focusedInput2"> Số lượng</label>
                                 <input class="form-control" id="focusedInput2" type="number" name="number">
                             </div>
                         </div>
@@ -229,13 +229,13 @@
 
             var id = $('.modal-product input[name="id"]').val();
             var price_in = $('.modal-product input[name="price_in"]').val();
-            var price_out = $('.modal-product input[name="price_out"]').val();
+            // var price_out = $('.modal-product input[name="price_out"]').val();
             var number = $('.modal-product input[name="number"]').val();
             var supplier = $('.modal-product input[name="supplier"]').val();
 
 //            var reason = $('.modal-product-cate textarea[name="reason"]').val();
             var _token = $('input[name="_token"]').val();
-            if(price_in==""||price_out==""||number==""){
+            if ( price_in=="" || number=="") {
                 new PNotify({
                     title: 'Vui lòng nhập thông tin',
                     text: '',
@@ -250,16 +250,13 @@
             $.ajax({
                 type: "POST",
                 url: '{{url('/')}}/product/updateProductAjax',
-                data: {id: id, price_in: price_in,price_out: price_out,number: number,supplier: supplier,_token: _token},
+                data: {id: id, price_in: price_in,number: number,supplier: supplier,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
-                  $('.modal-product input[name="price_in"]').val("");
-                    $('.modal-product input[name="price_out"]').val("");
+                    $('.modal-product input[name="price_in"]').val("");
                     $('.modal-product input[name="number"]').val("");
-                     $('.modal-product input[name="supplier"]').val("");
+                    $('.modal-product input[name="supplier"]').val("");
 
-//                    $('.modal-product-cate textarea[name="reason"]').val("");
-//                    alert("Tạo thành công");
                     //show notify
                     new PNotify({
                         title: 'Cập nhật thành công',

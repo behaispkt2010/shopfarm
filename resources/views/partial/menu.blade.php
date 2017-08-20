@@ -69,6 +69,14 @@
                         </ul>
                     </li>
                     @endpermission
+                    @permission('newscompany')
+                    <li><a><i class="fa fa-wpforms"></i> Quản lý tin Công ty <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li class="active"><a href="{{route('newscompany.index')}}">Tin tức</a></li>
+                            <li><a href="{{route('newscompany.create')}}">Tạo mới</a></li>
+                        </ul>
+                    </li>
+                    @endpermission
                     @permission('pages')
 
                     <li><a><i class="fa fa-clone"></i> Trang <span class="fa fa-chevron-down"></span></a>
@@ -117,6 +125,36 @@
                         </ul>
                     </li>
                     @endif
+                    @if(Auth::user()->hasRole(['editor','admin']))
+                        @permission('company')
+                        <li><a href="{{route('company.index')}}"><i class="fa fa-university"></i> Quản lý công ty </a></li>
+                        @endpermission
+                    @endif
+
+                    <!-- @if(Auth::user()->hasRole(['editor','admin']))
+                    <li><a><i class="fa fa-database"></i>Quản lý công ty <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            @permission('company')
+                    
+                            <li><a href="{{route('warehouse.index')}}"></i> Thông tin chủ kho</a></li>
+                            @endpermission
+                            @permission('money')
+                    
+                            <li><a href="{{route('money.index')}}">Sổ quỹ</a></li>
+                            @endpermission
+                            @permission('inventory')
+                    
+                            <li><a href="{{route('inventory.index')}}">Kiểm kho</a></li>
+                            @endpermission
+                            @permission('historyInput')
+                    
+                            <li><a href="{{route('historyInput.index')}}">Lịch sử nhập hàng</a></li>
+                            @endpermission
+                    
+                        </ul>
+                    </li>
+                    @endif -->
+
                     @permission('customers')
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
                     @endpermission

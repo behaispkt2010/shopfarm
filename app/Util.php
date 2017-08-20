@@ -38,6 +38,7 @@ class Util extends Model
     public static $ordernew = "ordernew";
     public static $orderfail = "orderfail";
     public static $orderreturn = "orderreturn";
+    public static $statusOrderSuccess = 8;
     public static $statusOrderFail = 9;
     public static $statusOrderReturn = 10;
     public static $strNumberProductOfLevel1 = 5;
@@ -368,7 +369,7 @@ class Util extends Model
         return $code_order;
     }
     public static function FormatMoney($strMoney) {
-        $unit=array('VNĐ','VNĐ','triệu(VNĐ)','tỉ(VNĐ)','nghìn tỉ(VNĐ)');
+        $unit=array('VNĐ','VNĐ','triệu(VNĐ) ','tỉ(VNĐ)','nghìn tỉ(VNĐ)','triệu tỉ(VNĐ)','tỉ tỉ(VNĐ)');
         $len = strlen($strMoney);
         if ($len > 6) {
             $money = $strMoney/pow(1000,($i=floor(log($strMoney,1000))));
