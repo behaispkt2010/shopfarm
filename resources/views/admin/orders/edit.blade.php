@@ -169,8 +169,8 @@
                                 </button>
 
                                 <input type="hidden" value="@if(!empty($arrOrder->type_pay)){!! $arrOrder->type_pay !!} @else{!! "" !!} @endif" name="type_pay">
-                                <button type="button" class="btn btn-raised btn-primary" data-toggle="modal"
-                                        data-target=".modal-order-1" style="font-size: 12px">Đặt cọc | Thanh toán sau
+                                <button type="button" class="btn btn-raised btn-primary" id="thanhtoansau" data-toggle="modal"
+                                        data-target=".modal-order-1" data-received_pay="@if(!empty($arrOrder->received_pay)){!! $arrOrder->received_pay !!} @else{!! "" !!} @endif" data-remain_pay="@if(!empty($arrOrder->remain_pay)){!! $arrOrder->remain_pay !!} @else{!! "" !!} @endif" style="font-size: 12px">Đặt cọc | Thanh toán sau
                                 </button>
                                 <input type="hidden" value="@if(!empty($arrOrder->type_pay)){!! $arrOrder->type_pay !!} @else{!! "" !!} @endif" name="type_pay">
                                 <input type="hidden" value="@if(!empty($arrOrder->received_pay)){!! $arrOrder->received_pay !!} @else{!! "" !!} @endif" name="received_pay">
@@ -454,7 +454,7 @@
     </div>
 </div>
 
-<div class="modal fade modal-order-1" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+<div class="modal fade modal-order-1 datcoc" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
      data-backdrop="static">
     <div class="modal-dialog modal-order-1">
         <div class="modal-content">
@@ -474,14 +474,13 @@
                     </p>
 
                     <p> Nhập thông tin thanh toán cho đơn hàng này</p>
-
-                    <div class="form-group label-floating">
+                    <div class="form-group">
                         <label class="control-label" for="focusedInput1"> Đã nhận</label>
-                        <input class="form-control received_pay" id="focusedInput1" type="number" name="received_pay" required>
+                        <input class="form-control received_pay" value="" type="number" name="received_pay" required >
                     </div>
-                    <div class="form-group label-floating">
+                    <div class="form-group">
                         <label class="control-label" for="focusedInput2"> Còn lại</label>
-                        <input class="form-control remain_pay" id="focusedInput2" type="number" name="remain_pay" required disabled="disabled">
+                        <input class="form-control remain_pay" value="" type="number" name="remain_pay" required readonly="readonly" >
                     </div>
                 </div>
             </div>
@@ -558,8 +557,9 @@
     }
     $('.received_pay').on('change', function() {
         var allpaymoney = pricecaculator();
-        var pay_received = $(this).val();
-        pay_remain = allpaymoney - pay_received;
+        var pay_receive = $(this).val();
+        var received = $('input[type="hidden"][name="received_pay"]').val();
+        pay_remain = allpaymoney - pay_receive - received;
         $('.remain_pay').val(pay_remain);
         /*alert(allpaymoney);
         console.log(allpaymoney);*/
@@ -907,6 +907,19 @@
         $('.modal-transport input[name="type_driver"]').val(_self.data('type_driver'));
         $('.modal-transport input[name="phone_driver"]').val(_self.data('phone_driver'));
         $('.modal-transport input[name="number_license_driver"]').val(_self.data('number_license_driver'));
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).on("click", "#thanhtoansau", function () {
+        var _self = $(this);
+        // alert(_self.data('received_pay'));
+        /*var received_pay = _self.data('received_pay');
+        var remain_pay = _self.data('remain_pay');*/
+        $('.datcoc input[name="received_pay"]').val(_self.data('received_pay'));
+        $('.datcoc input[name="remain_pay"]').val(_self.data('remain_pay'));
+        // $('.received_pay').val(received_pay);
+        // $('.remain_pay').val(remain_pay);
     });
 </script>
 <script type="text/javascript">

@@ -61,7 +61,50 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
 
+            <div class="x_panel" style="min-height: 550px;">
+                <div>
+                    <div class="x_title">
+                        <h2>Đơn hàng chưa thanh toán xong</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn hàng</th>
+                                <th>Tên người nhận</th>
+                                <th>Số điện thoại</th>
+                                <th>Số tiền còn nợ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list_order" style="width:100%;">
+                            
+                            @foreach($arrOrderRemain as $itemarrOrderRemain)
+                                <tr class="item-order">
+                                    <td><a href="{{route('orders.edit',['id' => $itemarrOrderRemain->orderID])}}" target="_blank">{{\App\Util::OrderCode($itemarrOrderRemain->orderID)}}</a></td>    
+                                    <td>{!! $itemarrOrderRemain->name !!}</td>
+                                    <td>{!! $itemarrOrderRemain->phone_number !!}</td>
+                                    <td>{!! \App\Util::FormatMoney($itemarrOrderRemain->remain_pay) !!}</td>
+                                </tr>
+                            @endforeach
+                            <div class="text-center">
+                                {{ $arrOrderRemain->appends(array('q' => Request::get('q')))->links() }}
+                            </div>
+                        </tbody>
+                         
+                    </table>
+
+
+                    
+                </div>
+
+            </div>
+            <!-- <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div> -->
+        </div>
+    </div>
 
     @endsection
     @section('add_scripts')

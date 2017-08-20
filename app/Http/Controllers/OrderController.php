@@ -207,6 +207,8 @@ class OrderController extends Controller
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
+                $productInfo['inventory_num'] = $productInfo->inventory_num - $arrNumberProduct[$key];
+                $productInfo->save();
             }
             if ($request->get('status') == Util::$statusOrderFail) {
                 $arrUser = User::find($request->customer_id);
@@ -325,6 +327,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         DB::beginTransaction();
         try {
             $arrProductID = $request->product_id;
@@ -349,13 +352,13 @@ class OrderController extends Controller
             $data['phone_driver'] = $request->phone_driver;
             $data['number_license_driver'] = $request->number_license_driver;
             $data['type_pay'] = $request->type_pay;
-            $data['received_pay'] = $request->received_pay;
+            $data['received_pay'] = $request->received_pay + $order->received_pay;
             $data['remain_pay'] = $request->remain_pay;
             $data['author_id'] = Auth::user()->id;
             $order->update($data);
-            if (!empty($id)) {
+            /*if (!empty($id)) {
                 DB::table('product_orders')->where('order_id', '=', $id)->delete();
-            }
+            }*/
             $strOrderID = $id;
             // insert history
             $historyUpdateStatusOrder = new HistoryUpdateStatusOrder();
@@ -366,7 +369,7 @@ class OrderController extends Controller
 
 
             foreach ($arrProductID as $key=>$ProductID) {
-                $ProductOrder1 = new ProductOrder();
+                $ProductOrderOld = ProductOrder::where('order_id', '=', $id)->first();
                 $productInfo = Product::find($ProductID);
                 $ProductOrder1['id_product'] = $ProductID;
                 $ProductOrder1['order_id'] = $strOrderID;
@@ -374,7 +377,17 @@ class OrderController extends Controller
                 $ProductOrder1['price'] = $productInfo->price_sale * $arrNumberProduct[$key];
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
-                $ProductOrder1->save();
+
+
+                if ($ProductOrderOld->num != $arrNumberProduct[$key]) {
+                    $productInfo['inventory_num'] = $productInfo->inventory_num - $arrNumberProduct[$key] + $ProductOrderOld->num;
+                } else {
+                    $productInfo['inventory_num'] = $arrNumberProduct[$key];
+                }
+
+                $productInfo->save();
+
+                $ProductOrderOld->update($ProductOrder1);
             }
             if ($request->get('status') == Util::$statusOrderFail) {
                 $arrUser = User::find($request->customer_id);

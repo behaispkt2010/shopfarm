@@ -58,7 +58,6 @@ class DashboardAdminController extends Controller
         return \Response::json($response);
 
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -88,14 +87,22 @@ class DashboardAdminController extends Controller
             $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
 
         }
+
         // dd($totalPrice);
         $profit =$totalPrice - $totalPriceIn;
         // $numProduct = count($orderProduct);
+        $arrOrderRemain = Order::select('users.*','orders.*','orders.id as orderID')
+            ->leftjoin('users','users.id','=','orders.customer_id')
+            ->where('orders.kho_id',$idUser)
+            ->where('orders.remain_pay','!=',0)
+            ->paginate(10);
+        // dd($arrOrderRemain);    
         $data =[
             'numOrder' =>$numOrder,
             'totalPrice' =>$totalPrice,
             'profit' =>$profit,
             'numProduct' =>$numProduct,
+            'arrOrderRemain' =>$arrOrderRemain,
 
 
         ];

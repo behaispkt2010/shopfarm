@@ -11,7 +11,8 @@
         "barryvdh/laravel-ide-helper": "^2.2",
         "doctrine/dbal": "^2.5",
         "yajra/laravel-datatables-oracle": "~6.0",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "schuppo/password-strength": "~1.5"
 
     },
     "require-dev": {
