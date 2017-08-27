@@ -4,7 +4,7 @@
 @section('detailHeader','user')
 @section('new-btn')
     <a href="{{route('users.create')}}" data-placement="top" title="" data-original-title="Tạo mới" class="btn btn-warning btn-fab">
-        <i class="fa fa-plus material-icons new-btn" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
 @endsection
 @section('content')
@@ -22,7 +22,7 @@
                         <div class="col-md-12 col-xs-12" style="top: -27px;">
                             <!-- Name and Description -->
                             <div class="text-right">
-                                <button type="submit" class="btn-update btn btn-success btn-raised text-right btn-small" > Lưu</button>
+                                <button type="submit" class="btn-update btn btn-success btn-raised text-right btn-small"> Lưu</button>
                             </div>
                             <div class="">
                                 <div class="row">
@@ -112,6 +112,10 @@
                                                                             <option value="5">Nhân viên</option>
                                                                         @elseif (Auth::user()->hasRole('user'))
                                                                             <option value="3">Khách hàng</option>
+                                                                        @elseif (Auth::user()->hasRole('company'))
+                                                                            <option value="6">Công ty</option>
+                                                                        @elseif (Auth::user()->hasRole('kho'))
+                                                                            <option value="4">Chủ kho</option>
                                                                         @endif
 
 
@@ -200,13 +204,19 @@
         });
     </script>
     <script>
-        $('.info-warehouse .fa-edit').click(function(){
-            $(this).parent().parent().find('input').removeAttr('disabled');
-            $(this).parent().parent().find('.btn-update').css('display','inline-block');
-        });
-        $('.info-kho .fa-edit').click(function(){
+        $('.fa-edit').click(function(){
             $(this).parent().parent().parent().parent().find('input').removeAttr('disabled');
             $(this).parent().parent().find('.btn-update').css('display','inline-block');
         });
+        /*$('.info-kho .fa-edit').click(function(){
+            $(this).parent().parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display','inline-block');
+        });*/
+        /*$('.info-kho,.info-warehouse').click(function () {
+            $(this).find('input').removeAttr('disabled');
+            $(this).find('textarea').removeAttr('disabled');
+            $(this).find('.btn-update').css('display', 'inline-block');
+
+        });*/
     </script>
 @endsection

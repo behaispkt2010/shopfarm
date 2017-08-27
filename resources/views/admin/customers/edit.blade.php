@@ -4,7 +4,7 @@
 @section('detailHeader','thông tin')
 @section('rightHeader')
     <a href="{{route('customers.create')}}" class="btn btn-raised btn-warning btn-md">
-        <i class="fa fa-plus" aria-hidden="true"></i> Tạo mới
+        <i class="fa fa-paper-plane material-icons" aria-hidden="true"></i> Tạo mới
     </a>
 @endsection
 @section('content')
@@ -216,7 +216,15 @@
             $(this).find('textarea').removeAttr('disabled');
             $(this).find('.btn-update').css('display', 'inline-block');
 
-        })
+        });
+        /*$('.info-warehouse .fa-edit').click(function(){
+            $(this).parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display','inline-block');
+        });
+        $('.info-kho .fa-edit').click(function(){
+            $(this).parent().parent().parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display','inline-block');
+        });*/
         $('button.btn-update').click(function () {
 //            alert("dsds");
 //            $(this).closest().find('input').attr('disabled');

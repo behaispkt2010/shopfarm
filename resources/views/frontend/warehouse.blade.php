@@ -2,6 +2,7 @@
 @section('title', 'Thông tin chủ kho')
 @section('description','Thông tin chủ kho')
 @section('content')
+<div class="secondary_page_wrapper">
     <div class="container">
         <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px;">
             <div class="panel panel-default">
@@ -24,9 +25,9 @@
             @include('frontend.witgets.category-product')
             </div>
         </div>
-        <div class="col-xs-12 col-sm-9 col-md-9 " style="padding-top: 20px;">
+        <div class="col-xs-12 col-sm-7 col-md-7 " style="padding-top: 20px;">
             <div class="content_verify">
-                <div class="col-xs-12 col-sm-5 col-md-5">
+                <div class="col-xs-12 col-sm-3 col-md-3">
                     <div class="row">
                         <div class="gallery_img_ncc">
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -48,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="col-xs-12 col-sm-8 col-md-8">
                     <ul class="info_veryfi_content">
                         <li>
                             <label>Mô hình kinh doanh:</label>
@@ -215,7 +216,7 @@
                             <?php $i=0 ;$j=0?>
                             @foreach($getNewProduct as $key => $product)
                                 @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
-                                        <div class="col-md-3 col-xs-12 category_product_cell">
+                                        <div class="col-md-4 col-xs-12 category_product_cell">
 
                                             <div class="product_bestselt">
 
@@ -284,5 +285,6 @@
             </div>
             @include('admin.partial.modal_requiredlogin')
         </div>
-    </div>    
+    </div>   
+</div>     
 @endsection

@@ -163,10 +163,7 @@ class ProductController extends Controller
             ->leftJoin('ware_houses','users.id','=','ware_houses.user_id')
             ->where('slug',$slug)
             ->first();
-        //dd($product);
         $detailImage = DetailImageProduct::where('product_id',$product->id)->get();
-//                dd($detailImage);
-
         $data=[
             "product"=>$product,
             "detailImage"=>$detailImage
@@ -178,7 +175,6 @@ class ProductController extends Controller
 
         $code = $request->get('code-order');
         $order =Order::where('id',$code)->first();
-//        dd($order);
         if(count($order)!=0) {
 
             $customer = User::where('id', $order->customer_id)->first();

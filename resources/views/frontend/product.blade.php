@@ -28,7 +28,7 @@
 				</div>
 
 			</aside>
-<div class="col-md-9">
+<div class="col-md-8">
 		<div class="section_offset">
 
 			<header class="top_box on_the_sides">

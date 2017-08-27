@@ -341,6 +341,7 @@
         <input type="hidden" id="nestable-output"/>
 
     </div>
+    <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" style="position: fixed;" alt=""></div>
     @endsection
 
     @section('add_scripts')

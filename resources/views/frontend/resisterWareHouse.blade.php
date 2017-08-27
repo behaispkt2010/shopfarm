@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title', 'Đăng ký Chủ kho')
+@section('title', 'Nhận ngay những tháng ngày miễn phí dùng dịch vụ')
 @section('description','Đăng ký Chủ kho')
 @section('add_styles')
 {{-- --}}
@@ -30,7 +30,7 @@
 								</a>
 							</div>
 						</aside>
-						<main class="col-md-9 col-sm-8">
+						<main class="col-md-8 col-sm-7">
 
 							{{--<h1 class="page_title">Contact Us</h1>--}}
 

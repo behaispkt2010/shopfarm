@@ -21,34 +21,30 @@
 								@if(count($getAllNewsCompany)!=0)
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllNewsCompany as $itemAllNewsCompany)
-										@if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+										@if($i==0)<div class="list_company_row" style="background-color: #fff;">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 company_cell">
+												<div class="well box_1">
+													@if ($itemAllNewsCompany->companyConfirm)
+													<div class="box-status" style="background-color: #64DD17;">
+				                                        <p class="text-center status-title">HOT</p>
+				                                    </div>
+				                                    @endif
 
-												<div class="product_bestselt">
-
-													<div class="company_image">
-
-														<a href=""><img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt=""></a>
-
-													</div>
-
-													<div class="description">
-
-														<p class="textoverlow"><a href="{{ url('/shop/'.$itemAllNewsCompany->id) }}" class="clearfix textoverlow">{{$itemAllNewsCompany->name}}</a></p>
-														<div class="kho_info clearfix">
-															<a href="#" class="alignleft" style="width: 70px;">
-																@if($itemAllNewsCompany->confirm == 1)
-																	<img src="{{url('/images')}}/xacthuc.png" alt="">
-																@else
-																@endif
+													<div class="product_bestselt">
+														<div class="company_image">
+															<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
+																<img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
 															</a>
 														</div>
-														<div class="clearfix product_info">
-				                                        	
-				                                        </div>
+														<div class="description">
+															<p class="textoverlow"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
+															<div class="limit-2">
+					                                        	{!! $itemAllNewsCompany->content !!}
+					                                        </div>
+					                                        <span style="padding-left: 5px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
+														</div>
 													</div>
-
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>

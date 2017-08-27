@@ -123,6 +123,7 @@ class PageController extends Controller
             ->leftjoin('company','company.user_id','=','news_company.author_id')
             ->where('news_company.id', $newscompany_id)
             ->first();
+        // $arrRelatedNewsCompany = NewsCompany::;    
         $data = [
             'arrImageDetail' => $arrImageDetail,
             'arrNewsCompany' => $arrNewsCompany,

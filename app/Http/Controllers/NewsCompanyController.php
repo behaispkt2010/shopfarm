@@ -6,11 +6,14 @@ use App\NewsCompany;
 use App\CategoryProduct;
 use App\Util;
 use App\User;
+use App\Company;
+use App\Mail\MailBroadCastProduct;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Mail;
 
 class NewsCompanyController extends Controller
 {
@@ -52,6 +55,7 @@ class NewsCompanyController extends Controller
     public function store(ArticleRequest $request)
     {
         $today = date("Y-m-d_H-i-s");
+        $strIDUser = Auth::user()->id;
         $newsCompany = new NewsCompany;
         $data = $request->all();
         if(!empty(Auth::user()->id)) {
@@ -76,7 +80,48 @@ class NewsCompanyController extends Controller
             $data['slug'] =  $data['slug'].'-'.$today;
         }
         NewsCompany::create($data);
-        return redirect('admin/newscompany/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+        $getInfoWareHouse = NewsCompany::select('news_company.*', 'users.*', 'products.kho as idwarehouse','news_company.title as productName','company.name as companyName')
+            ->leftjoin('products','products.category','=','news_company.category')
+            ->leftjoin('users','users.id','=','products.kho')
+            ->leftjoin('company','company.user_id','=','news_company.author_id')
+            ->where('news_company.category',$data['category'])
+            ->where('news_company.author_id', $strIDUser)
+            ->get();
+        $getInfoCompany = Company::select('users.*')
+            ->leftjoin('users','users.id','=','company.user_id')
+            ->where('company.user_id', $strIDUser)
+            ->get(); 
+        $arrMailWareHouse = [];
+        foreach ($getInfoWareHouse as $key => $itemInfoWareHouse) {
+            if ( !in_array($itemInfoWareHouse->email, $arrMailWareHouse) ) {
+                array_push($arrMailWareHouse, $itemInfoWareHouse->email);
+            }    
+            $productName = $itemInfoWareHouse->productName;
+            $companyName = $itemInfoWareHouse->companyName;
+            $content = $itemInfoWareHouse->content;
+        }
+        foreach ($getInfoCompany as $key => $itemgetInfoCompany) {
+            $phoneCompany = $itemgetInfoCompany->phone_number;
+        }
+        // echo $companyName;
+        // print_r($arrMailWareHouse);   
+        // dd($getInfoWareHouse);
+        foreach ($arrMailWareHouse as $key => $itemMailWareHouse) {
+            $data = [
+                "companyName" => $companyName,
+                "content" => $content,
+                "phoneCompany" => $phoneCompany,
+                "subject" => "Sản phẩm Công ty đang cần ". $productName
+            ];
+            $to = $itemMailWareHouse;
+            $to = "behaispkt2010@gmail.com";
+            Mail::to($to)->send(new MailBroadCastProduct($data));
+        }
+        
+
+
+
+        // return redirect('admin/newscompany/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 
     /**

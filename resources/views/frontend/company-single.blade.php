@@ -2,6 +2,7 @@
 @section('title', 'Thông tin Công ty')
 @section('description','Thông tin Công ty')
 @section('content')
+<div class="secondary_page_wrapper">
     <div class="container">
         <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px;">
             <div class="panel panel-default">
@@ -238,4 +239,5 @@
             @include('admin.partial.modal_requiredlogin')
         </div>
     </div>    
+</div>    
 @endsection

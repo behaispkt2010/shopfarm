@@ -55,4 +55,19 @@ class WareHouse extends Model
         }
         return $arrGetVipByCate;
     }
+    public static function getCateProductByID($warehouse_id){
+        $newProducts = Product::leftjoin('ware_houses','ware_houses.user_id','products.kho')
+            ->leftjoin('users','users.id','ware_houses.user_id')
+            ->leftjoin('category_products','category_products.id','products.category')
+            ->where('ware_houses.id',$warehouse_id)
+            ->selectRaw('category_products.*')
+            ->orderBy('products.id',"DESC")->get();
+        $arrCateProductOflWareHouse = [];
+        foreach ($newProducts as $key => $itemInfoWareHouse) {
+            if ( !in_array($itemInfoWareHouse->name, $arrCateProductOflWareHouse) ) {
+                array_push($arrCateProductOflWareHouse, $itemInfoWareHouse->name);
+            } 
+        }    
+        return $arrCateProductOflWareHouse;
+    }
 }

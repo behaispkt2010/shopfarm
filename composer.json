@@ -12,7 +12,8 @@
         "doctrine/dbal": "^2.5",
         "yajra/laravel-datatables-oracle": "~6.0",
         "zizaco/entrust": "5.2.x-dev",
-        "schuppo/password-strength": "~1.5"
+        "schuppo/password-strength": "~1.5",
+        "google/recaptcha": "~1.1"
 
     },
     "require-dev": {

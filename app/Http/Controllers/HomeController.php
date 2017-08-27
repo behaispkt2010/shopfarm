@@ -55,16 +55,20 @@ class HomeController extends Controller
         $getNewProduct = Product::getNewProduct(10);
         $allCategory = CategoryProduct::where('parent',0)->get();
 
-        $getAllNewsCompany = NewsCompany::select('users.*', 'company.*', 'news_company.*' , 'company.id as companyID' ,'news_company.id as newscompanyID')
+        $getAllNewsCompany = NewsCompany::select('users.*', 'company.*', 'news_company.*' , 'company.id as companyID', 'company.confirm as companyConfirm' ,'news_company.id as newscompanyID')
             ->leftjoin('users','users.id','=','news_company.author_id')
             ->leftjoin('company','company.user_id','=','users.id')
             ->where('news_company.status',1)
             ->inRandomOrder()
             ->paginate(16);
         $getAllWareHouse = WareHouse::inRandomOrder()->paginate(16);
-
+        // $arrCateProduct = WareHouse::getCateProductByID('4');
+        /*$getAllWareHouse = WareHouse::select('ware_houses.*','category_products.name as category_product_name')
+            ->leftjoin('products','products.kho','=','ware_houses.user_id')
+            ->leftjoin('category_products','category_products.id','=','products.category')
+            ->inRandomOrder()->paginate(16);*/
         /*$getVipByCate = WareHouse::getVipByCate(1,3);*/
-        // dd($getAllNewsCompany);
+        // dd($arrCateProduct);
         $data = [
             'getNewProduct' =>$getNewProduct,
             'bestSellerProduct'=>$getBestSellerProduct,
