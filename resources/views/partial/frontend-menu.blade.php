@@ -11,13 +11,13 @@
     </div>
     <ul class="box-manage">
         @if(( !Auth::check()))
-                <li><a class="btn btn-raised btn-success col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>
+                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>
                 <li><a class="btn btn-raised btn-default col-xs-12" href="{{url('/login')}}" data-modal-url="{{url('/login')}}">ĐĂNG NHẬP </a></li>
                 <li><a class="btn btn-raised btn-default col-xs-12" href="{{url('/register')}}" >ĐĂNG KÝ</a></li>
         @else
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                         aria-expanded="false" style="color: #fff; line-height: 30px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>
-            <li><a class="btn btn-raised btn-success col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>            
+            <li><a class="btn btn-raised btn-dangtin col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>            
             <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 9%; right: 0px;">
                 <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
                         <i class="fa fa-info-circle pull-right"></i>Tài khoản

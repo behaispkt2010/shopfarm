@@ -73,8 +73,8 @@
 								@endif
 
 
-								<div class="bottom_box"  style="text-align: center;">
-									<a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm  <i class="fa fa-arrow-right" aria-hidden="true" style="padding-top: 2px;"></i></a><label style="padding-top: 6px;">(Còn @if ((count($getAllNewsCompany)-16) < 0 ) 0 @else hơn {{count($getAllNewsCompany)-16}} @endif cơ hội mua bán)</label>
+								<div class="bottom_box load_more">
+									<a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm </a><label style="padding-top: 6px;">(Còn @if ((count($getAllNewsCompany)-16) < 0 ) 0 @else hơn {{count($getAllNewsCompany)-16}} @endif cơ hội mua bán)</label>
 								</div>
 							</div>
 							<br>
@@ -143,8 +143,8 @@
 										<br>
 									<h2 class="text-center" style="text-align: center">Không tìm thấy dữ liệu</h2>
 								@endif
-								<div class="bottom_box" style="text-align: center;">
-									<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm  <i class="fa fa-arrow-right" aria-hidden="true" style="padding-top: 2px;"></i></a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouse)-16) < 0 ) 0 @else hơn {{count($getAllWareHouse)-16}} @endif cơ hội mua bán)</label>
+								<div class="bottom_box load_more">
+									<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouse)-16) < 0 ) 0 @else hơn {{count($getAllWareHouse)-16}} @endif cơ hội mua bán)</label>
 								</div>
 							</div>
 							
