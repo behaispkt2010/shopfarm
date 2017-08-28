@@ -1,7 +1,7 @@
 <header class="hidden-xs">
     <div class="logo">
         <a href="{{url('/')}}">
-            <img src="{{url('/')}}/images/logo-w.png">
+            <img src="{{asset('frontend/images/nosago1.png')}}">
 
         </a>
     </div>
@@ -12,11 +12,11 @@
     <ul class="box-manage">
         @if(( !Auth::check()))
                 <li><a class="btn btn-raised btn-dangtin col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>
-                <li><a class="btn btn-raised btn-default col-xs-12" href="{{url('/login')}}" data-modal-url="{{url('/login')}}">ĐĂNG NHẬP </a></li>
-                <li><a class="btn btn-raised btn-default col-xs-12" href="{{url('/register')}}" >ĐĂNG KÝ</a></li>
+                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/login')}}" data-modal-url="{{url('/login')}}">ĐĂNG NHẬP </a></li>
+                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/register')}}" >ĐĂNG KÝ</a></li>
         @else
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                        aria-expanded="false" style="color: #fff; line-height: 30px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>
+                        aria-expanded="false" style="color: #000; line-height: 30px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>
             <li><a class="btn btn-raised btn-dangtin col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>            
             <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 9%; right: 0px;">
                 <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
@@ -47,16 +47,16 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="navbar-header">
-                            <button type="button" style="float: left;" class="navbar-toggle collapsed main_navigation_fronend" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" >
+                            <button type="button" style="" class="navbar-toggle collapsed main_navigation_fronend" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" >
                                 <span class="sr-only">Toggle navigation</span>
                                 <i class="fa fa-bars" aria-hidden="true"></i>
                             </button>
-                                <a href="{{url('/')}}" class="logo" style="float: left; width: 72%;margin-top: -17px;">
-                                    <img src="{{asset('frontend/images/logo_rp_shop.png')}}" alt="" style="height: 60px;">
+                                <a href="{{url('/')}}" class="logo" style="width: 66%; margin-top: -17px;">
+                                    <img src="{{asset('frontend/images/nosago1.png')}}" alt="" style="height: 60px;">
                                 </a>
                                 <li class="user">
                                     @if(( !Auth::check()))
-                                        <a href="#" title="Đăng nhập" class="fa fa-user login_xs" style="color: #fff; padding-left: 15px; float: right;"></a>
+                                        <a href="#" title="Đăng nhập" class="fa fa-user login_xs" style="color: #00695b; padding-left: 15px; "></a>
                                     @else
                                         <a href="javascript:;" class="fa fa-user user-profile dropdown-toggle is_login" data-toggle="dropdown"
                                                     aria-expanded="false" ></a>
@@ -82,6 +82,18 @@
                                     </form>
                                 </li>
                                 </div>
+                            
+                        <div class="">
+                            <div id="navbar" class="navbar-collapse collapse" style="height: 1px;">
+                                <ul class="nav navbar-nav clearfix sm">
+                                    <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Trang chủ</a></li>
+                                    <li><a href="{{url('/resisterWareHouse')}}"><i class="fa fa-plus-circle"></i> Tạo hồ sơ</a></li>
+                                    <li><a href="#"><i class="fa fa-facebook-square"></i> Group</a></li>
+                                    <li><a href="{{ url('/company-business') }}"><i class="fa fa-briefcase"></i> Cơ hội mua bán</a></li>
+                                    <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
+                                    <li><a href="{{url('/contact')}}"><i class="fa fa-headphones"></i> Hỗ trợ</a></li>
+                                </ul>
+                            </div>
                             <div class="mobile-menu-icon-wrapper visible-xs" style="width: 100%;padding-top: 8px;height: 56px;background-color: #f8f8f8;">
                                 <ul class="mobile-menu-icon">
                                     <li class="search" style="width: 93%;-webkit-box-shadow: 3px 4px 15px -5px #888;">
@@ -94,18 +106,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        
-                        <div id="navbar" class="navbar-collapse collapse" style="height: 1px;">
-                            <ul class="nav navbar-nav clearfix sm">
-                                <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Trang chủ</a></li>
-                                <li><a href="{{url('/resisterWareHouse')}}"><i class="fa fa-plus-circle"></i> Tạo hồ sơ</a></li>
-                                <li><a href="#"><i class="fa fa-facebook-square"></i> Group</a></li>
-                                <li><a href="{{ url('/company-business') }}"><i class="fa fa-briefcase"></i> Cơ hội mua bán</a></li>
-                                <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
-                                <li><a href="{{url('/contact')}}"><i class="fa fa-headphones"></i> Hỗ trợ</a></li>
-                            </ul>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -129,9 +130,16 @@
                 </ul>
             </div>
         </div>
+        <div class="clearfix"></div>
+        <div class="" style="background-color: #fff;padding: 10px;font-size: 16px;font-weight: bold;">
+            <i class="fa fa-bars" aria-hidden="true" style="padding-top: 2px; padding-right: 7px;"></i>Danh mục sản phẩm
+        </div>
+        <div class="">
+            @include('frontend.witgets.category-product')
+        </div>
     </div>
 </div>
-<div class="col-md-10">
+<div class="col-md-10 col-sm-10 menu_top_bg ">
     
 
 <ul class="nav navbar-nav clearfix sm hidden-xs" style="margin-left: 250px;">

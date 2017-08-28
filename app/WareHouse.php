@@ -70,4 +70,12 @@ class WareHouse extends Model
         }    
         return $arrCateProductOflWareHouse;
     }
+    public static function getAllWareHouseByArea($form, $to){
+
+        $getAllWareHouse = WareHouse::leftjoin('province','province.provinceid','=','ware_houses.province')
+            ->whereBetween('province.provinceid', array($from, $to))
+            ->get();
+        return $getAllWareHouse;
+
+    }
 }

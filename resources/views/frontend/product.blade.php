@@ -20,7 +20,7 @@
 
 			<aside class="col-md-3 col-sm-4">
 
-					@include('frontend.witgets.category-product')
+					
 
 				<div class="section_offset hidden-xs" >
 					@include('frontend.panner.product-banner')

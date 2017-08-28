@@ -8,21 +8,24 @@
 
 				<div class="container">
 
-					<div class="section_offset" style="margin-bottom:0px;">
-
-						<div class="row">
+					<div class="box_headder" style="margin-bottom:0px;">
+						<div class="row col-md-12 col-xs-12 col-sm-12" style="height: 220px;">
+							<div class="head">
+								Cộng đồng kết nối nhu cầu nông sản
+							</div>
+							<div class="foot">
+								Tìm nguồn hàng chất lượng và uy tín ...
+							</div>
+						</div>
+						<!-- <div class="row">
 							<div class="col-xs-12 col-md-12" style="padding-bottom: 22px; ">
 									{!! \App\Setting::getValue('slider')!!}
 							</div>
-							<div class="clear"></div>
-							
-							
-						</div>
-							
+						</div> -->
 					</div>
-					<br>
+
 					<div class="row ">
-						<main class="col-md-12 col-sm-12">
+						<main class="col-md-12 col-sm-12" style="background-color: #fff;">
 
 							<!-- - - - - - - - - - - - - - Category - - - - - - - - - - - - - - - - -->
 							<div>
@@ -37,14 +40,14 @@
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 company_cell">
 												<div class="well box_1">
-													@if ($itemAllNewsCompany->companyConfirm)
-													<div class="box-status" style="background-color: #64DD17;">
-				                                        <p class="text-center status-title">HOT</p>
-				                                    </div>
-				                                    @endif
 
 													<div class="product_bestselt">
 														<div class="company_image">
+														@if ($itemAllNewsCompany->companyConfirm)
+														<div class="box-status" style="background-color: #64DD17;">
+					                                        <p class="text-center status-title">HOT</p>
+					                                    </div>
+					                                    @endif
 															<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
 																<img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
 															</a>
@@ -54,7 +57,7 @@
 															<div class="limit-2">
 					                                        	{!! $itemAllNewsCompany->content !!}
 					                                        </div>
-					                                        <span style="padding-left: 5px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
+					                                        <span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
 														</div>
 													</div>
 												</div>
@@ -90,7 +93,7 @@
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 warehouse_cell">
 												<div class="well box_1">
-												<div class="product_bestselt">
+												<div class="product_bestselt" style="padding-bottom: 10px;">
 
 													<div class="company_image">
 
@@ -121,7 +124,7 @@
 															</a>
 															<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouse->user_id) !!}</a>
 														</div>
-														<div class="clearfix product_info limit-2">
+														<div class="clearfix product_info limit-2">Cung cấp: 
 															@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouse->id) as $key => $itemCate)
 																{{$itemCate}},
 															@endforeach

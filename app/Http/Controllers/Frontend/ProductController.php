@@ -110,6 +110,29 @@ class ProductController extends Controller
         return view('frontend.warehouse-business',$data);
 
     }
+    public function GetWareHouseByLevel($capdo){
+        $level = 1;
+        $title = "Thường";
+        if ($capdo == 'chuyen-nghiep') {
+            $level = 3;
+            $title = "Chuyên nghiệp";
+        } elseif ($capdo == 'tiem-nang') {
+            $level = 2;
+            $title = "Tiềm năng";
+        } else {
+            $level = 1;
+            $title = "Thường";
+        }
+        $getAllWareHouse = WareHouse::where('level', $level)->inRandomOrder()->paginate(30);
+
+        $data =[
+            "title" => $title,
+            "getAllWareHouse" => $getAllWareHouse
+        ];
+        return view('frontend.warehouse-level',$data);
+
+    }
+    
     public function GetAllProduct(Request $request){
 
         if (!empty($request->get('search'))){

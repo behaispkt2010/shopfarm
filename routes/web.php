@@ -217,9 +217,11 @@ Route::post('/customer-rate','Frontend\ProductController@customerRate');
 // maps
 /*Route::get('/', ['as' => 'getLocation', 'uses' => 'LocationCotroller@getLocation']);*/
 
-Route::get('/xac-thuc-kho', 'HomeController@testmap');
+// Route::get('/xac-thuc-kho', 'HomeController@testmap');
 
-
+Route::get('/nha-cung-cap/{capdo}', 'Frontend\ProductController@GetWareHouseByLevel');
+Route::get('/ho-tro/{content}', 'Frontend\PageController@Help');
+Route::get('/vung-mien/{area}', 'Frontend\PageController@getWareHouseArea');
 ////cart
 //Route::get('/cart', 'CartController@index');
 //Route::get('/cart/empty', 'CartController@emptyCart');

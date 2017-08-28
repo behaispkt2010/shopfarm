@@ -146,4 +146,41 @@ class PageController extends Controller
     public function UpgradeKho(){
         return view('frontend.upgradekho');
     }
+    public function Help ($content) {
+        if ($content == "dang-ky-chu-kho") {
+            return view('frontend.help_resisterwarehouse');
+        } elseif ($content == "co-hoi") {
+            return view('frontend.help_cohoi');
+        } elseif ($content == "van-chuyen") {
+            return view('frontend.help_transport');
+        }
+    }
+    public function getWareHouseArea($area) {
+        $from = 62;
+        $to = 68;
+        $title = "Tây Nguyên";
+        if ($area == 'tay-nguyen') {
+            $from = 62;
+            $to = 68;
+            $title = "Tây Nguyên";
+        } elseif ($area == 'dong-nam-bo') {
+            $from = 70;
+            $to = 79;
+            $title = "Đông Nam Bộ";
+        } elseif ($area == 'tay-nam-bo') {
+            $from = 80;
+            $to = 96;
+            $title = "Tây Nam Bộ";
+        }
+        $getAllWareHouse = WareHouse::select('ware_houses.*')
+            ->leftjoin('province','province.provinceid','=','ware_houses.province')
+            ->whereBetween('province.provinceid', array($from, $to))
+            ->paginate(30);
+        // dd($getAllWareHouse);    
+        $data =[
+            "title" => $title,
+            "getAllWareHouse" => $getAllWareHouse
+        ];
+        return view('frontend.warehouse-level',$data);
+    }
 }

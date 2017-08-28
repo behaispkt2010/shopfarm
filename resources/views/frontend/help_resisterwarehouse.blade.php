@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
-@section('title', 'Những điều cần biết khi đăng ký quảng cáo')
-@section('description','Những điều cần biết khi đăng ký quảng cáo')
+@section('title', 'Thông tin Chủ kho')
+@section('description','Thông tin Chủ kho')
 
 @section('content')
 			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
@@ -10,10 +10,12 @@
 
 					<ul class="breadcrumbs">
 						<li><a href="/">Trang chủ</a></li>
-						<li>Những điều cần biết khi đăng ký quảng cáo</li>
+						<li>Hướng dẫn đăng ký chủ kho</li>
 					</ul>
 					<div class="row ">
-						đăng ký quảng cáo
+						<main class="col-md-12 col-sm-12">
+							đăng ký chủ kho như thế nào ?
+						</main>
 					</div>
 					
 				</div>

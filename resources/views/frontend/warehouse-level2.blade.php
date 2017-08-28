@@ -10,7 +10,8 @@
 
 					<ul class="breadcrumbs">
 						<li><a href="/">Trang chủ</a></li>
-						<li>Danh sách các Chủ kho uy tín</li>
+						<li><a href="/warehouse-business">Nhà cung cấp</a></li>
+						<li>Thường</li>
 					</ul>
 					<div class="row ">
 						<main class="col-md-12 col-sm-12">
@@ -23,7 +24,7 @@
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 warehouse_cell">
 												<div class="well box_1">
-												<div class="product_bestselt">
+												<div class="product_bestselt" style="padding-bottom: 10px;">
 
 													<div class="company_image">
 
@@ -54,8 +55,11 @@
 															</a>
 															<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouse->user_id) !!}</a>
 														</div>
-														<div class="clearfix product_info">
-				                                        	Danh sách product thường xuyên bán
+														<div class="clearfix product_info limit-2">Cung cấp: 
+															@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouse->id) as $key => $itemCate)
+																{{$itemCate}},
+															@endforeach
+				                                        	<!-- {{$itemAllWareHouse->category_product_name}} getCateProductByID-->
 				                                        </div>
 													</div>
 

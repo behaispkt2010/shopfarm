@@ -113,7 +113,7 @@ button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #0f9d58;
+    /*background: #0f9d58;*/
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 5px;
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .2);
@@ -2359,7 +2359,7 @@ td.product_image_col {
     padding-top: 15px;
     padding-bottom: 10px;
     width: inherit;
-    background-color: #0f9d58;
+    background-color: #e0e0e0;
 }
 
 .call_us {
@@ -5035,8 +5035,8 @@ a[class*="fancybox_item"]:hover > .helper_icon {
 }
 
 .kho_info {
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .kho_info .photo {
@@ -8642,6 +8642,7 @@ a:hover {
     background: #fff;
     cursor: pointer;
     border-radius: 5px !important;
+    border: none;
 }
 
 .well.box_1:hover {
@@ -8711,6 +8712,9 @@ a:hover {
 
 .product_bestselt {
     height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px !important;
 }
 
 .product_bestselt:hover {
@@ -8770,22 +8774,24 @@ ul.mobile-menu-icon {
 }
 
 .main_navigation_fronend {
-    background: #0f9d58;
-    border-color: #0f9d58;
-    color: #fff;
+    background: #e0e0e0;
+    border-color: #e0e0e0;
+    color: #00695b;
     float: left;
     margin: 0px;
     font-size: 22px;
     padding: 0px;
-    padding-right: 38px;
+    padding-right: 30px;
     padding-top: 1px;
+    padding-left: 15px;
 }
 
 .is_login {
-    color: #fff;
+    color: #00695b;
     font-size: 22px;
     float: right;
     padding-top: 1px;
+    padding-right: 15px;
 }
 
 .icon_fa_frmlogin {
@@ -8857,7 +8863,7 @@ ul.mobile-menu-icon {
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 .limit-2{
     overflow: hidden;
@@ -8869,7 +8875,7 @@ ul.mobile-menu-icon {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     padding-bottom: 5px;
-    padding-left: 5px;
+    /*padding-left: 5px;*/
  }
 @media only screen and (max-width:320px) {
     .main_navigation_fronend {
@@ -8907,7 +8913,7 @@ ul.mobile-menu-icon {
 
 .page_wrapper .container {
     padding: 10px 20px 0;
-    margin-left: 195px;
+    margin-left: 220px;
 }
 
 header {
@@ -8921,8 +8927,8 @@ header {
 .logo {
     float: left;
     height: 50px;
-    padding-left: 17px;
-    padding-top: 4px;
+    padding-left: 0px;
+    padding-top: 0px;
     width: 200px;
 }
 #search {
@@ -8930,6 +8936,8 @@ header {
     margin-top: 7px;
     position: relative;
     width: 420px;
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06) !important;
+    overflow: hidden;
 }
 #search input {
     background: #fff none repeat scroll 0 0;
@@ -8983,7 +8991,7 @@ ul.box-manage > li a {
     border-radius: 3px;
     line-height: 23px;
     font-size: 12px;
-    color: #54657E;
+    color: #fff;
     background: #fff;
     font-weight: bold;
 }
@@ -9018,7 +9026,8 @@ a.especially {
 
 .left_col {
     background: #e0e0e0;
-    width: 180px;
+    width: 200px;
+    padding: 0px;
 }
 
 .nav-sm .container.body .col-md-3.left_col {
@@ -9284,4 +9293,69 @@ table.listview {
 }
 .btn-dangtin {
     background-color: #109d59 !important;
+}
+.btn-dangtin:hover {
+    color: #000 !important;
+}
+.menu_top_bg {
+    width: 89%;
+    background-color: #eeeeee;
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06) !important;
+    /*overflow: hidden;*/
+}
+
+@media only screen and (max-width:480px ) {
+    .menu_top_bg {
+        width: 85%;
+    }
+
+    .head {
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
+    }
+    .foot {
+        font-size: 14px !important;
+        margin-bottom: 10px !important;
+    }
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    .menu_top_bg {
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 1200px) and (min-width: 991px) {
+    .menu_top_bg {
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 1400px) and (min-width: 1201px) {
+    .menu_top_bg {
+        width: 84%;
+    }
+}
+@media only screen and (max-width:1900px) and (min-width: 1400px) {
+    .menu_top_bg {
+        width: 89%;
+    }
+} 
+.box_headder {
+    background: url(../../frontend/images/home_slide_5.png) left repeat;
+    border-radius: 5px;
+    height: 240px;
+    padding-top: 40px;
+    text-align: center;
+    width: 100%;
+    margin: 23px 0px 23px;
+}
+.head {
+    font-family: 'SFUIDisplay_Bold', sans-serif;
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 32px;
+}
+.foot {
+    font-family: 'SFUIDisplay_Light', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 32px;
 }
