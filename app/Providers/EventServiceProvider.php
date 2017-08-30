@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ViewsCompanyEvents' => [
             'App\Listeners\ViewsCompanyListeners',
         ],
+        'App\Events\ViewsWareHouseEvents' => [
+            'App\Listeners\ViewsWareHouseListeners',
+        ],
     ];
 
     /**

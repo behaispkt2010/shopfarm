@@ -10,6 +10,7 @@ use App\Util;
 use App\WareHouse;
 use App\Product;
 use App\Events\ViewsCompanyEvents;
+use App\Events\ViewsWareHouseEvents;
 use App\CompanyImage;
 use App\NewsCompany;
 use App\Company;
@@ -86,18 +87,19 @@ class PageController extends Controller
     public function DetailWarehouse($warehouse_id) {
         $arrCategoryWarehouse = CategoryWarehouse::get();
         $arrImageDetail = WarehouseImageDetail::where('warehouse_id',$warehouse_id)->get();
-        $ware_house = WareHouse::select('ware_houses.*','users.*','ware_houses.address as ware_houses_address')
+        $getNewProduct = Product::getProductOfWarehouse($warehouse_id,9);
+        $warehouse = WareHouse::select('ware_houses.*','users.*','ware_houses.address as ware_houses_address')
             ->leftjoin('users','users.id','=','ware_houses.user_id')
             ->where('ware_houses.id',$warehouse_id)
             ->first();
-        $getNewProduct = Product::getProductOfWarehouse($warehouse_id,9);
         $data = [
-            'ware_house' => $ware_house,
+            'ware_house' => $warehouse,
             'arrImageDetail' => $arrImageDetail,
             'getNewProduct' => $getNewProduct,
             'arrCategoryWarehouse' => $arrCategoryWarehouse,
         ];
         //dd($getNewProduct);
+        event(new ViewsWareHouseEvents($warehouse));
         return view('frontend.warehouse', $data);
     }
     public function DetailCompany($company_id) {

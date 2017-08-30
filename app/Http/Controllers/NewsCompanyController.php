@@ -117,11 +117,7 @@ class NewsCompanyController extends Controller
             $to = "behaispkt2010@gmail.com";
             Mail::to($to)->send(new MailBroadCastProduct($data));
         }
-        
-
-
-
-        // return redirect('admin/newscompany/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
+        return redirect('admin/newscompany/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 
     /**

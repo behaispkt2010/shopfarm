@@ -4227,6 +4227,8 @@ table.product_info td:first-child {
 
 .tabs_nav {
     margin-right: 65px;
+    border-bottom: 1px solid rgba(207, 216, 220, 0.42);
+    margin-bottom: 20px;
 }
 
 .ts_nav {
@@ -4283,7 +4285,7 @@ table.product_info td:first-child {
     padding: 14px 17px 15px;
     display: block;
     background: #fff;
-    border: 1px solid #eaeaea;
+    /*border: 1px solid #eaeaea;*/
 }
 
 .tabs_nav.theme_menu > li > a {
@@ -4335,6 +4337,13 @@ table.product_info td:first-child {
     color: #fff;
     background: #0f9d58;
     border-color: #0f9d58;
+}
+.tabs_nav > li.active > a,
+.tabs_nav > li:hover > a {
+    color: #000 !important;
+    background: #fff !important;
+    border-color: #fff !important;
+    border-bottom: 1px solid #000 !important;
 }
 
 .tabs:not(.type_3) .tabs_nav li a {
@@ -8609,13 +8618,14 @@ a:hover {
 }
 .company_cell {
     height: 280px;
-    padding: 0px;
+    padding: 0px 5px;
 
     background: #fff none repeat scroll 0 0;
     border-radius: 4px;
     float: left;
     /*margin-bottom: 13px;*/
-    margin-left: 15px;
+    /*margin-left: 15px;*/
+    /*padding-left: 10px;*/
     min-height: 175px;
     overflow: hidden;
     /*width: 180px;*/
@@ -8638,7 +8648,7 @@ a:hover {
     overflow: hidden;
     position: relative;
     /*display: inline-block;*/
-    padding: 10px 0 0;
+    padding: 0px;
     background: #fff;
     cursor: pointer;
     border-radius: 5px !important;
@@ -8647,7 +8657,7 @@ a:hover {
 
 .well.box_1:hover {
     -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    box-shadow: 0 5px 1px 0 rgba(0, 0, 0, 0.2), 0 0px 1px 0 rgba(0, 0, 0, 0.19) !important;
 }
 /* .product_bestselt {
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06) !important;
@@ -8912,7 +8922,7 @@ ul.mobile-menu-icon {
 } */
 
 .page_wrapper .container {
-    padding: 10px 20px 0;
+    padding: 10px 50px 0 0;
     margin-left: 220px;
 }
 

@@ -11,9 +11,7 @@
 					<div class="section_offset" style="margin-bottom:0px;">
 
 						<div class="row">
-							<div class="col-xs-12 col-md-3 hidden-xs" style="padding-bottom: 22px;">
-								@include('frontend.witgets.category-product')
-							</div>
+							
 							<div class="col-xs-12 col-md-9" style="padding-bottom: 22px; ">
 									{!! \App\Setting::getValue('slider')!!}
 							</div>

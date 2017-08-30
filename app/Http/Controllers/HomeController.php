@@ -59,9 +59,11 @@ class HomeController extends Controller
             ->leftjoin('users','users.id','=','news_company.author_id')
             ->leftjoin('company','company.user_id','=','users.id')
             ->where('news_company.status',1)
-            ->inRandomOrder()
-            ->paginate(16);
-        $getAllWareHouse = WareHouse::inRandomOrder()->paginate(16);
+            ->orderBy('company.confirm','desc')
+            ->paginate(42);
+        $getAllWareHouseDeXuat = WareHouse::orderBy('level','desc')->paginate(42);
+        $getAllWareHouseXemNhieu = WareHouse::orderBy('count_view','desc')->paginate(42);
+        $getAllWareHouseUyTin = WareHouse::inRandomOrder()->paginate(42);
         // $arrCateProduct = WareHouse::getCateProductByID('4');
         /*$getAllWareHouse = WareHouse::select('ware_houses.*','category_products.name as category_product_name')
             ->leftjoin('products','products.kho','=','ware_houses.user_id')
@@ -75,7 +77,9 @@ class HomeController extends Controller
             'getBestStarsProduct'=>$getBestStarsProduct,
             'allCategory'=>$allCategory,
             'getAllNewsCompany'=>$getAllNewsCompany,
-            'getAllWareHouse'=>$getAllWareHouse
+            'getAllWareHouseDeXuat'=>$getAllWareHouseDeXuat,
+            'getAllWareHouseUyTin'=>$getAllWareHouseUyTin,
+            'getAllWareHouseXemNhieu'=>$getAllWareHouseXemNhieu,
         ];
         return view('frontend.home',$data);
     }
