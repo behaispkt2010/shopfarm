@@ -6,18 +6,18 @@
         </a>
     </div>
     <div id="search" class="filtergroup w80 nomargin">
-        <input type="text" id="keyword" onkeydown="this.style.color = '#333';" onclick="this.value = '';" value="Tìm nguồn hàng chất lượng, tìm nhà cung cấp uy tín,..." name="keyword">
+        <input type="text" id="keyword" onkeydown="this.style.color = '#333';" onclick="this.value = '';" value="" name="keyword">
         <button class="button-search btnsearch" type="button"><i class="fa fa-search"></i></button>
     </div>
     <ul class="box-manage">
         @if(( !Auth::check()))
-                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>
+                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG TIN MUA BÁN</a></li>
                 <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/login')}}" data-modal-url="{{url('/login')}}">ĐĂNG NHẬP </a></li>
                 <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/register')}}" >ĐĂNG KÝ</a></li>
         @else
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                        aria-expanded="false" style="color: #000; line-height: 30px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>
-            <li><a class="btn btn-raised btn-dangtin col-xs-12" href="">ĐĂNG TIN MUA BÁN</a></li>            
+                        aria-expanded="false" style="color: #000; line-height: 54px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>
+            <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG TIN MUA BÁN</a></li>            
             <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 9%; right: 0px;">
                 <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
                         <i class="fa fa-info-circle pull-right"></i>Tài khoản
@@ -139,7 +139,7 @@
         </div>
     </div>
 </div>
-<div class="col-md-10 col-sm-10 menu_top_bg ">
+<div class="col-md-10 col-sm-10 menu_top_bg " style="height: 41px;">
     
 
 <ul class="nav navbar-nav clearfix sm hidden-xs" style="margin-left: 250px;">

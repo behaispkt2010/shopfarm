@@ -2707,7 +2707,7 @@ td.product_image_col {
 .main_navigation:not(.full_width_nav) > ul > li > a {
     /*border: 1px solid #eaeaea;*/
     /*background-color: #fff;*/
-    padding: 16px 18px 17px;
+    padding: 10px 18px 17px;
     color: #000;
 }
 
@@ -4284,7 +4284,7 @@ table.product_info td:first-child {
 .tabs_nav > li > a {
     padding: 14px 17px 15px;
     display: block;
-    background: #fff;
+    /*background: #fff;*/
     /*border: 1px solid #eaeaea;*/
 }
 
@@ -8606,7 +8606,7 @@ a:hover {
 }
 .list_row {
     /*display: table-row;*/
-    height: 275px;
+    height: 285px;
 }
 
 .category_product_cell {
@@ -8615,16 +8615,16 @@ a:hover {
     padding: 0px;
 }
 .list_company_row {
-    height: 275px;
+    height: 260px;
 }
 .list_warehouse_row {
-    height: 300px;
+    height: 260px;
 }
 .company_cell {
-    height: 280px;
+    /*height: 220px;*/
     padding: 0px 5px;
 
-    background: #fff none repeat scroll 0 0;
+    /*background: #fff none repeat scroll 0 0;*/
     border-radius: 4px;
     float: left;
     /*margin-bottom: 13px;*/
@@ -8635,10 +8635,10 @@ a:hover {
     /*width: 180px;*/
 }
 .warehouse_cell {
-    height: 290px;
+    /*height: 290px;*/
     padding: 0px 5px;
 
-    background: #fff none repeat scroll 0 0;
+    /*background: #fff none repeat scroll 0 0;*/
     border-radius: 4px;
     float: left;
     /*margin-bottom: 13px;*/
@@ -8688,9 +8688,20 @@ a:hover {
     text-align: center;
     border: 1px solid rgba(207, 216, 220, 0.42);
     border-radius: 4px;
+}.company_cell .company_image {
+    height: 133px;
+    text-align: center;
+    border: 1px solid rgba(207, 216, 220, 0.42);
+    border-radius: 4px;
 }
 .warehouse_cell .product_bestselt .company_image {
     height: 190px;
+    text-align: center;
+    border: 1px solid rgba(207, 216, 220, 0.42);
+    border-radius: 4px;
+}
+.warehouse_cell .company_image {
+    height: 133px;
     text-align: center;
     border: 1px solid rgba(207, 216, 220, 0.42);
     border-radius: 4px;
@@ -8706,7 +8717,17 @@ a:hover {
     width: 100%;
     border-radius: 4px;
 }
+.company_cell .company_image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+}
 .warehouse_cell .product_bestselt .company_image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+}
+.warehouse_cell .company_image img {
     height: 100%;
     width: 100%;
     border-radius: 4px;
@@ -8955,7 +8976,7 @@ header {
 }
 #search input {
     background: #fff none repeat scroll 0 0;
-    border: 1px solid #CFD8DC;
+    /*border: 1px solid #CFD8DC;*/
     border-radius: 3px 3px 3px 3px;
     color: #90A4AE;
     font-size: 15px;
@@ -8984,7 +9005,7 @@ header {
 ul.box-manage {
     margin-right: 20px;
     float: right;
-    margin-top: 7px;
+    margin-top: -5px;
 }
 ul.box-manage > li {
     float: left;
@@ -9007,7 +9028,7 @@ ul.box-manage > li a {
     font-size: 12px;
     color: #fff;
     background: #fff;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 a.especially {
     border: none !important;
@@ -9100,7 +9121,7 @@ a.especially {
     -moz-border-radius: 3px;
     border-radius: 3px;
     padding: 16px 14px 16px;
-    background-color: #fff;
+    /*background-color: #fff;*/
 }
 .warehouse_list {
     padding: 16px 14px 30px !important;
@@ -9229,7 +9250,7 @@ a.especially {
 .posting-box .title {
     color: #455a64;
     display: block;
-    font-family: "SFUIDisplay_Semibold",sans-serif;
+    font-family: "Roboto-Light",sans-serif;
     font-size: 16px;
     margin-bottom: 20px;
 }
@@ -9257,7 +9278,7 @@ table.listview {
     width: 210px;
 }
 .posting-box table.listview tr td {
-    font-family: "SFUIDisplay_Light",sans-serif;
+    font-family: "Roboto-Light",sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 22px;
@@ -9291,7 +9312,7 @@ table.listview {
 .carousel-jobs .title span {
     color: #455a64;
     display: block;
-    font-family: "SFUIDisplay_Semibold",sans-serif;
+    font-family: "Roboto-Light",sans-serif;
     font-size: 20px;
     height: 32px;
     margin-bottom: 16px;
@@ -9310,6 +9331,7 @@ table.listview {
 }
 .btn-dangtin {
     background-color: #109d59 !important;
+    color: #fff !important;
 }
 .btn-dangtin:hover {
     color: #000 !important;
@@ -9362,17 +9384,19 @@ table.listview {
     padding-top: 40px;
     text-align: center;
     width: 100%;
-    margin: 23px 0px 23px;
+    margin: -7px 0px 23px;
 }
 .head {
-    font-family: 'SFUIDisplay_Bold', sans-serif;
+    font-family: 'Roboto-Light', sans-serif;
     font-size: 36px;
     color: #fff;
     margin-bottom: 32px;
+    font-weight: lighter;
 }
 .foot {
-    font-family: 'SFUIDisplay_Light', sans-serif;
+    font-family: 'Roboto-Light', sans-serif;
     font-size: 24px;
     color: #fff;
     margin-bottom: 32px;
+    font-weight: lighter;
 }

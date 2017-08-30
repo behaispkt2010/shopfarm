@@ -12,4 +12,8 @@
     <link rel="stylesheet" href="{{asset('frontend/js/owlcarousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/js/arcticmodal/jquery.arcticmodal.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-material-design.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/ripples.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/component.css')}} ">
 @yield('add-styles')

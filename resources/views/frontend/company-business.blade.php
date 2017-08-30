@@ -21,7 +21,7 @@
 								@if(count($getAllNewsCompany)!=0)
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllNewsCompany as $itemAllNewsCompany)
-										@if($i==0)<div class="list_company_row" style="background-color: #fff;">@endif
+										@if($i==0)<div class="list_company_row" style="">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 company_cell">
 												<div class="well box_1">
@@ -31,7 +31,7 @@
 				                                    </div>
 				                                    @endif
 
-													<div class="product_bestselt">
+													<!-- <div class="product_bestselt"> -->
 														<div class="company_image">
 															<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
 																<img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
@@ -44,7 +44,7 @@
 					                                        </div>
 					                                        <span style="padding-left: 5px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
 														</div>
-													</div>
+													<!-- </div> -->
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>

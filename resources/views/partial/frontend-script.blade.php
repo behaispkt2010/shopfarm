@@ -26,6 +26,11 @@
 		============================================ -->
 		<script src="{{asset('frontend/js/theme.plugins.js')}}"></script>
 		<script src="{{asset('frontend/js/theme.core.js')}}"></script>
+
+		<!-- Bootstrap Material Design -->
+		<script  src="{{asset('js/material.js')}}"></script>
+		<script  src="{{asset('js/ripples.js')}}"></script>
+
 @yield('add-script')
 <script>
 	$(document).on('ready',function(){
@@ -35,6 +40,12 @@
 		$('.main_navigation ul li a[href ="'+url+'"]').closest('li').addClass('current');
 	})
 
+</script>
+<script>
+    $(function () {
+        $.material.init();
+
+    });
 </script>
 	<script>
 		$(document).on('click','.categories_list li a',function(){

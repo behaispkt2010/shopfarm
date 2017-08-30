@@ -19,11 +19,11 @@
 								@if(count($getAllWareHouse)!=0)
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllWareHouse as $itemAllWareHouse)
-										@if($i==0)<div class="list_row" style="background-color: #fff;">@endif
+										@if($i==0)<div class="list_row" style="">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 warehouse_cell">
 												<div class="well box_1">
-												<div class="product_bestselt" style="padding-bottom: 10px;">
+												<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 
 													<div class="company_image">
 
@@ -35,7 +35,7 @@
 
 														<p class="textoverlow"><a href="{{ url('/shop/'.$itemAllWareHouse->id) }}" class="clearfix ">{{$itemAllWareHouse->name_company}}</a></p>
 														<div class="kho_info clearfix">
-															<a href="#" class="alignleft" style="width: 70px;">
+															<a href="#" class="alignleft" style="width: 60px;">
 																@if($itemAllWareHouse->level == 1)
 																	<img src="{{url('/images')}}/level1.png" alt="">
 																@elseif($itemAllWareHouse->level == 2)
@@ -62,7 +62,7 @@
 				                                        </div>
 													</div>
 
-												</div>
+												<!-- </div> -->
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>

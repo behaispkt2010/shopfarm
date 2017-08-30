@@ -29,27 +29,25 @@
 								@if(count($getAllNewsCompany)!=0)
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllNewsCompany as $itemAllNewsCompany)
-										@if($i==0)<div class="list_company_row" style="background-color: #fff;">@endif
+										@if($i==0)<div class="list_company_row" style="">@endif
 											<div class="col-md-2 col-xs-12 company_cell">
 												<div class="well box_1">
-													<div class="product_bestselt">
-														<div class="company_image">
-														@if ($itemAllNewsCompany->companyConfirm)
-														<div class="box-status" style="background-color: #64DD17;">
-					                                        <p class="text-center status-title">HOT</p>
-					                                    </div>
-					                                    @endif
-															<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
-																<img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
-															</a>
-														</div>
-														<div class="description">
-															<p class="textoverlow"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
-															<div class="limit-2">
-					                                        	{!! $itemAllNewsCompany->content !!}
-					                                        </div>
-					                                        <span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
-														</div>
+													@if ($itemAllNewsCompany->companyConfirm)
+													<div class="box-status" style="background-color: #64DD17;">
+				                                        <p class="text-center status-title">HOT</p>
+				                                    </div>
+				                                    @endif
+													<div class="company_image">
+														<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
+															<img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
+														</a>
+													</div>
+													<div class="description">
+														<p class="textoverlow"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
+														<div class="limit-2">
+				                                        	{!! $itemAllNewsCompany->content !!}
+				                                        </div>
+				                                        <span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
 													</div>
 												</div>
 											</div>
@@ -85,10 +83,10 @@
 												@if(count($getAllWareHouseDeXuat)!=0)
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseDeXuat as $itemAllWareHouseDeXuat)
-													@if($i==0)<div class="list_warehouse_row" style="background-color: #fff;">@endif
+													@if($i==0)<div class="list_warehouse_row" style="">@endif
 														<div class="col-md-2 col-xs-12 warehouse_cell">
 															<div class="well box_1">
-															<div class="product_bestselt" style="padding-bottom: 10px;">
+															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
 																	<a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}"><img src="@if (!empty($itemAllWareHouseDeXuat->image_kho)){{url('/').$itemAllWareHouseDeXuat->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
 																</div>
@@ -121,7 +119,7 @@
 																	</div>
 																	
 																</div>
-															</div>
+															<!-- </div> -->
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
@@ -144,10 +142,10 @@
 												@if(count($getAllWareHouseXemNhieu)!=0)
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseXemNhieu as $itemAllWareHouseXemNhieu)
-													@if($i==0)<div class="list_warehouse_row" style="background-color: #fff;">@endif
+													@if($i==0)<div class="list_warehouse_row" style="">@endif
 														<div class="col-md-2 col-xs-12 warehouse_cell">
 															<div class="well box_1">
-															<div class="product_bestselt" style="padding-bottom: 10px;">
+															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
 																	<a href="{{ url('/shop/'.$itemAllWareHouseXemNhieu->id) }}"><img src="@if (!empty($itemAllWareHouseXemNhieu->image_kho)){{url('/').$itemAllWareHouseXemNhieu->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
 																</div>
@@ -179,7 +177,7 @@
 																		<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouseXemNhieu->user_id) !!}</a>
 																	</div>
 																</div>
-															</div>
+															<!-- </div> -->
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
@@ -202,10 +200,10 @@
 												@if(count($getAllWareHouseUyTin)!=0)
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseUyTin as $itemAllWareHouseUyTin)
-													@if($i==0)<div class="list_warehouse_row" style="background-color: #fff;">@endif
+													@if($i==0)<div class="list_warehouse_row" style="">@endif
 														<div class="col-md-2 col-xs-12 warehouse_cell">
 															<div class="well box_1">
-															<div class="product_bestselt" style="padding-bottom: 10px;">
+															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
 																	<a href="{{ url('/shop/'.$itemAllWareHouseUyTin->id) }}"><img src="@if (!empty($itemAllWareHouseUyTin->image_kho)){{url('/').$itemAllWareHouseUyTin->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
 																</div>
@@ -237,7 +235,7 @@
 																		<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouseUyTin->user_id) !!}</a>
 																	</div>
 																</div>
-															</div>
+															<!-- </div> -->
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
