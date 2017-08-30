@@ -23,7 +23,7 @@
 									@foreach($getAllNewsCompany as $itemAllNewsCompany)
 										@if($i==0)<div class="list_company_row" style="">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-											<div class="col-md-2 col-xs-12 company_cell">
+											<div class="col-xs-12 company_cell">
 												<div class="well box_1">
 													@if ($itemAllNewsCompany->companyConfirm)
 													<div class="box-status" style="background-color: #64DD17;">
@@ -48,7 +48,7 @@
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
-											@if($i>=6|| $j>=count($getAllNewsCompany))
+											@if($i>=5|| $j>=count($getAllNewsCompany))
 												<?php $i=0 ?>
 										</div>
 										@endif

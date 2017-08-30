@@ -30,7 +30,7 @@
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllNewsCompany as $itemAllNewsCompany)
 										@if($i==0)<div class="list_company_row" style="">@endif
-											<div class="col-md-2 col-xs-12 company_cell">
+											<div class="col-xs-12 company_cell">
 												<div class="well box_1">
 													@if ($itemAllNewsCompany->companyConfirm)
 													<div class="box-status" style="background-color: #64DD17;">
@@ -38,12 +38,13 @@
 				                                    </div>
 				                                    @endif
 													<div class="company_image">
+													
 														<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
 															<img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
 														</a>
 													</div>
 													<div class="description">
-														<p class="textoverlow"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
+														<p class="textoverlow padding7" style="font-weight: bolder;"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
 														<div class="limit-2">
 				                                        	{!! $itemAllNewsCompany->content !!}
 				                                        </div>
@@ -52,7 +53,7 @@
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
-											@if($i>=6|| $j>=count($getAllNewsCompany))
+											@if($i>=5|| $j>=count($getAllNewsCompany))
 												<?php $i=0 ?>
 										</div>
 										@endif
@@ -84,14 +85,14 @@
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseDeXuat as $itemAllWareHouseDeXuat)
 													@if($i==0)<div class="list_warehouse_row" style="">@endif
-														<div class="col-md-2 col-xs-12 warehouse_cell">
+														<div class="col-xs-12 warehouse_cell">
 															<div class="well box_1">
 															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
 																	<a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}"><img src="@if (!empty($itemAllWareHouseDeXuat->image_kho)){{url('/').$itemAllWareHouseDeXuat->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
 																</div>
 																<div class="description">
-																	<p class="textoverlow"><a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}" class="clearfix ">{{$itemAllWareHouseDeXuat->name_company}}</a></p>
+																	<p class="textoverlow padding7"><a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}" class="clearfix ">{{$itemAllWareHouseDeXuat->name_company}}</a></p>
 																	<div class="clearfix product_info limit-2">Cung cấp: 
 																		@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouseDeXuat->id) as $key => $itemCate)
 																			{{$itemCate}},
@@ -123,7 +124,7 @@
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=6|| $j>=count($getAllWareHouseDeXuat))
+														@if($i>=5|| $j>=count($getAllWareHouseDeXuat))
 															<?php $i=0 ?>
 													</div>
 													@endif
@@ -134,7 +135,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseDeXuat)-42)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-42}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseDeXuat)-42)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-50}} @endif cơ hội mua bán)</label>
 											</div>
 										</div>
 										<div id="tab-2" class="tab_container">
@@ -143,14 +144,14 @@
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseXemNhieu as $itemAllWareHouseXemNhieu)
 													@if($i==0)<div class="list_warehouse_row" style="">@endif
-														<div class="col-md-2 col-xs-12 warehouse_cell">
+														<div class="col-xs-12 warehouse_cell">
 															<div class="well box_1">
 															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
 																	<a href="{{ url('/shop/'.$itemAllWareHouseXemNhieu->id) }}"><img src="@if (!empty($itemAllWareHouseXemNhieu->image_kho)){{url('/').$itemAllWareHouseXemNhieu->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
 																</div>
 																<div class="description">
-																	<p class="textoverlow"><a href="{{ url('/shop/'.$itemAllWareHouseXemNhieu->id) }}" class="clearfix ">{{$itemAllWareHouseXemNhieu->name_company}}</a></p>
+																	<p class="textoverlow padding7"><a href="{{ url('/shop/'.$itemAllWareHouseXemNhieu->id) }}" class="clearfix ">{{$itemAllWareHouseXemNhieu->name_company}}</a></p>
 																	<div class="clearfix product_info limit-2">Cung cấp: 
 																		@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouseXemNhieu->id) as $key => $itemCate)
 																			{{$itemCate}},
@@ -181,7 +182,7 @@
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=6|| $j>=count($getAllWareHouseXemNhieu))
+														@if($i>=5|| $j>=count($getAllWareHouseXemNhieu))
 															<?php $i=0 ?>
 													</div>
 													@endif
@@ -192,7 +193,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseXemNhieu)-42) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-42}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseXemNhieu)-42) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-50}} @endif cơ hội mua bán)</label>
 											</div>
 										</div>
 										<div id="tab-3" class="tab_container">
@@ -201,14 +202,14 @@
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseUyTin as $itemAllWareHouseUyTin)
 													@if($i==0)<div class="list_warehouse_row" style="">@endif
-														<div class="col-md-2 col-xs-12 warehouse_cell">
+														<div class="col-xs-12 warehouse_cell">
 															<div class="well box_1">
 															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
 																	<a href="{{ url('/shop/'.$itemAllWareHouseUyTin->id) }}"><img src="@if (!empty($itemAllWareHouseUyTin->image_kho)){{url('/').$itemAllWareHouseUyTin->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
 																</div>
 																<div class="description">
-																	<p class="textoverlow"><a href="{{ url('/shop/'.$itemAllWareHouseUyTin->id) }}" class="clearfix ">{{$itemAllWareHouseUyTin->name_company}}</a></p>
+																	<p class="textoverlow padding7"><a href="{{ url('/shop/'.$itemAllWareHouseUyTin->id) }}" class="clearfix ">{{$itemAllWareHouseUyTin->name_company}}</a></p>
 																	<div class="clearfix product_info limit-2">Cung cấp: 
 																		@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouseUyTin->id) as $key => $itemCate)
 																			{{$itemCate}},
@@ -239,7 +240,7 @@
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=6|| $j>=count($getAllWareHouseUyTin))
+														@if($i>=5|| $j>=count($getAllWareHouseUyTin))
 															<?php $i=0 ?>
 													</div>
 													@endif
@@ -250,7 +251,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseUyTin)-42) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-42}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseUyTin)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-42}} @endif cơ hội mua bán)</label>
 											</div>
 										</div>
 									</div>

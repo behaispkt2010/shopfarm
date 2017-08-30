@@ -19,7 +19,7 @@
 								@if(count($getAllWareHouse)!=0)
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllWareHouse as $itemAllWareHouse)
-										@if($i==0)<div class="list_row" style="">@endif
+										@if($i==0)<div class="list_warehouse_row" style="">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 warehouse_cell">
 												<div class="well box_1">
@@ -66,7 +66,7 @@
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
-											@if($i>=6|| $j>=count($getAllWareHouse))
+											@if($i>=5|| $j>=count($getAllWareHouse))
 												<?php $i=0 ?>
 										</div>
 										@endif
