@@ -20,7 +20,7 @@
 								@if(count($getAllWareHouse)!=0)
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllWareHouse as $itemAllWareHouse)
-										@if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+										@if($i==0)<div class="list_row" style="background-color: #fff;">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 warehouse_cell">
 												<div class="well box_1">
@@ -47,12 +47,12 @@
 																	<img src="{{url('/images')}}/level0.png" alt="">
 																@endif
 															</a>
-															<a href="#" class="alignleft" style="width: 70px;">
+															<!-- <a href="#" class="alignleft" style="width: 70px;">
 																@if($itemAllWareHouse->confirm_kho == 1)
 																	<img src="{{url('/images')}}/xacthuc.png" alt="">
 																@else
 																@endif
-															</a>
+															</a> -->
 															<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouse->user_id) !!}</a>
 														</div>
 														<div class="clearfix product_info limit-2">Cung cấp: 

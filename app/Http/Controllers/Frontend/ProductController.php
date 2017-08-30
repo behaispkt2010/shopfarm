@@ -92,8 +92,8 @@ class ProductController extends Controller
         $getAllNewsCompany = NewsCompany::leftjoin('users','users.id','=','news_company.author_id')
             ->leftjoin('company','company.user_id','=','users.id')
             ->where('news_company.status',1)
-            ->inRandomOrder()
-            ->paginate(30);
+            ->orderBy('company.confirm','desc')
+            ->paginate(120);
         $data =[
             "getAllNewsCompany" => $getAllNewsCompany
         ];
@@ -102,7 +102,7 @@ class ProductController extends Controller
     }
     public function GetAllWareHouse(){
 
-        $getAllWareHouse = WareHouse::inRandomOrder()->paginate(30);
+        $getAllWareHouse = WareHouse::orderBy('level','desc')->paginate(120);
 
         $data =[
             "getAllWareHouse" => $getAllWareHouse

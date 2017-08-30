@@ -8602,7 +8602,11 @@ a:hover {
 
 .category_product_row {
     /*display: table-row;*/
-    height: 350px;
+    height: 375px;
+}
+.list_row {
+    /*display: table-row;*/
+    height: 275px;
 }
 
 .category_product_cell {
@@ -8631,14 +8635,14 @@ a:hover {
     /*width: 180px;*/
 }
 .warehouse_cell {
-    height: 315px;
-    padding: 0px;
+    height: 290px;
+    padding: 0px 5px;
 
     background: #fff none repeat scroll 0 0;
     border-radius: 4px;
     float: left;
     /*margin-bottom: 13px;*/
-    margin-left: 15px;
+    /*margin-left: 15px;*/
     min-height: 175px;
     overflow: hidden;
     /*width: 180px;*/
@@ -9095,8 +9099,11 @@ a.especially {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    padding: 16px 14px 0;
+    padding: 16px 14px 16px;
     background-color: #fff;
+}
+.warehouse_list {
+    padding: 16px 14px 30px !important;
 }
 .box-status {
     width: 150px;
