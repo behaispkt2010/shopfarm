@@ -35,7 +35,7 @@
 
 														<p class="textoverlow"><a href="{{ url('/shop/'.$itemAllWareHouse->id) }}" class="clearfix ">{{$itemAllWareHouse->name_company}}</a></p>
 														<div class="kho_info clearfix">
-															<a href="#" class="alignleft" style="width: 60px;">
+															<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
 																@if($itemAllWareHouse->level == 1)
 																	<img src="{{url('/images')}}/level1.png" alt="">
 																@elseif($itemAllWareHouse->level == 2)
@@ -52,7 +52,8 @@
 																@else
 																@endif
 															</a> -->
-															<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouse->user_id) !!}</a>
+															<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouse->count_view))0 @else{{$itemAllWareHouse->count_view}}@endif </a></span>
+															<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouse->user_id) !!}</a>
 														</div>
 														<div class="clearfix product_info limit-2">Cung cấp: 
 															@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouse->id) as $key => $itemCate)

@@ -218,11 +218,11 @@
 
                                         <div class="image-view">
                                             @if(!empty($company->image_company))
-                                                <img src="{{url('/').$company->image_company}}" alt="" class="img-responsive">
+                                                <img src="{{url('/').$company->image_company}}" alt="" class="img-responsive" style="height: 169px;border-radius: 5px;">
                                                 <div class="form-group">
                                                     <div class="col-md-8">
                                                         <input type="text" readonly="" class="form-control"
-                                                               placeholder="Chọn hình ảnh">
+                                                               placeholder="Chọn ảnh đại diện">
                                                         <input type="file" name="image_company" id="inputFile">
                                                     </div>
                                                 </div>
@@ -246,7 +246,7 @@
                                 </li>
                                 <li>
                                     <button class="btn btn-default btn-raised btn-sm" data-toggle="modal"
-                                            data-target=".modal-hinhchitietkho">Hình ảnh Công ty</button>
+                                            data-target=".modal-hinhchitietkho">Thêm nhiều ảnh Công ty</button>
                                 </li>
                                 <li class="text-right btnCapNhat">
                                     <button id="update_detail" class="btn-update btn btn-primary btn-raised text-right btn-small" style="display: none"> Cập nhật</button>
@@ -664,7 +664,7 @@
                                     <div id="abcd2" class="abcd">
                                         <img class="img-responsive"
                                              id="previewimg{{$itemImage->id}}"
-                                             src="{{ url('/').$itemImage->company_image}}">
+                                             src="{{ url('/').$itemImage->company_image}}" style="height: 169px;border-radius: 5px;">
                                         <i id="img" data-id="{{$itemImage->id}}" class="fa fa-times red delete-img-ajax"></i>
                                     </div>
                                     <br>

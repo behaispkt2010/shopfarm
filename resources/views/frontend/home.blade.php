@@ -63,7 +63,7 @@
 									<h2 class="text-center" style="text-align: center">Không tìm thấy dữ liệu</h2>
 								@endif
 								<div class="bottom_box load_more">
-									<a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm </a><label style="padding-top: 6px;">(Còn @if ((count($getAllNewsCompany)-42) < 0 ) 0 @else hơn {{count($getAllNewsCompany)-42}} @endif cơ hội mua bán)</label>
+									<a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm </a><label style="padding-top: 6px;">(Còn @if ((count($getAllNewsCompany)-50) < 0 ) 0 @else hơn {{count($getAllNewsCompany)-50}} @endif cơ hội mua bán)</label>
 								</div>
 							</div>
 							<br>
@@ -72,7 +72,7 @@
 								<h3><a style="color: #0f9d58;" href="{{ url('/warehouse-business') }}">Nhà cung cấp nổi bật</a></h3>
 							</div>
 							<div class="warehouse_list">
-								<div class="tabs products section_offset animated transparent hidden-xs" data-animation="fadeInDown" data-animation-delay="150">
+								<div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">
 									<ul class="tabs_nav clearfix">
 										<li class="tab_bottom"><a href="#tab-1" style="font-size: 16px;">Đề xuất</a></li>
 										<li class="tab_bottom"><a href="#tab-2" style="font-size: 16px;">Xem nhiều</a></li>
@@ -99,7 +99,7 @@
 																		@endforeach
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 60px;">
+																		<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
 																			@if($itemAllWareHouseDeXuat->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseDeXuat->level == 2)
@@ -116,7 +116,8 @@
 																			@else
 																			@endif
 																		</a> -->
-																		<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
+																		<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseDeXuat->count_view))0 @else{{$itemAllWareHouseDeXuat->count_view}}@endif </a></span>
+																		<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
 																	</div>
 																	
 																</div>
@@ -135,7 +136,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseDeXuat)-42)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-50}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseDeXuat)-50)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-50}} @endif cơ hội mua bán)</label>
 											</div>
 										</div>
 										<div id="tab-2" class="tab_container">
@@ -158,7 +159,7 @@
 																		@endforeach
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 60px;">
+																		<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
 																			@if($itemAllWareHouseXemNhieu->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseXemNhieu->level == 2)
@@ -175,7 +176,8 @@
 																			@else
 																			@endif
 																		</a> -->
-																		<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouseXemNhieu->user_id) !!}</a>
+																		<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseXemNhieu->count_view))0 @else{{$itemAllWareHouseXemNhieu->count_view}}@endif </a></span>
+																		<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseXemNhieu->user_id) !!}</a>
 																	</div>
 																</div>
 															<!-- </div> -->
@@ -193,7 +195,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseXemNhieu)-42) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-50}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseXemNhieu)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-50}} @endif cơ hội mua bán)</label>
 											</div>
 										</div>
 										<div id="tab-3" class="tab_container">
@@ -216,7 +218,7 @@
 																		@endforeach
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 60px;">
+																		<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
 																			@if($itemAllWareHouseUyTin->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseUyTin->level == 2)
@@ -233,7 +235,8 @@
 																			@else
 																			@endif
 																		</a> -->
-																		<a href="#" style="float: right; font-size: 11px; padding-right: 2px;">{!! \App\Util::UserCode($itemAllWareHouseUyTin->user_id) !!}</a>
+																		<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($getAllWareHouseUyTin->count_view))0 @else{{$getAllWareHouseUyTin->count_view}}@endif </a></span>
+																		<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseUyTin->user_id) !!}</a>
 																	</div>
 																</div>
 															<!-- </div> -->
@@ -251,7 +254,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseUyTin)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-42}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="button_grey middle_btn">Xem thêm </a> <label style="padding-top: 6px;">(Còn @if ((count($getAllWareHouseUyTin)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-50}} @endif cơ hội mua bán)</label>
 											</div>
 										</div>
 									</div>

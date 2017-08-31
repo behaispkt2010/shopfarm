@@ -60,10 +60,10 @@ class HomeController extends Controller
             ->leftjoin('company','company.user_id','=','users.id')
             ->where('news_company.status',1)
             ->orderBy('company.confirm','desc')
-            ->paginate(42);
-        $getAllWareHouseDeXuat = WareHouse::orderBy('level','desc')->paginate(42);
-        $getAllWareHouseXemNhieu = WareHouse::orderBy('count_view','desc')->paginate(42);
-        $getAllWareHouseUyTin = WareHouse::inRandomOrder()->paginate(42);
+            ->paginate(50);
+        $getAllWareHouseDeXuat = WareHouse::orderBy('level','desc')->paginate(50);
+        $getAllWareHouseXemNhieu = WareHouse::orderBy('count_view','desc')->paginate(50);
+        $getAllWareHouseUyTin = WareHouse::inRandomOrder()->paginate(50);
         // $arrCateProduct = WareHouse::getCateProductByID('4');
         /*$getAllWareHouse = WareHouse::select('ware_houses.*','category_products.name as category_product_name')
             ->leftjoin('products','products.kho','=','ware_houses.user_id')

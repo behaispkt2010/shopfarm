@@ -8618,7 +8618,7 @@ a:hover {
     height: 272px;
 }
 .list_warehouse_row {
-    height: 335px;
+    height: 300px;
 }
 .company_cell {
     /*height: 220px;*/
@@ -8704,7 +8704,7 @@ a:hover {
     border-radius: 4px;
 }
 .warehouse_cell .company_image {
-    height: 207px;
+    height: 170px;
     text-align: center;
     /*border: 1px solid rgba(207, 216, 220, 0.42);*/
     border-radius: 4px 4px 0 0;
@@ -8736,12 +8736,10 @@ a:hover {
 }
 .warehouse_cell .company_image img {
     max-height: 100%;
-    object-fit: inherit;
     width: 100%;
-    /*transform: translateY(38%);*/
-
-    max-height: 100%;
-    width: 100%;
+    object-fit: scale-down;
+    object-position: center;
+    min-height: 60%;
     border-radius: 4px 4px 0 0;
 }
 
@@ -9380,7 +9378,7 @@ table.listview {
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
     .menu_top_bg {
-        width: 80%;
+        width: 78%;
     }
 }
 @media only screen and (max-width: 1200px) and (min-width: 991px) {
@@ -9395,7 +9393,7 @@ table.listview {
 }
 @media only screen and (max-width:1900px) and (min-width: 1400px) {
     .menu_top_bg {
-        width: 89%;
+        width: 86%;
     }
 } 
 .box_headder {
@@ -9423,4 +9421,7 @@ table.listview {
 }
 .padding7 {
     padding-bottom: 7px;
+}
+.code_kho {
+    float: right; font-size: 11px; padding-right: 10px;
 }
