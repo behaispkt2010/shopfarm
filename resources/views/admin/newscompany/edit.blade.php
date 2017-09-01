@@ -32,6 +32,39 @@
 
                             </div>
                             <div class="x_panel">
+                                <div class="form-group">
+                                    <label>Yêu cầu chất lượng</label>
+                                    <textarea class="form-control" rows="5"
+                                              name="require">@if(!empty($article->content)){{$article->content}}@else{{old('content')}}@endif</textarea>
+                                    <script type="text/javascript">ckeditor('require')</script>
+                                </div>
+                                <div class="form-group">
+                                    <label>Hình thức thanh toán</label>
+                                    <select name="style_pay" class="form-control">
+                                        <option value="">Trả tiền mặt</option>
+                                        <option value="">Chuyển khoản</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="x_panel">
+                                <div class="pd-all-20">
+                                    <label class="title-product-main text-no-bold">Hiển thị</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Yêu cầu chất lượng</label>
+                                    <textarea class="form-control" rows="5"
+                                              name="require">@if(!empty($article->content)){{$article->content}}@else{{old('content')}}@endif</textarea>
+                                    <script type="text/javascript">ckeditor('require')</script>
+                                </div>
+                                <div class="form-group">
+                                    <label>Hình thức thanh toán</label>
+                                    <select name="style_pay" class="form-control">
+                                        <option value="">Trả tiền mặt</option>
+                                        <option value="">Chuyển khoản</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="x_panel" style="display: none;">
                                 <!-- SEO -->
                                 <div class="wrapper-content mt20 mb20">
                                     <div class="pd-all-20 ps-relative">
@@ -89,22 +122,32 @@
                             <!-- Show/Hide -->
                             <div class="x_panel">
                                 <div class="wrapper-content">
+                                    @if(Auth::user()->hasRole('admin'))
+
                                     <div class="pd-all-20">
                                         <label class="title-product-main text-no-bold">Hiển thị</label>
                                     </div>
+
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" @if(!empty($article) && $article->status == 1) checked @else checked @endif   value="1"
+                                            <input type="radio" @if(!empty($article))@if($article->status==1)checked @endif @else checked @endif value="1" id="optionsRadios1"
                                                    name="status">
                                             Hiển thị ngay
                                         </label>
                                     </div>
+
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" @if(!empty($article) && $article->status == 0) checked @endif value="0"
-                                                   name="status"> Ẩn đi
+                                            <input type="radio" value="0" @if(!empty($article)) @if($article->status==0)checked @endif @endif id="optionsRadios2"
+                                                   name="status"> Chờ duyệt
                                         </label>
                                     </div>
+                                        <div class="ln_solid"></div>
+
+                                    @else
+                                        <input type="hidden" name="status" value="0" >
+
+                                    @endif
                                     <div class="ln_solid"></div>
                                     <div class="form-group text-center">
                                         <a href="{{route('newscompany.index')}}" type="submit"
