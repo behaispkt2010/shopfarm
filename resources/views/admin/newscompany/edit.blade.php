@@ -30,7 +30,7 @@
 
                                 <div class="form-group">
                                     <label>{{trans('article.content')}}</label>
-                                    <textarea class="form-control" rows="5"
+                                    <textarea class="form-control" rows="5" required
                                               name="content">@if(!empty($article->content)){{$article->content}}@else{{old('content')}}@endif</textarea>
                                     <script type="text/javascript">ckeditor('content')</script>
                                 </div>
@@ -39,13 +39,13 @@
                             <div class="x_panel">
                                 <div class="form-group">
                                     <label>Yêu cầu chất lượng</label>
-                                    <textarea class="form-control" rows="5"
+                                    <textarea class="form-control" rows="5" required
                                               name="require">@if(!empty($article->require)){{$article->require}}@else{{old('require')}}@endif</textarea>
                                     <script type="text/javascript">ckeditor('require')</script>
                                 </div>
                                 <div class="form-group">
                                     <label>Hình thức thanh toán</label>
-                                    <select name="type_pay" class="form-control">
+                                    <select name="type_pay" class="form-control" required>
                                         <option value="0">Trả tiền mặt</option>
                                         <option value="1">Chuyển khoản</option>
                                     </select>
@@ -56,7 +56,7 @@
                                     <label class="title-product-main text-no-bold mb20">Thông tin đơn hàng</label>
                                     <div class="form-group label-floating">
                                         <label class="control-label" for="focusedInput2">Số lượng (kg)</label>
-                                        <input class="form-control" id="focusedInput2" type="number" name="soluong" value="@if(!empty($article->soluong)){{$article->soluong}}@else{{old('soluong')}}@endif">
+                                        <input class="form-control" id="focusedInput2" required type="number" name="soluong" value="@if(!empty($article->soluong)){{$article->soluong}}@else{{old('soluong')}}@endif">
                                     </div>
                                     <div class="form-group label-floating">
                                         <label class="control-label" for="focusedInput2">Danh mục</label>
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Thời gian giao hàng</label>
-                                        <input type="text" id="date-delivery" name="time_delivery" class="form-control" value="@if(!empty($article->time_delivery)){{$article->time_delivery}}@else{{old('time_delivery')}}@endif" required>
+                                        <input type="text" id="date-delivery" name="time_delivery" required class="form-control" value="@if(!empty($article->time_delivery)){{$article->time_delivery}}@else{{old('time_delivery')}}@endif" required>
 
                                     </div>
                                 </div>

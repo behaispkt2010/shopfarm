@@ -996,7 +996,7 @@
                             <div class="form-group">
                                 <label  class="col-md-4 col-sm-4 control-label">Số tài khoản</label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="ng-valid ng-dirty ng-touched form-control" required  name="card_number">
+                                    <input type="text" class="ng-valid ng-dirty ng-touched form-control" required value="" name="card_number">
                                 </div>
                             </div>
                         </div>
@@ -1005,7 +1005,7 @@
                                 <label  class="col-md-4 col-sm-4 control-label">Chủ tài khoản</label>
 
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="ng-valid ng-dirty ng-touched form-control card_name" required name="card_name">
+                                    <input type="text" class="ng-valid ng-dirty ng-touched form-control card_name" value="" required name="card_name">
                                 </div>
                             </div>
                         </div>
@@ -1854,7 +1854,7 @@
         $(document).on('click', '.edit_bank', function () {
             _self = $(this);
             $('.modal-bank-edit input[name="id_bank"]').val(_self.data('id'));
-            $('.modal-bank-edit select[name="bank"]')[0].selectize.setValue(_self.data('bank'));
+            $('.modal-bank-edit select[name="bank"]')[0].selectize.setValue(9);
             $('.modal-bank-edit select[name="province"]')[0].selectize.setValue(_self.data('province'));
             $('.modal-bank-edit input[name="card_number"]').val(_self.data('card_number'));
             $('.modal-bank-edit input[name="card_name"]').val(_self.data('card_name'));
@@ -1864,6 +1864,8 @@
             else{
                 $('.modal-bank-edit input[name="check"]').prop('checked', false);
             }
+
+
         });
     </script>
     <script>

@@ -16,11 +16,11 @@ class CategoryProduct extends Model
         return $name;
     }
     public static function getCate(){
-        return CategoryProduct::get();
+        return CategoryProduct::where('disable',0)->get();
 
     }
     public static function getAllCategoryProduct(){
-        return CategoryProduct::get();
+        return CategoryProduct::where('disable',0)->get();
     }
     public static function getSlugCategoryProduct($id){
         $slug = "mac-dinh";
@@ -67,11 +67,11 @@ class CategoryProduct extends Model
         return $data;
     }
     static public function get_numberChil($id){
-        return CategoryProduct::where('parent',$id)->count();
+        return CategoryProduct::where('parent',$id)->where('disable',0)->count();
     }
     static public function get_menu_cate_frontend($parent=0)
     {
-        $data = CategoryProduct::get();
+        $data = CategoryProduct::where('disable',0)->get();
         foreach($data as $key=>$itemMenu1) {
             if ($parent == $itemMenu1->parent) {
                 $numchil = CategoryProduct::get_numberChil($itemMenu1->id);
@@ -106,7 +106,7 @@ class CategoryProduct extends Model
     }
     static public function get_search_cate_frontend($parent=0)
     {
-        $data = CategoryProduct::get();
+        $data = CategoryProduct::where('disable',0)->get();
         foreach($data as $key=>$itemMenu1) {
             $strCateID = $itemMenu1->id;
             if ($parent == $itemMenu1->parent) {

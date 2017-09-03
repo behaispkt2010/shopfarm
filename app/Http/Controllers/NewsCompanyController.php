@@ -24,7 +24,13 @@ class NewsCompanyController extends Controller
      */
     public function index()
     {
-        $newsCompany = NewsCompany::where('status',1)->get();
+        $strIDUser = Auth::user()->id;
+        if(Auth::user()->hasRole('admin')) {
+            $newsCompany = NewsCompany::where('status', 1)->get();
+        }
+        else {
+            $newsCompany = NewsCompany::where('status', 1)->where('author_id', $strIDUser)->get();
+        }
         $data=[
             'article'=>$newsCompany,
             'type' => 'newscompany',
@@ -39,7 +45,7 @@ class NewsCompanyController extends Controller
      */
     public function create()
     {
-        $category = CategoryProduct::get();
+        $category = CategoryProduct::where('disable',0)->get();
         $data=[
             'category'=>$category,
         ];
@@ -144,7 +150,7 @@ class NewsCompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $category = CategoryProduct::get();
+    {   $category = CategoryProduct::where('disable',0)->get();
         $newsCompany = NewsCompany::find($id);
         $data=[
             'id' => $id,
@@ -166,13 +172,17 @@ class NewsCompanyController extends Controller
         $today = date("Y-m-d_H-i-s");
         $data = $request->all();
         $newsCompany =  NewsCompany::find($id);
-        if(!empty(Auth::user()->id)) {
-            $data['author_id'] = Auth::user()->id;
+        if(Auth::user()->hasRole('admin')) {
+            $data['author_id'] = $newsCompany->author_id;
+        }    
+        else {
+            if(!empty(Auth::user()->id)) {
+                $data['author_id'] = Auth::user()->id;
+            }
+            else{
+                $data['author_id'] = 1;
+            }
         }
-        else{
-            $data['author_id'] = 1;
-        }
-
         if ($request->hasFile('image')) {
             $data['image']  = Util::saveFile($request->file('image'), '');
         }
@@ -216,7 +226,9 @@ class NewsCompanyController extends Controller
      */
     public function data()
     {
-        $newsCompany = NewsCompany::get()
+        $strIDUser = Auth::user()->id;
+        if(Auth::user()->hasRole('admin')) {
+            $newsCompany = NewsCompany::get()
             ->map(function ($newsCompany) {
                 return [
                     'id' => $newsCompany->id,
@@ -226,7 +238,20 @@ class NewsCompanyController extends Controller
                     'created_at' => $newsCompany->created_at->format('d/m/Y'),
                 ];
             });
-
+        }
+        else {
+            $newsCompany = NewsCompany::where('author_id', $strIDUser)->get()
+            ->map(function ($newsCompany) {
+                return [
+                    'id' => $newsCompany->id,
+                    'title' => $newsCompany->title,
+                    'category' => CategoryProduct::getSlugCategoryProduct($newsCompany->category), // cang ak
+                    'author_id' => NewsCompany::getUserName($newsCompany->author_id),
+                    'created_at' => $newsCompany->created_at->format('d/m/Y'),
+                ];
+            });
+        }
+        
         return Datatables::of($newsCompany)
             ->add_column('actions',
                 '<a class = "btn-xs btn-info" href="{{route(\'newscompany.edit\',[\'id\' => $id])}}" style="margin-right: 5px;display: inline"><i class="fa fa-pencil"  aria-hidden="true"></i></a>

@@ -20,7 +20,7 @@
 								@if(count($getAllWareHouse)!=0)
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllWareHouse as $itemAllWareHouse)
-										@if($i==0)<div class="list_row" style="background-color: #fff;">@endif
+										@if($i==0)<div class="list_row" style="">@endif
 													<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 											<div class="col-md-2 col-xs-12 warehouse_cell">
 												<div class="well box_1">
