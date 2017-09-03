@@ -24,7 +24,7 @@ class NewsCompanyController extends Controller
      */
     public function index()
     {
-        $newsCompany = NewsCompany::get();
+        $newsCompany = NewsCompany::where('status',1)->get();
         $data=[
             'article'=>$newsCompany,
             'type' => 'newscompany',

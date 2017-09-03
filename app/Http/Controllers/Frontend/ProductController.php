@@ -89,7 +89,8 @@ class ProductController extends Controller
     }
     public function GetAllCompany(){
 
-        $getAllNewsCompany = NewsCompany::leftjoin('users','users.id','=','news_company.author_id')
+        $getAllNewsCompany = NewsCompany::select('users.*', 'company.*', 'news_company.*' , 'company.id as companyID', 'company.confirm as companyConfirm' ,'news_company.id as newscompanyID')
+            ->leftjoin('users','users.id','=','news_company.author_id')
             ->leftjoin('company','company.user_id','=','users.id')
             ->where('news_company.status',1)
             ->orderBy('company.confirm','desc')

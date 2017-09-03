@@ -3,11 +3,12 @@
 <head>
     <!-- Basic page needs
     ============================================ -->
-    <title>Nông sản tự nhiên | Home</title>
-    <meta property="og:url" content="http://nongsan.dev/" />
-    <meta property="og:type"  content="website" />
-    <meta property="og:title" content="wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" />
-    <meta property="og:description" content="Dddddddddddddddddddddddddddddđ" />
+    <title>Nông sản tự nhiên | @yield('title') </title>
+    <meta property="og:url"           content="@yield('url_seo')" />
+    <meta property="og:type"          content="@yield('type_seo')" />
+    <meta property="og:title"         content="@yield('title_seo')" />
+    <meta property="og:description"   content="@yield('description_seo')" />
+    <meta property="og:image"         content="@yield('image_seo')" />
 
 
     <meta charset="utf-8">

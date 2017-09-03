@@ -8725,9 +8725,15 @@ a:hover {
     border-radius: 4px;
 }
 .company_cell .company_image img {
-    height: 100%;
+    /* height: 100%;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 4px; */
+    max-height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+    object-position: center;
+    min-height: 60%;
+    border-radius: 4px 4px 0 0;
 }
 .warehouse_cell .product_bestselt .company_image img {
     height: 100%;
@@ -9208,6 +9214,7 @@ a.especially {
     float: left;
     overflow: hidden;
     width: 175px;
+    margin-left: 7px;
 }
 .posting-thumb figure {
     border: 1px solid #eceff1;
@@ -9253,6 +9260,12 @@ a.especially {
 #tab-profile {
     display: block;
 }
+.mark-tab > .fbsharebutton {
+    float: right;
+    position: relative;
+    right: 10px;
+    top: 13px;
+}
 .tab-content {
     display: none;
     width: 100%;
@@ -9269,8 +9282,8 @@ a.especially {
 .posting-box .title {
     color: #455a64;
     display: block;
-    font-family: "Roboto-Light",sans-serif;
-    font-size: 16px;
+    /*font-family: "Roboto-Light",sans-serif;*/
+    font-size: 18px;
     margin-bottom: 20px;
 }
 .posting-box .title i {
@@ -9424,4 +9437,26 @@ table.listview {
 }
 .code_kho {
     float: right; font-size: 11px; padding-right: 10px;
+}
+.backtolist {
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.posting-box .title {
+
+}
+.pricefrom {
+    font-size: 17px;
+    color: red;
+    font-weight: bolder;
+}
+.news_related, .warehouse_releated {
+    padding-top: 30px;
+}
+.img_newsdetail {
+    max-width: 100%;
+    max-height: 150px;
+    display: block;
+    object-fit: scale-down;
+    border-radius: 5px;
 }

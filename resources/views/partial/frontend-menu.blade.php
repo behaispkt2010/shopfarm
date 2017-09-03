@@ -139,7 +139,7 @@
         </div>
     </div>
 </div>
-<div class="col-md-10 col-sm-10 menu_top_bg " style="height: 41px;">
+<div class="col-md-10 col-sm-10 menu_top_bg hidden-xs" style="height: 41px;">
     
 
 <ul class="nav navbar-nav clearfix sm hidden-xs" style="margin-left: 250px;">

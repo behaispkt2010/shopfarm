@@ -3,6 +3,11 @@
 @section('pageHeader','Bài viết ')
 @section('detailHeader','Thêm bài viết')
 @section('content')
+@section('add_styles')
+        <!-- Datatables -->
+<link href="{{asset('css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
+
+@endsection
     <br>
     <div class="row">
         @if(Request::is('admin/newscompany/create'))
@@ -35,35 +40,59 @@
                                 <div class="form-group">
                                     <label>Yêu cầu chất lượng</label>
                                     <textarea class="form-control" rows="5"
-                                              name="require">@if(!empty($article->content)){{$article->content}}@else{{old('content')}}@endif</textarea>
+                                              name="require">@if(!empty($article->require)){{$article->require}}@else{{old('require')}}@endif</textarea>
                                     <script type="text/javascript">ckeditor('require')</script>
                                 </div>
                                 <div class="form-group">
                                     <label>Hình thức thanh toán</label>
-                                    <select name="style_pay" class="form-control">
-                                        <option value="">Trả tiền mặt</option>
-                                        <option value="">Chuyển khoản</option>
+                                    <select name="type_pay" class="form-control">
+                                        <option value="0">Trả tiền mặt</option>
+                                        <option value="1">Chuyển khoản</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="x_panel">
-                                <div class="pd-all-20">
-                                    <label class="title-product-main text-no-bold">Hiển thị</label>
-                                </div>
                                 <div class="form-group">
-                                    <label>Yêu cầu chất lượng</label>
-                                    <textarea class="form-control" rows="5"
-                                              name="require">@if(!empty($article->content)){{$article->content}}@else{{old('content')}}@endif</textarea>
-                                    <script type="text/javascript">ckeditor('require')</script>
-                                </div>
-                                <div class="form-group">
-                                    <label>Hình thức thanh toán</label>
-                                    <select name="style_pay" class="form-control">
-                                        <option value="">Trả tiền mặt</option>
-                                        <option value="">Chuyển khoản</option>
-                                    </select>
+                                    <label class="title-product-main text-no-bold mb20">Thông tin đơn hàng</label>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="focusedInput2">Số lượng (kg)</label>
+                                        <input class="form-control" id="focusedInput2" type="number" name="soluong" value="@if(!empty($article->soluong)){{$article->soluong}}@else{{old('soluong')}}@endif">
+                                    </div>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="focusedInput2">Danh mục</label>
+                                        <select name="category" class="select2_single form-control" tabindex="-1"
+                                                required>
+                                            <option value="0" >Chọn danh mục sản phẩm</option>
+                                            @if(Request::is('admin/newscompany/create'))
+                                                {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",old('parent')) }}
+                                            @else
+                                                {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",$article->category) }}
+                                            @endif
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="ex4">Giá thấp nhất</label>
+                                                <input type="number" class="form-control" name="price_from" required
+                                                       value="@if(!empty($article->price_to)){{$article->price_to}}@else{{old('price_to')}}@endif">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="ex4">Giá cao nhất</label>
+                                                <input type="number" class="form-control" name="price_to" required
+                                                       value="@if(!empty($article->price_from)){{$article->price_from}}@else{{old('price_from')}}@endif">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thời gian giao hàng</label>
+                                        <input type="text" id="date-delivery" name="time_delivery" class="form-control" value="@if(!empty($article->time_delivery)){{$article->time_delivery}}@else{{old('time_delivery')}}@endif" required>
+
+                                    </div>
                                 </div>
                             </div>
+                            
                             <div class="x_panel" style="display: none;">
                                 <!-- SEO -->
                                 <div class="wrapper-content mt20 mb20">
@@ -148,7 +177,7 @@
                                         <input type="hidden" name="status" value="0" >
 
                                     @endif
-                                    <div class="ln_solid"></div>
+                                    <!-- <div class="ln_solid"></div> -->
                                     <div class="form-group text-center">
                                         <a href="{{route('newscompany.index')}}" type="submit"
                                            class="btn btn-raised btn-primary">Hủy</a>
@@ -158,7 +187,7 @@
                             </div>
                             <div class="x_panel">
                                 <div class="wrapper-content mt20">
-                                    <div class="pd-all-20 border-top-title-main">
+                                    <!-- <div class="pd-all-20 border-top-title-main">
                                         <div class="form-group">
                                             <label>Danh mục</label>
                                             <select name="category" class="select2_single form-control" tabindex="-1"
@@ -169,17 +198,17 @@
                                                 @else
                                                     {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",$article->category) }}
                                                 @endif
-
+                                    
                                             </select>
                                         </div>
-
-                                    </div>
+                                    
+                                    </div> -->
                                     <div class="image-area">
-                                        <label class="mb5">Hình đại diện</label>
+                                        <label class="mb5">Hình sản phẩm</label>
 
                                         <div class="image-view">
                                             @if(!empty($article->image))
-                                                <img src="{{url('/').$article->image}}" alt="" class="img-responsive">
+                                                <img src="{{url('/').$article->image}}" style="border-radius: 5px;" alt="" class="img-responsive">
                                                 <div class="form-group">
                                                     <label for="inputFile" class="col-md-4 control-label">Thay đổi</label>
 
@@ -219,8 +248,10 @@
 
     @section('add_scripts')
             <!-- jQuery Tags Input -->
+
     <script src="{{asset('plugin/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
     <!-- jQuery Tags Input -->
+    <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
     <script>
         function onAddTag(tag) {
             alert("Added a tag: " + tag);
@@ -244,7 +275,17 @@
     <script src="{{asset('js/selectize.js')}}"></script>
     <script>
         $('.select2_single').selectize({});
-
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#date-delivery').bootstrapMaterialDatePicker
+        ({
+            format: 'DD/MM/YYYY',
+            lang: 'vi',
+            time: false,
+        });
+        
+    });
     </script>
 
 @endsection

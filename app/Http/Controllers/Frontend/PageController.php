@@ -120,15 +120,23 @@ class PageController extends Controller
     public function DetailNewsCompany($newscompanySlug, $company_id, $newscompany_id) {
 
         $arrImageDetail = CompanyImage::where('company_id', $company_id)->get();
-        $arrNewsCompany = NewsCompany::select('users.*','company.*','news_company.*','company.name as namecompany','company.id as companyID')
+        $arrNewsCompany = NewsCompany::select('users.*','company.*','news_company.*','company.name as namecompany','company.id as companyID','category_products.name as categoryname')
             ->leftjoin('users','users.id','=','news_company.author_id')
             ->leftjoin('company','company.user_id','=','news_company.author_id')
+            ->leftjoin('category_products','news_company.category','=','category_products.id')
             ->where('news_company.id', $newscompany_id)
             ->first();
-        // $arrRelatedNewsCompany = NewsCompany::;    
+
+        $category = $arrNewsCompany->category; 
+        $idNews = $arrNewsCompany->id;
+        $getNewsCompanyRelated = NewsCompany::getAllNewsCompanyRelated($category,$idNews,5);
+        $getWareHouseRelated = WareHouse::orderBy('level','desc')->take(5)->get();
+        // dd($arrNewsCompany);
         $data = [
             'arrImageDetail' => $arrImageDetail,
             'arrNewsCompany' => $arrNewsCompany,
+            'getNewsCompanyRelated' => $getNewsCompanyRelated,
+            'getWareHouseRelated' => $getWareHouseRelated,
         ];    
         event(new ViewsCompanyEvents($arrNewsCompany));
         return view('frontend.newscompany-single', $data);   

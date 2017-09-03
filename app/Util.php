@@ -45,6 +45,7 @@ class Util extends Model
     public static $strNumberProductOfLevel2 = 10;
     public static $strNumberProductOfLevel3 = 100;
 
+
     public static function saveFile($file, $type)
     {
         $today = date("Y-m-d_H-i-s");
