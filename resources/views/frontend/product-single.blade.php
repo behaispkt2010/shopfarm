@@ -7,20 +7,12 @@
 @endsection
 @section('content')
 
-			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
-
 			<div class="secondary_page_wrapper">
-
 				<div class="container">
-
-					<!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
-
 					<ul class="breadcrumbs" style="margin: 0px;">
-
 						<li><a href="/">Trang chủ</a></li>
 						<li><a href="/products">Sản phẩm</a></li>
 						<li>{{$product->title}}</li>
-
 					</ul>
 					@if (\Session::has('success'))
 						<p class="message green" >Cảm ơn quý khách hàng đã để lại thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
@@ -643,48 +635,13 @@
 			</div>
 		</div>
 	</div>
-	
-	{{--<div class="modal fade modal-login" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
-		 data-backdrop="static">
-		<div class="modal-dialog modal-login">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">Bạn hãy đăng nhập để có thể Mua ngay</h4>
-				</div>
-				<div class="modal-body">
-					<div class="col-xs-6 col-sm-6 col-md-6 text-center">
-						<button style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;" class="btn btn-success">
-							Đăng nhập
-						</button>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 text-center">
-						<button style="line-height: 26px;width: 150px; font-size: 16px;font-weight: bold;" class="btn btn-warning">
-							Đăng ký
-						</button>
-					</div>
-					<br>
-					<p class="text-center" style="padding-top: 30px;">----- Hỗ trợ và chăm sóc khách hàng -----</p>
-					<div style="text-align:center;margin-top:10px" class="col-sm-6 col-md-6">
-						<i class="fa fa-phone" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>
-						<span>Hotline - {{\App\Setting::getValue('phone')}}</span>
-					</div>
-					<div style="text-align:center;margin-top:10px" class="col-sm-6 col-md-6">
-						<i class="fa fa-envelope-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>
-						<span>{{\App\Setting::getValue('email')}}</span>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Đóng</button>
-				</div>
-			</div>
-		</div>
-	</div>--}}
 @endsection
 @section('add-script')
 	<script src="{{asset('frontend/js/jquery.elevateZoom-3.0.8.min.js')}}"></script>
 	<script src="{{asset('frontend/js/fancybox/source/jquery.fancybox.pack.js')}}"></script>
 	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-media.js')}}"></script>
 	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.js')}}"></script>
+	<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
 
 	<script>
 		$(document).on("click", "#phoneKho", function () {
@@ -696,12 +653,13 @@
 
 	</script>
 	<script>
-    $('#img_zoom').elevateZoom({
+    /*$('#img_zoom').elevateZoom({
 	    zoomType: "inner",
-	cursor: "crosshair",
-	zoomWindowFadeIn: 500,
-	zoomWindowFadeOut: 750
-	   }); 
+		cursor: "crosshair",
+		zoomWindowFadeIn: 500,
+		zoomWindowFadeOut: 750
+	   }); */
+    $("#img_zoom").ezPlus();
 	</script>
 	<script type="text/javascript">
 
