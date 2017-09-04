@@ -29,79 +29,39 @@
 						<p class="message green" >Cảm ơn quý khách hàng đã đóng góp đánh giá</p>
 						<br>
 						@endif
-					<!-- - - - - - - - - - - - - - End of breadcrumbs - - - - - - - - - - - - - - - - -->
-
 					<div class="section_offset">
-
 						<div class="row">
-
 							<main class="col-md-9 col-sm-8">
-
-
-
-									<!-- - - - - - - - - - - - - - Product image column - - - - - - - - - - - - - - - - -->
-
 									<div class="single_product">
-
-										<!-- - - - - - - - - - - - - - Image preview container - - - - - - - - - - - - - - - - -->
-
 										<div class="image_preview_container" >
-
 											<img id="img_zoom" data-zoom-image="{{url('/')}}{{$product->image}}" src="{{url('/')}}{{$product->image}}" alt="" class="image_product_single" style="border-radius: 5px;">
-
 											<button class="button_grey_2 icon_btn middle_btn open_qv"><i class="icon-resize-full-6"></i></button>
-
-										</div><!--/ .image_preview_container-->
-
-										<!-- - - - - - - - - - - - - - End of image preview container - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Prodcut thumbs carousel - - - - - - - - - - - - - - - - -->
-
+										</div>
 										<div class="product_preview">
 											<div class="owl_carousel" id="thumbnails">
 												@if(count($detailImage) != 0)
 													@foreach($detailImage as $item)
 													<a href="#" data-image="{{url('/')}}{{$item->image}}" data-zoom-image="{{url('/')}}{{$item->image}}">
-														<img src="{{url('/')}}{{$item->image}}" data-large-image="{{url('/')}}{{$item->image}}" alt="">
+														<img src="{{url('/')}}{{$item->image}}" data-large-image="{{url('/')}}{{$item->image}}" alt="" style="border-radius: 5px;">
 													</a>
 													@endforeach
 												@endif
-											</div><!--/ .owl-carousel-->
-
-										</div><!--/ .product_preview-->
-										
-										<!-- - - - - - - - - - - - - - End of prodcut thumbs carousel - - - - - - - - - - - - - - - - -->
-
-										<!-- - - - - - - - - - - - - - Share - - - - - - - - - - - - - - - - -->
-										
-										<div class="v_centered">
-
-											<div class="addthis_widget_container">
-												<!-- AddThis Button BEGIN -->
-												<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
-
 											</div>
-											
+										</div>
+										<div class="v_centered">
+											<div class="addthis_widget_container">
+												<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
+											</div>
 										</div>
 									</div>
-
 									<div class="single_product_description">
-
 										<h4 class="offset_title">{{$product->title}}</h4>
-
 										<div class="description_section v_centered">
-
 											{!! \App\Rate::getRateProduct($product->id)!!}
-
-
 											<ul class="topbar">
-
 												<li><a href="#">{{\App\Rate::countRate($product->id)}} Đã đánh giá</a></li>
-
 											</ul>
-
 										</div>
-									
 										<div class="description_section">
 											<table class="product_info" style="width: 100%">
 												<tbody style="font-size: 15px;">
@@ -123,7 +83,7 @@
 										<p class="product_price">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
 									
 										<div class="row text-center col-xs-12">
-											<div class="col-xs-6 col-sm-6 col-md-6" style="float: left;">
+											<div class="col-xs-6 col-sm-6 col-md-6" style="float: left;padding-left: 0px;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
 														<button id="" style="border-radius: 5px;line-height: 26px; color: #fff; width: 139px; font-size: 16px;background: #00695c;"
@@ -137,24 +97,24 @@
 														</button>
 													@endif
 													<br>
-													<p style="padding: 1px 0px 0px 20px;">Mua trực tiếp với nhà cung cấp</p>
+													<!-- <p style="padding: 1px 0px 0px 20px;">Mua trực tiếp với nhà cung cấp</p> -->
 												</div>
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6" style="float: right;">
+											<div class="col-xs-6 col-sm-6 col-md-6" style="float: right;padding-right: 0px;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;"
+														<button id="" style="border-radius: 5px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;"
 																data-toggle="modal" data-target=".modal-login" class="btn btn-info required_login">
 															Chat Facebook
 														</button>
 													@else
-														<button id="" style="line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;" class="chat_chukho btn btn-info">
+														<button id="" style="border-radius: 5px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;" class="chat_chukho btn btn-info">
 															Chat Facebook
 														</button>
 														<input type="hidden" id="is_fanpage_fb" name="is_fanpage_fb" value="{{ $product->fanpage_fb }}">
 													@endif
 													<br>
-													<p style="padding: 1px 0px 0px 20px;">Chat với nhà cung cấp</p>
+													<!-- <p style="padding: 1px 0px 0px 20px;">Chat với nhà cung cấp</p> -->
 													
 												</div>
 											</div>
@@ -733,6 +693,15 @@
 			$('.modal-buy [name="phone"]').html(_self.data('phone'));
 			$('.modal-buy [name="namekho"]').html(_self.data('namekho'));
 		});
+
+	</script>
+	<script>
+    $('#img_zoom').elevateZoom({
+	    zoomType: "inner",
+	cursor: "crosshair",
+	zoomWindowFadeIn: 500,
+	zoomWindowFadeOut: 750
+	   }); 
 	</script>
 	<script type="text/javascript">
 

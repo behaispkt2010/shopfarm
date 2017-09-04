@@ -22,7 +22,7 @@
 					</div>
 					<div class="row ">
 						<main class="col-md-12 col-sm-12">
-							<div>
+							<div class="row" style="padding-left: 10px;">
 								<h3><a style="color: #0f9d58;" href="{{ url('/company-business') }}">Cơ hội mua bán dành cho bạn</a></h3>
 							</div>
 							<div class="company_list">

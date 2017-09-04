@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Bạn hãy đăng nhập để có thể Mua ngay</h4>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center;">Cộng đồng kết nối nhu cầu nông sản</h4>
             </div>
             <div class="modal-body">
                 <div class="col-xs-6 col-sm-6 col-md-6 text-center">

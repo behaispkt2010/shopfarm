@@ -13,24 +13,12 @@
 		<ul class="breadcrumbs">
 
 			<li><a href="/">Trang chủ</a></li>
-			<li>Sản phẩm</li>
-
+			<li><a href="{{ url('/products')}}">Sản phẩm</a> </li>
+			<li>@if(!empty(Request::get('search'))) Tìm kiếm: {{Request::get('search')}} @elseif(!empty($nameCate)) {{$nameCate}} @else Tất cả sản phẩm @endif</li>
 		</ul>
 		<div class="row">
-
-			<aside class="col-md-3 col-sm-4">
-
-					
-
-				<div class="section_offset hidden-xs" >
-					@include('frontend.panner.product-banner')
-
-				</div>
-
-			</aside>
-<div class="col-md-8">
+		<div class="col-md-12">
 		<div class="section_offset">
-
 			<header class="top_box on_the_sides">
 				<div class="right_side clearfix v_centered">
 					@if(!empty(Request::get('search')))
@@ -39,59 +27,36 @@
 						<h4>{{$nameCate}}</h4>
 						@else
 						<h4>Tất cả sản phẩm</h4>
-@endif
+					@endif
 				</div>
 				<div class="right_side clearfix v_centered">
-
 					<div class="v_centered">
-
 						<span>Xắp xếp theo:</span>
-
 						<div class=" sort_select">
-
 							<select name="fillter">
-
 								<option value="cap-kho" @if(Request::get('q')=='cap-kho') selected @endif>Cấp kho</option>
 								<option value="ten-san-pham" @if(Request::get('q')=='ten-san-pham') selected @endif>Tên sản phẩm</option>
 								<option value="moi-nhat" @if(Request::get('q')=='moi-nhat') selected @endif>Mới nhất</option>
 								<option value="gia" @if(Request::get('q')=='gia') selected @endif>Giá</option>
-
-
 							</select>
-
 						</div>
-
 					</div>
-
 				</div>
-
 			</header>
-
 			<div class="table_layout" id="products_container">
-
 				<div class="table_layout" style="">
-
 					@if(count($products)!=0)
 					<?php $i=0 ;$j=0?>
 					@foreach($products as $key=> $product)
 						@if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
-									<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-							<div class="col-md-4 col-xs-12 category_product_cell">
-
+							<div class="col-md-3 col-xs-12 category_product_cell">
 								<div class="product_bestselt">
-
 									<div class="image_wrap">
-
 										<a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-
 										{{--<div class="label_bestseller"></div>--}}
-
 									</div>
-
 									<div class="description">
-
 										<a href="#" class="clearfix">{{$product->title}}</a>
-
 										<div class="kho_info clearfix">
 											<a href="#" class="alignleft" style="width: 70px;">
 												@if($product->levelKho == 1)
@@ -130,7 +95,7 @@
 								</div>
 							</div>
 							<?php $i = $i+1;$j=$j+1; ?>
-							@if($i>=3|| $j>=count($products))
+							@if($i>=4|| $j>=count($products))
 								<?php $i=0 ?>
 						</div>
 						@endif

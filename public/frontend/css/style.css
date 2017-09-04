@@ -228,7 +228,7 @@ img.aligncenter {
     padding: 60px 0 60px;
 }
 .secondary_page_wrapper .container{
-    margin-left: 215px;
+    margin-left: 200px;
 }
 
 .main_product .title a {
@@ -1596,7 +1596,7 @@ form li:last-child > [class|="col"] > [class*="button"]:only-child {
 }
 
 .search > button::after {
-    content: '\ee2e';
+    /*content: '\ee2e';*/
 }
 
 .search > button:hover {
@@ -8944,7 +8944,7 @@ ul.mobile-menu-icon {
 }
 @media only screen and (max-width:480px ) {
     .page_wrapper .container{
-        padding: 10px 20px 0;
+        padding: 20px !important;
         margin-left: 0px !important;
     }
     .posting-box table.listview tr td.left {

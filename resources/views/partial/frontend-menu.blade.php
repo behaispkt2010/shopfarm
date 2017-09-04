@@ -6,8 +6,11 @@
         </a>
     </div>
     <div id="search" class="filtergroup w80 nomargin">
-        <input type="text" id="keyword" onkeydown="this.style.color = '#333';" onclick="this.value = '';" value="" name="keyword">
-        <button class="button-search btnsearch" type="button"><i class="fa fa-search"></i></button>
+        <form action="{{ url('/') }}" class="clearfix search" method="get">
+            <input type="text" id="keyword" onkeydown="this.style.color = '#333';" onclick="this.value = '';" value="" name="search">
+            <button class="button-search btnsearch" type="button"><i class="fa fa-search"></i></button>
+        </form>
+        
     </div>
     <ul class="box-manage">
         @if(( !Auth::check()))
