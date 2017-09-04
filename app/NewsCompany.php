@@ -14,18 +14,18 @@ class NewsCompany extends Model
     }
 
     public static function getNewsCompany($company_id,$limit){
-        $newscompany = NewsCompany::leftjoin('company','company.user_id','news_company.author_id')
-            ->leftjoin('users','users.id','company.user_id')
+        $newscompany = NewsCompany::select('users.*','company.*','news_company.*','company.name as namecompany','company.id as companyID','category_products.name as categoryname','news_company.id as newscompanyID')
+            ->leftjoin('users','users.id','=','news_company.author_id')
+            ->leftjoin('company','company.user_id','=','news_company.author_id')
+            ->leftjoin('category_products','news_company.category','=','category_products.id')
             ->where('company.id',$company_id)
-            ->selectRaw('company.*')
-            ->selectRaw('company.id as idCompany,company.name as nameCompany')
             ->orderBy('news_company.id',"DESC")->take($limit)->get();
         return $newscompany;
 
     }
     public static function getAllNewsCompanyRelated($category_id, $idNews, $limit) {
 
-        $newscompany = NewsCompany::select('users.*','company.*','news_company.*','company.name as namecompany','company.id as companyID','category_products.name as categoryname')
+        $newscompany = NewsCompany::select('users.*','company.*','news_company.*','company.name as namecompany','company.id as companyID','category_products.name as categoryname','news_company.id as newscompanyID')
             ->leftjoin('users','users.id','=','news_company.author_id')
             ->leftjoin('company','company.user_id','=','news_company.author_id')
             ->leftjoin('category_products','news_company.category','=','category_products.id')

@@ -1208,7 +1208,7 @@
     <script>
         $('#create_bank').on('click', function (e) {
             e.preventDefault();
-            var ware_id = $('input[name="id"]').val();
+            var company_id = $('input[name="id"]').val();
             var bank = $('.modal-bank select[name="bank"] :selected').val();
             var province = $('.modal-bank select[name="province"] :selected').val();
             var card_number = $('.modal-bank input[name="card_number"]').val();
@@ -1222,7 +1222,7 @@
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/company/AjaxBank',
-                data: {bank: bank, province: province, card_number: card_number,card_name: card_name,check:check,_token: _token,ware_id:ware_id},
+                data: {bank: bank, province: province, card_number: card_number,card_name: card_name,check:check,_token: _token,company_id:company_id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     //show notify
@@ -1797,9 +1797,11 @@
     <script>
         $(document).on('click', '.edit_bank', function () {
             _self = $(this);
+            var $bank = $('.modal-bank-edit select[name="bank"]').selectize();
+            var $province = $('.modal-bank-edit select[name="province"]').selectize();
+            $bank[0].selectize.setValue(_self.data('bank'));
+            $province[0].selectize.setValue(_self.data('province'));
             $('.modal-bank-edit input[name="id_bank"]').val(_self.data('id'));
-            $('.modal-bank-edit select[name="bank"]')[0].selectize.setValue(_self.data('bank'));
-            $('.modal-bank-edit select[name="province"]')[0].selectize.setValue(_self.data('province'));
             $('.modal-bank-edit input[name="card_number"]').val(_self.data('card_number'));
             $('.modal-bank-edit input[name="card_name"]').val(_self.data('card_name'));
             if(_self.data('check') == 1) {
@@ -1808,6 +1810,8 @@
             else{
                 $('.modal-bank-edit input[name="check"]').prop('checked', false);
             }
+            /*$('.modal-bank-edit select[name="bank"]')[0].selectize.setValue(_self.data('bank'));
+            $('.modal-bank-edit select[name="province"]')[0].selectize.setValue(_self.data('province'));*/
         });
     </script>
     <script>

@@ -9460,3 +9460,6 @@ table.listview {
     object-fit: scale-down;
     border-radius: 5px;
 }
+.info_kho {
+    padding-bottom: 5px;
+}

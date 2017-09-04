@@ -15,6 +15,7 @@ use DateTime;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\ConfirmKhoRequest;
 use App\Http\Requests\AjaxDetailRequest;
+use App\Http\Requests\BankWareHouseRequest;
 use App\Notification;
 use App\Province;
 use App\WarehouseImageDetail;

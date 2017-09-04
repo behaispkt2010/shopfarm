@@ -1853,9 +1853,12 @@
     <script>
         $(document).on('click', '.edit_bank', function () {
             _self = $(this);
+            
+            var $bank = $('.modal-bank-edit select[name="bank"]').selectize();
+            var $province = $('.modal-bank-edit select[name="province"]').selectize();
+            $bank[0].selectize.setValue(_self.data('bank'));
+            $province[0].selectize.setValue(_self.data('province'));
             $('.modal-bank-edit input[name="id_bank"]').val(_self.data('id'));
-            $('.modal-bank-edit select[name="bank"]')[0].selectize.setValue(9);
-            $('.modal-bank-edit select[name="province"]')[0].selectize.setValue(_self.data('province'));
             $('.modal-bank-edit input[name="card_number"]').val(_self.data('card_number'));
             $('.modal-bank-edit input[name="card_name"]').val(_self.data('card_name'));
             if(_self.data('check') == 1) {

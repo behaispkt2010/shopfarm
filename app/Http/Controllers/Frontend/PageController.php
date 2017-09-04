@@ -108,7 +108,7 @@ class PageController extends Controller
             ->leftjoin('users','users.id','=','company.user_id')
             ->where('company.id', $company_id)
             ->first();
-        $getNewsCompany = NewsCompany::getNewsCompany($company_id, 16);  
+        $getNewsCompany = NewsCompany::getNewsCompany($company_id, 15); 
         $data = [
             'company' => $arrCompany,
             'arrImageDetail' => $arrImageDetail,

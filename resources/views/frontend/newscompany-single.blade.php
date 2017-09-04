@@ -21,7 +21,7 @@
 					</ul>
 					<div id="tabs-container" class="hidden-xs">
 				        <ul class="mark-tab">
-				            <li class="current">Thông tin</li>
+				            <li class="current"><a href="{{ url('/company').'/'.$arrNewsCompany->companyID}}">Thông tin</a> </li>
 				        
 						<div class="fbsharebutton">
 			                <div id="sendMessenger" class="fb-send fb_iframe_widget" data-href="http://canavi.com/jobposting/cong-ty-mitai-viet-nhat-tuyen-nhan-vien-ban-hang-17-duong-3-2-quan-10-457" data-layout="button_count" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=1581108608867340&amp;container_width=0&amp;href=http%3A%2F%2Fcanavi.com%2Fjobposting%2Fcong-ty-mitai-viet-nhat-tuyen-nhan-vien-ban-hang-17-duong-3-2-quan-10-457&amp;locale=vi_VN&amp;sdk=joey"><span style="vertical-align: bottom; width: 47px; height: 20px;"><iframe name="f178b4349a1df68" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:send Facebook Social Plugin" src="https://www.facebook.com/v2.6/plugins/send.php?app_id=1581108608867340&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0sTQzbapM8j.js%3Fversion%3D42%23cb%3Df3b6c4d2bd9ce64%26domain%3Dcanavi.com%26origin%3Dhttp%253A%252F%252Fcanavi.com%252Ff2b54dfe64e969%26relation%3Dparent.parent&amp;container_width=0&amp;href=http%3A%2F%2Fcanavi.com%2Fjobposting%2Fcong-ty-mitai-viet-nhat-tuyen-nhan-vien-ban-hang-17-duong-3-2-quan-10-457&amp;locale=vi_VN&amp;sdk=joey" style="border: none; visibility: visible; width: 47px; height: 20px;" class=""></iframe></span></div>
@@ -37,7 +37,7 @@
 				        <div id="main-profile" class="likeprofile">
 				            <div id="column-profile" class="posting-thumb">
 				                <figure>
-				                    <span><img style="border-radius: 5px;" class="img-responsive" alt="" src="@if (!empty($arrNewsCompany->image_company)){{url('/').$arrNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif"></span>
+				                    <span><a href="{{ url('/company').'/'.$arrNewsCompany->companyID}}"><img style="border-radius: 5px;" class="img-responsive" alt="" src="@if (!empty($arrNewsCompany->image_company)){{url('/').$arrNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif"></a></span>
 				                </figure>
 				            </div>
 			            

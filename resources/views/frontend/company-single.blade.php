@@ -189,46 +189,47 @@
                     <div id="tab-1" class="tab_container">
 
                         <div class="table_layout">
-                            <?php $i=0 ;$j=0?>
-                            @foreach($getNewsCompany as $key => $company)
-                                @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
-                                        <div class="col-md-3 col-xs-12 category_product_cell">
-
-                                            <div class="product_bestselt">
-
-                                                <div class="company_image">
-
-                                                    <a href=""><img src="@if (!empty($company->image_company)){{url('/').$company->image_company}} @else {{asset('/images/8.png')}} @endif" alt=""></a>
-
-                                                </div>
-
-                                                <div class="description">
-
-                                                    <p class="textoverlow"><a href="{{ url('/shop/'.$company->id) }}" class="clearfix textoverlow">{{$company->name}}</a></p>
-                                                    <div class="kho_info clearfix">
-                                                        <a href="#" class="alignleft" style="width: 70px;">
-                                                            @if($company->confirm == 1)
-                                                                <img src="{{url('/images')}}/xacthuc.png" alt="">
-                                                            @else
-                                                            @endif
+                            <div class="company_list">
+                                @if(count($getNewsCompany)!=0)
+                                    <?php $i=0 ;$j=0?>
+                                    @foreach($getNewsCompany as $itemAllNewsCompany)
+                                        @if($i==0)<div class="list_company_row" style="">@endif
+                                            <div class="col-xs-12 company_cell">
+                                                <div class="well box_1">
+                                                    @if ($itemAllNewsCompany->companyConfirm)
+                                                    <div class="box-status" style="background-color: #64DD17;">
+                                                        <p class="text-center status-title">HOT</p>
+                                                    </div>
+                                                    @endif
+                                                    <div class="company_image">
+                                                    
+                                                        <a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
+                                                            <img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
                                                         </a>
                                                     </div>
-                                                    <div class="clearfix product_info">
-                                                        
+                                                    <div class="description">
+                                                        <p class="textoverlow padding7" style="font-weight: bolder;"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
+                                                        <div class="limit-2">
+                                                            {!! $itemAllNewsCompany->content !!}
+                                                        </div>
+                                                        <span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
                                                     </div>
                                                 </div>
-
                                             </div>
+                                            <?php $i = $i+1;$j=$j+1; ?>
+                                            @if($i>=3|| $j>=count($getNewsCompany))
+                                                <?php $i=0 ?>
                                         </div>
-                                        <?php $i = $i+1; $j=$j+1; ?>
-                                        @if ($i>=3 || $j>=count($getNewsCompany))
-                                            <?php $i=0 ?>
-                                            </div>
                                         @endif
-                            @endforeach
-                        </div>
-                        <div class="bottom_box" style="text-align: center;">
-                            <a href="{{url('/')}}/company-business" class="button_grey middle_btn">Xem thêm</a>
+                                    @endforeach
+                                @else
+                                        <br>
+                                    <h2 class="text-center" style="text-align: center">Không tìm thấy dữ liệu</h2>
+                                @endif
+                                <div class="bottom_box load_more">
+                                    <a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm </a><label style="padding-top: 6px;">(Còn @if ((count($getNewsCompany)-15) < 0 ) 0 @else hơn {{count($getNewsCompany)-15}} @endif cơ hội mua bán)</label>
+                                </div>
+                            </div>
                         </div>
                         
                     </div>
