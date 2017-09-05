@@ -228,7 +228,7 @@ img.aligncenter {
     padding: 60px 0 60px;
 }
 .secondary_page_wrapper .container{
-    margin-left: 200px;
+    margin-left: 275px;
 }
 
 .main_product .title a {
@@ -667,7 +667,7 @@ blockquote.type_2 .author_info {
 }
 
 .breadcrumbs > li:not(:last-child)::after {
-    content: "/";
+    content: "|";
     display: inline-block;
     margin-left: 4px;
 }
@@ -8618,7 +8618,7 @@ a:hover {
     height: 280px;
 }
 .list_warehouse_row {
-    height: 300px;
+    height: 322px;
 }
 .company_cell {
     /*height: 220px;*/
@@ -8979,7 +8979,7 @@ ul.mobile-menu-icon {
 
 .page_wrapper .container {
     padding: 10px 50px 0 0;
-    margin-left: 220px;
+    margin-left: 275px;
 }
 
 header {
@@ -8995,7 +8995,7 @@ header {
     height: 50px;
     padding-left: 0px;
     padding-top: 0px;
-    width: 200px;
+    /*width: 200px;*/
 }
 #search {
     float: left;
@@ -9092,7 +9092,7 @@ a.especially {
 
 .left_col {
     background: #e0e0e0;
-    width: 200px;
+    /*width: 200px;*/
     padding: 0px;
 }
 
@@ -9176,7 +9176,7 @@ a.especially {
 }
 #tabs-container {
     overflow: hidden;
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 .mark-tab {
     -moz-border-bottom-colors: none;
@@ -9221,7 +9221,6 @@ a.especially {
     float: left;
     overflow: hidden;
     width: 175px;
-    margin-left: 7px;
 }
 .posting-thumb figure {
     border: 1px solid #eceff1;
@@ -9318,7 +9317,7 @@ table.listview {
     width: 210px;
 }
 .posting-box table.listview tr td {
-    font-family: "Roboto-Light",sans-serif;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 22px;
@@ -9377,7 +9376,7 @@ table.listview {
     color: #000 !important;
 }
 .menu_top_bg {
-    width: 89%;
+    /*width: 89%;*/
     background-color: #eeeeee;
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06) !important;
     /*overflow: hidden;*/
@@ -9385,7 +9384,7 @@ table.listview {
 
 @media only screen and (max-width:480px ) {
     .menu_top_bg {
-        width: 85%;
+        /*width: 85%;*/
     }
 
     .head {
@@ -9399,22 +9398,22 @@ table.listview {
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
     .menu_top_bg {
-        width: 78%;
+        /*width: 78%;*/
     }
 }
 @media only screen and (max-width: 1200px) and (min-width: 991px) {
     .menu_top_bg {
-        width: 80%;
+        /*width: 80%;*/
     }
 }
 @media only screen and (max-width: 1400px) and (min-width: 1201px) {
     .menu_top_bg {
-        width: 84%;
+        /*width: 84%;*/
     }
 }
 @media only screen and (max-width:1900px) and (min-width: 1400px) {
     .menu_top_bg {
-        width: 86%;
+        /*width: 86%;*/
     }
 } 
 .box_headder {
@@ -9469,9 +9468,12 @@ table.listview {
     border-radius: 5px;
 }
 .info_kho {
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
 .img_logo_front{
     max-height: 90%;
-    padding-left: 27px;
+    padding-left: 50px;
+}
+.sendfb {
+    padding-right: 303px;
 }

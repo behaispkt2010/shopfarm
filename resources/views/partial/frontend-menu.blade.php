@@ -1,5 +1,5 @@
 <header class="hidden-xs">
-    <div class="logo">
+    <div class="logo col-md-2">
         <a href="{{url('/')}}">
             <img src="{{asset('frontend/images/nosago1.png')}}" class="img_logo_front">
 

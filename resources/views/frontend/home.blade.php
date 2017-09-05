@@ -98,8 +98,12 @@
 																			{{$itemCate}},
 																		@endforeach
 							                                        </div>
+							                                        <div class="kho_info clearfix">
+							                                        	<span style="float: left; padding-left: 7px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseDeXuat->count_view))0 @else{{$itemAllWareHouseDeXuat->count_view}}@endif </a></span>
+							                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
+							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
+																		<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
 																			@if($itemAllWareHouseDeXuat->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseDeXuat->level == 2)
@@ -110,14 +114,14 @@
 																				<img src="{{url('/images')}}/level0.png" alt="">
 																			@endif
 																		</a>
-																		<!-- <a href="#" class="alignleft" style="width: 60px;">
+																		<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
 																			@if($itemAllWareHouseDeXuat->confirm_kho == 1)
 																				<img src="{{url('/images')}}/xacthuc.png" alt="">
 																			@else
 																			@endif
-																		</a> -->
-																		<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseDeXuat->count_view))0 @else{{$itemAllWareHouseDeXuat->count_view}}@endif </a></span>
-																		<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
+																		</a>
+																		
+																		
 																	</div>
 																	
 																</div>
@@ -159,7 +163,11 @@
 																		@endforeach
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
+							                                        	<span style="float: left; padding-left: 7px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseXemNhieu->count_view))0 @else{{$itemAllWareHouseXemNhieu->count_view}}@endif </a></span>
+							                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseXemNhieu->user_id) !!}</a>
+							                                        </div>
+																	<div class="kho_info clearfix">
+																		<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
 																			@if($itemAllWareHouseXemNhieu->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseXemNhieu->level == 2)
@@ -170,17 +178,14 @@
 																				<img src="{{url('/images')}}/level0.png" alt="">
 																			@endif
 																		</a>
-																		<!-- <a href="#" class="alignleft" style="width: 60px;">
+																		<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
 																			@if($itemAllWareHouseXemNhieu->confirm_kho == 1)
 																				<img src="{{url('/images')}}/xacthuc.png" alt="">
 																			@else
 																			@endif
-																		</a> -->
-																		<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseXemNhieu->count_view))0 @else{{$itemAllWareHouseXemNhieu->count_view}}@endif </a></span>
-																		<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseXemNhieu->user_id) !!}</a>
+																		</a>
 																	</div>
 																</div>
-															<!-- </div> -->
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
@@ -218,7 +223,11 @@
 																		@endforeach
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
+							                                        	<span style="float: left; padding-left: 7px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseUyTin->count_view))0 @else{{$itemAllWareHouseUyTin->count_view}}@endif </a></span>
+							                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseUyTin->user_id) !!}</a>
+							                                        </div>
+																	<div class="kho_info clearfix">
+																		<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
 																			@if($itemAllWareHouseUyTin->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseUyTin->level == 2)
@@ -229,17 +238,14 @@
 																				<img src="{{url('/images')}}/level0.png" alt="">
 																			@endif
 																		</a>
-																		<!-- <a href="#" class="alignleft" style="width: 60px;">
+																		<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
 																			@if($itemAllWareHouseUyTin->confirm_kho == 1)
 																				<img src="{{url('/images')}}/xacthuc.png" alt="">
 																			@else
 																			@endif
-																		</a> -->
-																		<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($getAllWareHouseUyTin->count_view))0 @else{{$getAllWareHouseUyTin->count_view}}@endif </a></span>
-																		<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseUyTin->user_id) !!}</a>
+																		</a>
 																	</div>
 																</div>
-															<!-- </div> -->
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>

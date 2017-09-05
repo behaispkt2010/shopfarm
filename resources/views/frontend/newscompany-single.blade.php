@@ -24,16 +24,12 @@
 				            <li class="current"><a href="{{ url('/company').'/'.$arrNewsCompany->companyID}}">Thông tin</a> </li>
 				        
 						<div class="fbsharebutton">
-			                <div id="sendMessenger" class="fb-send fb_iframe_widget" data-href="http://canavi.com/jobposting/cong-ty-mitai-viet-nhat-tuyen-nhan-vien-ban-hang-17-duong-3-2-quan-10-457" data-layout="button_count" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=1581108608867340&amp;container_width=0&amp;href=http%3A%2F%2Fcanavi.com%2Fjobposting%2Fcong-ty-mitai-viet-nhat-tuyen-nhan-vien-ban-hang-17-duong-3-2-quan-10-457&amp;locale=vi_VN&amp;sdk=joey"><span style="vertical-align: bottom; width: 47px; height: 20px;"><iframe name="f178b4349a1df68" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:send Facebook Social Plugin" src="https://www.facebook.com/v2.6/plugins/send.php?app_id=1581108608867340&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0sTQzbapM8j.js%3Fversion%3D42%23cb%3Df3b6c4d2bd9ce64%26domain%3Dcanavi.com%26origin%3Dhttp%253A%252F%252Fcanavi.com%252Ff2b54dfe64e969%26relation%3Dparent.parent&amp;container_width=0&amp;href=http%3A%2F%2Fcanavi.com%2Fjobposting%2Fcong-ty-mitai-viet-nhat-tuyen-nhan-vien-ban-hang-17-duong-3-2-quan-10-457&amp;locale=vi_VN&amp;sdk=joey" style="border: none; visibility: visible; width: 47px; height: 20px;" class=""></iframe></span></div>
+			                <div class="fb-send" id="fb_send" 
+							    data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}">
+							</div>
 			                <div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank">Chia sẻ</a></div>
 			            </div>
 			            </ul>
-				        <!-- <div class="v_centered share">
-				        							<span class="title">Chia sẻ:</span>
-				        							<div class="addthis_widget_container">
-				        								<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
-				        							</div>
-				        						</div> -->
 				        <div id="main-profile" class="likeprofile">
 				            <div id="column-profile" class="posting-thumb">
 				                <figure>
@@ -51,13 +47,8 @@
 				                                <tr>
 				                                    <td class="left">
 				                                        <span class="title marginbottom">{{$arrNewsCompany->namecompany}} - {{$arrNewsCompany->title}} </span>
-				                                        <span class="pricefrom">Giá từ {!!\App\Util::FormatMoney($arrNewsCompany->price_from)!!} đến {!!\App\Util::FormatMoney($arrNewsCompany->price_to)!!}</span>
+				                                        <span class="">Giá từ {!!\App\Util::FormatMoney($arrNewsCompany->price_from)!!} đến {!!\App\Util::FormatMoney($arrNewsCompany->price_to)!!}</span>
 				                                    </td>
-				                                    <!-- <td class="right" style="width: 100px;">
-				                                    	<figure>
-				                                    										                    <span><img style="border-radius: 5px;" class="img_newsdetail" alt="" src="@if (!empty($arrNewsCompany->image)){{url('/').$arrNewsCompany->image}} @else {{asset('/images/8.png')}} @endif"></span>
-				                                    										                </figure>
-				                                    </td> -->
 				                                </tr>
 				                            </tbody></table>
 				                        </div>
@@ -372,5 +363,10 @@
 			</div>		
 @endsection
 @section('add-script')
-
-	@endsection
+<script type="text/javascript">
+	$('#fb_send').on('click', function () {
+		// alert(1);
+		$('#fb_send').addClass('sendfb');
+	});
+</script>
+@endsection

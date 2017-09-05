@@ -20,6 +20,8 @@
                             <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
                             <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>
                             <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->email}}</li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->time_active}}</li>
+                            <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Số đơn hàng đã giao: {{$order}}</li>
                         </ul>
                     </div>
                 </div>

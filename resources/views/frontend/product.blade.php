@@ -15,21 +15,8 @@
 			<li><a href="/">Trang chủ</a></li>
 			<li><a href="{{ url('/products')}}">Sản phẩm</a> </li>
 			<li>@if(!empty(Request::get('search'))) Tìm kiếm: {{Request::get('search')}} @elseif(!empty($nameCate)) {{$nameCate}} @else Tất cả sản phẩm @endif</li>
-		</ul>
-		<div class="row">
-		<div class="col-md-12">
-		<div class="section_offset">
-			<header class="top_box on_the_sides">
-				<div class="right_side clearfix v_centered">
-					@if(!empty(Request::get('search')))
-					<h4>Tìm kiếm: {{Request::get('search')}}</h4>
-						@elseif(!empty($nameCate))
-						<h4>{{$nameCate}}</h4>
-						@else
-						<h4>Tất cả sản phẩm</h4>
-					@endif
-				</div>
-				<div class="right_side clearfix v_centered">
+			<li style="float: right">
+				<div class="right_side clearfix v_centered" style="margin-top: -8px;">
 					<div class="v_centered">
 						<span>Xắp xếp theo:</span>
 						<div class=" sort_select">
@@ -42,6 +29,23 @@
 						</div>
 					</div>
 				</div>
+			</li>
+		</ul>
+
+		<div class="row">
+		<div class="col-md-12">
+		<div class="section_offset">
+			<header class="top_box on_the_sides">
+				<div class="clearfix v_centered" style="text-align: center;">
+					@if(!empty(Request::get('search')))
+					<h4>Tìm kiếm: {{Request::get('search')}}</h4>
+						@elseif(!empty($nameCate))
+						<h4>{{$nameCate}}</h4>
+						@else
+						<h4>Tất cả sản phẩm</h4>
+					@endif
+				</div>
+				
 			</header>
 			<div class="table_layout" id="products_container">
 				<div class="table_layout" style="">

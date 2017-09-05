@@ -9,6 +9,7 @@ use App\Notification;
 use App\Util;
 use App\WareHouse;
 use App\Product;
+use App\Order;
 use App\Events\ViewsCompanyEvents;
 use App\Events\ViewsWareHouseEvents;
 use App\CompanyImage;
@@ -92,11 +93,15 @@ class PageController extends Controller
             ->leftjoin('users','users.id','=','ware_houses.user_id')
             ->where('ware_houses.id',$warehouse_id)
             ->first();
+        $order = Order::where('kho_id', $warehouse_id)
+            ->where('status',8)
+            ->count();    
         $data = [
             'ware_house' => $warehouse,
             'arrImageDetail' => $arrImageDetail,
             'getNewProduct' => $getNewProduct,
             'arrCategoryWarehouse' => $arrCategoryWarehouse,
+            'order' => $order,
         ];
         //dd($getNewProduct);
         event(new ViewsWareHouseEvents($warehouse));
@@ -108,7 +113,7 @@ class PageController extends Controller
             ->leftjoin('users','users.id','=','company.user_id')
             ->where('company.id', $company_id)
             ->first();
-        $getNewsCompany = NewsCompany::getNewsCompany($company_id, 15); 
+        $getNewsCompany = NewsCompany::getNewsCompany($company_id, 12); 
         $data = [
             'company' => $arrCompany,
             'arrImageDetail' => $arrImageDetail,
