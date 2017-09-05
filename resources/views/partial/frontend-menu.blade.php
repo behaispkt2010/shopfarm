@@ -1,7 +1,7 @@
 <header class="hidden-xs">
     <div class="logo">
         <a href="{{url('/')}}">
-            <img src="{{asset('frontend/images/nosago1.png')}}">
+            <img src="{{asset('frontend/images/nosago1.png')}}" class="img_logo_front">
 
         </a>
     </div>
@@ -134,7 +134,7 @@
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="" style="background-color: #fff;padding: 10px;font-size: 16px;font-weight: bold;">
+        <div class="" style="background-color: #fff;padding: 10px 10px 10px 14px;font-size: 16px;font-weight: bold;">
             <i class="fa fa-bars" aria-hidden="true" style="padding-top: 2px; padding-right: 7px;"></i>Danh mục sản phẩm
         </div>
         <div class="">

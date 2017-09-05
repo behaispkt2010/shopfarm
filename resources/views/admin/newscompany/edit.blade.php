@@ -73,12 +73,12 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <label for="ex4">Giá thấp nhất</label>
                                                 <input type="number" class="form-control" name="price_from" required
                                                        value="@if(!empty($article->price_to)){{$article->price_to}}@else{{old('price_to')}}@endif">
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <label for="ex4">Giá cao nhất</label>
                                                 <input type="number" class="form-control" name="price_to" required
                                                        value="@if(!empty($article->price_from)){{$article->price_from}}@else{{old('price_from')}}@endif">

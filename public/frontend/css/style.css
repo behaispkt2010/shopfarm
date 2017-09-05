@@ -2723,7 +2723,7 @@ td.product_image_col {
     display: block;
     background: #fff;
     border: 1px solid #eaeaea;
-    padding: 11px 40px 10px 19px;
+    padding: 11px 40px 10px 10px;
 }
 
 .theme_menu > li:not(:first-child) > a {
@@ -8634,6 +8634,12 @@ a:hover {
     /*overflow: hidden;*/
     width: 217px;
 }
+.company_cell_other {
+    padding: 0px 5px;
+    border-radius: 4px;
+    float: left;
+    min-height: 175px;
+}
 .warehouse_cell {
     /*height: 290px;*/
     padding: 0px 5px;
@@ -9209,6 +9215,7 @@ a.especially {
 #main-profile {
     overflow: hidden;
     display: block;
+    background-color: #f8f8f8;
 }
 #column-profile {
     float: left;
@@ -9273,6 +9280,7 @@ a.especially {
 .posting-box {
     border: 1px solid #cfd8dc;
     border-radius: 3px;
+    background-color: #fff;
     color: #54657e;
     margin-bottom: 15px;
     padding: 14px;
@@ -9462,4 +9470,8 @@ table.listview {
 }
 .info_kho {
     padding-bottom: 5px;
+}
+.img_logo_front{
+    max-height: 90%;
+    padding-left: 27px;
 }
