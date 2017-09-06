@@ -24,9 +24,9 @@
 				            <li class="current"><a href="{{ url('/company').'/'.$arrNewsCompany->companyID}}">Thông tin</a> </li>
 				        
 						<div class="fbsharebutton">
-			                <div class="fb-send" id="fb_send" 
+			                <a href="#" class="" id="fb_send"><div class="fb-send" 
 							    data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}">
-							</div>
+							</div></a>
 			                <div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank">Chia sẻ</a></div>
 			            </div>
 			            </ul>
@@ -127,46 +127,7 @@
 								</div>
 				        	</div>
 				        	<div class="clr_latest"></div>
-				        	<!-- Related Jobs -->
-				            <!-- <div class="carousel-jobs">
-				            	<div class="title"><span>Thông tin mua bán liên quan</span></div>
-				             	<div class="latest-info">
-				                 	<div class="cnv_carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
-				                    	<div class="owl-wrapper-outer">
-				                    		<div class="owl-wrapper" style="width: 390px; left: 0px; display: block;">
-				                    			<div class="owl-item" style="width: 195px;">
-				                    				<div class="item job-item marginleft">
-				                             		<div class="image">
-				            					                                 	<figure>
-				            					                                     	<a href="" title="">
-				            					                                        	<img class="img-responsive" alt="" src="">
-				            					                                     	</a>
-				            					                                 	</figure>
-				            					                             	</div>
-				            					                            	<div class="job-desc">
-				            					                                 	<a href="" title="">
-				            					                                    	<h3 class="title-job"></h3>
-				            					                                 	</a>
-				            					                                <div class="description"></div>
-				            					                                <div class="action"><i class="icon ca-ca-eyes"></i></div>
-				            					                             	</div>
-				                         			</div>
-				                         		</div>
-				                         	</div>
-				                        </div>
-				                        <div class="owl-controls clickable" style="display: none;">
-				            					                        <div class="owl-buttons">
-				            						                        <div class="owl-prev">
-				            						                        	<i class="icon ca-ca-right-arrow"></i>
-				            						                        </div>
-				            						                        <div class="owl-next">
-				            						                        	<i class="icon ca-ca-right-arrow"></i>
-				            						                        </div>
-				            					                        </div>
-				                        </div>
-				                    </div>
-				             	</div>
-				            				        	</div> -->
+				        	
 						</div>
 					</div>
 					<div class="news_related hidden-xs">
@@ -175,7 +136,7 @@
 							@if(count($getNewsCompanyRelated)!=0)
 								<div class="list_company_row" style="">
 								@foreach($getNewsCompanyRelated as $itemAllNewsCompany)
-									<div class="col-xs-12 company_cell">
+									<div class="col-md-3 col-xs-12 company_cell">
 										<div class="well box_1">
 											<!-- @if ($itemAllNewsCompany->companyConfirm)
 											<div class="box-status" style="background-color: #64DD17;">
@@ -210,7 +171,7 @@
 						@if(count($getWareHouseRelated)!=0)
 							<div class="list_warehouse_row" style="">
 							@foreach($getWareHouseRelated as $itemAllWareHouseDeXuat)
-								<div class="col-xs-12 warehouse_cell">
+								<div class="col-md-3 col-xs-12 warehouse_cell">
 									<div class="well box_1">
 										<div class="company_image">
 											<a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}"><img src="@if (!empty($itemAllWareHouseDeXuat->image_kho)){{url('/').$itemAllWareHouseDeXuat->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
@@ -365,8 +326,9 @@
 @section('add-script')
 <script type="text/javascript">
 	$('#fb_send').on('click', function () {
-		// alert(1);
-		$('#fb_send').addClass('sendfb');
+		alert('1aaaa');
+		console.log('aaaaa');
+		$('#fb_send').toggleClass('sendfb');
 	});
 </script>
 @endsection

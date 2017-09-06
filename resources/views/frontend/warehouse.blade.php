@@ -20,8 +20,9 @@
                             <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
                             <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>
                             <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->email}}</li>
-                            <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->time_active}}</li>
-                            <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Số đơn hàng đã giao: {{$order}}</li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><?php \Carbon\Carbon::setLocale('vi')?> 
+                            {!! \Carbon\Carbon::createFromTimestamp(strtotime($ware_house->created_at))->diffForHumans() !!}</li>
+                            <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Số đơn hàng thành công: {{$order}}</li>
                         </ul>
                     </div>
                 </div>
@@ -172,7 +173,7 @@
                             <?php $i=0 ;$j=0?>
                             @foreach($getNewProduct as $key => $product)
                                 @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
-                                        <div class="col-md-4 col-xs-12 category_product_cell">
+                                        <div class="col-md-3 col-xs-12 category_product_cell">
 
                                             <div class="product_bestselt">
 
@@ -224,7 +225,7 @@
                                             </div>
                                         </div>
                                         <?php $i = $i+1; $j=$j+1; ?>
-                                        @if ($i>=3 || $j>=count($getNewProduct))
+                                        @if ($i>=4 || $j>=count($getNewProduct))
                                             <?php $i=0 ?>
                                             </div>
                                         @endif

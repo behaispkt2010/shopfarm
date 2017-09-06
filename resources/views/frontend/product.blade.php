@@ -35,7 +35,7 @@
 		<div class="row">
 		<div class="col-md-12">
 		<div class="section_offset">
-			<header class="top_box on_the_sides">
+			<!-- <header class="top_box on_the_sides">
 				<div class="clearfix v_centered" style="text-align: center;">
 					@if(!empty(Request::get('search')))
 					<h4>Tìm kiếm: {{Request::get('search')}}</h4>
@@ -46,13 +46,13 @@
 					@endif
 				</div>
 				
-			</header>
+			</header> -->
 			<div class="table_layout" id="products_container">
 				<div class="table_layout" style="">
 					@if(count($products)!=0)
 					<?php $i=0 ;$j=0?>
 					@foreach($products as $key=> $product)
-						@if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+						@if($i==0)<div class="category_product_row" style="">@endif
 							<div class="col-md-3 col-xs-12 category_product_cell">
 								<div class="product_bestselt">
 									<div class="image_wrap">

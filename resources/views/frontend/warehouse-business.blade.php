@@ -17,7 +17,7 @@
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllWareHouse as $itemAllWareHouse)
 										@if($i==0)<div class="list_warehouse_row" style="">@endif
-											<div class="col-md-2 col-xs-12 warehouse_cell">
+											<div class="col-md-3 col-xs-12 warehouse_cell">
 												<div class="well box_1">
 													<div class="company_image">
 														<a href="{{ url('/shop/'.$itemAllWareHouse->id) }}"><img src="@if (!empty($itemAllWareHouse->image_kho)){{url('/').$itemAllWareHouse->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
@@ -56,7 +56,7 @@
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
-											@if($i>=5|| $j>=count($getAllWareHouse))
+											@if($i>=4|| $j>=count($getAllWareHouse))
 												<?php $i=0 ?>
 										</div>
 										@endif

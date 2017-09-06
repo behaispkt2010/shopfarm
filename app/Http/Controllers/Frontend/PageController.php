@@ -134,8 +134,8 @@ class PageController extends Controller
 
         $category = $arrNewsCompany->category; 
         $idNews = $arrNewsCompany->id;
-        $getNewsCompanyRelated = NewsCompany::getAllNewsCompanyRelated($category,$idNews,5);
-        $getWareHouseRelated = WareHouse::orderBy('level','desc')->take(5)->get();
+        $getNewsCompanyRelated = NewsCompany::getAllNewsCompanyRelated($category,$idNews,4);
+        $getWareHouseRelated = WareHouse::orderBy('level','desc')->take(4)->get();
         // dd($arrNewsCompany);
         $data = [
             'arrImageDetail' => $arrImageDetail,

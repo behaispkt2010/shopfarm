@@ -30,7 +30,7 @@
 									<?php $i=0 ;$j=0?>
 									@foreach($getAllNewsCompany as $itemAllNewsCompany)
 										@if($i==0)<div class="list_company_row" style="">@endif
-											<div class="col-xs-12 company_cell">
+											<div class="col-md-3 col-xs-12 company_cell">
 												<div class="well box_1">
 													@if ($itemAllNewsCompany->companyConfirm)
 													<div class="box-status" style="background-color: #64DD17;">
@@ -53,7 +53,7 @@
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
-											@if($i>=5|| $j>=count($getAllNewsCompany))
+											@if($i>=4|| $j>=count($getAllNewsCompany))
 												<?php $i=0 ?>
 										</div>
 										@endif
@@ -85,7 +85,7 @@
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseDeXuat as $itemAllWareHouseDeXuat)
 													@if($i==0)<div class="list_warehouse_row" style="">@endif
-														<div class="col-xs-12 warehouse_cell">
+														<div class="col-md-3 col-xs-12 warehouse_cell">
 															<div class="well box_1">
 															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
@@ -129,7 +129,7 @@
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=5|| $j>=count($getAllWareHouseDeXuat))
+														@if($i>=4|| $j>=count($getAllWareHouseDeXuat))
 															<?php $i=0 ?>
 													</div>
 													@endif
@@ -149,7 +149,7 @@
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseXemNhieu as $itemAllWareHouseXemNhieu)
 													@if($i==0)<div class="list_warehouse_row" style="">@endif
-														<div class="col-xs-12 warehouse_cell">
+														<div class="col-md-3 col-xs-12 warehouse_cell">
 															<div class="well box_1">
 															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
@@ -189,7 +189,7 @@
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=5|| $j>=count($getAllWareHouseXemNhieu))
+														@if($i>=4|| $j>=count($getAllWareHouseXemNhieu))
 															<?php $i=0 ?>
 													</div>
 													@endif
@@ -209,7 +209,7 @@
 												<?php $i=0 ;$j=0?>
 												@foreach($getAllWareHouseUyTin as $itemAllWareHouseUyTin)
 													@if($i==0)<div class="list_warehouse_row" style="">@endif
-														<div class="col-xs-12 warehouse_cell">
+														<div class="col-md-3 col-xs-12 warehouse_cell">
 															<div class="well box_1">
 															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
 																<div class="company_image">
@@ -249,7 +249,7 @@
 															</div>
 														</div>
 														<?php $i = $i+1;$j=$j+1; ?>
-														@if($i>=5|| $j>=count($getAllWareHouseUyTin))
+														@if($i>=4|| $j>=count($getAllWareHouseUyTin))
 															<?php $i=0 ?>
 													</div>
 													@endif
