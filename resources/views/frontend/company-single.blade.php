@@ -28,6 +28,30 @@
                             <div class="item active">
                                 <img alt="..." width="100%" style="border-radius: 5px;" src="{{ asset($company->image_company) }}">
                             </div>
+                            <div class="panel-heading" style="padding-left: 23px;">
+                                <h4 class="panel-title" style="text-align: center;">Thông tin Doanh nghiệp </h4>
+                            </div>
+                            @if(( !Auth::check()))
+                            <div id="filter_ncc_seach" class="panel-collapse collapse in">
+                                <div class="panel-body" style="padding-left: 23px;">
+                                    <ul class="site_info_ncc">
+                                        <li class="required_login"><i class="fa fa-user" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                                        <li class="required_login"><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                                        <li class="required_login"><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @else
+                            <div id="filter_ncc_seach" class="panel-collapse collapse in">
+                                <div class="panel-body" style="padding-left: 23px;">
+                                    <ul class="site_info_ncc">
+                                        <li><i class="fa fa-user" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$company->ndd}}</li>
+                                        <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$company->phone_number}}</li>
+                                        <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$company->email}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         
                     </div>
@@ -40,124 +64,91 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <ul class="info_veryfi_content">
                         
-                        <li>
+                        <li class="info_kho">
                             <label>Tên Doanh nghiệp:</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->name_company)) {{$company->name_company}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
-                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
                             <div class="clear"></div>
                         </li>
-                        <li>
+                        <li class="info_kho">
                             <label>Số điện thoại :</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->phone_number)) {{$company->phone_number}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
-                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
                             <div class="clear"></div>
                         </li>
-                        <li>
+                        <li class="info_kho">
                             <label>Email :</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->email)) {{$company->email}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
-                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
                             <div class="clear"></div>
                         </li>
-                        <li>
+                        <li class="info_kho">
                             <label>Ngày thành lập :</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->time_active)) {{$company->time_active}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
-                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
                             <div class="clear"></div>
                         </li>
-                        <li>
-                            <label>Ngày tham gia hệ thống (chua xong):</label>
+                        <li class="info_kho">
+                            <label>Ngày tham gia nosaGo.com:</label>
                             <ul class="left_list_verify">
-                                <li>@if (!empty($company->time_active)) {{$company->time_active}} @endif</li>
+                                <li>@if (!empty($company->created_at)) <?php \Carbon\Carbon::setLocale('vi')?> 
+                            {!! \Carbon\Carbon::createFromTimestamp(strtotime($company->created_at))->diffForHumans() !!} @endif</li>
+                            </ul>
+                            <!-- <ul class="info-verified right_list_verify">
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
+                            </ul> -->
+                            <div class="clear"></div>
+                        </li>
+                        <li class="info_kho">
+                            <label>Mua thành công:</label>
+                            <ul class="left_list_verify">
+                                <li>@if (!empty($order)) {{$order}} @else 0 @endif</li>
+                            </ul>
+                           <!--  <ul class="info-verified right_list_verify">
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
+                            </ul> -->
+                            <div class="clear"></div>
+                        </li>
+                        <li class="info_kho">
+                            <label>Mã số thuế:</label>
+                            <ul class="left_list_verify">
+                                <li>@if (!empty($company->mst)) {{$company->mst}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
-                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
                             <div class="clear"></div>
                         </li>
-                        <li>
-                            <label>Mua thành công (chua xong):</label>
+                        <li class="info_kho">
+                            <label>Địa chỉ:</label>
                             <ul class="left_list_verify">
-                                <li>@if (!empty($company->time_active)) {{$company->time_active}} @endif</li>
+                                <li>@if (!empty($company->company_address)) {{$company->company_address}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
-                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                                <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
                             <div class="clear"></div>
                         </li>
                     </ul>
                     <div class="clear"></div>
-                    <div class="header_table_verified">
-                        Thông tin doanh nghiệp
-                    </div>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td>Mã số thuế:</td>
-                            <td>{{$company->mst}}</td>
-                            <td class="td_icon_verified"><span class="info-verified">@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</span></td>
-                        </tr>
-                        <tr>
-                            <td>Địa chỉ:</td>
-                            @if (( !Auth::check()))
-                                <td><a href="" class="required_login" style="color: blue;">Đăng nhập để địa chỉ</a></td>
-                                <td class="td_icon_verified"><span class="info-verified"></span></td>
-                            @else
-                                <td>@if (!empty($company->company_address)) {{$company->company_address}} @endif</td>
-                                <td class="td_icon_verified"><span class="info-verified">@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</span></td>
-                            @endif
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="header_table_verified">
-                        Đại diện
-                    </div>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td>Họ tên:</td>
-                            <td>@if (!empty($company->ndd)) {{$company->ndd}} @endif</td>
-                            <td class="td_icon_verified"><span class="info-verified">@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</span></td>
-                        </tr>
-                        <tr>
-                            <td>Điện thoại</td>
-                            @if (( !Auth::check()))
-                                <td><a href="" class="required_login" style="color: blue;">Đăng nhập để địa chỉ</a></td>
-                                <td class="td_icon_verified"><span class="info-verified"></span></td>
-                            @else
-                                <td>@if (!empty($company->phone_number)) {{$company->phone_number}} @endif</td>
-                                <td class="td_icon_verified"><span class="info-verified">@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</span></td>
-                            @endif
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            @if (( !Auth::check()))
-                                <td><a href="" class="required_login" style="color: blue;">Đăng nhập để địa chỉ</a></td>
-                                <td class="td_icon_verified"><span class="info-verified"></span></td>
-                            @else
-                                <td>@if (!empty($company->email)) {{$company->email}} @endif</td>
-                                <td class="td_icon_verified"><span class="info-verified">@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</span></td>
-                            @endif
-                        </tr>
-                        </tbody>
-                    </table>
+                    
                 </div>
-                <div class="clear"></div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom: 30px;">
@@ -262,7 +253,7 @@
                                 <h2 class="text-center" style="text-align: center">Không tìm thấy dữ liệu</h2>
                             @endif
                             <div class="bottom_box load_more">
-                                <a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm </a><label style="padding-top: 6px;">(Còn @if ((count($getNewsCompany)-15) < 0 ) 0 @else hơn {{count($getNewsCompany)-15}} @endif cơ hội mua bán)</label>
+                                <a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm </a><label style="padding-top: 6px;">(Còn @if ((count($getNewsCompany)-12) < 0 ) 0 @else hơn {{count($getNewsCompany)-12}} @endif cơ hội mua bán)</label>
                             </div>
                         </div>
                     </div>

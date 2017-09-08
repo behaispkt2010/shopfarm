@@ -43,6 +43,8 @@
 
 @section('add_scripts')
         <!-- Datatables -->
+    <script src="{{asset('js/selectize.js')}}"></script>
+
     <script src="{{asset('plugin/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugin/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('plugin/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
@@ -59,6 +61,7 @@
     <script src="{{asset('plugin/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('plugin/pdfmake/build/vfs_fonts.js')}}"></script>
 
+    
 
 
     <script type="text/javascript">
@@ -83,6 +86,8 @@
         @endif
     </script>
 
-
+    <script type="text/javascript">
+        $('.input-sm').selectize({});
+    </script>
 @endsection
 

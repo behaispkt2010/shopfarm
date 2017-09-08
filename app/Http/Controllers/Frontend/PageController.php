@@ -88,7 +88,7 @@ class PageController extends Controller
     public function DetailWarehouse($warehouse_id) {
         $arrCategoryWarehouse = CategoryWarehouse::get();
         $arrImageDetail = WarehouseImageDetail::where('warehouse_id',$warehouse_id)->get();
-        $getNewProduct = Product::getProductOfWarehouse($warehouse_id,9);
+        $getNewProduct = Product::getProductOfWarehouse($warehouse_id,12);
         $warehouse = WareHouse::select('ware_houses.*','users.*','ware_houses.address as ware_houses_address')
             ->leftjoin('users','users.id','=','ware_houses.user_id')
             ->where('ware_houses.id',$warehouse_id)
@@ -114,10 +114,14 @@ class PageController extends Controller
             ->where('company.id', $company_id)
             ->first();
         $getNewsCompany = NewsCompany::getNewsCompany($company_id, 12); 
+        $order = Order::where('customer_id', $arrCompany->user_id)
+            ->where('status',8)
+            ->count();
         $data = [
             'company' => $arrCompany,
             'arrImageDetail' => $arrImageDetail,
             'getNewsCompany' => $getNewsCompany,
+            'order' => $order,
         ];
         return view('frontend.company-single', $data);
     }

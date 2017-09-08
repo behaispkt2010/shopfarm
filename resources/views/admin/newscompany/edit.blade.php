@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Hình thức thanh toán</label>
-                                    <select name="type_pay" class="form-control" required>
+                                    <select name="type_pay" class="select2_single form-control" required>
                                         <option value="0">Trả trước toàn bộ</option>
                                         <option value="1">Đặt cọc - Thanh toán khi nhận hàng</option>
                                         <option value="2">Đặt cọc - Công nợ</option>
@@ -274,7 +274,7 @@
     <!-- /jQuery Tags Input -->
     <script src="{{asset('js/selectize.js')}}"></script>
     <script>
-        $('.select2_single').selectize({});
+        $('.select2_single, .type_pay').selectize({});
     </script>
     <script type="text/javascript">
     $(document).ready(function () {

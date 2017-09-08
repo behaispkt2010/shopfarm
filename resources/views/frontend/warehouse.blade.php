@@ -12,7 +12,7 @@
                 <div class="panel-heading" style="padding-left: 23px;">
                     <h4 class="panel-title" style="text-align: center;">Thông tin NCC </h4>
                 </div>
-                @if (( !Auth::check()))
+                @if(( !Auth::check()))
                 <div id="filter_ncc_seach" class="panel-collapse collapse in">
                     <div class="panel-body" style="padding-left: 23px;">
                         <ul class="site_info_ncc">
@@ -64,7 +64,7 @@
                             </li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -83,7 +83,7 @@
                             <li>@if (!empty($ware_house->name_company)) {{$ware_house->name_company}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1) <span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -102,7 +102,7 @@
                             <li>@if (!empty($ware_house->time_active)) {{$ware_house->time_active}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -121,7 +121,7 @@
                             <li>@if (!empty($ware_house->mst)) {{$ware_house->mst}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -140,7 +140,7 @@
                             <li>@if (!empty($ware_house->ware_houses_address)) {{$ware_house->ware_houses_address}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -160,7 +160,7 @@
                             <li>@if (!empty($ware_house->ndd)) {{$ware_house->ndd}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -179,7 +179,7 @@
                             <li>@if (!empty($ware_house->phone_number)) {{$ware_house->phone_number}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -198,7 +198,7 @@
                             <li>@if (!empty($ware_house->email)) {{$ware_house->email}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
-                            <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
+                            <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
                         @endif
                         <div class="clear"></div>
@@ -324,8 +324,8 @@
                                         @endif
                             @endforeach
                         </div>
-                        <div class="bottom_box">
-                            <a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+                        <div class="bottom_box load_more">
+                            <a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều</a><label style="padding-top: 6px;">(Còn @if ((count($getNewProduct)-12) < 0 ) 0 @else hơn {{count($getNewProduct)-12}} @endif cơ hội mua bán)</label>
                         </div>
                         
                     </div>
