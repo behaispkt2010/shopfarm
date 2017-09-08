@@ -39,15 +39,15 @@
                             <div class="x_panel">
                                 <div class="form-group">
                                     <label>Yêu cầu chất lượng</label>
-                                    <textarea class="form-control" rows="5" required
-                                              name="require">@if(!empty($article->require)){{$article->require}}@else{{old('require')}}@endif</textarea>
-                                    <script type="text/javascript">ckeditor('require')</script>
+                                    <textarea class="form-control" rows="5" placeholder=" - Yêu cầu 1... 
+ - Yêu cầu 2..." required name="require">@if(!empty($article->require)){{$article->require}}@else{{old('require')}}@endif</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Hình thức thanh toán</label>
                                     <select name="type_pay" class="form-control" required>
-                                        <option value="0">Trả tiền mặt</option>
-                                        <option value="1">Chuyển khoản</option>
+                                        <option value="0">Trả trước toàn bộ</option>
+                                        <option value="1">Đặt cọc - Thanh toán khi nhận hàng</option>
+                                        <option value="2">Đặt cọc - Công nợ</option>
                                     </select>
                                 </div>
                             </div>

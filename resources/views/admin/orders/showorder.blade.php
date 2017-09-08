@@ -206,7 +206,7 @@
 
                 <div class=" row hidden-xs">
                     <div class="col-md-12 details-tracking ">
-                        <label class="title">Chi tiết hành trình</label>
+                        <label class="title" style=" font-size: 16px; padding-left: 10px;">Chi tiết hành trình</label>
                         <div id="demo0" class="collapse in" style="padding-left: 20px;">
                             <div class="con-details-tracking">
 

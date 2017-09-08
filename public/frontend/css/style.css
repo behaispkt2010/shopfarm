@@ -8279,7 +8279,7 @@ a:hover {
 }
 
 .info_veryfi_content li {
-    line-height: 26px;
+    /*line-height: 26px;*/
 }
 
 .info_veryfi_content li label {
@@ -9319,8 +9319,8 @@ table.listview {
 }
 .posting-box table.listview tr td {
     font-family: "Roboto",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    font-weight: normal;
+    font-size: 15px;
+    /*font-weight: normal;*/
     line-height: 22px;
     padding: 5px 0;
 }
@@ -9481,4 +9481,7 @@ table.listview {
 #products_container {
     padding: 16px 14px 30px !important;
     border: 1px solid #CFD8DC;
+}
+.contacts {
+    box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, 0.20), 1px 2px 4px 0 rgba(0, 0, 0, .09) !important;
 }

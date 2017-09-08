@@ -20,7 +20,7 @@
                 @if(Auth::user()->hasRole('kho'))
                 <a href="{{route('warehouse.edit',['id' => \App\WareHouse::getIdWareHouse(Auth::user()->id) ])}}" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
                     Thông tin</a>
-                @elseif(Auth::user()->hasRole('company'))
+                @elseif(Auth::user()->hasRole('com'))
                 <a href="{{route('company.edit',['id' => \App\Company::getIdWareHouse(Auth::user()->id) ])}}" style="margin-right: 10px;    font-size: 13px;"><i class="fa fa-user" aria-hidden="true"></i>
                     Thông tin</a>
                 @else

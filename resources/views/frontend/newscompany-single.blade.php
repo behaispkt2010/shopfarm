@@ -131,7 +131,7 @@
 						</div>
 					</div>
 					<div class="news_related hidden-xs">
-						<div class="title" style="padding-bottom: 10px;"><i class="icon ca-ca-infor"></i>Tin liên quan nỗi bật</div>
+						<div class="title" style="padding-bottom: 10px;"><i class="icon ca-ca-infor"></i>Tin liên quan nổi bật</div>
 						<div class="company_list">
 							@if(count($getNewsCompanyRelated)!=0)
 								<div class="list_company_row" style="">
@@ -166,7 +166,7 @@
 						</div>
 					</div>
 					<div class="warehouse_releated hidden-xs">
-						<div class="title" style="padding-bottom: 10px;"><i class="icon ca-ca-infor"></i>Nhà cung cấp nỗi bật</div>
+						<div class="title" style="padding-bottom: 10px;"><i class="icon ca-ca-infor"></i>Nhà cung cấp nổi bật</div>
 						<div class="company_list">
 						@if(count($getWareHouseRelated)!=0)
 							<div class="list_warehouse_row" style="">
@@ -184,7 +184,11 @@
 												@endforeach
 	                                        </div>
 											<div class="kho_info clearfix">
-												<a href="#" class="alignleft" style="width: 60px;margin-right: 20px;">
+	                                        	<span style="float: left; padding-left: 7px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseDeXuat->count_view))0 @else{{$itemAllWareHouseDeXuat->count_view}}@endif </a></span>
+	                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
+	                                        </div>
+											<div class="kho_info clearfix">
+												<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
 													@if($itemAllWareHouseDeXuat->level == 1)
 														<img src="{{url('/images')}}/level1.png" alt="">
 													@elseif($itemAllWareHouseDeXuat->level == 2)
@@ -195,14 +199,12 @@
 														<img src="{{url('/images')}}/level0.png" alt="">
 													@endif
 												</a>
-												<!-- <a href="#" class="alignleft" style="width: 60px;">
+												<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
 													@if($itemAllWareHouseDeXuat->confirm_kho == 1)
 														<img src="{{url('/images')}}/xacthuc.png" alt="">
 													@else
 													@endif
-												</a> -->
-												<span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseDeXuat->count_view))0 @else{{$itemAllWareHouseDeXuat->count_view}}@endif </a></span>
-												<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
+												</a>
 											</div>
 										</div>
 									</div>

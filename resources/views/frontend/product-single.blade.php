@@ -78,14 +78,14 @@
 											<div class="col-xs-6 col-sm-6 col-md-6" style="float: left;padding-left: 0px;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="border-radius: 5px;line-height: 26px; color: #fff; width: 139px; font-size: 16px;background: #00695c;"
-																data-toggle="modal" data-target=".modal-login" class="btn btn-success required_login">
-															Gọi điện
+														<button id="" style="border-radius: 4px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #00695c;"
+																data-toggle="modal" data-target=".modal-login" class="btn btn-success required_login contacts">
+															Gọi trực tiếp
 														</button>
 													@else
-														<button id="phoneKho" style="border-radius: 5px;line-height: 26px; color: #fff; width: 139px; font-size: 16px;background: #00695c;"
-															data-toggle="modal" data-target=".modal-buy" class="btn btn-success" data-phone="{{$product->phoneKho}}" data-title="Mua Ngay" data-namekho="{{$product->nameKho}}">
-															Gọi điện
+														<button id="phoneKho" style="border-radius: 4px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #00695c;"
+															data-toggle="modal" data-target=".modal-buy" class="btn btn-success contacts" data-phone="{{$product->phoneKho}}" data-title="Mua Ngay" data-namekho="{{$product->nameKho}}">
+															Gọi trực tiếp
 														</button>
 													@endif
 													<br>
@@ -95,12 +95,12 @@
 											<div class="col-xs-6 col-sm-6 col-md-6" style="float: right;padding-right: 0px;">
 												<div style="height: 100px; padding: 15px 15px 0px 0px; ">
 													@if (( !Auth::check()))
-														<button id="" style="border-radius: 5px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;"
-																data-toggle="modal" data-target=".modal-login" class="btn btn-info required_login">
+														<button id="" style="border-radius: 4px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;"
+																data-toggle="modal" data-target=".modal-login" class="btn btn-info required_login contacts">
 															Chat Facebook
 														</button>
 													@else
-														<button id="" style="border-radius: 5px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;" class="chat_chukho btn btn-info">
+														<button id="" style="border-radius: 4px;line-height: 26px; color: #fff; width: 170px; font-size: 16px;background: #0f9d58;" class="chat_chukho btn btn-info contacts">
 															Chat Facebook
 														</button>
 														<input type="hidden" id="is_fanpage_fb" name="is_fanpage_fb" value="{{ $product->fanpage_fb }}">
@@ -176,38 +176,40 @@
 									<h5 class="text-center">Thông tin chủ kho</h5>
 									<div class="theme_box">
 										<div class="seller_info clearfix">
-											<a href="{{ url('/shop/'.$product->ware_houses_id) }}" class="alignleft photo">
-												@if($product->levelKho == 1)
-												<img src="{{url('/images')}}/level1.png" alt="">
-													@elseif($product->levelKho == 2)
-													<img src="{{url('/images')}}/level2.png" alt="">
-												@elseif($product->levelKho == 3)
-													<img src="{{url('/images')}}/level3.png" alt="">
-												@endif
-											</a>
-											<div class="wrapper">
-												<a href="{{ url('/shop/'.$product->ware_houses_id) }}"><b>{{$product->nameKho}}</b></a>
-												<p class="seller_category">Chủ kho cấp {{$product->levelKho}}</p>
+											<div>
+												<a href="{{ url('/shop/'.$product->ware_houses_id) }}" class="alignleft photo">
+													@if($product->levelKho == 1)
+													<img src="{{url('/images')}}/level1.png" alt="">
+														@elseif($product->levelKho == 2)
+														<img src="{{url('/images')}}/level2.png" alt="">
+													@elseif($product->levelKho == 3)
+														<img src="{{url('/images')}}/level3.png" alt="">
+													@endif
+												</a>
+												<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
+													@if($product->confirm_kho == 1)
+														<img src="{{url('/images')}}/xacthuc.png" alt="">
+													@else
+													@endif
+												</a>
 											</div>
-
-										</div><!--/ .seller_info-->
-
+										</div>
+										<div class="wrapper">
+											<a href="{{ url('/shop/'.$product->ware_houses_id) }}"><b>{{$product->nameKho}}</b></a>
+											<p class="seller_category">Chủ kho cấp {{$product->levelKho}}</p>
+										</div>
 										<ul class="seller_stats">
 											<li>
 												<ul class="topbar">
-													<li>{{$product->addressKho}}</li>
-													<li>Mã: #{{\App\Util::UserCode($product->idKho)}}</li>
+													<li>Mã: {{\App\Util::UserCode($product->idKho)}}</li>
 												</ul>
 											</li>
 										</ul>
 									</div>
 									@endif
 								</section>
-
 								<div class="section_offset">
-
 									<a href="#" class="banner">
-										
 										<img src="{{asset('frontend/images/banner_img_13.jpg')}}" alt="" style="width: 100%;">
 									</a>
 
@@ -433,7 +435,7 @@
 									<div class="table_layout">
 				                        <?php $i=0 ;$j=0?>
 				                        @foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
-				                            @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+				                            @if($i==0)<div class="category_product_row" style="">@endif
 				                                    <div class="col-md-3 col-xs-12 category_product_cell">
 
 				                                        <div class="product_bestselt">
@@ -492,7 +494,7 @@
 									<div class="table_layout">
 				                        <?php $i=0 ;$j=0?>
 				                        @foreach(\App\Product::getProductByKhoVIP(8) as $product)
-				                            @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+				                            @if($i==0)<div class="category_product_row" style="">@endif
 				                                    <div class="col-md-3 col-xs-12 category_product_cell">
 
 				                                        <div class="product_bestselt">
@@ -551,7 +553,7 @@
 									<div class="table_layout">
 				                        <?php $i=0 ;$j=0?>
 				                        @foreach(\App\Product::getBestSellerProduct(8) as $product)
-				                            @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+				                            @if($i==0)<div class="category_product_row" style="">@endif
 				                                    <div class="col-md-3 col-xs-12 category_product_cell">
 
 				                                        <div class="product_bestselt">

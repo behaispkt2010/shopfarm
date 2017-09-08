@@ -6340,7 +6340,7 @@ ul {
     /*font-family: 'Roboto-Light';*/
     font-weight: 100;
     font-size: 15px;
-    font-weight: normal;
+    /*font-weight: normal;*/
     position: relative;
     padding: 5px 380px 20px 50px;
 }
@@ -6460,14 +6460,13 @@ ul {
 .con-details-tracking p {
     /*font-family: 'Roboto-Light';*/
     font-size: 15px;
-    font-weight: normal;
+    /*font-weight: normal;*/
 }
 
 .con-details-tracking .item label {
     font-weight: 100;
     color: #000;
-    font-weight: 400;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .tracking-toggle span:first-child {
@@ -7024,7 +7023,7 @@ table.dtp-picker-days thead {
 
 .list-unstyled span.label-box {
     display: inline-block;
-    width: 130px;
+    width: 70px;
 }
 
 .list-unstyled span.label-box55 {

@@ -4,16 +4,27 @@
 @section('content')
 <div class="secondary_page_wrapper">
     <div class="container">
-        <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px;">
+        <div class="col-xs-12 col-sm-4 col-md-4" style="padding-top: 20px; padding-left: 0px;">
             <div class="panel panel-default">
                 <div class="item active">
                     <img alt="..." width="100%" style="border-radius: 5px;" src="{{ asset($ware_house->image_kho) }}">
                 </div>
                 <div class="panel-heading" style="padding-left: 23px;">
-                    <h4 class="panel-title">
-                        <i class="fa fa-user" aria-hidden="true"></i> Thông tin NCC
-                    </h4>
+                    <h4 class="panel-title" style="text-align: center;">Thông tin NCC </h4>
                 </div>
+                @if (( !Auth::check()))
+                <div id="filter_ncc_seach" class="panel-collapse collapse in">
+                    <div class="panel-body" style="padding-left: 23px;">
+                        <ul class="site_info_ncc">
+                            <li class="required_login"><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                    </div>
+                </div>
+                @else
                 <div id="filter_ncc_seach" class="panel-collapse collapse in">
                     <div class="panel-body" style="padding-left: 23px;">
                         <ul class="site_info_ncc">
@@ -21,21 +32,30 @@
                             <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>
                             <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->email}}</li>
                             <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><?php \Carbon\Carbon::setLocale('vi')?> 
-                            {!! \Carbon\Carbon::createFromTimestamp(strtotime($ware_house->created_at))->diffForHumans() !!}</li>
-                            <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Số đơn hàng thành công: {{$order}}</li>
+                            {!! \Carbon\Carbon::createFromTimestamp(strtotime($ware_house->created_at))->diffForHumans() !!} cùng nosaGO.com</li>
+                            <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Bán thành công: {{$order}}</li>
                         </ul>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="hidden-xs">
             
             </div>
         </div>
-        <div class="col-xs-12 col-sm-9 col-md-9" style="padding-top: 20px;">
+        <div class="col-xs-12 col-sm-8 col-md-8" style="padding-top: 20px;">
             <div class="content_verify">
                 <ul class="info_veryfi_content">
                     <li class="info_kho">
                         <label>Mô hình kinh doanh:</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@foreach($arrCategoryWarehouse as $itemCategoryWareHouse)
                                     @if ($itemCategoryWareHouse->id == $ware_house->category_warehouse_id ) {{$itemCategoryWareHouse->category_warehouse_name}}
@@ -46,77 +66,141 @@
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
                         <label>Tên doanh nghiệp:</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->name_company)) {{$ware_house->name_company}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
                         <label>Ngày thành lập :</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->time_active)) {{$ware_house->time_active}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
                         <label>Mã số thuế:</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->mst)) {{$ware_house->mst}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
                         <label>Địa chỉ kho :</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->ware_houses_address)) {{$ware_house->ware_houses_address}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                     <div class="clear"></div>
                     <li class="info_kho">
                         <label>Người đại diện :</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->ndd)) {{$ware_house->ndd}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
                         <label>Số điện thoại NDD :</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->phone_number)) {{$ware_house->phone_number}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
                         <label>Email NDD :</label>
+                        @if (( !Auth::check()))
+                        <ul class="left_list_verify required_login">
+                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->email)) {{$ware_house->email}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)Xác thực @else Chưa xác thực @endif</li>
                         </ul>
+                        @endif
                         <div class="clear"></div>
                     </li>
                 </ul>
@@ -132,6 +216,14 @@
                             <h4>Kho hàng</h4>
                         </div>
                         <div class="table-responsive">
+                            @if (( !Auth::check()))
+                            <ul class="left_list_verify required_login">
+                                <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @else 
                             @if ($ware_house->confirm_kho == 1)
                             <div class="block-inner">
                                 <div class="left_arrow_carousel">
@@ -157,6 +249,7 @@
                             @else
                                 <div></div>
                             @endif
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -172,7 +265,7 @@
                         <div class="table_layout">
                             <?php $i=0 ;$j=0?>
                             @foreach($getNewProduct as $key => $product)
-                                @if($i==0)<div class="category_product_row" style="background-color: #fff;">@endif
+                                @if($i==0)<div class="category_product_row" style="">@endif
                                         <div class="col-md-3 col-xs-12 category_product_cell">
 
                                             <div class="product_bestselt">

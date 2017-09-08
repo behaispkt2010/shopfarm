@@ -41,7 +41,7 @@
                     <ul class="info_veryfi_content">
                         
                         <li>
-                            <label>Tên NCC:</label>
+                            <label>Tên Doanh nghiệp:</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->name_company)) {{$company->name_company}} @endif</li>
                             </ul>
@@ -51,7 +51,7 @@
                             <div class="clear"></div>
                         </li>
                         <li>
-                            <label>Số điện thoại NCC:</label>
+                            <label>Số điện thoại :</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->phone_number)) {{$company->phone_number}} @endif</li>
                             </ul>
@@ -61,7 +61,7 @@
                             <div class="clear"></div>
                         </li>
                         <li>
-                            <label>Email NCC:</label>
+                            <label>Email :</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->email)) {{$company->email}} @endif</li>
                             </ul>
@@ -71,7 +71,27 @@
                             <div class="clear"></div>
                         </li>
                         <li>
-                            <label>Thời gian hoạt động :</label>
+                            <label>Ngày thành lập :</label>
+                            <ul class="left_list_verify">
+                                <li>@if (!empty($company->time_active)) {{$company->time_active}} @endif</li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                            </ul>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <label>Ngày tham gia hệ thống (chua xong):</label>
+                            <ul class="left_list_verify">
+                                <li>@if (!empty($company->time_active)) {{$company->time_active}} @endif</li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li>@if ($company->confirm == 1)Xác thực @else Chưa xác thực @endif</li>
+                            </ul>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <label>Mua thành công (chua xong):</label>
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->time_active)) {{$company->time_active}} @endif</li>
                             </ul>
@@ -210,7 +230,7 @@
                                 <?php $i=0 ;$j=0?>
                                 @foreach($getNewsCompany as $itemAllNewsCompany)
                                     @if($i==0)<div class="list_company_row" style="">@endif
-                                        <div class="col-md-2 col-xs-12 company_cell_other">
+                                        <div class="col-md-3 col-xs-12 company_cell_other">
                                             <div class="well box_1">
                                                 @if ($itemAllNewsCompany->companyConfirm)
                                                 <div class="box-status" style="background-color: #64DD17;">
@@ -232,7 +252,7 @@
                                             </div>
                                         </div>
                                         <?php $i = $i+1;$j=$j+1; ?>
-                                        @if($i>=6|| $j>=count($getNewsCompany))
+                                        @if($i>=4|| $j>=count($getNewsCompany))
                                             <?php $i=0 ?>
                                     </div>
                                     @endif
