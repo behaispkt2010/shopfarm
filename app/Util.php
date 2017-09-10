@@ -13,14 +13,25 @@ use Illuminate\Support\Facades\Mail;
 class Util extends Model
 {
     public static $datetest = 20;
+    public static $mailadmin = 'behaispkt2010@gmail.com';
     /*Notify Admin | Nhân Viên*/
     public static $dangkychukho = "dangkychukho";
     public static $upgradeLevelKho = "upgradeLevelKho";
-    public static $quangcao = "quangcao";
+    public static $quangcaoKho = "quangcaoKho";
     public static $confirmkho = "confirmkho";
-    public static $dangkytraphi = "dangkytraphi";
-    public static $dangkygiahan = "dangkygiahan";
+    public static $dangkytraphiKho = "dangkytraphiKho";
+    public static $dangkygiahanKho = "dangkygiahanKho";
+
+
+    public static $dangkycompany = "dangkycompany";
+    public static $upgradeLevelCompany = "upgradeLevelCompany";
+    public static $quangcaoCompany = "quangcaoCompany";
+    public static $confirmCompany = "confirmCompany";
+    public static $dangkytraphiCompany = "dangkytraphiCompany";
+    public static $dangkygiahanCompany = "dangkygiahanCompany";
+
     public static $newproduct = "newproduct";
+    public static $newscompany = "newscompany";
     public static $contact = "contact";
 
     /*Notify Chủ kho*/
@@ -31,6 +42,17 @@ class Util extends Model
     public static $dangkytraphiSuccess = "dangkytraphiSuccess";
     public static $dangkygiahanSuccess = "dangkygiahanSuccess";
     public static $newproductSuccess = "newproductSuccess";
+
+    /*Notify Company*/
+    public static $dangkychuCompanySuccess = "dangkychuCompanySuccess";
+    public static $upgradeLevelCompanySuccess = "upgradeLevelCompanySuccess";
+    public static $quangcaoCompanySuccess = "quangcaoCompanySuccess";
+    public static $confirmCompanySuccess = "confirmCompanySuccess";
+    public static $dangkytraphiCompanySuccess = "dangkytraphiCompanySuccess";
+    public static $dangkygiahanCompanySuccess = "dangkygiahanCompanySuccess";
+    public static $newscompanySuccess = "newscompanySuccess";
+
+
 
     public static $roleviewAdmin = "admin";
     public static $roleviewChukho = "chukho";

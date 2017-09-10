@@ -283,7 +283,7 @@ class CompanyController extends Controller
             $data['date_end_test'] = NULL;
         }
         if(Auth::user()->hasRole('admin')) {
-            $dataNotify['keyname'] = Util::$dangkytraphiSuccess;
+            $dataNotify['keyname'] = Util::$dangkytraphiCompanySuccess;
             $dataNotify['title'] = "Thay đổi tài khoản thành công";
             $dataNotify['content'] = "Bạn đã đăng ký trả phí thành công";
             $dataNotify['author_id'] = $userID;
@@ -399,7 +399,7 @@ class CompanyController extends Controller
                 'created_confirm' => $dateStart
             ];
             $company = Company::where('id', $id)->update($dataCompany);
-            $data['keyname'] = Util::$confirmkhoSuccess;
+            $data['keyname'] = Util::$confirmCompanySuccess;
             $data['title'] = "Xác thực doanh nghiệp thành công";
             $data['content'] = "Xem thông tin xác thực doanh nghiệp";
             $data['author_id'] = $userID;
@@ -435,7 +435,7 @@ class CompanyController extends Controller
             'created_time_quangcao' => $dateStart
         ];
         $company = Company::where('id', $id)->update($dataCompany);
-        $data['keyname'] = Util::$quangcaoSuccess;
+        $data['keyname'] = Util::$quangcaoCompanySuccess;
         $data['title'] = "Đăng ký quảng cáo thành công";
         $data['content'] = "Yêu cầu đăng ký quảng cáo của bạn đã được duyệt";
         $data['author_id'] = $userID;
@@ -464,7 +464,7 @@ class CompanyController extends Controller
             $phone_number = $itemUser['phone_number'];
         }
         $getCodeCompany = Util::UserCode($userID);
-        $data['keyname'] = Util::$confirmkho;
+        $data['keyname'] = Util::$confirmCompany;
         $data['title'] = "Chủ kho đăng kí xác thực kho";
         $data['content'] = "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn xác thực kho với thời gian " .$time_request_confirm ." tháng";
         $data['author_id'] = $userID;
@@ -503,7 +503,7 @@ class CompanyController extends Controller
             $phone_number = $itemUser['phone_number'];
         }
         $getCodeCompany = Util::UserCode($userID);
-        $data['keyname'] = Util::$quangcao;
+        $data['keyname'] = Util::$quangcaoCompany;
         $data['title'] = "Chủ kho đăng kí quảng cáo";
         $data['content'] = "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng";
         $data['author_id'] = $userID;
@@ -541,7 +541,7 @@ class CompanyController extends Controller
             $phone_number = $itemUser['phone_number'];
         }
         $getCodeCompany = Util::UserCode($userID);
-        $data['keyname'] = Util::$dangkytraphi;
+        $data['keyname'] = Util::$dangkytraphiCompany;
         $data['title'] = "Chủ kho đăng kí dùng trả phí";
         $data['content'] = "Mã chủ kho ".$getCodeCompany.' - '.$phone_number;
         $data['author_id'] = $userID;

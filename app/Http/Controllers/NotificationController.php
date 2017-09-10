@@ -13,7 +13,7 @@ class NotificationController extends Controller
 {
     public function AjaxUpdateIsReadNotify(Request $request){
         //Log::debug('behai',['vaooooo']);
-        if(Auth::user()->hasRole('kho')) {
+        if(Auth::user()->hasRole(['kho','company'])) {
             $strUserID = Auth::user()->id;
             $notify = Notification::where('is_read','=','0')->where('roleview',$strUserID)->get();
         }
@@ -47,6 +47,16 @@ class NotificationController extends Controller
                 ->where('notification.roleview',$strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('ware_houses.* ')
+                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->orderBy('notification.id','DESC')
+                ->paginate(20);
+        }
+        elseif(Auth::user()->hasRole('com')) {
+            $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
+                ->leftjoin('company','company.user_id','=','notification.author_id')
+                ->where('notification.roleview',$strUserID)
+                ->selectRaw('users.* ')
+                ->selectRaw('company.* ')
                 ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
                 ->orderBy('notification.id','DESC')
                 ->paginate(20);

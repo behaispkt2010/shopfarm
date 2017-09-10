@@ -120,9 +120,11 @@ class NewsCompanyController extends Controller
                 "subject" => "Sản phẩm Công ty đang cần ". $productName
             ];
             $to = $itemMailWareHouse;
-            $to = "behaispkt2010@gmail.com";
+            $to = Util::$mailadmin;
             Mail::to($to)->send(new MailBroadCastProduct($data));
         }
+        $admin = Util::$mailadmin;
+        Mail::to($amin)->send(new MailBroadCastProduct($data));
         return redirect('admin/newscompany/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 

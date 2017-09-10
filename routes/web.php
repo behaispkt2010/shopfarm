@@ -23,7 +23,7 @@ Auth::routes();
  *
  */
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|user|company','auth', 'authorize']], function () {
+Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|user|com','auth', 'authorize']], function () {
 
     Route::get('/', 'DashboardController@index');
     Route::get('/dashboard', 'DashboardAdminController@index');
@@ -152,6 +152,7 @@ Route::post('product/deleteDetailImage', 'ProductController@deleteDetailImage');
 Route::post('admin/getdashboard', 'DashboardAdminController@getdashboard');
 Route::post('admin/dashboardctrl', 'DashboardController@dashboard');
 Route::post('admin/dashboard/Approval', 'DashboardController@Approval');
+Route::post('admin/dashboard/ApprovalNews', 'DashboardController@ApprovalNews');
 Route::get('admin/notify/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUpdateIsReadNotify');
 Route::post('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
 Route::post('warehouse/deleteDetailImage', 'WarehouseController@deleteDetailImage');

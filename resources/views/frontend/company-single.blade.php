@@ -66,12 +66,21 @@
                         
                         <li class="info_kho">
                             <label>Tên Doanh nghiệp:</label>
+                            @if (( !Auth::check()))
+                            <ul class="left_list_verify required_login">
+                                <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @else
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->name_company)) {{$company->name_company}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
                                 <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
+                            @endif
                             <div class="clear"></div>
                         </li>
                         <li class="info_kho">
@@ -104,6 +113,7 @@
                             </ul>
                             <div class="clear"></div>
                         </li>
+
                         <li class="info_kho">
                             <label>Ngày tham gia nosaGo.com:</label>
                             <ul class="left_list_verify">

@@ -30,7 +30,7 @@
                 <th>Tên trang</th>
 
                 <th>Người tạo</th>
-                <th>ngày tạo</th>
+                <th>Ngày tạo</th>
                 <th width="50px"></th>
             </tr>
             </thead>

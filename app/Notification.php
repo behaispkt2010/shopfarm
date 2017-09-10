@@ -20,6 +20,18 @@ class Notification extends Model
             ->get();
         return $join;
     }
+    public static function GetNotifyCompany($strUserID){
+        $join = Notification::leftjoin('users','notification.author_id','=','users.id')
+            ->leftjoin('company','company.user_id','=','notification.author_id')
+            ->where('notification.roleview',$strUserID)
+            ->selectRaw('users.* ')
+            ->selectRaw('company.* ')
+            ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
+            ->orderBy('notification.id','DESC')
+            ->take(5)
+            ->get();
+        return $join;
+    }
     public static function GetNotifyAdmin(){
         $view = Util::$roleviewAdmin;
         $arrNotify = Notification::leftjoin('users','notification.author_id','=','users.id')

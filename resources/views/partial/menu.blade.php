@@ -266,6 +266,12 @@
                         $strNumNotify = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
                         $arrNotification = \App\Notification::GetNotify($strUserID);
                     ?>
+                @elseif(Auth::user()->hasRole('com'))
+                    <?php
+                        $strUserID = Auth::user()->id;
+                        $strNumNotify = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
+                        $arrNotification = \App\Notification::GetNotifyCompany($strUserID);
+                    ?>
                 @else
                     <?php
                         $strUserID = Auth::user()->id;
@@ -278,6 +284,8 @@
                        aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
                         @if(Auth::user()->hasRole('kho'))
+                            <span class="badge bg-template" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
+                        @elseif(Auth::user()->hasRole('com'))
                             <span class="badge bg-template" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
                         @else
                             <span class="badge bg-template" id="notify_count">@if ($strNumNotifyAdmin != 0) {{$strNumNotifyAdmin}} @endif</span>
@@ -312,16 +320,47 @@
                             @else
                                 <span class="different">Bạn không có thông báo mới.</span>
                             @endif
+                        @elseif(Auth::user()->hasRole('com'))
+                            @if (count($arrNotification) != 0)
+                                @foreach ($arrNotification as $itemNotification)
+                                    <li class="notify">
+                                        <a href="@if ($itemNotification->keyname == \App\Util::$confirmCompanySuccess) {{url('/company/'.$itemNotification->id)}}
+                                                @else # @endif" target="_blank">
+                                            <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
+                                                <span>
+                                                    <span class="notification_title">{{$itemNotification->title}}</span>
+                                                </span>
+                                            <span class="message">{{$itemNotification->content}}</span>
+                                            <span class="time">{{ $itemNotification->created_at }}</span>
+                                        </a>
+
+                                    </li>
+                                @endforeach
+
+                                <li style="height: 40px;">
+                                    <div class="text-center">
+                                        <a href="{{ route('notification.index') }}">
+                                            <strong>Xem tất cả</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            @else
+                                <span class="different">Bạn không có thông báo mới.</span>
+                            @endif
                         @else
                             @if (count($arrNotificationAdmin) != 0)
                                 @foreach ($arrNotificationAdmin as $itemNotificationAdmin)
                                     <li class="notify">
                                         <a href="@if ($itemNotificationAdmin->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
+                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$newscompany) {{route('newscompany.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @elseif ($itemNotificationAdmin->keyname == \App\Util::$orderfail) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @elseif ($itemNotificationAdmin->keyname == \App\Util::$orderreturn) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @elseif ($itemNotificationAdmin->keyname == \App\Util::$ordernew) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
                                                 @elseif ($itemNotificationAdmin->keyname == \App\Util::$dangkychukho) {{route('warehouse.create')}}
-                                                @else {{route('warehouse.edit',['id' => $itemNotificationAdmin->id])}} @endif" target="_blank">
+                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$dangkycompany) {{route('company.create')}}
+                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$upgradeLevelKho ||$itemNotificationAdmin->keyname == \App\Util::$quangcaoKho ||$itemNotificationAdmin->keyname == \App\Util::$confirmkho ||$itemNotificationAdmin->keyname == \App\Util::$dangkytraphiKho ||$itemNotificationAdmin->keyname == \App\Util::$dangkygiahanKho) {{route('warehouse.edit',['id' => $itemNotificationAdmin->id])}} 
+                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$upgradeLevelCompany ||$itemNotificationAdmin->keyname == \App\Util::$quangcaoCompany ||$itemNotificationAdmin->keyname == \App\Util::$confirmCompany ||$itemNotificationAdmin->keyname == \App\Util::$dangkytraphiCompany ||$itemNotificationAdmin->keyname == \App\Util::$dangkygiahanCompany) {{route('company.edit',['id' => $itemNotificationAdmin->id])}} @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotificationAdmin->image)){{ url('/').$itemNotificationAdmin->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                                 <span>
                                                     <span class="notification_title">{{$itemNotificationAdmin->title}}</span>

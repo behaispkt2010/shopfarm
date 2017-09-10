@@ -189,8 +189,8 @@
 
                         @foreach($arrProductWaitApproval as $itemProductWaitApproval)
                             <li class="media event product0" style="height: 50px;" id="">
-                                <a class="pull-left border-aero profile_thumb" style="margin: -4px; padding: 0px;">
-                                    <img src="{{url('/').$itemProductWaitApproval->image}}" alt="" class="img-responsive" style="height: 50px; border-radius: 5px;">
+                                <a class="pull-left border-aero profile_thumb" style="margin: 0px; width: 150px;">
+                                    {{\App\Util::ProductCode($itemProductWaitApproval->id)}}
                                 </a>
                                 <div class="media-body" style="padding-top: 10px;">
                                     <div class="col-md-6 col-sm-6 col-xs-6 text-left"><a class="title" style="font-weight :100;" href="{{route('products.edit',['id' => $itemProductWaitApproval->id])}}" target="_blank">{!! $itemProductWaitApproval->title !!}</a></div>
@@ -206,6 +206,44 @@
                         @endforeach
                         <div class="text-center">
                             {{ $arrProductWaitApproval->appends(array('q' => Request::get('q')))->links() }}
+                        </div>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel" style="min-height: 550px;">
+                <div>
+                    <div class="x_title">
+                        <h2>Cơ hội mua bán cần duyệt</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <ul class="list-unstyled top_profiles scroll-view">
+
+                        @foreach($arrNewsCompayWaitApproval as $itemNewsCompanyWaitApproval)
+                            <li class="media event product0" style="height: 50px;" id="">
+                                <a class="pull-left border-aero profile_thumb" style="margin: -4px; padding: 0px;">
+                                    <img src="{{url('/').$itemNewsCompanyWaitApproval->image}}" alt="" class="img-responsive" style="height: 50px; border-radius: 5px;">
+                                </a>
+                                <div class="media-body" style="padding-top: 10px;">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left"><a class="title" style="font-weight :100;" href="{{route('newscompany.edit',['id' => $itemNewsCompanyWaitApproval->id])}}" target="_blank">{!! $itemNewsCompanyWaitApproval->title !!}</a></div>
+                                    <div class="col-md-2 col-sm-2 col-xs-2">Công ty {{\App\Util::UserCode($itemNewsCompanyWaitApproval->author_id)}}</div>
+
+                                    <div class="col-md-3 col-sm-3 col-xs-3 text-right" style="top: -13px;"><button class="btn btn-raised btn-success btnApprovalNews" onclick="ApprovalNews(this)" style="padding: 5px 30px;">Duyệt</button></div>
+                                </div>
+                                <input type="hidden" name="txtnewsID" value="{{$itemNewsCompanyWaitApproval->id}}">
+                                <input type="hidden" name="txtauthorID" value="{{$itemNewsCompanyWaitApproval->author_id}}">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            </li>
+
+                        @endforeach
+                        <div class="text-center">
+                            {{ $arrNewsCompayWaitApproval->appends(array('q' => Request::get('q')))->links() }}
                         </div>
                     </ul>
                 </div>
@@ -798,6 +836,59 @@
                     //show notify
                     new PNotify({
                         title: 'Duyệt sản phẩm thành công',
+                        text: '',
+                        type: 'success',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //show notify
+                    var Data = JSON.parse(XMLHttpRequest.responseText);
+                    new PNotify({
+                        title: 'Lỗi',
+                        text: "Có lỗi xảy ra",
+                        type: 'danger',
+                        hide: true,
+                        styling: 'bootstrap3'
+                    });
+                    $('.loading').css('display','none');
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function ParseRowNews($LI){
+            var ctlnewsID = $LI.find('input[type="hidden"][name="txtnewsID"]');
+            var ctlauthorID = $LI.find('input[type="hidden"][name="txtauthorID"]');
+            var newsid = ctlnewsID.val();
+            var authorid = ctlauthorID.val();
+            var result = {
+                "newsid"    : newsid,
+                "authorid"    : authorid
+            };
+            return result;
+        }
+
+        function ApprovalNews(sender){
+            var parentLI = $(sender).parent().parent().parent();
+            //console.log(parentLI);
+            var newsCompany = ParseRowNews(parentLI);
+            var newsid = newsCompany['newsid'];
+            var authorid = newsCompany['authorid'];
+            var _token = $('input[name="_token"]').val();
+            $('.loading').css('display','block');
+            $.ajax({
+                type: "POST",
+                url: '{{ url('/') }}/admin/dashboard/ApprovalNews',
+                data: {newsid: newsid, authorid: authorid, _token: _token},
+                success: function( msg ) {
+                    $('.loading').css('display','none');
+                    //show notify
+                    new PNotify({
+                        title: 'Duyệt cơ hội mua bán thành công',
                         text: '',
                         type: 'success',
                         hide: true,

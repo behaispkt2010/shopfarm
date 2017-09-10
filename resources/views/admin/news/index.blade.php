@@ -30,7 +30,7 @@
                 <th>Tiêu đề</th>
                 <th>Danh mục</th>
                 <th>Người viết</th>
-                <th>ngày tạo</th>
+                <th>Ngày tạo</th>
                 <th width="50px"></th>
             </tr>
             </thead>

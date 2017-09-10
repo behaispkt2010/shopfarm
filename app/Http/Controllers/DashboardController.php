@@ -8,6 +8,7 @@ use App\Product;
 use App\ProductOrder;
 use App\User;
 use App\Util;
+use App\NewsCompany;
 use App\WareHouse;
 use DateTime;
 use Illuminate\Http\Request;
@@ -76,6 +77,24 @@ class DashboardController extends Controller
         $dataNotify['roleview'] = $strKhoID;
         Notification::create($dataNotify);
     }
+    public function ApprovalNews(Request $request){
+        $strNewsID = $request->get('newsid');
+        $strAuthorID = $request->get('authorid');
+
+        $newscompany =  NewsCompany::find($strNewsID);
+        $data = [
+            'status' => 1
+        ];
+        $newscompany->update($data);
+        // $getCodeProduct = Util::ProductCode($strNewsID);
+        $dataNotify['keyname'] = Util::$newscompanySuccess;
+        $dataNotify['title'] = "Cơ hội mua bán mới";
+        $dataNotify['content'] = "Cơ hội mua bán của bạn đã được duyệt.";
+        $dataNotify['author_id'] = Auth::user()->id;
+        $dataNotify['orderID_or_productID'] = $strNewsID;
+        $dataNotify['roleview'] = $strAuthorID;
+        Notification::create($dataNotify);
+    }
     public function index(){
         //echo "admin";
         $level1 = WareHouse::countLevelKho(1);
@@ -112,6 +131,7 @@ class DashboardController extends Controller
         }
         $arrBestSellProduct = Product::getBestSellerProduct(3);
         $arrProductWaitApproval = Product::where('status',0)->orderBy('id','DESC')->paginate(10);
+        $arrNewsCompayWaitApproval = NewsCompany::where('status',0)->orderBy('id','DESC')->paginate(10);
         //dd($arrProductWaitApproval);
         $data =[
             'countOrder' =>$countOrder,
@@ -124,6 +144,7 @@ class DashboardController extends Controller
             'dungthu' =>$dungthu,
             'traphi' =>$traphi,
             'arrProductWaitApproval' =>$arrProductWaitApproval,
+            'arrNewsCompayWaitApproval' =>$arrNewsCompayWaitApproval,
             'totalPrice' =>$totalPrice,
             'countOrderFinish' =>$countOrderFinish
         ];
