@@ -41,6 +41,16 @@
                                     </ul>
                                 </div>
                             </div>
+                            @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                            <div id="filter_ncc_seach" class="panel-collapse collapse in">
+                                <div class="panel-body" style="padding-left: 23px;">
+                                    <ul class="site_info_ncc">
+                                        <li class=""><i class="fa fa-user" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                                        <li class=""><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                                        <li class=""><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                             @else
                             <div id="filter_ncc_seach" class="panel-collapse collapse in">
                                 <div class="panel-body" style="padding-left: 23px;">
@@ -73,6 +83,13 @@
                             <ul class="info-verified right_list_verify">
                                 <li></li>
                             </ul>
+                            @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                            <ul class="left_list_verify">
+                                <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
                             @else
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->name_company)) {{$company->name_company}} @endif</li>
@@ -85,22 +102,54 @@
                         </li>
                         <li class="info_kho">
                             <label>Số điện thoại :</label>
+                            @if (( !Auth::check()))
+                            <ul class="left_list_verify required_login">
+                                <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                            <ul class="left_list_verify">
+                                <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @else
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->phone_number)) {{$company->phone_number}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
                                 <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
+                            @endif
                             <div class="clear"></div>
                         </li>
                         <li class="info_kho">
                             <label>Email :</label>
+                            @if (( !Auth::check()))
+                            <ul class="left_list_verify required_login">
+                                <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                            <ul class="left_list_verify">
+                                <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @else
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->email)) {{$company->email}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
                                 <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
+                            @endif
                             <div class="clear"></div>
                         </li>
                         <li class="info_kho">
@@ -115,10 +164,10 @@
                         </li>
 
                         <li class="info_kho">
-                            <label>Ngày tham gia nosaGo.com:</label>
+                            <label>Thời gian tham gia nosaGo.com:</label>
                             <ul class="left_list_verify">
-                                <li>@if (!empty($company->created_at)) <?php \Carbon\Carbon::setLocale('vi')?> 
-                            {!! \Carbon\Carbon::createFromTimestamp(strtotime($company->created_at))->diffForHumans() !!} @endif</li>
+                                <li>@if (!empty($company->created_at)) {{\App\Util::DayJoinGroup($company->created_at)}} 
+                            @endif ngày</li>
                             </ul>
                             <!-- <ul class="info-verified right_list_verify">
                                 <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
@@ -147,12 +196,28 @@
                         </li>
                         <li class="info_kho">
                             <label>Địa chỉ:</label>
+                            @if (( !Auth::check()))
+                            <ul class="left_list_verify required_login">
+                                <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                            <ul class="left_list_verify">
+                                <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @else
                             <ul class="left_list_verify">
                                 <li>@if (!empty($company->company_address)) {{$company->company_address}} @endif</li>
                             </ul>
                             <ul class="info-verified right_list_verify">
                                 <li>@if ($company->confirm == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                             </ul>
+                            @endif
                             <div class="clear"></div>
                         </li>
                     </ul>
@@ -180,6 +245,10 @@
                                     @if (( !Auth::check()))
                                         <td>
                                         <a href="" class="required_login" style="color: blue;">Đăng nhập để xem địa chỉ</a>
+                                        </td>
+                                    @elseif (\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                                        <td>
+                                        <a href="" class="" style="color: blue;">Vui lòng liên hệ ADMIN để xem thông tin</a>
                                         </td>
                                     @else
                                         <td>{{$company->company_address}}</td>
@@ -263,7 +332,7 @@
                                 <h2 class="text-center" style="text-align: center">Không tìm thấy dữ liệu</h2>
                             @endif
                             <div class="bottom_box load_more">
-                                <a href="{{ url('/company-business') }}" class="button_grey middle_btn">Xem thêm </a><label style="padding-top: 6px;">(Còn @if ((count($getNewsCompany)-12) < 0 ) 0 @else hơn {{count($getNewsCompany)-12}} @endif cơ hội mua bán)</label>
+                                <a href="{{ url('/company-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getNewsCompany)-12) < 0 ) 0 @else hơn {{count($getNewsCompany)-12}} @endif cơ hội mua bán)</label>
                             </div>
                         </div>
                     </div>

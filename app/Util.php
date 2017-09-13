@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
+use DateTime;
 
 /**
  * App\Util
@@ -405,5 +406,18 @@ class Util extends Model
         else {
             return number_format($strMoney).'<span class="unit "> VNĐ </span>';
         }
+    }
+    public static function DayJoinGroup($created) {
+        $time_now = date("Y-m-d H:i:s");
+        $dteStart = new DateTime($time_now);
+        $dteEnd   = new DateTime($created);
+        $dteDiff  = $dteStart->diff($dteEnd);
+        $dateJoin = ($dteDiff->format('%a'));
+        return $dateJoin;
+    }
+    public static function CheckRoleUserViewInfo($strUID) {
+        $user = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('user_id', $strUID)->first();
+        return $user->role_id;    
     }
 }

@@ -45,9 +45,9 @@
                                 <div class="form-group">
                                     <label>Hình thức thanh toán</label>
                                     <select name="type_pay" class="select2_single form-control" required>
-                                        <option value="0">Trả trước toàn bộ</option>
-                                        <option value="1">Đặt cọc - Thanh toán khi nhận hàng</option>
-                                        <option value="2">Đặt cọc - Công nợ</option>
+                                        <option value="0" <?php if(!empty($article->type_pay) && $article->type_pay == 0) echo "selected"?> >Trả trước toàn bộ</option>
+                                        <option value="1" <?php if(!empty($article->type_pay) && $article->type_pay == 1) echo "selected"?>>Đặt cọc - Thanh toán khi nhận hàng</option>
+                                        <option value="2" <?php if(!empty($article->type_pay) && $article->type_pay == 2) echo "selected"?>>Đặt cọc - Công nợ</option>
                                     </select>
                                 </div>
                             </div>

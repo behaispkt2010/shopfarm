@@ -269,8 +269,8 @@
                 @elseif(Auth::user()->hasRole('com'))
                     <?php
                         $strUserID = Auth::user()->id;
-                        $strNumNotify = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
-                        $arrNotification = \App\Notification::GetNotifyCompany($strUserID);
+                        $strNumNotifyCom = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
+                        $arrNotificationCompany = \App\Notification::GetNotifyCompany($strUserID);
                     ?>
                 @else
                     <?php
@@ -286,7 +286,7 @@
                         @if(Auth::user()->hasRole('kho'))
                             <span class="badge bg-template" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
                         @elseif(Auth::user()->hasRole('com'))
-                            <span class="badge bg-template" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
+                            <span class="badge bg-template" id="notify_count">@if ($strNumNotifyCom != 0) {{$strNumNotifyCom}} @endif</span>
                         @else
                             <span class="badge bg-template" id="notify_count">@if ($strNumNotifyAdmin != 0) {{$strNumNotifyAdmin}} @endif</span>
                         @endif
@@ -297,6 +297,7 @@
                                 @foreach ($arrNotification as $itemNotification)
                                     <li class="notify">
                                         <a href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$newproductSuccess) {{route('products.edit',['id' => $itemNotification->orderID_or_productID])}}
                                                 @else # @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                                 <span>
@@ -321,10 +322,11 @@
                                 <span class="different">Bạn không có thông báo mới.</span>
                             @endif
                         @elseif(Auth::user()->hasRole('com'))
-                            @if (count($arrNotification) != 0)
-                                @foreach ($arrNotification as $itemNotification)
+                            @if (count($arrNotificationCompany) != 0)
+                                @foreach ($arrNotificationCompany as $itemNotification)
                                     <li class="notify">
                                         <a href="@if ($itemNotification->keyname == \App\Util::$confirmCompanySuccess) {{url('/company/'.$itemNotification->id)}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$newscompanySuccess) {{route('newscompany.edit',['id' => $itemNotification->orderID_or_productID])}}
                                                 @else # @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                                 <span>

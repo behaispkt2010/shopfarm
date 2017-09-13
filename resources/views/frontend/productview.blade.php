@@ -202,8 +202,8 @@
 										</a>
 									</div>
 								@endforeach
-								<div class="bottom_box text-center bg-home">
-									<a href="{{url('/')}}/products" class="button_grey middle_btn btn-viewmore">Xem nhiều sản phẩm</a>
+								<div class="bottom_box text-center bg-home  load_more">
+									<a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a>
 								</div>
 								<br>
 								<h4 class="text-center clearfix transformUppercase">Sản phẩm mới</h4>
@@ -232,8 +232,8 @@
 										</a>
 									</div>
 								@endforeach
-								<div class="bottom_box text-center bg-home">
-									<a href="{{url('/')}}/products" class="button_grey middle_btn btn-viewmore">Xem nhiều sản phẩm</a>
+								<div class="bottom_box text-center bg-home  load_more">
+									<a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a>
 								</div>
 							</div>
 							
@@ -315,8 +315,8 @@
 														@endif
 											@endforeach
 										</div>
-										<div class="bottom_box">
-											<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+										<div class="bottom_box load_more">
+											<a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a>
 										</div>
 										
 									</div>
@@ -392,8 +392,8 @@
 
 										</div>
 
-										<div class="bottom_box">
-											<a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+										<div class="bottom_box load_more">
+											<a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a>
 										</div>
 
 									</div>
@@ -462,9 +462,9 @@
 
 								</div>
 
-								<footer class="bottom_box">
+								<footer class="bottom_box load_more">
 
-									<a href="url('/')}}/products" class="button_grey middle_btn">Xem nhiều sản phẩm</a>
+									<a href="url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a>
 
 								</footer>
 

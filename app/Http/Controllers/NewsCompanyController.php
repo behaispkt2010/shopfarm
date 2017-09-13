@@ -7,6 +7,7 @@ use App\CategoryProduct;
 use App\Util;
 use App\User;
 use App\Company;
+use App\Notification;
 use App\Mail\MailBroadCastProduct;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -85,7 +86,19 @@ class NewsCompanyController extends Controller
         if($checkSlug != 0){
             $data['slug'] =  $data['slug'].'-'.$today;
         }
-        NewsCompany::create($data);
+        $news = NewsCompany::create($data);
+        // insert notify
+        if (Auth::user()->hasRole('com')) {
+            $getCodeKho = Util::UserCode($strIDUser);
+            $dataNotify['keyname'] = Util::$newscompany;
+            $dataNotify['title'] = "Cơ hội mua bán mới";
+            $dataNotify['content'] = "Công ty ".$getCodeKho." vừa đăng cơ hội mua bán mới.";
+            $dataNotify['author_id'] = $strIDUser;
+            $dataNotify['roleview'] = Util::$roleviewAdmin;
+            $dataNotify['orderID_or_productID'] = $news->id;
+            Notification::create($dataNotify);
+        }
+
         $getInfoWareHouse = NewsCompany::select('news_company.*', 'users.*', 'products.kho as idwarehouse','news_company.title as productName','company.name as companyName')
             ->leftjoin('products','products.category','=','news_company.category')
             ->leftjoin('users','users.id','=','products.kho')
@@ -124,7 +137,7 @@ class NewsCompanyController extends Controller
             Mail::to($to)->send(new MailBroadCastProduct($data));
         }
         $admin = Util::$mailadmin;
-        Mail::to($amin)->send(new MailBroadCastProduct($data));
+        Mail::to($admin)->send(new MailBroadCastProduct($data));
         return redirect('admin/newscompany/')->with(['flash_level' => 'success', 'flash_message' => 'Tạo thành công']);
     }
 
@@ -198,7 +211,20 @@ class NewsCompanyController extends Controller
         if($checkSlug != 0){
             $data['slug'] =  $data['slug'].'-'.$today;
         }
+        if (($newsCompany->status == 0) && $request->get('status') == 1){
+            // $getCodeProduct = Util::ProductCode($newsCompany->id);
+            $dataNotify['keyname'] = Util::$newscompanySuccess;
+            $dataNotify['title'] = "Cơ hội mua bán mới";
+            $dataNotify['content'] = "Cơ hội mua bán của bạn đã được duyệt.";
+            $dataNotify['author_id'] = Auth::user()->id;
+            $dataNotify['orderID_or_productID'] = $newsCompany->id;
+            $dataNotify['roleview'] = $newsCompany->author_id;
+            Notification::create($dataNotify);
+        }
         $newsCompany->update($data);
+
+        
+
         return redirect('admin/newscompany/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
 
     }

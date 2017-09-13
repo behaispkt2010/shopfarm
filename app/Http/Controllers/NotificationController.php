@@ -13,7 +13,7 @@ class NotificationController extends Controller
 {
     public function AjaxUpdateIsReadNotify(Request $request){
         //Log::debug('behai',['vaooooo']);
-        if(Auth::user()->hasRole(['kho','company'])) {
+        if(Auth::user()->hasRole(['kho','com'])) {
             $strUserID = Auth::user()->id;
             $notify = Notification::where('is_read','=','0')->where('roleview',$strUserID)->get();
         }

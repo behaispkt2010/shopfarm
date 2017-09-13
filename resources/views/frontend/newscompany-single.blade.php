@@ -24,9 +24,9 @@
 				            <li class="current"><a href="{{ url('/company').'/'.$arrNewsCompany->companyID}}">Thông tin</a> </li>
 				        
 						<div class="fbsharebutton">
-			                <a href="#" class="" id="fb_send"><div class="fb-send" 
-							    data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}">
-							</div></a>
+			                <div class="fb-send" 
+							    data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}">Gửi
+							</div>
 			                <div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank">Chia sẻ</a></div>
 			            </div>
 			            </ul>
@@ -109,18 +109,46 @@
 				                        	<div class="title"><i class="icon ca-ca-infor"></i>Hướng dẫn nhận đơn hàng</div>
 				                            <table id="my_company" class="listview">
 				                                <tbody>
-				                                <tr>                        
-				                                    <td class="left">Người liên hệ</td><td class="right"><b id="">{{ $arrNewsCompany->namecompany }}</b></td>
-				                                </tr>
-				                                <tr>
-				                                    <td class="left">Địa chỉ</td><td class="right" id="">{{ $arrNewsCompany->address }}</td>
-				                                </tr>
-				                                <tr>
-				                                    <td class="left">Số điện thoại</td><td class="right" id="">{{ $arrNewsCompany->phone_number }}</td>
-				                                </tr>
-				                                <tr>
-				                                    <td class="left">Email</td><td class="right" id="">{{ $arrNewsCompany->email }}</td>
-				                                </tr>
+				                                @if (( !Auth::check()))
+					                                <tr>                        
+					                                    <td class="left">Người liên hệ</td><td class="right required_login"><a href="#">Đăng nhập để xem thông tin</a></td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Địa chỉ</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Số điện thoại</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Email</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
+					                                </tr>
+				                                @elseif (\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+													<tr>                        
+					                                    <td class="left">Người liên hệ</td><td class="right "><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Địa chỉ</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Số điện thoại</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Email</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+					                                </tr>
+				                                @else
+				                                	<tr>                        
+					                                    <td class="left">Người liên hệ</td><td class="right"><b id="">{{ $arrNewsCompany->namecompany }}</b></td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Địa chỉ</td><td class="right" id="">{{ $arrNewsCompany->address }}</td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Số điện thoại</td><td class="right" id="">{{ $arrNewsCompany->phone_number }}</td>
+					                                </tr>
+					                                <tr>
+					                                    <td class="left">Email</td><td class="right" id="">{{ $arrNewsCompany->email }}</td>
+					                                </tr>
+				                                @endif
 				                            </tbody></table>
 				                        </div>
 									</div>

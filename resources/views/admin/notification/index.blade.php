@@ -32,6 +32,18 @@
                                 <li class="notify">
                                     @if(Auth::user()->hasRole('kho'))
                                         <a href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
+                                        @elseif ($itemNotification->keyname == \App\Util::$newproductSuccess) {{route('products.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                        @else # @endif" target="_blank">
+                                            <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
+                                            <span class="notification_title">{{$itemNotification->title}}</span>
+                                            <br>
+                                            <span class="message">{{$itemNotification->content}}</span>
+                                            <br>
+                                            <span class="time">{{ $itemNotification->created_at}}</span>
+                                        </a>
+                                    @elseif(Auth::user()->hasRole('com'))
+                                        <a href="@if ($itemNotification->keyname == \App\Util::$confirmCompanySuccess) {{url('/company/'.$itemNotification->id)}}
+                                        @elseif ($itemNotification->keyname == \App\Util::$newscompanySuccess) {{route('newscompany.edit',['id' => $itemNotification->orderID_or_productID])}}
                                         @else # @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                             <span class="notification_title">{{$itemNotification->title}}</span>
@@ -42,11 +54,14 @@
                                         </a>
                                     @else
                                         <a href="@if ($itemNotification->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotification->orderID_or_productID])}}
-                                        @elseif ($itemNotification->keyname == \App\Util::$orderfail) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
-                                        @elseif ($itemNotification->keyname == \App\Util::$orderreturn) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
-                                        @elseif ($itemNotification->keyname == \App\Util::$ordernew) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
-                                        @elseif ($itemNotification->keyname == \App\Util::$dangkychukho) {{route('warehouse.create')}}
-                                        @else {{route('warehouse.edit',['id' => $itemNotification->id])}} @endif" target="_blank">
+                                                @elseif ($itemNotification->keyname == \App\Util::$newscompany) {{route('newscompany.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$orderfail) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$orderreturn) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$ordernew) {{route('orders.edit',['id' => $itemNotification->orderID_or_productID])}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$dangkychukho) {{route('warehouse.create')}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$dangkycompany) {{route('company.create')}}
+                                                @elseif ($itemNotification->keyname == \App\Util::$upgradeLevelKho ||$itemNotification->keyname == \App\Util::$quangcaoKho ||$itemNotification->keyname == \App\Util::$confirmkho ||$itemNotification->keyname == \App\Util::$dangkytraphiKho ||$itemNotification->keyname == \App\Util::$dangkygiahanKho) {{route('warehouse.edit',['id' => $itemNotification->id])}} 
+                                                @elseif ($itemNotification->keyname == \App\Util::$upgradeLevelCompany ||$itemNotification->keyname == \App\Util::$quangcaoCompany ||$itemNotification->keyname == \App\Util::$confirmCompany ||$itemNotification->keyname == \App\Util::$dangkytraphiCompany ||$itemNotification->keyname == \App\Util::$dangkygiahanCompany) {{route('company.edit',['id' => $itemNotification->id])}} @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                             <span class="notification_title">{{$itemNotification->title}}</span>
                                             <br>

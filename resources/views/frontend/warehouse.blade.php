@@ -28,12 +28,19 @@
                 <div id="filter_ncc_seach" class="panel-collapse collapse in">
                     <div class="panel-body" style="padding-left: 23px;">
                         <ul class="site_info_ncc">
-                            <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
-                            <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>
-                            <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->email}}</li>
-                            <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><?php \Carbon\Carbon::setLocale('vi')?> 
-                            {!! \Carbon\Carbon::createFromTimestamp(strtotime($ware_house->created_at))->diffForHumans() !!} cùng nosaGO.com</li>
-                            <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Bán thành công: {{$order}}</li>
+                            @if(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                                <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Vui lòng liên hệ ADMIN để xem thông tin</li>
+                                <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Vui lòng liên hệ ADMIN để xem thông tin </li>
+                                <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>  Vui lòng liên hệ ADMIN để xem thông tin </li>
+                                <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
+                                <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Bán thành công: {{$order}}</li>
+                            @else
+                                <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
+                                <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>
+                                <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->email}}</li>
+                                <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
+                                <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Bán thành công: {{$order}}</li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -78,7 +85,14 @@
                         <ul class="info-verified right_list_verify">
                             <li></li>
                         </ul>
-                        @else 
+                        @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                        <ul class="left_list_verify">
+                            <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @else
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->name_company)) {{$ware_house->name_company}} @endif</li>
                         </ul>
@@ -135,6 +149,13 @@
                         <ul class="info-verified right_list_verify">
                             <li></li>
                         </ul>
+                        @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                        <ul class="left_list_verify">
+                            <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
                         @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->ware_houses_address)) {{$ware_house->ware_houses_address}} @endif</li>
@@ -151,6 +172,13 @@
                         @if (( !Auth::check()))
                         <ul class="left_list_verify required_login">
                             <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                        <ul class="left_list_verify">
+                            <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li></li>
@@ -174,6 +202,13 @@
                         <ul class="info-verified right_list_verify">
                             <li></li>
                         </ul>
+                        @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                        <ul class="left_list_verify">
+                            <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
                         @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->phone_number)) {{$ware_house->phone_number}} @endif</li>
@@ -189,6 +224,13 @@
                         @if (( !Auth::check()))
                         <ul class="left_list_verify required_login">
                             <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                        </ul>
+                        <ul class="info-verified right_list_verify">
+                            <li></li>
+                        </ul>
+                        @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                        <ul class="left_list_verify">
+                            <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li></li>
@@ -219,6 +261,13 @@
                             @if (( !Auth::check()))
                             <ul class="left_list_verify required_login">
                                 <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
+                            </ul>
+                            <ul class="info-verified right_list_verify">
+                                <li></li>
+                            </ul>
+                            @elseif(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+                            <ul class="left_list_verify">
+                                <li style="color: blue;"><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></li>
                             </ul>
                             <ul class="info-verified right_list_verify">
                                 <li></li>
@@ -325,7 +374,7 @@
                             @endforeach
                         </div>
                         <div class="bottom_box load_more">
-                            <a href="{{url('/')}}/products" class="button_grey middle_btn">Xem nhiều</a><label style="padding-top: 6px;">(Còn @if ((count($getNewProduct)-12) < 0 ) 0 @else hơn {{count($getNewProduct)-12}} @endif cơ hội mua bán)</label>
+                            <a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getNewProduct)-12) < 0 ) 0 @else hơn {{count($getNewProduct)-12}} @endif cơ hội mua bán)</label>
                         </div>
                         
                     </div>
