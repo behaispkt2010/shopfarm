@@ -1,5 +1,5 @@
 <header class="hidden-xs">
-    <div class="logo col-md-2">
+    <div class="logo col-md-2 col-sm-2">
         <a href="{{url('/')}}">
             <img src="{{asset('frontend/images/nosago1.png')}}" class="img_logo_front">
 
@@ -89,12 +89,13 @@
                         <div class="">
                             <div id="navbar" class="navbar-collapse collapse" style="height: 1px;">
                                 <ul class="nav navbar-nav clearfix sm">
-                                    <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Trang chủ</a></li>
-                                    <li><a href="{{url('/resisterWareHouse')}}"><i class="fa fa-plus-circle"></i> Tạo hồ sơ</a></li>
-                                    <li><a href="#"><i class="fa fa-facebook-square"></i> Group</a></li>
-                                    <li><a href="{{ url('/company-business') }}"><i class="fa fa-briefcase"></i> Cơ hội mua bán</a></li>
+                                    <li><a href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
+                                    <li><a href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
+                                    <li><a href="#"><i class="material-icons icon_home">share</i> Group</a></li>
+                                    <li><a href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
                                     <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
-                                    <li><a href="{{url('/contact')}}"><i class="fa fa-headphones"></i> Hỗ trợ</a></li>
+                                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                                 </ul>
                             </div>
                             <div class="mobile-menu-icon-wrapper visible-xs" style="width: 100%;padding-top: 8px;height: 56px;background-color: #f8f8f8;">
@@ -116,20 +117,21 @@
         </div>
     </div>   
 </header>
-<div class="col-md-2 left_col menu_fixed hidden-xs">
+<div class="col-md-2 col-sm-2 left_col menu_fixed hidden-xs">
     <div class="left_col scroll-view">
         <div class="clearfix"></div>
 
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
                 <div class="clear"></div>
-                <ul class="nav side-menu">
-                    <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Trang chủ</a></li>
-                    <li><a href="{{url('/resisterWareHouse')}}"><i class="fa fa-plus-circle"></i> Tạo hồ sơ</a></li>
-                    <li><a href="#"><i class="fa fa-facebook-square"></i> Group</a></li>
-                    <li><a href="{{ url('/company-business') }}"><i class="fa fa-briefcase"></i> Cơ hội mua bán</a></li>
+                <ul class="nav side-menu" style="background-color: #e7e7e7;">
+                    <li><a href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
+                    <li><a href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
+                    <li><a href="#"><i class="material-icons icon_home">share</i> Group</a></li>
+                    <li><a href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
                     <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
-                    <li><a href="{{url('/contact')}}"><i class="fa fa-headphones"></i> Hỗ trợ</a></li>
+                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                 </ul>
             </div>
         </div>

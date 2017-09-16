@@ -59,10 +59,10 @@
                                             <div class="row">
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
-                                                <li><span class="label-box">Đại diện: </span>{{$itemWareHouse->name}}</li>
-                                                <li><span class="label-box">Cấp kho: </span>{{$itemWareHouse->level}}</li>
-                                                <li><span class="label-box">Dịch vụ:</span>@if ( $itemWareHouse->confirm_kho == 1)ICON XÁC THỰC @endif @if ($itemWareHouse->quangcao == 1)icon quảng cáo @endif @if ($itemWareHouse->user_test == 1)icon trả phí @else icon dung thử @endif</li>
-                                                <li><span class="label-box">Cấp phép: </span>{{$itemWareHouse->created_at->format('d/m/Y')}}</li>
+                                                <li><span style="width: 70px;" class="label-box">Đại diện: </span>{{$itemWareHouse->name}}</li>
+                                                <li><span style="width: 70px;" class="label-box">Cấp kho: </span>{{$itemWareHouse->level}}</li>
+                                                <li><span style="width: 70px;" class="label-box">Dịch vụ:</span>@if ( $itemWareHouse->confirm_kho == 1)ICON XÁC THỰC @endif @if ($itemWareHouse->quangcao == 1)icon quảng cáo @endif @if ($itemWareHouse->user_test == 1)icon trả phí @else icon dung thử @endif</li>
+                                                <li><span style="width: 70px;" class="label-box">Cấp phép: </span>{{$itemWareHouse->created_at->format('d/m/Y')}}</li>
                                             </ul>
                                         </div>
                                             </div>

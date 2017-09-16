@@ -55,14 +55,7 @@
                 <ul class="info_veryfi_content">
                     <li class="info_kho">
                         <label>Mô hình kinh doanh:</label>
-                        @if (( !Auth::check()))
-                        <ul class="left_list_verify required_login">
-                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
-                        </ul>
-                        <ul class="info-verified right_list_verify">
-                            <li></li>
-                        </ul>
-                        @else 
+                        
                         <ul class="left_list_verify">
                             <li>@foreach($arrCategoryWarehouse as $itemCategoryWareHouse)
                                     @if ($itemCategoryWareHouse->id == $ware_house->category_warehouse_id ) {{$itemCategoryWareHouse->category_warehouse_name}}
@@ -73,7 +66,7 @@
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
-                        @endif
+                        
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
@@ -104,40 +97,22 @@
                     </li>
                     <li class="info_kho">
                         <label>Ngày thành lập :</label>
-                        @if (( !Auth::check()))
-                        <ul class="left_list_verify required_login">
-                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
-                        </ul>
-                        <ul class="info-verified right_list_verify">
-                            <li></li>
-                        </ul>
-                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->time_active)) {{$ware_house->time_active}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
-                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">
                         <label>Mã số thuế:</label>
-                        @if (( !Auth::check()))
-                        <ul class="left_list_verify required_login">
-                            <li style="color: blue;"><a href="#">Đăng nhập để xem thông tin</a></li>
-                        </ul>
-                        <ul class="info-verified right_list_verify">
-                            <li></li>
-                        </ul>
-                        @else 
                         <ul class="left_list_verify">
                             <li>@if (!empty($ware_house->mst)) {{$ware_house->mst}} @endif</li>
                         </ul>
                         <ul class="info-verified right_list_verify">
                             <li>@if ($ware_house->confirm_kho == 1)<span style="color: #0f9d58;">Xác thực</span> @else Chưa xác thực @endif</li>
                         </ul>
-                        @endif
                         <div class="clear"></div>
                     </li>
                     <li class="info_kho">

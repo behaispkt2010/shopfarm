@@ -28,7 +28,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-md-12 con-tracking hidden-xs">
+                <div class="col-md-12 con-tracking hidden-xs" style="color: #000;">
                     <div class="col-md-7 col-sm-6 col-xs-12 fix-padlr">
                         {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
                         <h2>Thông tin đặt hàng</h2>
@@ -213,11 +213,11 @@
                             @foreach($historyOrder as $itemHistoryOrder)
                                 @if($itemHistoryOrder->status==0)
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">Khởi tạo đơn hàng </label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: {{ \App\Util::UserCode($itemHistoryOrder->userid) }}</label>
+                                        <label style="color: #000;"><span style="color: #000;">{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #000">Khởi tạo đơn hàng </label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: {{ \App\Util::UserCode($itemHistoryOrder->userid) }}</label>
                                     </div>
                                 @else
                                     <div class="item">
-                                        <label><span>{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #666">{{$itemHistoryOrder->name}}</label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: {{ \App\Util::UserCode($itemHistoryOrder->userid) }}</label>
+                                        <label style="color: #000;"><span style="color: #000;">{{$itemHistoryOrder->updated_at->format('d-m-Y H:m:s')}}</span> -- <label style="width:180px; color: #000">{{$itemHistoryOrder->name}}</label> -- Người cập nhật: {{ $itemHistoryOrder->username }} | ID: {{ \App\Util::UserCode($itemHistoryOrder->userid) }}</label>
                                     </div>
                                 @endif
                             @endforeach

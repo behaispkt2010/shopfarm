@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use App\Notifications\NotificationUser;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class ResetPasswordController extends Controller
 {
@@ -27,7 +28,22 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+
+    // protected $redirectTo = '/';
+    public function redirectPath()
+    {
+        $redirect = route('users.edit',['id' => Auth::user()->id]);
+        return $redirect;
+        /*if(Auth::user()->hasRole(['admin','editor'])) {
+            return '/admin';
+        }
+        else if(Auth::user()->hasRole('kho')) {
+            return '/admin/dashboard';
+        }
+        else {
+            return '/';
+        }*/
+    }
 
     /**
      * Create a new controller instance.
