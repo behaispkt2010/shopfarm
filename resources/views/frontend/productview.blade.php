@@ -147,7 +147,7 @@
 															</div>
 															@else
 															<div class="clearfix product_info">
-																<p class="product_price alignleft" style="margin: 0px;">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+																<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
 															</div>
 															<div class="clearfix product_info">	
 																<p class="alignleft">Tối thiểu: {!! number_format($product->min_kg) !!} SP</p>
@@ -190,7 +190,7 @@
 												@if (( !Auth::check()))
 								                    <p><a href="#" class="required_login not_login" style="">Đăng nhập để xem giá</a> </p>
 								                @else
-								                	<p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+								                	<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
 													
 												@endif
 													
@@ -221,7 +221,7 @@
 												@if (( !Auth::check()))
 								                    <p><a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a></p>
 								                @else
-													<p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+													<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
 																
 												@endif
 												</div>
@@ -296,7 +296,7 @@
 													                    <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
 													                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 													                @else
-																		<p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+																		<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
 															
 																		<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 																	@endif
@@ -368,7 +368,7 @@
 													                    <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
 													                    <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 													                @else
-																		<p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+																		<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
 																
 																		<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 																	@endif
@@ -439,7 +439,7 @@
 														</div>
 														<div class="clearfix product_info">
 
-															<p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+															<p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
 																
 															<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 

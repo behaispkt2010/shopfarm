@@ -140,7 +140,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseDeXuat)-50)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-50}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseDeXuat)-50)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-50}} @endif nhà cung cấp)</label>
 											</div>
 										</div>
 										<div id="tab-2" class="tab_container">
@@ -200,7 +200,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseXemNhieu)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-50}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseXemNhieu)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-50}} @endif nhà cung cấp)</label>
 											</div>
 										</div>
 										<div id="tab-3" class="tab_container">
@@ -260,7 +260,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseUyTin)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-50}} @endif cơ hội mua bán)</label>
+												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseUyTin)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-50}} @endif nhà cung cấp)</label>
 											</div>
 										</div>
 									</div>

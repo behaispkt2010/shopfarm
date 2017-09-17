@@ -328,7 +328,7 @@
                                                     @if (( !Auth::check()))
                                                         <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
                                                     @else
-                                                        <p class="product_price alignleft">@if($product->price_out == $product->price_sale){!! \App\Util::FormatMoney($product->price_out) !!} @else {!! \App\Util::FormatMoney($product->price_sale) !!} <span class="discount_price">{!! \App\Util::FormatMoney($product->price_out) !!}</span> @endif </p>
+                                                        <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
                                                                 
                                                         <!-- <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span> -->
                                                     @endif
@@ -349,7 +349,7 @@
                             @endforeach
                         </div>
                         <div class="bottom_box load_more">
-                            <a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getNewProduct)-12) < 0 ) 0 @else hơn {{count($getNewProduct)-12}} @endif cơ hội mua bán)</label>
+                            <a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getNewProduct)-12) < 0 ) 0 @else hơn {{count($getNewProduct)-12}} @endif sản phẩm)</label>
                         </div>
                         
                     </div>
