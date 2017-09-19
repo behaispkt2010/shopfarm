@@ -643,7 +643,7 @@
 	<script src="{{asset('frontend/js/fancybox/source/jquery.fancybox.pack.js')}}"></script>
 	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-media.js')}}"></script>
 	<script src="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.js')}}"></script>
-	<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
+	
 
 	<script>
 		$(document).on("click", "#phoneKho", function () {
@@ -655,13 +655,13 @@
 
 	</script>
 	<script>
-    /*$('#img_zoom').elevateZoom({
+    $('#img_zoom').elevateZoom({
 	    zoomType: "inner",
 		cursor: "crosshair",
 		zoomWindowFadeIn: 500,
 		zoomWindowFadeOut: 750
-	   }); */
-    $("#img_zoom").ezPlus();
+	   }); 
+    // $("#img_zoom").ezPlus();
 	</script>
 	<script type="text/javascript">
 

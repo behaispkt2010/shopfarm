@@ -27,7 +27,7 @@ class ProductController extends Controller
                     ->leftjoin('users','users.id','ware_houses.user_id')
                     ->where('products.status',1)
                     ->selectRaw('products.*')
-                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                    ->selectRaw('ware_houses.id as idKho, ware_houses.confirm_kho as confirmkho, ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('title', 'DESC')
                     ->paginate(20);
             }
@@ -36,7 +36,7 @@ class ProductController extends Controller
                     ->leftjoin('users','users.id','ware_houses.user_id')
                     ->where('products.status',1)
                     ->selectRaw('products.*')
-                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                    ->selectRaw('ware_houses.id as idKho, ware_houses.confirm_kho as confirmkho, ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('id', 'DESC')
                     ->paginate(20);
             }
@@ -45,7 +45,7 @@ class ProductController extends Controller
                     ->leftjoin('users','users.id','ware_houses.user_id')
                     ->where('products.status',1)
                     ->selectRaw('products.*')
-                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                    ->selectRaw('ware_houses.id as idKho, ware_houses.confirm_kho as confirmkho, ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('ware_houses.level', 'DESC')
                     ->paginate(20);
             }
@@ -54,7 +54,7 @@ class ProductController extends Controller
                     ->leftjoin('users','users.id','ware_houses.user_id')
                     ->where('products.status',1)
                     ->selectRaw('products.*')
-                    ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                    ->selectRaw('ware_houses.id as idKho, ware_houses.confirm_kho as confirmkho, ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                     ->orderBy('price_out', 'ASC')
                     ->paginate(20);
             }
@@ -65,7 +65,7 @@ class ProductController extends Controller
                 ->leftjoin('users','users.id','ware_houses.user_id')
                 ->where('products.status',1)
                 ->selectRaw('products.*')
-                ->selectRaw('ware_houses.id as idKho,ware_houses.name_company as nameKho, ware_houses.level as levelKho')
+                ->selectRaw('ware_houses.id as idKho, ware_houses.confirm_kho as confirmkho, ware_houses.name_company as nameKho, ware_houses.level as levelKho')
                 ->paginate(20);
         }
         $data =[

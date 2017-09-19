@@ -74,21 +74,18 @@
 												@endif
 											</a>
 											<a href="#" class="alignleft" style="width: 70px;">
-												@if($product->confirm_kho == 1)
-													<img src="{{url('/images')}}/xacthuc.png" alt="">
-												@else
+												@if($product->confirmkho == 1)
+													<img src="{{url('/images')}}/xacthuc.png" alt="Đã xác thực">
 												@endif
 											</a>
+											<span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
 											<p class="alignleft textoverlow">{{ \App\Util::ProductCode($product->id)  }}</p>
 										</div>
-
 										<div class="clearfix product_info">
                                         @if (( !Auth::check()))
                                             <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
-                                            <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
                                         @else
                                             <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
-                                            <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
                                         @endif
                                         </div>
                                         <div class="clearfix product_info">

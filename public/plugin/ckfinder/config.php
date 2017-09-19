@@ -61,7 +61,6 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 $baseUrl = "/uploads/";
-
 /*
 $baseDir : the path to the local directory (in the server) which points to the
 above $baseUrl URL. This is the path used by CKFinder to handle the files in
@@ -80,7 +79,6 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 $baseDir = resolveUrl($baseUrl);
-
 /*
  * ### Advanced Settings
  */

@@ -29,12 +29,12 @@ class ResetPasswordController extends Controller
      * @var string
      */
 
-    // protected $redirectTo = '/';
-    public function redirectPath()
+    protected $redirectTo = '/';
+    /*public function redirectPath()
     {
         $redirect = route('users.edit',['id' => Auth::user()->id]);
         return $redirect;
-        /*if(Auth::user()->hasRole(['admin','editor'])) {
+        if(Auth::user()->hasRole(['admin','editor'])) {
             return '/admin';
         }
         else if(Auth::user()->hasRole('kho')) {
@@ -42,8 +42,8 @@ class ResetPasswordController extends Controller
         }
         else {
             return '/';
-        }*/
-    }
+        }
+    }*/
 
     /**
      * Create a new controller instance.

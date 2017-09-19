@@ -5615,7 +5615,7 @@ a[class*="fancybox_item"]:hover > .helper_icon {
     position: relative;
     padding: 19px;
     background: #fff;
-    border: 1px solid #eaeaea;
+    /*border: 1px solid #eaeaea;*/
     background-clip: padding-box;
     border-radius: 3px;
 }
@@ -5722,7 +5722,7 @@ a[class*="fancybox_item"]:hover > .helper_icon {
 
 .list_of_entries.list_view .entry_image {
     float: left;
-    margin: 0 20px 5px 0;
+    margin: 0 20px 0 0;
 }
 
 .list_of_entries.list_view .entry_meta [class*="align"] {
@@ -8250,7 +8250,7 @@ ul {
 }
 
 .entry_image img {
-    width: 200px;
+    /* width: 200px; */
 }
 
 .modal-header {
@@ -9490,4 +9490,23 @@ table.listview {
     color: #808080;
     font-size: 20px;
     margin-bottom: 3px;
+}
+.entry:hover {
+    box-shadow: 1px 10px 20px rgba(0,0,0,.19), 1px 6px 6px rgba(0,0,0,.23);
+}
+.entry {
+    box-shadow: 1px 1px 1px rgba(0,0,0,.19), 1px 2px 1px rgba(0,0,0,.23);
+}
+.blogitem {
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 0px;
+}
+.img_blog {
+    display: block;
+    float: left;
+    width: 48%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 2px 0 0 2px;
 }

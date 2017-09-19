@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @include('partial.styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <!-- Styles -->
     <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
     <script type="text/javascript">

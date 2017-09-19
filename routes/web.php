@@ -210,6 +210,9 @@ Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');
 Route::get('/resisterWareHouse','Frontend\PageController@GetResisterWareHouse');
 Route::post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');
 
+Route::get('/jstree', 'Frontend\LandingPageController@Jstree');
+Route::get('/dataJsTree', 'Frontend\LandingPageController@dataJsTree');
+
 Route::get('/about','Frontend\PageController@About');
 Route::get('/{slug}','Frontend\PageController@CustomPage');
 
@@ -223,6 +226,11 @@ Route::post('/customer-rate','Frontend\ProductController@customerRate');
 Route::get('/nha-cung-cap/{capdo}', 'Frontend\PageController@GetWareHouseByLevel');
 Route::get('/ho-tro/{content}', 'Frontend\PageController@Help');
 Route::get('/vung-mien/{area}', 'Frontend\PageController@getWareHouseArea');
+
+Route::get('/lp/{content}', 'Frontend\LandingPageController@LandingPage');
+
+
+
 ////cart
 //Route::get('/cart', 'CartController@index');
 //Route::get('/cart/empty', 'CartController@emptyCart');
