@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/fontello.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/jstree/style.min.css')}}" />
     <link href="{{asset('plugin/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
 
 

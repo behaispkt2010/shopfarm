@@ -24,7 +24,7 @@
     <!-- Favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('/images/fa.ico')}}/">
-
+    
     <!-- Google web fonts
     ============================================ -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>

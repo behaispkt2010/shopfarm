@@ -8,90 +8,46 @@
 			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
 
 			<div class="secondary_page_wrapper">
-
 				<div class="container">
-
 					<!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
-
 					<ul class="breadcrumbs">
-
 						<li><a href="/">Trang chủ</a></li>
 						<li><a href="/blogs">Blogs</a></li>
 						<li>{{$singleBlog->title}}</li>
-
 					</ul>
-
 					<div class="row">
-
 						<aside class="col-md-3 col-sm-4">
-
-
 							@include('frontend.witgets.category-post')
 							@include('frontend.witgets.hot-post')
 							@include('frontend.panner.blog-banner')
-
 						</aside><!--/ [col]-->
-
-
 						<main class="col-md-9 col-sm-8">
-
 							<section class="section_offset">
-
-
 								<h1>{{$singleBlog->title}}</h1>
-
 								<!-- - - - - - - - - - - - - - Entry - - - - - - - - - - - - - - - - -->
-								
 								<article class="entry single">
-
 									<!-- - - - - - - - - - - - - - Entry meta - - - - - - - - - - - - - - - - -->
-
 									<div class="entry_meta">
-
 										<div class="alignleft">
-
 											<span><i class="icon-calendar"></i> {{$singleBlog->created_at->format('d-m-Y')}}</span>
-
 											<span><i class="icon-comment"></i>@if(empty($singleBlog->view)) 0 @else {{$singleBlog->view}}@endif</span>
-
-
 											<span><i class="icon-folder-open-empty-1"></i> <a href="{{url('/category-blog')}}/{{$cate}}">{{\App\Category::getNameCateById($singleBlog->category)}}</a></span>
-
 										</div>
-
-
 									</div><!--/ .entry_meta-->
-
-									<!-- - - - - - - - - - - - - - End of entry meta - - - - - - - - - - - - - - - - -->
-
-
-									<!-- - - - - - - - - - - - - - Entry image - - - - - - - - - - - - - - - - -->
-
 									<div class="entry_image">
-										
 										{{--<img src="{{url('/')}}{{$singleBlog->image}}" alt="">--}}
-
 									</div>
-
 									<div class="content">
 										{!! $singleBlog->content !!}
 									</div>
 									<div class="v_centered share">
-
 										<span class="title">Chia sẻ:</span>
-
 										<div class="addthis_widget_container">
-
 											<div class="fb-share-button" data-href="{{url('/')}}{{$_SERVER['REQUEST_URI']}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
-
 										</div>
-
 									</div><!--/ .v_centered-->
-
 								</article>
-
 								<!-- - - - - - - - - - - - - - End of entry - - - - - - - - - - - - - - - - -->
-
 								{{--<footer class="bottom_box">--}}
 
 									{{--Tags: <a href="#">beauty</a>, <a href="#">medicine</a>, <a href="#">health</a>--}}

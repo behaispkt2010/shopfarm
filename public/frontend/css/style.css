@@ -9510,3 +9510,7 @@ table.listview {
     position: relative;
     border-radius: 2px 0 0 2px;
 }
+.help_menu {
+    min-height: 1px;
+    position: relative;
+}

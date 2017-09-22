@@ -210,7 +210,9 @@ Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');
 Route::get('/resisterWareHouse','Frontend\PageController@GetResisterWareHouse');
 Route::post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');
 
-Route::get('/jstree', 'Frontend\LandingPageController@Jstree');
+Route::get('/tro-giup', 'Frontend\LandingPageController@help_menu');
+Route::get('/tro-giup/1', 'Frontend\LandingPageController@help_menu');
+Route::get('/tro-giup/2', 'Frontend\LandingPageController@help_menu');
 Route::get('/dataJsTree', 'Frontend\LandingPageController@dataJsTree');
 
 Route::get('/about','Frontend\PageController@About');

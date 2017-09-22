@@ -29,7 +29,6 @@ class LandingPageController extends Controller {
             "content" => $content
         ];
         return view('frontend.landingpage', $data);
-
     }
     public function dataJsTree () {
         $data = HelpMenu::get()->toArray();
@@ -41,39 +40,25 @@ class LandingPageController extends Controller {
            // Empty data class (so that json_encode adds "data: {}" ) 
             $itemsByReference[$item['id']]['data'] = new \StdClass();
         }
-
         // Set items as children of the relevant parent item.
         foreach($data as $key => &$item) {
-            if ($item['parent'] && isset($itemsByReference[$item['parent']])) 
-                $itemsByReference [$item['parent']]['children'][] = &$item;
-            
+            if ($item['parent_id'] && isset($itemsByReference[$item['parent_id']])) 
+                $itemsByReference [$item['parent_id']]['children'][] = &$item;
         }
-        
         // Remove items that were added to parents elsewhere:
         foreach($data as $key => &$item) {
             if(empty($item['children'])) {
                 $item['a_attr']['href'] = $item['link'];
             }
-            if($item['parent'] && isset($itemsByReference[$item['parent']])) {
+            if($item['parent_id'] && isset($itemsByReference[$item['parent_id']]))
                 unset($data[$key]);
-            }
         }
-        // Encode:
-        // echo json_encode($data);
-        /*$data = CategoryProduct::where('disable',0)->get();
-        dd($data);*/
-        /*echo "<pre>";
-        print_r($data);
-        echo "</pre>";*/
-        /*$data = CategoryProduct::get_menu_help_frontend();
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";*/
+        $data = array_values($data);
         return json_encode($data);
     }
-    public function Jstree(){
+    public function help_menu(){
         
-        return view('frontend.test');
+        return view('frontend.help_menu');
 
     }
 }
