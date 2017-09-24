@@ -49,11 +49,32 @@
                     "url" : baseURL+"/dataJsTree", 
                     "dataType" : "json"
                   }
-                }
+                },
+                "state" : { "key" : "SimpleJSTree" },
+                "types" : {
+                    "max_depth" : -2,
+                    "max_children" : -2,
+                    "valid_children" : ["drive"],
+                    'types': {
+                        "folder": {
+                            "icon": "jstree-icon jstree-folder"
+                        },
+                        "file": {
+                            "icon": "jstree-icon jstree-file"
+                        }
+                    },
+                },
+                "plugins" : [ "state", "types"]
+
             }).on("changed.jstree", function (e, data) {
+                var idselect = data.selected;
                 var href = data.node.a_attr.href;
+            }).set_state(idselect, function (e, data) {
+                
                 document.location.href = href;
             });
+            
+            // $('#SimpleJSTree').jstree("set_state", true);
         });
         
     </script>
