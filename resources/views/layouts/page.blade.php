@@ -45,7 +45,7 @@
 
     </div>
 
-    @include('partial.scripts')
+    @include('partial.frontend-script')
     @yield('add_scripts')
 </body>
 </html>

@@ -1,13 +1,13 @@
-@extends('layouts.frontend')
+@extends('layouts.page')
 @section('title', 'Bạn gặp khó khăn gì, hãy để chúng tôi giúp đỡ nhé')
 @section('description','Bạn gặp khó khăn gì, hãy để chúng tôi giúp đỡ nhé')
 
 @section('content')
     <!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
-    <div class="page_wrapper">
+    <div class="page_wrapper" style="width: 100%;">
         <div class="container">
             <ul class="breadcrumbs">
-                <li><a href="/">Trang chủ</a></li>
+                <li><a href="{!!url('/')!!}">Trang chủ</a></li>
                 <li>Trợ giúp</li>
             </ul>
             <div class="row">

@@ -118,7 +118,7 @@
 		</div>
 	</div>
 	<hr>
-	<div class="footer_section">
+	<div class="footer_section" style="background-color: #e0e0e0;">
 		<div class="container">
 			<div class="row">
 				<h4>Bạn đang thắc mắc điều gì, đừng ngần ngại, hãy gửi thông tin cần thiết cho chúng tôi để được hỗ trợ</h4>
