@@ -1878,7 +1878,7 @@ input[type="checkbox"]:checked + .color_btn::before {
 .list_of_links li a {
     display: block;
     padding: 7px 0 9px;
-    border-bottom: 1px solid #eaeaea;
+    /*border-bottom: 1px solid #eaeaea;*/
 }
 
 .list_of_links li:last-child a {
@@ -8444,7 +8444,7 @@ a:hover {
     width: 20px;
     display: inline-block;
     margin-left: 5px;
-    margin-right: 4px;
+    margin-right: 12px;
 }
 
 .img_banner {
@@ -8655,7 +8655,7 @@ a:hover {
     overflow: hidden;
     /*width: 217px;*/
 }
-.well.box_1 {
+.well.box_1, .dkdichvu {
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06) !important;
     overflow: hidden;
     position: relative;
@@ -8741,7 +8741,7 @@ a:hover {
     object-fit: scale-down;
     object-position: center;
     min-height: 60%;
-    border-radius: 4px 4px 0 0;
+    border-radius: 4px;
 }
 .warehouse_cell .product_bestselt .company_image img {
     height: 100%;
@@ -9490,6 +9490,7 @@ table.listview {
     color: #808080;
     font-size: 20px;
     margin-bottom: 3px;
+    padding-right: 9px;
 }
 .entry:hover {
     box-shadow: 1px 10px 20px rgba(0,0,0,.19), 1px 6px 6px rgba(0,0,0,.23);
@@ -9513,4 +9514,29 @@ table.listview {
 .help_menu {
     min-height: 1px;
     position: relative;
+}
+.x_panel {
+    width: 100%;
+    margin-bottom: 10px;
+    display: inline-block;
+    background: #fff;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    border-radius: 5px;
+    transition: all .2s ease;
+}
+.search_advance {
+    background-color: #fff;
+    padding: 10px 10px 10px 14px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.textsearch {
+    border: 1px solid #CFD8DC;
+}
+.dkdichvu:hover {
+    webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }

@@ -67,9 +67,9 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="list-unstyled">
-                                                        <li><span class="label-box">Số lần nhập kho:</span><span>{{$item->count}}</span></li>
-                                                        <li><span class="label-box">Tổng số lượng:</span><span>{{number_format($item->sum_number,0,'.',' ')}}</span> Kg </li>
-                                                        <li><span class="label-box">Tổng chi phí:</span><span>{!! \App\Util::FormatMoney($item->sum_price_in) !!}</span></li>
+                                                        <li><span class="label-box" style="width: 116px;">Số lần nhập kho:</span><span>{{$item->count}}</span></li>
+                                                        <li><span class="label-box" style="width: 116px;">Tổng số lượng:</span><span>{{number_format($item->sum_number,0,'.',' ')}}</span> Kg </li>
+                                                        <li><span class="label-box" style="width: 116px;">Tổng chi phí:</span><span>{!! \App\Util::FormatMoney($item->sum_price_in) !!}</span></li>
                                                     </ul>
                                                 </div>
                                             </div>

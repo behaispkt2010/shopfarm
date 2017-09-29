@@ -30,17 +30,25 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($request->get('search'))){
+        if (!empty($request->get('search')) || !empty($request->get('sanpham')) || !empty($request->get('capkho')) || !empty($request->get('tinh'))) {
             $name = $request->get('search');
-            //$cate= $request->get('search');
+            $cate= $request->get('sanpham');
+            $capkho= $request->get('capkho');
+            $tinh= $request->get('tinh');
             // dd($cate);
-            $product1 = Product::query();
+            $product1 = Product::leftjoin('ware_houses','products.kho','=','ware_houses.user_id');
             if(!empty($name)){
                 $product1 =  $product1->where('title','LiKE','%'.$request->get('search').'%');
             }
-            // if(!empty($cate)){
-            //     $product2 =  $product1->where('category',$request->get('cateSearch'));
-            // }
+            if(!empty($cate)){
+                $product1 =  $product1->where('category',$request->get('sanpham'));
+            }
+            if(!empty($capkho)){
+                $product1 =  $product1->where('ware_houses.level',$request->get('capkho'));
+            }
+            if(!empty($tinh)){
+                $product1 =  $product1->where('ware_houses.province',$request->get('tinh'));
+            }
             
             $products = $product1->paginate(16);
             // dd($products);

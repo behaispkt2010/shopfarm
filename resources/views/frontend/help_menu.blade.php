@@ -50,7 +50,7 @@
                     "dataType" : "json"
                   }
                 },
-                "state" : { "key" : "SimpleJSTree" },
+                "state":{"events":"select_node.jstree open_node.jstree close_node.jstree"},
                 "types" : {
                     "max_depth" : -2,
                     "max_children" : -2,

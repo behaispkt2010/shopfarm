@@ -203,7 +203,7 @@ class OrderController extends Controller
                 $ProductOrder1['id_product'] = $ProductID;
                 $ProductOrder1['order_id'] = $strOrderID;
                 $ProductOrder1['price_in'] = $productInfo->price_in;
-                $ProductOrder1['price'] = $productInfo->price_sale * $arrNumberProduct[$key];
+                $ProductOrder1['price'] = $productInfo->price_out * $arrNumberProduct[$key];
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
                 $ProductOrder1->save();
@@ -247,7 +247,7 @@ class OrderController extends Controller
         $order =Order::where('id',$id)->first();
 
         $customer = User::where('id', $order->customer_id)->first();
-        $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title', 'products.price_sale')
+        $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title', 'products.price_out')
             ->leftJoin('products', 'product_orders.id_product', 'products.id')
             ->where('product_orders.order_id', $order->id)->get();
         $orderStatus = OrderStatus::get();
@@ -374,7 +374,7 @@ class OrderController extends Controller
                 $ProductOrder1['id_product'] = $ProductID;
                 $ProductOrder1['order_id'] = $strOrderID;
                 $ProductOrder1['price_in'] = $productInfo->price_in;
-                $ProductOrder1['price'] = $productInfo->price_sale * $arrNumberProduct[$key];
+                $ProductOrder1['price'] = $productInfo->price_out * $arrNumberProduct[$key];
                 $ProductOrder1['num'] = $arrNumberProduct[$key];
                 $ProductOrder1['name'] = $productInfo->title;
 

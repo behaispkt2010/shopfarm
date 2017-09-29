@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             
-                            <div class="x_panel" style="display: none;">
+                            <div class="x_panel" style="">
                                 <!-- SEO -->
                                 <div class="wrapper-content mt20 mb20">
                                     <div class="pd-all-20 ps-relative">

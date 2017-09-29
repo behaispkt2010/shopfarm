@@ -218,5 +218,8 @@ class Product extends Model
             return 0;
         }
     }
+    public static function SearchHomePage ($keysearch) {
+        $arrSearch = Product::lefjoin('');
+    }
 
 }

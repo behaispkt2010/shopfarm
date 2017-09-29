@@ -8,7 +8,7 @@
     <div id="search" class="filtergroup w80 nomargin">
         <form action="{{ url('/') }}" class="clearfix search" method="get">
             <input type="text" id="keyword" onkeydown="this.style.color = '#333';" onclick="this.value = '';" value="" name="search">
-            <button class="button-search btnsearch" type="button"><i class="fa fa-search"></i></button>
+            <button class="button-search btnsearch" type="submit"><i class="fa fa-search"></i></button>
         </form>
         
     </div>
@@ -136,11 +136,51 @@
             </div>
         </div>
         <div class="clearfix"></div>
+        <br>
         <div class="" style="background-color: #fff;padding: 10px 10px 10px 14px;font-size: 16px;font-weight: bold;">
             <i class="fa fa-bars" aria-hidden="true" style="padding-top: 2px; padding-right: 7px;"></i>Danh mục sản phẩm
         </div>
         <div class="">
             @include('frontend.witgets.category-product')
+        </div>
+        <div class="clearfix"></div>
+        <div class="search_advance">
+            
+            <form action="{{ url('/') }}" class="clearfix" method="get">
+                <button class="button-search btnsearch" type="submit"><i class="material-icons">search</i>Tìm kiếm</button>
+                <div class="x_panel">
+                    <div class="wrapper-content mt20">
+                        <div class="pd-all-20 border-top-title-main">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <select id="select-province" name="tinh" class="form-control" data-placeholder="Tỉnh/Thành Phố">
+                                        <option></option>
+                                        @foreach(\App\Province::get() as $itemProvince)
+                                            <option value="{{$itemProvince->provinceid}}">{{$itemProvince->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select id="select-category" name="sanpham" class="form-control" data-placeholder="Danh mục sản phẩm">
+                                        <option></option>
+                                        <?php $category = \App\CategoryProduct::get();?>
+                                        {{ \App\Category::CateMulti($category,0,$str="&nbsp&nbsp&nbsp&nbsp",old('parent')) }}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select id="select-levelkho" name="capkho" class="form-control" data-placeholder="Cấp kho">
+                                        <option></option>
+                                        <option value="1">Cấp 1</option>
+                                        <option value="2">Cấp 2</option>
+                                        <option value="3">Cấp 3</option>
+                                    </select>
+                                </div>
+                                <input type="text" id="keyword" onkeydown="this.style.color = '#333';" onclick="this.value = '';" value="" placeholder="Nhập thông tin cần tìm" name="search" class="textsearch">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -189,3 +229,7 @@
     </div>
 </div>
 @include('admin.partial.modal_requiredlogin')
+@section('add-script')
+
+
+@endsection

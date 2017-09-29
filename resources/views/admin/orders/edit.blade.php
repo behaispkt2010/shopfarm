@@ -49,7 +49,7 @@
                                                 <p><span>{{ $arrProductOrder->title }} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></p>
                                                 <span class="total"> <span>{!! \App\Util::FormatMoney($arrProductOrder->price) !!}</span></span>
                                                 <input type="hidden" name="pricetotal[]" value="{{ $arrProductOrder->price }}" >
-                                                <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_sale }}">
+                                                <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_out }}">
                                             </div>
                                             <div class="col-xs-2">
                                                 <span>x</span><input type="number" class="number-product" style="width:21px;" name="product_number[]" value="{{ $arrProductOrder->num }}">
@@ -68,8 +68,8 @@
                                         <tr class="item-product">
                                             <th><img src="{{url('/')}}/{!! $arrProductOrder->image !!}" class="img-responsive img-thumbnail" style="max-width: 50px;" alt=""></th>
                                             <td style="min-width: 210px;"><span class="name-product"><span>{{ $arrProductOrder->title }} ({!! \App\Util::ProductCode($arrProductOrder->id_product) !!})</span></span><input type="hidden" value="{!! $arrProductOrder->id_product !!}" name="product_id[]"></td>
-                                            <td><span class="price-product"><span>{!! \App\Util::FormatMoney($arrProductOrder->price_sale) !!}</span> </span>
-                                            <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_sale }}">
+                                            <td><span class="price-product"><span>{!! \App\Util::FormatMoney($arrProductOrder->price_out) !!}</span> </span>
+                                            <input type="hidden" name="price_product_tmp[]" value="{{ $arrProductOrder->price_out }}">
                                             </td>
                                             <td><span>x</span><input type="number" class="number-product" style="width:70px;" name="product_number[]" value="{{ $arrProductOrder->num }}"></td>
                                             <td><span class="total"> <span>{!! \App\Util::FormatMoney($arrProductOrder->price) !!}</span></span><input type="hidden" value="{{ $arrProductOrder->price }}" name="pricetotal[]"></td>

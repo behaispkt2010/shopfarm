@@ -108,7 +108,7 @@ public function AjaxGetProduct(Request $request){
     $response = array(
         'image' => $product->image,
         'name' => $product->title,
-        'price' => $product->price_sale,
+        'price' => $product->price_out,
         'inventory_num' => $product->inventory_num,
     );
     return \Response::json($response);

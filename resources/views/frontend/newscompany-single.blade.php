@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('title', 'Thông tin nhập sản phẩm')
 @section('description','Thông tin nhập sản phẩm')
-@section('url_seo', url('/') )
+@section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
 @section('type_seo','article')
 @section('title_seo', $arrNewsCompany->title )
 @section('description_seo',$arrNewsCompany->content )

@@ -30,6 +30,7 @@
 		<!-- Bootstrap Material Design -->
 		<script  src="{{asset('js/material.js')}}"></script>
 		<script  src="{{asset('js/ripples.js')}}"></script>
+		<script src="{{asset('js/selectize.js')}}"></script>
 
 @yield('add-script')
 <script>
@@ -91,4 +92,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		$('#login_xs').modal({ backdrop: 'static', keyboard: false });
 	});
+</script>
+<script>
+    $('#select-province, #select-category, #select-levelkho').selectize({});
 </script>
