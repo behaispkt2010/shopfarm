@@ -13,4 +13,13 @@ class Company extends Model
         $company = Company::where('user_id',$user_id)->first();
         return $company->id;
     }
+    public static function getCompany($limit) {
+    	if($limit==0) {
+            $company = Company::get();
+        }
+        else{
+            $company = Company::take($limit)->get();
+        }
+        return $company;
+    }
 }

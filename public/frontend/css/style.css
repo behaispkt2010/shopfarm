@@ -9540,3 +9540,28 @@ table.listview {
     webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
+.lp {
+    padding: 10px;
+}
+.list_com {
+    height: 290px;
+}
+.img_com {
+    max-height: 100%;
+    max-width: 90%;
+    object-fit: scale-down;
+    object-position: center;
+    min-height: 60%;
+    border-radius: 4px;
+}
+.company_image_lp {
+    height: 290px;
+    text-align: center;
+    overflow: hidden;
+    /* border: 1px solid rgba(207, 216, 220, 0.42); */
+    border-radius: 4px;
+    margin-bottom: 7px;
+}
+.radius {
+    border-radius: 5px;
+}

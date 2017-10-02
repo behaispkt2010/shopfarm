@@ -220,6 +220,7 @@
     <script src="{{asset('plugin/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugin/moment/min/moment-with-locales.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
+    <script src="{{asset('js/selectize.js')}}"></script>
     <!-- jQuery Tags Input -->
     <script>
         function onAddTag(tag) {
@@ -252,7 +253,7 @@
     </script>
     <!-- /jQuery Tags Input -->
 
-    <script src="{{asset('js/selectize.js')}}"></script>
+    
     <!-- Select2 -->
     <script>
         $('select').selectize({
@@ -260,8 +261,5 @@
             sortField: 'text'
         });
     </script>
-{{--<script>--}}
-    {{--$('#select-kh,#t,#q,.select-payment,#select-product').selectize({});--}}
-{{--</script>--}}
 
 @endsection
