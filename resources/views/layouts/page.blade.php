@@ -39,10 +39,10 @@
         <div class=""> 
         @yield('content')
             <div class="h-end text-center">
-                <label><span style="color: white">Sản phẩm của </span><span style="color: green">Nông sản tự nhiên</span></label>
+                <!-- <label><span style="color: white">Sản phẩm của </span><span style="color: green">Nông sản tự nhiên</span></label> -->
             </div>
         </div>
-
+        @include('partial.frontend-footer')
     </div>
 
     @include('partial.frontend-script')
