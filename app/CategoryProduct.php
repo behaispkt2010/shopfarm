@@ -104,37 +104,29 @@ class CategoryProduct extends Model
             }
         }
     }
-    static public function get_search_cate_frontend($parent=0)
+    static public function get_cate_frontend($parent=0)
     {
         $data = CategoryProduct::where('disable',0)->get();
         foreach($data as $key=>$itemMenu1) {
             $strCateID = $itemMenu1->id;
             if ($parent == $itemMenu1->parent) {
                 $numchil = CategoryProduct::get_numberChil($itemMenu1->id);
-//                dd($numchil);
+                $i = 0;
                 if ($numchil == 0) {
-                    echo '<li class="animated_item" data-id="'.$strCateID.'"><a>'.$itemMenu1->name.'</a></li>';
+                    echo '<li><a href="'.url("/category-product/$itemMenu1->slug").'">'.$itemMenu1->name.'</a></li>';
                 } else {
-                    echo '<li class="has_megamenu"><a href="#">'.$itemMenu1->name.'</a>
-                        <div class="mega_menu clearfix">
-
-                        <div class="mega_menu_item">
-
-                    <ul class="list_of_links">
-                     ';
-
-
-                    $parent1 = $itemMenu1->id;
-                    CategoryProduct::get_search_cate_frontend($parent1);
-
-                    echo '
-                    </ul>
-
-                    </div><!--/ .mega_menu_item-->
-
-                </div><!--/ .mega_menu-->
-                </li>';
-
+                    $i++;
+                    echo '<div class="mega_menu_item">';
+                    echo '<h6><b>'.$itemMenu1->name.'</b></h6>
+                            <ul class="list_of_links">';
+                           $parent1 = $itemMenu1->id;
+                            CategoryProduct::get_cate_frontend($parent1);
+                    echo '  </ul>';
+                    echo '</div>';
+                    echo $i;
+                    if ($i == 2) {
+                        echo '<div style="clear: both"></div>';
+                    }
                 }
 
             }

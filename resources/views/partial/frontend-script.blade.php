@@ -94,8 +94,5 @@ $(document).ready(function () {
 	});
 </script>
 <script>
-    $('#select-province, #select-category, #select-levelkho, #select-dichvu').selectize({
-    	create: true,
-    	sortField: 'text'
-    });
+    $('#select-province, #select-category, #select-levelkho, #select-dichvu').selectize({});
 </script>

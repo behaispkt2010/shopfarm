@@ -3022,7 +3022,7 @@ td.product_image_col {
 }
 
 .full_width_nav .mega_menu {
-    width: 100% !important;
+    width: 91% !important;
     border-top-width: 0px;
 }
 
@@ -3065,6 +3065,9 @@ td.product_image_col {
 .mega_menu .mega_menu_item {
     display: inline-block;
     white-space: normal;
+    float: left;
+    width: 300px;
+    text-align: left;
 }
 
 .mega_menu_item hr {
@@ -3072,7 +3075,7 @@ td.product_image_col {
 }
 
 .mega_menu .mega_menu_item .list_of_links {
-    width: 190px;
+    width: 100%;
 }
 
 .mega_menu .mega_menu_item:not(:first-child) {
@@ -3082,6 +3085,7 @@ td.product_image_col {
 .mega_menu .list_of_links > li > a {
     border: none;
     padding: 5px 10px;
+    text-align: left;
 }
 
 .mega_menu .list_of_links > li > a:hover {
@@ -8966,18 +8970,30 @@ ul.mobile-menu-icon {
         margin-left: 0px;
     }
 }
-/* @media only screen and (max-width: 1400px) and (min-width: 768px) {
+/*@media only screen and (max-width: 1100px) and (min-width: 768px) {
     .page_wrapper .container{
         padding: 10px 20px 0;
         margin-left: 194px !important;
     }
+}*/
+@media only screen and (max-width: 1400px) and (min-width: 1100px) {
+    .page_wrapper .container{
+        padding: 10px 20px 0;
+        margin-left: 100px !important;
+    }
 }
-@media only screen and (max-width:1900px) and (min-width: 1400px) {
+@media only screen and (max-width: 1700px) and (min-width: 1400px) {
+    .page_wrapper .container{
+        padding: 10px 20px 0;
+        margin-left: 120px !important;
+    }
+}
+@media only screen and (max-width:2000px) and (min-width: 1700px) {
     .page_wrapper .container{
         padding: 10px 20px 0;
         margin-left: 195px !important;
     }
-} */
+} 
 
 .page_wrapper .container {
     padding: 10px 0 0 0;
@@ -9698,6 +9714,39 @@ ul.box-lp > li a {
     height: 240px;
 }
 .selectize-dropdown-content {
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: scroll;
+}
+/*Main menu new*/
+.mainmenu_frontend {
+    display: block;
+    background: rgba(239, 239, 239, 0.5);
+    border-bottom: 1px solid #cfd8dc;
+    position: relative;
+}
+.menu_frontend ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.menu_frontend .dropdown_menu_frontend {
+    display: none;
+    background-color: #edf0f2;
+    padding: 20px 0 20px 42px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    border: none;
+    width: 100%;
+    z-index: 9999;
+}
+.dropdown_menu_frontend .submenu {
+    float: left;
+    width: 235px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+.full_width_nav > ul > li:hover {
+    background: #0e9d58 !important;
 }

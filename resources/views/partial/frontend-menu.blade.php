@@ -195,11 +195,18 @@
         </div>
     </div>
 </div>
-<div class="col-md-10 col-sm-10 menu_top_bg hidden-xs" style="height: 41px;">
+<div class="col-md-10 col-sm-10 menu_top_bg hidden-xs" style="height: 53px;">
     
 
 <ul class="nav navbar-nav clearfix sm hidden-xs" style="margin-left: 250px;">
-    <div class="sticky_inner type_2">
+    <div class="mainmenu_frontend">
+        <nav class="full_width_nav main_navigation">
+            <ul>
+                {{\App\Menu::get_menu_frontend_full()}}
+            </ul>
+        </nav>
+    </div>
+    <!-- <div class="sticky_inner type_2">
         <div class="nav_item">
             <nav class="main_navigation">
                 <ul>
@@ -208,7 +215,7 @@
 
             </nav>
         </div>
-    </div>
+    </div> -->
 </ul>
 </div>
 
