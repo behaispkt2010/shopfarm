@@ -9145,8 +9145,8 @@ a.especially {
     height: 100%;
 }
 .menu_section > ul > li {
-    border-bottom: 1px solid #cfd8dc;
-    border-right: 1px solid #cfd8dc;
+    /* border-bottom: 1px solid #cfd8dc;
+    border-right: 1px solid #cfd8dc; */
 }
 .company_list, .warehouse_list {
     border: 1px solid #CFD8DC;
@@ -9535,6 +9535,7 @@ table.listview {
 }
 .textsearch {
     border: 1px solid #CFD8DC;
+    font-size: 15px;
 }
 .dkdichvu:hover {
     webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
@@ -9633,7 +9634,7 @@ table.listview {
     padding: 0 60px;
 }
 .small_text {
-    font-size: 23px;
+    font-size: 17px;
     font-weight: 100;
 }
 .sidebar {
@@ -9649,6 +9650,7 @@ table.listview {
     cursor: pointer;
     border-radius: 5px !important;
     border: none;
+    min-height: 340px;
 }
 
 .goidichvu:hover {
@@ -9663,4 +9665,39 @@ table.listview {
 }
 .info-service-ncc {
     padding: 25px !important;
+}
+ul.box-lp {
+    margin-right: 20px;
+    float: right;
+    margin-top: -5px;
+}
+ul.box-lp > li {
+    float: left;
+    position: relative;
+}
+ul.box-lp > li + li {
+    margin-left: 10px;
+}
+ul.box-lp > li a {
+    display: inline-block;
+    height: 35px;
+    padding-top: 16px;
+    padding-left: 12px;
+    padding-right: 16px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    line-height: 23px;
+    font-size: 15px;
+}
+.img_lp{
+    max-height: 100%;
+    width: 75%;
+}
+.banner_one {
+    height: 240px;
+}
+.selectize-dropdown-content {
+    max-height: 200px;
+    overflow-y: scroll;
 }

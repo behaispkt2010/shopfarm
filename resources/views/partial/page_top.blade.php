@@ -5,7 +5,7 @@
         </a> 
     </div>
     
-    <ul class="box-manage">
+    <ul class="box-lp">
         <!-- <li role="presentation" class="active btn btn-raised btn-dangtin col-xs-12">
             <a href="#gioi-thieu" id="gioithieu-tab" role="tab" data-toggle="tab" aria-controls="gioithieu" aria-expanded="true">Giới thiệu</a>
         </li> 
@@ -22,22 +22,22 @@
             <a href="#dich-vu" role="tab" id="dichvu-tab" data-toggle="tab" aria-controls="dichvu" aria-expanded="false">Đối tác</a>
         </li> -->
         <li role="presentation">
-            <a class="btn btn-raised btn-dangtin col-xs-12" href="#gioithieu" id="gioithieu-tab" role="tab" data-toggle="tab" aria-controls="gioithieu" aria-expanded="true">Giới thiệu</a>
+            <a class="" href="#gioithieu" id="gioithieu-tab" role="tab" data-toggle="tab" aria-controls="gioithieu" aria-expanded="true">Giới thiệu</a>
         </li>
         <li role="presentation">
-            <a class="btn btn-raised btn-dangtin col-xs-12" href="#tinhnang" role="tab" id="tinhnang-tab" data-toggle="tab" aria-controls="tinhnang" aria-expanded="false">Tính năng </a>
+            <a class="" href="#tinhnang" role="tab" id="tinhnang-tab" data-toggle="tab" aria-controls="tinhnang" aria-expanded="false">Tính năng </a>
         </li>
         <li role="presentation">
-            <a class="btn btn-raised btn-dangtin col-xs-12" href="#doitac" role="tab" id="doitac-tab" data-toggle="tab" aria-controls="doitac" aria-expanded="false">Đối tác</a>
+            <a class="" href="#doitac" role="tab" id="doitac-tab" data-toggle="tab" aria-controls="doitac" aria-expanded="false">Đối tác</a>
         </li>
         <li role="presentation">
-            <a class="btn btn-raised btn-dangtin col-xs-12" href="#capkho" role="tab" id="capkho-tab" data-toggle="tab" aria-controls="capkho" aria-expanded="false">Cấp kho</a>
+            <a class="" href="#capkho" role="tab" id="capkho-tab" data-toggle="tab" aria-controls="capkho" aria-expanded="false">Cấp kho</a>
         </li>
         <li role="presentation">
-            <a class="btn btn-raised btn-dangtin col-xs-12" href="#dichvu" role="tab" id="dichvu-tab" data-toggle="tab" aria-controls="dichvu" aria-expanded="false">Dịch vụ</a>
+            <a class="" href="#dichvu" role="tab" id="dichvu-tab" data-toggle="tab" aria-controls="dichvu" aria-expanded="false">Dịch vụ</a>
         </li>
         <li role="presentation">
-            <a class="btn btn-raised btn-dangtin col-xs-12" href="{{ url('/register') }}">Đăng ký</a>
+            <a class="" href="{{ url('/register') }}">Đăng ký</a>
         </li>
     </ul>
 </header>

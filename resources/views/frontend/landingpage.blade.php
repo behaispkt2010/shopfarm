@@ -15,7 +15,7 @@
 		<div class="title_lp col-md-4 col-sm-4" style="float: left; padding-bottom: 20px;">RA MẮT <p class="small_text" style="padding-top: 20px;">Mạng lưới kho nông sản Việt Nam</p>
 		</div>
 	</div>
-	<div class="service" style="height: 400px; background-color: #fff;">
+	<div class="service" style="height: 500px; background-color: #fff;">
 		<div class="title_lp service_lp_1">Khám phá tính năng <span class="small_text">và hơn thế nữa</span></div>
 		<div class="content-service-landingpage">
 			<div class="col-md-4 col-sm-4 service_one">
@@ -24,7 +24,7 @@
 						
 					</div>
 					<div class="bg_service">
-						<img class="radius" src="{{ asset('frontend/images/home_slide_7.png') }}" alt="">
+						<img class="radius img_lp" src="{{ asset('frontend/images/tinhnang1.png') }}" alt="">
 					</div>
 				</div>
 				<div class="info_service_one">
@@ -37,7 +37,7 @@
 						
 					</div>
 					<div class="bg_service">
-						<img class="radius" src="{{ asset('frontend/images/home_slide_6.png') }}" alt="">
+						<img class="radius img_lp" src="{{ asset('frontend/images/tinhnang2.png') }}" alt="">
 					</div>
 				</div>
 				<div class="info_service_one">
@@ -50,7 +50,7 @@
 						
 					</div>
 					<div class="bg_service">
-						<img class="radius" src="{{ asset('frontend/images/home_slide_4.png') }}" alt="">
+						<img class="radius img_lp" src="{{ asset('frontend/images/tinhnang3.png') }}" alt="">
 					</div>
 				</div>
 				<div class="info_service_one">
@@ -91,20 +91,26 @@
 		<div class="title_lp service_lp_3">Gói dịch vụ</div>
 		<div class="content-service-landingpage">
 			<div class="row">
-				<div class="col-md-4 col-sm-4 col-xs-12 goidichvu" style="height: 200px; padding: 0 20px;">
-					<section class="widget">
-						<a href="#" title="Chủ kho cấp 1"><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
-					</section>
+				<div class="col-md-4 col-sm-4 col-xs-12 " style="">
+					<div class="goidichvu">
+						<section class="widget">
+							<a href="#" title="Chủ kho cấp 1"><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
+						</section>
+					</div>
 				</div>
-				<div class="col-md-4 col-sm-4 col-xs-12 goidichvu" style="height: 200px; padding: 0 20px;">
-					<section class="widget">
-						<a href="#" title="Chủ kho cấp 2"><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
-					</section>
+				<div class="col-md-4 col-sm-4 col-xs-12 " style="">
+					<div class="goidichvu">
+						<section class="widget">
+							<a href="#" title="Chủ kho cấp 2"><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
+						</section>
+					</div>	
 				</div>
-				<div class="col-md-4 col-sm-4 col-xs-12 goidichvu" style="height: 200px; padding: 0 20px;">
-					<section class="widget">
-						<a href="#" title="Chủ kho cấp 3"><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
-					</section>
+				<div class="col-md-4 col-sm-4 col-xs-12 " style="">
+					<div class="goidichvu">
+						<section class="widget">
+							<a href="#" title="Chủ kho cấp 3"><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
+						</section>
+					</div>	
 				</div>
 			</div>
 			<!-- <div class="tabs-service" data-example-id="togglable-tabs"> 
@@ -160,10 +166,12 @@
 			DÀNH CHO NCC CHUYÊN NGHIỆP
 		</div>
 		<div class="row content-service-landingpage">
-			<div class="col-md-6 col-sm-6 " style="padding: 0px;">
-				<section class="widget dkdichvu">
-					<a href="#" title=""><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
-				</section>
+			<div class="col-md-6 col-sm-6 " style="">
+				<div class="dkdichvu">
+					<section class="widget ">
+						<a href="#" title=""><img style="width: 100%;" src="{{asset('images/dkquangcao.png')}}" alt=""></a>
+					</section>
+				</div>
 				<div class="info-service">
 					<div class="title_lp info-service-ncc">
 						Xác thực kho
@@ -173,10 +181,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-sm-6 " style="padding: 0px;">
-				<section class="widget dkdichvu">
-					<a href="#" title=""><img style="width: 100%;" src="{{asset('images/dkxacthuc.png')}}" alt=""></a>
-				</section>
+			<div class="col-md-6 col-sm-6 " style="">
+				<div class="dkdichvu">
+					<section class="widget dkdichvu">
+						<a href="#" title=""><img style="width: 100%;" src="{{asset('images/dkxacthuc.png')}}" alt=""></a>
+					</section>
+				</div>	
 				<div class="info-service">
 					<div class="title_lp info-service-ncc">
 						Quảng cáo

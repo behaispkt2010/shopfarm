@@ -99,17 +99,17 @@
 	<hr>
 	<div class="footer_section">
 		<div class="container" style="width: 100% !important; padding: 0px;">
-			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;">
+			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;border-radius: 0px !important;">
 				<section class="widget">
 					<a href="#" title="Đăng ký dịch vụ Quảng cáo"><img src="{{asset('images/dkquangcao.png')}}" alt=""></a>
 				</section>
 			</div>
-			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;">
+			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;border-radius: 0px !important;">
 				<section class="widget">
 					<a href="#" title="Đăng ký dịch vụ Chủ kho dùng trả phí"><img src="{{asset('images/dktraphi.png')}}" alt=""></a>
 				</section>
 			</div>
-			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;">
+			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;border-radius: 0px !important;">
 				<section class="widget">
 					<a href="#" title="Đăng ký dịch vụ Xác thực thông tin"><img src="{{asset('images/dkxacthuc.png')}}" alt=""></a>
 				</section>
@@ -118,30 +118,32 @@
 		</div>
 	</div>
 	<hr>
-	<div class="footer_section" style="background-color: #e0e0e0;">
+	<div class="footer_section" style="background-color: #f8f8f8;">
 		<div class="container">
 			<div class="row">
-				<h4>Bạn đang thắc mắc điều gì, đừng ngần ngại, hãy gửi thông tin cần thiết cho chúng tôi để được hỗ trợ</h4>
-				<div class="col-md-3 col-sm-3 col-offset-md-3">
-					<section class="widget">
-						<div class="form-group">
-                            <select id="select-dichvu" class="form-control" name="dichvu" data-placeholder="Chọn gói dịch vụ">
-                                <option value="">Chọn gói dịch vụ</option>
-                                <option value="1">Đăng ký chủ kho dùng trả phí</option>
-                                <option value="2">Đăng ký Quảng cáo</option>
-                                <option value="3">Xác thực uy tín</option>
-                            </select>
-                        </div>
-					</section>
-				</div>
-				<div class="col-md-2 col-sm-2">
-					<input type="text" class="form-control" name="" value="" placeholder="Họ tên của bạn">
-				</div>
-				<div class="col-md-2 col-sm-2">
-					<input type="text" class="form-control" name="" value="" placeholder="Số điện thoại của bạn">
-				</div>
-				<div class="col-md-3 col-sm-3">
-					<button type="button" class="btn btn-raised btn-success btnSendRequest">Nhận hỗ trợ</button>
+				<h4 style="text-align: center;">Bạn đang thắc mắc điều gì, đừng ngần ngại, hãy gửi thông tin cần thiết cho chúng tôi để được hỗ trợ</h4>
+				<div class="row col-md-offset-2">
+					<div class="col-md-3 col-sm-3 col-xs-12">
+						<section class="widget">
+							<div class="form-group">
+	                            <select id="select-dichvu" class="form-control" name="dichvu" data-placeholder="Chọn gói dịch vụ">
+	                                <option value="">Chọn gói dịch vụ</option>
+	                                <option value="1">Đăng ký chủ kho dùng trả phí</option>
+	                                <option value="2">Đăng ký Quảng cáo</option>
+	                                <option value="3">Xác thực uy tín</option>
+	                            </select>
+	                        </div>
+						</section>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<input type="text" class="form-control" name="" value="" placeholder="Họ tên của bạn">
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<input type="text" class="form-control" name="" value="" placeholder="Số điện thoại">
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<button type="button" class="btn btn-raised btn-success btnSendRequest">Nhận hỗ trợ</button>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -545,7 +545,10 @@
 </script>
 <!-- Select2 -->
 <script>
-    $('#select-kh,.select-payment,#select-product,#select-transport').selectize({});
+    $('#select-kh,.select-payment,#select-product,#select-transport').selectize({
+        create: true,
+        sortField: 'text'
+    });
 </script>
 <script type="text/javascript">
     function pricecaculator(){

@@ -145,9 +145,8 @@
         </div>
         <div class="clearfix"></div>
         <div class="search_advance">
-            
-            <form action="{{ url('/') }}" class="clearfix" method="get">
-                <button class="button-search btnsearch" type="submit"><i class="material-icons">search</i>Tìm kiếm</button>
+            <div class=""> Tìm kiếm nâng cao </div>
+            <form action="{{ url('/') }}" class="clearfix" method="get" style="font-weight: 300;">
                 <div class="x_panel">
                     <div class="wrapper-content mt20">
                         <div class="pd-all-20 border-top-title-main">
@@ -180,7 +179,19 @@
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-raised btn-dangtin button-search btnsearch" style="width: 100%;" type="submit"><i style="padding-right: 10px;" class="material-icons">search</i>Tìm kiếm</button>
             </form>
+        </div>
+        <div class="clearfix"></div>
+        <div class="banner_qc">
+            <input type="hidden" name="heightMain" class="heightMain" value="">
+            <input type="hidden" name="heightBanner" class="heightBanner" value="">
+
+            @for($i = 0; $i < 15; $i++)
+            <div class="banner_one">
+                 @include('frontend.panner.home-panner-sidebar-1')
+            </div>
+            @endfor
         </div>
     </div>
 </div>
@@ -230,6 +241,19 @@
 </div>
 @include('admin.partial.modal_requiredlogin')
 @section('add-script')
+<script src="{{asset('js/selectize.js')}}"></script>
+<script type="text/javascript">
+    $(function() {
+        var heightMain = $('main').height();
+        $('.heightMain').val(heightMain);
+        var heightBanner = $('.banner_qc').height();
+        $('.heightBanner').val(heightBanner);
 
+
+    });
+</script>
+<script type="text/javascript">
+    
+</script>
 
 @endsection
