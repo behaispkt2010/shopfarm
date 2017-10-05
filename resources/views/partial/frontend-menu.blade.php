@@ -137,12 +137,12 @@
         </div>
         <div class="clearfix"></div>
         <br>
-        <div class="" style="background-color: #fff;padding: 10px 10px 10px 14px;font-size: 16px;font-weight: bold;">
+        <!-- <div class="" style="background-color: #fff;padding: 10px 10px 10px 14px;font-size: 16px;font-weight: bold;">
             <i class="fa fa-bars" aria-hidden="true" style="padding-top: 2px; padding-right: 7px;"></i>Danh mục sản phẩm
         </div>
         <div class="">
-            @include('frontend.witgets.category-product')
-        </div>
+            
+        </div> -->
         <div class="clearfix"></div>
         <div class="search_advance">
             <div class=""> Tìm kiếm nâng cao </div>
@@ -198,7 +198,7 @@
 <div class="col-md-10 col-sm-10 menu_top_bg hidden-xs" style="height: 53px;">
     
 
-<ul class="nav navbar-nav clearfix sm hidden-xs" style="margin-left: 250px;">
+<ul class="col-md-10 col-sm-10 nav navbar-nav clearfix sm hidden-xs" style="margin-left: 150px;">
     <div class="mainmenu_frontend">
         <nav class="full_width_nav main_navigation">
             <ul>

@@ -107,11 +107,11 @@ class CategoryProduct extends Model
     static public function get_cate_frontend($parent=0)
     {
         $data = CategoryProduct::where('disable',0)->get();
+        $i=0;
         foreach($data as $key=>$itemMenu1) {
             $strCateID = $itemMenu1->id;
             if ($parent == $itemMenu1->parent) {
                 $numchil = CategoryProduct::get_numberChil($itemMenu1->id);
-                $i = 0;
                 if ($numchil == 0) {
                     echo '<li><a href="'.url("/category-product/$itemMenu1->slug").'">'.$itemMenu1->name.'</a></li>';
                 } else {
@@ -119,18 +119,44 @@ class CategoryProduct extends Model
                     echo '<div class="mega_menu_item">';
                     echo '<h6><b>'.$itemMenu1->name.'</b></h6>
                             <ul class="list_of_links">';
-                           $parent1 = $itemMenu1->id;
+                            $parent1 = $itemMenu1->id;
                             CategoryProduct::get_cate_frontend($parent1);
                     echo '  </ul>';
                     echo '</div>';
-                    echo $i;
-                    if ($i == 2) {
-                        echo '<div style="clear: both"></div>';
-                    }
                 }
-
+            }
+            if ($i==4) {
+                echo '<div style="clear: both;"></div>';
             }
         }
+
+    }
+    static public function get_cate_frontend_footer($parent=0)
+    {
+        $data = CategoryProduct::where('disable',0)->get();
+        $i=0;
+        foreach($data as $key=>$itemMenu1) {
+            $strCateID = $itemMenu1->id;
+            if ($parent == $itemMenu1->parent) {
+                $numchil = CategoryProduct::get_numberChil($itemMenu1->id);
+                if ($numchil == 0) {
+                    echo '<li><a href="'.url("/category-product/$itemMenu1->slug").'" class="colorwhite">'.$itemMenu1->name.'</a></li>';
+                } else {
+                    $i++;
+                    echo '<div class="mega_menu_item_footer">';
+                    echo '<h6 class="colorwhite"><b>'.$itemMenu1->name.'</b></h6>
+                            <ul class="list_of_links">';
+                            $parent1 = $itemMenu1->id;
+                            CategoryProduct::get_cate_frontend_footer($parent1);
+                    echo '  </ul>';
+                    echo '</div>';
+                }
+            }
+            if ($i==5) {
+                echo '<div style="clear: both;"></div>';
+            }
+        }
+
     }
 
     static public function get_menu_help_frontend($parent=0)

@@ -1,6 +1,12 @@
 
 <footer id="footer">
 	<hr>
+	<div class="row">
+		<div class="mega_menu_footer">
+			{{ \App\CategoryProduct::get_cate_frontend_footer() }}
+		</div>
+	</div>
+	
 	<div class="footer_section">
 		<div class="container">
 			<div class="row">
