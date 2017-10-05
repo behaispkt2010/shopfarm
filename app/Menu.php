@@ -77,7 +77,7 @@ class Menu extends Model
                         if ($itemMenu1->class == 'isproduct') {
                         echo '<li class="has_megamenu animated_item" style="width: auto;float: left;">
                                 <a href="#">'.$itemMenu1->label.'</a>
-                                <div class="col-md-9 col-sm-9 mega_menu type_4 clearfix">';
+                                <div class="col-md-12 col-sm-12 mega_menu type_4 clearfix" style="margin-left: -166px;">';
                                     CategoryProduct::get_cate_frontend();
                         echo '  </div>
                               </li>';
@@ -94,7 +94,7 @@ class Menu extends Model
                 } else {
                     echo '<li class="has_megamenu animated_item" style="width: auto;float: left;">
                             <a href="#">'.$itemMenu1->label.'</a>
-                            <div class="col-md-9 col-sm-9 mega_menu type_4 clearfix">';
+                            <div class="col-md-12 col-sm-12 mega_menu type_4 clearfix" style="margin-left: -166px;">';
                                 $parent1 = $itemMenu1->id;
                                 Menu::get_menu_frontend_full($parent1);  
                     echo '  </div>

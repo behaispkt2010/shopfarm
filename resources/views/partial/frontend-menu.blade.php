@@ -198,7 +198,7 @@
 <div class="col-md-10 col-sm-10 menu_top_bg hidden-xs" style="height: 53px;">
     
 
-<ul class="col-md-10 col-sm-10 nav navbar-nav clearfix sm hidden-xs" style="margin-left: 150px;">
+<ul class="col-md-12 col-sm-12 nav navbar-nav clearfix sm hidden-xs" style="margin-left: 150px;">
     <div class="mainmenu_frontend">
         <nav class="full_width_nav main_navigation">
             <ul>
