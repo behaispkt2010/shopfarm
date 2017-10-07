@@ -35,6 +35,14 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|
     Route::resource('newscompany', 'NewsCompanyController');
     Route::get('newscompany/data/json', 'NewsCompanyController@data');
 
+    // Tin menu trợ giúp, Nhóm menu trợ giúp
+    Route::resource('help-menu', 'HelpMenuController');
+    Route::post('help-menu/createAjax', 'HelpMenuController@createAjax');
+    Route::post('help-menu/updateAjax', 'HelpMenuController@updateAjax');
+
+    Route::resource('help-menu-content', 'HelpMenuContentController');
+    Route::get('help-menu/data/json', 'HelpMenuContentController@data');
+
     //Nhóm tin tức
     Route::resource('category', 'CategoryController');
     Route::get('category/data/json', 'CategoryController@data');

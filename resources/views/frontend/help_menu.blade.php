@@ -1,20 +1,20 @@
 @extends('layouts.page')
 @section('title', 'Bạn gặp khó khăn gì, hãy để chúng tôi giúp đỡ nhé')
 @section('description','Bạn gặp khó khăn gì, hãy để chúng tôi giúp đỡ nhé')
-
+@section('add_style')
+<link href="{{asset('frontend/css/help_menu.css')}}" rel="stylesheet">
+@endsection
 @section('content')
     <!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
     <div class="page_wrapper" style="width: 100%;">
-        <div class="container">
+        <div class="container body_help_menu">
             <ul class="breadcrumbs">
                 <li><a href="{!!url('/')!!}">Trang chủ</a></li>
                 <li>Trợ giúp</li>
             </ul>
             <div class="row">
-                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 help_menu" style="color: #000">
-                    <div id="SimpleJSTree"></div>
-                </div>
-                <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12" style="border-left: 1px solid #eee;">
+                <div id="MenuJSTree" class=""></div>
+                <div class="MenuContent">
                     <section class="section_offset">
                         <h1>Title bài viết</h1>
                         <article class="entry single">
@@ -34,7 +34,7 @@
         </div>
     </div>
 @endsection
-@section('add-script')
+@section('add_script')
     <script src="{{ asset('plugin/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{ asset('frontend/js/jstree/jstree.min.js')}}"></script>
     <script type="text/javascript">
@@ -42,7 +42,7 @@
     </script>
     <script type="text/javascript">
         $(function () {
-            $('#SimpleJSTree').jstree({
+            $('#MenuJSTree').jstree({
                 'core' : {
                   'data' : 
                   {
@@ -50,31 +50,13 @@
                     "dataType" : "json"
                   }
                 },
-                "state":{"events":"select_node.jstree open_node.jstree close_node.jstree"},
-                "types" : {
-                    "max_depth" : -2,
-                    "max_children" : -2,
-                    "valid_children" : ["drive"],
-                    'types': {
-                        "folder": {
-                            "icon": "jstree-icon jstree-folder"
-                        },
-                        "file": {
-                            "icon": "jstree-icon jstree-file"
-                        }
-                    },
-                },
-                "plugins" : [ "state", "types"]
-
+                "state" : { "key" : "state_demo" },
+                "plugins" : ["state"]
             }).on("changed.jstree", function (e, data) {
-                var idselect = data.selected;
                 var href = data.node.a_attr.href;
-            }).set_state(idselect, function (e, data) {
-                
                 document.location.href = href;
             });
-            
-            // $('#SimpleJSTree').jstree("set_state", true);
+
         });
         
     </script>

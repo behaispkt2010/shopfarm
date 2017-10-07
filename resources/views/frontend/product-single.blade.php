@@ -7,8 +7,8 @@
 @endsection
 @section('content')
 
-			<div class="secondary_page_wrapper">
-				<div class="container">
+			<div class="secondary_page_wrapper col-md-12 col-sm-12">
+				<div class="container col-md-12 col-sm-12">
 					<ul class="breadcrumbs" style="margin: 0px;">
 						<li><a href="/">Trang chủ</a></li>
 						<li><a href="/products">Sản phẩm</a></li>
@@ -450,7 +450,7 @@
 				                                                <a href="#" class="clearfix">{{$product->title}}</a>
 
 				                                                <div class="kho_info clearfix">
-				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    <a href="#" class="alignleft" style="">
 				                                                    @if($product->levelKho == 1)
 				                                                        <img src="{{url('/images')}}/level1.png" alt="">
 				                                                    @elseif($product->levelKho == 2)

@@ -124,25 +124,24 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
                 <div class="clear"></div>
-                <ul class="nav side-menu" style="background-color: #e7e7e7;">
-                    <li><a href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
-                    <li><a href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
-                    <li><a href="#"><i class="material-icons icon_home">share</i> Group</a></li>
-                    <li><a href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
+                <ul class="nav side-menu" style="background-color: #00695c;">
+                    <li><a class="menu_left_item" href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
+                    <li><a class="menu_left_item" href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
+                    <li><a class="menu_left_item" href="#"><i class="material-icons icon_home">share</i> Group</a></li>
+                    <li><a class="menu_left_item" href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
                     <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
-                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
-                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
+                    <li><a class="menu_left_item" href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                    <li><a class="menu_left_item" href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                 </ul>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <br>
         <!-- <div class="" style="background-color: #fff;padding: 10px 10px 10px 14px;font-size: 16px;font-weight: bold;">
             <i class="fa fa-bars" aria-hidden="true" style="padding-top: 2px; padding-right: 7px;"></i>Danh mục sản phẩm
         </div>
         <div class="">
             
         </div> -->
+        <div class="clearfix"></div>
         <div class="clearfix"></div>
         <div class="search_advance">
             <div class=""> Tìm kiếm nâng cao </div>
@@ -152,7 +151,7 @@
                         <div class="pd-all-20 border-top-title-main">
                             <div class="form-group">
                                 <div class="form-group">
-                                    <select id="select-province" name="tinh" class="form-control" data-placeholder="Tỉnh/Thành Phố">
+                                    <select id="select-province" name="tinh" class="form-control" data-placeholder="Tỉnh/Thành Phố" style="padding-left: 0px;">
                                         <option></option>
                                         @foreach(\App\Province::get() as $itemProvince)
                                             <option value="{{$itemProvince->provinceid}}">{{$itemProvince->name}}</option>
@@ -195,10 +194,10 @@
         </div>
     </div>
 </div>
-<div class="col-md-10 col-sm-10 menu_top_bg hidden-xs" style="height: 53px;">
+<div class="col-md-10 col-sm-10 menu_top_bg hidden-xs" style="height: 41px;">
     
 
-<ul class="col-md-12 col-sm-12 nav navbar-nav clearfix sm hidden-xs" style="margin-left: 150px;">
+<ul class="col-md-12 col-sm-12 nav navbar-nav clearfix sm hidden-xs" style="margin-left: 150px; height: 41px;">
     <div class="mainmenu_frontend">
         <nav class="full_width_nav main_navigation">
             <ul>

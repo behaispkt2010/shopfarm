@@ -5,11 +5,11 @@
 	{{-- --}}
 @endsection
 @section('content')
-<div class="secondary_page_wrapper">
+<div class="secondary_page_wrapper col-md-12 col-sm-12">
 
 	{{--{{dd(\App\Product::getBestStarsProduct())}}--}}
 
-	<div class="container">
+	<div class="container col-md-12 col-sm-12">
 		<ul class="breadcrumbs">
 
 			<li><a href="/">Trang chủ</a></li>
@@ -62,7 +62,7 @@
 									<div class="description">
 										<a href="#" class="clearfix">{{$product->title}}</a>
 										<div class="kho_info clearfix">
-											<a href="#" class="alignleft" style="width: 70px;">
+											<a href="#" class="alignleft" style="">
 												@if($product->levelKho == 1)
 													<img src="{{url('/images')}}/level1.png" alt="">
 												@elseif($product->levelKho == 2)

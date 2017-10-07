@@ -17,6 +17,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @include('partial.frontend-styles')
+    @yield('add_style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <!-- Styles -->
     <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
@@ -47,7 +48,7 @@
     </div>
 
     @include('partial.frontend-script')
-    @yield('add_scripts')
+    @yield('add_script')
 </body>
 </html>
 

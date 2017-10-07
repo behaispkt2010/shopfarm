@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\CategoryProduct;
-use App\Http\Requests\CategoryProductRequest;
-use App\Product;
-use App\User;
-use App\Util;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
-
-class CategoryProductController extends Controller
+class HelpMenuController extends Controller
 {
     /**
-     * ajax create
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-     public function createAjax(CategoryProductRequest $request){
+    public function createAjax(CategoryProductRequest $request){
 
          $category = new CategoryProduct();
          $today = date("Y-m-d_H-i-s");
@@ -158,30 +152,5 @@ class CategoryProductController extends Controller
             return redirect('admin/categoryProducts/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
 
         }
-    }
-    public function data()
-    {
-        $articles = Article::get()
-            ->map(function ($article) {
-                return [
-                    'id' => $article->id,
-                    'title' => $article->title,
-                    'category' => Category::getNameCateById($article->category),
-                    'author_id' => NewsCompany::getUserName($article->author_id),
-                    'created_at' => $article->created_at->format('d/m/Y'),
-                ];
-            });
-
-        return Datatables::of($articles)
-            ->add_column('actions',
-                '<a class = "btn-xs btn-info" href="{{route(\'news.edit\',[\'id\' => $id])}}" style="margin-right: 5px;display: inline"><i class="fa fa-pencil"  aria-hidden="true"></i></a>
-                            <form action="{{route(\'news.destroy\',[\'id\' => $id])}}" method="post" class="form-delete" style="display: inline">
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                <input type="text" class="hidden" value="{{$id}}">
-                                 {{method_field("DELETE")}}
-                           <a type="submit" class = "btn-xs btn-danger" name ="delete_modal" style="display: inline-block"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                            </form>')
-            ->remove_column('id')
-            ->make();
     }
 }

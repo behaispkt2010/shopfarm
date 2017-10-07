@@ -4,9 +4,9 @@
 
 @section('content')
 			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
-			<div class="page_wrapper">
+			<div class="page_wrapper col-md-12 col-sm-12">
 
-				<div class="container">
+				<div class="container col-md-12 col-sm-12">
 
 					<ul class="breadcrumbs">
 						<li><a href="/">Trang chủ</a></li>
@@ -36,7 +36,7 @@
 
 														<p class="textoverlow"><a href="{{ url('/shop/'.$itemAllWareHouse->id) }}" class="clearfix ">{{$itemAllWareHouse->name_company}}</a></p>
 														<div class="kho_info clearfix">
-															<a href="#" class="alignleft" style="width: 60px;">
+															<a href="#" class="alignleft" style="">
 																@if($itemAllWareHouse->level == 1)
 																	<img src="{{url('/images')}}/level1.png" alt="">
 																@elseif($itemAllWareHouse->level == 2)

@@ -5,8 +5,8 @@
 {{-- --}}
 @endsection
 @section('content')
-			<div class="secondary_page_wrapper">
-				<div class="container">
+			<div class="secondary_page_wrapper col-md-12 col-sm-12">
+				<div class="container col-md-12 col-sm-12">
 					<ul class="breadcrumbs">
 						<li><a href="/">Trang chủ</a></li>
 						<li>Blogs</li>

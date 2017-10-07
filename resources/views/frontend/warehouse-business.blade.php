@@ -4,8 +4,8 @@
 
 @section('content')
 			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
-			<div class="page_wrapper">
-				<div class="container">
+			<div class="page_wrapper col-md-12 col-sm-12">
+				<div class="container col-md-12 col-sm-12">
 					<ul class="breadcrumbs">
 						<li><a href="/">Trang chủ</a></li>
 						<li>Nhà cung cấp</li>
@@ -29,7 +29,7 @@
 				                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouse->user_id) !!}</a>
 				                                        </div>
 														<div class="kho_info clearfix">
-															<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
+															<a href="#" class="alignleft" style="">
 																@if($itemAllWareHouse->level == 1)
 																	<img src="{{url('/images')}}/level1.png" alt="">
 																@elseif($itemAllWareHouse->level == 2)

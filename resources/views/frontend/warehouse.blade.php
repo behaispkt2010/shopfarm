@@ -2,8 +2,8 @@
 @section('title', 'Thông tin chủ kho')
 @section('description','Thông tin chủ kho')
 @section('content')
-<div class="secondary_page_wrapper">
-    <div class="container">
+<div class="secondary_page_wrapper col-md-12 col-sm-12">
+    <div class="container col-md-12 col-sm-12">
         <div class="col-xs-12 col-sm-4 col-md-4" style="padding-top: 20px; padding-left: 0px;">
             <div class="panel panel-default">
                 <div class="item active">
@@ -304,7 +304,7 @@
                                                     <a href="#" class="clearfix">{{$product->title}}</a>
 
                                                     <div class="kho_info clearfix">
-                                                        <a href="#" class="alignleft" style="width: 70px;">
+                                                        <a href="#" class="alignleft" style="">
                                                         @if($product->levelKho == 1)
                                                             <img src="{{url('/images')}}/level1.png" alt="">
                                                         @elseif($product->levelKho == 2)

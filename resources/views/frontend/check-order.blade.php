@@ -6,9 +6,9 @@
 @endsection
 @section('content')
         <!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
-<div class="page_wrapper">
+<div class="page_wrapper col-md-12 col-sm-12">
 
-    <div class="container">
+    <div class="container col-md-12 col-sm-12">
         @if(!empty($order))
     <div class="row">
 

@@ -3,8 +3,8 @@
 @section('description','trang chủ')
 
 @section('content')
-			<div class="page_wrapper">
-				<div class="container">
+			<div class="page_wrapper col-md-12 col-sm-12">
+				<div class="container col-md-12 col-sm-12">
 					<div class="box_headder" style="margin-bottom:0px;">
 						<div class="row col-md-12 col-xs-12 col-sm-12" style="height: 220px;">
 							<div class="head">
@@ -103,7 +103,7 @@
 							                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
+																		<a href="#" class="alignleft" style="">
 																			@if($itemAllWareHouseDeXuat->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseDeXuat->level == 2)
@@ -167,7 +167,7 @@
 							                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseXemNhieu->user_id) !!}</a>
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
+																		<a href="#" class="alignleft" style="">
 																			@if($itemAllWareHouseXemNhieu->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseXemNhieu->level == 2)
@@ -227,7 +227,7 @@
 							                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseUyTin->user_id) !!}</a>
 							                                        </div>
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
+																		<a href="#" class="alignleft" style="">
 																			@if($itemAllWareHouseUyTin->level == 1)
 																				<img src="{{url('/images')}}/level1.png" alt="">
 																			@elseif($itemAllWareHouseUyTin->level == 2)

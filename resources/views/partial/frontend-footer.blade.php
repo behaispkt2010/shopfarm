@@ -107,17 +107,17 @@
 		<div class="container" style="width: 100% !important; padding: 0px;">
 			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;border-radius: 0px !important;">
 				<section class="widget">
-					<a href="#" title="Đăng ký dịch vụ Quảng cáo"><img src="{{asset('images/dkquangcao.png')}}" alt=""></a>
+					<a href="#" title="Đăng ký dịch vụ Quảng cáo"><img src="{{asset('frontend/images/banner-footer-1.jpg')}}" alt=""></a>
 				</section>
 			</div>
 			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;border-radius: 0px !important;">
 				<section class="widget">
-					<a href="#" title="Đăng ký dịch vụ Chủ kho dùng trả phí"><img src="{{asset('images/dktraphi.png')}}" alt=""></a>
+					<a href="#" title="Đăng ký dịch vụ Quảng cáo"><img src="{{asset('frontend/images/banner-footer-2.jpg')}}" alt=""></a>
 				</section>
 			</div>
 			<div class="col-md-4 col-sm-4 dkdichvu" style="padding: 0px;border-radius: 0px !important;">
 				<section class="widget">
-					<a href="#" title="Đăng ký dịch vụ Xác thực thông tin"><img src="{{asset('images/dkxacthuc.png')}}" alt=""></a>
+					<a href="#" title="Đăng ký dịch vụ Quảng cáo"><img src="{{asset('frontend/images/banner-footer-3.jpg')}}" alt=""></a>
 				</section>
 			</div>
 			<hr>
@@ -134,9 +134,9 @@
 							<div class="form-group">
 	                            <select id="select-dichvu" class="form-control" name="dichvu" data-placeholder="Chọn gói dịch vụ">
 	                                <option value="">Chọn gói dịch vụ</option>
-	                                <option value="1">Đăng ký chủ kho dùng trả phí</option>
-	                                <option value="2">Đăng ký Quảng cáo</option>
-	                                <option value="3">Xác thực uy tín</option>
+	                                <option value="1">Nâng cấp Kho</option>
+	                                <option value="2">Quảng cáo nâng cao</option>
+	                                <option value="3">Xác thực Kho</option>
 	                            </select>
 	                        </div>
 						</section>

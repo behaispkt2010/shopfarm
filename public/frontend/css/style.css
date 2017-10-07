@@ -221,14 +221,14 @@ img.aligncenter {
 }
 
 .page_wrapper {
-    padding: 60px 0 60px;
+    padding: 20px 20px 20px;
 }
 
 .secondary_page_wrapper {
-    padding: 60px 0 60px;
+    padding: 20px 20px 20px;
 }
 .secondary_page_wrapper .container{
-    padding-left: 160px;
+    /* padding-left: 160px; */
 }
 
 .main_product .title a {
@@ -1279,7 +1279,7 @@ textarea,
     color: #b2b2b2;
     /*border:1px solid #eaeaea*/
     ;
-    padding: 8px 10px 8px 12px;
+    padding: 8px 10px 8px 0px;
     height: 38px;
     width: 100%;
     background-color: #fff;
@@ -2686,7 +2686,7 @@ td.product_image_col {
 .main_navigation > ul > li > a {
     display: block;
     font-size: 16px;
-    padding: 16px 30px 17px 17px;
+    padding: 10px 30px 12px 17px;
     position: relative;
 }
 
@@ -8976,7 +8976,7 @@ ul.mobile-menu-icon {
         margin-left: 194px !important;
     }
 }*/
-@media only screen and (max-width: 1400px) and (min-width: 1100px) {
+/* @media only screen and (max-width: 1400px) and (min-width: 1100px) {
     .page_wrapper .container{
         padding: 10px 20px 0;
         margin-left: 100px !important;
@@ -8993,11 +8993,11 @@ ul.mobile-menu-icon {
         padding: 10px 20px 0;
         margin-left: 195px !important;
     }
-} 
+}  */
 
 .page_wrapper .container {
-    padding: 30px 0 0 0;
-    padding-left: 160px;
+    /* padding: 30px 0 0 0;
+    padding-left: 160px; */
 }
 
 header {
@@ -9435,13 +9435,13 @@ table.listview {
     }
 } 
 .box_headder {
-    background: url(../../frontend/images/home_slide_5.png) left repeat;
+    background: url(../../frontend/images/banner-front.jpg) left repeat;
     border-radius: 5px;
     height: 240px;
     padding-top: 40px;
     text-align: center;
     width: 100%;
-    margin: -7px 0px 23px;
+    /* margin: -7px 0px 23px; */
 }
 .head {
     font-family: "Roboto",Helvetica,Arial,sans-serif;
@@ -9503,7 +9503,7 @@ table.listview {
     box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, 0.20), 1px 2px 4px 0 rgba(0, 0, 0, .09) !important;
 }
 .icon_home {
-    color: #808080;
+    color: #fff;
     font-size: 20px;
     margin-bottom: 3px;
     padding-right: 9px;
@@ -9648,13 +9648,14 @@ table.listview {
 }
 .content-service-landingpage {
     padding: 0 60px;
+    padding-top: 10px;
 }
 .small_text {
     font-size: 17px;
     font-weight: 100;
 }
 .sidebar {
-    background: url(../../frontend/images/home_slide_5.png) left repeat;
+    background: url(../../frontend/images/banner-landingpage.jpg) left repeat;
 }
 .goidichvu {
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06) !important;
@@ -9708,7 +9709,11 @@ ul.box-lp > li a {
 }
 .img_lp{
     max-height: 100%;
-    width: 75%;
+    width: 100%;
+    object-fit: initial;
+    object-position: center;
+    min-height: 60%;
+    border-radius: 4px;
 }
 .banner_one {
     height: 240px;
@@ -9721,8 +9726,9 @@ ul.box-lp > li a {
 .mainmenu_frontend {
     display: block;
     background: rgba(239, 239, 239, 0.5);
-    border-bottom: 1px solid #cfd8dc;
+    /*border-bottom: 1px solid #cfd8dc;*/
     position: relative;
+    height: 41px;
 }
 .menu_frontend ul {
     list-style: none;
@@ -9767,4 +9773,10 @@ ul.box-lp > li a {
 }
 .colorwhite {
     color: #fff !important;
+}
+.menu_left_item {
+    color: #fff;
+}
+.menu_left_item:hover {
+    color: #0f9d58;
 }

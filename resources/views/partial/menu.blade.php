@@ -130,7 +130,7 @@
                     @endif
                     @if(Auth::user()->hasRole(['editor','admin']))
                         @permission('company')
-                        <li><a href="{{route('company.index')}}"><i class="fa fa-university"></i> Quản lý công ty </a></li>
+                        <li><a href="{{route('company.index')}}"><i class="fa fa-industry"></i> Quản lý công ty </a></li>
                         @endpermission
                     @endif
 
@@ -166,6 +166,16 @@
                         <ul class="nav child_menu">
                             <li><a href="{{route('driver.index')}}">Thông tin tài xế</a></li>
                             <li><a href="{{route('driver.create')}}">Tạo mới</a></li>
+                        </ul>
+                    </li>
+                    @endpermission
+                    @permission('help-menu')
+                    <li><a><i class="fa fa-life-ring"></i>Menu trợ giúp <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('help-menu.index')}}">Nhóm tin hỗ trợ</a></li>
+                            @permission('help-menu-content')
+                            <li><a href="{{route('help-menu-content.index')}}">Danh sách tin hỗ trợ</a></li>
+                            @endpermission
                         </ul>
                     </li>
                     @endpermission

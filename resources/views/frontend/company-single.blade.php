@@ -2,8 +2,8 @@
 @section('title', 'Thông tin Công ty')
 @section('description','Thông tin Công ty')
 @section('content')
-<div class="secondary_page_wrapper">
-    <div class="container">
+<div class="secondary_page_wrapper col-md-12 col-sm-12">
+    <div class="container col-md-12 col-sm-12">
         <div class="col-xs-12 col-sm-3 col-md-3" style="padding-top: 20px;">
             <!-- <div class="panel panel-default">
                 <div class="panel-heading" style="padding-left: 23px;">

@@ -4,9 +4,9 @@
 
 @section('content')
 			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
-			<div class="page_wrapper">
+			<div class="page_wrapper col-md-12 col-sm-12">
 
-				<div class="container">
+				<div class="container col-md-12 col-sm-12">
 
 					<div class="section_offset" style="margin-bottom:0px;">
 
@@ -119,7 +119,7 @@
 
 															<a href="#" style="font-size: 16px;">{{$product->title}}</a>
 															<div class="kho_info clearfix">
-																<a href="#" class="alignleft" style="width: 70px;">
+																<a href="#" class="alignleft" style="">
 																	@if($product->levelKho == 1)
 																		<img src="{{url('/images')}}/level1.png" alt="">
 																	@elseif($product->levelKho == 2)
@@ -271,7 +271,7 @@
 																	<a href="#" class="clearfix">{{$product->title}}</a>
 
 																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="width: 70px;">
+																		<a href="#" class="alignleft" style="">
 																		@if($product->levelKho == 1)
 																			<img src="{{url('/images')}}/level1.png" alt="">
 																		@elseif($product->levelKho == 2)
@@ -343,7 +343,7 @@
 
 																<a href="#">{{$product->title}}</a>
 																<div class="kho_info clearfix">
-																	<a href="#" class="alignleft" style="width: 70px;">
+																	<a href="#" class="alignleft" style="">
 																		@if($product->levelKho == 1)
 																			<img src="{{url('/images')}}/level1.png" alt="">
 																		@elseif($product->levelKho == 2)
