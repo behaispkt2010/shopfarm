@@ -12,15 +12,34 @@
         </form>
         
     </div>
+    <div class="support_menu">
+        <div class="specialist-user">
+            <a href="{{url('/')}}">
+                <img src="{{asset('frontend/images/specialist-user.png')}}" style="" class="img_icon_header_hp">
+            </a>
+            <div class="info_header_hp">
+                Hỗ trợ <br>0944 619 493
+            </div>
+        </div>
+        <div class="check-order">
+
+            <a href="{{url('/')}}">
+                <img src="{{asset('frontend/images/check_order.png')}}" class="img_icon_header_hp">
+            </a>
+            <div class="info_header_hp">
+                <a href="{{url('/')}}">Kiểm tra <br>đơn hàng</a>
+            </div>
+        </div>
+    </div>
     <ul class="box-manage">
         @if(( !Auth::check()))
-                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG TIN MUA BÁN</a></li>
+                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG CƠ HỘI</a></li>
                 <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/login')}}" data-modal-url="{{url('/login')}}">ĐĂNG NHẬP </a></li>
                 <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/register')}}" >ĐĂNG KÝ</a></li>
         @else
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                         aria-expanded="false" style="color: #000; line-height: 54px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>
-            <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG TIN MUA BÁN</a></li>            
+            <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG CƠ HỘI</a></li>            
             <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 9%; right: 0px;">
                 <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
                         <i class="fa fa-info-circle pull-right"></i>Tài khoản
@@ -95,6 +114,7 @@
                                     <li><a href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
                                     <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
                                     <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                                    <li><a href="{{url('/blogs')}}"><i class="material-icons">chat</i> Blogs</a></li>
                                     <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                                 </ul>
                             </div>
@@ -124,13 +144,14 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
                 <div class="clear"></div>
-                <ul class="nav side-menu" style="background-color: #00695c;">
+                <ul class="nav side-menu" style="background-color: #efefef;">
                     <li><a class="menu_left_item" href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
                     <li><a class="menu_left_item" href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
                     <li><a class="menu_left_item" href="#"><i class="material-icons icon_home">share</i> Group</a></li>
                     <li><a class="menu_left_item" href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
                     <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
                     <li><a class="menu_left_item" href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                    <li><a class="menu_left_item" href="{{url('/blogs')}}"><i class="material-icons icon_home">chat</i> Blogs</a></li>
                     <li><a class="menu_left_item" href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                 </ul>
             </div>
@@ -146,8 +167,8 @@
         <div class="search_advance">
             <div class=""> Tìm kiếm nâng cao </div>
             <form action="{{ url('/') }}" class="clearfix" method="get" style="font-weight: 300;">
-                <div class="x_panel">
-                    <div class="wrapper-content mt20">
+                <div class="x_panel search_advance_content">
+                    <div class="wrapper-content mt20 ">
                         <div class="pd-all-20 border-top-title-main">
                             <div class="form-group">
                                 <div class="form-group">
@@ -168,9 +189,9 @@
                                 <div class="form-group">
                                     <select id="select-levelkho" name="capkho" class="form-control" data-placeholder="Cấp kho">
                                         <option></option>
-                                        <option value="1">Cấp 1</option>
-                                        <option value="2">Cấp 2</option>
-                                        <option value="3">Cấp 3</option>
+                                        <option value="1">Cơ bản</option>
+                                        <option value="2">Tiềm năng</option>
+                                        <option value="3">Uy tín</option>
                                     </select>
                                 </div>
                                 <input type="text" id="keyword" onkeydown="this.style.color = '#333';" onclick="this.value = '';" value="" placeholder="Nhập thông tin cần tìm" name="search" class="textsearch">
@@ -183,14 +204,14 @@
         </div>
         <div class="clearfix"></div>
         <div class="banner_qc">
-            <input type="hidden" name="heightMain" class="heightMain" value="">
-            <input type="hidden" name="heightBanner" class="heightBanner" value="">
-
-            @for($i = 0; $i < 15; $i++)
+            
             <div class="banner_one">
-                 @include('frontend.panner.home-panner-sidebar-1')
+                @include('frontend.panner.home-panner-left-1')
+                @include('frontend.panner.home-panner-left-2')
+                @include('frontend.panner.home-panner-left-3')
+                
             </div>
-            @endfor
+            
         </div>
     </div>
 </div>
@@ -232,7 +253,7 @@
 
             <div class="modal-body">
                 <div class="row">
-                        <input type="text" name="code-order" placeholder="vui lòng nhập mã đơn hàng">
+                        <input type="text" name="code-order" placeholder="Vui lòng nhập mã đơn hàng">
 
                 </div>
             </div>

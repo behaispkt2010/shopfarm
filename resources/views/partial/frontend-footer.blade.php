@@ -155,14 +155,14 @@
 		</div>
 	</div>
 	<hr>
-	<div class="footer_section">
+	<!-- <div class="footer_section">
 		<div class="container">
 			<div class="row">
 				<p style="text-align:center;">Đăng ký chủ kho tại đây <a href="{{url('/resisterWareHouse')}}" class="btn btn-raised btn-primary btn-xs transformUppercase" style="background: #0f9d58;">Đăng ký</a></p>
 			</div>
 		</div>
 	</div>
-	<hr>
+	<hr> -->
 	<div class="footer_section_3 align_center">
 		<div class="container text-center">
 			<p class="copyright">&copy; 2017 <a href="../html-fronend/index.html">Nông sản tự nhiên</a>. All Rights Reserved.</p>

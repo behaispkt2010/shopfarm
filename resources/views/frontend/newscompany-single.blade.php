@@ -54,7 +54,7 @@
 				                        </div>
 				                        <div class="posting-box">
 				                        <div class="title"><i class="icon ca-ca-infor"></i>Thông tin đơn hàng</div>
-				                            <div class="col-md-9">
+				                            <div class="col-md-9 col-sm-9">
 					                            <table class="listview">
 					                                <tbody>
 						                                <tr>
@@ -80,7 +80,7 @@
 					                            	</tbody>
 					                            </table>
 											</div>
-											<div class="col-md-3">
+											<div class="col-md-3 col-sm-3">
 												<figure>
 								                    <span><img style="" class="img_newsdetail" alt="" src="@if (!empty($arrNewsCompany->image)){{url('/').$arrNewsCompany->image}} @else {{asset('/images/8.png')}} @endif"></span>
 								                </figure>
@@ -88,68 +88,72 @@
 				                        </div>
 				                        <div class="posting-box">
 				                        <div class="title"><i class="icon ca-ca-infor"></i>Yêu cầu đơn hàng</div>
-				                            <table class="listview">
-				                                <tbody>
-					                                <tr>
-					                                    <td class="left">Mô tả</td>
-					                                    <td class="right">{!! $arrNewsCompany->content !!}</td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Yêu cầu chất lượng:</td>
-					                                    <td class="right">{!! $arrNewsCompany->require !!}</td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Hình thức thanh toán:</td>
-					                                    <td class="right">@if ($arrNewsCompany->type_pay == 0) Thanh toán tiền mặt khi nhận hàng @else Chuyển khoản ngân hàng @endif</td>
-					                                </tr>
-				                            	</tbody>
-				                            </table>
+				                            <div class="col-md-12 col-sm-12">
+					                            <table class="listview">
+					                                <tbody>
+						                                <tr>
+						                                    <td class="left">Mô tả</td>
+						                                    <td class="right">{!! $arrNewsCompany->content !!}</td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Yêu cầu chất lượng:</td>
+						                                    <td class="right">{!! $arrNewsCompany->require !!}</td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Hình thức thanh toán:</td>
+						                                    <td class="right">@if ($arrNewsCompany->type_pay == 0) Thanh toán tiền mặt khi nhận hàng @else Chuyển khoản ngân hàng @endif</td>
+						                                </tr>
+					                            	</tbody>
+					                            </table>
+					                        </div>
 				                        </div>  
 				                        <div class="posting-box">
 				                        	<div class="title"><i class="icon ca-ca-infor"></i>Hướng dẫn nhận đơn hàng</div>
-				                            <table id="my_company" class="listview">
-				                                <tbody>
-				                                @if (( !Auth::check()))
-					                                <tr>                        
-					                                    <td class="left">Người liên hệ</td><td class="right required_login"><a href="#">Đăng nhập để xem thông tin</a></td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Địa chỉ</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Số điện thoại</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Email</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
-					                                </tr>
-				                                @elseif (\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
-													<tr>                        
-					                                    <td class="left">Người liên hệ</td><td class="right "><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Địa chỉ</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Số điện thoại</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Email</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
-					                                </tr>
-				                                @else
-				                                	<tr>                        
-					                                    <td class="left">Người liên hệ</td><td class="right"><b id="">{{ $arrNewsCompany->namecompany }}</b></td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Địa chỉ</td><td class="right" id="">{{ $arrNewsCompany->address }}</td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Số điện thoại</td><td class="right" id="">{{ $arrNewsCompany->phone_number }}</td>
-					                                </tr>
-					                                <tr>
-					                                    <td class="left">Email</td><td class="right" id="">{{ $arrNewsCompany->email }}</td>
-					                                </tr>
-				                                @endif
-				                            </tbody></table>
+				                        	<div class="col-md-12 col-sm-12">
+					                            <table id="my_company" class="listview">
+					                                <tbody>
+					                                @if (( !Auth::check()))
+						                                <tr>                        
+						                                    <td class="left">Người liên hệ</td><td class="right required_login"><a href="#">Đăng nhập để xem thông tin</a></td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Địa chỉ</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Số điện thoại</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Email</td><td class="right required_login" id=""><a href="#">Đăng nhập để xem thông tin</a></td>
+						                                </tr>
+					                                @elseif (\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
+														<tr>                        
+						                                    <td class="left">Người liên hệ</td><td class="right "><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Địa chỉ</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Số điện thoại</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Email</td><td class="right " id=""><a href="#">Vui lòng liên hệ ADMIN để xem thông tin</a></td>
+						                                </tr>
+					                                @else
+					                                	<tr>                        
+						                                    <td class="left">Người liên hệ</td><td class="right"><b id="">{{ $arrNewsCompany->namecompany }}</b></td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Địa chỉ</td><td class="right" id="">{{ $arrNewsCompany->address }}</td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Số điện thoại</td><td class="right" id="">{{ $arrNewsCompany->phone_number }}</td>
+						                                </tr>
+						                                <tr>
+						                                    <td class="left">Email</td><td class="right" id="">{{ $arrNewsCompany->email }}</td>
+						                                </tr>
+					                                @endif
+					                            </tbody></table>
+					                        </div>
 				                        </div>
 									</div>
 								</div>
@@ -216,7 +220,7 @@
 	                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
 	                                        </div>
 											<div class="kho_info clearfix">
-												<a href="#" class="alignleft" style="width: 70px;margin-right: 20px;">
+												<a href="#" class="alignleft" style="margin-right: 20px;">
 													@if($itemAllWareHouseDeXuat->level == 1)
 														<img src="{{url('/images')}}/level1.png" alt="">
 													@elseif($itemAllWareHouseDeXuat->level == 2)
@@ -227,7 +231,7 @@
 														<img src="{{url('/images')}}/level0.png" alt="">
 													@endif
 												</a>
-												<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
+												<a href="#" class="alignright" style="margin-right: 8px;">
 													@if($itemAllWareHouseDeXuat->confirm_kho == 1)
 														<img src="{{url('/images')}}/xacthuc.png" alt="">
 													@else
@@ -280,7 +284,7 @@
 
 										</div>
 										<div class="posting-box">
-				                        <div class="title"><i class="icon ca-ca-infor"></i>Thông tin đơn hàng</div>
+				                        <div class="title">Thông tin đơn hàng</div>
 				                            <table class="listview">
 				                                <tbody>
 					                                <tr>
@@ -307,7 +311,7 @@
 				                            </table>
 				                        </div>
 				                        <div class="posting-box">
-				                        <div class="title"><i class="icon ca-ca-infor"></i>Yêu cầu đơn hàng</div>
+				                        <div class="title">Yêu cầu đơn hàng</div>
 				                            <table class="listview">
 				                                <tbody>
 					                                <tr>
@@ -326,7 +330,7 @@
 				                            </table>
 				                        </div>  
 				                        <div class="posting-box">
-				                        	<div class="title"><i class="icon ca-ca-infor"></i>Hướng dẫn nhận đơn hàng</div>
+				                        	<div class="title">Hướng dẫn nhận đơn hàng</div>
 				                            <table id="my_company" class="listview">
 				                                <tbody>
 				                                <tr>                        

@@ -1,4 +1,4 @@
-<header class="hidden-xs">
+<div class="hidden-xs header_landingpage">
     <div class="logo">
         <a href="{{url('/')}}">
             <img src="{{asset('frontend/images/nosago1.png')}}" class="img_logo_front">
@@ -31,16 +31,16 @@
             </div>
         </div>     -->
     </div>
-</header>
+</div>
 
 
 @section('add-script')
 <script type="text/javascript">
     $(window).bind('scroll', function () {
         if ($(window).scrollTop() > 50) {
-            $('header').addClass('after_scroll_fixed');
+            $('.header_landingpage').addClass('after_scroll_fixed');
         } else {
-            $('header').removeClass('after_scroll_fixed');
+            $('.header_landingpage').removeClass('after_scroll_fixed');
         }
     });
 </script>

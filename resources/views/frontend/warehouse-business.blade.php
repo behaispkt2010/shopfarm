@@ -40,7 +40,7 @@
 																	<img src="{{url('/images')}}/level0.png" alt="">
 																@endif
 															</a>
-															<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
+															<a href="#" class="alignright" style="margin-right: 8px;">
 																@if($itemAllWareHouse->confirm_kho == 1)
 																	<img src="{{url('/images')}}/xacthuc.png" alt="">
 																@else

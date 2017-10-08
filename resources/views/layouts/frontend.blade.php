@@ -13,7 +13,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 	<div class="wide_layout">
 		@include('partial.frontend-menu')
-		<div class="col-md-10 col-sm-10" style="padding-left: 0;">
+		<div class="col-md-10 col-sm-10" style="padding: 0;">
 			<div class="right_col" role="main">
 				@yield('content')
 			</div>

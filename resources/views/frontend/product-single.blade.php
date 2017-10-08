@@ -186,7 +186,7 @@
 														<img src="{{url('/images')}}/level3.png" alt="">
 													@endif
 												</a>
-												<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
+												<a href="#" class="alignright" style="margin-right: 8px;">
 													@if($product->confirm_kho == 1)
 														<img src="{{url('/images')}}/xacthuc.png" alt="">
 													@else
@@ -461,7 +461,7 @@
 				                                                        <img src="{{url('/images')}}/level0.png" alt="">
 				                                                    @endif
 				                                                    </a>
-				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    <a href="#" class="alignleft" style="">
 				                                                        @if($product->confirm_kho == 1)
 				                                                            <img src="{{url('/images')}}/xacthuc.png" alt="">
 				                                                        @else
@@ -509,7 +509,7 @@
 				                                                <a href="#" class="clearfix">{{$product->title}}</a>
 
 				                                                <div class="kho_info clearfix">
-				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    <a href="#" class="alignleft" style="">
 				                                                    @if($product->levelKho == 1)
 				                                                        <img src="{{url('/images')}}/level1.png" alt="">
 				                                                    @elseif($product->levelKho == 2)
@@ -520,7 +520,7 @@
 				                                                        <img src="{{url('/images')}}/level0.png" alt="">
 				                                                    @endif
 				                                                    </a>
-				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    <a href="#" class="alignleft" style="">
 				                                                        @if($product->confirm_kho == 1)
 				                                                            <img src="{{url('/images')}}/xacthuc.png" alt="">
 				                                                        @else
@@ -568,7 +568,7 @@
 				                                                <a href="#" class="clearfix">{{$product->title}}</a>
 
 				                                                <div class="kho_info clearfix">
-				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    <a href="#" class="alignleft" style="">
 				                                                    @if($product->levelKho == 1)
 				                                                        <img src="{{url('/images')}}/level1.png" alt="">
 				                                                    @elseif($product->levelKho == 2)
@@ -579,7 +579,7 @@
 				                                                        <img src="{{url('/images')}}/level0.png" alt="">
 				                                                    @endif
 				                                                    </a>
-				                                                    <a href="#" class="alignleft" style="width: 70px;">
+				                                                    <a href="#" class="alignleft" style="">
 				                                                        @if($product->confirm_kho == 1)
 				                                                            <img src="{{url('/images')}}/xacthuc.png" alt="">
 				                                                        @else

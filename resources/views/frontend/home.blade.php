@@ -8,10 +8,10 @@
 					<div class="box_headder" style="margin-bottom:0px;">
 						<div class="row col-md-12 col-xs-12 col-sm-12" style="height: 220px;">
 							<div class="head">
-								Cộng đồng kết nối nhu cầu nông sản
+								Mạng lưới kho nông sản Việt Nam
 							</div>
 							<div class="foot">
-								Tìm nguồn hàng chất lượng và uy tín ...
+								Kết nối nguồn hàng chất lượng và đối tác uy tín
 							</div>
 						</div>
 						<!-- <div class="row">
@@ -63,7 +63,7 @@
 									<h2 class="text-center" style="text-align: center">Không tìm thấy dữ liệu</h2>
 								@endif
 								<div class="bottom_box load_more">
-									<a href="{{ url('/company-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllNewsCompany)-50) < 0 ) 0 @else hơn {{count($getAllNewsCompany)-50}} @endif cơ hội mua bán)</label>
+									<a href="{{ url('/company-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label class="viewmore">(Còn @if ((count($getAllNewsCompany)-50) < 0 ) 0 @else hơn {{count($getAllNewsCompany)-50}} @endif cơ hội mua bán)</label>
 								</div>
 							</div>
 							<br>
@@ -114,7 +114,7 @@
 																				<img src="{{url('/images')}}/level0.png" alt="">
 																			@endif
 																		</a>
-																		<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
+																		<a href="#" class="alignright" style="margin-right: 8px;">
 																			@if($itemAllWareHouseDeXuat->confirm_kho == 1)
 																				<img src="{{url('/images')}}/xacthuc.png" alt="">
 																			@else
@@ -140,7 +140,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseDeXuat)-50)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-50}} @endif nhà cung cấp)</label>
+												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label class="viewmore">(Còn @if ((count($getAllWareHouseDeXuat)-50)< 0 ) 0 @else hơn {{count($getAllWareHouseDeXuat)-50}} @endif nhà cung cấp)</label>
 											</div>
 										</div>
 										<div id="tab-2" class="tab_container">
@@ -178,7 +178,7 @@
 																				<img src="{{url('/images')}}/level0.png" alt="">
 																			@endif
 																		</a>
-																		<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
+																		<a href="#" class="alignright" style="margin-right: 8px;">
 																			@if($itemAllWareHouseXemNhieu->confirm_kho == 1)
 																				<img src="{{url('/images')}}/xacthuc.png" alt="">
 																			@else
@@ -200,7 +200,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseXemNhieu)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-50}} @endif nhà cung cấp)</label>
+												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label class="viewmore">(Còn @if ((count($getAllWareHouseXemNhieu)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseXemNhieu)-50}} @endif nhà cung cấp)</label>
 											</div>
 										</div>
 										<div id="tab-3" class="tab_container">
@@ -238,7 +238,7 @@
 																				<img src="{{url('/images')}}/level0.png" alt="">
 																			@endif
 																		</a>
-																		<a href="#" class="alignright" style="width: 70px;margin-right: 8px;">
+																		<a href="#" class="alignright" style="margin-right: 8px;">
 																			@if($itemAllWareHouseUyTin->confirm_kho == 1)
 																				<img src="{{url('/images')}}/xacthuc.png" alt="">
 																			@else
@@ -260,7 +260,7 @@
 											@endif
 											</div>
 											<div class="bottom_box load_more">
-												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label style="padding-top: 18px;">(Còn @if ((count($getAllWareHouseUyTin)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-50}} @endif nhà cung cấp)</label>
+												<a href="{{ url('/warehouse-business') }}" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label class="viewmore">(Còn @if ((count($getAllWareHouseUyTin)-50) < 0 ) 0 @else hơn {{count($getAllWareHouseUyTin)-50}} @endif nhà cung cấp)</label>
 											</div>
 										</div>
 									</div>
