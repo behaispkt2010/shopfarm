@@ -7108,7 +7108,7 @@ table.dtp-picker-days thead {
     right: 26px;
 }
 
-mediaa (max-width: 991px) {
+@media (max-width: 991px) {
     .value-das {
         font-size: 20px;
         font-weight: 400;

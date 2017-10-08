@@ -25,11 +25,24 @@
                 <a class="" href="{{ url('/register') }}">Đăng ký</a>
             </li>
         </ul>
+        <!-- <div class="tab-content-landingpage" id="tabsLandingpage">
+            <div id="gioithieu" class="tab-pane fade in active">
+                
+            </div>
+        </div>     -->
     </div>
 </header>
 
 
 @section('add-script')
-
+<script type="text/javascript">
+    $(window).bind('scroll', function () {
+        if ($(window).scrollTop() > 50) {
+            $('header').addClass('after_scroll_fixed');
+        } else {
+            $('header').removeClass('after_scroll_fixed');
+        }
+    });
+</script>
 
 @endsection

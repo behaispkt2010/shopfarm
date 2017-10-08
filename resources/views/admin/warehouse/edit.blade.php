@@ -172,8 +172,7 @@
                                 <li>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="code" class="col-md-3 col-xs-12 control-label">MS
-                                                thuế</label>
+                                            <label for="code" class="col-md-3 col-xs-12 control-label">MS thuế</label>
 
                                             <div class="col-md-9 col-xs-12">
                                                 <input type="number"  class="form-control" disabled name="mst" value="{{$wareHouse->mst}}"/>
@@ -1060,15 +1059,13 @@
     </script>
     <!-- /jQuery Tags Input -->
 
-    <script src="{{asset('js/selectize.js')}}"></script>
+    
     <script type="text/javascript" src="{{asset('plugin/moment/min/moment-with-locales.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
     <!-- Select2 -->
+    <script src="{{asset('js/selectize.js')}}"></script>
+    <!-- #province, #category_warehouse_id, #user_test, -->
     <script>
-        $('#province, #category_warehouse_id').selectize({
-            create: true,
-            sortField: 'text'
-        });
         $('#time_upgrade_bonus, #time_upgrade_level, #time_confirm_kho, #time_confirm_kho_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_upgrade_level, #time_request_quangcao, #month_required, #time_request_confirm_kho').selectize({create: true,});
     </script>
     <script type="text/javascript">

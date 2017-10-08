@@ -1,11 +1,12 @@
 @extends('layouts.admin')
-@section('title', 'Chủ kho')
-@section('pageHeader','Chủ kho')
-@section('detailHeader','thông tin')
-@section('content')
+@section('title', 'Công ty')
+@section('pageHeader','Công ty')
+@section('detailHeader','Công ty')
+
 @section('add_styles')
     <link href="{{asset('css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
 @endsection
+@section('content')
     <br>
     <div class="row">
         <form action="{{route('company.store')}}" method="POST" enctype="multipart/form-data">
@@ -214,13 +215,10 @@
     <script src="{{asset('js/selectize.js')}}"></script>
     <!-- Select2 -->
     <script>
-        $('select').selectize({
+        /*$('select').selectize({
             create: true,
             sortField: 'text'
-        });
+        });*/
     </script>
-{{--<script>--}}
-    {{--$('#select-kh,#t,#q,.select-payment,#select-product').selectize({});--}}
-{{--</script>--}}
 
 @endsection

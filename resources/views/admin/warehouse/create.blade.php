@@ -2,10 +2,11 @@
 @section('title', 'Chủ kho')
 @section('pageHeader','Chủ kho')
 @section('detailHeader','thông tin')
-@section('content')
+
 @section('add_styles')
     <link href="{{asset('css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
 @endsection
+@section('content')
     <br>
     <div class="row">
         <form action="{{route('warehouse.store')}}" method="POST" enctype="multipart/form-data">
@@ -150,8 +151,8 @@
 
                                             <div class="col-md-9 col-xs-12">
                                                 <div class="form-group">
-                                                    <select id="t" class="form-control" required name="province">
-                                                        <option value="0">Chọn khu vực</option>
+                                                    <select id="t" class="form-control" required name="province" data-placeholder="Tỉnh/Thành Phố">
+                                                        <option value="0"></option>
                                                         @foreach($province as $item)
                                                             <option value="{{$item->provinceid}}">{{$item->name}}</option>
                                                         @endforeach
@@ -256,10 +257,12 @@
     
     <!-- Select2 -->
     <script>
-        $('select').selectize({
+        /*$('select').selectize({
             create: true,
             sortField: 'text'
-        });
+        });*/
     </script>
-
+    <!-- <script>
+        $('#select-kh,#t,#q,.select-payment,#select-product').selectize({});
+    </script> -->
 @endsection

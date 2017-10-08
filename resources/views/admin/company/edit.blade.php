@@ -142,7 +142,7 @@
 
                                             <div class="col-md-9 col-xs-12">
                                                 <div class="form-group">
-                                                    <select id="province" class="form-control" required name="province">
+                                                    <select id="provinceCom" class="form-control" required name="province">
                                                         <option value="0">Chọn khu vực</option>
                                                         @foreach($province as $item)
                                                             <option value="{{$item->provinceid}}" @if($company->province == $item->provinceid) selected @endif>{{$item->name}}</option>
@@ -1047,12 +1047,9 @@
     <script type="text/javascript" src="{{asset('plugin/moment/min/moment-with-locales.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
     <!-- Select2 -->
+    <!-- #provinceCom, #category_company_id, -->
     <script>
-        $('#province, #category_company_id').selectize({
-            create: true,
-            sortField: 'text'
-        });
-        $('#time_upgrade_bonus, #time_confirm, #time_confirm_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_quangcao, #month_required, #time_request_confirm').selectize({create: true,});
+        $('#time_upgrade_bonus,  #time_confirm, #time_confirm_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_quangcao, #month_required, #time_request_confirm').selectize({create: true,});
     </script>
     <script type="text/javascript">
         $(document).ready(function () {

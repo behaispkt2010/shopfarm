@@ -5044,7 +5044,7 @@ a[class*="fancybox_item"]:hover > .helper_icon {
 
 .seller_info .photo {
     margin-right: 15px;
-    width: 60px;
+    /* width: 60px; */
 }
 
 .kho_info {
@@ -9007,6 +9007,7 @@ header {
     display: block;
     clear: both;
     border-bottom: 1px solid #cfd8dc;
+    position: fixed;
 }
 .logo {
     float: left;
@@ -9779,4 +9780,13 @@ ul.box-lp > li a {
 }
 .menu_left_item:hover {
     color: #0f9d58;
+}
+.after_scroll_fixed {
+    background-color: #fff;
+    box-shadow: 2px 2px 4px rgba(83,100,122,.35);
+    transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    -o-transition-duration: .3s;
+    -moz-transition-duration: .3s;
+    z-index: 9999;
 }
