@@ -60,7 +60,12 @@
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
                                                 <li><span style="width: 70px;" class="label-box">Đại diện: </span>{{$itemCompany->name}}</li>
-                                                <li><span style="width: 70px;" class="label-box">Dịch vụ:</span>@if ($itemCompany->confirm == 1)ICON XÁC THỰC @endif @if ($itemCompany->quangcao == 1)icon quảng cáo @endif @if ($itemCompany->user_test == 1)icon trả phí @else icon dung thử @endif</li>
+                                                <li>
+                                                    <span style="width: 70px;" class="label-box">Dịch vụ:</span>
+                                                    @if ($itemCompany->confirm == 1) <img src="{{url('/images')}}/xacthuc.png" alt=""> @endif 
+                                                    @if ($itemCompany->quangcao == 1) <img src="{{url('/images')}}/xacthuc.png" alt=""> @endif 
+                                                    @if ($itemCompany->user_test == 1) <img src="{{url('/images')}}/xacthuc.png" alt=""> @endif
+                                                </li>
                                                 <li><span style="width: 70px;" class="label-box">Cấp phép: </span>{{$itemCompany->created_at->format('d/m/Y')}}</li>
                                             </ul>
                                         </div>
