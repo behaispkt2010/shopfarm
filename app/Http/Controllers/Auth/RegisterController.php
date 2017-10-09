@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'introCode' => $data['introCode'],
             'province' => $data['province'],
             'image' => '/images/user_default.png',
-            'password' => $data['password'],
+            'password' => bcrypt($data['password']),
         ]);
         $user->attachRole(3);
         return $user;

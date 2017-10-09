@@ -16,6 +16,7 @@ use App\Notification;
 use App\Province;
 use App\User;
 use App\WareHouse;
+use App\RoleUser;
 use App\WarehouseImageDetail;
 use Illuminate\Http\Request;
 use DB;
@@ -58,7 +59,7 @@ class WarehouseController extends Controller
             return \Response::json($response);
 
         }
-        $data['password'] = $request->get('new_pass');
+        $data['password'] = bcrypt($request->get('new_pass'));
         $user->update($data);
         $response = array(
             'status' => 'success',
@@ -550,14 +551,28 @@ class WarehouseController extends Controller
             $dataUser['name'] = $request->get('name');
             $dataUser['email'] = $request->get('email');
             $dataUser['phone_number'] = $request->get('phone_number');
-            $dataUser['password'] = $request->get('password');
+            $dataUser['password'] = bcrypt($request->get('password'));
             $dataUser['myIntroCode'] = $myIntroCode;
             if (empty($request->get('password'))) {
                 $dataUser['password'] = "123456";
             }
             $dataUser['image'] = "/images/user_default.png";
-            $user = User::create($dataUser);
-            $user->attachRole(4);
+            $checkExits = count(User::where('email', $request->get('email'))->get());
+            // Log::debug('logHaiTVB.', ['checkExits' => $checkExits]);
+            if ($checkExits == 0) {
+                $user = User::create($dataUser);
+                $user->attachRole(4);
+            } else {
+                $user = User::where('email', $request->get('email'))->first();
+                $checkRole = RoleUser::where('user_id', $user->id)->first();
+                if ($checkRole->role_id == 3) {
+                    $user->update($dataUser);
+                    $user->detachRole(3);
+                    $user->attachRole(4);
+                }
+            }
+            
+            
             $wareHouse = new WareHouse();
             $data = $request->all();
             if ($request->hasFile('image_kho')) {

@@ -44,7 +44,7 @@
 </nav>
 
 <header class="bg-primary text-white sidebar" style="height: 400px;">
-  <div id="gioithieu" class="container text-center" style="margin-top: -40px;">
+  <div id="gioithieu" class="container text-center paddingLandingPage" style="margin-top: -40px;">
     <h1 style="color: #fff;">Mạng lưới kho nông sản Việt Nam</h1>
     <p class="lead">Kết nối nguồn hàng chất lượng và đối tác uy tín</p>
   </div>
@@ -53,7 +53,7 @@
 <div class="">
 <section id="tinhnang" class="bg-light">
   <div class="service" style="height: 500px; background-color: #fff;">
-	<div class="title_lp service_lp_1">Khám phá tính năng <span class="small_text">và hơn thế nữa</span></div>
+	<div class="title_lp service_lp_1 paddingLandingPage">Khám phá tính năng <span class="small_text">và hơn thế nữa</span></div>
 	<div class="row content-service-landingpage">
 		<div class="col-md-4 col-sm-4 service_one">
 			<div class="box_service_one">
@@ -101,7 +101,7 @@
 
 <section id="doitac">
   <div class="company">
-	<div class="title_lp service_lp_2">Đối tác của chúng tôi</div>
+	<div class="title_lp service_lp_2 paddingLandingPage">Đối tác của chúng tôi</div>
 	<div class="content-service-landingpage service_lp_2">
 		<div class="row" style="margin: 0px">
 			<?php $getAllNewsCompany = \App\Company::getCompany(18); 
@@ -131,8 +131,100 @@
 </section>
 <section id="capkho">
   <div class="service-levelkho" style="">
-		<div class="title_lp service_lp_3">Gói dịch vụ</div>
-		<div class="content-service-landingpage">
+		<div class="title_lp service_lp_3 paddingLandingPage">Gói dịch vụ</div>
+		<div class="container">
+			<div class="content-service-landingpage">
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<div class="row">
+						<div class="title_service info_ser">
+							
+						</div>
+						<div class="content_service">
+							<ul>
+								<li>Thống kê tổng quan</li>
+								<li>Quản lí đơn hàng</li>
+								<li>Quản lí khách hàng</li>
+								<li>Quản lí vận chuyển</li>
+								<li>Số lượng sản phẩm</li>
+								<li>Quản lí kho</li>
+								<li>Quản lí sổ quỹ</li>
+								<li>Tối ưu hiển thị</li>
+								<li>Nổi bật</li>
+								<li>Quảng cáo</li>
+								<li>Xác thực kho</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<div class="row col_ser">
+						<div class="title_service detail_ser1">
+							Cơ bản
+						</div>
+						<div class="content_service">
+							<ul>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><p class="service_no">5</p></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<div class="row col_ser">
+						<div class="title_service detail_ser2">
+							Tiềm năng
+						</div>
+						<div class="content_service">
+							<ul>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><p class="service_no">20</p></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/cancel.png')}}" alt="" class="img_ser"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<div class="row col_ser">
+						<div class="title_service detail_ser3">
+							Uy tín
+						</div>
+						<div class="content_service">
+							<ul>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><p class="service_no">Không giới hạn</p></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+								<li><img src="{{asset('frontend/images/checked.png')}}" alt="" class="img_ser"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="content-service-landingpage">
 			<div class="row">
 				<div class="col-md-3 col-sm-3 col-xs-3">
 					<div class="row_service">
@@ -175,12 +267,12 @@
 					</div>	
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </section>
 <section id="dichvu">
   <div class="service-confirm service_lp_4" style="">
-	<div class="title_lp service_lp_4">
+	<div class="title_lp service_lp_4 paddingLandingPage">
 		DÀNH CHO NCC CHUYÊN NGHIỆP
 	</div>
 	<div class="row content-service-landingpage">

@@ -66,6 +66,10 @@ class User  extends Model implements AuthenticatableContract, CanResetPasswordCo
         $this->attributes['password'] = bcrypt($value);
     }*/
 
+    public function checkEmailExits($email) {
+        $user = User::where('email', $email)->get();
+        return count($user);
+    }
 
 
 }

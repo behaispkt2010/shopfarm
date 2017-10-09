@@ -130,6 +130,7 @@ public function AjaxCreateCustomer(UserRequest $request)
         $today = date("Y-m-d_H-i-s");
         $user = new User;
         $data = $request->all();
+        $data['password'] = bcrypt($request->get('password'));
         if(empty($request->get('password'))){
             $data['password'] = "123456";
         }
@@ -212,7 +213,7 @@ public function AjaxCreateCustomer(UserRequest $request)
             $data['email']=$request->get('email');
         }
         if(!empty($request->get('password'))){
-            $data['password']=$request->get('password');
+            $data['password']=bcrypt($request->get('password'));
         }
         $user->update($data);
 

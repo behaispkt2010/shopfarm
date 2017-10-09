@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Company;
 use App\Bank;
+use App\RoleUser;
 use App\CompanyImage;
 use App\CompanyBank;
 use DB;
@@ -96,15 +97,29 @@ class CompanyController extends Controller
             $dataUser['name'] = $request->get('name');
             $dataUser['email'] = $request->get('email');
             $dataUser['phone_number'] = $request->get('phone_number');
-            $dataUser['password'] = $request->get('password');
+            $dataUser['password'] = bcrypt($request->get('password'));
             $dataUser['province'] = $request->get('province');
             $dataUser['myIntroCode'] = $myIntroCode;
             if (empty($request->get('password'))) {
                 $dataUser['password'] = "123456";
             }
             $dataUser['image'] = "/images/user_default.png";
-            $user = User::create($dataUser);
-            $user->attachRole(6);
+            $checkExits = count(User::where('email', $request->get('email'))->get());
+            // Log::debug('logHaiTVB.', ['checkExits' => $checkExits]);
+            if ($checkExits == 0) {
+                $user = User::create($dataUser);
+                $user->attachRole(6);
+            } else {
+                $user = User::where('email', $request->get('email'))->first();
+                $checkRole = RoleUser::where('user_id', $user->id)->first();
+                if ($checkRole->role_id == 3) {
+                    $user->update($dataUser);
+                    $user->detachRole(3);
+                    $user->attachRole(6);
+                }
+            }
+            /*$user = User::create($dataUser);
+            $user->attachRole(6);*/
             $data = $request->all();
             if ($request->hasFile('image_company')) {
                 $data['image_company']  = Util::saveFile($request->file('image_company'), '');
@@ -245,7 +260,7 @@ class CompanyController extends Controller
             return \Response::json($response);
 
         }
-        $data['password'] = $request->get('new_pass');
+        $data['password'] = bcrypt($request->get('new_pass'));
         $user->update($data);
         $response = array(
             'status' => 'success',
