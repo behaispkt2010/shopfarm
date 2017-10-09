@@ -44,17 +44,17 @@
 </nav>
 
 <header class="bg-primary text-white sidebar" style="height: 400px;">
-  <div id="gioithieu" class="container text-center">
-    <h1>Mạng lưới kho nông sản Việt Nam</h1>
+  <div id="gioithieu" class="container text-center" style="margin-top: -40px;">
+    <h1 style="color: #fff;">Mạng lưới kho nông sản Việt Nam</h1>
     <p class="lead">Kết nối nguồn hàng chất lượng và đối tác uy tín</p>
   </div>
 </header>
 
-
+<div class="">
 <section id="tinhnang" class="bg-light">
   <div class="service" style="height: 500px; background-color: #fff;">
 	<div class="title_lp service_lp_1">Khám phá tính năng <span class="small_text">và hơn thế nữa</span></div>
-	<div class="content-service-landingpage">
+	<div class="row content-service-landingpage">
 		<div class="col-md-4 col-sm-4 service_one">
 			<div class="box_service_one">
 				<div class="ic_service">
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="info_service_one">
-				Tự tạo website dễ dàng với hơn 300 mẫu giao diện sẵn có, chuẩn SEO, tối ưu trên di động và còn sở hữu những tính năng bán hàng độc đáo.
+				Tiếp cận mạng lưới đối tác uy tín
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-4 service_one">
@@ -78,7 +78,7 @@
 				</div>
 			</div>
 			<div class="info_service_one">
-				Công cụ hỗ trợ việc bán hàng trên Facebook cực kỳ hiệu quả, Quản lý tất cả comment, inbox, khách hàng, cho đến việc chống cướp khách trên fanpage
+				Quản lí kho toàn diện
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-4 service_one">
@@ -91,12 +91,13 @@
 				</div>
 			</div>
 			<div class="info_service_one">
-				Công cụ phân tích, hỗ trợ kinh doanh trên facebook giúp tối ưu hiệu quả quảng cáo, tăng tỷ lệ chốt đơn và tối đa năng suất làm việc.
+				Phát triển tính năng thiết thực
 			</div>
 		</div>
 	</div>	
 </div>
 </section>
+</div>
 
 <section id="doitac">
   <div class="company">

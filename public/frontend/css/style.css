@@ -9595,7 +9595,7 @@ table.listview {
 .title_lp {
     text-align: center;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
     padding: 50px;
     text-transform: uppercase;
 }
@@ -9610,15 +9610,15 @@ table.listview {
     color: #169f5d;
 }
 .service_lp_2{
-    background-color: #40C4FF;
+    background-color: #0098a6;
     color: #fff;
 }
 .service_lp_3{
-    background-color: #169f5d;
-    color: #fff;
+    background-color: #eee;
+    color: #000;
 }
 .service_lp_4{
-    background-color: #1DE9B6;
+    background-color: #005071;
     color: #fff;
 }
 .service_lp_5{
@@ -9655,13 +9655,14 @@ table.listview {
 .info_service_one {
     padding: 10px;
     text-align: center;
+    font-size: 17px;
 }
 .content-service-landingpage {
     padding: 0 60px;
     padding-top: 10px;
 }
 .small_text {
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 100;
 }
 .sidebar {
@@ -9719,11 +9720,12 @@ ul.box-lp > li a {
 }
 .img_lp{
     max-height: 100%;
-    width: 100%;
+    /*width: 100%;*/
     object-fit: initial;
     object-position: center;
     min-height: 60%;
     border-radius: 4px;
+    padding-left: 15%;
 }
 .banner_one {
     height: 240px;
@@ -9864,4 +9866,13 @@ ul.box-lp > li a {
 .viewmore {
     padding-top: 18px;
     padding-left: 5px;
+}
+@media only screen and (max-width:2000px) and (min-width: 1700px) {
+.row_service {
+    height: 92px;
+}
+.detail_service {    
+    padding-bottom: 31px;
+    line-height: 21px;
+    font-size: 20px;}
 }
