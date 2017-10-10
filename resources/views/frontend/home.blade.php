@@ -72,7 +72,7 @@
 								<h3><a style="color: #0f9d58;" href="{{ url('/warehouse-business') }}">Nhà cung cấp nổi bật</a></h3>
 							</div>
 							<div class="warehouse_list">
-								<div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">
+								<div class="tabs products section_offset animated transparent" data-animation="" data-animation-delay="0">
 									<ul class="tabs_nav clearfix">
 										<li class="tab_bottom"><a href="#tab-1" style="font-size: 16px;">Đề xuất</a></li>
 										<li class="tab_bottom"><a href="#tab-2" style="font-size: 16px;">Xem nhiều</a></li>

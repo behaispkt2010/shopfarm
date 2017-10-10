@@ -81,6 +81,15 @@ $(document).ready(function () {
          // show Modal
          $('#modalCheckOrder').modal('show');
     });
+    $('.btnSendRequest').on('click', function() {
+    	var dichvu = $('.dichvu').val();
+    	var name_user = $('.name_user').val();
+    	var phone_user = $('.phone_user').val();
+    	$.get("/nhan-ho-tro", { dichvu: dichvu, name_user: name_user, phone_user: phone_user })
+    	 .done( function(data){
+			alert('Chúng tôi đã nhận được thông tin từ quý khách, chúng tôi sẽ liên lạc với quý khách để giải đáp thắc mắc của quý khách !!!');
+		});
+    });
 });
 </script>
 <script>

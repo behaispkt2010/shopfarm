@@ -78,4 +78,5 @@ class WareHouse extends Model
         return $getAllWareHouse;
 
     }
+    
 }

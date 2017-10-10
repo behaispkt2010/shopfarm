@@ -196,7 +196,10 @@
 										</div>
 										<div class="wrapper">
 											<a href="{{ url('/shop/'.$product->ware_houses_id) }}"><b>{{$product->nameKho}}</b></a>
-											<p class="seller_category">Chủ kho cấp {{$product->levelKho}}</p>
+											<!-- <p class="seller_category">Chủ kho cấp {{$product->levelKho}}</p> -->
+										</div>
+										<div class="wrapper">
+											<b>{{\App\Util::DayJoinGroup($product->ware_houses_Create)}} ngày cùng nosaGO.com</b>
 										</div>
 										<ul class="seller_stats">
 											<li>
@@ -224,7 +227,7 @@
 						<div class="tabs type_2">
 							<ul class="tabs_nav clearfix">
 								<li><a href="#tab-1">Thông tin chi tiết</a></li>
-								<li><a href="#tab-2">Vận chuyển - Thanh toán</a></li>
+								<li><a href="#tab-2">Tài khản thanh toán</a></li>
 								<li><a href="#tab-3">Đánh giá</a></li>
 							</ul>
 
@@ -232,32 +235,22 @@
 								<div id="tab-1" class="tab_container">
 									{!! $product->content!!}
 								</div>
-								<div id="tab-2" class="tab_container">
-									<div class="tabs-content active" id="tab1" style="display: block;">
-										<p><span style="color: #008000; font-size: 12pt;"><span style="color: #99cc00;"><strong>Hình thức vận chuyển</strong></span>:&nbsp;<br><br><strong>Xe khách | Chành xe</strong><br></span></p>
-										<p><span style="color: #008000; font-size: 12pt;">- Áp dụng số lượng tối thiểu : <strong>300 Kg</strong>&nbsp;</span><br>
-											<span style="color: #008000; font-size: 12pt;">-&nbsp;Phí vận chuyển phụ thuộc Nhà Xe | Chành Xe theo từng khu vực.
-												<br><br><strong>Xe tải</strong><br>- Áp dụng số lượng tối thiểu : <strong>2000 Kg</strong>&nbsp;<br>-&nbsp;Phí vận chuyển phụ thuộc theo từng khu vực.
-											</span>
-										</p>
-									</div>
-									<br><br>
-									<div class="tabs-content " id="tab2" style="display: block;">
-										<p><span style="color: #008000; font-size: 12pt;"><span style="color: #99cc00;"><strong>Hình thức thanh toán</strong></span></span></p>
-										<p><span style="color: #008000; font-size: 12pt;"><br><strong>Đơn hàng đầu tiên</strong></span></p>
-										<p><span style="color: #008000; font-size: 12pt;">Đặt cọc 30 - 50% Giá trị đơn hàng: Giao hàng tận nơi và nhận tiền còn lại&nbsp;qua nhà xe hoặc chuyển khoản.</span></p>
-										<p><span style="color: #008000; font-size: 12pt;"><strong>Đơn hàng thứ 2 trở đi</strong></span></p>
-										<p><span style="color: #008000; font-size: 12pt;">Nhận hàng tận nơi và gửi tiền cho nha xe hoặc chuyển khoản.<br><br>
-												<span style="color: #99cc00;"><strong>Thông tin chuyển khoản:</strong></span><br>
-												+ {{\App\Setting::getValue('chinhanh1')}}<br>
-												Chủ TK: {{\App\Setting::getValue('chutk1')}} <br>Số TK: {{\App\Setting::getValue('stk1')}} <br>
-												+ {{\App\Setting::getValue('chinhanh2')}} <br>
-												Chủ TK: {{\App\Setting::getValue('chutk2')}} <br>Số TK: {{\App\Setting::getValue('stk2')}} <br><br>
-												<span style="color: #ff0000;">
-													Để yên tâm, trước khi chuyển có thể xác nhận thông tin chuyển khoản qua SĐT <strong>{{\App\Setting::getValue('phone')}}</strong> Tín
-												</span>
-											</span></p>
-									</div>
+								<div id="tab-2" class="tab_container" style="font-weight: 400;">
+									<?php $bank = App\BankWareHouse::getBankOfWareHouse($product->ware_houses_id); 
+										  $listBank = count($bank);
+										  $i = 1;
+									?>
+									<p><strong>Thông tin chuyển khoản</strong></p>
+									@foreach($bank as $itemBank)
+										Tài khoản {{$i}} <br>
+										&nbsp;&nbsp; Ngân hàng: {{$itemBank->bankName}} <br>
+										&nbsp;&nbsp; Số tài khoản: {{$itemBank->cardNumber}} <br>
+										&nbsp;&nbsp; Chủ tài khoản: {{$itemBank->cardName}} <br>
+										&nbsp;&nbsp; Chi Nhánh: {{$itemBank->provinceName}} <br>
+										<br>
+										<?php $i++; ?>
+									@endforeach
+									Để yên tâm, trước khi chuyển quý khách có thể xác nhận thông tin chuyển khoản qua số điện thoại {{$product->phoneKho}}
 								</div>
 								<div id="tab-3" class="tab_container">
 									<section class="section_offset">
@@ -418,37 +411,25 @@
 						</div>
 					</div>
 					<div class="section_offset" style="margin-bottom: 10px;">
-
 						<div class="tabs type_2 initialized products">
-
 							<ul class="tabs_nav clearfix">
-
-								<li class="tab_bottom"><a href="#tab-5" style="font-size: 16px;">Sản phẩm có thể bạn thích</a></li>
-								<li class="tab_bottom"><a href="#tab-6" style="font-size: 16px;">Nhà cung cấp có uy tín</a></li>
-								<li class="tab_bottom"><a href="#tab-7" style="font-size: 16px;">Sản phẩm bán chạy</a></li>
-
+								<li class="tab_bottom"><a href="#tab-5" style="font-size: 16px;">Sản phẩm gợi ý</a></li>
+								<li class="tab_bottom"><a href="#tab-6" style="font-size: 16px;">NCC uy tín</a></li>
+								<li class="tab_bottom"><a href="#tab-7" style="font-size: 16px;">Sản phẩm nổi bật</a></li>
 							</ul>
-							
 							<div class="tab_containers_wrap">
-
 								<div id="tab-5" class="tab_container">
 									<div class="table_layout">
 				                        <?php $i=0 ;$j=0?>
 				                        @foreach(\App\Product::getRelatedProduct($product->id,8) as $product)
 				                            @if($i==0)<div class="category_product_row" style="">@endif
 				                                    <div class="col-md-3 col-xs-12 category_product_cell">
-
 				                                        <div class="product_bestselt">
-
 				                                            <div class="image_wrap">
-
 				                                                <a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
-				                                            
 				                                            </div>
 				                                            <div class="description">
-
 				                                                <a href="#" class="clearfix">{{$product->title}}</a>
-
 				                                                <div class="kho_info clearfix">
 				                                                    <a href="#" class="alignleft" style="">
 				                                                    @if($product->levelKho == 1)

@@ -209,7 +209,7 @@
             $(this).parent().parent().find('.btn-update').css('display','inline-block');
         });*/
         $('.info-kho .fa-edit').click(function(){
-            $(this).parent().parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().parent().parent().find('input').removeAttr('disabled');
             $(this).parent().parent().find('.btn-update').css('display','inline-block');
         });
         $('.info-kho,.info-warehouse').click(function () {

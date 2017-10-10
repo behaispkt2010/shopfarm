@@ -203,7 +203,9 @@ Route::get('/blogs', 'Frontend\BlogController@index');
 Route::get('/blog/{cateSlug}/{productSlug}', 'Frontend\BlogController@SingleBlog');
 
 Route::get('/contact','Frontend\PageController@Contact');
-Route::Post('/contact','Frontend\PageController@PostContact');
+Route::post('/contact','Frontend\PageController@PostContact');
+
+Route::get('/nhan-ho-tro','Frontend\PageController@SendHelpUser');
 
 //thông tin chủ kho
 Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');

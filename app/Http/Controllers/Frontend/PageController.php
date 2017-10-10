@@ -41,26 +41,21 @@ class PageController extends Controller
         return view('frontend.contact');
     }
     public function PostContact(Request $request){
-
-//        if(!empty(Request::isMethod('post'))) {
-
-            $data = [
-                "name" => $request->get('cf_name'),
-                "email" => $request->get('cf_email'),
-                "phone" => $request->get('cf_order_number'),
-                "comment" => $request->get('cf_message'),
-//                "link" => "từ trang liên hệ",
-                "subject" => "Khách hàng cần tư vấn"
-            ];
-            $to = "behaispkt2010@gmail.com";
-            Mail::to($to)->send(new Contact($data));
-            $dataNotify['keyname'] = Util::$contact;
-            $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
-            $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần được hỗ trợ";
-            $dataNotify['author_id'] = 1;
-            $dataNotify['roleview'] = Util::$roleviewAdmin;
-            Notification::create($dataNotify);
-//        }
+        $data = [
+            "name" => $request->get('cf_name'),
+            "email" => $request->get('cf_email'),
+            "phone" => $request->get('cf_order_number'),
+            "comment" => $request->get('cf_message'),
+            "subject" => "Khách hàng cần tư vấn"
+        ];
+        $to = Util::$mailadmin;
+        Mail::to($to)->send(new Contact($data));
+        $dataNotify['keyname'] = Util::$contact;
+        $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
+        $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần được hỗ trợ";
+        $dataNotify['author_id'] = 1;
+        $dataNotify['roleview'] = Util::$roleviewAdmin;
+        Notification::create($dataNotify);
         return redirect('/contact')->with('success','success');
     }
     public function GetResisterWareHouse(){
@@ -74,7 +69,7 @@ class PageController extends Controller
             "comment" => $request->get('cf_message'),
             "subject" => "Khách hàng cần đăng ký Chủ kho"
         ];
-        $to = "behaispkt2010@gmail.com";
+        $to = Util::$mailadmin;
         $dataNotify['keyname'] = Util::$dangkychukho;
         $dataNotify['title'] = "Chủ kho đăng kí mới";
         $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho";
@@ -224,5 +219,28 @@ class PageController extends Controller
         ];
         return view('frontend.warehouse-level',$data);
 
+    }
+    public function SendHelpUser(Request $request){
+        $dichvu = $request->get('dichvu');
+        if ($dichvu == "nhan_ho_tro_upgrade") $subject = "Khách hàng cần được tư vấn dịch vụ Nâng cấp kho";
+        elseif ($dichvu == "nhan_ho_tro_quangcao") $subject = "Khách hàng cần được tư vấn dịch vụ Quảng cáo";
+        elseif ($dichvu == "nhan_ho_tro_confirm") $subject = "Khách hàng cần được tư vấn dịch vụ Xác thực kho";
+        
+        $data = [
+            "name" => $request->get('name_user'),
+            "email" => "",
+            "phone" => $request->get('phone_user'),
+            "subject" => $subject,
+            "comment" => $subject
+        ];
+        $to = Util::$mailadmin;
+        Mail::to($to)->send(new Contact($data));
+        $dataNotify['keyname'] = Util::$contact;
+        $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
+        $dataNotify['content'] = $subject. ' : ' .$request->get('name_user').' .SDT: ' .$request->get('phone_user');
+        $dataNotify['author_id'] = 1;
+        $dataNotify['roleview'] = Util::$roleviewAdmin;
+        Notification::create($dataNotify);
+        return redirect('/')->with('success','success');
     }
 }

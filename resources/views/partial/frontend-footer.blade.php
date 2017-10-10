@@ -1,6 +1,5 @@
 
 <footer id="footer">
-	<hr>
 	<div class="row">
 		<div class="mega_menu_footer">
 			{{ \App\CategoryProduct::get_cate_frontend_footer() }}
@@ -17,6 +16,7 @@
 							<li><a href="#">Giới thiệu</a></li>
 							<li><a href="#">Dịch vụ</a></li>
 							<li><a href="#">Liên hệ</a></li>
+							<li><a href="#">Tìm cộng sự</a></li>
 							<li><a href="#">Điều khoản</a></li>
 							<li><a href="#">Chính sách bảo mật</a></li>
 						</ul>
@@ -27,6 +27,7 @@
 				            <li><a href="#">Giới thiệu</a></li>
 							<li><a href="#">Dịch vụ</a></li>
 							<li><a href="#">Liên hệ</a></li>
+							<li><a href="#">Tìm cộng sự</a></li>
 							<li><a href="#">Điều khoản</a></li>
 							<li><a href="#">Chính sách bảo mật</a></li>
 				          </ul>
@@ -37,7 +38,7 @@
 					<section class="widget">
 						<h4>Hỗ trợ khách hàng</h4>
 						<ul class="list_of_links">
-							<li class="c_info_phone" style="padding-bottom: 16px;">0944 619 493</li>
+							<li class="c_info_phone" style="padding-bottom: 16px;">0944 619 493 | support@nosaGO.com</li>
 							<li class="c_info_schedule" style="padding-bottom: 9px;">(8h - 21h kể cả T7,CN)</li>
 							<li><a href="#">Câu hỏi thường gặp</a></li>
 							<li><a href="#">Gửi yêu cầu hỗ trợ</a></li>
@@ -87,15 +88,18 @@
 			<div class="row">
 				<div class="col-md-6 col-sm-6">
 					<section class="widget">
-						<h4>Địa chỉ văn phòng Hồ Chí Minh</h4>
+						<h4>Địa chỉ văn phòng <strong>Hồ Chí Minh</strong></h4>
+						<p>Hỗ trợ: 0944 619 493 | support.hcm@nosago.com</p>
 						<p>Số 52, đường số 10, Phường 4, quận 9, Tp. Hồ Chí Minh</p>
-						<a href="">Xem bản đồ</a>
+						<a href="#" target="_blank">Xem bản đồ</a>
 					</section>
 				</div>
 				<div class="col-md-6 col-sm-6">
 					<section class="widget">
-						<h4>Địa chỉ văn phòng DakLak</h4>
+						<h4>Địa chỉ văn phòng <strong>DakLak</strong></h4>
+						<p>Hỗ trợ: 0944 619 493 | support.daklak@nosago.com</p>
 						<p>Km35 Quốc lộ 26, huyện Krông Păk, tỉnh Dăk Lăk</p>
+						<a href="https://www.google.com/maps/place/QL26,+Tp.+Bu%C3%B4n+Ma+Thu%E1%BB%99t,+%C4%90%E1%BA%AFk+L%E1%BA%AFk,+Vietnam/@12.7462428,108.232381,11z/data=!3m1!4b1!4m5!3m4!1s0x3171f7ae3b2d9915:0x666af08dc359365!8m2!3d12.7459448!4d108.3724701" title="" target="_blank">Xem bản đồ</a>
 					</section>
 				</div>
 				<hr>
@@ -132,20 +136,20 @@
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<section class="widget">
 							<div class="form-group">
-	                            <select id="select-dichvu" class="form-control" name="dichvu" data-placeholder="Chọn gói dịch vụ">
+	                            <select id="select-dichvu" class="form-control dichvu" name="dichvu" data-placeholder="Chọn gói dịch vụ">
 	                                <option value="">Chọn gói dịch vụ</option>
-	                                <option value="1">Nâng cấp Kho</option>
-	                                <option value="2">Quảng cáo nâng cao</option>
-	                                <option value="3">Xác thực Kho</option>
+	                                <option value="nhan_ho_tro_upgrade">Nâng cấp Kho</option>
+	                                <option value="nhan_ho_tro_quangcao">Quảng cáo nâng cao</option>
+	                                <option value="nhan_ho_tro_confirm">Xác thực Kho</option>
 	                            </select>
 	                        </div>
 						</section>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-12">
-						<input type="text" class="form-control" name="" value="" placeholder="Họ tên của bạn">
+						<input type="text" class="form-control name_user" name="name_user" value="" placeholder="Họ tên của bạn">
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-12">
-						<input type="text" class="form-control" name="" value="" placeholder="Số điện thoại">
+						<input type="text" class="form-control phone_user" name="phone_user" value="" placeholder="Số điện thoại">
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-12">
 						<button type="button" class="btn btn-raised btn-success btnSendRequest">Nhận hỗ trợ</button>

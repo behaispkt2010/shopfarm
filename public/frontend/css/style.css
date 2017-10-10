@@ -195,7 +195,7 @@ img.aligncenter {
 .boxed_layout,
 .wide_layout {
     overflow-x: hidden;
-    background: #fff;
+    background: #f8f8f8;
     margin: auto;
 }
 
@@ -3981,8 +3981,8 @@ form > ul > li:after,
 		-------------------------------------------- */
 
 .single_product {
-    max-width: 300px;
-    width: 450px;
+    max-width: 393px;;
+    /*width: 450px;*/
     height: 293px;
     float: left;
     margin-right: 30px;
@@ -9114,8 +9114,8 @@ a.especially {
     background: #e0e0e0;
     /*width: 200px;*/
     padding: 0px;
-    box-shadow: -5px 43px 18px 0px #888;
-    -webkit-box-shadow: -5px 43px 18px 0px #888;
+    box-shadow: -5px 5px 18px 0px #888;
+    -webkit-box-shadow: -5px 5px 18px 0px #888;
     z-index: 999;
 }
 
@@ -9732,7 +9732,7 @@ ul.box-lp > li a {
     padding-left: 15%;
 }
 .banner_one {
-    height: 240px;
+    height: auto;
 }
 .selectize-dropdown-content {
     max-height: 300px;
@@ -9778,6 +9778,7 @@ ul.box-lp > li a {
     border-bottom: 1px solid rgba(204, 204, 204, 0.51);
     padding: 15px;
     margin: 15px;
+    margin-top: 0px;
     background-color: #109d59;
     color: #fff;
 }
@@ -9917,6 +9918,11 @@ ul.box-lp > li a {
 }
 .col_ser {
     text-align: center;
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06) !important;
+}
+.col_ser:hover {
+    webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 .img_ser {
     width: 25px;
@@ -9925,4 +9931,9 @@ ul.box-lp > li a {
     color: #35C550;
     font-size: 23px;
     font-weight: bold;
+}
+.icon_info_ncc {
+    margin-top: 2px;
+    margin-right: 4px;
+    width: 15px;
 }

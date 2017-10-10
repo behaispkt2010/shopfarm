@@ -7,7 +7,7 @@
         <div class="col-xs-12 col-sm-4 col-md-4" style="padding-top: 20px; padding-left: 0px;">
             <div class="panel panel-default">
                 <div class="item active">
-                    <img alt="..." width="100%" style="border-radius: 5px;" src="{{ asset($ware_house->image_kho) }}">
+                    <img alt="..." width="100%" style="border-radius: 5px 5px 0 0;" src="{{ asset($ware_house->image_kho) }}">
                 </div>
                 <div class="panel-heading" style="padding-left: 23px;">
                     <h4 class="panel-title" style="text-align: center;">Thông tin NCC </h4>
@@ -16,11 +16,12 @@
                 <div id="filter_ncc_seach" class="panel-collapse collapse in">
                     <div class="panel-body" style="padding-left: 23px;">
                         <ul class="site_info_ncc">
-                            <li class="required_login"><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
-                            <li class="required_login"><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
-                            <li class="required_login"><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
-                            <li class="required_login"><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i><a href="#">Đăng nhập để xem thông tin</a></li>
-                            <li class="required_login"><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-map-marker icon_info_ncc" aria-hidden="true"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-phone-square icon_info_ncc" aria-hidden="true"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-envelope icon_info_ncc" aria-hidden="true"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-clock-o icon_info_ncc" aria-hidden="true"></i><a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-shopping-cart icon_info_ncc" aria-hidden="true"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
+                            <li class="required_login"><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> <a href="#">@if(empty($ware_house->view_count))0 @else{{$ware_house->view_count}}@endif </a></li>
                         </ul>
                     </div>
                 </div>
@@ -29,17 +30,19 @@
                     <div class="panel-body" style="padding-left: 23px;">
                         <ul class="site_info_ncc">
                             @if(\App\Util::CheckRoleUserViewInfo(Auth::user()->id) == 3)
-                                <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Vui lòng liên hệ ADMIN để xem thông tin</li>
-                                <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Vui lòng liên hệ ADMIN để xem thông tin </li>
-                                <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>  Vui lòng liên hệ ADMIN để xem thông tin </li>
-                                <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
-                                <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Bán thành công: {{$order}}</li>
+                                <li><i class="fa fa-map-marker icon_info_ncc" aria-hidden="true"></i> Vui lòng liên hệ ADMIN để xem thông tin</li>
+                                <li><i class="fa fa-phone-square icon_info_ncc" aria-hidden="true"></i> Vui lòng liên hệ ADMIN để xem thông tin </li>
+                                <li><i class="fa fa-envelope icon_info_ncc" aria-hidden="true"></i>  Vui lòng liên hệ ADMIN để xem thông tin </li>
+                                <li><i class="fa fa-clock-o icon_info_ncc" aria-hidden="true"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
+                                <li><i class="fa fa-shopping-cart icon_info_ncc" aria-hidden="true""></i> Bán thành công: {{$order}}</li>
+                                <li class="required_login"><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> <a href="#">@if(empty($ware_house->view_count))0 @else{{$ware_house->view_count}}@endif </a></li>
                             @else
-                                <li><i class="fa fa-map-marker" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->ware_houses_address}}</li>
-                                <li><i class="fa fa-phone-square" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->phone_number}}</li>
-                                <li><i class="fa fa-envelope" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> {{$ware_house->email}}</li>
-                                <li><i class="fa fa-clock-o" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
-                                <li><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top: 4px; margin-right: 4px;"></i> Bán thành công: {{$order}}</li>
+                                <li><i class="fa fa-map-marker icon_info_ncc" aria-hidden="true"></i> {{$ware_house->ware_houses_address}}</li>
+                                <li><i class="fa fa-phone-square icon_info_ncc" aria-hidden="true"></i> {{$ware_house->phone_number}}</li>
+                                <li><i class="fa fa-envelope icon_info_ncc" aria-hidden="true"></i> {{$ware_house->email}}</li>
+                                <li><i class="fa fa-clock-o icon_info_ncc" aria-hidden="true"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
+                                <li><i class="fa fa-shopping-cart icon_info_ncc" aria-hidden="true"></i> Bán thành công: {{$order}}</li>
+                                <li class="required_login"><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> <a href="#">@if(empty($ware_house->view_count))0 @else{{$ware_house->view_count}}@endif </a></li>
                             @endif
                         </ul>
                     </div>
@@ -279,8 +282,75 @@
                 </div>
             </div>
         </div>
-            <div class="clear"></div>
-            <div class="tabs products section_offset animated transparent" data-animation="fadeInDown" data-animation-delay="150">
+        <div class="row">
+            <main class="col-md-12 col-sm-12">
+                <div class="row" style="padding-left: 10px;">
+                    <h3><a style="color: #0f9d58;">Sản phẩm của NCC</a></h3>
+                </div>
+                <div class="warehouse_list">
+                    <?php $i=0 ;$j=0?>
+                        @foreach($getNewProduct as $key => $product)
+                            @if($i==0)<div class="category_product_row" style="">@endif
+                                <div class="col-md-3 col-xs-12 category_product_cell">
+                                    <div class="product_bestselt">
+                                        <div class="image_wrap">
+                                            <a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
+                                        </div>
+                                        <div class="description">
+                                            <a href="#" class="clearfix">{{$product->title}}</a>
+                                            <div class="kho_info clearfix">
+                                                <a href="#" class="alignleft" style="">
+                                                @if($product->levelKho == 1)
+                                                    <img src="{{url('/images')}}/level1.png" alt="">
+                                                @elseif($product->levelKho == 2)
+                                                    <img src="{{url('/images')}}/level2.png" alt="">
+                                                @elseif($product->levelKho == 3)
+                                                    <img src="{{url('/images')}}/level3.png" alt="">
+                                                @else
+                                                    <img src="{{url('/images')}}/level0.png" alt="">
+                                                @endif
+                                                </a>
+                                                <a href="#" class="alignleft" style="">
+                                                    @if($product->confirm_kho == 1)
+                                                        <img src="{{url('/images')}}/xacthuc.png" alt="">
+                                                    @else
+                                                    @endif
+                                                </a>
+                                                <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
+                                            </div>
+        
+                                            <div class="clearfix product_info">
+                                            @if (( !Auth::check()))
+                                                <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
+                                            @else
+                                                <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
+                                                        
+                                                <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
+                                            @endif
+                                            </div>
+                                            <div class="clearfix product_info">
+                                                <p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_gram)  }}</a> SP</p>
+                                            </div>
+        
+                                        </div>
+        
+                                    </div>
+                                </div>
+                                <?php $i = $i+1; $j=$j+1; ?>
+                                @if ($i>=4 || $j>=count($getNewProduct))
+                                    <?php $i=0 ?>
+                                    </div>
+                                @endif
+                        @endforeach
+                </div>
+                <div class="bottom_box load_more">
+                    <a href="{{url('/')}}/products" class="btn btn-raised btn-primary button_grey middle_btn">Xem thêm </a><label class="viewmore">(Còn @if ((count($getNewProduct)-12) < 0 ) 0 @else hơn {{count($getNewProduct)-12}} @endif sản phẩm)</label>
+                </div>
+            
+            </main>
+        </div>
+            <!-- <div class="clear"></div>
+            <div class="tabs products section_offset animated transparent" data-animation="" data-animation-delay="0">
                 <ul class="tabs_nav clearfix">
                     <li class="tab_bottom"><a href="#tab-1" style="font-size: 16px;">Sản phẩm của NCC</a></li>
                 </ul>
@@ -291,18 +361,18 @@
                             @foreach($getNewProduct as $key => $product)
                                 @if($i==0)<div class="category_product_row" style="">@endif
                                         <div class="col-md-3 col-xs-12 category_product_cell">
-
+            
                                             <div class="product_bestselt">
-
+            
                                                 <div class="image_wrap">
-
+            
                                                     <a href="{{url('/product').'/'.\App\CategoryProduct::getSlugCategoryProduct($product->id).'/'.$product->slug}}"><img src="{{url('/').$product->image}}" alt=""></a>
                                                 
                                                 </div>
                                                 <div class="description">
-
+            
                                                     <a href="#" class="clearfix">{{$product->title}}</a>
-
+            
                                                     <div class="kho_info clearfix">
                                                         <a href="#" class="alignleft" style="">
                                                         @if($product->levelKho == 1)
@@ -323,22 +393,22 @@
                                                         </a>
                                                         <p class="alignleft" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">{{ \App\Util::ProductCode($product->id)  }}</p>
                                                     </div>
-
+            
                                                     <div class="clearfix product_info">
                                                     @if (( !Auth::check()))
                                                         <a href="" class="required_login not_login" style="">Đăng nhập để xem giá</a>
                                                     @else
                                                         <p class="product_price alignleft">{!! \App\Util::FormatMoney($product->price_out) !!}<span class="discount_price">@if ($product->price_sale != 0) {!! \App\Util::FormatMoney($product->price_sale) !!} @endif </span> </p>
                                                                 
-                                                        <!-- <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span> -->
+                                                        <span class="alignright">{!! \App\Rate::getRateProduct($product->id)!!}</span>
                                                     @endif
                                                     </div>
                                                     <div class="clearfix product_info">
                                                         <p class="alignleft">Tối thiểu: <a href="#" class="bg-number">{{ number_format($product->min_gram)  }}</a> SP</p>
                                                     </div>
-
+            
                                                 </div>
-
+            
                                             </div>
                                         </div>
                                         <?php $i = $i+1; $j=$j+1; ?>
@@ -353,12 +423,11 @@
                         </div>
                         
                     </div>
-
+            
                 </div>
-
-            </div>
+            
+            </div> -->
             @include('admin.partial.modal_requiredlogin')
-        </div>
     </div>   
 </div>     
 @endsection

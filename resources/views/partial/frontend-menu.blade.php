@@ -18,7 +18,7 @@
                 <img src="{{asset('frontend/images/specialist-user.png')}}" style="" class="img_icon_header_hp">
             </a>
             <div class="info_header_hp">
-                Hỗ trợ <br>0944 619 493
+                <a href="#">Hỗ trợ <br>0944 619 493</a>
             </div>
         </div>
         <div class="check-order">
@@ -33,13 +33,13 @@
     </div>
     <ul class="box-manage">
         @if(( !Auth::check()))
-                <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG CƠ HỘI</a></li>
+                <li><a class="btn btn-raised btn-dangtin col-xs-12 required_login" href="" style="background-color: #00695c !important;">ĐĂNG CƠ HỘI</a></li>
                 <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/login')}}" data-modal-url="{{url('/login')}}">ĐĂNG NHẬP </a></li>
                 <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{url('/register')}}" >ĐĂNG KÝ</a></li>
         @else
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                         aria-expanded="false" style="color: #000; line-height: 54px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>
-            <li><a class="btn btn-raised btn-dangtin col-xs-12" href="" style="background-color: #00695c !important;">ĐĂNG CƠ HỘI</a></li>            
+            <li><a class="btn btn-raised btn-dangtin col-xs-12" href="{{ route('newscompany.create') }}" style="background-color: #00695c !important;">ĐĂNG CƠ HỘI</a></li>            
             <ul class="dropdown-menu dropdown-usermenu pull-right" style="top: 9%; right: 0px;">
                 <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
                         <i class="fa fa-info-circle pull-right"></i>Tài khoản
@@ -110,12 +110,12 @@
                                 <ul class="nav navbar-nav clearfix sm">
                                     <li><a href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
                                     <li><a href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
-                                    <li><a href="#"><i class="material-icons icon_home">share</i> Group</a></li>
-                                    <li><a href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
+                                    <li><a href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Group</a></li>
+                                    <li><a href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
                                     <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
-                                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
-                                    <li><a href="{{url('/blogs')}}"><i class="material-icons">chat</i> Blogs</a></li>
-                                    <li><a href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
+                                    <li><a href="#"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                                    <li><a href="nongsan.blog"><i class="material-icons">chat</i> Blogs</a></li>
+                                    <li><a href="#"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                                 </ul>
                             </div>
                             <div class="mobile-menu-icon-wrapper visible-xs" style="width: 100%;padding-top: 8px;height: 56px;background-color: #f8f8f8;">
@@ -147,12 +147,12 @@
                 <ul class="nav side-menu" style="background-color: #efefef;">
                     <li><a class="menu_left_item" href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
                     <li><a class="menu_left_item" href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
-                    <li><a class="menu_left_item" href="#"><i class="material-icons icon_home">share</i> Group</a></li>
-                    <li><a class="menu_left_item" href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i> Cơ hội mua bán</a></li>
+                    <li><a class="menu_left_item" href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Group</a></li>
+                    <li><a class="menu_left_item" href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
                     <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
                     <li><a class="menu_left_item" href="{{url('/contact')}}"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
-                    <li><a class="menu_left_item" href="{{url('/blogs')}}"><i class="material-icons icon_home">chat</i> Blogs</a></li>
-                    <li><a class="menu_left_item" href="{{url('/contact')}}"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
+                    <li><a class="menu_left_item" href="nongsan.blog"><i class="material-icons icon_home">chat</i> Blogs</a></li>
+                    <li><a class="menu_left_item" href="#"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                 </ul>
             </div>
         </div>

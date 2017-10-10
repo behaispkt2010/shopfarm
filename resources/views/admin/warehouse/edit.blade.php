@@ -237,9 +237,9 @@
                                                 <img src="{{url('/').$wareHouse->image_kho}}" alt="" class="img-responsive" style="height: 169px;border-radius: 5px;">
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly="" class="form-control"
+                                                        <input type="text" readonly="readonly" class="form-control"
                                                                placeholder="Chọn ảnh đại diện">
-                                                        <input type="file" name="image_kho" id="inputFile">
+                                                        <input type="file" name="image_kho" id="inputFile" disabled="disabled">
                                                     </div>
                                                 </div>
 
@@ -1066,7 +1066,7 @@
     <script src="{{asset('js/selectize.js')}}"></script>
     <!-- #province, #category_warehouse_id, #user_test, -->
     <script>
-        $('#time_upgrade_bonus, #time_upgrade_level, #time_confirm_kho, #time_confirm_kho_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_upgrade_level, #time_request_quangcao, #month_required, #time_request_confirm_kho').selectize({create: true,});
+        $('#time_upgrade_bonus, #province, #time_upgrade_level, #time_confirm_kho, #time_confirm_kho_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_upgrade_level, #time_request_quangcao, #month_required, #time_request_confirm_kho').selectize({create: true,});
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -1082,7 +1082,10 @@
         $('.info-kho .fa-edit,.info-warehouse .fa-edit').click(function(){
             $(this).parent().parent().find('input').removeAttr('disabled');
             $(this).parent().parent().find('.btn-update').css('display','inline-block');
-
+            $('#inputFile').removeAttr('disabled');
+        })
+        $('.info-kho .fa-edit').click(function(){
+            $('#inputFile').removeAttr('disabled');
         })
         $('button.btn-update').click(function(){
 //            alert("dsds");
