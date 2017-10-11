@@ -60,7 +60,7 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <ul class="list-unstyled">
-                                                    <li style="width: 80%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                    <li style="" class="limitcharacterWithImg">
                                                     <span class="label-box55">Tên:</span> {{$user->name}}
                                                     </li>
                                                     <li><span class="label-box55">Email:</span> {{$user->email}}</li>

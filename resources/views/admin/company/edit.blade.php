@@ -194,7 +194,7 @@
                                                 <div class="form-group">
                                                     <select name="user_test" id="user_test" class="form-control" @if (Auth::user()->hasRole('kho')) disabled @endif>
                                                         <option value="1" @if ($company->user_test == 1)selected="selected" @endif>Trả Phí</option>
-                                                        <!-- <option value="2" @if ($company->user_test == 2)selected="selected" @endif>Dùng thử</option> -->
+                                                        <option value="2" @if ($company->user_test == 2)selected="selected" @endif>Dùng thử</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -876,7 +876,7 @@
                             <div class="form-group">
                             <label for="name" class="col-md-4 col-sm-4 control-label">Tên ngân hàng</label>
                             <div class="col-md-8 col-sm-8">
-                                <select  data-placeholder="Ngân hàng" class="form-control" name="bank">
+                                <select  data-placeholder="Ngân hàng" class="form-control bank" name="bank">
                                     @foreach($bank as $itemBank)
                                     <option value="{{$itemBank->id}}">{{$itemBank->name}}</option>
                                         @endforeach
@@ -889,7 +889,7 @@
                             <div class="form-group">
                             <label for="name" class="col-md-4 col-sm-4 control-label">Tỉnh/thành phố</label>
                             <div class="col-md-8 col-sm-8">
-                                <select class="form-control" name="province">
+                                <select class="form-control province" name="province">
                                     @foreach($province as $itemProvince)
                                         <option value="{{$itemProvince->provinceid}}">{{$itemProvince->name}}</option>
                                     @endforeach
@@ -1049,7 +1049,7 @@
     <!-- Select2 -->
     <!-- #provinceCom, #category_company_id, -->
     <script>
-        $('#time_upgrade_bonus,  #time_confirm, #time_confirm_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_quangcao, #month_required, #time_request_confirm').selectize({create: true,});
+        $('#time_upgrade_bonus, #provinceCom, #user_test, #category_company_id, #time_confirm, #time_confirm_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_quangcao, #month_required, #time_request_confirm, .bank, .province').selectize({create: true,});
     </script>
     <script type="text/javascript">
         $(document).ready(function () {

@@ -8,6 +8,7 @@ use App\Product;
 use App\ProductOrder;
 use App\User;
 use App\Util;
+use App\Driver;
 use App\NewsCompany;
 use App\WareHouse;
 use DateTime;
@@ -102,16 +103,29 @@ class DashboardController extends Controller
         $level3 = WareHouse::countLevelKho(3);
         $dungthu = WareHouse::countStatusKho(2);
         $traphi = WareHouse::countStatusKho(1);
-        $users = User::leftjoin('role_user','role_user.user_id','=','users.id')
+        $getUsers = User::leftjoin('role_user','role_user.user_id','=','users.id')
             ->where('role_user.role_id',3)
             ->orderBy('id','DESC')
             ->get();
-        $chukho = User::leftjoin('role_user','role_user.user_id','=','users.id')
+        $getChukho = User::leftjoin('role_user','role_user.user_id','=','users.id')
             ->where('role_user.role_id',4)
             ->orderBy('id','DESC')
             ->get();
-        $customer = count($users);
-        $chukho = count($chukho);
+        $getCompany = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('role_user.role_id',6)
+            ->orderBy('id','DESC')
+            ->get();
+        $getStaff = User::leftjoin('role_user','role_user.user_id','=','users.id')
+            ->where('role_user.role_id',5)
+            ->orderBy('id','DESC')
+            ->get();
+        $getDriver = Driver::get();
+        
+        $customer = count($getUsers);
+        $chukho = count($getChukho);
+        $company = count($getCompany);
+        $staff = count($getStaff);
+        $driver = count($getDriver);
         $countOrderFinish = count(Order::where('status',8)->get());
         $countOrder = count(Order::get());
         $idUser = Auth::user()->id;
@@ -138,6 +152,9 @@ class DashboardController extends Controller
             'arrBestSellProduct' =>$arrBestSellProduct,
             'customer' =>$customer,
             'chukho' =>$chukho,
+            'company' =>$company,
+            'staff' =>$staff,
+            'driver' =>$driver,
             'level1' =>$level1,
             'level2' =>$level2,
             'level3' =>$level3,

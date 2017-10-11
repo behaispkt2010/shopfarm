@@ -5957,7 +5957,7 @@ ul.tab-fill li:hover {
     font-size: 15px;
     margin-bottom: 5px;
     /*width: 80%;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
     white-space: nowrap;
     text-overflow: ellipsis;
 }
@@ -7189,6 +7189,13 @@ table.dtp-picker-days thead {
 
 .limitcharacter {
     width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.limitcharacterWithImg {
+    width: 80%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

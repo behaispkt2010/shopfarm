@@ -21,7 +21,7 @@
                             <li class="required_login"><i class="fa fa-envelope icon_info_ncc" aria-hidden="true"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
                             <li class="required_login"><i class="fa fa-clock-o icon_info_ncc" aria-hidden="true"></i><a href="#">Đăng nhập để xem thông tin</a></li>
                             <li class="required_login"><i class="fa fa-shopping-cart icon_info_ncc" aria-hidden="true"></i> <a href="#">Đăng nhập để xem thông tin</a></li>
-                            <li class="required_login"><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> <a href="#">@if(empty($ware_house->view_count))0 @else{{$ware_house->view_count}}@endif </a></li>
+                            <li class=""><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> @if(empty($ware_house->count_view))0 @else{{$ware_house->count_view}}@endif </li>
                         </ul>
                     </div>
                 </div>
@@ -35,14 +35,14 @@
                                 <li><i class="fa fa-envelope icon_info_ncc" aria-hidden="true"></i>  Vui lòng liên hệ ADMIN để xem thông tin </li>
                                 <li><i class="fa fa-clock-o icon_info_ncc" aria-hidden="true"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
                                 <li><i class="fa fa-shopping-cart icon_info_ncc" aria-hidden="true""></i> Bán thành công: {{$order}}</li>
-                                <li class="required_login"><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> <a href="#">@if(empty($ware_house->view_count))0 @else{{$ware_house->view_count}}@endif </a></li>
+                                <li class=""><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> @if(empty($ware_house->count_view))0 @else{{$ware_house->count_view}}@endif </li>
                             @else
                                 <li><i class="fa fa-map-marker icon_info_ncc" aria-hidden="true"></i> {{$ware_house->ware_houses_address}}</li>
                                 <li><i class="fa fa-phone-square icon_info_ncc" aria-hidden="true"></i> {{$ware_house->phone_number}}</li>
                                 <li><i class="fa fa-envelope icon_info_ncc" aria-hidden="true"></i> {{$ware_house->email}}</li>
                                 <li><i class="fa fa-clock-o icon_info_ncc" aria-hidden="true"></i>{{\App\Util::DayJoinGroup($ware_house->created_at)}} ngày cùng nosaGO.com</li>
                                 <li><i class="fa fa-shopping-cart icon_info_ncc" aria-hidden="true"></i> Bán thành công: {{$order}}</li>
-                                <li class="required_login"><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> <a href="#">@if(empty($ware_house->view_count))0 @else{{$ware_house->view_count}}@endif </a></li>
+                                <li class=""><i class="fa fa-eye-slash icon_info_ncc" aria-hidden="true"></i> @if(empty($ware_house->count_view))0 @else{{$ware_house->count_view}}@endif </li>
                             @endif
                         </ul>
                     </div>

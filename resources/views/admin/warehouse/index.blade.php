@@ -55,11 +55,11 @@
                                     </div>
                                     <div class="col-sm-12 ">
                                         <a href="{{route('warehouse.edit',['id' => $itemWareHouse->ware_houses_id])}}">
-                                        <h4 class="cod">{{\App\Util::UserCode($itemWareHouse->userID)}}{{-- {{ $itemWareHouse->id }}--}}</h4>
+                                        <h4 class="cod limitcharacterWithImg">{{\App\Util::UserCode($itemWareHouse->userID)}}{{-- {{ $itemWareHouse->id }}--}}</h4>
                                             <div class="row">
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
-                                                <li><span style="width: 70px;" class="label-box">Đại diện: </span>{{$itemWareHouse->name}}</li>
+                                                <li class="limitcharacterWithImg"><span style="width: 70px;" class="label-box">Đại diện: </span>{{$itemWareHouse->name}}</li>
                                                 <li><span style="width: 70px;" class="label-box">Cấp kho: </span>{{$itemWareHouse->level}}</li>
                                                 <li>
                                                     <span style="width: 70px;" class="label-box">Dịch vụ:</span>

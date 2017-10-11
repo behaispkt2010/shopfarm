@@ -59,7 +59,7 @@
                                             <div class="row">
                                         <div class="col-xs-12">
                                             <ul class="list-unstyled">
-                                                <li><span style="width: 70px;" class="label-box">Đại diện: </span>{{$itemCompany->name}}</li>
+                                                <li class="limitcharacter"><span style="width: 70px;" class="label-box">Đại diện: </span>{{$itemCompany->name}}</li>
                                                 <li>
                                                     <span style="width: 70px;" class="label-box">Dịch vụ:</span>
                                                     @if ($itemCompany->confirm == 1) <img src="{{url('/images')}}/xacthuc.png" alt=""> @endif 

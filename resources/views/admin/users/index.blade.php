@@ -67,15 +67,15 @@
                                     <div class="col-sm-10 col-sm-offset-1">
 
                                         <a href="{{route('users.edit',['id' => $user->id])}}">
-                                            <h4 class="cod">{{ \App\Util::UserCode($user->id)}}</h4>
+                                            <h4 class="cod limitcharacterWithImg">{{ \App\Util::UserCode($user->id)}}</h4>
 
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <ul class="list-unstyled">
-                                                        <li><span class="label-box55">Tên:</span> {{$user->name}}</li>
-                                                        <li><span class="label-box55">Email:</span> {{$user->email}}</li>
-                                                        <li><span class="label-box55">SDT:</span> {{$user->phone_number}}</li>
-                                                        <li><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>
+                                                        <li class="limitcharacter"><span class="label-box55">Tên:</span> {{$user->name}}</li>
+                                                        <li class="limitcharacter"><span class="label-box55">Email:</span> {{$user->email}}</li>
+                                                        <li class="limitcharacter"><span class="label-box55">SDT:</span> {{$user->phone_number}}</li>
+                                                        <li class="limitcharacter"><span class="label-box55">Địa chỉ:</span> {{$user->address}}</li>
                                                     </ul>
                                                 </div>
                                             </div>

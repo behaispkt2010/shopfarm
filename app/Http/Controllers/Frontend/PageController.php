@@ -90,7 +90,8 @@ class PageController extends Controller
             ->first();
         $order = Order::where('kho_id', $warehouse_id)
             ->where('status',8)
-            ->count();    
+            ->count();  
+        // dd ($warehouse);      
         $data = [
             'ware_house' => $warehouse,
             'arrImageDetail' => $arrImageDetail,

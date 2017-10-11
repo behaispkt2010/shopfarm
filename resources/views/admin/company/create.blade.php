@@ -215,10 +215,10 @@
     <script src="{{asset('js/selectize.js')}}"></script>
     <!-- Select2 -->
     <script>
-        /*$('select').selectize({
+        $('select').selectize({
             create: true,
             sortField: 'text'
-        });*/
+        });
     </script>
 
 @endsection

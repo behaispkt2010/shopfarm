@@ -76,11 +76,11 @@
                                     <div id="driver" class="col-sm-12">
 
                                         <div class="col-xs-12 " style="padding-left: 0px;">
-                                            <ul class="list-unstyled " style="font-size: 16px;width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-                                                <li><span class="label-box">Tên tài xế:</span>{{ $itemDriver['name_driver'] }}</li>
-                                                <li><span class="label-box">Loại xe:</span>{{ $itemDriver['type_driver'] }}</li>
-                                                <li><span class="label-box">Số điện thoại:</span>{{ $itemDriver['phone_driver'] }}</li>
-                                                <li><span class="label-box">Biển số xe:</span>{{ $itemDriver['number_license_driver'] }}</li>
+                                            <ul class="list-unstyled " style="font-size: 16px;">
+                                                <li class="limitcharacter"><span class="label-box">Tên tài xế:</span>{{ $itemDriver['name_driver'] }}</li>
+                                                <li class="limitcharacter"><span class="label-box">Loại xe:</span>{{ $itemDriver['type_driver'] }}</li>
+                                                <li class="limitcharacter"><span class="label-box">Số điện thoại:</span>{{ $itemDriver['phone_driver'] }}</li>
+                                                <li class="limitcharacter"><span class="label-box">Biển số xe:</span>{{ $itemDriver['number_license_driver'] }}</li>
                                             </ul>
                                         </div>
 

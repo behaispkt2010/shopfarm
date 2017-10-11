@@ -8879,6 +8879,12 @@ ul.mobile-menu-icon {
     right: 0px;
     z-index: 999;
 }
+#chat_hotro {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: 999;
+}
 
 .image_product_single {
     width: 450px;

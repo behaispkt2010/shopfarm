@@ -118,7 +118,7 @@
 										                    <i class="fa fa-minus" style="float: right;"></i>
 										                </div>
 													        <div class="fb-page" data-href="{{ $product->fanpage_fb }}"
-													             data-tabs="messages"
+													             data-tabs="messages, messages"
 													             data-small-header="false"
 													             data-adapt-container-width="true"
 													             data-hide-cover="false" data-show-facepile="true">
@@ -128,7 +128,7 @@
 
 													</div>
 												</div>
-										</div>
+											</div>
 										{{--<div class="description_section">
 											<p class="text-info">Vui lòng để lại thông tin liên lạc để chúng tôi liên hệ lại trong thời gian sớm nhất</p>
 										</div>

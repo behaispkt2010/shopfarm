@@ -76,7 +76,7 @@
                                                 <ul class="list-unstyled">
                                                     <li><span class="label-box">Số sản phẩm:</span> <span class="bold"> {{\App\CategoryProduct::getTonKho($itemCategoryProduct->id,Request::get('kho'))['numproduct']}}</span></li>
                                                     <li><span class="label-box">Số tồn kho:</span> <span class="bold"> {{\App\CategoryProduct::getTonKho($itemCategoryProduct->id,Request::get('kho'))['inventory_num']}}</span></li>
-                                                    <li><span class="label-box">Danh mục cha:</span> <span class="bold"> {{\App\CategoryProduct::getNameCateById($itemCategoryProduct->parent)}}</span></li>
+                                                    <li class="limitcharacter"><span class="label-box">Danh mục cha:</span> <span class="bold "> {{\App\CategoryProduct::getNameCateById($itemCategoryProduct->parent)}}</span></li>
                                                 </ul>
                                             </div>
                                     </div>

@@ -892,7 +892,7 @@
                             <div class="form-group">
                             <label for="name" class="col-md-4 col-sm-4 control-label">Tên ngân hàng</label>
                             <div class="col-md-8 col-sm-8">
-                                <select  data-placeholder="Ngân hàng" class="form-control" name="bank">
+                                <select  data-placeholder="Ngân hàng" class="form-control bank" name="bank">
                                     @foreach($bank as $itemBank)
                                     <option value="{{$itemBank->id}}">{{$itemBank->name}}</option>
                                         @endforeach
@@ -905,7 +905,7 @@
                             <div class="form-group">
                             <label for="name" class="col-md-4 col-sm-4 control-label">Tỉnh/thành phố</label>
                             <div class="col-md-8 col-sm-8">
-                                <select class="form-control" name="province">
+                                <select class="form-control province" name="province">
                                     @foreach($province as $itemProvince)
                                         <option value="{{$itemProvince->provinceid}}">{{$itemProvince->name}}</option>
                                     @endforeach
@@ -968,9 +968,9 @@
                     <div class="frm-add">
                         <div class="row">
                             <div class="form-group">
-                                <label for="name" class="col-md-4 col-sm-4 control-label">Tên ngân hàng</label>
+                                <label for="name" class="col-md-4 col-sm-4 control-label ">Tên ngân hàng</label>
                                 <div class="col-md-8 col-sm-8">
-                                    <select id="bank_select"  data-placeholder="Ngân hàng" class="form-control" name="bank">
+                                    <select id="bank_select"  data-placeholder="Ngân hàng" class="form-control bank" name="bank">
                                         @foreach($bank as $itemBank)
                                             <option value="{{$itemBank->id}}">{{$itemBank->name}}</option>
                                         @endforeach
@@ -983,7 +983,7 @@
                             <div class="form-group">
                                 <label for="name" class="col-md-4 col-sm-4 control-label">Tỉnh/thành phố</label>
                                 <div class="col-md-8 col-sm-8">
-                                    <select class="form-control" name="province">
+                                    <select class="form-control province" name="province">
                                         @foreach($province as $itemProvince)
                                             <option value="{{$itemProvince->provinceid}}">{{$itemProvince->name}}</option>
                                         @endforeach
@@ -1066,7 +1066,7 @@
     <script src="{{asset('js/selectize.js')}}"></script>
     <!-- #province, #category_warehouse_id, #user_test, -->
     <script>
-        $('#time_upgrade_bonus, #province, #time_upgrade_level, #time_confirm_kho, #time_confirm_kho_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_upgrade_level, #time_request_quangcao, #month_required, #time_request_confirm_kho').selectize({create: true,});
+        $('#time_upgrade_bonus, #province, #category_warehouse_id, #user_test, #time_upgrade_level, #time_confirm_kho, #time_confirm_kho_bonus, #time_quangcao, #time_quangcao_bonus, #time_request_upgrade_level, #time_request_quangcao, #month_required, #time_request_confirm_kho, .bank, .province').selectize({create: true,});
     </script>
     <script type="text/javascript">
         $(document).ready(function () {

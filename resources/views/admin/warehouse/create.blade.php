@@ -257,10 +257,10 @@
     
     <!-- Select2 -->
     <script>
-        /*$('select').selectize({
+        $('select').selectize({
             create: true,
             sortField: 'text'
-        });*/
+        });
     </script>
     <!-- <script>
         $('#select-kh,#t,#q,.select-payment,#select-product').selectize({});
