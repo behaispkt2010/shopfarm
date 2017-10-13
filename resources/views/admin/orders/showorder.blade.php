@@ -39,11 +39,11 @@
                                 <tr class="item-product">
                                     {{--<th><span class="code-product">{{ $itemProductOrder->code }}</span></th>--}}
                                     <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
-                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_sale) !!}</span>  </span></td>
+                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_out) !!}</span>  </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>
-                                    <td><span class="total"> <span>{!! \App\Util::FormatMoney(($itemProductOrder->price_sale)*($itemProductOrder->num)) !!}</span> </span></td>
+                                    <td><span class="total"> <span>{!! \App\Util::FormatMoney(($itemProductOrder->price_out)*($itemProductOrder->num)) !!}</span> </span></td>
                                 </tr>
-                                <?php $total=$total + (($itemProductOrder->price_sale)*($itemProductOrder->num)); ?>
+                                <?php $total=$total + (($itemProductOrder->price_out)*($itemProductOrder->num)); ?>
                             @endforeach
                             <tr>
                                 {{--<th></th>--}}

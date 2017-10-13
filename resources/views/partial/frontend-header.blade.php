@@ -23,7 +23,7 @@
 
     <!-- Favicon
     ============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/images/fa.ico')}}/">
+    <link rel='shortcut icon' type='image/x-icon' href="{{asset('frontend/images/logo.png')}}"/>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     

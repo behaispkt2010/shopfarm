@@ -30,15 +30,51 @@
 								</a>
 							</div>
 						</aside>
-						<main class="col-md-8 col-sm-7">
+						<main class="col-md-6 col-sm-6">
 
 							{{--<h1 class="page_title">Contact Us</h1>--}}
 
 							<section class="section_offset">
 								
 								<h3>Đăng ký Chủ kho</h3>
-
 								<form action="" method="Post"  enctype="multipart/form-data" class="contactform type_2" id="contact_form" >
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								    <p class="h5 text-center mb-4">Điền đầy đủ thông tin form bên dưới</p>
+								    @if (\Session::has('success'))
+											<p class="message red" style="color: red;">Cảm ơn quý khách đã đăng ký. Chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
+											<br>
+										@endif
+									<div class="form-group">
+                                        <div class="form-group label-floating">
+			                                <label class="control-label" for="focusedInputnote">Tên</label>
+			                                <input class="form-control" id="cf_name" name="cf_name" required></input>
+			                            </div>
+                                    </div>
+									<div class="form-group">
+                                        <div class="form-group label-floating">
+			                                <label class="control-label" for="focusedInputnote">Email</label>
+			                                <input class="form-control" id="cf_email" name="cf_email" required></input>
+			                            </div>
+                                    </div>
+									<div class="form-group">
+                                        <div class="form-group label-floating">
+			                                <label class="control-label" for="focusedInputnote">Số điện thoại</label>
+			                                <input class="form-control" id="cf_order_number" name="cf_order_number" required></input>
+			                            </div>
+                                    </div>
+									<div class="form-group">
+                                        <div class="form-group label-floating">
+			                                <label class="control-label" for="focusedInputnote">Tin nhắn</label>
+			                                <input class="form-control" id="cf_message" name="cf_message" required></input>
+			                            </div>
+                                    </div>
+								    <div class="text-center">
+								        <button class="btn btn-raised btn-primary" type="submit">Đăng ký chủ kho <i class="fa fa-paper-plane-o ml-1"></i></button>
+								    </div>
+								</form>
+
+
+								<!-- <form action="" method="Post"  enctype="multipart/form-data" class="contactform type_2" id="contact_form" >
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 									<div class="theme_box">
@@ -92,7 +128,7 @@
 									</div>
 
 								</footer>
-								</form>
+								</form> -->
 							</section>
 
 							<section class="section_offset">

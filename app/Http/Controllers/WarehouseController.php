@@ -325,7 +325,7 @@ class WarehouseController extends Controller
         }
         $getCodeKho = Util::UserCode($userID);
         $levelKho = $request->get('levelkho');
-        $data['keyname'] = Util::$quangcao;
+        $data['keyname'] = Util::$upgradeLevelKho;
         $data['title'] = "Chủ kho đăng kí nâng cấp";
         $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho." với thời gian " .$time_request_upgrade_level." tháng";
         $data['author_id'] = $userID;
@@ -403,7 +403,7 @@ class WarehouseController extends Controller
             $phone_number = $itemUser['phone_number'];
         }
         $getCodeKho = Util::UserCode($userID);
-        $data['keyname'] = Util::$quangcao;
+        $data['keyname'] = Util::$quangcaoKho;
         $data['title'] = "Chủ kho đăng kí quảng cáo";
         $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng";
         $data['author_id'] = $userID;
@@ -441,7 +441,7 @@ class WarehouseController extends Controller
             $phone_number = $itemUser['phone_number'];
         }
         $getCodeKho = Util::UserCode($userID);
-        $data['keyname'] = Util::$dangkytraphi;
+        $data['keyname'] = Util::$dangkytraphiKho;
         $data['title'] = "Chủ kho đăng kí dùng trả phí";
         $data['content'] = "Mã chủ kho ".$getCodeKho.' - '.$phone_number;
         $data['author_id'] = $userID;

@@ -109,10 +109,10 @@
                             <div id="navbar" class="navbar-collapse collapse" style="height: 1px;">
                                 <ul class="nav navbar-nav clearfix sm">
                                     <li><a href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
-                                    <li><a href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
-                                    <li><a target="_blank" href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Group</a></li>
-                                    <li><a href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
+                                    <li><a href="{{url('/resisterWareHouse')}}" target="_blank"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
+                                    <li><a href="{{ url('/company-business') }}" target="_blank"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
                                     <li class=""><a href="#" class=""><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                                    <li><a target="_blank" href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Cộng đồng</a></li>
                                     <li><a href="nongsan.blog"><i class="material-icons">chat</i> Blogs</a></li>
                                     <li><a href="#"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                                 </ul>
@@ -145,11 +145,10 @@
                 <div class="clear"></div>
                 <ul class="nav side-menu" style="background-color: #efefef;">
                     <li><a class="menu_left_item" href="{{url('/')}}"><i class="material-icons icon_home">home</i> Trang chủ</a></li>
-                    <li><a class="menu_left_item" href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
-                    <li><a class="menu_left_item" target="_blank" href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Group</a></li>
-                    <li><a class="menu_left_item" href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
-                    <!-- <li><a href="#"><i class="fa fa-search"></i> Tìm kiếm</a></li> -->
+                    <li><a class="menu_left_item"target="_blank"  href="{{url('/resisterWareHouse')}}"><i class="material-icons icon_home">add_circle</i> Tạo hồ sơ</a></li>
+                    <li><a class="menu_left_item"target="_blank"  href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
                     <li class=""><a class="menu_left_item hotro_chat" href="#"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
+                    <li><a class="menu_left_item" target="_blank" href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Cộng đồng</a></li>
                     <li><a class="menu_left_item" href="nongsan.blog"><i class="material-icons icon_home">chat</i> Blogs</a></li>
                     <li><a class="menu_left_item" href="#"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                 </ul>
