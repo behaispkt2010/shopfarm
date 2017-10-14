@@ -157,7 +157,7 @@ public function AjaxGetProduct(Request $request){
                 ->where('kho',Auth::user()->id)
                 ->paginate(9);
         }
-        $category = CategoryProduct::get();
+        $category = CategoryProduct::where('disable',0)->get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
             ->leftjoin('role_user','role_user.user_id','=','users.id')
             ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
@@ -180,7 +180,7 @@ public function AjaxGetProduct(Request $request){
      */
     public function create()
     {
-        $category = CategoryProduct::get();
+        $category = CategoryProduct::where('disable',0)->get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
             ->leftjoin('role_user','role_user.user_id','=','users.id')
             ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
@@ -231,7 +231,7 @@ public function AjaxGetProduct(Request $request){
             }
             //$data['code'] = Util::ProductCode($request);
             
-            $dataPrice['price_sale']=$request->get('price_sale');
+            $data['price_sale']=$request->get('price_sale');
             $product1 = Product::create($data);
     //        dd($product);
             $dataPrice['product_id']=$product1->id;
@@ -295,7 +295,7 @@ public function AjaxGetProduct(Request $request){
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $category = CategoryProduct::get();
+    {   $category = CategoryProduct::where('disable',0)->get();
         $product = Product::find($id);
         $detailImage = DetailImageProduct::where('product_id',$id)->get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
@@ -359,12 +359,11 @@ public function AjaxGetProduct(Request $request){
             $dataNotify['roleview'] = $product->kho;
             Notification::create($dataNotify);
         }
-        $dataPrice['price_sale']=$request->get('price_sale');
+        $data['price_sale']=$request->get('price_sale');
         $product->update($data);
         $dataPrice['product_id']=$id;
         $dataPrice['price_in']=$request->get('price_in');
         $dataPrice['price_out']=$request->get('price_out');
-        /*$dataPrice['price_sale']=$request->get('price_sale');*/
         $dataPrice['price_sale']=$request->get('price_sale');
         $dataPrice['supplier']= "create";
         $dataPrice['number']= 0;

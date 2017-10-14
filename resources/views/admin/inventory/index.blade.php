@@ -106,7 +106,7 @@
                                         <div class="col-xs-12" style="padding-left: 0px;">
                                             <ul class="list-unstyled">
                                                 <li class="limitcharacter"><span class="label-box">Tồn kho :</span>{{$product->inventory_num}}</li>
-                                                <li class="limitcharacter"><span class="label-box">Chủ Kho</span><strong>{{$product->kho}}</strong></li>
+                                                <li class="limitcharacter"><span class="label-box">Chủ Kho</span><strong>{{\App\Util::UserCode($product->kho)}}</strong></li>
                                                 <li class="limitcharacter"><span class="label-box">Danh mục:</span>{{\App\CategoryProduct::getNameCateById($product->category)}}</li>
                                                 <li class="limitcharacter"><span class="label-box">Cập nhật:</span>{{$product->updated_at->format('d/m/Y')}}</li>
                                             </ul>

@@ -63,15 +63,32 @@ class CategoryProductController extends Controller
      */
     public function index(Request $request)
     {
+        $user_id = Auth::user()->id;
         if($request->get('name') || $request->get('kho')){
             $name = $request->get('name');
             $kho = $request->get('kho');
-            $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->paginate(6);
+            if (Auth::user()->hasRole(['admin','editor','staff'])) {
+                $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->where('disable', 0)->paginate(6);
+            } else {
+                $categoryProduct = CategoryProduct::leftjoin('products','products.category','=','category_products.id')
+                    ->where('products.kho', $user_id)
+                    ->where('category_products.name','LiKE','%'.$name.'%')
+                    ->where('category_products.disable', 0)
+                    ->paginate(6);
+            }
         }
         else {
-            $categoryProduct = CategoryProduct::paginate(12);
+            if (Auth::user()->hasRole(['admin','editor','staff'])) {
+                $categoryProduct = CategoryProduct::where('disable', 0)->paginate(16);
+            } else {
+                $categoryProduct = CategoryProduct::leftjoin('products','products.category','=','category_products.id')
+                    ->where('products.kho', $user_id)
+                    ->where('category_products.disable', 0)
+                    ->paginate(6);
+            }
+            
         }
-        $categoryProduct0 = CategoryProduct::where('parent','0')->get();
+        $categoryProduct0 = CategoryProduct::where('parent','0')->where('disable', 0)->get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
             ->leftjoin('role_user','role_user.user_id','=','users.id')
             ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')

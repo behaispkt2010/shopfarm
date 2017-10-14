@@ -329,7 +329,14 @@
                                     </div>
                                 </li>
                             @else
-                                <span class="different">Bạn không có thông báo mới.</span>
+                                <div class="notify_area">
+                                    <div class="message_null">
+                                        <span class="different">Bạn không có thông báo mới.</span>
+                                    </div>
+                                    <div class="img_notify">
+                                        <img src="{{ asset('/images/box-mail.png')}}" alt="">
+                                    </div>
+                                </div>
                             @endif
                         @elseif(Auth::user()->hasRole('com'))
                             @if (count($arrNotificationCompany) != 0)
@@ -358,7 +365,14 @@
                                     </div>
                                 </li>
                             @else
-                                <span class="different">Bạn không có thông báo mới.</span>
+                                <div class="notify_area">
+                                    <div class="message_null">
+                                        <span class="different">Bạn không có thông báo mới.</span>
+                                    </div>
+                                    <div class="img_notify">
+                                        <img src="{{ asset('/images/box-mail.png')}}" alt="">
+                                    </div>
+                                </div>
                             @endif
                         @else
                             @if (count($arrNotificationAdmin) != 0)
@@ -392,7 +406,14 @@
                                     </div>
                                 </li>
                             @else
-                                <span class="different">Bạn không có thông báo mới.</span>
+                                <div class="notify_area">
+                                    <div class="message_null">
+                                        <span class="different">Bạn không có thông báo mới.</span>
+                                    </div>
+                                    <div class="img_notify">
+                                        <img src="{{ asset('/images/box-mail.png')}}" alt="">
+                                    </div>
+                                </div>
                             @endif
                         @endif
                     </ul>

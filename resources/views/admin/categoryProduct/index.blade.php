@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
+                                <select id="select-ck" class="form-control" name="kho" data-placeholder="Chọn kho">
                                     <option value="0" >Tất cả kho</option>
                                     @foreach($wareHouses  as $wareHouse)
                                         <option value="{{$wareHouse->id}}" @if(Request::get('kho')==$wareHouse->id) selected @endif>{{$wareHouse->id}}({{$wareHouse->name}})</option>

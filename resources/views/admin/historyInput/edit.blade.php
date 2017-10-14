@@ -19,9 +19,9 @@
                                 <thead>
                                 <tr>
                                     <th>Thời gian</th>
-                                    <th>Mã phẩm</th>
+                                    <th>Mã sản phẩm</th>
                                     <th>Tên sản phẩm</th>
-                                    <th>Số luợng nhập</th>
+                                    <th>Số lượng nhập</th>
                                     <th>Số tiền nhập</th>
                                     <th>Tổng số tiền nhập</th>
                                     <th>Tên nhà cung cấp</th>
@@ -99,7 +99,7 @@
                 <div class="modal-body sroll">
                     <div class="form-group">
                         <div class="col-md-12 col-xs-12">
-                            <div class="form-group label-floating">
+                            <div class="form-group ">
                                 <label class="control-label" for="focusedInput2"> Giá mua</label>
                                 <input class="form-control" id="focusedInput2" type="number" name="price_in">
                             </div>
@@ -107,13 +107,13 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-6 col-xs-12">
-                            <div class="form-group label-floating">
+                            <div class="form-group ">
                                 <label class="control-label" for="focusedInput2"> Số lượng</label>
                                 <input class="form-control" id="focusedInput2" type="number" name="number">
                             </div>
                         </div>
                         <div class="col-md-6 col-xs-12">
-                            <div class="form-group label-floating">
+                            <div class="form-group ">
                                 <label class="control-label" for="focusedInput2"> Nhà cung cấp</label>
                                 <input class="form-control" id="focusedInput2" type="text" name="supplier">
                             </div>

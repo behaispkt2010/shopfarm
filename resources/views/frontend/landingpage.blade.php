@@ -44,7 +44,7 @@
 </nav>
 
 <header class="bg-primary text-white sidebar" style="height: 400px;">
-  <div id="gioithieu" class="container text-center paddingLandingPage" style="margin-top: -40px;">
+  <div id="gioithieu" class="container text-center paddingLandingPage" style="">
     <h1 style="color: #fff;">Mạng lưới kho nông sản Việt Nam</h1>
     <p class="lead">Kết nối nguồn hàng chất lượng và đối tác uy tín</p>
   </div>
@@ -61,7 +61,7 @@
 					
 				</div>
 				<div class="bg_service">
-					<img class="radius img_lp" src="{{ asset('frontend/images/tinhnang1.png') }}" alt="">
+					<img class="radius " src="{{ asset('frontend/images/tinhnang1.png') }}" alt="">
 				</div>
 			</div>
 			<div class="info_service_one">
@@ -74,7 +74,7 @@
 					
 				</div>
 				<div class="bg_service">
-					<img class="radius img_lp" src="{{ asset('frontend/images/tinhnang2.png') }}" alt="">
+					<img class="radius " src="{{ asset('frontend/images/tinhnang2.png') }}" alt="">
 				</div>
 			</div>
 			<div class="info_service_one">
@@ -87,7 +87,7 @@
 					
 				</div>
 				<div class="bg_service">
-					<img class="radius img_lp" src="{{ asset('frontend/images/tinhnang3.png') }}" alt="">
+					<img class="radius " src="{{ asset('frontend/images/tinhnang3.png') }}" alt="">
 				</div>
 			</div>
 			<div class="info_service_one">
@@ -273,7 +273,7 @@
 <section id="dichvu">
   <div class="service-confirm service_lp_4" style="">
 	<div class="title_lp service_lp_4 paddingLandingPage">
-		DÀNH CHO NCC CHUYÊN NGHIỆP
+		DÀNH CHO nhà cung cấp CHUYÊN NGHIỆP
 	</div>
 	<div class="row content-service-landingpage">
 		<div class="col-md-6 col-sm-6 " style="">

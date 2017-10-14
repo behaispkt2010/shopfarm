@@ -65,7 +65,7 @@ class InventoryController extends Controller
             
         }
         
-        $category = CategoryProduct::get();
+        $category = CategoryProduct::where('disable',0)->get();
         $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
             ->leftjoin('role_user','role_user.user_id','=','users.id')
             ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')

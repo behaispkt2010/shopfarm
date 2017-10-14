@@ -20,11 +20,10 @@ class HistoryInputController extends Controller
      */
     public function index(Request $request)
     {
+        $user_id = Auth::user()->id;
         if(!empty($request->get('date'))){
-            $date = $request->get('date');
-            $user_id = Auth::user()->id;
+            $date = $request->get('date');    
             if ( Auth::user()->hasRole(['admin','editor']) ) {
-
                 $productUpdatePrice=ProductUpdatePrice::where(DB::raw("(DATE_FORMAT(created_at,'%d-%m-%Y'))"),$date)
                     ->orderBy('id','DESC')
                     ->paginate(9);
@@ -47,16 +46,31 @@ class HistoryInputController extends Controller
 
             $from = $request->get('from');
             $to = $request->get('to');
-
-            $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
-                ->selectRaw('sum(price_in) as sum_price_in')
+            if ( Auth::user()->hasRole(['admin','editor']) ) {
+                $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
+                ->selectRaw('sum(price_in * number) as sum_price_in')
                 ->selectRaw('sum(price_out) as sum_price_out')
                 ->selectRaw('count(*) as count')
                 ->selectRaw('sum(number) as sum_number')
                 ->selectRaw('created_at')
                 ->whereBetween('created_at', array(new DateTime($from), new DateTime($to)))
+                /*->leftjoin('products','products.id','=','product_update_prices.product_id')
+                ->where('products.kho', $user_id)*/
                 ->orderBy('id','DESC')
                 ->paginate(9);
+            } else {
+                $productUpdatePrice = ProductUpdatePrice::leftjoin('products','products.id','=','product_update_prices.product_id')
+                    ->where('products.kho', $user_id)
+                    ->groupBy(DB::raw("DATE(product_update_prices.created_at)"))
+                    ->selectRaw('sum(product_update_prices.price_in * product_update_prices.number) as sum_price_in')
+                    ->selectRaw('sum(product_update_prices.price_out) as sum_price_out')
+                    ->selectRaw('count(*) as count')
+                    ->selectRaw('sum(product_update_prices.number) as sum_number')
+                    ->selectRaw('product_update_prices.created_at')
+                    ->whereBetween('product_update_prices.created_at', array(new DateTime($from), new DateTime($to)))
+                    ->orderBy('product_update_prices.id','DESC')
+                    ->paginate(9);
+            }
 //        dd($productUpdatePrice);
             $data = [
                 'productUpdatePrice' => $productUpdatePrice,
@@ -64,15 +78,30 @@ class HistoryInputController extends Controller
             return view('admin.historyInput.index', $data);
         }
         else {
-            $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
-                ->selectRaw('sum(price_in) as sum_price_in')
+            if ( Auth::user()->hasRole(['admin','editor']) ) {
+                $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
+                ->selectRaw('sum(price_in * number) as sum_price_in')
                 ->selectRaw('sum(price_out) as sum_price_out')
                 ->selectRaw('count(*) as count')
                 ->selectRaw('sum(number) as sum_number')
                 ->selectRaw('created_at')
+                /*->leftjoin('products','products.id','=','product_update_prices.product_id')
+                ->where('products.kho', $user_id)*/
                 ->orderBy('id','DESC')
                 ->paginate(9);
-//        dd($productUpdatePrice);
+            } else {
+                $productUpdatePrice = ProductUpdatePrice::leftjoin('products','products.id','=','product_update_prices.product_id')
+                    ->where('products.kho', $user_id)
+                    ->groupBy(DB::raw("DATE(product_update_prices.created_at)"))
+                    ->selectRaw('sum(product_update_prices.price_in * product_update_prices.number) as sum_price_in')
+                    ->selectRaw('sum(product_update_prices.price_out) as sum_price_out')
+                    ->selectRaw('count(*) as count')
+                    ->selectRaw('sum(product_update_prices.number) as sum_number')
+                    ->selectRaw('product_update_prices.created_at')
+                    ->orderBy('product_update_prices.id','DESC')
+                    ->paginate(9);
+            }
+       // dd($productUpdatePrice);
             $data = [
                 'productUpdatePrice' => $productUpdatePrice,
             ];

@@ -7200,3 +7200,10 @@ table.dtp-picker-days thead {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.message_null {
+    text-align: center;
+    padding: 30px;
+}
+.img_notify {
+    padding: 0 100px 100px 100px;
+}

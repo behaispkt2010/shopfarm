@@ -9728,6 +9728,9 @@ ul.box-lp > li a {
     line-height: 23px;
     font-size: 15px;
 }
+.box_service_one {
+    text-align: center;
+}
 .img_lp{
     max-height: 100%;
     /*width: 100%;*/
@@ -9889,6 +9892,7 @@ ul.box-lp > li a {
 }
 .paddingLandingPage {
     padding-top: 60px;
+    margin-top: -80px;
 }
 .content_service ul li {
     height: 40px;
