@@ -37,6 +37,7 @@
 </head>
 <body>
     <div id="app" style="height: 100%; width: 100%;">
+        <!-- @include('partial.page_top') -->
         <div class=""> 
         @yield('content')
             <div class="h-end text-center">

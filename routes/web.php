@@ -23,7 +23,7 @@ Auth::routes();
  *
  */
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::group(['prefix' => 'admin','middleware' => ['role:admin|editor|kho|staff|user|com','auth', 'authorize']], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], function () {
 
     Route::get('/', 'DashboardController@index');
     Route::get('/dashboard', 'DashboardAdminController@index');

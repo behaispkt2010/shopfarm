@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Province;
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -49,9 +50,11 @@ class customerController extends Controller
     public function create()
     {
         $province = Province::get();
-
+        $roles = Role::get();
+        // dd($roles);
         $data=[
             'role' => "customer",
+            'roles' => $roles,
             'province' => $province,
         ];
         return view('admin.users.edit',$data);

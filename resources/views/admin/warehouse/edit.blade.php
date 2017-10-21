@@ -119,7 +119,7 @@
 
                                             <div class="col-md-8 col-xs-12 ">
                                                 <div class="form-group">
-                                                    <select name="category_warehouse_id" id="category_warehouse_id" class="form-control">
+                                                    <select name="category_warehouse_id" id="category_warehouse_id" class="form-control" >
                                                         @foreach($arrCategoryWarehouse as $itemCategoryWarehouse)
                                                             <option value="{{$itemCategoryWarehouse->id}}" @if ($itemCategoryWarehouse->id == $wareHouse->category_warehouse_id) selected="selected" @endif> {{$itemCategoryWarehouse->category_warehouse_name}}</option>
                                                         @endforeach
@@ -158,7 +158,7 @@
 
                                             <div class="col-md-9 col-xs-12">
                                                 <div class="form-group">
-                                                    <select id="province" class="form-control" required name="province">
+                                                    <select id="province" class="form-control" required name="province" >
                                                         <option value="0">Chọn khu vực</option>
                                                         @foreach($province as $item)
                                                             <option value="{{$item->provinceid}}" @if($wareHouse->province == $item->provinceid) selected @endif>{{$item->name}}</option>
@@ -1086,6 +1086,11 @@
         })
         $('.info-kho .fa-edit').click(function(){
             $('#inputFile').removeAttr('disabled');
+            /*$('#category_warehouse_id').prop('disabled', false);
+            $("#category_warehouse_id").trigger("chosen:updated");
+            $('#category_warehouse_id').selectmenu('refresh');
+            $('#province').prop('disabled', false);
+            $('#province').selectmenu('refresh');*/
         })
         $('button.btn-update').click(function(){
 //            alert("dsds");

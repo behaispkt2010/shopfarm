@@ -213,7 +213,12 @@
     <script src="{{asset('js/selectize.js')}}"></script>
     <!-- Select2 -->
     <script>
-        $('#select-ck,#select-cate,#parent-cate').selectize({
+        $('#select-ck').selectize({
+            create: true,
+        });
+    </script>
+    <script>
+        $('#select-cate').selectize({
             create: true,
             sortField: 'text'
         });
