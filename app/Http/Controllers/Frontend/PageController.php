@@ -84,7 +84,7 @@ class PageController extends Controller
         $arrCategoryWarehouse = CategoryWarehouse::get();
         $arrImageDetail = WarehouseImageDetail::where('warehouse_id',$warehouse_id)->get();
         $getNewProduct = Product::getProductOfWarehouse($warehouse_id,12);
-        $warehouse = WareHouse::select('ware_houses.*','users.*','ware_houses.address as ware_houses_address')
+        $warehouse = WareHouse::select('users.*', 'ware_houses.*','ware_houses.address as ware_houses_address')
             ->leftjoin('users','users.id','=','ware_houses.user_id')
             ->where('ware_houses.id',$warehouse_id)
             ->first();

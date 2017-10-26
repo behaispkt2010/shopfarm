@@ -79,4 +79,11 @@ class WareHouse extends Model
 
     }
     
+    public static function getViewByWID ($user_id) {
+        $ware_houses = WareHouse::where('user_id', $user_id)->get();
+        foreach ($ware_houses as $item) {
+            $view = $item->count_view;
+        }
+        return $view;
+    }
 }

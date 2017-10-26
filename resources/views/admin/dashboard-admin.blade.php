@@ -70,7 +70,33 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-
+                        <div class="row">
+                            Số lượt xem thông tin cá nhân: {{ \App\WareHouse::getViewByWID(Auth::user()->id) }}
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="title_view">
+                                Top các sản phẩm được xem nhiều nhất
+                            </div>
+                            <div class="content_view col-md-8 col-sm-8 col-xs-12">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Số lượt xem</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach(\App\Product::getViewProduct(Auth::user()->id) as $itemGetView)
+                                        <tr>
+                                            <td class="title_product">{{ $itemGetView->title }}</td>
+                                            <td class="view_product">{{ $itemGetView->count_view }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

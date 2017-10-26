@@ -218,8 +218,9 @@ class Product extends Model
             return 0;
         }
     }
-    public static function SearchHomePage ($keysearch) {
-        $arrSearch = Product::lefjoin('');
+    public static function getViewProduct ($user_id) {
+        $productView = Product::where('kho', $user_id)
+                    ->orderBy('count_view',"DESC")->take(10)->get();
+        return $productView;             
     }
-
 }

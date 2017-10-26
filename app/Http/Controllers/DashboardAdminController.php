@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\ProductOrder;
 use App\Product;
+use App\WareHouse;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -65,8 +66,7 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        //echo "kho";
-        $idUser = Auth::user()->id;
+        $idUser = Auth::user()->id; 
         $order = Order::where('kho_id',$idUser)->get();
         $numOrder = count($order);
         $orderProduct = ProductOrder::select('product_orders.id','orders.kho_id','product_orders.price_in','product_orders.price','product_orders.num')
@@ -74,39 +74,27 @@ class DashboardAdminController extends Controller
             ->where('orders.kho_id',$idUser)
             ->where('orders.status','=',8)
             ->get();
-//        dd($orderProduct);
         $numProduct = count(Product::where('kho',$idUser)->get());   
         $totalPriceIn=0;
         $totalPrice=0;
-        /*$users = User::leftjoin('role_user','role_user.user_id','=','users.id')
-            ->where('role_user.role_id',4)
-            ->orderBy('id','DESC')
-            ->get();*/
         foreach($orderProduct as $itemOrder){
             $totalPrice = $totalPrice + ($itemOrder->price);
             $totalPriceIn = $totalPriceIn + ($itemOrder->num * $itemOrder->price_in);
 
         }
-
-        // dd($totalPrice);
         $profit =$totalPrice - $totalPriceIn;
-        // $numProduct = count($orderProduct);
         $arrOrderRemain = Order::select('users.*','orders.*','orders.id as orderID')
             ->leftjoin('users','users.id','=','orders.customer_id')
             ->where('orders.kho_id',$idUser)
             ->where('orders.remain_pay','!=',0)
             ->paginate(10);
-        // dd($arrOrderRemain);    
         $data =[
             'numOrder' =>$numOrder,
             'totalPrice' =>$totalPrice,
             'profit' =>$profit,
             'numProduct' =>$numProduct,
             'arrOrderRemain' =>$arrOrderRemain,
-
-
         ];
-
         return view('admin.dashboard-admin',$data);
     }
 
