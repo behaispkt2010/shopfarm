@@ -9,20 +9,20 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-use App\WareHouse;
+use App\Product;
 
-class ViewsWareHouseEvents
+class ViewsProductEvents
 {
     use InteractsWithSockets, SerializesModels;
-    public $viewware;
+    public $viewproduct;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(WareHouse $viewware)
+    public function __construct(Product $viewproduct)
     {
-        $this->viewware = $viewware;
+        $this->viewproduct = $viewproduct;
     }
 
     /**
@@ -33,6 +33,5 @@ class ViewsWareHouseEvents
     public function broadcastOn()
     {
         return [];
-        // return new PrivateChannel('channel-name');
     }
 }

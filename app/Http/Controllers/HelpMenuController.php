@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Util;
+use App\HelpMenu;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class HelpMenuController extends Controller
 {
@@ -11,39 +16,37 @@ class HelpMenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createAjax(CategoryProductRequest $request){
+    public function createAjax(Request $request){
 
-         $category = new CategoryProduct();
-         $today = date("Y-m-d_H-i-s");
-         $data = $request->all();
-         $data['slug']  = Util::builtSlug($request->get('name'));
-         $checkSlug = CategoryProduct::where('slug', $data['slug'])->count();
-         if($checkSlug != 0){
-             $data['slug'] =  $data['slug'].'-'.$today;
-         }
-         CategoryProduct::create($data);
+        $helpmenu = new HelpMenu();
+        $today = date("Y-m-d_H-i-s");
+        $data = $request->all();
+        $data['parent_id'] = $request->get('parent');
+
+        $linkTmp  = Util::builtSlug($request->get('text'));
+        $data['link']  = '/tro-giup/'.$linkTmp;
+        dd ($data);
+         HelpMenu::create($data);
          $response = array(
              'status' => 'success',
              'msg' => 'Setting created successfully',
          );
          return \Response::json($response);
-     }
+    }
 
     /**
      * ajax update
      */
-    public function updateAjax(CategoryProductRequest $request)
+    public function updateAjax(Request $request)
     {
         $id = $request->get('id');
-        $category =  CategoryProduct::find($id);
+        $helpmenu =  HelpMenu::find($id);
         $today = date("Y-m-d_H-i-s");
         $data = $request->all();
-        $data['slug'] = Util::builtSlug($request->get('name'));
-        $checkSlug = CategoryProduct::where('slug', $data['slug'])->count();
-        if ($checkSlug != 0) {
-            $data['slug'] = $data['slug'] . '-' . $today;
-        }
-        $category->update($data);
+        $data['parent_id'] = $request->get('parent');
+        $linkTmp  = Util::builtSlug($request->get('text'));
+        $data['link']  = '/tro-giup/'.$linkTmp;
+        $helpmenu->update($data);
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -57,28 +60,14 @@ class HelpMenuController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->get('name') || $request->get('kho')){
-            $name = $request->get('name');
-            $kho = $request->get('kho');
-            $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->paginate(6);
-        }
-        else {
-            $categoryProduct = CategoryProduct::paginate(12);
-        }
-        $categoryProduct0 = CategoryProduct::where('parent','0')->get();
-        $wareHouses = User::select('users.*','ware_houses.id as ware_houses_id','ware_houses.level as level')
-            ->leftjoin('role_user','role_user.user_id','=','users.id')
-            ->leftjoin('ware_houses','ware_houses.user_id','=','users.id')
-            ->where('role_user.role_id',4)
-            ->orderBy('id','DESC')
-            ->get();
-        $data=[
-            'categoryProduct'=> $categoryProduct,
-            'categoryProduct0' => $categoryProduct0,
-            "wareHouses"=>$wareHouses,
+        $helpmenu = HelpMenu::where('status', 1)->paginate(15);
+        $helpmenu0 = HelpMenu::where('parent_id','0')->get();
+        $data = [
+            'helpmenu'=> $helpmenu,
+            'helpmenu0' => $helpmenu0,
         ];
         //dd($categoryProduct);
-        return view('admin.categoryProduct.index',$data);
+        return view('admin.helpmenu.index', $data);
     }
 
     /**
@@ -88,7 +77,11 @@ class HelpMenuController extends Controller
      */
     public function create()
     {
-        //
+        $helpmenu = HelpMenu::where('parent_id','0')->get();
+        $data = [
+            'helpmenu' => $helpmenu,
+        ];
+        return view('admin.helpmenu.edit', $data);
     }
 
     /**
@@ -99,7 +92,15 @@ class HelpMenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $helpmenu = new HelpMenu();
+        $today = date("Y-m-d_H-i-s");
+        $data = $request->all();
+
+        $linkTmp  = Util::builtSlug($request->get('text'));
+        $data['link']  = '/tro-giup/'.$linkTmp;
+        
+        HelpMenu::create($data);
+        return redirect('admin/help-menu/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
     }
 
     /**
@@ -110,7 +111,12 @@ class HelpMenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $helpmenu = HelpMenu::find($id);
+        $data=[
+            'id' => $id,
+            'helpmenu'=>$helpmenu,
+        ];
+        return view('admin.helpmenu.edit', $data);
     }
 
     /**
@@ -121,7 +127,14 @@ class HelpMenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $helpmenu = HelpMenu::get();
+        $helpmenuContent = HelpMenu::find($id);
+        $data=[
+            'id' => $id,
+            'helpmenu'=>$helpmenu,
+            'helpmenuContent'=>$helpmenuContent,
+        ];
+        return view('admin.helpmenu.edit',$data);
     }
 
     /**
@@ -133,7 +146,15 @@ class HelpMenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $today = date("Y-m-d_H-i-s");
+        $data = $request->all();
+        $helpmenu =  HelpMenu::find($id);
+
+        $linkTmp  = Util::builtSlug($request->get('text'));
+        $data['link']  = '/tro-giup/'.$linkTmp;
+
+        $helpmenu->update($data);
+        return redirect('admin/help-menu/')->with(['flash_level' => 'success', 'flash_message' => 'Lưu thành công']);
     }
 
     /**
@@ -144,12 +165,12 @@ class HelpMenuController extends Controller
      */
     public function destroy($id)
     {
-        $res =  CategoryProduct::destroy($id);
+        $res =  HelpMenu::destroy($id);
         if(!empty($res)) {
-            return redirect('admin/categoryProducts/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+            return redirect('admin/help-menu/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
         else{
-            return redirect('admin/categoryProducts/')->with(['flash_level' => 'success', 'flash_message' => 'Chưa thể xóa']);
+            return redirect('admin/help-menu/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
 
         }
     }

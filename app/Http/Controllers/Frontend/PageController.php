@@ -101,6 +101,7 @@ class PageController extends Controller
         ];
         //dd($getNewProduct);
         event(new ViewsWareHouseEvents($warehouse));
+        // dd($warehouse->count_view);
         return view('frontend.warehouse', $data);
     }
     public function DetailCompany($company_id) {

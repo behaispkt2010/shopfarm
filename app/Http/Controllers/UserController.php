@@ -238,13 +238,19 @@ public function AjaxCreateCustomer(UserRequest $request)
      */
     public function destroy($id)
     {
-        $user =  User::destroy($id);
-        if(!empty($user)) {
-                return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+        $checkOrder = User::checkUserHasOrder($id);
+        if ($checkOrder == 0) {
+            $user =  User::destroy($id);
+        } else {
+            return redirect()->back()->with(['flash_level' => 'danger', 'flash_message' => 'Khách hàng này đang có đơn hàng, nên không thể xóa']);
+        }
+
+        if(!empty($user) ) {
+            return redirect()->back()->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
         else{
 
-                return redirect()->back()->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
+            return redirect()->back()->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
         }
     }
 }

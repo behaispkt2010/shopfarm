@@ -14,6 +14,7 @@ use App\User;
 use App\WareHouse;
 use App\BankWareHouse;
 use App\NewsCompany;
+use App\Events\ViewsProductEvents;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -180,6 +181,7 @@ class ProductController extends Controller
             "product"       =>$product,
             "detailImage"   =>$detailImage
         ];
+        event(new ViewsProductEvents($product));
         return view('frontend.product-single',$data);
 
     }

@@ -40,9 +40,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], functi
     Route::post('help-menu/createAjax', 'HelpMenuController@createAjax');
     Route::post('help-menu/updateAjax', 'HelpMenuController@updateAjax');
 
-    Route::resource('help-menu-content', 'HelpMenuContentController');
-    Route::get('help-menu/data/json', 'HelpMenuContentController@data');
-
     //Nhóm tin tức
     Route::resource('category', 'CategoryController');
     Route::get('category/data/json', 'CategoryController@data');
@@ -208,7 +205,7 @@ Route::post('/contact','Frontend\PageController@PostContact');
 Route::get('/nhan-ho-tro','Frontend\PageController@SendHelpUser');
 
 //thông tin chủ kho
-Route::get('/shop/{warehousr_id}', 'Frontend\PageController@DetailWarehouse');
+Route::get('/shop/{warehouse_id}', 'Frontend\PageController@DetailWarehouse');
 Route::get('/xac-thuc-kho', 'Frontend\PageController@ConfirmKho');
 Route::get('/quang-cao', 'Frontend\PageController@QuangCao');
 Route::get('/tra-phi', 'Frontend\PageController@TraPhi');
@@ -220,10 +217,8 @@ Route::get('/infoquangcao', 'Frontend\PageController@InfoQuangCao');
 Route::get('/resisterWareHouse','Frontend\PageController@GetResisterWareHouse');
 Route::post('/resisterWareHouse','Frontend\PageController@PostResisterWareHouse');
 
-Route::get('/tro-giup', 'Frontend\LandingPageController@help_menu');
-Route::get('/tro-giup/1', 'Frontend\LandingPageController@help_menu');
-Route::get('/tro-giup/2', 'Frontend\LandingPageController@help_menu');
-Route::get('/tro-giup/3', 'Frontend\LandingPageController@help_menu');
+Route::get('/tro-giup', 'Frontend\LandingPageController@help_home');
+Route::get('/tro-giup/{linkMenu}', 'Frontend\LandingPageController@help_menu');
 Route::get('/dataJsTree', 'Frontend\LandingPageController@dataJsTree');
 
 Route::get('/about','Frontend\PageController@About');

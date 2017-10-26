@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\ViewsWareHouseEvents;
+use App\Events\ViewsProductEvents;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ViewsWareHouseListeners
+class ViewsProductListeners
 {
     /**
      * Create the event listener.
@@ -21,13 +21,11 @@ class ViewsWareHouseListeners
     /**
      * Handle the event.
      *
-     * @param  ViewsWareHouseEvents  $event
+     * @param  ViewsProductEvents  $event
      * @return void
      */
-    public function handle(ViewsWareHouseEvents $event)
+    public function handle(ViewsProductEvents $event)
     {
-        // dd($event->viewware);
-        $event->viewware->increment('count_view');
-        
+        $event->viewproduct->increment('count_view');
     }
 }

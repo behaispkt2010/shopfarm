@@ -169,16 +169,7 @@
                         </ul>
                     </li>
                     @endpermission
-                    @permission('help-menu')
-                    <li><a><i class="fa fa-life-ring"></i>Menu trợ giúp <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{route('help-menu.index')}}">Nhóm tin hỗ trợ</a></li>
-                            @permission('help-menu-content')
-                            <li><a href="{{route('help-menu-content.index')}}">Danh sách tin hỗ trợ</a></li>
-                            @endpermission
-                        </ul>
-                    </li>
-                    @endpermission
+                    
                     @permission('sharingreferralcode')
                     <li><a href="{{ route('sharingreferralcode.index') }}"><i class="fa fa-qrcode"></i>Mã Giới thiệu</a></li>
                     @endpermission
@@ -213,6 +204,13 @@
                         </ul>
                     </li>
                     @endpermission
+                    @permission('help-menu')
+                    <li><a><i class="fa fa-life-ring"></i>Menu trợ giúp <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('help-menu.index')}}">Tin hỗ trợ user</a></li>
+                        </ul>
+                    </li>
+                    @endpermission
                     @permission('setting')
                     <li><a><i class="fa fa-cogs"></i>Cài đặt<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
@@ -224,6 +222,7 @@
                         </ul>
                     </li>
                     @endpermission
+
                 </ul>
             </div>
 @endrole

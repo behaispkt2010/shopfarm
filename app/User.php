@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Order;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -68,6 +69,11 @@ class User  extends Model implements AuthenticatableContract, CanResetPasswordCo
 
     public function checkEmailExits($email) {
         $user = User::where('email', $email)->get();
+        return count($user);
+    }
+
+    public static function checkUserHasOrder($strUID) {
+        $user = Order::where('customer_id', $strUID)->get();
         return count($user);
     }
 

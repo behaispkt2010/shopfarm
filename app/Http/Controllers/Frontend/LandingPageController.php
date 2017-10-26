@@ -10,7 +10,7 @@ use App\Util;
 use App\WareHouse;
 use App\Product;
 use App\HelpMenu;
-use App\Order;
+use App\HelpMenuContent;
 use App\Events\ViewsCompanyEvents;
 use App\Events\ViewsWareHouseEvents;
 use App\CompanyImage;
@@ -42,23 +42,34 @@ class LandingPageController extends Controller {
         }
         // Set items as children of the relevant parent item.
         foreach($data as $key => &$item) {
+            $item['a_attr']['href'] = $item['link'];
             if ($item['parent_id'] && isset($itemsByReference[$item['parent_id']])) 
                 $itemsByReference [$item['parent_id']]['children'][] = &$item;
         }
         // Remove items that were added to parents elsewhere:
         foreach($data as $key => &$item) {
-            if(empty($item['children'])) {
+            /*if(empty($item['children'])) {
                 $item['a_attr']['href'] = $item['link'];
-            }
+            }*/
             if($item['parent_id'] && isset($itemsByReference[$item['parent_id']]))
                 unset($data[$key]);
         }
         $data = array_values($data);
         return json_encode($data);
     }
-    public function help_menu(){
+    public function help_home(){
         
-        return view('frontend.help_menu');
+        return view('frontend.help_home');
+
+    }
+    public function help_menu($linkMenu){
+        if (!empty($linkMenu)) {
+            $helpMenu = HelpMenu::where('link','LiKE','%'.'/tro-giup/'.$linkMenu.'%')->first();
+        }
+        $data = [
+            'helpMenu' => $helpMenu,
+        ];
+        return view('frontend.help_menu', $data);
 
     }
 }

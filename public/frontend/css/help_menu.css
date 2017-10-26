@@ -4,10 +4,27 @@
 }
 #MenuJSTree { 
 	float:left; 
-	width:350px; 
-	border-right:1px solid silver; 
+	width:315px; 
 	overflow:auto; 
-	padding:0px 0; }
+	padding:0px 0; 
+}
 .MenuContent { 
 	margin-left:360px; 
+	border-left:1px solid silver; 
+	padding-left: 20px;
+}
+.btnHelpMenu {
+	padding: 6px 20px !important;
+	border-radius: 5px !important;
+}
+.menu_help {
+	padding-top: 0px;
+}
+.articleHelp {
+	padding-top: 10px;
+	padding-left: 20px;
+}
+.chilArticleHelp {
+	list-style: disc;
+    color: #000;
 }
