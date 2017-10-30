@@ -9952,3 +9952,8 @@ ul.box-lp > li a {
     margin-right: 4px;
     width: 15px;
 }
+.background_img {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}

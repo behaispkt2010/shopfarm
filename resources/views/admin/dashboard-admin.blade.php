@@ -413,7 +413,7 @@
                                     data: barDatas1
                                 }, {
                                     label: 'Thất bại',
-                                    backgroundColor: "#FF9800",
+                                    backgroundColor: "#9F0801",
                                     data: barDatas2
                                 }]
                             },

@@ -37,19 +37,17 @@
 				                                        <p class="text-center status-title">HOT</p>
 				                                    </div>
 				                                    @endif
-													<div class="company_image">
-													
-														<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
-															<img src="@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif" alt="">
-														</a>
-													</div>
-													<div class="description">
-														<p class="textoverlow padding7" style="font-weight: bolder;"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
-														<div class="limit-2">
-				                                        	{!! $itemAllNewsCompany->content !!}
-				                                        </div>
-				                                        <span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
-													</div>
+													<a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}">
+														<div class="company_image background_img" style="background-image: url('@if (!empty($itemAllNewsCompany->image_company)){{url('/').$itemAllNewsCompany->image_company}} @else {{asset('/images/8.png')}} @endif');">
+														</div>
+														<div class="description">
+															<p class="textoverlow padding7" style="font-weight: bolder;"><a href="{{url('/company/'.$itemAllNewsCompany->companyID.'/'.$itemAllNewsCompany->slug.'/'.$itemAllNewsCompany->newscompanyID)}}" class="clearfix ;">{{$itemAllNewsCompany->name}}</a></p>
+															<div class="limit-2">
+					                                        	{!! $itemAllNewsCompany->content !!}
+					                                        </div>
+					                                        <span style=""><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllNewsCompany->view_count))0 @else{{$itemAllNewsCompany->view_count}}@endif </a></span>
+														</div>
+													</a>
 												</div>
 											</div>
 											<?php $i = $i+1;$j=$j+1; ?>
@@ -88,43 +86,42 @@
 														<div class="col-md-3 col-xs-12 warehouse_cell">
 															<div class="well box_1">
 															<!-- <div class="product_bestselt" style="padding-bottom: 10px;"> -->
-																<div class="company_image">
-																	<a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}"><img src="@if (!empty($itemAllWareHouseDeXuat->image_kho)){{url('/').$itemAllWareHouseDeXuat->image_kho}} @else {{asset('/images/2.png')}} @endif" alt=""></a>
-																</div>
-																<div class="description">
-																	<p class="textoverlow padding7"><a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}" class="clearfix ">{{$itemAllWareHouseDeXuat->name_company}}</a></p>
-																	<div class="clearfix product_info limit-2">Cung cấp: 
-																		@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouseDeXuat->id) as $key => $itemCate)
-																			{{$itemCate}},
-																		@endforeach
-							                                        </div>
-							                                        <div class="kho_info clearfix">
-							                                        	<span style="float: left; padding-left: 7px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseDeXuat->count_view))0 @else{{$itemAllWareHouseDeXuat->count_view}}@endif </a></span>
-							                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
-							                                        </div>
-																	<div class="kho_info clearfix">
-																		<a href="#" class="alignleft" style="">
-																			@if($itemAllWareHouseDeXuat->level == 1)
-																				<img src="{{url('/images')}}/level1.png" alt="">
-																			@elseif($itemAllWareHouseDeXuat->level == 2)
-																				<img src="{{url('/images')}}/level2.png" alt="">
-																			@elseif($itemAllWareHouseDeXuat->level == 3)
-																				<img src="{{url('/images')}}/level3.png" alt="">
-																			@else
-																				<img src="{{url('/images')}}/level0.png" alt="">
-																			@endif
-																		</a>
-																		<a href="#" class="alignright" style="margin-right: 8px;">
-																			@if($itemAllWareHouseDeXuat->confirm_kho == 1)
-																				<img src="{{url('/images')}}/xacthuc.png" alt="">
-																			@else
-																			@endif
-																		</a>
-																		
+																<a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}">
+																	<div class="company_image background_img" style="background-image: url('@if (!empty($itemAllWareHouseDeXuat->image_kho)){{url('/').$itemAllWareHouseDeXuat->image_kho}} @else {{asset('/images/2.png')}} @endif');">
 																		
 																	</div>
-																	
-																</div>
+																	<div class="description">
+																		<p class="textoverlow padding7"><a href="{{ url('/shop/'.$itemAllWareHouseDeXuat->id) }}" class="clearfix ">{{$itemAllWareHouseDeXuat->name_company}}</a></p>
+																		<div class="clearfix product_info limit-2">Cung cấp: 
+																			@foreach (\App\WareHouse::getCateProductByID($itemAllWareHouseDeXuat->id) as $key => $itemCate)
+																				{{$itemCate}},
+																			@endforeach
+								                                        </div>
+								                                        <div class="kho_info clearfix">
+								                                        	<span style="float: left; padding-left: 7px;"><a href="#" class="comments" style="font-size: 12px;"><i class="fa fa-eye-slash" style="padding-top: 3px;"></i> @if(empty($itemAllWareHouseDeXuat->count_view))0 @else{{$itemAllWareHouseDeXuat->count_view}}@endif </a></span>
+								                                        	<a href="#" class="code_kho" style="">{!! \App\Util::UserCode($itemAllWareHouseDeXuat->user_id) !!}</a>
+								                                        </div>
+																		<div class="kho_info clearfix">
+																			<a href="#" class="alignleft" style="">
+																				@if($itemAllWareHouseDeXuat->level == 1)
+																					<img src="{{url('/images')}}/level1.png" alt="">
+																				@elseif($itemAllWareHouseDeXuat->level == 2)
+																					<img src="{{url('/images')}}/level2.png" alt="">
+																				@elseif($itemAllWareHouseDeXuat->level == 3)
+																					<img src="{{url('/images')}}/level3.png" alt="">
+																				@else
+																					<img src="{{url('/images')}}/level0.png" alt="">
+																				@endif
+																			</a>
+																			<a href="#" class="alignright" style="margin-right: 8px;">
+																				@if($itemAllWareHouseDeXuat->confirm_kho == 1)
+																					<img src="{{url('/images')}}/xacthuc.png" alt="">
+																				@else
+																				@endif
+																			</a>
+																		</div>	
+																	</div>
+																</a>
 															<!-- </div> -->
 															</div>
 														</div>
