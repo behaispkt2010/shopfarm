@@ -5641,7 +5641,7 @@ ul.notifications {
     position: fixed;
     right: 21px;
     top: 75px;
-    z-index: 999999;
+    z-index: 999;
 }
 
 .info {
