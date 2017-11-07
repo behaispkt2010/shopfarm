@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryProduct extends Model
 {
-    protected $fillable = ['name', 'slug','note','parent'];
+    protected $fillable = ['name', 'slug','note','parent','cate_code'];
     public static function getNameCateById($id){
         $name = "Mặc định";
         $query=  CategoryProduct::find($id);
