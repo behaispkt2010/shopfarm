@@ -82,9 +82,7 @@
                                     </div>
 
                                     <div class="col-xs-12 text-center">
-                                        {{--<a href="#"  target="_blank" class="btn btn-primary btn-xs" >--}}
-                                        {{--<i class="fa fa-eye" aria-hidden="true"></i> Xem--}}
-                                        {{--</a>--}}
+                                        
                                         <a href="{{url('/category-product').'/'.$itemCategoryProduct->slug}}"
                                            class="btn btn-raised btn-success btn-xs">
                                             <i class="fa fa-eye" aria-hidden="true"></i> Xem
@@ -93,7 +91,7 @@
                                            data-target=".modal-product-cate-edit"
                                            class="btn btn-raised btn-primary btn-xs" id="edit_cate" data-id="{{$itemCategoryProduct->id}}"
                                            data-name="{{$itemCategoryProduct->name}}" data-parent="{{$itemCategoryProduct->parent}}"
-                                           data-note="{{$itemCategoryProduct->note}}">
+                                           data-note="{{$itemCategoryProduct->note}}" data-cate_code="{{$itemCategoryProduct->cate_code}}">
                                             <i class="fa fa-pencil" aria-hidden="true"></i> sửa
                                         </a>
                                         <form action="{{route('categoryProducts.destroy',['id' => $itemCategoryProduct->id])}}" method="post" class="form-delete" style="display: inline">
@@ -144,6 +142,28 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group ">
+                            <label class="control-label" for="focusedInput2">Code Nhóm sản phẩm</label>
+                            <input class="form-control" id="focusedInput2" type="text" name="cate_code">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" checked="checked" value="0" id="optionsRadios1"
+                                           name="disable">
+                                    Hiển thị
+                                </label>
+                            </div>
+
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" value="1" id="optionsRadios2"
+                                           name="disable"> Ẩn
+                                </label>
+                            </div>
+                        </div> -->
+
                         <div class="form-group">
                             <div class="form-group label-floating">
                                 <label class="control-label" for="focusedInputnote">Ghi chú</label>
@@ -188,6 +208,29 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="focusedInput2">Code Nhóm sản phẩm</label>
+                            <input class="form-control" id="focusedInput2" type="text" name="cate_code">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" checked="checked" value="0" id="optionsRadios1"
+                                           name="disable">
+                                    Hiển thị
+                                </label>
+                            </div>
+
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" value="1" id="optionsRadios2"
+                                           name="disable"> Ẩn
+                                </label>
+                            </div>
+                        </div> -->
+
                         <div class="form-group">
                             <div class="form-group label-floating">
                                 <label class="control-label" for="focusedInputnote">Ghi chú</label>
@@ -229,6 +272,7 @@
             e.preventDefault();
 
             var name = $('.modal-product-cate input[name="name"]').val();
+            var cate_code = $('.modal-product-cate input[name="cate_code"]').val();
             var parent = $('.modal-product-cate select[name="parent"] :selected').val();
             var note = $('.modal-product-cate textarea[name="note"]').val();
             var _token = $('.modal-product-cate input[name="_token"]').val();
@@ -236,10 +280,11 @@
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/categoryProducts/createAjax',
-                data: {name: name, parent: parent, note: note,_token: _token},
+                data: {name: name, cate_code: cate_code, parent: parent, note: note,_token: _token},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     $('.modal-product-cate input[name="name"]').val("");
+                    $('.modal-product-cate input[name="cate_code"]').val("");
                     $('.modal-product-cate select[name="parent"]').val(0);
                     $('.modal-product-cate textarea[name="note"]').val("");
                     new PNotify({
@@ -270,6 +315,7 @@
             e.preventDefault();
 
             var name = $('.modal-product-cate-edit input[name="name"]').val();
+            var cate_code = $('.modal-product-cate-edit input[name="cate_code"]').val();
             var parent = $('.modal-product-cate-edit select[name="parent"] :selected').val();
             var note = $('.modal-product-cate-edit textarea[name="note"]').val();
             var _token = $('.modal-product-cate-edit input[name="_token"]').val();
@@ -279,10 +325,11 @@
             $.ajax({
                 type: "POST",
                 url: '{{ url('/') }}/admin/categoryProducts/updateAjax',
-                data: {name: name, parent: parent, note: note,_token: _token,id: id},
+                data: {name: name, cate_code: cate_code, parent: parent, note: note,_token: _token,id: id},
                 success: function( msg ) {
                     $('.loading').css('display','none');
                     $('.modal-product-cate-edit input[name="name"]').val("");
+                    $('.modal-product-cate-edit input[name="cate_code"]').val("");
                     $('.modal-product-cate-edit select[name="parent"]').val(0);
                     $('.modal-product-cate-edit textarea[name="note"]').val("");
                     //show notify
@@ -317,6 +364,7 @@
             $('.modal-product-cate-edit input[name="name"]').val(_self.data('name'));
             $('.modal-product-cate-edit select[name="parent"]').val(_self.data('parent'));
             $('.modal-product-cate-edit textarea[name="note"]').val(_self.data('note'));
+            $('.modal-product-cate-edit input[name="cate_code"]').val(_self.data('cate_code'));
             $('.modal-product-cate-edit input[name="id"]').val(_self.data('id'));
         });
     </script>
