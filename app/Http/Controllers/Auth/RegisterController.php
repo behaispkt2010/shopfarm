@@ -106,10 +106,13 @@ class RegisterController extends Controller
         }
         $user = User::where('facebook_id',$socialiteUser->getId())->first();
         if (!$user) {
+            $myIntroCode = str_random(8);
             $dataUser = [
                 'facebook_id' => $socialiteUser->getId(),
                 'name' => $socialiteUser->getName(),
                 'email' => $socialiteUser->getEmail(),
+                'myIntroCode' => $myIntroCode,
+                'image' => '/images/user_default.png',
             ];
             $user = User::create($dataUser);
             $user->attachRole(3);
