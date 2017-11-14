@@ -215,12 +215,12 @@
         });*/
         $('.info-kho .fa-edit').click(function(){
             $(this).parent().parent().parent().parent().find('input').removeAttr('disabled');
-            $(this).parent().parent().find('.btn-update').css('display','inline-block');
+            $(this).parent().parent().parent().find('.btn-update').css('display','inline-block');
         });
-        $('.info-kho,.info-warehouse').click(function () {
-            $(this).find('input').removeAttr('disabled');
-            $(this).find('textarea').removeAttr('disabled');
-            $(this).find('.btn-update').css('display', 'inline-block');
+        $('.info-kho .fa-edit, .info-warehouse .fa-edit').click(function () {
+            $(this).parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('textarea').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display', 'inline-block');
 
         });
     </script>
