@@ -1,6 +1,13 @@
 @extends('layouts.frontend')
 @section('title', 'liên hệ')
 @section('description','liên hệ')
+
+@section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
+@section('type_seo','article')
+@section('title_seo', 'Liên hệ' )
+@section('description_seo', 'Giải đáp thắc mắc khách hàng - Phụng sự khách hàng là trách nhiệm của chúng tôi' )
+@section('image_seo', url('/').'/frontend/images/nosago1.png' )
+
 @section('add_styles')
 {{-- --}}
 @endsection

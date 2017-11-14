@@ -1,6 +1,13 @@
 @extends('layouts.frontend')
 @section('title', 'chi tiết')
 @section('description','chi tiết bài viết')
+
+@section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
+@section('type_seo','article')
+@section('title_seo', $singleBlog->title_seo )
+@section('description_seo',$singleBlog->description )
+@section('image_seo', url('/').$singleBlog->image )
+
 @section('add_styles')
 {{-- --}}
 @endsection

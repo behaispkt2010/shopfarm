@@ -250,9 +250,11 @@ public function AjaxGetProduct(Request $request){
                 $dataNotify['title'] = "Sản phẩm mới";
                 $dataNotify['content'] = "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.";
                 $dataNotify['author_id'] = $userID;
-                $dataNotify['roleview'] = Util::$roleviewAdmin;
                 $dataNotify['orderID_or_productID'] = $product1->id;
-                Notification::create($dataNotify);
+                foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+                    $dataNotify['roleview'] = $itemUser;
+                    Notification::create($dataNotify);
+                }
             }
 
             $dataImage['product_id']=$product1->id;

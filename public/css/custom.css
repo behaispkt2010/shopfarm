@@ -7207,3 +7207,14 @@ table.dtp-picker-days thead {
 .img_notify {
     padding: 0 100px 100px 100px;
 }
+.notify_heading {
+    padding: 10px;
+}
+.notifyShow {
+    display: block !important;
+    color: #4183C4;
+}
+.login_fb {
+    font-size: 45px;
+    color: #3C5C95;
+}

@@ -1,3 +1,6 @@
+when add 1 role -> add 1 roleview in Util.php
+
+
 ## How to fix stream_socket_enable_crypto() in Mailer
 See: http://stackoverflow.com/questions/30556773/how-to-fix-stream-socket-enable-crypto-ssl-operation-failed-with-code-1
 

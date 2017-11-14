@@ -269,38 +269,36 @@
                         <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>--}}
+                <?php
+                    $strUserID = Auth::user()->id;
+                    $strNumNotify = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
+                ?>
                 @if(Auth::user()->hasRole('kho'))
                     <?php
-                        $strUserID = Auth::user()->id;
-                        $strNumNotify = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
                         $arrNotification = \App\Notification::GetNotify($strUserID);
                     ?>
                 @elseif(Auth::user()->hasRole('com'))
                     <?php
-                        $strUserID = Auth::user()->id;
-                        $strNumNotifyCom = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
                         $arrNotificationCompany = \App\Notification::GetNotifyCompany($strUserID);
                     ?>
                 @else
                     <?php
-                        $strUserID = Auth::user()->id;
                         $arrNotificationAdmin = \App\Notification::GetNotifyAdmin();
-                        $strNumNotifyAdmin = count(\App\Notification::where('is_read',0)->where('roleview',\App\Util::$roleviewAdmin)->get());
                     ?>
                 @endif
                 <li role="presentation" class="dropdown" style="display: block" >
-                    <a href="javascript;" class="dropdown-toggle info-number" id="menu_notify" data-toggle="dropdown"
+                    <a href="javascript;" class="dropdown-toggle info-number" id="" data-toggle="dropdown"
                        aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
-                        @if(Auth::user()->hasRole('kho'))
-                            <span class="badge bg-template" id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
-                        @elseif(Auth::user()->hasRole('com'))
-                            <span class="badge bg-template" id="notify_count">@if ($strNumNotifyCom != 0) {{$strNumNotifyCom}} @endif</span>
-                        @else
-                            <span class="badge bg-template" id="notify_count">@if ($strNumNotifyAdmin != 0) {{$strNumNotifyAdmin}} @endif</span>
-                        @endif
+                        <span class="badge bg-template " id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        
+                            <div class="notify_heading">
+                                <strong>Thông báo</strong>
+                                <a id="menu_notify" class="alignright">Đánh dấu tất cả đã đọc</a>
+                            </div>
+                        
                         @if(Auth::user()->hasRole('kho'))
                             @if (count($arrNotification) != 0)
                                 @foreach ($arrNotification as $itemNotification)

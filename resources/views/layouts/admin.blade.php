@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-autho:trieucse
-description: template admin
--->
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,7 +7,6 @@ description: template admin
     <title>Admin - @yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
     
 
     <link rel='shortcut icon' type='image/x-icon' href='{{asset('frontend/images/logo.png')}}'/>

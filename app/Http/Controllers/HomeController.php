@@ -9,6 +9,7 @@ use App\ProductOrder;
 use App\Company;
 use App\WareHouse;
 use App\NewsCompany;
+use App\Util;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,8 +31,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        /*$a = CategoryProduct::where('disable',0)->get();
-        dd($a);*/
         if (!empty($request->get('search')) || !empty($request->get('sanpham')) || !empty($request->get('capkho')) || !empty($request->get('tinh'))) {
             $name = $request->get('search');
             $cate= $request->get('sanpham');

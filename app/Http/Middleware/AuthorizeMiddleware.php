@@ -78,8 +78,10 @@ class AuthorizeMiddleware {
 			$data['title'] = "Tài khoản sắp hết thời gian dùng thử";
 			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
-			$data['roleview'] = Util::$roleviewAdmin;
-			Notification::firstOrCreate($data);
+			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+	            $data['roleview'] = $itemUser;
+	            Notification::firstOrCreate($data);
+	        }
 		}
 		if (( $user_test == 2 ) && ( $date_end_test < $time_now )){
 			abort(401);
@@ -102,8 +104,10 @@ class AuthorizeMiddleware {
 			$data['title'] = "Sắp hết thời gian Xác nhận kho";
 			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
-			$data['roleview'] = Util::$roleviewAdmin;
-			Notification::firstOrCreate($data);
+			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+	            $data['roleview'] = $itemUser;
+	            Notification::firstOrCreate($data);
+	        }
 		}
 		if (($confirm_kho == 1) && ($countTimeConfirm < 0 )){
 			abort(401);
@@ -127,8 +131,10 @@ class AuthorizeMiddleware {
 			$data['title'] = "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại";
 			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
-			$data['roleview'] = Util::$roleviewAdmin;
-			Notification::firstOrCreate($data);
+			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+	            $data['roleview'] = $itemUser;
+	            Notification::firstOrCreate($data);
+	        }
 		}
 		if (($level != 0) && ($countTimelevel < 0 )){
 			abort(401);
@@ -151,8 +157,10 @@ class AuthorizeMiddleware {
 			$data['title'] = "Sắp hết thời gian Quảng Cáo";
 			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
 			$data['author_id'] = Auth::user()->id;
-			$data['roleview'] = Util::$roleviewAdmin;
-			Notification::firstOrCreate($data);
+			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+	            $data['roleview'] = $itemUser;
+	            Notification::firstOrCreate($data);
+	        }
 		}
 		if (($quangcao == 1) && ($countTimequangcao < 0 )){
 			abort(401);

@@ -217,9 +217,11 @@ class OrderController extends Controller
                 $dataNotify['title'] = "Đơn hàng mới";
                 $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name;
                 $dataNotify['author_id'] = Auth::user()->id;
-                $dataNotify['roleview'] = Util::$roleviewAdmin;
                 $dataNotify['orderID_or_productID'] = $strOrderID;
-                Notification::create($dataNotify);
+                foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+                    $dataNotify['roleview'] = $itemUser;
+                    Notification::create($dataNotify);
+                }
             }
 //            DB::table('product_orders')->insert($ProductOrder);
         }
@@ -399,7 +401,6 @@ class OrderController extends Controller
                 $dataNotifyAdmin['title'] = "Đơn hàng bị lỗi";
                 $dataNotifyAdmin['content'] = "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua đang bị lỗi";
                 $dataNotifyAdmin['author_id'] = Auth::user()->id;
-                $dataNotifyAdmin['roleview'] = Util::$roleviewAdmin;
                 $dataNotifyAdmin['orderID_or_productID'] = $id;
 
 
@@ -411,7 +412,12 @@ class OrderController extends Controller
                 $dataNotify['orderID_or_productID'] = $id;
                 
                 Notification::firstOrCreate($dataNotify);
-                Notification::firstOrCreate($dataNotifyAdmin);
+                
+                foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+                    $dataNotifyAdmin['roleview'] = $itemUser;
+                    Notification::firstOrCreate($dataNotifyAdmin);
+                }
+
             }
             elseif ($request->get('status') == Util::$statusOrderReturn) {
                 $arrUser = User::find($request->customer_id);
@@ -423,7 +429,6 @@ class OrderController extends Controller
                 $dataNotifyAdmin['title'] = "Đơn hàng sắp trả về kho";
                 $dataNotifyAdmin['content'] = "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua sắp trả về kho";
                 $dataNotifyAdmin['author_id'] = Auth::user()->id;
-                $dataNotifyAdmin['roleview'] = Util::$roleviewAdmin;
                 $dataNotifyAdmin['orderID_or_productID'] = $id;
 
                 $dataNotify['keyname'] = Util::$orderreturn;
@@ -434,7 +439,10 @@ class OrderController extends Controller
                 $dataNotify['orderID_or_productID'] = $id;
 
                 Notification::firstOrCreate($dataNotify);
-                Notification::firstOrCreate($dataNotifyAdmin);
+                foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+                    $dataNotifyAdmin['roleview'] = $itemUser;
+                    Notification::firstOrCreate($dataNotifyAdmin);
+                }
             }
 //            DB::table('product_orders')->insert($ProductOrder);
         }

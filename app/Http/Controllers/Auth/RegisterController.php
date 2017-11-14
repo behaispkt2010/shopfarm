@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Socialite;
 use App\Traits\CaptchaTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -81,5 +82,42 @@ class RegisterController extends Controller
         ]);
         $user->attachRole(3);
         return $user;
+    }
+
+    // login socialite
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        /*$socialiteUser = Socialite::driver('facebook')->user();
+        return $socialiteUser->getId();*/
+        try {
+            $socialiteUser = Socialite::driver('facebook')->user();
+        } catch (Exception $e) {
+            return redirect('/');
+        }
+        $user = User::where('facebook_id',$socialiteUser->getId())->first();
+        if (!$user) {
+            $myIntroCode = str_random(8);
+            $dataUser = [
+                'facebook_id' => $socialiteUser->getId(),
+                'name' => $socialiteUser->getName(),
+                'email' => $socialiteUser->getEmail(),
+                'myIntroCode' => $myIntroCode,
+                'image' => '/images/user_default.png',
+            ];
+            $user = User::create($dataUser);
+            $user->attachRole(3);
+        }
+        auth()->login($user);
+        return redirect()->to('/');
     }
 }

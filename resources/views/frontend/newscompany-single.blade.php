@@ -3,9 +3,9 @@
 @section('description','Thông tin nhập sản phẩm')
 @section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
 @section('type_seo','article')
-@section('title_seo', $arrNewsCompany->title )
-@section('description_seo',$arrNewsCompany->content )
-@section('image_seo', $arrNewsCompany->image_company )
+@section('title_seo', $arrNewsCompany->title_seo )
+@section('description_seo',$arrNewsCompany->description )
+@section('image_seo', url('/').$arrNewsCompany->image_company )
 @section('add_styles')
 {{-- --}}
 @endsection

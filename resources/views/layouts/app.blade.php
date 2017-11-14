@@ -31,7 +31,14 @@
 </head>
 <body>
     <div id="app" style="height: 100%; width: 100%; display: table">
-
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1891742487703866';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
         <div class="middle" style="display: table-cell;vertical-align: middle;">
             {{--<div class="text-center">  <img src="{{url('/')}}/images/logo.png" alt="..." class="img-responsive text-center profile_img" style="margin: 0 auto"></div>--}}
             {{--<br>--}}

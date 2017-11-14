@@ -55,7 +55,8 @@ class Util extends Model
 
 
 
-    public static $roleviewAdmin = "admin";
+    public static $roleviewAdmin = "1";
+    // public static $roleviewStaffOffice = "7";
     public static $roleviewChukho = "chukho";
     public static $userexpired = "userexpired";
     public static $ordernew = "ordernew";
@@ -419,5 +420,13 @@ class Util extends Model
         $user = User::leftjoin('role_user','role_user.user_id','=','users.id')
             ->where('user_id', $strUID)->first();
         return $user->role_id;    
+    }
+    public static function getIdUserOfRole ($roleID) {
+        $user = User::leftjoin('role_user','role_user.user_id','=','users.id')
+                ->where('role_user.role_id', $roleID)->get();
+        foreach ($user as $itemUser) {
+            $userID[] = $itemUser->id;
+        }
+        return $userID;
     }
 }

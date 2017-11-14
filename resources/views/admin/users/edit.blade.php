@@ -105,6 +105,11 @@
                                                                 <div class="form-group">
                                                                     <select id="select-role" class="form-control"  name="role" data-placeholder="Phân quyền" >
                                                                         @if(Auth::user()->hasRole('admin'))
+                                                                            @if (Request::is('admin/customers/create'))
+                                                                                <option value="3">Khách hàng</option>  
+                                                                            @elseif (Request::is('admin/staffs/create'))
+                                                                                <option value="5">Nhân viên</option> 
+                                                                            @endif     
                                                                             @foreach($roles as $itemRoles)
                                                                                 <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
                                                                             @endforeach
@@ -115,7 +120,7 @@
                                                                         @elseif (Auth::user()->hasRole('company'))
                                                                             <option value="6">Công ty</option>
                                                                         @elseif (Auth::user()->hasRole('kho'))
-                                                                            <option value="4">Chủ kho</option>
+                                                                            <option value="4">Chủ kho</option>  
                                                                         @endif
 
 
@@ -210,12 +215,12 @@
         });*/
         $('.info-kho .fa-edit').click(function(){
             $(this).parent().parent().parent().parent().find('input').removeAttr('disabled');
-            $(this).parent().parent().find('.btn-update').css('display','inline-block');
+            $(this).parent().parent().parent().find('.btn-update').css('display','inline-block');
         });
-        $('.info-kho,.info-warehouse').click(function () {
-            $(this).find('input').removeAttr('disabled');
-            $(this).find('textarea').removeAttr('disabled');
-            $(this).find('.btn-update').css('display', 'inline-block');
+        $('.info-kho .fa-edit, .info-warehouse .fa-edit').click(function () {
+            $(this).parent().parent().find('input').removeAttr('disabled');
+            $(this).parent().parent().find('textarea').removeAttr('disabled');
+            $(this).parent().parent().find('.btn-update').css('display', 'inline-block');
 
         });
     </script>
