@@ -1,6 +1,13 @@
 @extends('layouts.frontend')
 @section('title', 'chi tiết')
 @section('description',' chi tiết sản phẩm')
+
+@section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
+@section('type_seo','product')
+@section('title_seo', $product->title_seo )
+@section('description_seo',$product->description )
+@section('image_seo', url('/').$product->image )
+
 @section('add-styles')
 	<link rel="stylesheet" href="{{asset('frontend/js/fancybox/source/jquery.fancybox.css')}}">
 	<link rel="stylesheet" href="{{asset('frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.css')}}">

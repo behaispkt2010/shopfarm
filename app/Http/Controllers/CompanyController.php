@@ -483,8 +483,10 @@ class CompanyController extends Controller
         $data['title'] = "Chủ kho đăng kí xác thực kho";
         $data['content'] = "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn xác thực kho với thời gian " .$time_request_confirm ." tháng";
         $data['author_id'] = $userID;
-        $data['roleview'] = Util::$roleviewAdmin;
-        Notification::create($data);
+        foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+            $data['roleview'] = $itemUser;
+            Notification::create($data);
+        }
         //dd($data);
         $response = array(
             'status' => 'success',
@@ -522,8 +524,10 @@ class CompanyController extends Controller
         $data['title'] = "Chủ kho đăng kí quảng cáo";
         $data['content'] = "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng";
         $data['author_id'] = $userID;
-        $data['roleview'] = Util::$roleviewAdmin;
-        Notification::create($data);
+        foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+            $data['roleview'] = $itemUser;
+            Notification::create($data);
+        }
         //dd($data);
         $response = array(
             'status' => 'success',
@@ -560,8 +564,10 @@ class CompanyController extends Controller
         $data['title'] = "Chủ kho đăng kí dùng trả phí";
         $data['content'] = "Mã chủ kho ".$getCodeCompany.' - '.$phone_number;
         $data['author_id'] = $userID;
-        $data['roleview'] = Util::$roleviewAdmin;
-        Notification::create($data);
+        foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+            $data['roleview'] = $itemUser;
+            Notification::create($data);
+        }
         //dd($data);
         $response = array(
             'status' => 'success',

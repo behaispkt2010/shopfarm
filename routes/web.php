@@ -22,6 +22,9 @@ Auth::routes();
  *ADMIN
  *
  */
+Route::get('login/facebook', 'Auth\RegisterController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
+
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], function () {
 

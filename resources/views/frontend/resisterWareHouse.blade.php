@@ -1,6 +1,13 @@
 @extends('layouts.frontend')
 @section('title', 'Nhận ngay những tháng ngày miễn phí dùng dịch vụ')
 @section('description','Đăng ký Chủ kho')
+
+@section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
+@section('type_seo','article')
+@section('title_seo', 'Nhận thêm ưu đãi khi sử dụng dịch vụ' )
+@section('description_seo','Đăng ký Chủ kho với mã '.$arrGetUser->myIntroCode.' để nhận được thêm ưu đãi khi đăng ký sử dụng các dịch vụ' )
+@section('image_seo', url('/').'/frontend/images/nosago1.png' )
+
 @section('add_styles')
 {{-- --}}
 @endsection

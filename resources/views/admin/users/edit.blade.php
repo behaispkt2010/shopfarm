@@ -105,6 +105,11 @@
                                                                 <div class="form-group">
                                                                     <select id="select-role" class="form-control"  name="role" data-placeholder="Phân quyền" >
                                                                         @if(Auth::user()->hasRole('admin'))
+                                                                            @if (Request::is('admin/customers/create'))
+                                                                                <option value="3">Khách hàng</option>  
+                                                                            @elseif (Request::is('admin/staffs/create'))
+                                                                                <option value="5">Nhân viên</option> 
+                                                                            @endif     
                                                                             @foreach($roles as $itemRoles)
                                                                                 <option value="{{$itemRoles->id}}" @if(!empty($roleUser))@if($roleUser->role_id==$itemRoles->id) selected @endif @endif>{{$itemRoles->display_name}}</option>
                                                                             @endforeach
@@ -115,7 +120,7 @@
                                                                         @elseif (Auth::user()->hasRole('company'))
                                                                             <option value="6">Công ty</option>
                                                                         @elseif (Auth::user()->hasRole('kho'))
-                                                                            <option value="4">Chủ kho</option>
+                                                                            <option value="4">Chủ kho</option>  
                                                                         @endif
 
 

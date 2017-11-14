@@ -10,6 +10,7 @@ use App\Util;
 use App\WareHouse;
 use App\Product;
 use App\Order;
+use App\User;
 use App\Events\ViewsCompanyEvents;
 use App\Events\ViewsWareHouseEvents;
 use App\CompanyImage;
@@ -54,12 +55,19 @@ class PageController extends Controller
         $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
         $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần được hỗ trợ";
         $dataNotify['author_id'] = 1;
-        $dataNotify['roleview'] = Util::$roleviewAdmin;
-        Notification::create($dataNotify);
+        foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+            $dataNotify['roleview'] = $itemUser;
+            Notification::create($dataNotify);
+        }
         return redirect('/contact')->with('success','success');
     }
     public function GetResisterWareHouse(){
-        return view('frontend.resisterWareHouse');
+        $userID = Auth::user()->id;
+        $arrGetUser = User::find($userID);
+        $data = [
+            'arrGetUser' => $arrGetUser,
+        ];
+        return view('frontend.resisterWareHouse', $data);
     }
     public function PostResisterWareHouse(Request $request){
         $data = [
@@ -74,8 +82,10 @@ class PageController extends Controller
         $dataNotify['title'] = "Chủ kho đăng kí mới";
         $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho";
         $dataNotify['author_id'] = 1;
-        $dataNotify['roleview'] = Util::$roleviewAdmin;
-        Notification::create($dataNotify);
+        foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+            $dataNotify['roleview'] = $itemUser;
+            Notification::create($dataNotify);
+        }
 
         Mail::to($to)->send(new Contact($data));
         return redirect('/resisterWareHouse')->with('success','success');
@@ -241,8 +251,10 @@ class PageController extends Controller
         $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
         $dataNotify['content'] = $subject. ' : ' .$request->get('name_user').' .SDT: ' .$request->get('phone_user');
         $dataNotify['author_id'] = 1;
-        $dataNotify['roleview'] = Util::$roleviewAdmin;
-        Notification::create($dataNotify);
+        foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+            $dataNotify['roleview'] = $itemUser;
+            Notification::create($dataNotify);
+        }
         return redirect('/')->with('success','success');
     }
 }

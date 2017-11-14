@@ -1,10 +1,12 @@
 @extends('layouts.page')
-@section('title', 'Những điều cần biết khi Xác thực kho')
-@section('url_seo', '')
-@section('type_seo', '')
-@section('title_seo', '')
-@section('description_seo', '')
-@section('image_seo', '')
+@section('title', '')
+
+@section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
+@section('type_seo','article')
+@section('title_seo', 'nosaGO.com - Mạng lưới kho nông sản Việt Nam ' )
+@section('description_seo','Kết nối nguồn hàng chất lượng và đối tác uy tín' )
+@section('image_seo', url('/').'/frontend/images/nosago1.png' )
+
 @section('description','Những điều cần biết khi Xác thực kho')
 @section('add_style')
 <link href="{{ asset('plugin/landingpage/css/scrolling-nav.css') }}" rel="stylesheet">

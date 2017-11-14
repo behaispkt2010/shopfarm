@@ -1,6 +1,13 @@
 @extends('layouts.frontend')
 @section('title', 'Thông tin chủ kho')
 @section('description','Thông tin chủ kho')
+
+@section('url_seo', url('/').$_SERVER['REQUEST_URI'] )
+@section('type_seo','article')
+@section('title_seo', 'nosaGO.com - Mạng lưới kho nông sản Việt Nam ' )
+@section('description_seo','Kết nối nguồn hàng chất lượng và đối tác uy tín' )
+@section('image_seo', url('/').'/frontend/images/nosago1.png' )
+
 @section('content')
 <div class="secondary_page_wrapper col-md-12 col-sm-12">
     <div class="container col-md-12 col-sm-12">

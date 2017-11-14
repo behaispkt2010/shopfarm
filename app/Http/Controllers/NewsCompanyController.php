@@ -94,9 +94,11 @@ class NewsCompanyController extends Controller
             $dataNotify['title'] = "Cơ hội mua bán mới";
             $dataNotify['content'] = "Công ty ".$getCodeKho." vừa đăng cơ hội mua bán mới.";
             $dataNotify['author_id'] = $strIDUser;
-            $dataNotify['roleview'] = Util::$roleviewAdmin;
             $dataNotify['orderID_or_productID'] = $news->id;
-            Notification::create($dataNotify);
+            foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
+                $dataNotify['roleview'] = $itemUser;
+                Notification::create($dataNotify);
+            }
         }
 
         $getInfoWareHouse = NewsCompany::select('news_company.*', 'users.*', 'products.kho as idwarehouse','news_company.title as productName','company.name as companyName')
