@@ -35,9 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'facebook' => [
-        'client_id' => '755215574685946',
-        'client_secret' => 'e867c2869abfb73db9dde036cb61eb33',
-        'redirect' => 'http://nongsan.dev/login/facebook/callback',
+        'client_id' => env('CLIENT_ID'),
+        'client_secret' => env('CLIENT_SECRET'),
+        'redirect' => env('REDIRECT'),
     ],
 
 ];

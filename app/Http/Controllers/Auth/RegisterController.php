@@ -111,7 +111,7 @@ class RegisterController extends Controller
                 'name' => $socialiteUser->getName(),
                 'email' => $socialiteUser->getEmail(),
             ];
-            User::create($dataUser);
+            $user = User::create($dataUser);
             $user->attachRole(3);
         }
         auth()->login($user);
