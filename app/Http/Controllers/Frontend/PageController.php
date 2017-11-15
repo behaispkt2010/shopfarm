@@ -62,12 +62,13 @@ class PageController extends Controller
         return redirect('/contact')->with('success','success');
     }
     public function GetResisterWareHouse(){
-        $userID = Auth::user()->id;
+        /*$userID = Auth::user()->id;
         $arrGetUser = User::find($userID);
         $data = [
             'arrGetUser' => $arrGetUser,
-        ];
-        return view('frontend.resisterWareHouse', $data);
+        ];*/
+        // return view('frontend.resisterWareHouse', $data);
+        return view('frontend.resisterWareHouse');
     }
     public function PostResisterWareHouse(Request $request){
         $data = [

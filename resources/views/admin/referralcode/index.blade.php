@@ -37,7 +37,7 @@
         <ul>
             <!-- <div class="fb-share-button" data-href="{{url('/')}}/resisterWareHouse?referral={{ $arrGetUser->myIntroCode }}" data-description="Đăng ký ngay tài khoản với mã"  data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fhasuko.xyz%2F&amp;src=sdkpreparse">Chia sẻ</a></div> -->
             <li class="facebook">
-                <a id="share_facebook" href=""><img src="{{ asset('/images/facebookicon.png') }}" alt=""></a>
+                <a id="share_facebook" href=""><img class="icon_facebook" src="{{ asset('/images/facebookicon.png') }}" alt=""></a>
             </li>
             <!-- <li class="google"></li>
             <li class="mail"></li> -->
