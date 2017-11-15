@@ -44,7 +44,19 @@
                                 </div>
                             </div>
                             <div class="content">
-                               
+                                <h1>Chúng tôi có thể giúp gì cho bạn?</h1>
+                                <p>Bạn có thể tìm thấy câu trả lời từ thanh menu bên trái này</p>
+                                <br>
+                                <hr>
+                                <div class="question_other">
+                                    <p><h3>Bạn vẫn chưa có câu trả lời?</h3></p>
+                                    Đừng lo, bạn có thể gửi mail cho chúng tôi!
+                                    <div class="row text-center">
+                                        <div class="col-md-3">
+                                            <a class="btn btn-raised btn-dangtin col-xs-12 btnHelpMenu" href="{{ url('/contact') }}">Liên hệ hỗ trợ</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </article>
                     </section>

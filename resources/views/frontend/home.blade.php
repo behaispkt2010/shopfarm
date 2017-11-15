@@ -8,10 +8,10 @@
 					<div class="box_headder" style="margin-bottom:0px;">
 						<div class="row col-md-12 col-xs-12 col-sm-12" style="height: 220px;">
 							<div class="head">
-								Mạng lưới kho nông sản Việt Nam
+								<a href="{{ url('/lp/lp') }}" target="_blank" title="" class="homepage_sologan">Mạng lưới kho nông sản Việt Nam</a>
 							</div>
 							<div class="foot">
-								Kết nối nguồn hàng chất lượng và đối tác uy tín
+								<a href="{{ url('/lp/lp') }}" target="_blank" title="" class="homepage_sologan">Kết nối nguồn hàng chất lượng và đối tác uy tín</a>
 							</div>
 						</div>
 						<!-- <div class="row">

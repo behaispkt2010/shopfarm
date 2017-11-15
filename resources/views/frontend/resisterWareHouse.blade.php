@@ -12,6 +12,7 @@
 {{-- --}}
 @endsection
 @section('content')
+
 			<div class="secondary_page_wrapper col-md-12 col-sm-12">
 				<div class="container col-md-12 col-sm-12">
 					<ul class="breadcrumbs">
@@ -75,67 +76,17 @@
 			                                <input class="form-control" id="cf_message" name="cf_message" required></input>
 			                            </div>
                                     </div>
+									<div class="form-group">
+                                        <div class="form-group label-floating">
+			                                <label class="control-label" for="focusedInputnote">Mã giới thiệu</label>
+			                                <input class="form-control" id="cf_refferalcode" name="cf_refferalcode" value="<?php echo $_GET['referral']; ?>"></input>
+			                            </div>
+                                    </div>
 								    <div class="text-center">
 								        <button class="btn btn-raised btn-primary" type="submit">Đăng ký chủ kho <i class="fa fa-paper-plane-o ml-1"></i></button>
 								    </div>
 								</form>
 
-
-								<!-- <form action="" method="Post"  enctype="multipart/form-data" class="contactform type_2" id="contact_form" >
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-									<div class="theme_box">
-
-									<p class="form_caption">Điền đầy đủ thông tin form bên dưới</p>
-										@if (\Session::has('success'))
-											<p class="message red" style="color: red;">Cảm ơn quý khách đã đăng ký. Chúng tôi sẽ liên hệ trong thời gian sớm nhất có thể</p>
-											<br>
-										@endif
-										<ul>
-											<li class="row">
-												<div class="col-sm-6">
-													<label for="cf_name" class="required">Tên</label>
-													<input type="text" required name="cf_name" id="cf_name" title="Name">
-
-												</div>
-												<div class="col-sm-6">
-													<label for="cf_email" class="required">Email</label>
-													<input type="email" required name="cf_email" id="cf_email" title="Email">
-
-												</div>
-											</li>
-											<li class="row">
-												<div class="col-xs-12">
-													<label for="cf_order_number" required class="required">Số điện thoại</label>
-													<input type="text" name="cf_order_number" id="cf_order_number" title="Order number">
-												</div>
-											</li>
-											<li class="row">
-												<div class="col-xs-12">
-
-													<label for="cf_message" class="required">Tin nhắn</label>
-													<textarea id="cf_message" required name="cf_message" title="Message" rows="6"></textarea>
-
-												</div>
-											</li>
-										</ul>
-								</div>
-								<footer class="bottom_box on_the_sides">
-
-									<div class="left_side">
-									
-										<button class="button_dark_grey middle_btn" type="submit" name="submit-contact">Đăng ký chủ kho</button>
-
-									</div>
-
-									<div class="right_side">
-
-										<p class="prompt">Yêu cầu nhập</p>
-
-									</div>
-
-								</footer>
-								</form> -->
 							</section>
 
 							<section class="section_offset">
@@ -194,4 +145,21 @@
 				</div><!--/ .container-->
 
 			</div>
+@endsection
+
+@section('add-script')
+
+<script type="text/javascript">
+	$(function() {
+		$('.cf_refferalcode').on('click',function (){
+			/*window.$_GET = new URLSearchParams(location.search);
+			var value1 = $_GET.get('referral');
+			alert(referral);*/
+			var referral = "<?php echo $_GET['referral']; ?>";
+
+			//alert(referral);
+		});
+	});
+</script>
+
 @endsection

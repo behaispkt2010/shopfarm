@@ -15,7 +15,7 @@
 						<ul class="list_of_links">
 							<li><a href="#">Giới thiệu</a></li>
 							<li><a href="#">Dịch vụ</a></li>
-							<li><a href="#">Liên hệ</a></li>
+							<li><a href="{{ url('/contact') }}">Liên hệ</a></li>
 							<li><a href="#">Tìm cộng sự</a></li>
 							<li><a href="#">Điều khoản</a></li>
 							<li><a href="#">Chính sách bảo mật</a></li>
@@ -26,7 +26,7 @@
 				          <ul class="dropdown-menu">
 				            <li><a href="#">Giới thiệu</a></li>
 							<li><a href="#">Dịch vụ</a></li>
-							<li><a href="#">Liên hệ</a></li>
+							<li><a href="{{ url('/contact') }}">Liên hệ</a></li>
 							<li><a href="#">Tìm cộng sự</a></li>
 							<li><a href="#">Điều khoản</a></li>
 							<li><a href="#">Chính sách bảo mật</a></li>
@@ -41,7 +41,8 @@
 							<li class="c_info_phone" style="padding-bottom: 16px;">0944 619 493 | support@nosaGO.com</li>
 							<li class="c_info_schedule" style="padding-bottom: 9px;">(8h - 21h kể cả T7,CN)</li>
 							<li><a href="#">Câu hỏi thường gặp</a></li>
-							<li><a href="#">Gửi yêu cầu hỗ trợ</a></li>
+							<li><a href="{{ url('/tro-giup') }}">Hướng dẫn sử dụng</a></li>
+							<li><a href="{{ url('/contact') }}">Gửi yêu cầu hỗ trợ</a></li>
 							<li><a href="#">Hướng dẫn đăng ký chủ kho</a></li>
 							<li><a href="#">Hướng dẫn quản lý hệ thống</a></li>
 						</ul>
@@ -91,7 +92,7 @@
 						<h4>Địa chỉ văn phòng <strong>Hồ Chí Minh</strong></h4>
 						<p>Hỗ trợ: 0944 619 493 | support.hcm@nosago.com</p>
 						<p>Số 52, đường số 10, Phường 4, quận 9, Tp. Hồ Chí Minh</p>
-						<a href="#" target="_blank">Xem bản đồ</a>
+						<a href="https://www.google.com/maps/place/76+S%E1%BB%91+10,+T%C4%83ng+Nh%C6%A1n+Ph%C3%BA+B,+Qu%E1%BA%ADn+9,+H%E1%BB%93+Ch%C3%AD+Minh,+Vietnam/@10.8351902,106.7780861,18z/data=!3m1!4b1!4m13!1m7!3m6!1s0x3175275b3a69ce75:0xfc7063168fc12eaf!2sDistrict+9,+Ho+Chi+Minh,+Vietnam!3b1!8m2!3d10.8428402!4d106.8286851!3m4!1s0x317527045d8e8f0d:0xf39544f19f7cc544!8m2!3d10.835188!4d106.7790063" target="_blank">Xem bản đồ</a>
 					</section>
 				</div>
 				<div class="col-md-6 col-sm-6">
