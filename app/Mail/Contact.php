@@ -34,6 +34,7 @@ class Contact extends Mailable
             ->subject( $this->data['subject'])
             ->with([
                 "name"=> $this->data['name'],
+                "refferalcode" => !empty($this->data['refferalcode'])?$this->data['refferalcode']:"",
                 "email"=> $this->data['email'],
                 "phone"=> $this->data['phone'],
                 "comment"=> $this->data['comment'],

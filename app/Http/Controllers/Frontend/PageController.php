@@ -62,16 +62,18 @@ class PageController extends Controller
         return redirect('/contact')->with('success','success');
     }
     public function GetResisterWareHouse(){
-        $userID = Auth::user()->id;
+        /*$userID = Auth::user()->id;
         $arrGetUser = User::find($userID);
         $data = [
             'arrGetUser' => $arrGetUser,
-        ];
-        return view('frontend.resisterWareHouse', $data);
+        ];*/
+        // return view('frontend.resisterWareHouse', $data);
+        return view('frontend.resisterWareHouse');
     }
     public function PostResisterWareHouse(Request $request){
         $data = [
             "name" => $request->get('cf_name'),
+            "refferalcode" => $request->get('cf_refferalcode'),
             "email" => $request->get('cf_email'),
             "phone" => $request->get('cf_order_number'),
             "comment" => $request->get('cf_message'),
@@ -80,7 +82,7 @@ class PageController extends Controller
         $to = Util::$mailadmin;
         $dataNotify['keyname'] = Util::$dangkychukho;
         $dataNotify['title'] = "Chủ kho đăng kí mới";
-        $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho";
+        $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho với Mã giới thiệu: ".$request->get('cf_refferalcode');
         $dataNotify['author_id'] = 1;
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $dataNotify['roleview'] = $itemUser;
@@ -241,6 +243,7 @@ class PageController extends Controller
         $data = [
             "name" => $request->get('name_user'),
             "email" => "",
+            "refferalcode" => "",
             "phone" => $request->get('phone_user'),
             "subject" => $subject,
             "comment" => $subject
