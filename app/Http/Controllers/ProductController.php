@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class ProductController extends Controller
 {
@@ -254,6 +255,18 @@ public function AjaxGetProduct(Request $request){
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotify['roleview'] = $itemUser;
                     Notification::create($dataNotify);
+                     $message = 'OK';//$request->input('message');
+                    if(isset($message)) {
+                        $redis = Redis::connection();
+                        $redis->publish("messages", json_encode(array(
+                            "status" => 200,
+                            "id"=>$product1->id, 
+                            "roleview"=> $itemUser,
+                            "title" => "Sản phẩm mới",
+                            "content" => "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.",
+                            "created_at" =>date('Y-m-d H:i:s')
+                    )));
+                }
                 }
             }
 

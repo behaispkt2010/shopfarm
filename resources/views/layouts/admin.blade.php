@@ -25,6 +25,7 @@
     <script src="{{asset('plugin/ckfinder/ckfinder.js')}}" ></script>
 
     <script src="{{asset('plugin/func_ckfinder.js')}}" ></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Scripts -->
