@@ -504,7 +504,7 @@
             }
         });
     });
-    var socket = io.connect('http://127.0.0.1:3000/');
+    var socket = io.connect('http://127.0.0.1:4000/');
     socket.on("messages", function (data) {
         var data = JSON.parse(data);
         if($('#user_id').val() == data.roleview){
@@ -515,7 +515,7 @@
             $('#notify_count').text(currentCountMsg+1);
             $('#notify_count').removeClass('hidden');
             //add new messge to Message List when a new product had been created
-            $("#menu1").prepend('<li class="notify"><a href=" http://localhost:8010/admin/products/'+data.id+'/" target="_blank"><span class="image"><img src="http://localhost:8010/images/user_default.png  " alt="Profile Image"></span><span><span class="notification_title">'+data.title+'</span></span><span class="message">'+data.content+'</span><span class="time">'+data.created_at+'</span><div class="ripple-container"></div></a></li>');
+            $(".notify_heading").after('<li class="notify"><a href=" http://localhost:8010/admin/products/'+data.id+'/" target="_blank"><span class="image"><img src="{{asset("/images/1.png")}}" alt="Profile Image"></span><span><span class="notification_title">'+data.title+'</span></span><span class="message">'+data.content+'</span><span class="time">'+data.created_at+'</span><div class="ripple-container"></div></a></li>');
         }
     });
 </script>
