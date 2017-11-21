@@ -103,17 +103,17 @@ class ProductController extends Controller
         );
         return \Response::json($response);
     }
-public function AjaxGetProduct(Request $request){
-    $id= $request->get('id');
-    $product = Product::find($id);
-    $response = array(
-        'image' => $product->image,
-        'name' => $product->title,
-        'price' => $product->price_out,
-        'inventory_num' => $product->inventory_num,
-    );
-    return \Response::json($response);
-}
+    public function AjaxGetProduct(Request $request){
+        $id= $request->get('id');
+        $product = Product::find($id);
+        $response = array(
+            'image' => $product->image,
+            'name' => $product->title,
+            'price' => $product->price_out,
+            'inventory_num' => $product->inventory_num,
+        );
+        return \Response::json($response);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -252,10 +252,11 @@ public function AjaxGetProduct(Request $request){
                 $dataNotify['content'] = "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.";
                 $dataNotify['author_id'] = $userID;
                 $dataNotify['orderID_or_productID'] = $product1->id;
+                $dataNotify['link'] = '/admin/products/'.$product1->id.'/edit';
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotify['roleview'] = $itemUser;
                     Notification::create($dataNotify);
-                     $message = 'OK';//$request->input('message');
+                    $message = 'OK';
                     if(isset($message)) {
                         $redis = Redis::connection();
                         $redis->publish("messages", json_encode(array(
@@ -263,10 +264,11 @@ public function AjaxGetProduct(Request $request){
                             "id"=>$product1->id, 
                             "roleview"=> $itemUser,
                             "title" => "Sản phẩm mới",
+                            "link" => "/admin/products/".$product1->id."/edit",
                             "content" => "Chủ kho ".$getCodeKho." vừa đăng sản phẩm mới.",
                             "created_at" =>date('Y-m-d H:i:s')
-                    )));
-                }
+                        )));
+                    }
                 }
             }
 
@@ -372,7 +374,21 @@ public function AjaxGetProduct(Request $request){
             $dataNotify['author_id'] = Auth::user()->id;
             $dataNotify['orderID_or_productID'] = $product->id;
             $dataNotify['roleview'] = $product->kho;
+            $dataNotify['link'] = '/admin/products/'.$product->id.'/edit';
             Notification::create($dataNotify);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$product->id, 
+                    "roleview"=> $product->kho,
+                    "title" => "Sản phẩm mới",
+                    "link" => "/admin/products/".$product->id."/edit",
+                    "content" => "Sản phẩm ".$getCodeProduct." đã được duyệt.",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
         }
         $data['price_sale']=$request->get('price_sale');
         $product->update($data);

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class DashboardController extends Controller
 {
@@ -76,7 +77,21 @@ class DashboardController extends Controller
         $dataNotify['author_id'] = Auth::user()->id;
         $dataNotify['orderID_or_productID'] = $strProductID;
         $dataNotify['roleview'] = $strKhoID;
+        $dataNotify['link'] = "/admin/products/".$strProductID."/edit";
         Notification::create($dataNotify);
+        $message = 'OK';
+        if(isset($message)) {
+            $redis = Redis::connection();
+            $redis->publish("messages", json_encode(array(
+                "status" => 200,
+                "id"=>$strProductID, 
+                "roleview"=> $strKhoID,
+                "title" => "Sản phẩm mới",
+                "link" => "/admin/products/".$strProductID."/edit",
+                "content" => "Sản phẩm ".$getCodeProduct." đã được duyệt.",
+                "created_at" =>date('Y-m-d H:i:s')
+            )));
+        }
     }
     public function ApprovalNews(Request $request){
         $strNewsID = $request->get('newsid');
@@ -94,7 +109,21 @@ class DashboardController extends Controller
         $dataNotify['author_id'] = Auth::user()->id;
         $dataNotify['orderID_or_productID'] = $strNewsID;
         $dataNotify['roleview'] = $strAuthorID;
+        $dataNotify['link'] = '/admin/newscompany/'.$strNewsID.'/edit';
         Notification::create($dataNotify);
+        $message = 'OK';
+        if(isset($message)) {
+            $redis = Redis::connection();
+            $redis->publish("messages", json_encode(array(
+                "status" => 200,
+                "id"=>$strNewsID, 
+                "roleview"=> $strAuthorID,
+                "title" => "Cơ hội mua bán mới",
+                "link" => "/admin/newscompany/".$strNewsID."/edit",
+                "content" => "Cơ hội mua bán của bạn đã được duyệt.",
+                "created_at" =>date('Y-m-d H:i:s')
+            )));
+        }
     }
     public function index(){
         //echo "admin";

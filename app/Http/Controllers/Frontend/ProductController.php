@@ -18,6 +18,7 @@ use App\Events\ViewsProductEvents;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redis;
 
 class ProductController extends Controller
 {

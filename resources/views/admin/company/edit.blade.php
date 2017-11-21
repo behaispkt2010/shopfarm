@@ -45,7 +45,7 @@
                                             <label for="name" class="col-md-3 col-xs-12 control-label">Tên</label>
 
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="text" disabled class="form-control" name="name" value="{{$userInfo->name}}"/>
+                                                <input type="text" disabled class="form-control" name="name_company" value="{{$userInfo->name}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -1414,7 +1414,7 @@
                     $.ajax({
                         type: "POST",
                         url: '{{ url('/') }}/admin/company/AjaxConfirmKho',
-                        data: {id: id,user_id: user_id,name_company:name_company,address:address,mst:mst,ndd:ndd,time_active:time_active, time_confirm: time_confirm, time_confirm_bonus: time_confirm_bonus, _token: _token},
+                        data: {id: id, user_id: user_id, name_company: name_company, address:address, mst:mst,ndd:ndd, time_active:time_active, time_confirm: time_confirm, time_confirm_bonus: time_confirm_bonus, _token: _token},
                         success: function (msg) {
                             $('.loading').css('display', 'none');
                             if(msg['status'] != "danger") {
@@ -1427,7 +1427,7 @@
                                 });
                                 location.reload();
                             }
-                            else{
+                            else {
                                 new PNotify({
                                     title: msg['msg'],
                                     text: '',

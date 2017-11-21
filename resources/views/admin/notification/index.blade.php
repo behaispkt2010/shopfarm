@@ -12,7 +12,6 @@
                         @if(count($arrNotification) !=0)
                         <h2>Thông báo của bạn</h2>
                         <ul id="" class="list_notify">
-
                             @foreach ($arrNotification as $itemNotification)
                                 {{--<li class="notify">
                                     <a href="{{ route('warehouse.edit',['id' => $itemNotification->id]) }}" target="_blank">

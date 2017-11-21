@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redis;
 
 class WarehouseController extends Controller
 {
@@ -102,7 +103,21 @@ class WarehouseController extends Controller
             $dataNotify['content'] = "Bạn đã đăng ký trả phí thành công";
             $dataNotify['author_id'] = $userID;
             $dataNotify['roleview'] = $viewer_id;
+            $dataNotify['link'] = '/admin/warehouse/'.$id.'/edit';
             Notification::create($dataNotify);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$id, 
+                    "roleview"=> $viewer_id,
+                    "title" => "Thay đổi tài khoản thành công",
+                    "link" => '/admin/warehouse/'.$id.'/edit',
+                    "content" => "Bạn đã đăng ký trả phí thành công.",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
 
@@ -232,7 +247,21 @@ class WarehouseController extends Controller
         $data['content'] = "Cấp kho hiện tại ".$levelkho;
         $data['author_id'] = $userID;
         $data['roleview'] = $viewer_id;
+        $data['link'] = '/admin/warehouse/'.$id.'/edit';
         Notification::create($data);
+        $message = 'OK';
+        if(isset($message)) {
+            $redis = Redis::connection();
+            $redis->publish("messages", json_encode(array(
+                "status" => 200,
+                "id"=>$id, 
+                "roleview"=> $viewer_id,
+                "title" => "Nâng cấp kho thành công",
+                "link" => '/admin/warehouse/'.$id.'/edit',
+                "content" => "Cấp kho hiện tại ".$levelkho,
+                "created_at" =>date('Y-m-d H:i:s')
+            )));
+        }
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -264,7 +293,21 @@ class WarehouseController extends Controller
             $data['content'] = "Xem thông tin xác thực doanh nghiệp";
             $data['author_id'] = $userID;
             $data['roleview'] = $viewer_id;
+            $data['link'] = '/admin/warehouse/'.$id.'/edit';
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$id, 
+                    "roleview"=> $viewer_id,
+                    "title" => "Xác thực doanh nghiệp thành công",
+                    "link" => '/admin/warehouse/'.$id.'/edit',
+                    "content" => "Xem thông tin xác thực doanh nghiệp",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
             $response = array(
                 'status' => 'success',
                 'msg' => 'Setting created successfully',
@@ -300,7 +343,21 @@ class WarehouseController extends Controller
         $data['content'] = "Yêu cầu đăng ký quảng cáo của bạn đã được duyệt";
         $data['author_id'] = $userID;
         $data['roleview'] = $viewer_id;
+        $data['link'] = '/admin/warehouse/'.$id.'/edit';
         Notification::create($data);
+        $message = 'OK';
+        if(isset($message)) {
+            $redis = Redis::connection();
+            $redis->publish("messages", json_encode(array(
+                "status" => 200,
+                "id"=>$id, 
+                "roleview"=> $viewer_id,
+                "title" => "Đăng ký quảng cáo thành công",
+                "link" => '/admin/warehouse/'.$id.'/edit',
+                "content" => "Yêu cầu đăng ký quảng cáo của bạn đã được duyệt",
+                "created_at" =>date('Y-m-d H:i:s')
+            )));
+        }
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -329,10 +386,24 @@ class WarehouseController extends Controller
         $data['title'] = "Chủ kho đăng kí nâng cấp";
         $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho." với thời gian " .$time_request_upgrade_level." tháng";
         $data['author_id'] = $userID;
+        $data['link'] = '/admin/warehouse/'.$wareHouseID.'/edit';
         
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$wareHouseID, 
+                    "roleview"=> $itemUser,
+                    "title" => "Chủ kho đăng kí nâng cấp",
+                    "link" => '/admin/warehouse/'.$wareHouseID.'/edit',
+                    "content" => "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn nâng lên cấp ".$levelKho." với thời gian " .$time_request_upgrade_level." tháng",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
         $response = array(
@@ -371,9 +442,23 @@ class WarehouseController extends Controller
         $data['title'] = "Chủ kho đăng kí xác thực kho";
         $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn xác thực kho với thời gian " .$time_request_confirm_kho ." tháng";
         $data['author_id'] = $userID;
+        $data['link'] = '/admin/warehouse/'.$wareHouseID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$wareHouseID, 
+                    "roleview"=> $itemUser,
+                    "title" => "Chủ kho đăng kí xác thực kho",
+                    "link" => '/admin/warehouse/'.$wareHouseID.'/edit',
+                    "content" => "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn xác thực kho với thời gian " .$time_request_confirm_kho ." tháng",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
         $response = array(
@@ -412,9 +497,23 @@ class WarehouseController extends Controller
         $data['title'] = "Chủ kho đăng kí quảng cáo";
         $data['content'] = "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng";
         $data['author_id'] = $userID;
+        $data['link'] = '/admin/warehouse/'.$wareHouseID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$wareHouseID, 
+                    "roleview"=> $itemUser,
+                    "title" => "Chủ kho đăng kí quảng cáo",
+                    "link" => '/admin/warehouse/'.$wareHouseID.'/edit',
+                    "content" => "Chủ kho ".$getCodeKho.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
         $response = array(
@@ -452,9 +551,23 @@ class WarehouseController extends Controller
         $data['title'] = "Chủ kho đăng kí dùng trả phí";
         $data['content'] = "Mã chủ kho ".$getCodeKho.' - '.$phone_number;
         $data['author_id'] = $userID;
+        $data['link'] = '/admin/warehouse/'.$wareHouseID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$wareHouseID, 
+                    "roleview"=> $itemUser,
+                    "title" => "Chủ kho đăng kí dùng trả phí",
+                    "link" => '/admin/warehouse/'.$wareHouseID.'/edit',
+                    "content" => "Mã chủ kho ".$getCodeKho.' - '.$phone_number,
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
         $response = array(

@@ -68,10 +68,7 @@
                             {!! Session::get('flash_message') !!}
                         </div>
                 @endif
-
-
             </div>
-
             <div class="btn-new">
                 @yield('new-btn')
             </div>

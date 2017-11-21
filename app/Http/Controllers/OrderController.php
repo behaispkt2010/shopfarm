@@ -22,6 +22,7 @@ use App\Http\Requests\CreateOrderRequest;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class OrderController extends Controller
 {
@@ -218,9 +219,23 @@ class OrderController extends Controller
                 $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name;
                 $dataNotify['author_id'] = Auth::user()->id;
                 $dataNotify['orderID_or_productID'] = $strOrderID;
+                $dataNotify['link'] = '/admin/orders/'.$strOrderID.'/edit';
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotify['roleview'] = $itemUser;
                     Notification::create($dataNotify);
+                    $message = 'OK';
+                    if(isset($message)) {
+                        $redis = Redis::connection();
+                        $redis->publish("messages", json_encode(array(
+                            "status" => 200,
+                            "id"=>$strOrderID, 
+                            "roleview"=> $itemUser,
+                            "title" => "Đơn hàng mới",
+                            "link" => '/admin/orders/'.$strOrderID.'/edit',
+                            "content" => "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name,
+                            "created_at" =>date('Y-m-d H:i:s')
+                        )));
+                    }
                 }
             }
 //            DB::table('product_orders')->insert($ProductOrder);
@@ -395,27 +410,54 @@ class OrderController extends Controller
                 $arrUser = User::find($request->customer_id);
                 $getCodeOrder = Util::OrderCode($id);
                 $strIDChuKho = Auth::user()->id;
-                $arrChuKho = User::find($strIDChuKho);
+                $arrChuKho = User::find($kho_id);
+
+                $dataNotify['keyname'] = Util::$orderfail;
+                $dataNotify['title'] = "Đơn hàng bị lỗi";
+                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi";
+                $dataNotify['author_id'] = Auth::user()->id;
+                $dataNotify['roleview'] = $kho_id;
+                $dataNotify['orderID_or_productID'] = $id;
+                $dataNotify['link'] = '/admin/orders/'.$id.'/edit';
+                
+                Notification::firstOrCreate($dataNotify);
+                $message = 'OK';
+                if(isset($message)) {
+                    $redis = Redis::connection();
+                    $redis->publish("messages", json_encode(array(
+                        "status" => 200,
+                        "id"=>$id, 
+                        "roleview"=> $kho_id,
+                        "title" => "Đơn hàng bị lỗi",
+                        "link" => '/admin/orders/'.$id.'/edit',
+                        "content" => "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi",
+                        "created_at" =>date('Y-m-d H:i:s')
+                    )));
+                }
 
                 $dataNotifyAdmin['keyname'] = Util::$orderfail;
                 $dataNotifyAdmin['title'] = "Đơn hàng bị lỗi";
                 $dataNotifyAdmin['content'] = "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua đang bị lỗi";
                 $dataNotifyAdmin['author_id'] = Auth::user()->id;
                 $dataNotifyAdmin['orderID_or_productID'] = $id;
+                $dataNotifyAdmin['link'] = '/admin/orders/'.$id.'/edit';
 
-
-                $dataNotify['keyname'] = Util::$orderfail;
-                $dataNotify['title'] = "Đơn hàng bị lỗi";
-                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi";
-                $dataNotify['author_id'] = Auth::user()->id;
-                $dataNotify['roleview'] = $strIDChuKho;
-                $dataNotify['orderID_or_productID'] = $id;
-                
-                Notification::firstOrCreate($dataNotify);
-                
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotifyAdmin['roleview'] = $itemUser;
                     Notification::firstOrCreate($dataNotifyAdmin);
+                    $message = 'OK';
+                    if(isset($message)) {
+                        $redis = Redis::connection();
+                        $redis->publish("messages", json_encode(array(
+                            "status" => 200,
+                            "id"=>$id, 
+                            "roleview"=> $itemUser,
+                            "title" => "Đơn hàng bị lỗi",
+                            "link" => '/admin/orders/'.$id.'/edit',
+                            "content" => "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua đang bị lỗi",
+                            "created_at" =>date('Y-m-d H:i:s')
+                        )));
+                    }
                 }
 
             }
@@ -423,25 +465,53 @@ class OrderController extends Controller
                 $arrUser = User::find($request->customer_id);
                 $getCodeOrder = Util::OrderCode($id);
                 $strIDChuKho = Auth::user()->id;
-                $arrChuKho = User::find($strIDChuKho);
+                $arrChuKho = User::find($kho_id);
+
+                $dataNotify['keyname'] = Util::$orderreturn;
+                $dataNotify['title'] = "Đơn hàng sắp trả về kho";
+                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " sắp trả về kho";
+                $dataNotify['author_id'] = Auth::user()->id;
+                $dataNotify['roleview'] = $kho_id;
+                $dataNotify['orderID_or_productID'] = $id;
+                $dataNotify['link'] = '/admin/orders/'.$id.'/edit';
+
+                Notification::firstOrCreate($dataNotify);
+                $message = 'OK';
+                if(isset($message)) {
+                    $redis = Redis::connection();
+                    $redis->publish("messages", json_encode(array(
+                        "status" => 200,
+                        "id"=>$id, 
+                        "roleview"=> $kho_id,
+                        "title" => "Đơn hàng sắp trả về kho",
+                        "link" => '/admin/orders/'.$id.'/edit',
+                        "content" => "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " sắp trả về kho",
+                        "created_at" =>date('Y-m-d H:i:s')
+                    )));
+                }
 
                 $dataNotifyAdmin['keyname'] = Util::$orderreturn;
                 $dataNotifyAdmin['title'] = "Đơn hàng sắp trả về kho";
                 $dataNotifyAdmin['content'] = "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua sắp trả về kho";
                 $dataNotifyAdmin['author_id'] = Auth::user()->id;
                 $dataNotifyAdmin['orderID_or_productID'] = $id;
-
-                $dataNotify['keyname'] = Util::$orderreturn;
-                $dataNotify['title'] = "Đơn hàng sắp trả về kho";
-                $dataNotify['content'] = "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " sắp trả về kho";
-                $dataNotify['author_id'] = Auth::user()->id;
-                $dataNotify['roleview'] = $strIDChuKho;
-                $dataNotify['orderID_or_productID'] = $id;
-
-                Notification::firstOrCreate($dataNotify);
+                $dataNotifyAdmin['link'] = '/admin/orders/'.$id.'/edit';
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotifyAdmin['roleview'] = $itemUser;
                     Notification::firstOrCreate($dataNotifyAdmin);
+                    $message = 'OK';
+                    if(isset($message)) {
+                        $redis = Redis::connection();
+                        $redis->publish("messages", json_encode(array(
+                            "status" => 200,
+                            "id"=>$id, 
+                            "roleview"=> $itemUser,
+                            "title" => "Đơn hàng sắp trả về kho",
+                            "link" => '/admin/orders/'.$id.'/edit',
+                            "content" => "Mã ĐH: " . $getCodeOrder . " của Chủ Kho" . $arrChuKho->name . " được Khách Hàng " . $arrUser->name . " mua sắp trả về kho",
+                            "created_at" =>date('Y-m-d H:i:s')
+                        )));
+                    }
                 }
             }
 //            DB::table('product_orders')->insert($ProductOrder);

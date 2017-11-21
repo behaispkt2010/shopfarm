@@ -8,6 +8,7 @@ use Closure;
 use DateTime;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class AuthorizeMiddleware {
 
@@ -36,6 +37,7 @@ class AuthorizeMiddleware {
 		
 		foreach( $check as $itemCheck){
 			$user_test = $itemCheck->user_test;
+			$strWareHouseID = $itemCheck->id;
 			$date_end_test = $itemCheck->date_end_test;
 			$user_id_kho = $itemCheck->user_id;
 
@@ -72,15 +74,41 @@ class AuthorizeMiddleware {
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
+			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			Notification::firstOrCreate($data);
+			$message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200, 
+                    "roleview"=> $user_id,
+                    "title" => "Tài khoản sắp hết thời gian dùng thử",
+                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+                    "content" => "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
 
-			$data['keyname'] = Util::$userexpired;
-			$data['title'] = "Tài khoản sắp hết thời gian dùng thử";
-			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
-			$data['author_id'] = Auth::user()->id;
+			$dataAdmin['keyname'] = Util::$userexpired;
+			$dataAdmin['title'] = "Tài khoản sắp hết thời gian dùng thử";
+			$dataAdmin['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$dataAdmin['author_id'] = Auth::user()->id;
+			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
-	            $data['roleview'] = $itemUser;
-	            Notification::firstOrCreate($data);
+	            $dataAdmin['roleview'] = $itemUser;
+	            Notification::firstOrCreate($dataAdmin);
+	            $message = 'OK';
+	            if(isset($message)) {
+	                $redis = Redis::connection();
+	                $redis->publish("messages", json_encode(array(
+	                    "status" => 200,
+	                    "roleview"=> $itemUser,
+	                    "title" => "Tài khoản sắp hết thời gian dùng thử",
+	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+	                    "content" => "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho",
+	                    "created_at" =>date('Y-m-d H:i:s')
+	                )));
+	            }
 	        }
 		}
 		if (( $user_test == 2 ) && ( $date_end_test < $time_now )){
@@ -98,15 +126,41 @@ class AuthorizeMiddleware {
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
+			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			Notification::firstOrCreate($data);
+			$message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview"=> $user_id,
+                    "title" => "Sắp hết thời gian Xác nhận kho",
+                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+                    "content" => "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
 
-			$data['keyname'] = Util::$userexpired;
-			$data['title'] = "Sắp hết thời gian Xác nhận kho";
-			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
-			$data['author_id'] = Auth::user()->id;
+			$dataAdmin['keyname'] = Util::$userexpired;
+			$dataAdmin['title'] = "Sắp hết thời gian Xác nhận kho";
+			$dataAdmin['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$dataAdmin['author_id'] = Auth::user()->id;
+			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
-	            $data['roleview'] = $itemUser;
-	            Notification::firstOrCreate($data);
+	            $dataAdmin['roleview'] = $itemUser;
+	            Notification::firstOrCreate($dataAdmin);
+	            $message = 'OK';
+	            if(isset($message)) {
+	                $redis = Redis::connection();
+	                $redis->publish("messages", json_encode(array(
+	                    "status" => 200,
+	                    "roleview"=> $itemUser,
+	                    "title" => "Sắp hết thời gian Xác nhận kho",
+	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+	                    "content" => "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho",
+	                    "created_at" =>date('Y-m-d H:i:s')
+	                )));
+	            }
 	        }
 		}
 		if (($confirm_kho == 1) && ($countTimeConfirm < 0 )){
@@ -125,15 +179,42 @@ class AuthorizeMiddleware {
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
+			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			Notification::firstOrCreate($data);
+			$message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview"=> $user_id,
+                    "title" => "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại",
+                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+                    "content" => "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
 
-			$data['keyname'] = Util::$userexpired;
-			$data['title'] = "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại";
-			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
-			$data['author_id'] = Auth::user()->id;
+
+			$dataAdmin['keyname'] = Util::$userexpired;
+			$dataAdmin['title'] = "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại";
+			$dataAdmin['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$dataAdmin['author_id'] = Auth::user()->id;
+			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
-	            $data['roleview'] = $itemUser;
-	            Notification::firstOrCreate($data);
+	            $dataAdmin['roleview'] = $itemUser;
+	            Notification::firstOrCreate($dataAdmin);
+	            $message = 'OK';
+	            if(isset($message)) {
+	                $redis = Redis::connection();
+	                $redis->publish("messages", json_encode(array(
+	                    "status" => 200,
+	                    "roleview"=> $itemUser,
+	                    "title" => "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại",
+	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+	                    "content" => "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng",
+	                    "created_at" =>date('Y-m-d H:i:s')
+	                )));
+	            }
 	        }
 		}
 		if (($level != 0) && ($countTimelevel < 0 )){
@@ -151,15 +232,42 @@ class AuthorizeMiddleware {
 			$data['content'] = "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng";
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
+			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			Notification::firstOrCreate($data);
+			$message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview"=> $user_id,
+                    "title" => "Sắp hết thời gian Quảng Cáo",
+                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+                    "content" => "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
 
-			$data['keyname'] = Util::$userexpired;
-			$data['title'] = "Sắp hết thời gian Quảng Cáo";
-			$data['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
-			$data['author_id'] = Auth::user()->id;
+
+			$dataAdmin['keyname'] = Util::$userexpired;
+			$dataAdmin['title'] = "Sắp hết thời gian Quảng Cáo";
+			$dataAdmin['content'] = "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho";
+			$dataAdmin['author_id'] = Auth::user()->id;
+			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
-	            $data['roleview'] = $itemUser;
-	            Notification::firstOrCreate($data);
+	            $dataAdmin['roleview'] = $itemUser;
+	            Notification::firstOrCreate($dataAdmin);
+	            $message = 'OK';
+	            if(isset($message)) {
+	                $redis = Redis::connection();
+	                $redis->publish("messages", json_encode(array(
+	                    "status" => 200,
+	                    "roleview"=> $itemUser,
+	                    "title" => "Sắp hết thời gian Quảng Cáo",
+	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
+	                    "content" => "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng",
+	                    "created_at" =>date('Y-m-d H:i:s')
+	                )));
+	            }
 	        }
 		}
 		if (($quangcao == 1) && ($countTimequangcao < 0 )){

@@ -79,7 +79,7 @@
 									<div class="form-group">
                                         <div class="form-group label-floating">
 			                                <label class="control-label" for="focusedInputnote">Mã giới thiệu</label>
-			                                <input class="form-control" id="cf_refferalcode" name="cf_refferalcode" value="<?php echo $_GET['referral']; ?>"></input>
+			                                <input class="form-control" id="cf_refferalcode" name="cf_refferalcode" value="<?php echo (!empty($_GET['referral'])?$_GET['referral']:''); ?>"></input>
 			                            </div>
                                     </div>
 								    <div class="text-center">
@@ -151,14 +151,7 @@
 
 <script type="text/javascript">
 	$(function() {
-		$('.cf_refferalcode').on('click',function (){
-			/*window.$_GET = new URLSearchParams(location.search);
-			var value1 = $_GET.get('referral');
-			alert(referral);*/
-			var referral = "<?php echo $_GET['referral']; ?>";
-
-			//alert(referral);
-		});
+		
 	});
 </script>
 

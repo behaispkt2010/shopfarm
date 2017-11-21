@@ -283,7 +283,7 @@
                     ?>
                 @else
                     <?php
-                        $arrNotificationAdmin = \App\Notification::GetNotifyAdmin();
+                        $arrNotificationAdmin = \App\Notification::GetNotifyAdmin($strUserID);
                     ?>
                 @endif
                 <li role="presentation" class="dropdown" style="display: block" >
@@ -375,15 +375,7 @@
                             @if (count($arrNotificationAdmin) != 0)
                                 @foreach ($arrNotificationAdmin as $itemNotificationAdmin)
                                     <li class="notify">
-                                        <a href="@if ($itemNotificationAdmin->keyname == \App\Util::$newproduct) {{route('products.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$newscompany) {{route('newscompany.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$orderfail) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$orderreturn) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$ordernew) {{route('orders.edit',['id' => $itemNotificationAdmin->orderID_or_productID])}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$dangkychukho) {{route('warehouse.create')}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$dangkycompany) {{route('company.create')}}
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$upgradeLevelKho ||$itemNotificationAdmin->keyname == \App\Util::$quangcaoKho ||$itemNotificationAdmin->keyname == \App\Util::$confirmkho ||$itemNotificationAdmin->keyname == \App\Util::$dangkytraphiKho ||$itemNotificationAdmin->keyname == \App\Util::$dangkygiahanKho) {{route('warehouse.edit',['id' => $itemNotificationAdmin->id])}} 
-                                                @elseif ($itemNotificationAdmin->keyname == \App\Util::$upgradeLevelCompany ||$itemNotificationAdmin->keyname == \App\Util::$quangcaoCompany ||$itemNotificationAdmin->keyname == \App\Util::$confirmCompany ||$itemNotificationAdmin->keyname == \App\Util::$dangkytraphiCompany ||$itemNotificationAdmin->keyname == \App\Util::$dangkygiahanCompany) {{route('company.edit',['id' => $itemNotificationAdmin->id])}} @endif" target="_blank">
+                                        <a href="{{ url('/').$itemNotificationAdmin->link }}" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotificationAdmin->image)){{ url('/').$itemNotificationAdmin->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                                 <span>
                                                     <span class="notification_title">{{$itemNotificationAdmin->title}}</span>
@@ -504,7 +496,7 @@
             }
         });
     });
-    var socket = io.connect('http://127.0.0.1:4000/');
+    var socket = io.connect('http://localhost:4000/');
     socket.on("messages", function (data) {
         var data = JSON.parse(data);
         if($('#user_id').val() == data.roleview){
@@ -515,7 +507,7 @@
             $('#notify_count').text(currentCountMsg+1);
             $('#notify_count').removeClass('hidden');
             //add new messge to Message List when a new product had been created
-            $(".notify_heading").after('<li class="notify"><a href=" http://localhost:8010/admin/products/'+data.id+'/" target="_blank"><span class="image"><img src="{{asset("/images/1.png")}}" alt="Profile Image"></span><span><span class="notification_title">'+data.title+'</span></span><span class="message">'+data.content+'</span><span class="time">'+data.created_at+'</span><div class="ripple-container"></div></a></li>');
+            $(".notify_heading").after('<li class="notify"><a href="{{url('/')}}'+data.link+'" target="_blank"><span class="image"><img src="{{asset("/images/user_default.png")}}" alt="Profile Image"></span><span><span class="notification_title">'+data.title+'</span></span><span class="message">'+data.content+'</span><span class="time">'+data.created_at+'</span><div class="ripple-container"></div></a></li>');
         }
     });
 </script>

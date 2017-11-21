@@ -94,7 +94,7 @@
                                     </div>
                                     <div id="update-product"  class="col-sm-12 input-product" data-toggle="modal"
                                          data-target=".modal-product" data-title="{{$itemProduct->title}} ({{\App\Util::ProductCode($itemProduct->id)}})" data-id="{{$itemProduct->id}}">
-                                        <p style="font-size: 16px;" class="cod limitcharacter">{{$itemProduct->title}}</p>
+                                        <p style="font-size: 16px;" class="cod limitcharacterWithImg">{{$itemProduct->title}}</p>
                                         <h2 class="cod limitcharacterWithImg">{{\App\Util::ProductCode($itemProduct->id)}}
                                         </h2>
                                         <div class="col-xs-12 " style="padding-left: 0px;">

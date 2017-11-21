@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redis;
 
 class CompanyController extends Controller
 {
@@ -303,7 +304,20 @@ class CompanyController extends Controller
             $dataNotify['content'] = "Bạn đã đăng ký trả phí thành công";
             $dataNotify['author_id'] = $userID;
             $dataNotify['roleview'] = $viewer_id;
+            $dataNotify['link'] = '/admin/company/'.$id.'/edit';
             Notification::create($dataNotify);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview" => $viewer_id,
+                    "title" => "Thay đổi tài khoản thành công",
+                    "link" => '/admin/company/'.$id.'/edit',
+                    "content" => "Bạn đã đăng ký trả phí thành công",
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
 
@@ -403,7 +417,7 @@ class CompanyController extends Controller
         $time_confirm = $request->get('time_confirm');
         $time_confirm_bonus = $request->get('time_confirm_bonus');
         $checkCompany = Company::find($id);
-        if (($checkCompany->name == $request->name) && ($checkCompany->address == $request->address) && ($checkCompany->mst == $request->mst) && ($checkCompany->ndd == $request->ndd) && ($checkCompany->time_active == $request->time_active)) {
+        if (($checkCompany->name == $request->name_company) && ($checkCompany->address == $request->address) && ($checkCompany->mst == $request->mst) && ($checkCompany->ndd == $request->ndd) && ($checkCompany->time_active == $request->time_active)) {
             $confirm = 1;
             $time_now = date("Y-m-d H:i:s");
             $dateStart = new DateTime($time_now);
@@ -419,7 +433,21 @@ class CompanyController extends Controller
             $data['content'] = "Xem thông tin xác thực doanh nghiệp";
             $data['author_id'] = $userID;
             $data['roleview'] = $viewer_id;
+            $data['link'] = '/admin/company/'.$id.'/edit';
+
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview" => $viewer_id,
+                    "title" => "Xác thực doanh nghiệp thành công",
+                    "link" => '/admin/company/'.$id.'/edit',
+                    "content" => "Xem thông tin xác thực doanh nghiệp",
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
             $response = array(
                 'status' => 'success',
                 'msg' => 'Setting created successfully',
@@ -455,7 +483,20 @@ class CompanyController extends Controller
         $data['content'] = "Yêu cầu đăng ký quảng cáo của bạn đã được duyệt";
         $data['author_id'] = $userID;
         $data['roleview'] = $viewer_id;
+        $data['link'] = '/admin/company/'.$id.'/edit';
         Notification::create($data);
+        $message = 'OK';
+        if(isset($message)) {
+            $redis = Redis::connection();
+            $redis->publish("messages", json_encode(array(
+                "status" => 200,
+                "roleview" => $viewer_id,
+                "title" => "Đăng ký quảng cáo thành công",
+                "link" => '/admin/company/'.$id.'/edit',
+                "content" => "Yêu cầu đăng ký quảng cáo của bạn đã được duyệt",
+                "created_at" => date('Y-m-d H:i:s')
+            )));
+        }
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',
@@ -483,9 +524,22 @@ class CompanyController extends Controller
         $data['title'] = "Chủ kho đăng kí xác thực kho";
         $data['content'] = "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn xác thực kho với thời gian " .$time_request_confirm ." tháng";
         $data['author_id'] = $userID;
+        $data['link'] = '/admin/company/'.$companyID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview" => $itemUser,
+                    "title" => "Chủ kho đăng kí xác thực kho",
+                    "link" => '/admin/company/'.$companyID.'/edit',
+                    "content" => "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn xác thực kho với thời gian " .$time_request_confirm ." tháng",
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
         $response = array(
@@ -524,9 +578,22 @@ class CompanyController extends Controller
         $data['title'] = "Chủ kho đăng kí quảng cáo";
         $data['content'] = "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng";
         $data['author_id'] = $userID;
+        $data['link'] = '/admin/company/'.$companyID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview" => $itemUser,
+                    "title" => "Chủ kho đăng kí quảng cáo",
+                    "link" => '/admin/company/'.$companyID.'/edit',
+                    "content" => "Chủ kho ".$getCodeCompany.' - '.$phone_number." muốn đăng ký quảng cáo với thời gian " .$time_request_quangcao. " tháng",
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
         $response = array(
@@ -564,9 +631,22 @@ class CompanyController extends Controller
         $data['title'] = "Chủ kho đăng kí dùng trả phí";
         $data['content'] = "Mã chủ kho ".$getCodeCompany.' - '.$phone_number;
         $data['author_id'] = $userID;
+        $data['link'] = '/admin/company/'.$companyID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
             Notification::create($data);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview" => $itemUser,
+                    "title" => "Chủ kho đăng kí dùng trả phí",
+                    "link" => '/admin/company/'.$companyID.'/edit',
+                    "content" => "Mã chủ kho ".$getCodeCompany.' - '.$phone_number,
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
         }
         //dd($data);
         $response = array(

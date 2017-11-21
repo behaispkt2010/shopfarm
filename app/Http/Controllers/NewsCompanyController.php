@@ -15,6 +15,7 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redis;
 
 class NewsCompanyController extends Controller
 {
@@ -95,9 +96,23 @@ class NewsCompanyController extends Controller
             $dataNotify['content'] = "Công ty ".$getCodeKho." vừa đăng cơ hội mua bán mới.";
             $dataNotify['author_id'] = $strIDUser;
             $dataNotify['orderID_or_productID'] = $news->id;
+            $dataNotify['link'] = '/admin/newscompany/'.$news->id.'/edit';
             foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                 $dataNotify['roleview'] = $itemUser;
                 Notification::create($dataNotify);
+                $message = 'OK';
+                if(isset($message)) {
+                    $redis = Redis::connection();
+                    $redis->publish("messages", json_encode(array(
+                        "status" => 200,
+                        "id"=>$news->id, 
+                        "roleview"=> $itemUser,
+                        "title" => "Cơ hội mua bán mới",
+                        "link" => "/admin/newscompany/".$news->id."/edit",
+                        "content" => "Công ty ".$getCodeKho." vừa đăng cơ hội mua bán mới.",
+                        "created_at" =>date('Y-m-d H:i:s')
+                    )));
+                }
             }
         }
 
@@ -221,7 +236,21 @@ class NewsCompanyController extends Controller
             $dataNotify['author_id'] = Auth::user()->id;
             $dataNotify['orderID_or_productID'] = $newsCompany->id;
             $dataNotify['roleview'] = $newsCompany->author_id;
+            $dataNotify['link'] = '/admin/newscompany/'.$id.'/edit';
             Notification::create($dataNotify);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "id"=>$id, 
+                    "roleview"=> $newsCompany->author_id,
+                    "title" => "Cơ hội mua bán mới",
+                    "link" => "/admin/newscompany/".$id."/edit",
+                    "content" => "Cơ hội mua bán của bạn đã được duyệt.",
+                    "created_at" =>date('Y-m-d H:i:s')
+                )));
+            }
         }
         $newsCompany->update($data);
 

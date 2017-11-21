@@ -47,7 +47,7 @@ class NotificationController extends Controller
                 ->where('notification.roleview',$strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('ware_houses.* ')
-                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id,notification.link')
                 ->orderBy('notification.id','DESC')
                 ->paginate(20);
         }
@@ -57,7 +57,7 @@ class NotificationController extends Controller
                 ->where('notification.roleview',$strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('company.* ')
-                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id,notification.link')
                 ->orderBy('notification.id','DESC')
                 ->paginate(20);
         }
@@ -68,7 +68,7 @@ class NotificationController extends Controller
                 ->where('notification.roleview',$strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('ware_houses.* ')
-                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id')
+                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id,notification.link')
                 ->orderBy('notification.id','DESC')
                 ->paginate(20);
         }
@@ -76,7 +76,7 @@ class NotificationController extends Controller
         $data = [
             'arrNotification' => $arrNotification
         ];
-        //dd($arrNotification);
+        // dd($arrNotification);
         return view('admin.notification.index',$data);
     }
 

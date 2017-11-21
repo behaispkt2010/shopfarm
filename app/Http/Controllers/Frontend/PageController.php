@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redis;
 
 class PageController extends Controller
 {
@@ -55,9 +56,22 @@ class PageController extends Controller
         $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
         $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần được hỗ trợ";
         $dataNotify['author_id'] = 1;
+        $dataNotify['link'] = "#";
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $dataNotify['roleview'] = $itemUser;
             Notification::create($dataNotify);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview"=> $itemUser,
+                    "title" => "Khách hàng cần được hỗ trợ",
+                    "link" => "#",
+                    "content" => $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần được hỗ trợ.",
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
         }
         return redirect('/contact')->with('success','success');
     }
@@ -84,9 +98,22 @@ class PageController extends Controller
         $dataNotify['title'] = "Chủ kho đăng kí mới";
         $dataNotify['content'] = $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho với Mã giới thiệu: ".$request->get('cf_refferalcode');
         $dataNotify['author_id'] = 1;
+        $dataNotify['link'] = "/admin/warehouse/create";
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $dataNotify['roleview'] = $itemUser;
             Notification::create($dataNotify);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview" => $itemUser,
+                    "title" => "Chủ kho đăng kí mới",
+                    "link" => "/admin/warehouse/create",
+                    "content" => $request->get('cf_name').' .SDT: ' .$request->get('cf_order_number')."cần đăng ký chủ kho với Mã giới thiệu: ".$request->get('cf_refferalcode'),
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
         }
 
         Mail::to($to)->send(new Contact($data));
@@ -254,9 +281,22 @@ class PageController extends Controller
         $dataNotify['title'] = "Khách hàng cần được hỗ trợ";
         $dataNotify['content'] = $subject. ' : ' .$request->get('name_user').' .SDT: ' .$request->get('phone_user');
         $dataNotify['author_id'] = 1;
+        $dataNotify['link'] = "#";
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $dataNotify['roleview'] = $itemUser;
             Notification::create($dataNotify);
+            $message = 'OK';
+            if(isset($message)) {
+                $redis = Redis::connection();
+                $redis->publish("messages", json_encode(array(
+                    "status" => 200,
+                    "roleview" => $itemUser,
+                    "title" => "Khách hàng cần được hỗ trợ",
+                    "link" => "#",
+                    "content" => $subject. ' : ' .$request->get('name_user').' .SDT: ' .$request->get('phone_user'),
+                    "created_at" => date('Y-m-d H:i:s')
+                )));
+            }
         }
         return redirect('/')->with('success','success');
     }
