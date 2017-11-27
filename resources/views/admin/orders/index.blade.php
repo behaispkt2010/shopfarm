@@ -6,6 +6,9 @@
     <a href="{{route('orders.create')}}" class="btn btn-warning btn-fab" title="Tạo mới đơn hàng">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a>
+    <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
+        <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+    </a>
 @endsection
 @section('content')
     <div class="row top-right">

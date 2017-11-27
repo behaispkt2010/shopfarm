@@ -24,7 +24,9 @@ Auth::routes();
  */
 Route::get('login/facebook', 'Auth\RegisterController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
-
+//report orders
+Route::get('/report/orders', 'Report\OrdersController@getIndex');
+//
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], function () {
 
