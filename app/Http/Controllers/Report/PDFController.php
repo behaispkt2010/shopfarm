@@ -2,16 +2,16 @@
 namespace App\Http\Controllers\Report;
 /**
 	*-------------------------------------------------------------------------*
-	* I-Ways
+	* 
 	* PDF reporst
 	*
 	* 処理概要/process overview    	:
-	* 作成日/create date            	:    2016/05/08
-	* 作成者/creater                	:    ans793 – vulq@ans-asia.com
+	* 作成日/create date            	:    
+	* 作成者/creater                	:    
 	*
-	* @package                     	:    Member
-	* @copyright                   	:    Copyright (c) ANS-ASIA
-	* @version                    	:    1.0.0
+	* @package                     	:    
+	* @copyright                   	:    
+	* @version                    	:    
 	*-------------------------------------------------------------------------*
 	* show + save + meger pdf
 	*
@@ -37,7 +37,7 @@ class PDFController extends Controller {
 	/*
     * contrustor
     * -----------------------------------------------
-    * @author      :   ans793     - 2016/05/08 - create
+    * @author      :   
     * @param       :   null
     * @return      :   null
     * @access      :   public
@@ -45,8 +45,6 @@ class PDFController extends Controller {
     */
 	public function __construct(){
 		
-		//PDF::set_base_path(realpath(public_path()));
-
 		$this->temp_folder 	= \Config::get('app.pdf_folder_temp');
 		$this->form_folder 	= \Config::get('app.pdf_folder_form');
 		$this->fixed_folder = \Config::get('app.pdf_folder_fixed');	
@@ -54,7 +52,7 @@ class PDFController extends Controller {
 	/*
     * show pdf 
     * -----------------------------------------------
-    * @author      :   ans793     - 2016/05/08 - create
+    * @author      :   
     * @param       :   null
     * @return      :   null
     * @access      :   public
@@ -63,14 +61,8 @@ class PDFController extends Controller {
 	public function getShowPdfTemp($file_name){
 		try{
 			
-			/*if(File::exists($this->temp_folder.$file_name)){*/
-				$file_to_view = '/reports/pdf/temp/'.$file_name;
-			/*}else{
-				$file_to_view = '/reports/pdf/temp/notfound.pdf';
-			}*/
-
+			$file_to_view = '/reports/pdf/temp/'.$file_name;
 			return view('layouts.pdf.show',compact('file_to_view','file_name'));
-
 		}catch(Exception $e){
 			
             return response()->json(array('response'=>false));
@@ -80,7 +72,7 @@ class PDFController extends Controller {
 	/*
     * Merger pdf 
     * -----------------------------------------------
-    * @author      :   ans793     - 2016/05/08 - create
+    * @author      :   
     * @param       :   null
     * @return      :   null
     * @access      :   public
@@ -121,7 +113,7 @@ class PDFController extends Controller {
 	/*
     * count line of pdf file 
     * -----------------------------------------------
-    * @author      :   ans793     - 2016/05/08 - create
+    * @author      :   
     * @param       :   null
     * @return      :   null
     * @access      :   public
@@ -147,7 +139,7 @@ class PDFController extends Controller {
 	/*
     * count line of pdf file 
     * -----------------------------------------------
-    * @author      :   ans793     - 2016/05/08 - create
+    * @author      :   
     * @param       :   null
     * @return      :   null
     * @access      :   public
@@ -163,7 +155,7 @@ class PDFController extends Controller {
 	/*
     * add images to pdf
     * -----------------------------------------------
-    * @author      :   ans803     - 2016/10/13 - create
+    * @author      :   
     * @param       :   null
     * @return      :   null
     * @access      :   public
