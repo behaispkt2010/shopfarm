@@ -116,6 +116,24 @@
 
 {{--<script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>--}}
 <script>
+    $('.btn-new').hover(function() {
+        $('.h-report').addClass('show-hover');
+        $('.h-help').addClass('show-hover');
+        $('.h-create').addClass('show-hover');
+        $('.iconPlus').addClass('hidden-hover');
+        $('.iconCreate').removeClass('hidden-hover');
+        // $('.h-plus').addClass('hidden-hover');
+    }, function() {
+        $('.h-report').removeClass('show-hover');
+        $('.h-help').removeClass('show-hover');
+        $('.h-create').removeClass('show-hover');
+        $('.iconPlus').removeClass('hidden-hover');
+        $('.iconCreate').addClass('hidden-hover');
+        // $('.h-plus').removeClass('hidden-hover');
+    });
+</script>
+
+<script>
     $(function () {
         $.material.init();
 

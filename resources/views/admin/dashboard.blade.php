@@ -215,13 +215,14 @@
                         <div class="text-center">
                             {{ $arrProductWaitApproval->appends(array('q' => Request::get('q')))->links() }}
                         </div>
+                        <br>
                     </ul>
                 </div>
-
+                
             </div>
             <div class="loading" style="display: none"><img src="{{url('/images/loading.gif')}}" class="img-reponsive" alt=""></div>
         </div>
-
+        
         <div class="col-md-12 col-sm-12 col-xs-12">
 
             <div class="x_panel" style="min-height: 550px;">
@@ -253,6 +254,7 @@
                         <div class="text-center">
                             {{ $arrNewsCompayWaitApproval->appends(array('q' => Request::get('q')))->links() }}
                         </div>
+                        <br>
                     </ul>
                 </div>
 

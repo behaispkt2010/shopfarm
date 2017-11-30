@@ -3,9 +3,27 @@
 @section('pageHeader','Quản lý chủ kho ')
 @section('detailHeader','danh sách')
 @section('new-btn')
-    <a href="{{route('company.create')}}" data-placement="top" title="" data-original-title="Tạo mới" class="btn btn-warning btn-fab" title="Tạo Công ty mới">
+    <!-- <a href="{{route('company.create')}}" data-placement="top" title="" data-original-title="Tạo mới" class="btn btn-warning btn-fab" title="Tạo Công ty mới">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
-    </a>
+    </a> -->
+    <div class="hover-new-btn h-hover">
+        <!-- <div class="h-report">
+            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            </a>
+        </div> -->
+        <div class="h-help">
+            <a href="{{ url('/tro-giup') }}" target="_blank" class="btn btn-warning btn-fab" title="Thông tin trợ giúp">
+                <i class="material-icons">help</i>
+            </a>
+        </div>
+        <div class="h-plus">
+            <a href="{{route('company.create')}}" class="btn btn-warning btn-fab" title="Tạo mới">
+                <i class="material-icons iconPlus">add</i>
+                <i class="fa fa-paper-plane material-icons new-btn iconCreate hidden-hover" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
 @endsection
 @section('content')
     <div class="row top-right">

@@ -13,14 +13,16 @@ class NotificationController extends Controller
 {
     public function AjaxUpdateIsReadNotify(Request $request){
         //Log::debug('behai',['vaooooo']);
-        if(Auth::user()->hasRole(['kho','com'])) {
+        /*if(Auth::user()->hasRole(['kho','com'])) {
             $strUserID = Auth::user()->id;
             $notify = Notification::where('is_read','=','0')->where('roleview',$strUserID)->get();
         }
         else {
             $view = Util::$roleviewAdmin;
             $notify = Notification::where('is_read','=','0')->where('roleview',$view)->get();
-        }
+        }*/
+        $strUserID = Auth::user()->id;
+        $notify = Notification::where('is_read','=','0')->where('roleview',$strUserID)->get();
         if ( count($notify) !=0 ){
             $data = [
               'is_read' => 1
@@ -36,6 +38,21 @@ class NotificationController extends Controller
         );
         //dd($notify);
         return \Response::json($response);
+    }
+    public function AjaxUpdateClickOneNotify(Request $request) {
+        $strNotifyID = $request->get('strNotifyID');
+        $data = [
+            'is_read' => 1
+        ];
+        $notify = Notification::find($strNotifyID);
+        if ( count($notify) !=0 ){
+            $noti = Notification::find($strNotifyID);
+            $noti->update($data);
+        }
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
     }
     public function index()
     {

@@ -5,6 +5,11 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
         </button>
         <h4 class="modal-title text-center" id="myModalLabel">Đơn hàng {{ \App\Util::OrderCode($order->id) }}</h4>
+        
+            <a href="{!! url('/') !!}/report/orders/{{ $order->id }}" target="_blank" class="btn btn-warning btn-fab floatright" title="In đơn hàng {{ \App\Util::OrderCode($order->id) }}">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            </a>
+        
     </div>
     <div class="modal-body sroll">
         <div class="row">
@@ -30,14 +35,12 @@
                 </div>
                 <div class="col-md-12 con-tracking hidden-xs" style="color: #000;">
                     <div class="col-md-7 col-sm-6 col-xs-12 fix-padlr">
-                        {{--<p class="text-center"><i class="ic-tracking ic-xe"></i></p>--}}
                         <h2>Thông tin đặt hàng</h2>
                         <table class="table list-order table-curved">
                             <tbody>
                             <?php $total = 0; ?>
                             @foreach($productOrder as $itemProductOrder)
                                 <tr class="item-product">
-                                    {{--<th><span class="code-product">{{ $itemProductOrder->code }}</span></th>--}}
                                     <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
                                     <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_out) !!}</span>  </span></td>
                                     <td><span>x </span>{{ $itemProductOrder->num }}</td>

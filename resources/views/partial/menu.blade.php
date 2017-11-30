@@ -303,7 +303,8 @@
                             @if (count($arrNotification) != 0)
                                 @foreach ($arrNotification as $itemNotification)
                                     <li class="notify">
-                                        <a href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
+                                        <!-- <input type="hidden" name="notifyID" value="{{ $itemNotification->id }}"> -->
+                                        <a onclick="UpdateClickOneNotify({{ $itemNotification->id }})" href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
                                                 @elseif ($itemNotification->keyname == \App\Util::$newproductSuccess) {{route('products.edit',['id' => $itemNotification->orderID_or_productID])}}
                                                 @else # @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
@@ -313,7 +314,6 @@
                                             <span class="message">{{$itemNotification->content}}</span>
                                             <span class="time">{{ $itemNotification->created_at }}</span>
                                         </a>
-
                                     </li>
                                 @endforeach
 
@@ -339,7 +339,8 @@
                             @if (count($arrNotificationCompany) != 0)
                                 @foreach ($arrNotificationCompany as $itemNotification)
                                     <li class="notify">
-                                        <a href="@if ($itemNotification->keyname == \App\Util::$confirmCompanySuccess) {{url('/company/'.$itemNotification->id)}}
+                                        <!-- <input type="hidden" name="notifyID" value="{{ $itemNotification->id }}"> -->
+                                        <a onclick="UpdateClickOneNotify({{ $itemNotification->id }})" href="@if ($itemNotification->keyname == \App\Util::$confirmCompanySuccess) {{url('/company/'.$itemNotification->id)}}
                                                 @elseif ($itemNotification->keyname == \App\Util::$newscompanySuccess) {{route('newscompany.edit',['id' => $itemNotification->orderID_or_productID])}}
                                                 @else # @endif" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
@@ -375,7 +376,8 @@
                             @if (count($arrNotificationAdmin) != 0)
                                 @foreach ($arrNotificationAdmin as $itemNotificationAdmin)
                                     <li class="notify">
-                                        <a href="{{ url('/').$itemNotificationAdmin->link }}" target="_blank">
+                                        <!-- <input type="hidden" name="notifyID" class="notifyID" value="{{ $itemNotificationAdmin->id }}"> -->
+                                        <a onclick="UpdateClickOneNotify({{ $itemNotificationAdmin->id }})" href="{{ url('/').$itemNotificationAdmin->link }}" target="_blank">
                                             <span class="image"><img src="@if (!empty($itemNotificationAdmin->image)){{ url('/').$itemNotificationAdmin->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
                                                 <span>
                                                     <span class="notification_title">{{$itemNotificationAdmin->title}}</span>
@@ -496,7 +498,7 @@
             }
         });
     });
-    var socket = io.connect('http://localhost:4000/');
+    var socket = io.connect('{{ url('/') }}:{{env("PORT_NODE")}}/');
     socket.on("messages", function (data) {
         var data = JSON.parse(data);
         if($('#user_id').val() == data.roleview){
@@ -510,4 +512,24 @@
             $(".notify_heading").after('<li class="notify"><a href="{{url('/')}}'+data.link+'" target="_blank"><span class="image"><img src="{{asset("/images/user_default.png")}}" alt="Profile Image"></span><span><span class="notification_title">'+data.title+'</span></span><span class="message">'+data.content+'</span><span class="time">'+data.created_at+'</span><div class="ripple-container"></div></a></li>');
         }
     });
+
+    function UpdateClickOneNotify($NotifyID) {
+        var NotifyID = $NotifyID;
+        $.ajax({
+            type: "GET",
+            data: {strNotifyID: NotifyID},
+            url: '{{ url('/') }}/admin/notify/AjaxUpdateClickOneNotify',
+            success: function( msg ) {
+                console.log[msg];
+                currentCountMsg = parseInt($('#notify_count').text());
+                if (currentCountMsg > 0) {
+                    $('#notify_count').text(currentCountMsg-1);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                var Data = JSON.parse(XMLHttpRequest.responseText);
+            }
+        });
+    }
+
 </script>

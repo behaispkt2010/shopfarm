@@ -5,13 +5,49 @@
 
 @section('new-btn')
     @if(Request::is('admin/staffs'))
-    <a href="{{route('staffs.create')}}" class="btn btn-warning btn-fab" title="Tạo mới người dùng">
+    <!-- <a href="{{route('staffs.create')}}" class="btn btn-warning btn-fab" title="Tạo mới người dùng">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
-    </a>
+    </a> -->
+    <div class="hover-new-btn h-hover">
+        <!-- <div class="h-report">
+            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            </a>
+        </div> -->
+        <div class="h-help">
+            <a href="{{ url('/tro-giup') }}" target="_blank" class="btn btn-warning btn-fab" title="Thông tin trợ giúp">
+                <i class="material-icons">help</i>
+            </a>
+        </div>
+        <div class="h-plus">
+            <a href="{{route('staffs.create')}}" class="btn btn-warning btn-fab" title="Tạo mới người dùng">
+                <i class="material-icons iconPlus">add</i>
+                <i class="fa fa-paper-plane material-icons new-btn iconCreate hidden-hover" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
     @else
-    <a href="{{route('users.create')}}" class="btn btn-warning btn-fab">
+    <!-- <a href="{{route('users.create')}}" class="btn btn-warning btn-fab">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
-    </a>
+    </a> -->
+    <div class="hover-new-btn h-hover">
+        <!-- <div class="h-report">
+            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            </a>
+        </div> -->
+        <div class="h-help">
+            <a href="{{ url('/tro-giup') }}" target="_blank" class="btn btn-warning btn-fab" title="Thông tin trợ giúp">
+                <i class="material-icons">help</i>
+            </a>
+        </div>
+        <div class="h-plus">
+            <a href="{{route('users.create')}}" class="btn btn-warning btn-fab" title="Tạo mới người dùng">
+                <i class="material-icons iconPlus">add</i>
+                <i class="fa fa-paper-plane material-icons new-btn iconCreate hidden-hover" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
     @endif
 @endsection
 @section('content')

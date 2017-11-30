@@ -26,6 +26,7 @@ Route::get('login/facebook', 'Auth\RegisterController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
 //report orders
 Route::get('/report/orders', 'Report\OrdersController@getIndex');
+Route::get('/report/orders/{oid}', 'Report\OrdersController@getOrderDetail');
 //
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], function () {
@@ -164,6 +165,7 @@ Route::post('admin/dashboardctrl', 'DashboardController@dashboard');
 Route::post('admin/dashboard/Approval', 'DashboardController@Approval');
 Route::post('admin/dashboard/ApprovalNews', 'DashboardController@ApprovalNews');
 Route::get('admin/notify/AjaxUpdateIsReadNotify', 'NotificationController@AjaxUpdateIsReadNotify');
+Route::get('admin/notify/AjaxUpdateClickOneNotify', 'NotificationController@AjaxUpdateClickOneNotify');
 Route::post('warehouse/AjaxDetail', 'WarehouseController@AjaxDetail');
 Route::post('warehouse/deleteDetailImage', 'WarehouseController@deleteDetailImage');
 Route::post('warehouse/UploadImgDetail', 'WarehouseController@UploadImgDetail');

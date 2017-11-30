@@ -11,9 +11,27 @@
 <link href="{{asset('plugin/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 @endsection
 @section('new-btn')
-    <a href="{{route('role.create')}}" class="btn btn-warning btn-fab">
+    <!-- <a href="{{route('role.create')}}" class="btn btn-warning btn-fab">
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
-    </a>
+    </a> -->
+    <div class="hover-new-btn h-hover">
+        <!-- <div class="h-report">
+            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            </a>
+        </div> -->
+        <div class="h-help">
+            <a href="{{ url('/tro-giup') }}" target="_blank" class="btn btn-warning btn-fab" title="Thông tin trợ giúp">
+                <i class="material-icons">help</i>
+            </a>
+        </div>
+        <div class="h-plus">
+            <a href="{{route('role.create')}}" class="btn btn-warning btn-fab" title="Tạo mới Role">
+                <i class="material-icons iconPlus">add</i>
+                <i class="fa fa-paper-plane material-icons new-btn iconCreate hidden-hover" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
 @endsection
 @section('content')
     <br>

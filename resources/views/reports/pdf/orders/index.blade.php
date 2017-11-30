@@ -18,9 +18,9 @@
 				</h4> 
 			</label>
 			<label class="w-tit-center left"> 
-				<h3 class="label-option tit-size" align="center">
+				<h2 class="label-option tit-size" align="center">
 					Danh sách Đơn hàng
-				</h3>
+				</h2>
 			</label>
 			<label class="w-tit right martop"> 
 				
@@ -49,10 +49,10 @@
 								{{ $arrOrders->name }}
 							</td>
 							<td class="center">
-								{{ $arrOrders->address }}
+								{{ $arrOrders->phone_number }}
 							</td>
 							<td class="center">
-								{{$arrOrders->phone_number }}
+								{{$arrOrders->address }}
 							</td>
 						</tr>
 					@endforeach
