@@ -104,13 +104,14 @@ class WarehouseController extends Controller
             $dataNotify['author_id'] = $userID;
             $dataNotify['roleview'] = $viewer_id;
             $dataNotify['link'] = '/admin/warehouse/'.$id.'/edit';
-            Notification::create($dataNotify);
+            $notify = Notification::create($dataNotify);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
-                    "id"=>$id, 
+                    "id"=>$id,  
+                    "notifyID" => $notify->id,
                     "roleview"=> $viewer_id,
                     "title" => "Thay đổi tài khoản thành công",
                     "link" => '/admin/warehouse/'.$id.'/edit',
@@ -248,13 +249,14 @@ class WarehouseController extends Controller
         $data['author_id'] = $userID;
         $data['roleview'] = $viewer_id;
         $data['link'] = '/admin/warehouse/'.$id.'/edit';
-        Notification::create($data);
+        $notify = Notification::create($data);
         $message = 'OK';
         if(isset($message)) {
             $redis = Redis::connection();
             $redis->publish("messages", json_encode(array(
                 "status" => 200,
-                "id"=>$id, 
+                "id"=>$id,  
+                "notifyID" => $notify->id,
                 "roleview"=> $viewer_id,
                 "title" => "Nâng cấp kho thành công",
                 "link" => '/admin/warehouse/'.$id.'/edit',
@@ -294,13 +296,14 @@ class WarehouseController extends Controller
             $data['author_id'] = $userID;
             $data['roleview'] = $viewer_id;
             $data['link'] = '/admin/warehouse/'.$id.'/edit';
-            Notification::create($data);
+            $notify = Notification::create($data);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
-                    "id"=>$id, 
+                    "id"=>$id,  
+                    "notifyID" => $notify->id,
                     "roleview"=> $viewer_id,
                     "title" => "Xác thực doanh nghiệp thành công",
                     "link" => '/admin/warehouse/'.$id.'/edit',
@@ -344,13 +347,14 @@ class WarehouseController extends Controller
         $data['author_id'] = $userID;
         $data['roleview'] = $viewer_id;
         $data['link'] = '/admin/warehouse/'.$id.'/edit';
-        Notification::create($data);
+        $notify = Notification::create($data);
         $message = 'OK';
         if(isset($message)) {
             $redis = Redis::connection();
             $redis->publish("messages", json_encode(array(
                 "status" => 200,
-                "id"=>$id, 
+                "id"=>$id,  
+                "notifyID" => $notify->id,
                 "roleview"=> $viewer_id,
                 "title" => "Đăng ký quảng cáo thành công",
                 "link" => '/admin/warehouse/'.$id.'/edit',
@@ -390,13 +394,14 @@ class WarehouseController extends Controller
         
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
-            Notification::create($data);
+            $notify = Notification::create($data);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
-                    "id"=>$wareHouseID, 
+                    "id"=>$wareHouseID,  
+                    "notifyID" => $notify->id,
                     "roleview"=> $itemUser,
                     "title" => "Chủ kho đăng kí nâng cấp",
                     "link" => '/admin/warehouse/'.$wareHouseID.'/edit',
@@ -445,13 +450,14 @@ class WarehouseController extends Controller
         $data['link'] = '/admin/warehouse/'.$wareHouseID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
-            Notification::create($data);
+            $notify = Notification::create($data);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
                     "id"=>$wareHouseID, 
+                    "notifyID" => $notify->id, 
                     "roleview"=> $itemUser,
                     "title" => "Chủ kho đăng kí xác thực kho",
                     "link" => '/admin/warehouse/'.$wareHouseID.'/edit',
@@ -500,13 +506,14 @@ class WarehouseController extends Controller
         $data['link'] = '/admin/warehouse/'.$wareHouseID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
-            Notification::create($data);
+            $notify = Notification::create($data);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
-                    "id"=>$wareHouseID, 
+                    "id"=>$wareHouseID,  
+                    "notifyID" => $notify->id,
                     "roleview"=> $itemUser,
                     "title" => "Chủ kho đăng kí quảng cáo",
                     "link" => '/admin/warehouse/'.$wareHouseID.'/edit',
@@ -554,13 +561,14 @@ class WarehouseController extends Controller
         $data['link'] = '/admin/warehouse/'.$wareHouseID.'/edit';
         foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
             $data['roleview'] = $itemUser;
-            Notification::create($data);
+            $notify = Notification::create($data);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
                     "id"=>$wareHouseID, 
+                    "notifyID" => $notify->id, 
                     "roleview"=> $itemUser,
                     "title" => "Chủ kho đăng kí dùng trả phí",
                     "link" => '/admin/warehouse/'.$wareHouseID.'/edit',

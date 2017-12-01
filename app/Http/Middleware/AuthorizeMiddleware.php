@@ -75,13 +75,14 @@ class AuthorizeMiddleware {
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
 			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
-			Notification::firstOrCreate($data);
+			$notify = Notification::firstOrCreate($data);
 			$message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200, 
-                    "roleview"=> $user_id,
+                    "roleview"=> $user_id, 
+                	"notifyID" => $notify->id,
                     "title" => "Tài khoản sắp hết thời gian dùng thử",
                     "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
                     "content" => "Chủ kho còn 03 ngày để sử dụng dịch vụ. Hãy nâng cấp để tiếp tục sử dụng",
@@ -96,13 +97,14 @@ class AuthorizeMiddleware {
 			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
 	            $dataAdmin['roleview'] = $itemUser;
-	            Notification::firstOrCreate($dataAdmin);
+	            $notify = Notification::firstOrCreate($dataAdmin);
 	            $message = 'OK';
 	            if(isset($message)) {
 	                $redis = Redis::connection();
 	                $redis->publish("messages", json_encode(array(
 	                    "status" => 200,
-	                    "roleview"=> $itemUser,
+	                    "roleview"=> $itemUser, 
+                		"notifyID" => $notify->id,
 	                    "title" => "Tài khoản sắp hết thời gian dùng thử",
 	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
 	                    "content" => "Chủ kho " .$CodeChuKho. " còn 03 ngày để sử dụng dịch vụ. Hãy liên hệ và tư vấn Chủ kho",
@@ -127,12 +129,13 @@ class AuthorizeMiddleware {
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
 			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
-			Notification::firstOrCreate($data);
+			$notify = Notification::firstOrCreate($data);
 			$message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
+                    "notifyID" => $notify->id,
                     "roleview"=> $user_id,
                     "title" => "Sắp hết thời gian Xác nhận kho",
                     "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
@@ -148,12 +151,13 @@ class AuthorizeMiddleware {
 			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
 	            $dataAdmin['roleview'] = $itemUser;
-	            Notification::firstOrCreate($dataAdmin);
+	            $notify = Notification::firstOrCreate($dataAdmin);
 	            $message = 'OK';
 	            if(isset($message)) {
 	                $redis = Redis::connection();
 	                $redis->publish("messages", json_encode(array(
 	                    "status" => 200,
+	                    "notifyID" => $notify->id,
 	                    "roleview"=> $itemUser,
 	                    "title" => "Sắp hết thời gian Xác nhận kho",
 	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
@@ -180,12 +184,13 @@ class AuthorizeMiddleware {
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
 			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
-			Notification::firstOrCreate($data);
+			$notify = Notification::firstOrCreate($data);
 			$message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
+                    "notifyID" => $notify->id,
                     "roleview"=> $user_id,
                     "title" => "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại",
                     "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
@@ -202,12 +207,13 @@ class AuthorizeMiddleware {
 			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
 	            $dataAdmin['roleview'] = $itemUser;
-	            Notification::firstOrCreate($dataAdmin);
+	            $notify = Notification::firstOrCreate($dataAdmin);
 	            $message = 'OK';
 	            if(isset($message)) {
 	                $redis = Redis::connection();
 	                $redis->publish("messages", json_encode(array(
 	                    "status" => 200,
+	                    "notifyID" => $notify->id,
 	                    "roleview"=> $itemUser,
 	                    "title" => "Tài khoản sắp hết thời gian sử dụng với cấp kho hiện tại",
 	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
@@ -233,12 +239,13 @@ class AuthorizeMiddleware {
 			$data['author_id'] = Auth::user()->id;
 			$data['roleview'] = $user_id;
 			$data['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
-			Notification::firstOrCreate($data);
+			$notify = Notification::firstOrCreate($data);
 			$message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
+                    "notifyID" => $notify->id,
                     "roleview"=> $user_id,
                     "title" => "Sắp hết thời gian Quảng Cáo",
                     "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',
@@ -255,12 +262,13 @@ class AuthorizeMiddleware {
 			$dataAdmin['link'] = '/admin/warehouse/'.$strWareHouseID.'/edit';
 			foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
 	            $dataAdmin['roleview'] = $itemUser;
-	            Notification::firstOrCreate($dataAdmin);
+	            $notify = Notification::firstOrCreate($dataAdmin);
 	            $message = 'OK';
 	            if(isset($message)) {
 	                $redis = Redis::connection();
 	                $redis->publish("messages", json_encode(array(
 	                    "status" => 200,
+	                    "notifyID" => $notify->id,
 	                    "roleview"=> $itemUser,
 	                    "title" => "Sắp hết thời gian Quảng Cáo",
 	                    "link" => '/admin/warehouse/'.$strWareHouseID.'/edit',

@@ -49,6 +49,7 @@ class NotificationController extends Controller
             $noti = Notification::find($strNotifyID);
             $noti->update($data);
         }
+        // die($strNotifyID);
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',

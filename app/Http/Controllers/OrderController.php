@@ -222,13 +222,14 @@ class OrderController extends Controller
                 $dataNotify['link'] = '/admin/orders/'.$strOrderID.'/edit';
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotify['roleview'] = $itemUser;
-                    Notification::create($dataNotify);
+                    $notify = Notification::create($dataNotify);
                     $message = 'OK';
                     if(isset($message)) {
                         $redis = Redis::connection();
                         $redis->publish("messages", json_encode(array(
                             "status" => 200,
-                            "id"=>$strOrderID, 
+                            "id"=>$strOrderID,  
+                            "notifyID" => $notify->id,
                             "roleview"=> $itemUser,
                             "title" => "Đơn hàng mới",
                             "link" => '/admin/orders/'.$strOrderID.'/edit',
@@ -420,14 +421,15 @@ class OrderController extends Controller
                 $dataNotify['orderID_or_productID'] = $id;
                 $dataNotify['link'] = '/admin/orders/'.$id.'/edit';
                 
-                Notification::firstOrCreate($dataNotify);
+                $notify = Notification::firstOrCreate($dataNotify);
                 $message = 'OK';
                 if(isset($message)) {
                     $redis = Redis::connection();
                     $redis->publish("messages", json_encode(array(
                         "status" => 200,
                         "id"=>$id, 
-                        "roleview"=> $kho_id,
+                        "roleview"=> $kho_id, 
+                        "notifyID" => $notify->id,
                         "title" => "Đơn hàng bị lỗi",
                         "link" => '/admin/orders/'.$id.'/edit',
                         "content" => "Mã ĐH: " . $getCodeOrder . " của " . $arrUser->name . " bị lỗi",
@@ -444,13 +446,14 @@ class OrderController extends Controller
 
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotifyAdmin['roleview'] = $itemUser;
-                    Notification::firstOrCreate($dataNotifyAdmin);
+                    $notify = Notification::firstOrCreate($dataNotifyAdmin);
                     $message = 'OK';
                     if(isset($message)) {
                         $redis = Redis::connection();
                         $redis->publish("messages", json_encode(array(
                             "status" => 200,
-                            "id"=>$id, 
+                            "id"=>$id,  
+                            "notifyID" => $notify->id,
                             "roleview"=> $itemUser,
                             "title" => "Đơn hàng bị lỗi",
                             "link" => '/admin/orders/'.$id.'/edit',
@@ -475,13 +478,14 @@ class OrderController extends Controller
                 $dataNotify['orderID_or_productID'] = $id;
                 $dataNotify['link'] = '/admin/orders/'.$id.'/edit';
 
-                Notification::firstOrCreate($dataNotify);
+                $notify = Notification::firstOrCreate($dataNotify);
                 $message = 'OK';
                 if(isset($message)) {
                     $redis = Redis::connection();
                     $redis->publish("messages", json_encode(array(
                         "status" => 200,
-                        "id"=>$id, 
+                        "id"=>$id,  
+                        "notifyID" => $notify->id,
                         "roleview"=> $kho_id,
                         "title" => "Đơn hàng sắp trả về kho",
                         "link" => '/admin/orders/'.$id.'/edit',
@@ -498,13 +502,14 @@ class OrderController extends Controller
                 $dataNotifyAdmin['link'] = '/admin/orders/'.$id.'/edit';
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotifyAdmin['roleview'] = $itemUser;
-                    Notification::firstOrCreate($dataNotifyAdmin);
+                    $notify = Notification::firstOrCreate($dataNotifyAdmin);
                     $message = 'OK';
                     if(isset($message)) {
                         $redis = Redis::connection();
                         $redis->publish("messages", json_encode(array(
                             "status" => 200,
-                            "id"=>$id, 
+                            "id"=>$id,  
+                            "notifyID" => $notify->id,
                             "roleview"=> $itemUser,
                             "title" => "Đơn hàng sắp trả về kho",
                             "link" => '/admin/orders/'.$id.'/edit',

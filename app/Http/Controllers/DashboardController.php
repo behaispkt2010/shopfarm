@@ -78,13 +78,14 @@ class DashboardController extends Controller
         $dataNotify['orderID_or_productID'] = $strProductID;
         $dataNotify['roleview'] = $strKhoID;
         $dataNotify['link'] = "/admin/products/".$strProductID."/edit";
-        Notification::create($dataNotify);
+        $notify = Notification::create($dataNotify);
         $message = 'OK';
         if(isset($message)) {
             $redis = Redis::connection();
             $redis->publish("messages", json_encode(array(
                 "status" => 200,
-                "id"=>$strProductID, 
+                "id"=>$strProductID,  
+                "notifyID" => $notify->id,
                 "roleview"=> $strKhoID,
                 "title" => "Sản phẩm mới",
                 "link" => "/admin/products/".$strProductID."/edit",
@@ -110,13 +111,14 @@ class DashboardController extends Controller
         $dataNotify['orderID_or_productID'] = $strNewsID;
         $dataNotify['roleview'] = $strAuthorID;
         $dataNotify['link'] = '/admin/newscompany/'.$strNewsID.'/edit';
-        Notification::create($dataNotify);
+        $notify = Notification::create($dataNotify);
         $message = 'OK';
         if(isset($message)) {
             $redis = Redis::connection();
             $redis->publish("messages", json_encode(array(
                 "status" => 200,
                 "id"=>$strNewsID, 
+                "notifyID" => $notify->id,
                 "roleview"=> $strAuthorID,
                 "title" => "Cơ hội mua bán mới",
                 "link" => "/admin/newscompany/".$strNewsID."/edit",

@@ -1676,6 +1676,10 @@ ul.msg_list li {
     margin: 6px 6px 0;
     height: 88px;
     width: 96% !important;
+    border-bottom: 1px solid #dddfe2 !important;
+}
+ul.msg_list li:hover {
+    background-color: #f7f7f7 !important;
 }
 
 ul.msg_list li:last-child {
@@ -7255,4 +7259,7 @@ table.dtp-picker-days thead {
 }
 .h-help, .h-report :hover {
     display: block;
+}
+.notifyIsRead {
+    background-color: #fff !important;
 }

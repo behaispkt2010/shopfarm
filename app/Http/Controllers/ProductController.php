@@ -255,13 +255,14 @@ class ProductController extends Controller
                 $dataNotify['link'] = '/admin/products/'.$product1->id.'/edit';
                 foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                     $dataNotify['roleview'] = $itemUser;
-                    Notification::create($dataNotify);
+                    $notify = Notification::create($dataNotify);
                     $message = 'OK';
                     if(isset($message)) {
                         $redis = Redis::connection();
                         $redis->publish("messages", json_encode(array(
                             "status" => 200,
-                            "id"=>$product1->id, 
+                            "id"=>$product1->id,  
+                            "notifyID" => $notify->id,
                             "roleview"=> $itemUser,
                             "title" => "Sản phẩm mới",
                             "link" => "/admin/products/".$product1->id."/edit",
@@ -375,14 +376,15 @@ class ProductController extends Controller
             $dataNotify['orderID_or_productID'] = $product->id;
             $dataNotify['roleview'] = $product->kho;
             $dataNotify['link'] = '/admin/products/'.$product->id.'/edit';
-            Notification::create($dataNotify);
+            $notify = Notification::create($dataNotify);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
                     "id"=>$product->id, 
-                    "roleview"=> $product->kho,
+                    "roleview"=> $product->kho, 
+                    "notifyID" => $notify->id,
                     "title" => "Sản phẩm mới",
                     "link" => "/admin/products/".$product->id."/edit",
                     "content" => "Sản phẩm ".$getCodeProduct." đã được duyệt.",

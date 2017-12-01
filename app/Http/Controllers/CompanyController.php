@@ -305,13 +305,14 @@ class CompanyController extends Controller
             $dataNotify['author_id'] = $userID;
             $dataNotify['roleview'] = $viewer_id;
             $dataNotify['link'] = '/admin/company/'.$id.'/edit';
-            Notification::create($dataNotify);
+            $notify = Notification::create($dataNotify);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
-                    "roleview" => $viewer_id,
+                    "roleview" => $viewer_id, 
+                    "notifyID" => $notify->id,
                     "title" => "Thay đổi tài khoản thành công",
                     "link" => '/admin/company/'.$id.'/edit',
                     "content" => "Bạn đã đăng ký trả phí thành công",

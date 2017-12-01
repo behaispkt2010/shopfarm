@@ -99,13 +99,14 @@ class NewsCompanyController extends Controller
             $dataNotify['link'] = '/admin/newscompany/'.$news->id.'/edit';
             foreach (Util::getIdUserOfRole(Util::$roleviewAdmin) as $itemUser) {
                 $dataNotify['roleview'] = $itemUser;
-                Notification::create($dataNotify);
+                $notify = Notification::create($dataNotify);
                 $message = 'OK';
                 if(isset($message)) {
                     $redis = Redis::connection();
                     $redis->publish("messages", json_encode(array(
                         "status" => 200,
-                        "id"=>$news->id, 
+                        "id"=>$news->id,  
+                        "notifyID" => $notify->id,
                         "roleview"=> $itemUser,
                         "title" => "Cơ hội mua bán mới",
                         "link" => "/admin/newscompany/".$news->id."/edit",
@@ -237,13 +238,14 @@ class NewsCompanyController extends Controller
             $dataNotify['orderID_or_productID'] = $newsCompany->id;
             $dataNotify['roleview'] = $newsCompany->author_id;
             $dataNotify['link'] = '/admin/newscompany/'.$id.'/edit';
-            Notification::create($dataNotify);
+            $notify = Notification::create($dataNotify);
             $message = 'OK';
             if(isset($message)) {
                 $redis = Redis::connection();
                 $redis->publish("messages", json_encode(array(
                     "status" => 200,
-                    "id"=>$id, 
+                    "id"=>$id,  
+                    "notifyID" => $notify->id,
                     "roleview"=> $newsCompany->author_id,
                     "title" => "Cơ hội mua bán mới",
                     "link" => "/admin/newscompany/".$id."/edit",

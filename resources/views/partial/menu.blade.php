@@ -272,20 +272,9 @@
                 <?php
                     $strUserID = Auth::user()->id;
                     $strNumNotify = count(\App\Notification::where('is_read',0)->where('roleview',$strUserID)->get());
+                    $arrNotification = \App\Notification::GetNotify($strUserID);
                 ?>
-                @if(Auth::user()->hasRole('kho'))
-                    <?php
-                        $arrNotification = \App\Notification::GetNotify($strUserID);
-                    ?>
-                @elseif(Auth::user()->hasRole('com'))
-                    <?php
-                        $arrNotificationCompany = \App\Notification::GetNotifyCompany($strUserID);
-                    ?>
-                @else
-                    <?php
-                        $arrNotificationAdmin = \App\Notification::GetNotifyAdmin($strUserID);
-                    ?>
-                @endif
+                
                 <li role="presentation" class="dropdown" style="display: block" >
                     <a href="javascript;" class="dropdown-toggle info-number" id="" data-toggle="dropdown"
                        aria-expanded="false">
@@ -293,125 +282,44 @@
                         <span class="badge bg-template " id="notify_count">@if ($strNumNotify != 0) {{$strNumNotify}} @endif</span>
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                        
-                            <div class="notify_heading">
-                                <strong>Thông báo</strong>
-                                <a id="menu_notify" class="alignright">Đánh dấu tất cả đã đọc</a>
-                            </div>
-                        
-                        @if(Auth::user()->hasRole('kho'))
-                            @if (count($arrNotification) != 0)
-                                @foreach ($arrNotification as $itemNotification)
-                                    <li class="notify">
-                                        <!-- <input type="hidden" name="notifyID" value="{{ $itemNotification->id }}"> -->
-                                        <a onclick="UpdateClickOneNotify({{ $itemNotification->id }})" href="@if ($itemNotification->keyname == \App\Util::$confirmkhoSuccess) {{url('/shop/'.$itemNotification->id)}}
-                                                @elseif ($itemNotification->keyname == \App\Util::$newproductSuccess) {{route('products.edit',['id' => $itemNotification->orderID_or_productID])}}
-                                                @else # @endif" target="_blank">
-                                            <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
-                                                <span>
-                                                    <span class="notification_title">{{$itemNotification->title}}</span>
-                                                </span>
-                                            <span class="message">{{$itemNotification->content}}</span>
-                                            <span class="time">{{ $itemNotification->created_at }}</span>
-                                        </a>
-                                    </li>
-                                @endforeach
-
-                                <li style="height: 40px;">
-                                    <div class="text-center">
-                                        <a href="{{ route('notification.index') }}">
-                                            <strong>Xem tất cả</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
+                        <div class="notify_heading">
+                            <strong>Thông báo</strong>
+                            <a id="menu_notify" class="alignright">Đánh dấu tất cả đã đọc</a>
+                        </div>
+                        @if (count($arrNotification) != 0)
+                            @foreach ($arrNotification as $itemNotification)
+                                <li class="notify @if($itemNotification->is_read == 1)notifyIsRead @endif">
+                                    <a onclick="UpdateClickOneNotify({{ $itemNotification->id }})" href="{{ url('/').$itemNotification->link }}" target="_blank">
+                                        <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
+                                            <span>
+                                                <span class="notification_title">{{$itemNotification->title}}</span>
+                                            </span>
+                                        <span class="message">{{$itemNotification->content}}</span>
+                                        <span class="time">{{ $itemNotification->created_at }}</span>
+                                    </a>
                                 </li>
-                            @else
-                                <div class="notify_area">
-                                    <div class="message_null">
-                                        <span class="different">Bạn không có thông báo mới.</span>
-                                    </div>
-                                    <div class="img_notify">
-                                        <img src="{{ asset('/images/box-mail.png')}}" alt="">
-                                    </div>
-                                </div>
-                            @endif
-                        @elseif(Auth::user()->hasRole('com'))
-                            @if (count($arrNotificationCompany) != 0)
-                                @foreach ($arrNotificationCompany as $itemNotification)
-                                    <li class="notify">
-                                        <!-- <input type="hidden" name="notifyID" value="{{ $itemNotification->id }}"> -->
-                                        <a onclick="UpdateClickOneNotify({{ $itemNotification->id }})" href="@if ($itemNotification->keyname == \App\Util::$confirmCompanySuccess) {{url('/company/'.$itemNotification->id)}}
-                                                @elseif ($itemNotification->keyname == \App\Util::$newscompanySuccess) {{route('newscompany.edit',['id' => $itemNotification->orderID_or_productID])}}
-                                                @else # @endif" target="_blank">
-                                            <span class="image"><img src="@if (!empty($itemNotification->image)){{ url('/').$itemNotification->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
-                                                <span>
-                                                    <span class="notification_title">{{$itemNotification->title}}</span>
-                                                </span>
-                                            <span class="message">{{$itemNotification->content}}</span>
-                                            <span class="time">{{ $itemNotification->created_at }}</span>
-                                        </a>
 
-                                    </li>
-                                @endforeach
-
-                                <li style="height: 40px;">
-                                    <div class="text-center">
-                                        <a href="{{ route('notification.index') }}">
-                                            <strong>Xem tất cả</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            @else
-                                <div class="notify_area">
-                                    <div class="message_null">
-                                        <span class="different">Bạn không có thông báo mới.</span>
-                                    </div>
-                                    <div class="img_notify">
-                                        <img src="{{ asset('/images/box-mail.png')}}" alt="">
-                                    </div>
+                            @endforeach
+                            <li style="height: 40px;">
+                                <div class="text-center">
+                                    <a href="{{ route('notification.index') }}">
+                                        <strong>Xem tất cả</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
                                 </div>
-                            @endif
+                            </li>
                         @else
-                            @if (count($arrNotificationAdmin) != 0)
-                                @foreach ($arrNotificationAdmin as $itemNotificationAdmin)
-                                    <li class="notify">
-                                        <!-- <input type="hidden" name="notifyID" class="notifyID" value="{{ $itemNotificationAdmin->id }}"> -->
-                                        <a onclick="UpdateClickOneNotify({{ $itemNotificationAdmin->id }})" href="{{ url('/').$itemNotificationAdmin->link }}" target="_blank">
-                                            <span class="image"><img src="@if (!empty($itemNotificationAdmin->image)){{ url('/').$itemNotificationAdmin->image }} @else {{url('/').'/images/user_default.png'}} @endif " alt="Profile Image"/></span>
-                                                <span>
-                                                    <span class="notification_title">{{$itemNotificationAdmin->title}}</span>
-                                                </span>
-                                            <span class="message">{{$itemNotificationAdmin->content}}</span>
-                                            <span class="time">{{ $itemNotificationAdmin->created_at }}</span>
-                                        </a>
-                                    </li>
-                                @endforeach
-
-                                <li style="height: 40px;">
-                                    <div class="text-center">
-                                        <a href="{{ route('notification.index') }}">
-                                            <strong>Xem tất cả</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            @else
-                                <div class="notify_area">
-                                    <div class="message_null">
-                                        <span class="different">Bạn không có thông báo mới.</span>
-                                    </div>
-                                    <div class="img_notify">
-                                        <img src="{{ asset('/images/box-mail.png')}}" alt="">
-                                    </div>
+                            <div class="notify_area">
+                                <div class="message_null">
+                                    <span class="different">Bạn không có thông báo mới.</span>
                                 </div>
-                            @endif
+                                <div class="img_notify">
+                                    <img src="{{ asset('/images/box-mail.png')}}" alt="">
+                                </div>
+                            </div>
                         @endif
                     </ul>
                 </li>
-
-
-
             </ul>
         </nav>
     </div>
@@ -509,21 +417,25 @@
             $('#notify_count').text(currentCountMsg+1);
             $('#notify_count').removeClass('hidden');
             //add new messge to Message List when a new product had been created
-            $(".notify_heading").after('<li class="notify"><a href="{{url('/')}}'+data.link+'" target="_blank"><span class="image"><img src="{{asset("/images/user_default.png")}}" alt="Profile Image"></span><span><span class="notification_title">'+data.title+'</span></span><span class="message">'+data.content+'</span><span class="time">'+data.created_at+'</span><div class="ripple-container"></div></a></li>');
+            $(".notify_heading").after('<li class="notify"><a onclick="UpdateClickOneNotify('+data.notifyID+')" href="{{url('/')}}'+data.link+'" target="_blank"><span class="image"><img src="{{asset("/images/user_default.png")}}" alt="Profile Image"></span><span><span class="notification_title">'+data.title+'</span></span><span class="message">'+data.content+'</span><span class="time">'+data.created_at+'</span><div class="ripple-container"></div></a></li>');
         }
     });
 
     function UpdateClickOneNotify($NotifyID) {
         var NotifyID = $NotifyID;
+        console.log(NotifyID);
         $.ajax({
             type: "GET",
             data: {strNotifyID: NotifyID},
             url: '{{ url('/') }}/admin/notify/AjaxUpdateClickOneNotify',
             success: function( msg ) {
-                console.log[msg];
+                console.log(msg);
                 currentCountMsg = parseInt($('#notify_count').text());
                 if (currentCountMsg > 0) {
                     $('#notify_count').text(currentCountMsg-1);
+                } 
+                if (currentCountMsg == 1) {
+                    $('#notify_count').addClass('hidden');
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
