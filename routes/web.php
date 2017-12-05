@@ -243,7 +243,6 @@ Route::get('/ho-tro/{content}', 'Frontend\PageController@Help');
 Route::get('/vung-mien/{area}', 'Frontend\PageController@getWareHouseArea');
 
 Route::get('/lp/{content}', 'Frontend\LandingPageController@LandingPage');
-Route::get('/nosagoBlog', 'Frontend\LandingPageController@LandingPage');
 
 
 

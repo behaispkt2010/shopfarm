@@ -15,10 +15,12 @@ class BlogController extends Controller
             ->orderBy('articles.id','DESC')
             ->take(10)
             ->get();
+        $category_technical = Category::get();
         $data = [
-            'news' => $news
+            'news' => $news,
+            'category_technical' => $category_technical
         ];
-        // dd($data);
+        // dd($category_technical);
         return view('frontend.blogs.blog_homepage', $data);
         // return view('frontend.blog',$data);
 

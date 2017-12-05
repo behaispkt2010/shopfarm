@@ -16,6 +16,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @include('partial.frontend-styles')
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/blogs/ghpages-materialize.css') }}"> -->
     @yield('add_style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <!-- Styles -->
