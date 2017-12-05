@@ -10,15 +10,17 @@ use App\Http\Controllers\Controller;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs = Article::select('articles.*','views.view')
-        ->leftJoin('views', 'articles.id', '=', 'views.blog_id')
+        $news = Category::leftJoin('articles', 'categories.id', '=', 'articles.category')
+            ->where('articles.category','=', 1)
             ->orderBy('articles.id','DESC')
-            ->paginate(10);
-        $data=[
-            'blogs'=>$blogs
+            ->take(10)
+            ->get();
+        $data = [
+            'news' => $news
         ];
-//        dd($blogs);
-        return view('frontend.blog',$data);
+        // dd($data);
+        return view('frontend.blogs.blog_homepage', $data);
+        // return view('frontend.blog',$data);
 
     }
 

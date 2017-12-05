@@ -9956,6 +9956,7 @@ ul.box-lp > li a {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    background-position-y: top;
 }
 .homepage_sologan {
     color: #fff;
