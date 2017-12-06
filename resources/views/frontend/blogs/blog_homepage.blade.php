@@ -147,7 +147,11 @@
                 <div class="clearfix"></div>
                 <div class="box_tailieu">
                     <div class="title_box_homeblog">
-                        <p class="title_box uppercase"><b></b></p>
+                        <p class="title_box uppercase"><b>Contact Us</b></p>
+                        <div class="clearfix"></div>
+                        <div class="col-md-3 col-sm-3 img_cover" style="">
+                            <img src="{{ asset('images/contact-us.png') }}">
+                        </div>
                         <!-- <p class="read_more_blog"><a href="#" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p> -->
                     </div>
                 </div>
