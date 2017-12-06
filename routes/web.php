@@ -234,7 +234,7 @@ Route::get('/tro-giup/{linkMenu}', 'Frontend\LandingPageController@help_menu');
 Route::get('/dataJsTree', 'Frontend\LandingPageController@dataJsTree');
 
 Route::get('/about','Frontend\PageController@About');
-Route::get('/{slug}','Frontend\PageController@CustomPage');
+// Route::get('/{slug}','Frontend\PageController@CustomPage');
 
 Route::post('/customer-rate','Frontend\ProductController@customerRate');
 
