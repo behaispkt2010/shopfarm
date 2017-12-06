@@ -29,7 +29,7 @@
                             <li>
                                 <span class="time">{{ $itemNews->created_at->format('Y-m-d H:i') }}</span>
                                 <span class="split"></span>
-                                <a href="#" class="content_title" title="">{!! $itemNews->title !!}</a>
+                                <a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($itemNews->category)}}/{{$itemNews->slug}}" class="content_title" title="">{!! $itemNews->title !!}</a>
                                 <span class="count_views"><i class="material-icons icon_views">visibility</i> 1 </span>
                             </li>
                             @endforeach
@@ -52,10 +52,12 @@
         <div class="col-md-6 col-sm-6 col-xs-12 blog_right">
             <div class="box_blog_small">
                 <div class="box_tailieu">
-                    <div class="title_box_homeblog">
-                        <p class="title_box uppercase"><b>Tài liệu</b></p>
-                        <p class="read_more_blog"><a href="#" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
-                    </div>
+                    <a href="{{ url('/tai-lieu') }}" title="">
+                        <div class="title_box_homeblog">
+                            <p class="title_box uppercase"><b>Tài liệu</b></p>
+                            <p class="read_more_blog"><a href="{{ url('/tai-lieu') }}" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -94,7 +96,7 @@
             <div class="box_blog_pricing">
                 <div class="title_box_homeblog">
                     <p class="title_box uppercase"><b>Giá cả</b></p>
-                    <p class="read_more_blog"><a href="#" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
+                    <p class="read_more_blog"><a href="{{ url('/gia-ca-thi-truong') }}" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
                     <table class="table table-striped table-hover ">
                         <thead>
                             <tr>

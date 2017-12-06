@@ -113,7 +113,7 @@
                                     <li><a href="{{ url('/company-business') }}" target="_blank"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
                                     <li class=""><a href="#" class=""><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
                                     <li><a target="_blank" href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Cộng đồng</a></li>
-                                    <li><a target="_blank" href="https://www.nongsan.blog/"><i class="material-icons">chat</i> Blogs</a></li>
+                                    <li><a target="_blank" href="{{ url('/blogs') }}"><i class="material-icons">chat</i> Blogs</a></li>
                                     <li><a href="#"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                                 </ul>
                             </div>
@@ -149,7 +149,7 @@
                     <li><a class="menu_left_item"target="_blank"  href="{{ url('/company-business') }}"><i class="material-icons icon_home">work</i>Cơ hội giao thương</a></li>
                     <li class=""><a class="menu_left_item hotro_chat" href="#"><i class="material-icons icon_home">headset</i> Hỗ trợ</a></li>
                     <li><a class="menu_left_item" target="_blank" href="https://www.facebook.com/nongsan.blog/?hc_ref=ARQggsv1H_Q7Ryl2-x7fgoo7FRzpGLRS66H7z41Km9lfSgH-1lIOabiXvwiM_1ZJEQY&fref=gs&dti=153574518554374&hc_location=group"><i class="material-icons icon_home">share</i> Cộng đồng</a></li>
-                    <li><a class="menu_left_item" target="_blank" href="https://www.nongsan.blog/"><i class="material-icons icon_home">chat</i> Blogs</a></li>
+                    <li><a class="menu_left_item" target="_blank" href="{{ url('/blogs') }}"><i class="material-icons icon_home">chat</i> Blogs</a></li>
                     <li><a class="menu_left_item" href="#"><i class="material-icons icon_home">flash_on</i> Chiến dịch</a></li>
                 </ul>
             </div>

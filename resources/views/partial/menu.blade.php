@@ -140,6 +140,9 @@
                     @permission('pricing')
                     <li><a href="{{route('pricing.index')}}"><i class="fa fa-line-chart"></i> Thông tin giá cả</a></li>
                     @endpermission
+                    @permission('document')
+                    <li><a href="{{route('document.index')}}"><i class="fa fa-book"></i> Tài liệu</a></li>
+                    @endpermission
                     @permission('driver')
                     <li><a><i class="fa fa-car"></i>Quản lý vận chuyển <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
