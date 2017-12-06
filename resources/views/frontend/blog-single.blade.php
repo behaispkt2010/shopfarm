@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.blogs')
 @section('title', 'chi tiết')
 @section('description','chi tiết bài viết')
 
@@ -9,7 +9,6 @@
 @section('image_seo', url('/').$singleBlog->image )
 
 @section('add_styles')
-{{-- --}}
 @endsection
 @section('content')
 			<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->

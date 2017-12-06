@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.blogs')
 @section('title', 'blog')
 @section('description','blog')
 
@@ -18,20 +18,10 @@
 						<li><a href="/">Trang chủ</a></li>
 						<li>Blogs</li>
 					</ul>
-					<div class="row">
+					<div class="row col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1">
 						<main class="col-md-9 col-sm-8 col-xs-12">
 							<h5>@if(empty($category))Tin tức @else {{$category->name}} @endif</h5>
-							<!-- <header class="top_box on_the_sides">
-								<div class="left_side v_centered">
-									<div class="layout_type buttons_row" data-table-container="#main_blog_list">
-										<a href="#" data-table-layout="grid_view" class="button_grey middle_btn icon_btn tooltip_container"><i class="icon-th"></i><span class="tooltip top">Grid View</span></a>
-										<a href="#" data-table-layout="list_view" class="button_grey middle_btn icon_btn active tooltip_container"><i class="icon-th-list"></i><span class="tooltip top">List View</span></a>
-									</div>
-								</div>
-								<div class="right_side">
-									{!! $blogs->render() !!}
-								</div>
-							</header> -->
+							
 							<ul id="main_blog_list" class="list_of_entries list_view">
 								@if(count($blogs)==0)
 									<h4 class="text-center">Không tìm thấy bài viết</h4>

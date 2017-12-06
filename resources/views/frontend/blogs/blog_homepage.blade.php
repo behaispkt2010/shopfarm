@@ -9,7 +9,7 @@
 @section('image_seo', url('/').'/frontend/images/nosago1.png' )
 
 @section('add_style')
-<link href="{{asset('frontend/css/blogs/homepage.css')}}" rel="stylesheet">
+
 @endsection
 @section('content')
 
@@ -18,8 +18,8 @@
         <div class="col-md-6 col-sm-6 col-xs-12 blog_left">
             <div class="box_blog">
                 <div class="title_box_homeblog">
-                    <p class="title_box uppercase"><b>Tin tức</b></p>
-                    <p class="read_more_blog"><a href="#" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
+                    <p class="title_box uppercase"><b>{{ $cateNews->name }}</b></p>
+                    <p class="read_more_blog"><a href="{{ url('/category-blog/'.$cateNews->slug) }}" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
                 </div>
                 <div class="clearfix"></div>
                 <div class="list_news">
@@ -27,7 +27,7 @@
                         <ul>
                             @foreach($news as $itemNews)
                             <li>
-                                <span class="time">{{ $itemNews->created_at->format('H:i') }}</span>
+                                <span class="time">{{ $itemNews->created_at->format('Y-m-d H:i') }}</span>
                                 <span class="split"></span>
                                 <a href="#" class="content_title" title="">{!! $itemNews->title !!}</a>
                                 <span class="count_views"><i class="material-icons icon_views">visibility</i> 1 </span>
@@ -42,8 +42,8 @@
             <div class="box_blog_small">
                 <div class="box_nongdan">
                     <div class="title_box_homeblog">
-                        <p class="title_box uppercase"><b>Nông dân</b></p>
-                        <p class="read_more_blog"><a href="#" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
+                        <p class="title_box uppercase"><b>{{ $arrFamer->name }}</b></p>
+                        <p class="read_more_blog"><a href="{{ url('/category-blog/'.$arrFamer->slug) }}" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
                     </div>
                 </div>
                
@@ -62,8 +62,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="box_blog">
-                <div class="clearfix"></div>
+            <div class="box_blog_technical">
                 <div class="box_congnghe">
                     <div class="title_box_homeblog">
                         <p class="title_box uppercase"><b>Công nghệ</b></p>
@@ -77,8 +76,8 @@
                         <ul>
                             @foreach($category_technical as $itemCateTech)
                             <li>
-                                <a href="#" class="content_cate">{{ $itemCateTech->name }}</a>
-                                <a href="#{{ $itemCateTech->id }}" class="read_more_blog floatleft" title="">Xem thêm <i class="material-icons">fast_forward</i></a>
+                                <a href="{{ url('/category-blog/'.$itemCateTech->slug) }}" class="content_cate">{{ $itemCateTech->name }}</a>
+                                <a href="{{ url('/category-blog/'.$itemCateTech->slug) }}" class="read_more_blog floatleft" title="">Xem thêm <i class="material-icons">fast_forward</i></a>
                             </li>
                             @endforeach
                         </ul>
@@ -91,8 +90,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-4 col-xs-12 blog_left">
-            <div class="box_blog">
+        <div class="col-md-5 col-sm-5 col-xs-12 blog_left">
+            <div class="box_blog_pricing">
                 <div class="title_box_homeblog">
                     <p class="title_box uppercase"><b>Giá cả</b></p>
                     <p class="read_more_blog"><a href="#" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p>
@@ -106,24 +105,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($pricing as $itemPricing)
                             <tr>
-                              <td>Sản phẩm A</td>
-                              <td>1000</td>
-                              <td>+1</td>
-                              <td>Chợ Tân Bình</td>
+                              <td>{{ $itemPricing->product_name }}</td>
+                              <td>{!! App\Util::FormatMoney($itemPricing->price_new) !!}</td>
+                              <td class="@if(!empty($itemPricing->change) && ($itemPricing->price_new > $itemPricing->price_old)) increasePrice @else decreasePrice @endif">{!! App\Util::FormatMoney($itemPricing->change) !!}</td>
+                              <td>{{ $itemPricing->source }}</td>
                             </tr>
-                            <tr>
-                              <td>Sản phẩm B</td>
-                              <td>1000</td>
-                              <td>+1</td>
-                              <td>Chợ Tân Bình</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-12 blog_right">
+        <div class="col-md-7 col-sm-7 col-xs-12 blog_right">
             <div class="box_blog_small">
                 <div class="box_nongdan">
                     <div class="title_box_homeblog">
@@ -134,7 +129,7 @@
                
             </div>
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-12 blog_right">
+        <div class="col-md-7 col-sm-7 col-xs-12 blog_right">
             <div class="box_blog_small">
                 <div class="clearfix"></div>
                 <div class="box_tailieu">

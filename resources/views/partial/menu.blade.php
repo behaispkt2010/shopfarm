@@ -134,32 +134,11 @@
                         @endpermission
                     @endif
 
-                    <!-- @if(Auth::user()->hasRole(['editor','admin']))
-                    <li><a><i class="fa fa-database"></i>Quản lý công ty <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            @permission('company')
-                    
-                            <li><a href="{{route('warehouse.index')}}"></i> Thông tin chủ kho</a></li>
-                            @endpermission
-                            @permission('money')
-                    
-                            <li><a href="{{route('money.index')}}">Sổ quỹ</a></li>
-                            @endpermission
-                            @permission('inventory')
-                    
-                            <li><a href="{{route('inventory.index')}}">Kiểm kho</a></li>
-                            @endpermission
-                            @permission('historyInput')
-                    
-                            <li><a href="{{route('historyInput.index')}}">Lịch sử nhập hàng</a></li>
-                            @endpermission
-                    
-                        </ul>
-                    </li>
-                    @endif -->
-
                     @permission('customers')
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Khách hàng</a></li>
+                    @endpermission
+                    @permission('pricing')
+                    <li><a href="{{route('pricing.index')}}"><i class="fa fa-line-chart"></i> Thông tin giá cả</a></li>
                     @endpermission
                     @permission('driver')
                     <li><a><i class="fa fa-car"></i>Quản lý vận chuyển <span class="fa fa-chevron-down"></span></a>

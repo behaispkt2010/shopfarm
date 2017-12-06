@@ -36,6 +36,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], functi
     //Tin tức
     Route::resource('news', 'NewController');
     Route::get('news/data/json', 'NewController@data');
+    //Giá cả
+    Route::resource('pricing', 'PricingController');
+    Route::get('pricing/data/json', 'PricingController@data');
+    Route::post('pricing/AjaxCreatePricing', 'PricingController@AjaxCreatePricing');
+    Route::post('pricing/AjaxUpdatePricing', 'PricingController@AjaxUpdatePricing');
 
     // Thông tin cần mua từ các Công ty
     Route::resource('newscompany', 'NewsCompanyController');

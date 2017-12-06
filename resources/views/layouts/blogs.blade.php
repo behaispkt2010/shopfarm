@@ -15,9 +15,7 @@
     <meta property="og:image"         content="@yield('image_seo')" />
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    @include('partial.frontend-styles')
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/blogs/ghpages-materialize.css') }}"> -->
-    @yield('add_style')
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <!-- Styles -->
     <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
@@ -29,6 +27,11 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    @include('partial.frontend-styles')
+    <link href="{{asset('plugin/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/blogs/homepage.css')}}" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/blogs/ghpages-materialize.css') }}"> -->
+    @yield('add_style')
     <style>
         html,body{
             height: 100%;

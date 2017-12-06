@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Article;
 use App\Category;
+use App\Pricing;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,14 +14,22 @@ class BlogController extends Controller
         $news = Category::leftJoin('articles', 'categories.id', '=', 'articles.category')
             ->where('articles.category','=', 1)
             ->orderBy('articles.id','DESC')
+            ->selectRaw('articles.*')
+            ->selectRaw('categories.slug as cateSlug')
             ->take(10)
             ->get();
-        $category_technical = Category::get();
+        $arrCateNews = Category::find('1');    
+        $arrFamer = Category::find('2');    
+        $category_technical = Category::whereNotIn('id',[1,2])->get();
+        $pricing = Pricing::get();
         $data = [
             'news' => $news,
-            'category_technical' => $category_technical
+            'cateNews' => $arrCateNews,
+            'arrFamer' => $arrFamer,
+            'category_technical' => $category_technical,
+            'pricing' => $pricing
         ];
-        // dd($category_technical);
+        // dd($news);
         return view('frontend.blogs.blog_homepage', $data);
         // return view('frontend.blog',$data);
 
@@ -35,10 +44,8 @@ class BlogController extends Controller
         else {
             $idCate = $category->id;
         }
-        $blogs = Article::select('articles.*','views.view')
-            ->leftJoin('views', 'articles.id', '=', 'views.blog_id')
-            ->orderBy('articles.id','DESC')
-            ->where('articles.category',$idCate)
+        $blogs = Article::orderBy('id','DESC')
+            ->where('category',$idCate)
             ->paginate(10);
 
         $data=[
@@ -47,8 +54,6 @@ class BlogController extends Controller
         ];
 //        dd($blogs);
         return view('frontend.blog',$data);
-
-
     }
     public function SingleBlog($cate,$slug){
         $singleBlog = Article::select('articles.*','views.view')

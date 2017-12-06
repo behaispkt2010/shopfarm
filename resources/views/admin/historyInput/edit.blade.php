@@ -12,7 +12,7 @@
             <div class="">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 profile_details product-detail">
-
+                        
                         <div class="well box1 info-kho">
                             <h4 class="text-center">Chi tiết nhập hàng ngày {{$date}}</h4>
                             <table class="table table-striped table-hover ">
