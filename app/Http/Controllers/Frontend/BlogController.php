@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Article;
 use App\Category;
 use App\Pricing;
+use App\WebsiteLink;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,12 +23,14 @@ class BlogController extends Controller
         $arrFamer = Category::find('2');    
         $category_technical = Category::whereNotIn('id',[1,2])->get();
         $pricing = Pricing::get();
+        $website = WebsiteLink::get();
         $data = [
             'news' => $news,
             'cateNews' => $arrCateNews,
             'arrFamer' => $arrFamer,
             'category_technical' => $category_technical,
-            'pricing' => $pricing
+            'pricing' => $pricing,
+            'website' => $website
         ];
         // dd($news);
         return view('frontend.blogs.blog_homepage', $data);

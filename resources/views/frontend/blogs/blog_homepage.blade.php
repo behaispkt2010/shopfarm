@@ -123,10 +123,23 @@
                 <div class="box_nongdan">
                     <div class="title_box_homeblog">
                         <p class="title_box uppercase"><b>Liên kết website</b></p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="list_website">
+                        <div id="listWebsites">
+                            <ul style="padding-left: 10px;">
+                               @foreach($website as $itemWebsite)
+                                    <li style="width: 180px; display: inline-block;">
+                                        <img src="{{url('/')}}{!! $itemWebsite->website_image !!}" width="25" height="25" alt="" class="img-circle" data-pin-nopin="true">
+                                        <a href="{!! $itemWebsite->website_url !!}" class="" title="">{!! $itemWebsite->website_name !!}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                        
                         <!-- <p class="read_more_blog"><a href="#" title="">Xem thêm <i class="material-icons">fast_forward</i></a></p> -->
                     </div>
-                </div>
-               
             </div>
         </div>
         <div class="col-md-7 col-sm-7 col-xs-12 blog_right">

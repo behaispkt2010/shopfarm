@@ -42,6 +42,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], functi
     Route::post('pricing/AjaxCreatePricing', 'PricingController@AjaxCreatePricing');
     Route::post('pricing/AjaxUpdatePricing', 'PricingController@AjaxUpdatePricing');
 
+    //Liên kết Website
+    Route::resource('websitelink', 'WebsiteLinkController');
+    Route::get('websitelink/data/json', 'WebsiteLinkController@data');
+    Route::post('websitelink/AjaxCreateWebsiteLink', 'WebsiteLinkController@AjaxCreateWebsiteLink');
+    Route::post('websitelink/AjaxUpdateWebsiteLink', 'WebsiteLinkController@AjaxUpdateWebsiteLink');
+
     // Thông tin cần mua từ các Công ty
     Route::resource('newscompany', 'NewsCompanyController');
     Route::get('newscompany/data/json', 'NewsCompanyController@data');
