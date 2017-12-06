@@ -13393,3 +13393,27 @@ INSERT INTO `ware_houses` VALUES ('14', '104', 'testworklow4', 'testworklow4 add
 INSERT INTO `ware_houses` VALUES ('15', '105', 'testworklow5', 'testworklow5 address', '27', '', null, 'testworklow5', null, '1', '0', '0', '/uploads/images/2017-10/web-2017-10-10_00-16-15-traicay.jpg', '02/10/2017', '0', '0', '0', '0', '0', '0', null, null, null, '1', '1', null, '2017-10-10 00:16:15', '2017-10-10 00:16:15', '0');
 INSERT INTO `ware_houses` VALUES ('16', '87', 'haitvb@vng.com.vn', 'haitvb@vng.com.vn', '26', '', null, 'haitvb@vng.com.vn', null, '1', '0', '0', '/uploads/images/2017-10/web-2017-10-11_21-33-47-nho1.jpg', '11/10/2017', '0', '0', '0', '0', '0', '0', null, null, null, '1', '1', null, '2017-10-11 21:33:48', '2017-10-11 21:33:48', '0');
 INSERT INTO `ware_houses` VALUES ('17', '108', 'haitest1', 'haitest1', '77', '', '225452353523', 'haitest1', null, '1', '0', '0', '/uploads/images/2017-10/web-2017-10-13_15-15-05-2.jpg', '12/10/2017', '1', '0', '12', '1', '0', '0', null, '2017-11-21 16:51:30', null, '1', '1', null, '2017-10-13 15:15:05', '2017-11-21 16:51:30', '0');
+-- ----------------------------
+-- Table structure for website_links
+-- ----------------------------
+DROP TABLE IF EXISTS `website_links`;
+CREATE TABLE `website_links` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `website_name` varchar(255) DEFAULT NULL,
+  `website_url` varchar(255) DEFAULT NULL,
+  `website_image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pricings
+-- ----------------------------
+INSERT INTO `website_links` VALUES ('1', 'Google', 'https://www.google.com', '/images/google-logo.png', '2017-12-06 20:24:21', '2017-12-06 20:47:38', '1');
+INSERT INTO `website_links` VALUES ('2', 'nosanGo', 'http://grafana.site/', '/images/logo.png', '2017-12-06 20:24:21', '2017-12-06 20:47:38', '1');
+INSERT INTO `website_links` VALUES ('3', 'Google2', 'https://www.google.com', '/images/google-logo.png', '2017-12-06 20:24:21', '2017-12-06 20:47:38', '1');
+INSERT INTO `website_links` VALUES ('4', 'nosanGo2', 'http://grafana.site/', '/images/logo.png', '2017-12-06 20:24:21', '2017-12-06 20:47:38', '1');
+INSERT INTO `website_links` VALUES ('5', 'Google2', 'https://www.google.com', '/images/google-logo.png', '2017-12-06 20:24:21', '2017-12-06 20:47:38', '1');
+INSERT INTO `website_links` VALUES ('6', 'nosanGo2', 'http://grafana.site/', '/images/logo.png', '2017-12-06 20:24:21', '2017-12-06 20:47:38', '1');
