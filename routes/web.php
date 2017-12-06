@@ -41,6 +41,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], functi
     Route::get('pricing/data/json', 'PricingController@data');
     Route::post('pricing/AjaxCreatePricing', 'PricingController@AjaxCreatePricing');
     Route::post('pricing/AjaxUpdatePricing', 'PricingController@AjaxUpdatePricing');
+    //Tài liệu
+    Route::resource('document', 'DocumentController');
+    Route::get('document/data/json', 'DocumentController@data');
+    Route::post('document/AjaxCreateDocument', 'DocumentController@AjaxCreateDocument');
+    Route::post('document/AjaxUpdateDocument', 'DocumentController@AjaxUpdateDocument');
+    
 
     // Thông tin cần mua từ các Công ty
     Route::resource('newscompany', 'NewsCompanyController');
@@ -210,6 +216,7 @@ Route::get('/company/{company_id}/{newscompanySlug}/{newscompany_id}', 'Frontend
 Route::get('/category-blog/{cateSlug}','Frontend\BlogController@CateBlog');
 Route::get('/blogs', 'Frontend\BlogController@index');
 Route::get('/blog/{cateSlug}/{productSlug}', 'Frontend\BlogController@SingleBlog');
+Route::get('/gia-ca-thi-truong', 'Frontend\BlogController@PricingMaker');
 
 Route::get('/contact','Frontend\PageController@Contact');
 Route::post('/contact','Frontend\PageController@PostContact');
@@ -249,7 +256,7 @@ Route::get('/vung-mien/{area}', 'Frontend\PageController@getWareHouseArea');
 
 Route::get('/lp/{content}', 'Frontend\LandingPageController@LandingPage');
 
-
+Route::get('/tai-lieu','Frontend\BlogController@Document');
 
 ////cart
 //Route::get('/cart', 'CartController@index');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Article;
 use App\Category;
 use App\Pricing;
+use App\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -65,7 +66,23 @@ class BlogController extends Controller
             "cate"=>$cate
         ];
 //        dd($singleBlog);
-        return view('frontend.blog-single',$data);
+        return view('frontend.blog-single', $data);
 
+    }
+    public function PricingMaker () {
+        $pricing = Pricing::get();
+        $data = [
+            'pricing' => $pricing,
+        ];
+        // dd($pricing);
+        return view('frontend.blogs.pricing', $data);
+    }
+    public function Document () {
+        $document = Document::get();
+        $data = [
+            'document' => $document,
+        ];
+        // dd($document);
+        return view('frontend.blogs.document', $data);
     }
 }
