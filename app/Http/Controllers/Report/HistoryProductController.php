@@ -12,7 +12,7 @@ use App\Http\Controllers\PDF\PDFController as CommonPdf;
 use Request,PDF,PdfMerger;
 use DB,Response,App,Session,File,Redirect;
 
-class OrdersController extends PDFController {
+class HistoryProductController extends PDFController {
 
  /**
   * Index
@@ -61,32 +61,5 @@ class OrdersController extends PDFController {
     ];  
     // dd($arrOrder);      
     return view('reports.pdf.orders.detail', $data);        
-  }
-  public function getInventoryDeliveryVoucher ($strOID) {  // phiếu xuất kho
-    $arrOrder = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
-        ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
-        ->where('orders.id','=', $strOID)
-        ->first();
-    $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title', 'products.price_out')
-        ->leftJoin('products', 'product_orders.id_product', 'products.id')
-        ->where('product_orders.order_id', $strOID)->get();    
-    $data = [
-      'id' => $strOID,
-      'productOrder' => $productOrder,
-      'arrOrder' => $arrOrder,
-    ];      
-    return view('reports.pdf.orders.inventory_delivery_voucher', $data);
-  }
-
-  public function getInventoryReceivingVoucher ($strOID) {  // phiếu nhập kho
-    return view('reports.pdf.orders.inventory_receiving_voucher');
-  }
-
-  public function getReceiptVoucher($strOID) {   // phiếu thu
-    return view('reports.pdf.orders.receipt_voucher');
-  }
-
-  public function getPaymentVoucher($strOID) {  // phiếu chi
-    return view('reports.pdf.orders.payment_voucher');
   }
 }

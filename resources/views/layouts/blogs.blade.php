@@ -51,12 +51,31 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto menu_blogs menu_top">
-                <li class="nav-item">
-                  <a class="btn btn-raised btn-dangtin col-xs-12 btnMenuTop" href="{{ url('/login') }}">Đăng nhập</a>
-                </li>
-                <li class="nav-item">
-                  <a class="btn btn-raised btn-dangtin col-xs-12 btnMenuTop" href="{{ url('/register') }}">Đăng ký</a>
-                </li>
+                @if(( !Auth::check()))
+                    <li><a class="btn btn-raised btn-dangtin col-xs-12 btnMenuTop" href="{{ url('/login') }}">Đăng nhập</a></li>
+                    <li><a class="btn btn-raised btn-dangtin col-xs-12 btnMenuTop" href="{{ url('/register') }}">Đăng ký</a></li>
+                @else
+                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false" style="color: #000; line-height: 54px; padding-left: 10px;">Chào bạn, {{Auth::user()->name}}</a>          
+                    <ul class="dropdown-menu dropdown-usermenu pull-right" style="">
+                        <li><a href="{{ route('users.edit',['id' => Auth::user()->id]) }}">
+                                <i class="fa fa-info-circle pull-right"></i>Tài khoản
+                            </a>
+                        </li>
+                        <li><a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out pull-right"></i>Thoát
+                            </a>
+                        </li>
+                    </ul>
+                @endif
+
+                <form id="logout-form"
+                      action="{{ url('/logout') }}"
+                      method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
               </ul>
             </div>
           </div>

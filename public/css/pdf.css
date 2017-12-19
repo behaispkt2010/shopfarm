@@ -119,6 +119,10 @@ img { max-width: 100%; }
 hr {clear: both;height: 1px;border: none;border-top: solid 1px #666;margin: 20px 0;}
 .left { float: left; }
 .right { float: right; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.uppercase { text-transform: uppercase;  }
 .clearfix { width: 100%; }
 .clearfix:after { content: ""; display: block; clear: both; }
 /* body */
@@ -126,4 +130,17 @@ hr {clear: both;height: 1px;border: none;border-top: solid 1px #666;margin: 20px
 header {
   height: 70px;
   margin: 8px;
+}
+.table-borderless td,
+.table-borderless th {
+    border: 0 !important;
+}
+.list-order {
+	text-align: center;
+}
+.bold {
+	font-weight: bold;
+}
+label {
+	font-weight: 500 !important;
 }

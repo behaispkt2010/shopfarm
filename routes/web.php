@@ -27,6 +27,11 @@ Route::get('login/facebook/callback', 'Auth\RegisterController@handleProviderCal
 //report orders
 Route::get('/report/orders', 'Report\OrdersController@getIndex');
 Route::get('/report/orders/{oid}', 'Report\OrdersController@getOrderDetail');
+
+Route::get('/report/orders/idv/{oid}', 'Report\OrdersController@getInventoryDeliveryVoucher');
+Route::get('/report/orders/irv/{oid}', 'Report\OrdersController@getInventoryReceivingVoucher');
+Route::get('/report/orders/rv/{oid}', 'Report\OrdersController@getReceiptVoucher');
+Route::get('/report/orders/pv/{oid}', 'Report\OrdersController@getPaymentVoucher');
 //
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], function () {

@@ -5,21 +5,31 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
         </button>
         <h4 class="modal-title text-center" id="myModalLabel">Đơn hàng {{ \App\Util::OrderCode($order->id) }}</h4>
-        
-            <a href="{!! url('/') !!}/report/orders/{{ $order->id }}" target="_blank" class="btn btn-warning btn-fab floatright" title="In đơn hàng {{ \App\Util::OrderCode($order->id) }}">
+
+        <div class="print-info"></div>
+        <div class="print-btn">
+            <a href="{!! url('/') !!}/report/orders/idv/{{ $order->id }}" target="_blank" class="btn btn-warning btn-fab floatright btn-print-detail" title="In phiếu xuất kho">
                 <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+                <div class="fix-title-print">In phiếu xuất</div>
+            </a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{!! url('/') !!}/report/orders/rv/{{ $order->id }}" target="_blank" class="btn btn-warning btn-fab floatright btn-print-detail" title="In phiếu thu">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+                <div class="fix-title-print">In phiếu thu</div>
+            </a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{!! url('/') !!}/report/orders/{{ $order->id }}" target="_blank" class="btn btn-warning btn-fab floatright btn-print-detail" title="In đơn hàng {{ \App\Util::OrderCode($order->id) }}">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+                <div class="fix-title-print">In đơn hàng</div>
             </a>
-        
+            
+        </div>
     </div>
     <div class="modal-body sroll">
         <div class="row">
-
             <div class="tracking">
                 <div class="col-sm-12 col-xs-12 fix-padlr cl-center">
                     <div class="img-car">
                     </div>
                     <ul class="ul-date-car">
-
                         @foreach($orderStatus as $itemOrderStatus)
                             <li class="date-past @if($itemOrderStatus->id ==$order->status) active @endif">
                                 <img src="{{url('/')}}{{$itemOrderStatus->image}}" class="icon-tracking" alt="" title="{{ $itemOrderStatus->name }}">
@@ -28,7 +38,6 @@
                                     <span>{{$order->updated_at->format('d-m-Y')}}</span>
                                     <div class="fix-status">{{$itemOrderStatus->name}}</div>
                                 @endif
-
                             </li>
                         @endforeach
                     </ul>

@@ -5,139 +5,128 @@
 @stop
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="{{asset('css/pdf/orders.css')}}">
 <div class="container">
 	<div class="row">
 		<!-- icon logo Lien -->
 			<?php
-				$image = "/images/logo-w.png";
+				$image = "/images/logo_pnsg.png";
 			 ?>
-			<img src="{!! url('/') !!}/images/logo-w.png" width="100px" style="margin-top:10px;" class="left">
-			<label class="w-tit left" style="font-size:10px;"> 
-				<h4 class="label-option " align="center">
-				</h4> 
-			</label>
-			<label class="w-tit-center left"> 
-				<h2 class="label-option tit-size" align="center">
-					Chi tiết Đơn hàng {{ \App\Util::OrderCode($id) }}
-				</h2>
-			</label>
-			<label class="w-tit right martop"> 
-				
-			</label>
+            <div style="text-align: center;">
+    			<img src="{!! url('/') !!}/images/logo_pnsg.png" width="40%" style="margin-top:10px;" class=""> 
+            </div>
+            <br>
+			<div style="text-align: center;">
+    			<label><strong>Website: </strong><span>www.nongsan.co - </span><strong>Email: </strong><span>sale@nongsantunhien.com</span></label><br><br>
+                <label><strong>Công ty TNHH Nông Nghiệp NOSAGO</strong> - <span>MST: </span><strong>6001584687</strong></label>
+            </div>
 	</div>
 	<div class="clear"></div>
 	<br>
 	<div class="row">
         <div class="tracking">
-            <div class="col-sm-12 col-xs-12 fix-padlr cl-center">
-                <div class="img-car">
-                </div>
-                <div>
-                	@foreach($orderStatus as $itemOrderStatus)
-                	@if($itemOrderStatus->id == $arrOrder->status)
-                        <span>{{$arrOrder->updated_at->format('d-m-Y')}}</span>
-                        <div class="fix-status">{{$itemOrderStatus->name}}</div>
-                    @endif
-                    @endforeach
-                </div>
-            </div>
-            <div class="col-md-12 con-tracking hidden-xs" style="color: #000;">
-                <div class="col-md-7 col-sm-6 col-xs-12 fix-padlr">
-                    <h2>Thông tin đặt hàng</h2>
-                    <table class="table list-order table-curved">
+            <div class="col-md-12" style="color: #000;">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center ">
+                    <h3 class="uppercase" style="text-align: center;"><strong>HÓA ĐƠN BÁN HÀNG</strong></h3>
+                    <br><br>
+                    <div class="">
+                        <div class="col-xs-6 col-md-6 col-sm-6 text-left">
+                            <h4><strong>THÔNG TIN ĐƠN HÀNG</strong></h4>
+                            <p><strong>Đơn hàng :</strong> {{ \App\Util::OrderCode($arrOrder->id) }}</p>
+                            <p><strong>Khách hàng :</strong> @if(!empty($arrOrder->name)){{$arrOrder->name}}@endif</p> 
+                            <p><strong>Ngày đặt hàng :</strong> @if(!empty($arrOrder->time_order)){{$arrOrder->time_order}}@endif </p>
+                            <p><strong>Mã khách hàng:</strong> {{ \App\Util::UserCode($arrOrder->customer_id) }}</p>
+                        </div>
+                        <div class="col-xs-4 col-md-4 col-sm-4 text-left col-xs-offset-1">
+                            <h4><strong>CỬA HÀNG TẠO</strong></h4>
+                            <p><strong>Cửa hàng :</strong> {{ $arrWareHouse->name_company }} </p> 
+                            <p><strong>Điện thoại:</strong> {{ $arrWareHouse->phone_number}} </p> 
+                            <p><strong>Nhân viên :</strong> {{ $arrWareHouse->name }} </p> 
+                            <p><strong>Địa chỉ:</strong> {{ $arrWareHouse->address }} </p>
+                        </div>
+                        <div class="col-xs-6 col-md-6 col-sm-6 text-left">
+                            <h4><strong>THÔNG TIN GIAO HÀNG</strong></h4>
+                            <p><strong>Người giao hàng:</strong> {{ $arrOrder->name_driver }} </p>
+                            <p><strong>Điện thoại :</strong> {{ $arrOrder->phone_driver }} </p>
+                            <p><strong>Địa chỉ giao hàng :</strong> {{ $arrOrder->address }} </p>
+                            <p><strong>Phương thức giao hàng :</strong> {{ $arrOrder->type_driver }} </p>
+                            <p><strong>Ghi chú :</strong> {{ $arrOrder->note }} </p>
+                        </div>
+                    </div>    
+                    <div class="clearfix"></div>
+                    
+                    <table class="table list-order table-bordered ">
                         <tbody>
-                        <?php $total = 0; ?>
-                        @foreach($productOrder as $itemProductOrder)
-                            <tr class="item-product">
-                                <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
-                                <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_out) !!}</span>  </span></td>
-                                <td><span>x </span>{{ $itemProductOrder->num }}</td>
-                                <td><span class="total"> <span>{!! \App\Util::FormatMoney(($itemProductOrder->price_out)*($itemProductOrder->num)) !!}</span> </span></td>
-                            </tr>
-                            <?php $total=$total + (($itemProductOrder->price_out)*($itemProductOrder->num)); ?>
-                        @endforeach
-                        <tr>
-                            {{--<th></th>--}}
-                            <td>
-                            </td>
-                            <td></td>
-                            <td>Tổng: </td>
-                            <td><span class="total">  {!! \App\Util::FormatMoney($total)!!} </span></td>
-                        </tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số Lượng</th>
+                            <th>Tổng</th>
+                            <?php $total = 0; ?>
+                            @foreach($productOrder as $itemProductOrder)
+                                <tr class="item-product">
+                                    <td><span class="name-product"><span>{{$itemProductOrder->title}} ({{ \App\Util::ProductCode($itemProductOrder->id_product) }})</span></span></td>
+                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_out) !!}</span>  </span></td>
+                                    <td><span>x </span>{{ $itemProductOrder->num }}</td>
+                                    <td><span class="total"> <span>{!! \App\Util::FormatMoney(($itemProductOrder->price_out)*($itemProductOrder->num)) !!}</span> </span></td>
+                                </tr>
+                                <?php $total=$total + (($itemProductOrder->price_out)*($itemProductOrder->num)); ?>
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="clear"></div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            Thanh toán:
-                        </div>
-                        <div class="col-md-8">
-                            <p>
-                                @if(($arrOrder->type_pay == 1)) Đã thanh toán đầy đủ @elseif($arrOrder->type_pay == 2) Đã đặt cọc @if(!empty($arrOrder->received_pay)){{number_format($arrOrder->received_pay)}} VNĐ @endif @else Chưa thanh toán @endif
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            Vận chuyển:
-                        </div>
-                        <div class="col-md-8">
-                            <p>@if(!empty($arrOrder->type_driver)){{$arrOrder->type_driver}}@else{{old('type_driver')}}@endif</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            Thông tin tài xế:
-                        </div>
-                        <div class="col-md-8">
-                            <p>Tên: @if(!empty($arrOrder->name_driver)){{$arrOrder->name_driver}}@else{{old('name_driver')}}@endif</p>
-                            <p>SĐT: @if(!empty($arrOrder->phone_driver)){{$arrOrder->phone_driver}}@else{{old('phone_driver')}}@endif</p>
-                            <p>Biển số xe: @if(!empty($arrOrder->number_license_driver)){{$arrOrder->number_license_driver}}@else{{old('number_license_driver')}}@endif</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            Ghi chú:
-                        </div>
-                        <div class="col-md-8">
-
-                            <p class="note-order">@if(!empty($arrOrder->note)){{$arrOrder->note}}@else Không có ghi chú @endif</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5 col-sm-4 col-xs-12 fix-padlr">
-                    {{--<p class="text-center"><i class="ic-tracking ic-co"></i></p>--}}
-                    <h2>Thông tin nhận hàng</h2>
-                    <table class="tracking-table">
+                    <table class="table table-borderless totalCheckout">
                         <tbody>
-                        <tr>
-                            <td><i class="ic-tracking ic-nguoidung"></i></td>
-                            <td>@if(!empty($arrOrder->name)){{$arrOrder->name}}@endif</td>
-                        </tr>
-                        <tr>
-                            <td><i class="ic-tracking ic-diadiem"></i></td>
-                            <td>@if(!empty($arrOrder->address)){{$arrOrder->address}}@endif</td>
-                        </tr>
-                        <tr>
-                            <td><i class="ic-tracking ic-dienthoai"></i></td>
-                            <td>@if(!empty($arrOrder->phone_number)){{$arrOrder->phone_number}}@endif</td>
-                        </tr>
+                            <!-- <tr>
+                                <td colspan="4" class="text-right bold">Thành tiền</td>
+                                <td class="text-right">{!! \App\Util::FormatMoney($total)!!}</td>
+                            </tr> -->
+                            <!-- <tr>
+                                <td colspan="4" class="text-right">Phí vận chuyển</td>
+                                <td class="text-right">{!! \App\Util::FormatMoney($total)!!}</td>
+                            </tr> -->
+                            <!-- <tr>
+                                <td colspan="4" class="text-right">Giảm giá </td>
+                                <td class="text-right">{!! \App\Util::FormatMoney($total)!!}</td>
+                            </tr> -->
+                            <!-- <tr>
+                                <td colspan="5" class="text-right">------------------</td>
+                            </tr> -->
+                            <tr>
+                                <td colspan="4" class="text-right bold">Tổng tiền </td>
+                                <td colspan="5" class="text-right"><span class="total">  {!! \App\Util::FormatMoney($total)!!} </span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-right bold">Tổng khách hàng đã trả </td>
+                                <td colspan="5" class="text-right">
+                                    <span class="total">  
+                                        @if(($arrOrder->type_pay == 1)) {!! \App\Util::FormatMoney($total)!!} @elseif($arrOrder->type_pay == 2) @if(!empty($arrOrder->received_pay)) {!! \App\Util::FormatMoney($arrOrder->received_pay)!!} @endif @endif
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-right bold">Tổng khách hàng còn nợ </td>
+                                <td colspan="5" class="text-right">
+                                    <span class="total">
+                                        @if($arrOrder->type_pay == 2) @if(!empty($arrOrder->remain_pay)) {!! \App\Util::FormatMoney($arrOrder->remain_pay)!!} @endif @endif
+                                    </span
+                                ></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="text-right">------------------</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-right bold">Tiền thu khi giao hàng </td>
+                                <td colspan="5" class="text-right">...................</td>
+                            </tr>
                         </tbody>
                     </table>
-                </div>
-
             </div>
             
-
-            <div class=" row hidden-xs">
+            <!-- <div class=" row hidden-xs">
                 <div class="col-md-12 details-tracking ">
                     <label class="title" style=" font-size: 16px; padding-left: 10px;">Chi tiết hành trình</label>
                     <div id="demo0" class="collapse in" style="padding-left: 20px;">
                         <div class="con-details-tracking">
-
+            
                         @foreach($historyOrder as $itemHistoryOrder)
                             @if($itemHistoryOrder->status==0)
                                 <div class="item">
@@ -151,9 +140,12 @@
                         @endforeach
                         </div>
                     </div>
-
+            
                 </div>
-            </div>
+            </div> -->
+            <br>
+            <p class="text-center">Chúng tôi biết Bạn có rất nhiều sự lựa chọn - Cảm ơn Bạn đã chọn chúng tôi.</p>
+<p class="text-center">Chúng tôi luôn lắng nghe phản hồi của bạn về sản phẩm & dịch vụ qua email: info@nongsantunhien.com</p>
         </div>
     </div>
 </div>

@@ -10,6 +10,8 @@
 		<!-- end-->
 		@yield('components')
 		<link rel="stylesheet" type="text/css" href="{{asset('css/pdf.css')}}">
+		<!-- Bootstrap -->
+    	<link href="{{asset('plugin/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 		<!-- /core JS files -->
 
 		<!-- Page JS files -->
@@ -30,19 +32,26 @@
 		@media print {
 		  	@page { margin: 0; }
 		  	body { margin: 1.6cm; }
+		  	.visible-print  { display: inherit !important; }
 		}
 	</style>
+	<!-- jQuery -->
+    <script src="{{asset('plugin/jquery/dist/jquery.min.js')}}"></script>
+	<!-- Bootstrap -->
+    <script src="{{asset('plugin/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 	<script type="text/javascript">
-		function print_window(){
+		/*function print_window(){
 		  	window.print();
 		  	setTimeout(function () { 
 			    window.open('', '_self', '');
 			    window.close();
 			  }, 100);
-		}
+		}*/
 	</script>
-	<body onload="print_window()">
-		@yield('content')
+	<body onload="print_window() ">
+		<div class="">
+			@yield('content')
+		</div>
 	</body>
 
 </html>

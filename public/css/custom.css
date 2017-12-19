@@ -7263,3 +7263,59 @@ table.dtp-picker-days thead {
 .notifyIsRead {
     background-color: #fff !important;
 }
+.print-btn {
+    position: relative;
+    padding: 0;
+    width: 100%;
+    display: inline-block;
+}
+.print-btn > a {
+    position: relative !important;
+    z-index: 1;
+    text-transform: uppercase;
+    overflow: visible !important;
+}
+.fix-title-print {
+    position: absolute;
+    bottom: 62px;
+    border: solid 1px #53d68b;
+    margin: 0 auto;
+    width: auto;
+    border-radius: 5px;
+    right: -10px;
+    padding: 5px;
+    color: #53d68b;
+    font-weight: 400;
+    font-size: 10px;
+}
+.fix-title-print:before {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 8px 6px 0 6px;
+    border-color: #53d68b transparent;
+    width: 0;
+    height: 0;
+    left: 50%;
+    margin-left: -4px;
+    bottom: -8px;
+}
+.fix-title-print:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 8px 6px 0 6px;
+    border-color: #fff transparent;
+    width: 0;
+    height: 0;
+    left: 50%;
+    margin-left: -4px;
+    bottom: -7px;
+}
+.print-info {
+    min-height: 20px;
+    width: 100%;
+}
+.btn-print-detail {
+    margin-left: 30px !important;
+}
