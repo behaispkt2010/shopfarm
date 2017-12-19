@@ -661,7 +661,7 @@
                                 backgroundColor: "#4caf50",
                                 data: barDatas1
                             }, {
-                                label: 'Thất bại',
+                                label: 'Bị lỗi',
                                 backgroundColor: "#FF9800",
                                 data: barDatas2
                             }]
@@ -799,7 +799,7 @@
                     backgroundColor: "#4caf50",
                     data: []
                 }, {
-                    label: 'Thất bại',
+                    label: 'Bị lỗi',
                     backgroundColor: "#FF9800",
                     data: []
                 }]

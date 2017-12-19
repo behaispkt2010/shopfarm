@@ -49,28 +49,29 @@
                         <tbody>
                             <th>STT</th>
                             <th>Tên sản phẩm</th>
-                            <th>Đơn vị tính</th>
+                            <!-- <th>Đơn vị tính</th> -->
                             <th>Số Lượng</th>
                             <th>Đơn giá</th>
                             <th>Thành tiền</th>
-                            <?php $total = 0; ?>
+                            <?php $total = 0; $i = 1; ?>
 
-                            @for($i = 1; $i < 5; $i++)
+                            @foreach($productOrder as $itemProductOrder)
                                 <tr class="item-product">
                                     <td>{{ $i }}</td>
-                                    <td><span class="name-product"><span>Sản phẩm A</span></span></td>
-                                    <td><span>VNĐ</span></td>
-                                    <td><span>x </span>Số lượng SPA</td>
-                                    <td><span class="price-product"><span>Giá SPA</span></span></td>
-                                    <td><span class="total">Tổng SPA</span></td>
+                                    <td><span class="name-product"><span>{{ $itemProductOrder->name }}</span></span></td>
+                                    <!-- <td><span>VNĐ</span></td> -->
+                                    <td><span>x </span>{{ $itemProductOrder->num }}</td>
+                                    <td><span class="price-product"><span>{!! \App\Util::FormatMoney($itemProductOrder->price_out) !!}</span></span></td>
+                                    <td><span class="total">{!! \App\Util::FormatMoney(($itemProductOrder->price_out)*($itemProductOrder->num)) !!}</span></td>
                                 </tr>
-                                <?php $total = $total/* + (($itemProductOrder->price_out)*($itemProductOrder->num))*/; 
+                                <?php $total = $total + (($itemProductOrder->price_out)*($itemProductOrder->num)); 
+                                $i = $i++ ;
                                 ?>
-                            @endfor
+                            @endforeach
                             <tr>
                                 <td></td>
                                 <td>Tổng cộng</td>
-                                <td colspan="4">  </td>
+                                <td colspan="4"> {!! \App\Util::FormatMoney($total) !!} </td>
                             </tr>
                         </tbody>
                     </table>

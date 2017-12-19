@@ -69,7 +69,8 @@ class OrdersController extends PDFController {
         ->first();
     $productOrder = ProductOrder::select('product_orders.*', 'products.code', 'products.title', 'products.price_out')
         ->leftJoin('products', 'product_orders.id_product', 'products.id')
-        ->where('product_orders.order_id', $strOID)->get();    
+        ->where('product_orders.order_id', $strOID)->get(); 
+    // dd($productOrder);       
     $data = [
       'id' => $strOID,
       'productOrder' => $productOrder,

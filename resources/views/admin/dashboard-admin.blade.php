@@ -412,7 +412,7 @@
                                     backgroundColor: "#4caf50",
                                     data: barDatas1
                                 }, {
-                                    label: 'Thất bại',
+                                    label: 'Bị lỗi',
                                     backgroundColor: "#9F0801",
                                     data: barDatas2
                                 }]
