@@ -30,7 +30,7 @@
                                 <span class="time">{{ $itemNews->created_at->format('Y-m-d H:i') }}</span>
                                 <span class="split"></span>
                                 <a href="{{url('/blog')}}/{{\App\Category::getSlugCategory($itemNews->category)}}/{{$itemNews->slug}}" class="content_title" title="">{!! $itemNews->title !!}</a>
-                                <span class="count_views"><i class="material-icons icon_views">visibility</i> 1 </span>
+                                <!-- <span class="count_views"><i class="material-icons icon_views">visibility</i> 1 </span> -->
                             </li>
                             @endforeach
                         </ul>

@@ -21,7 +21,7 @@ class InventoryController extends Controller
     public function index(Request $request)
     {
         $user_id = Auth::user()->id;
-        if ( Auth::user()->hasRole(['admin','editor']) ) {
+        if ( Auth::user()->hasRole(\App\Util::$viewHistoryInput) ) {
             if($request->get('name') || $request->get('kho')|| $request->get('category')){
                 $name = $request->get('name');
                 $kho = $request->get('kho');

@@ -87,12 +87,12 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        $article =  Article::destroy($id);
-        if(!empty($article)) {
-            return redirect('admin/pricing/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
+        $document =  Document::destroy($id);
+        if(!empty($document)) {
+            return redirect('admin/document/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
         else{
-            return redirect('admin/pricing/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
+            return redirect('admin/document/')->with(['flash_level' => 'danger', 'flash_message' => 'Chưa thể xóa']);
 
         }
     }

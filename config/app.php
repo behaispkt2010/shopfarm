@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -183,6 +184,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Collective\Bus\BusServiceProvider::class,
+
 
     ],
 
@@ -233,6 +238,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

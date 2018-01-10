@@ -11,11 +11,11 @@
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a> -->
     <div class="hover-new-btn h-hover">
-        <!-- <div class="h-report">
-            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
+        <div class="h-report">
+            <a href="{!! url('/') !!}/report/export/hisInput?date=@if(!empty($_REQUEST['date'])){{$_REQUEST['date']}} @endif&from=@if(!empty($_REQUEST['from'])){{$_REQUEST['from']}} @endif&to=@if(!empty($_REQUEST['to'])){{$_REQUEST['to']}} @endif" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
                 <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
             </a>
-        </div> -->
+        </div>
         <div class="h-help">
             <a href="{{ url('/tro-giup') }}" target="_blank" class="btn btn-warning btn-fab" title="Thông tin trợ giúp">
                 <i class="material-icons">help</i>

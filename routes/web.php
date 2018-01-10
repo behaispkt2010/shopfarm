@@ -24,7 +24,7 @@ Auth::routes();
  */
 Route::get('login/facebook', 'Auth\RegisterController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
-//report orders
+//print orders
 Route::get('/report/orders', 'Report\OrdersController@getIndex');
 Route::get('/report/orders/{oid}', 'Report\OrdersController@getOrderDetail');
 
@@ -32,7 +32,18 @@ Route::get('/report/orders/idv/{oid}', 'Report\OrdersController@getInventoryDeli
 Route::get('/report/orders/irv/{oid}', 'Report\OrdersController@getInventoryReceivingVoucher');
 Route::get('/report/orders/rv/{oid}', 'Report\OrdersController@getReceiptVoucher');
 Route::get('/report/orders/pv/{oid}', 'Report\OrdersController@getPaymentVoucher');
-//
+// print 
+Route::get('/report/product/hisInput/{date}', 'Report\ProductController@getHistoryInput');
+// export excel
+Route::get('/report/export/orders', 'Report\ExportController@getExportOrders');
+Route::get('/report/export/product', 'Report\ExportController@getExportProduct');
+Route::get('/report/export/company', 'Report\ExportController@getExportCompany');
+Route::get('/report/export/user', 'Report\ExportController@getExportUser');
+Route::get('/report/export/staffs', 'Report\ExportController@getExportStaffs');
+Route::get('/report/export/customer', 'Report\ExportController@getExportCustomer');
+Route::get('/report/export/driver', 'Report\ExportController@getExportDriver');
+Route::get('/report/export/hisInput', 'Report\ExportController@getExportHisInput');
+
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], function () {
 

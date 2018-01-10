@@ -192,7 +192,7 @@
                                             <label for="name" class="col-md-3 col-xs-12 control-label" style="margin-top: 16px;">Loại Công ty</label>
                                             <div class="col-md-9 col-xs-12 ">
                                                 <div class="form-group">
-                                                    <select name="user_test" id="user_test" class="form-control" @if (Auth::user()->hasRole('kho')) disabled @endif>
+                                                    <select name="user_test" id="user_test" class="form-control" @if (Auth::user()->hasRole('com')) disabled @endif>
                                                         <option value="1" @if ($company->user_test == 1)selected="selected" @endif>Trả Phí</option>
                                                         <option value="2" @if ($company->user_test == 2)selected="selected" @endif>Dùng thử</option>
                                                     </select>
@@ -310,7 +310,7 @@
 
                                             <div class="col-md-8 col-xs-12">
                                                 @if ($company->confirm == 0)
-                                                    @if(Auth::user()->hasRole('company'))
+                                                    @if(Auth::user()->hasRole('com'))
                                                         <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                                                                 data-target=".modal-service"> Đăng ký</button>
                                                     @else
@@ -336,7 +336,7 @@
 
                                             <div class="col-md-8 col-xs-12">
                                                 @if ($company->quangcao == 0)
-                                                    @if(Auth::user()->hasRole('company'))
+                                                    @if(Auth::user()->hasRole('com'))
                                                         <button class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                                                                 data-target=".modal-quangcao"> Đăng ký</button>
                                                     @else
@@ -352,7 +352,7 @@
                                     </div>
 
                                 </li>
-                                @if (Auth::user()->hasRole('kho'))
+                                @if (Auth::user()->hasRole('com'))
                                 <li>
                                     <div class="row">
                                         <div class="form-group">

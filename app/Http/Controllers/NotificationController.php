@@ -62,20 +62,20 @@ class NotificationController extends Controller
         if(Auth::user()->hasRole('kho')) {
             $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
                 ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
-                ->where('notification.roleview',$strUserID)
+                ->where('notification.roleview', $strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('ware_houses.* ')
-                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id,notification.link')
+                ->selectRaw('notification.created_at, notification.keyname, notification.orderID_or_productID, notification.title, notification.content, notification.roleview, notification.author_id, notification.link, notification.id, notification.is_read')
                 ->orderBy('notification.id','DESC')
                 ->paginate(20);
         }
         elseif(Auth::user()->hasRole('com')) {
             $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
                 ->leftjoin('company','company.user_id','=','notification.author_id')
-                ->where('notification.roleview',$strUserID)
+                ->where('notification.roleview', $strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('company.* ')
-                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id,notification.link')
+                ->selectRaw('notification.created_at, notification.keyname, notification.orderID_or_productID, notification.title, notification.content, notification.roleview, notification.author_id, notification.link, notification.id, notification.is_read')
                 ->orderBy('notification.id','DESC')
                 ->paginate(20);
         }
@@ -83,10 +83,10 @@ class NotificationController extends Controller
             $view = Util::$roleviewAdmin;
             $arrNotification = Notification::leftjoin('users','notification.author_id','=','users.id')
                 ->leftjoin('ware_houses','ware_houses.user_id','=','notification.author_id')
-                ->where('notification.roleview',$strUserID)
+                ->where('notification.roleview', $strUserID)
                 ->selectRaw('users.* ')
                 ->selectRaw('ware_houses.* ')
-                ->selectRaw('notification.created_at,notification.keyname,notification.orderID_or_productID,notification.title,notification.content,notification.roleview,notification.author_id,notification.link')
+                ->selectRaw('notification.created_at, notification.keyname, notification.orderID_or_productID, notification.title, notification.content, notification.roleview, notification.author_id, notification.link, notification.id, notification.is_read')
                 ->orderBy('notification.id','DESC')
                 ->paginate(20);
         }

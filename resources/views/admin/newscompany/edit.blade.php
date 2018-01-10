@@ -151,7 +151,7 @@
                             <!-- Show/Hide -->
                             <div class="x_panel">
                                 <div class="wrapper-content">
-                                    @if(Auth::user()->hasRole('admin'))
+                                    @if(Auth::user()->hasRole(\App\Util::$viewNewsCompany))
 
                                     <div class="pd-all-20">
                                         <label class="title-product-main text-no-bold">Hiển thị</label>

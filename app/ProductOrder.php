@@ -80,4 +80,8 @@ class ProductOrder extends Model
             return Order::where('status', $id)->count();
         }
     }
+    public static function checkProductHasOrder($strProductID) {
+        $product = ProductOrder::where('id_product', $strProductID)->get();
+        return count($product);
+    }
 }

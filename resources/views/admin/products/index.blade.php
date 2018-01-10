@@ -7,11 +7,11 @@
         <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
     </a> -->
     <div class="hover-new-btn h-hover">
-        <!-- <div class="h-report">
-            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
-                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+        <div class="h-report">
+            <a href="{!! url('/') !!}/report/export/product?kho={{$_REQUEST['kho']}}&category={{$_REQUEST['category']}}&name={{$_REQUEST['name']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách sản phẩm">
+                <i class="material-icons">archive</i>
             </a>
-        </div> -->
+        </div>
         <div class="h-help">
             <a href="{{ url('/tro-giup') }}" target="_blank" class="btn btn-warning btn-fab" title="Thông tin trợ giúp">
                 <i class="material-icons">help</i>

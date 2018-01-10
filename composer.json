@@ -13,7 +13,10 @@
         "yajra/laravel-datatables-oracle": "~6.0",
         "zizaco/entrust": "5.2.x-dev",
         "schuppo/password-strength": "~1.5",
-        "google/recaptcha": "~1.1"
+        "google/recaptcha": "~1.1",
+        "maatwebsite/excel": "~2.1.0",
+        "laravelcollective/bus": "^5.3",
+        "laravel/socialite": "~2.0.0"
 
     },
     "require-dev": {

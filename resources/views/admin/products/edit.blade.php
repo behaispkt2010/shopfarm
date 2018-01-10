@@ -193,7 +193,7 @@
                             <!-- Show/Hide -->
                             <div class="x_panel">
                                 <div class="wrapper-content">
-                                    @if(Auth::user()->hasRole('admin'))
+                                    @if(Auth::user()->hasRole(\App\Util::$viewProduct))
 
                                     <div class="pd-all-20">
                                         <label class="title-product-main text-no-bold">Hiển thị</label>
@@ -234,7 +234,7 @@
                                             <label>Chủ kho</label>
                                             <select id="select-ck" name="kho" class="form-control"
                                                     data-placeholder="chọn kho">
-                                                @if(Auth::user()->hasRole('admin'))
+                                                @if(Auth::user()->hasRole(\App\Util::$viewProduct))
 
                                                 <option value="0"
                                                         @if(!empty($article->category) && $article->category == 0) selected @endif >

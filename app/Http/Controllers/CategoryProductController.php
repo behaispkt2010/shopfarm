@@ -67,7 +67,7 @@ class CategoryProductController extends Controller
         if($request->get('name') || $request->get('kho')){
             $name = $request->get('name');
             $kho = $request->get('kho');
-            if (Auth::user()->hasRole(['admin','editor','staff'])) {
+            if (Auth::user()->hasRole(\App\Util::$viewCategory)) {
                 $categoryProduct = CategoryProduct::where('name','LiKE','%'.$name.'%')->where('disable', 0)->paginate(6);
             } else {
                 $categoryProduct = CategoryProduct::leftjoin('products','products.category','=','category_products.id')
@@ -78,7 +78,7 @@ class CategoryProductController extends Controller
             }
         }
         else {
-            if (Auth::user()->hasRole(['admin','editor','staff'])) {
+            if (Auth::user()->hasRole(\App\Util::$viewCategory)) {
                 $categoryProduct = CategoryProduct::where('disable', 0)->paginate(16);
             } else {
                 $categoryProduct = CategoryProduct::leftjoin('products','products.category','=','category_products.id')

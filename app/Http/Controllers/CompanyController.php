@@ -298,7 +298,7 @@ class CompanyController extends Controller
         else {
             $data['date_end_test'] = NULL;
         }
-        if(Auth::user()->hasRole('admin')) {
+        if(Auth::user()->hasRole(\App\Util::$viewCompany)) {
             $dataNotify['keyname'] = Util::$dangkytraphiCompanySuccess;
             $dataNotify['title'] = "Thay đổi tài khoản thành công";
             $dataNotify['content'] = "Bạn đã đăng ký trả phí thành công";

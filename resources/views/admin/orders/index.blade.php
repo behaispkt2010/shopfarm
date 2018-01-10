@@ -9,10 +9,11 @@
     <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
         <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
     </a> -->
+    
     <div class="hover-new-btn h-hover">
         <div class="h-report">
-            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
-                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            <a href="{!! url('/') !!}/report/export/orders?q={{$_REQUEST['q']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel đơn hàng">
+                <i class="material-icons">archive</i>
             </a>
         </div>
         <div class="h-help">

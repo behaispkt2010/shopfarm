@@ -42,21 +42,21 @@ class OrderController extends Controller
     public function getOrderByStatus($id){
         $idUser = Auth::user()->id;
         if(Auth::user()->hasRole('kho')) {
-            $AllOrders = Order::where('kho_id',$idUser)->count();
+            $AllOrders = Order::where('kho_id', $idUser)->count();
         }
         else {
             $AllOrders = Order::count();
         }
         $arrAllOrders = Order::select('orders.*','users.address','users.province','users.name','users.phone_number')
             ->leftJoin('users','orders.customer_id','=','users.id')
-            ->where('status',$id)
+            ->where('status', $id)
             ->paginate(6);
         $arrOrderByStatus = OrderStatus::get();
         $data = [
             'arrAllOrders' => $arrAllOrders,
             'arrOrderByStatus' => $arrOrderByStatus,
-            'allOrders'=>$AllOrders,
-            'select'=>$id,
+            'allOrders'=> $AllOrders,
+            'select'=> $id,
         ];
 
         return view('admin.orders.index',$data);
@@ -75,7 +75,7 @@ class OrderController extends Controller
                     ->orderBy('id','DESC')
                     ->paginate(9);
             }
-            else{
+            else {
                 $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
                     ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
                     ->where('users.name', 'LIKE', '%' . $q . '%')
@@ -88,7 +88,7 @@ class OrderController extends Controller
         else if ( Auth::user()->hasRole(['kho']) ){
             $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
                 ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
-                ->where('kho_id',$author_id)
+                ->where('kho_id', $author_id)
                 ->orderBy('id','DESC')
                 ->paginate(9);
         }

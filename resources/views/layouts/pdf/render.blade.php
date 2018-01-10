@@ -40,13 +40,13 @@
 	<!-- Bootstrap -->
     <script src="{{asset('plugin/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 	<script type="text/javascript">
-		/*function print_window(){
+		function print_window(){
 		  	window.print();
 		  	setTimeout(function () { 
 			    window.open('', '_self', '');
 			    window.close();
 			  }, 100);
-		}*/
+		}
 	</script>
 	<body onload="print_window() ">
 		<div class="">

@@ -97,7 +97,7 @@ class WarehouseController extends Controller
         else {
             $data['date_end_test'] = NULL;
         }
-        if(Auth::user()->hasRole('admin')) {
+        if(Auth::user()->hasRole(\App\Util::$viewWareHouse)) {
             $dataNotify['keyname'] = Util::$dangkytraphiSuccess;
             $dataNotify['title'] = "Thay đổi tài khoản thành công";
             $dataNotify['content'] = "Bạn đã đăng ký trả phí thành công";

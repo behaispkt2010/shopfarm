@@ -10,6 +10,7 @@ use App\Product;
 use App\ProductUpdatePrice;
 use App\User;
 use App\WareHouse;
+use App\ProductOrder;
 use App\Util;
 use Illuminate\Http\Request;
 
@@ -424,7 +425,13 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product =  Product::destroy($id);
+        $check = ProductOrder::checkProductHasOrder($id);
+        if ($check == 0) {
+            $product =  Product::destroy($id);
+        } else {
+            return redirect()->back()->with(['flash_level' => 'danger', 'flash_message' => 'Khách hàng này đang có đơn hàng, nên không thể xóa']);
+        }
+        
         if(!empty($product)) {
             return redirect('admin/products/')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thành công']);
         }
@@ -435,7 +442,7 @@ class ProductController extends Controller
     }
     public function deleteDetailImage(Request $request)
     {
-        DetailImageProduct::where('id',$request->get('id'))->delete();
+        DetailImageProduct::where('id', $request->get('id'))->delete();
         $response = array(
             'status' => 'success',
             'msg' => 'Setting created successfully',

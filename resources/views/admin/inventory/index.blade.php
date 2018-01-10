@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <select id="select-ck" class="form-control" name="kho" data-placeholder="chọn kho">
                                     
-                                    @if(Auth::user()->hasRole('admin'))
+                                    @if(Auth::user()->hasRole(\App\Util::$viewInventory))
                                         <option value="0"
                                                 @if(!empty($article->category) && $article->category == 0) selected @endif >
                                             Mặc định

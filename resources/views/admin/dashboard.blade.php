@@ -163,7 +163,7 @@
 
             </div>
         </div>
-        @if(Auth::user()->hasRole(['editor', 'admin']))
+        @if(Auth::user()->hasRole(\App\Util::$viewDashboard))
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel" style="min-height: 550px;">
                 <div>

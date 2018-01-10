@@ -69,6 +69,17 @@ class Util extends Model
     public static $strNumberProductOfLevel2 = 20;
     public static $strNumberProductOfLevel3 = 100;
 
+// chỉ phân quyền cho user là Nhân Viên + trực thuộc quản lý của admin - không có role Chủ Kho, Công ty và Khách hàng
+    public static $viewAll = ['admin','editor'];
+    public static $viewDriver = ['admin','editor'];
+    public static $viewCompany = ['admin','editor','staff'];
+    public static $viewCategory = ['admin','editor'];
+    public static $viewHistoryInput = ['admin','editor'];
+    public static $viewInventory = ['admin','editor'];
+    public static $viewNewsCompany = ['admin','editor'];
+    public static $viewWareHouse = ['admin','editor'];
+    public static $viewProduct = ['admin','editor'];
+    public static $viewDashboard = ['admin','editor'];
 
     public static function saveFile($file, $type)
     {

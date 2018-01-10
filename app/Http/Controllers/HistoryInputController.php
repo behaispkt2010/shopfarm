@@ -23,7 +23,7 @@ class HistoryInputController extends Controller
         $user_id = Auth::user()->id;
         if(!empty($request->get('date'))){
             $date = $request->get('date');    
-            if ( Auth::user()->hasRole(['admin','editor']) ) {
+            if ( Auth::user()->hasRole(\App\Util::$viewHistoryInput) ) {
                 $productUpdatePrice=ProductUpdatePrice::where(DB::raw("(DATE_FORMAT(created_at,'%d-%m-%Y'))"),$date)
                     ->orderBy('id','DESC')
                     ->paginate(9);
@@ -46,7 +46,7 @@ class HistoryInputController extends Controller
 
             $from = $request->get('from');
             $to = $request->get('to');
-            if ( Auth::user()->hasRole(['admin','editor']) ) {
+            if ( Auth::user()->hasRole(\App\Util::$viewHistoryInput) ) {
                 $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
                 ->selectRaw('sum(price_in * number) as sum_price_in')
                 ->selectRaw('sum(price_out) as sum_price_out')
@@ -71,14 +71,13 @@ class HistoryInputController extends Controller
                     ->orderBy('product_update_prices.id','DESC')
                     ->paginate(9);
             }
-//        dd($productUpdatePrice);
             $data = [
                 'productUpdatePrice' => $productUpdatePrice,
             ];
             return view('admin.historyInput.index', $data);
         }
         else {
-            if ( Auth::user()->hasRole(['admin','editor']) ) {
+            if ( Auth::user()->hasRole(\App\Util::$viewHistoryInput) ) {
                 $productUpdatePrice = ProductUpdatePrice::groupBy(DB::raw("DATE(created_at)"))
                 ->selectRaw('sum(price_in * number) as sum_price_in')
                 ->selectRaw('sum(price_out) as sum_price_out')
@@ -101,7 +100,6 @@ class HistoryInputController extends Controller
                     ->orderBy('product_update_prices.id','DESC')
                     ->paginate(9);
             }
-       // dd($productUpdatePrice);
             $data = [
                 'productUpdatePrice' => $productUpdatePrice,
             ];

@@ -1,8 +1,29 @@
 @extends('layouts.admin')
-@section('title', 'khách hàng')
-@section('pageHeader','khách hàng')
-@section('detailHeader','thông tin')
-
+@section('title', 'Chi tiết nhập hàng')
+@section('pageHeader','Chi tiết nhập hàng')
+@section('detailHeader','Chi tiết nhập hàng')
+@section('new-btn')
+    <!-- <a href="{{route('historyInput.create')}}" class="btn btn-warning btn-fab" title="Tạo thêm lịch sử nhập hàng">
+        <i class="fa fa-paper-plane material-icons new-btn" aria-hidden="true"></i>
+    </a> -->
+    <div class="hover-new-btn h-hover">
+        <!-- <div class="h-report">
+            <a href="{!! url('/') !!}/report/orders" target="_blank" class="btn btn-warning btn-fab" title="Danh sách đơn hàng">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            </a>
+        </div> -->
+        <div class="h-help">
+            <a href="{{ url('/tro-giup') }}" target="_blank" class="btn btn-warning btn-fab" title="Thông tin trợ giúp">
+                <i class="material-icons">help</i>
+            </a>
+        </div>
+        <div class="h-plus">
+            <a href="{!! url('/') !!}/report/product/hisInput/{{$date}}" target="_blank" class="btn btn-warning btn-fab" title="In Nhập hàng ngày {{$date}}">
+                <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+@endsection
 @section('content')
 
     <div class="row">

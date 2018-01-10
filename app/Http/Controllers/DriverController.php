@@ -44,22 +44,25 @@ class DriverController extends Controller
             $kho = $request->get('kho');
             $driver1 = Driver::query();
             if(!empty($name)){
-                if(!Auth::user()->hasRole('kho'))
+                if(Auth::user()->hasRole(\App\Util::$viewDriver))
                     $driver1 =  $driver1->where('name_driver','LiKE','%'.$name.'%')->orwhere('phone_driver','LiKE','%'.$name.'%');
                 else {
                     $driver1 =  $driver1->where('kho', Auth::user()->id)->where('name_driver','LiKE','%'.$name.'%')->orwhere('phone_driver','LiKE','%'.$name.'%');
                 }
             }
             if(!empty($kho)){
-                if(!Auth::user()->hasRole('kho'))
-                    $driver1 =  $driver1->where('kho',$kho);
+                if(Auth::user()->hasRole(\App\Util::$viewDriver))
+                    $driver1 =  $driver1->where('kho', $kho);
                 else {
-                    $driver1 =  $driver1->where('kho',Auth::user()->id);
+                    $driver1 =  $driver1->where('kho', Auth::user()->id);
                 }
             }
+            /*if(!empty($name) && !empty($kho)) {
+                $driver1 = $driver1->where('kho', $kho)->where('name_driver','LiKE','%'.$name.'%')->orwhere('phone_driver','LiKE','%'.$name.'%');
+            }*/
             $driver = $driver1->paginate(9);
         }
-        else if(!Auth::user()->hasRole('kho')) {
+        else if(Auth::user()->hasRole(\App\Util::$viewDriver)) {
             $driver = Driver::orderBy('id', 'DESC')
                 ->paginate(9);
         }
@@ -118,7 +121,7 @@ class DriverController extends Controller
             'id' => $id,
             'driver' => $driver,
         ];
-        return view('admin.driver.edit',$data);
+        return view('admin.driver.edit', $data);
     }
 
     /**
@@ -134,7 +137,7 @@ class DriverController extends Controller
             'id' => $id,
             'driver' => $driver,
         ];
-        return view('admin.driver.edit',$data);
+        return view('admin.driver.edit', $data);
     }
 
     /**

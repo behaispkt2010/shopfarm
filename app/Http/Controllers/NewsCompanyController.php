@@ -27,7 +27,7 @@ class NewsCompanyController extends Controller
     public function index()
     {
         $strIDUser = Auth::user()->id;
-        if(Auth::user()->hasRole('admin')) {
+        if(Auth::user()->hasRole(\App\Util::$viewNewsCompany)) {
             $newsCompany = NewsCompany::where('status', 1)->get();
         }
         else {
@@ -205,7 +205,7 @@ class NewsCompanyController extends Controller
         $today = date("Y-m-d_H-i-s");
         $data = $request->all();
         $newsCompany =  NewsCompany::find($id);
-        if(Auth::user()->hasRole('admin')) {
+        if(Auth::user()->hasRole(\App\Util::$viewNewsCompany)) {
             $data['author_id'] = $newsCompany->author_id;
         }    
         else {
@@ -288,7 +288,7 @@ class NewsCompanyController extends Controller
     public function data()
     {
         $strIDUser = Auth::user()->id;
-        if(Auth::user()->hasRole('admin')) {
+        if(Auth::user()->hasRole(\App\Util::$viewNewsCompany)) {
             $newsCompany = NewsCompany::get()
             ->map(function ($newsCompany) {
                 return [
