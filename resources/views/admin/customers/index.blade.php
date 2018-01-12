@@ -10,7 +10,7 @@
     <div class="hover-new-btn h-hover">
         @if(Auth::user()->hasRole('admin'))
         <div class="h-report">
-            <a href="{!! url('/') !!}/report/export/customer?q={{$_REQUEST['q']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách Khách hàng">
+            <a href="{!! url('/') !!}/report/export/customer?q=@if(!empty($_REQUEST['q'])){{$_REQUEST['q']}} @endif" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách Khách hàng">
                 <!-- <i class="fa fa-print material-icons print-btn" aria-hidden="true"></i> -->
                 <i class="material-icons">archive</i>
             </a>

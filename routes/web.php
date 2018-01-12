@@ -43,6 +43,7 @@ Route::get('/report/export/staffs', 'Report\ExportController@getExportStaffs');
 Route::get('/report/export/customer', 'Report\ExportController@getExportCustomer');
 Route::get('/report/export/driver', 'Report\ExportController@getExportDriver');
 Route::get('/report/export/hisInput', 'Report\ExportController@getExportHisInput');
+Route::get('/report/export/warehouse', 'Report\ExportController@getExportWarehouse');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'authorize']], function () {

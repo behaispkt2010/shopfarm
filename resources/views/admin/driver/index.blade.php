@@ -8,7 +8,7 @@
     </a> -->
     <div class="hover-new-btn h-hover">
         <div class="h-report">
-            <a href="{!! url('/') !!}/report/export/driver?kho={{$_REQUEST['kho']}}&name={{$_REQUEST['name']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách Tài xế">
+            <a href="{!! url('/') !!}/report/export/driver?kho=@if(!empty($_REQUEST['kho'])){{$_REQUEST['kho']}} @endif&name=@if(!empty($_REQUEST['name'])){{$_REQUEST['name']}} @endif" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách Tài xế">
                 <i class="material-icons">archive</i>
             </a>
         </div>

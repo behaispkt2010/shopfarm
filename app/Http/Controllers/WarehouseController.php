@@ -624,12 +624,10 @@ class WarehouseController extends Controller
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
                 ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
                 ->where('role_user.role_id', 4)
-//                ->orderBy('id','DESC')
                 ->where('users.name', 'LIKE', '%' . $q . '%')
                 ->orwhere('users.id', 'LIKE', '%' . $q . '%')
                 ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
                 ->paginate(9);
-            //dd($wareHouse);
         } else {
             $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id','ware_houses.user_id as userID', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
@@ -637,7 +635,6 @@ class WarehouseController extends Controller
                 ->where('role_user.role_id', 4)
                 ->orderBy('id', 'DESC')
                 ->paginate(9);
-
         }
 
         $data = [

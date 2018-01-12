@@ -8,7 +8,7 @@
     </a> -->
     <div class="hover-new-btn h-hover">
         <div class="h-report">
-            <a href="{!! url('/') !!}/report/export/product?kho={{$_REQUEST['kho']}}&category={{$_REQUEST['category']}}&name={{$_REQUEST['name']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách sản phẩm">
+            <a href="{!! url('/') !!}/report/export/product?kho=@if(!empty($_REQUEST['kho'])){{$_REQUEST['kho']}} @endif&category=@if(!empty($_REQUEST['category'])){{$_REQUEST['category']}} @endif&name=@if(!empty($_REQUEST['name'])){{$_REQUEST['name']}} @endif" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách sản phẩm">
                 <i class="material-icons">archive</i>
             </a>
         </div>

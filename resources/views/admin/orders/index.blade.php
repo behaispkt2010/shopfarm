@@ -12,7 +12,7 @@
     
     <div class="hover-new-btn h-hover">
         <div class="h-report">
-            <a href="{!! url('/') !!}/report/export/orders?q={{$_REQUEST['q']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel đơn hàng">
+            <a href="{!! url('/') !!}/report/export/orders?q=@if(!empty($_REQUEST['q'])){{$_REQUEST['q']}} @endif" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel đơn hàng">
                 <i class="material-icons">archive</i>
             </a>
         </div>

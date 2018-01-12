@@ -10,7 +10,7 @@
     </a> -->
     <div class="hover-new-btn h-hover">
         <div class="h-report">
-            <a href="{!! url('/') !!}/report/export/staffs?q={{$_REQUEST['q']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách Nhân viên">
+            <a href="{!! url('/') !!}/report/export/staffs?q=@if(!empty($_REQUEST['q'])){{$_REQUEST['q']}} @endif" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách Nhân viên">
                 <i class="material-icons">archive</i>
             </a>
         </div>
@@ -32,7 +32,7 @@
     </a> -->
     <div class="hover-new-btn h-hover">
         <div class="h-report">
-            <a href="{!! url('/') !!}/report/export/user?q={{$_REQUEST['q']}}" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách user">
+            <a href="{!! url('/') !!}/report/export/user?q=@if(!empty($_REQUEST['q'])){{$_REQUEST['q']}} @endif" target="_blank" class="btn btn-warning btn-fab" title="Xuất excel Danh sách user">
                 <i class="material-icons">archive</i>
             </a>
         </div>

@@ -27,35 +27,39 @@ class ExportController extends Controller
         if($request->get('q')){
             $q = $request->get('q');
             if(Auth::user()->hasRole(['kho'])) {
-                $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
-                    ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                $arrAllOrders = Order::leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                    ->leftjoin('province', 'province.provinceid', '=', 'users.province')
+                    ->selectRaw('orders.id as STT, users.name as Người_Nhận, users.phone_number as SDT, orders.time_order as Thời_gian_đặt_hàng, orders.note as Chú_thích, orders.type_pay as Hình_thức_thanh_toán, orders.status_pay as Trạng_thái_thanh_toán, orders.received_pay as Đã_nhận, orders.remain_pay as Còn_lại, orders.type_driver as Hình_thức_vận_chuyển, orders.name_driver as Tài_xế, orders.phone_driver as SDT_Tài_xế, orders.number_license_driver as Biển_số_xe, users.address as Địa_Chỉ_Giao_Hàng, province.name as Tỉnh_TP')
                     ->where('kho_id', $author_id)
                     ->where('users.name', 'LIKE', '%' . $q . '%')
                     ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
-                    ->orderBy('id','DESC')
+                    ->orderBy('orders.id','DESC')
                     ->get();
             }
             else{
-                $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
-                    ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                $arrAllOrders = Order::leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                    ->leftjoin('province', 'province.provinceid', '=', 'users.province')
+                    ->selectRaw('orders.id as STT, users.name as Người_Nhận, users.phone_number as SDT, orders.time_order as Thời_gian_đặt_hàng, orders.note as Chú_thích, orders.type_pay as Hình_thức_thanh_toán, orders.status_pay as Trạng_thái_thanh_toán, orders.received_pay as Đã_nhận, orders.remain_pay as Còn_lại, orders.type_driver as Hình_thức_vận_chuyển, orders.name_driver as Tài_xế, orders.phone_driver as SDT_Tài_xế, orders.number_license_driver as Biển_số_xe, users.address as Địa_Chỉ_Giao_Hàng, province.name as Tỉnh_TP')
                     ->where('users.name', 'LIKE', '%' . $q . '%')
                     ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
-                    ->orderBy('id','DESC')
+                    ->orderBy('orders.id','DESC')
                     ->get();
             }
 
         }
         else if ( Auth::user()->hasRole(['kho']) ){
-            $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
-                ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
+            $arrAllOrders = Order::leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                ->leftjoin('province', 'province.provinceid', '=', 'users.province')
+                ->selectRaw('orders.id as STT, users.name as Người_Nhận, users.phone_number as SDT, orders.time_order as Thời_gian_đặt_hàng, orders.note as Chú_thích, orders.type_pay as Hình_thức_thanh_toán, orders.status_pay as Trạng_thái_thanh_toán, orders.received_pay as Đã_nhận, orders.remain_pay as Còn_lại, orders.type_driver as Hình_thức_vận_chuyển, orders.name_driver as Tài_xế, orders.phone_driver as SDT_Tài_xế, orders.number_license_driver as Biển_số_xe, users.address as Địa_Chỉ_Giao_Hàng, province.name as Tỉnh_TP')
                 ->where('kho_id',$author_id)
-                ->orderBy('id','DESC')
+                ->orderBy('orders.id','DESC')
                 ->get();
         }
         else {
-            $arrAllOrders = Order::select('orders.*', 'users.address', 'users.province', 'users.name', 'users.phone_number')
-                ->leftJoin('users', 'orders.customer_id', '=', 'users.id')
-                ->orderBy('id','DESC')
+            $arrAllOrders = Order::leftJoin('users', 'orders.customer_id', '=', 'users.id')
+                ->leftjoin('province', 'province.provinceid', '=', 'users.province')
+                ->selectRaw('orders.id as STT, users.name as Người_Nhận, users.phone_number as SDT, orders.time_order as Thời_gian_đặt_hàng, orders.note as Chú_thích, orders.type_pay as Hình_thức_thanh_toán, orders.status_pay as Trạng_thái_thanh_toán, orders.received_pay as Đã_nhận, orders.remain_pay as Còn_lại, orders.type_driver as Hình_thức_vận_chuyển, orders.name_driver as Tài_xế, orders.phone_driver as SDT_Tài_xế, orders.number_license_driver as Biển_số_xe, users.address as Địa_Chỉ_Giao_Hàng, province.name as Tỉnh_TP')
+                ->orderBy('orders.id','DESC')
                 ->get();
         }
         $data = $arrAllOrders->toArray();
@@ -115,7 +119,7 @@ class ExportController extends Controller
     }
     public function getExportCompany(Request $request) 
     {
-    	if ($request->get('q')) {
+        if ($request->get('q')) {
             $q = $request->get('q');
             $company = User::select('users.*', 'company.id as company_id','company.user_id as userID')
                 ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
@@ -134,9 +138,37 @@ class ExportController extends Controller
                 ->get();
 
         }
-    	$data = $company->toArray();
-		return Excel::create('Cong_Ty', function($excel) use ($data) {
-			$excel->sheet('Danh sách Công ty', function($sheet) use ($data)
+        $data = $company->toArray();
+        return Excel::create('Cong_Ty', function($excel) use ($data) {
+            $excel->sheet('Danh sách Công ty', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data, NULL, 'A3');
+            });
+        })->download('xlsx');
+    }
+    public function getExportWarehouse(Request $request) 
+    {
+    	if ($request->get('q')) {
+            $q = $request->get('q');
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id','ware_houses.user_id as userID', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
+                ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
+                ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
+                ->where('role_user.role_id', 4)
+                ->where('users.name', 'LIKE', '%' . $q . '%')
+                ->orwhere('users.id', 'LIKE', '%' . $q . '%')
+                ->orwhere('users.phone_number', 'LIKE', '%' . $q . '%')
+                ->get();
+        } else {
+            $wareHouse = User::select('users.*', 'ware_houses.id as ware_houses_id','ware_houses.user_id as userID', 'ware_houses.level as level', 'ware_houses.confirm_kho as confirm_kho', 'ware_houses.quangcao as quangcao')
+                ->leftjoin('role_user', 'role_user.user_id', '=', 'users.id')
+                ->leftjoin('ware_houses', 'ware_houses.user_id', '=', 'users.id')
+                ->where('role_user.role_id', 4)
+                ->orderBy('id', 'DESC')
+                ->get();
+        }
+    	$data = $wareHouse->toArray();
+		return Excel::create('Chu_Kho', function($excel) use ($data) {
+			$excel->sheet('Danh sách Chủ Kho', function($sheet) use ($data)
 	        {
 				$sheet->fromArray($data, NULL, 'A3');
 	        });
